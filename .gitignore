@@ -24,5 +24,4 @@ mscorlib.Behaviors.dll
 packages/
 Binaries/
 Install/
-Database/
 *.dbmdl
