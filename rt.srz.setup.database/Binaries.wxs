@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include Constants.wxi?>
+	<Fragment>
+		<Binary Id="sql.permission" SourceFile="$(var.BaseDir)Database\GrantPermissions.sql" />
+		<Binary Id="sql.restore" SourceFile="$(var.BaseDir)Database\RestoreBackup.sql" />
+		<Binary Id="sql.init" SourceFile="$(var.BaseDir)Database\InitDatabase.sql" />
+	</Fragment>
+</Wix>

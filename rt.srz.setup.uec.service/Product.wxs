@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<?include Constants.wxi?>
+
+	<Product Id="$(var.ProductCode)" Name="$(var.ProductName)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Codepage="$(var.Codepage)">
+		<Package InstallPrivileges="elevated" InstallerVersion="200" Compressed="yes" Manufacturer="$(var.Manufacturer)" SummaryCodepage="$(var.Codepage)" InstallScope="perMachine" />
+
+		<?include "Properties.wxi"?>
+
+    <CustomAction Id="InstallRuntime" ExeCommand="[INSTALLFOLDER]vcredist_x86.exe /q /norestart" Directory="INSTALLFOLDER" Execute="deferred" Return="asyncWait" Impersonate ='no'/>
+    <CustomAction Id="RunRegisterScript" ExeCommand="[INSTALLFOLDER]register.bat" Directory="INSTALLFOLDER" Execute="deferred" Return="asyncWait" Impersonate ='no'/>
+		<CustomAction Id="RunUnRegisterScript" ExeCommand="[INSTALLFOLDER]unregister.bat" Directory="INSTALLFOLDER" Execute="deferred" Return="ignore" Impersonate ='no'/>		
+		<CustomAction Id="Cleanup_tlb" Directory="INSTALLFOLDER" ExeCommand="cmd /C &quot;del protobuf-net.tlb rt.core.model.client.tlb rt.uec.model.tlb rt.uec.service.tlb rt.srz.model.barcode.tlb rt.srz.business.barcode.tlb&quot;"
+      Execute="deferred" Return="ignore" HideTarget="no" Impersonate="no" />
+
+		<InstallExecuteSequence>
+      <Custom Action="RunRegisterScript" After="InstallFiles"/>
+      <Custom Action="InstallRuntime" After="RunRegisterScript"/>
+			<Custom Action="RunUnRegisterScript" Before="RemoveFiles"/>
+			<Custom Action="Cleanup_tlb" Before="RemoveFiles">REMOVE="ALL"</Custom>
+		</InstallExecuteSequence>
+
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+		<UIRef Id="WixUI_InstallDir" />
+
+
+		<UI>
+			<UIRef Id="WixUI_InstallDir" />
+
+			<!-- Skip license dialog -->
+			<Publish Dialog="WelcomeDlg"
+							 Control="Next"
+							 Event="NewDialog"
+							 Value="InstallDirDlg"
+							 Order="2">1</Publish>
+			<Publish Dialog="InstallDirDlg"
+							 Control="Back"
+							 Event="NewDialog"
+							 Value="WelcomeDlg"
+							 Order="2">1</Publish>
+		</UI>
+
+		<MediaTemplate	EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="$(var.ProductName)" Description="$(var.ProductName)" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+	</Product>
+
+	<?define UecOutputDir="$(var.UecBaseDir)\bin\$(var.BUILD)\"?>
+	<Fragment>
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<DirectoryRef Id="INSTALLFOLDER" FileSource="$(var.UecOutputDir)" DiskId="1">
+			<Component Id="CardLib.dll" Guid="*">
+				<File Id='CardLib.dll' Name='CardLib.dll'/>
+			</Component>
+			<Component Id="com.cryptodsb.dll" Guid="*">
+				<File Id='com.cryptodsb.dll' Name='com.cryptodsb.dll'/>
+			</Component>
+			<Component Id="HAL_Common.dll" Guid="*">
+				<File Id='HAL_Common.dll' Name='HAL_Common.dll'/>
+			</Component>
+			<Component Id="HAL_Crypto.dll" Guid="*">
+				<File Id='HAL_Crypto.dll' Name='HAL_Crypto.dll'/>
+			</Component>
+			<Component Id="HAL_Parameters.dll" Guid="*">
+				<File Id='HAL_Parameters.dll' Name='HAL_Parameters.dll'/>
+			</Component>
+			<Component Id="HAL_Protocol.dll" Guid="*">
+				<File Id='HAL_Protocol.dll' Name='HAL_Protocol.dll'/>
+			</Component>
+			<Component Id="HAL_RTC.dll" Guid="*">
+				<File Id='HAL_RTC.dll' Name='HAL_RTC.dll'/>
+			</Component>
+			<Component Id="HAL_SCReader.dll" Guid="*">
+				<File Id='HAL_SCReader.dll' Name='HAL_SCReader.dll'/>
+			</Component>
+			<Component Id="Host.dll" Guid="*">
+				<File Id='Host.dll' Name='Host.dll'/>
+			</Component>
+			<Component Id="OpLib.dll" Guid="*">
+				<File Id='OpLib.dll' Name='OpLib.dll'/>
+			</Component>
+			<Component Id="ru.cryptodsb.dll" Guid="*">
+				<File Id='ru.cryptodsb.dll' Name='ru.cryptodsb.dll'/>
+			</Component>
+			<Component Id="sectors.ini" Guid="*">
+				<File Id='sectors.ini' Name='sectors.ini'/>
+			</Component>
+			<Component Id="terminal.ini" Guid="*">
+				<File Id='terminal.ini' Name='terminal.ini'/>
+			</Component>
+			<Component Id="UECLib.dll" Guid="*">
+				<File Id='UECLib.dll' Name='UECLib.dll'/>
+			</Component>
+
+			<Component Id="register.bat" Guid="*">
+				<File Id='register.bat' Name='register.bat'/>
+			</Component>
+			<Component Id="unregister.bat" Guid="*">
+				<File Id='unregister.bat' Name='unregister.bat' />
+			</Component>
+			<Component Id="rt.uec.service.dll.config" Guid="*">
+				<File Id='rt.uec.service.dll.config' Name='rt.uec.service.dll.config'/>
+			</Component>
+			<Component Id="rt.uec.service.dll" Guid="*">
+				<File Id='rt.uec.service.dll' Name='rt.uec.service.dll'/>
+			</Component>
+			<Component Id="protobuf_net.xml" Guid="*">
+				<File Id='protobuf_net.xml' Name='protobuf-net.xml'/>
+			</Component>
+			<Component Id="protobuf_net.dll" Guid="*">
+				<File Id='protobuf_net.dll' Name='protobuf-net.dll'/>
+			</Component>
+			<Component Id="rt.core.model.client.dll" Guid="*">
+				<File Id='rt.core.model.client.dll' Name='rt.core.model.client.dll'/>
+			</Component>
+			<Component Id="rt.uec.model.dll" Guid="*">
+				<File Id='rt.uec.model.dll' Name='rt.uec.model.dll'/>
+			</Component>
+      <Component Id="vcredist_x86.exe" Guid="*">
+        <File Id='vcredist_x86.exe' Name='vcredist_x86.exe'/>
+      </Component>
+		</DirectoryRef>
+
+
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<ComponentRef Id="UECLib.dll"/>
+			<ComponentRef Id="CardLib.dll"/>
+			<ComponentRef Id="com.cryptodsb.dll"/>
+			<ComponentRef Id="HAL_Common.dll"/>
+			<ComponentRef Id="HAL_Crypto.dll"/>
+			<ComponentRef Id="HAL_Parameters.dll"/>
+			<ComponentRef Id="HAL_Protocol.dll"/>
+			<ComponentRef Id="HAL_RTC.dll"/>
+			<ComponentRef Id="HAL_SCReader.dll"/>
+			<ComponentRef Id="Host.dll"/>
+			<ComponentRef Id="OpLib.dll"/>
+			<ComponentRef Id="ru.cryptodsb.dll"/>
+			<ComponentRef Id="sectors.ini"/>
+			<ComponentRef Id="terminal.ini"/>
+      <ComponentRef Id="register.bat"/>
+			<ComponentRef Id="unregister.bat"/>
+			<ComponentRef Id="rt.uec.service.dll.config"/>
+			<ComponentRef Id="rt.uec.service.dll"/>
+			<ComponentRef Id="protobuf_net.xml"/>
+			<ComponentRef Id="protobuf_net.dll"/>
+			<ComponentRef Id="rt.core.model.client.dll"/>
+			<ComponentRef Id="rt.uec.model.dll"/>
+      <ComponentRef Id="vcredist_x86.exe"/>
+		</ComponentGroup>
+	
+  </Fragment>
+</Wix>

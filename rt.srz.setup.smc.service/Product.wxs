@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<?include Constants.wxi?>
+
+	<Product Id="$(var.ProductCode)" Name="$(var.ProductName)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Codepage="$(var.Codepage)">
+		<Package InstallPrivileges="elevated" InstallerVersion="200" Compressed="yes" Manufacturer="$(var.Manufacturer)" SummaryCodepage="$(var.Codepage)" InstallScope="perMachine" />
+
+		<CustomAction Id="RunRegisterScript" ExeCommand="[INSTALLFOLDER]register.bat" Directory="INSTALLFOLDER" Execute="deferred" Return="asyncWait" Impersonate ='no'/>
+		<CustomAction Id="RunUnRegisterScript" ExeCommand="[INSTALLFOLDER]unregister.bat" Directory="INSTALLFOLDER" Execute="deferred" Return="ignore" Impersonate ='no'/>		
+		
+    <InstallExecuteSequence>
+      <Custom Action="RunRegisterScript" After="InstallFiles"/>
+			<Custom Action="RunUnRegisterScript" Before="RemoveFiles"/>
+		</InstallExecuteSequence>
+
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+		<UIRef Id="WixUI_InstallDir" />
+
+
+		<UI>
+			<UIRef Id="WixUI_InstallDir" />
+
+			<!-- Skip license dialog -->
+			<Publish Dialog="WelcomeDlg"
+							 Control="Next"
+							 Event="NewDialog"
+							 Value="InstallDirDlg"
+							 Order="2">1</Publish>
+			<Publish Dialog="InstallDirDlg"
+							 Control="Back"
+							 Event="NewDialog"
+							 Value="WelcomeDlg"
+							 Order="2">1</Publish>
+		</UI>
+
+		<MediaTemplate	EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="$(var.ProductName)" Description="$(var.ProductName)" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+	</Product>
+
+	<?define SmcOutputDir="$(var.SmcBaseDir)\bin\$(var.BUILD)\"?>
+	<Fragment>
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<DirectoryRef Id="INSTALLFOLDER" FileSource="$(var.SmcOutputDir)" DiskId="1">
+			<Component Id="Pc.Policy.Smartcard.dll" Guid="*">
+				<File Id='Pc.Policy.Smartcard.dll' Name='Pc.Policy.Smartcard.dll'/>
+			</Component>
+			<Component Id="Pc.Policy.Smartcard.Crypto.dll" Guid="*">
+				<File Id='Pc.Policy.Smartcard.Crypto.dll' Name='Pc.Policy.Smartcard.Crypto.dll'/>
+			</Component>
+			<Component Id="Pc.Policy.Smartcard.Data.dll" Guid="*">
+				<File Id='Pc.Policy.Smartcard.Data.dll' Name='Pc.Policy.Smartcard.Data.dll'/>
+			</Component>
+			<Component Id="Pc.Policy.Smartcard.Pinpad.dll" Guid="*">
+				<File Id='Pc.Policy.Smartcard.Pinpad.dll' Name='Pc.Policy.Smartcard.Pinpad.dll'/>
+			</Component>
+			<Component Id="Pc.Policy.Smartcard.Shared.dll" Guid="*">
+				<File Id='Pc.Policy.Smartcard.Shared.dll' Name='Pc.Policy.Smartcard.Shared.dll'/>
+			</Component>
+			<Component Id="Pc.Shared.Barcode.dll" Guid="*">
+				<File Id='Pc.Shared.Barcode.dll' Name='Pc.Shared.Barcode.dll'/>
+			</Component>
+			<Component Id="Pc.Shared.BER.dll" Guid="*">
+				<File Id='Pc.Shared.BER.dll' Name='Pc.Shared.BER.dll'/>
+			</Component>
+			<Component Id="Pc.Shared.Security.dll" Guid="*">
+				<File Id='Pc.Shared.Security.dll' Name='Pc.Shared.Security.dll'/>
+			</Component>
+      <Component Id="Pc.Shared.CryptoAPI.dll" Guid="*">
+				<File Id='Pc.Shared.CryptoAPI.dll' Name='Pc.Shared.CryptoAPI.dll'/>
+			</Component>
+			<Component Id="Pc.Shared.Utils.dll" Guid="*">
+				<File Id='Pc.Shared.Utils.dll' Name='Pc.Shared.Utils.dll'/>
+			</Component>
+			<Component Id="SmartCard.ISO7816.dll" Guid="*">
+				<File Id='SmartCard.ISO7816.dll' Name='SmartCard.ISO7816.dll'/>
+			</Component>
+			<Component Id="SmartCard.PCSC.dll" Guid="*">
+				<File Id='SmartCard.PCSC.dll' Name='SmartCard.PCSC.dll'/>
+			</Component>
+			<Component Id="SmartCard.PCSC.Native.dll" Guid="*">
+				<File Id='SmartCard.PCSC.Native.dll' Name='SmartCard.PCSC.Native.dll'/>
+			</Component>
+			<Component Id="register.bat" Guid="*">
+				<File Id='register.bat' Name='register.bat'/>
+			</Component>
+			<Component Id="unregister.bat" Guid="*">
+				<File Id='unregister.bat' Name='unregister.bat' />
+			</Component>
+			<Component Id="rt.uec.model.dll" Guid="*">
+				<File Id='rt.uec.model.dll' Name='rt.uec.model.dll'/>
+			</Component>
+      <Component Id="rt.smc.model.dll" Guid="*">
+				<File Id='rt.smc.model.dll' Name='rt.smc.model.dll'/>
+			</Component>
+      <Component Id="rt.smc.service.dll.config" Guid="*">
+				<File Id='rt.smc.service.dll.config' Name='rt.smc.service.dll.config'/>
+			</Component>
+			<Component Id="rt.smc.service.dll" Guid="*">
+				<File Id='rt.smc.service.dll' Name='rt.smc.service.dll'/>
+			</Component>
+      <Component Id="rt.core.model.client.dll" Guid="*">
+				<File Id='rt.core.model.client.dll' Name='rt.core.model.client.dll'/>
+			</Component>
+			<Component Id="protobuf_net.dll" Guid="*">
+				<File Id='protobuf_net.dll' Name='protobuf-net.dll'/>
+			</Component>
+		</DirectoryRef>
+
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<ComponentRef Id="Pc.Policy.Smartcard.dll"/>
+			<ComponentRef Id="Pc.Policy.Smartcard.Crypto.dll"/>
+			<ComponentRef Id="Pc.Policy.Smartcard.Data.dll"/>
+			<ComponentRef Id="Pc.Policy.Smartcard.Pinpad.dll"/>
+			<ComponentRef Id="Pc.Policy.Smartcard.Shared.dll"/>
+			<ComponentRef Id="Pc.Shared.Barcode.dll"/>
+			<ComponentRef Id="Pc.Shared.BER.dll"/>
+			<ComponentRef Id="Pc.Shared.Security.dll"/>
+			<ComponentRef Id="Pc.Shared.CryptoAPI.dll"/>
+			<ComponentRef Id="Pc.Shared.Utils.dll"/>
+			<ComponentRef Id="SmartCard.ISO7816.dll"/>
+			<ComponentRef Id="SmartCard.PCSC.dll"/>
+			<ComponentRef Id="SmartCard.PCSC.Native.dll"/>
+      <ComponentRef Id="register.bat"/>
+			<ComponentRef Id="unregister.bat"/>
+      <ComponentRef Id="rt.uec.model.dll"/>
+      <ComponentRef Id="rt.smc.model.dll"/>
+			<ComponentRef Id="rt.smc.service.dll.config"/>
+			<ComponentRef Id="rt.smc.service.dll"/>
+			<ComponentRef Id="rt.core.model.client.dll"/>
+      <ComponentRef Id="protobuf_net.dll"/>
+		</ComponentGroup>
+	
+  </Fragment>
+</Wix>

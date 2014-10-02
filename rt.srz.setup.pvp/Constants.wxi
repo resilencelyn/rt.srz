@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<?include ..\rt.srz.setup.library\Constants.wxi?>
+  <?define UpgradeCode="69A30D7A-B504-4A57-A5F9-A632E09478F4"?>
+  <?define RootDirectory="rt.srz" ?>
+	<?define ProductName="Онлайн ПВП" ?>
+	<?define ProductNameFull="$(var.ProductName) $(var.ProductVersion)" ?>
+</Include>

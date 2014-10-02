@@ -1,0 +1,204 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AuthentificatedPage.Master.cs" Inherits="rt.srz.ui.pvp.Templates.AuthentificatedPage" %>
+
+<%@ Import Namespace="System.Globalization" %>
+
+<%@ Register Src="~/Controls/Common/ConfirmControl.ascx" TagName="ConfirmControl" TagPrefix="uc" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <%--Боевой объект чтения УЭК--%>
+  <object id="uecReader" name="uecReader" classid="clsid:6C20493B-E51F-4CCC-A3FA-64CD7CEED2C7" codebase="<%# ResolveUrl("~/activex/rt.srz.setup.uec.service.cab#version=1,0,0,0")%>"></object>
+  <%--Боевой объект сканера штрих кода--%>
+  <object id="barcodeReader" name="barcodeReader" classid="clsid:3B77EEC1-744E-4190-9CBC-CA5DC5E21461" codebase="<%# ResolveUrl("~/activex/rt.srz.setup.barcode.service.cab#version=1,0,0,0")%>"></object>
+  <%--Боевой объект чтения электронного полиса--%>
+  <object id="smardcardReader" name="smardcardReader" classid="clsid:32B3D0CF-3031-40B1-B074-53495BE5D158" codebase="<%# ResolveUrl("~/activex/rt.srz.setup.smc.service.cab#version=1,0,0,0")%>"></object>
+
+  <title></title>
+  <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/Wizard.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/Menu.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/NewDesign.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/Grid.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/Administration.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/Twins.css" rel="stylesheet" type="text/css" />
+
+  <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+  </asp:ContentPlaceHolder>
+
+  <script language="javascript" type="text/javascript">
+    function barcodeReader_onunload() {
+      try {
+        window.barcodeReader.Dispose();
+      } catch (e) { }
+    }
+
+    var _timeLeft = "<%# Session.Timeout %>" * 60;
+
+    function ResetSessionTimeoutToInitial() {
+      _timeLeft = "<%# Session.Timeout %>" * 60;
+    }
+
+    function DisplaySessionTimeout() {
+      var min = Math.floor(_timeLeft / 60);
+      var sec = _timeLeft % 60;
+      if (sec < 10)
+        sec = "0" + sec;
+      document.getElementById("<%# lblSessionTime.ClientID %>").innerText = min + ":" + sec;
+      _timeLeft--;
+      if (_timeLeft >= 0) {
+        window.setTimeout("DisplaySessionTimeout()", 1000);
+      }
+      else {
+        //comfirm - это BehaviorId модального аяксного попапа контрола со всплывающим окошком о том что время сессии истекло
+        $find("confirm").show();
+      }
+    }
+
+  </script>
+  <style type="text/css">
+    ::-ms-clear /*Убирем кнопки удалить из текстбоксов*/ {
+      display: none;
+    }
+  </style>
+</head>
+<body onunload="barcodeReader_onunload();">
+  <form runat="server">
+    <script type="text/javascript">
+
+      if (Sys.WebForms.PageRequestManager != null) {
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        prm.add_endRequest(function (s, e) {
+          ResetSessionTimeoutToInitial();
+        });
+      }
+
+    </script>
+
+
+    <div class="page">
+      <div class="header">
+        <div class="padding5">
+          <asp:Label ID="Label2" runat="server" Text="Онлайновое взаимодействие пунктов выдачи полисов СМО и ТФОМС при ведении РС ЕРЗ." ForeColor="White" Font-Size="X-Large" />
+        </div>
+      </div>
+      <div class="header">
+        <table style="width: 100%; padding: 5px">
+          <tr>
+            <td class="title">
+              <asp:Label ID="lblSMOTitle" runat="server" Text="" Width="1045px" Style="word-wrap: normal; word-break: break-all;"></asp:Label>
+            </td>
+            <td class="titleRight">
+              <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="White" LoginText="Войти" LogoutText="Выйти" OnLoggedOut="LoginStatus1_LoggedOut" />
+            </td>
+          </tr>
+          <tr>
+            <td class="title">
+              <asp:Label ID="lblPDPTitle" runat="server" Text="" Width="1045px" Style="word-wrap: normal; word-break: break-all;"></asp:Label>
+            </td>
+            <td class="titleRight">
+              <asp:Label ID="Label1" runat="server" Text="Время сессии: "></asp:Label>
+              <asp:Label ID="lblSessionTime" runat="server" Text=""></asp:Label>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+      <div class="main">
+
+        <div style="clear: both">
+          <div style="float: left;">
+            <asp:Menu ID="Menu" runat="server" StaticDisplayLevels="1" Orientation="Horizontal" CssClass="Menu" StaticEnableDefaultPopOutImage="False">
+              <Items>
+                <asp:MenuItem Text="Операции СМО">
+                  <asp:MenuItem Text="Заявления застрахованных лиц" Value="Main" NavigateUrl="~/Pages/Main.aspx" />
+                  <asp:MenuItem Text="Пакетные операции эскпорта для СМО" Value="ExportSmoBatches" NavigateUrl="~/Pages/ExportSmoBatches.aspx" />
+                </asp:MenuItem>
+<%--                <asp:MenuItem Text="Операции ТФ">--%>
+<%--                  <asp:MenuItem Text="Дубликаты">
+                    <asp:MenuItem Text="Обработка дубликатов" Value="Twins" NavigateUrl="~/Pages/Twins/Twins.aspx" />
+                    <asp:MenuItem Text="Ключи поиска" Value="SearchKeyTypes" NavigateUrl="~/Pages/Twins/SearchKeyTypes.aspx" />
+                  </asp:MenuItem>--%>
+<%--                  <asp:MenuItem Text="Взаимодействие">
+                    <asp:MenuItem Text="ПФР">
+                      <asp:MenuItem Text="Статистика ПФР" NavigateUrl="~/Pages/PfrStatistic.aspx" Value="PfrStatistic"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Атлантика">
+                    </asp:MenuItem>
+                  </asp:MenuItem>--%>
+                  <asp:MenuItem Text="НСИ">
+                    <%--<asp:MenuItem Text="Территориальные фонды" NavigateUrl="~/Pages/Administrations/Tfoms.aspx" Value="Tfoms"></asp:MenuItem>--%>
+                    <asp:MenuItem Text="Реестр СМО" NavigateUrl="~/Pages/Administrations/AdministrationSmos.aspx" Value="Smos"></asp:MenuItem>
+<%--                    <asp:MenuItem Text="МО" NavigateUrl="~/Pages/Administrations/AdministrationSmos.aspx?type=mo" Value="Mos"></asp:MenuItem>
+                    <asp:MenuItem Text="Кодификаторы" NavigateUrl="~/Pages/NSI/Concepts.aspx" Value="Concepts"></asp:MenuItem>--%>
+                    <%--<asp:MenuItem Text="Имена и отчества" NavigateUrl="~/Pages/NSI/FirstMiddleNames.aspx" Value="FirstMiddleNames"></asp:MenuItem>--%>
+                    <asp:MenuItem Text="Диапазоны номеров ВС" NavigateUrl="~/Pages/NSI/RangeNumbers.aspx" Value="RangeNumbers"></asp:MenuItem>
+                    <asp:MenuItem Text="Настройка шаблонов печати ВС" NavigateUrl="~/Pages/NSI/TemplatesVs.aspx" Value="TemplatesVs"></asp:MenuItem>
+                  </asp:MenuItem>
+                <%--</asp:MenuItem>--%>
+                <asp:MenuItem Text="Администрирование">
+                  <%--<asp:MenuItem Text="Журнал ошибок синхронизации из СРЗ" NavigateUrl="~/Pages/Administrations/ErrorSynchronizationView.aspx" Value="ErrorSynchronizationView"></asp:MenuItem>--%>
+                  <asp:MenuItem Text="Настройка проверок ФЛК" NavigateUrl="~/Pages/Administrations/ManageChecks.aspx" Value="ManageChecks"></asp:MenuItem>
+                  <asp:MenuItem Text="Сертификаты УЦ" NavigateUrl="~/Pages/Administrations/AssignUecCertificates.aspx" Value="AssignUecCertificates"></asp:MenuItem>
+                  <asp:MenuItem Text="Права доступа">
+                    <asp:MenuItem Text="Пользователи и группы" NavigateUrl="~/Pages/Administrations/AdministrationUsers.aspx" Value="Users"></asp:MenuItem>
+                    <asp:MenuItem Text="Роли" NavigateUrl="~/Pages/Administrations/AdministrationRoles.aspx" Value="Roles"></asp:MenuItem>
+                    <asp:MenuItem Text="Разрешения" NavigateUrl="~/Pages/Administrations/AdministrationPermissions.aspx" Value="Permissions"></asp:MenuItem>
+                  </asp:MenuItem>
+                  <asp:MenuItem Text="Задачи">
+                    <asp:MenuItem Text="Расписание задач" NavigateUrl="~/CrystalQuartzPanel.axd" Value="SchedulerTask"></asp:MenuItem>
+                    <asp:MenuItem Text="Текущие задачи" NavigateUrl="~/Pages/Administrations/JobsProgress.aspx" Value="JobsProgress"></asp:MenuItem>
+                    <%--<asp:MenuItem Text="Настройки задач" NavigateUrl="~/Pages/Administrations/JobsSettings.aspx" Value="JobsSettings"></asp:MenuItem>--%>
+                  </asp:MenuItem>
+                  <%--<asp:MenuItem Text="Установка" NavigateUrl="~/Pages/Installation.aspx" Value="Installation"></asp:MenuItem>--%>
+                </asp:MenuItem>
+                <asp:MenuItem Text="Настройки">
+                  <asp:MenuItem Text="Опции" NavigateUrl="~/Pages/Settings.aspx" />
+                  <asp:MenuItem Text="Изменение пароля" NavigateUrl="~/Account/Manage.aspx" />
+                </asp:MenuItem>
+              </Items>
+            </asp:Menu>
+          </div>
+          <div style="float: right;">
+            <div style="padding: 5px">
+              <asp:LinkButton ID="linkToMain" runat="server" Text="На главную ->" CausesValidation="false" OnClick="linkToMain_Click"></asp:LinkButton>
+            </div>
+          </div>
+        </div>
+
+        <uc:ConfirmControl ID="closeSession" runat="server" Message="Время сессии истекло" ConfirmMode="Close"/>
+
+        <div style="clear: both">
+          <div class="contentPadding">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <asp:ContentPlaceHolder ID="FooterContent" runat="server" />
+          </div>
+        </div>
+      </div>
+      <div class="syncTime">
+        <table>
+            <tr>
+                <td>
+                    <asp:Label ID="lblSyncPvp2Srz" runat="server"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="lblSyncSrz2Pvp" runat="server"/>
+                </td>
+            </tr>
+        </table>
+      </div>
+      <div class="copyRight">
+        &copy;<%= string.Format("2012–{0} Федеральный Фонд Обязательного Медицинского Страхования Российской Федерации", DateTime.Today.Year) %>
+      </div>
+
+    </div>
+
+  </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>My Com Component</title>
+    <object id="barcodeReader" name="barcodeReader"
+        classid="clsid:4794D615-BE51-4a1e-B1BA-453F6E9337C4">
+    </object>
+    <script language="javascript" type="text/javascript">
+        function myButton_click() {
+            var returnCode = myComComponent.TestBeep(myArgs.value);
+            var msg = "barcodeReader.MyFirstComCommand returned " + returnCode;
+            appendText(msg);
+            appendText("\r\n");
+        }
+
+        function setText(txt) {
+            myTextBox.value = txt;
+        }
+
+        function appendText(txt) {
+            myTextBox.value = myTextBox.value + txt;
+        }
+
+        function MyComComponent_onload() {
+            setText("");
+            barcodeReader.Start("COM8");
+        }
+
+        function MyComComponent_onunload() {
+            barcodeReader.Dispose();
+        }
+    </script>
+</head>
+<body onload=" MyComComponent_onload(); " onunload=" MyComComponent_onunload(); ">
+    <h1>My Com Component</h1>
+    <table>
+        <tr>
+            <td>
+                <button id="myButton" onclick=" myButton_click(); ">Com Method</button>
+                <label>Args</label>
+                <textarea id="myArgs" rows="1" cols="16">Hello World!</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea id="myTextBox" rows="10" cols="80"></textarea>
+            </td>
+        </tr>
+    </table>
+
+  <!--  <script for="barcodeReader" event="BeepEvent(args)" language="javascript">
+        function barcodeReader::BeepEvent(args) {
+            alert(args);
+        }
+    </script>-->
+
+    <script for="barcodeReader" event="DataRecieved(args)" language="javascript">
+        function barcodeReader::DataRecieved(args) {
+            try {
+                alert(args.FirstName);
+            } catch (e) {
+                alert(e);
+            }
+        }
+    </script>
+</body>
+</html>

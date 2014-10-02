@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B91BB517-E433-4091-9C96-3386CA975C5A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>rt.srz.model.HL7</AssemblyName>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\rt.srz.model.HL7.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>rt.srz.model.HL7</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="algorithms\DamienG\Crc32.cs" />
+    <Compile Include="algorithms\DataHasherType.cs" />
+    <Compile Include="algorithms\RegionCoding.cs" />
+    <Compile Include="algorithms\RegionHelper.cs" />
+    <Compile Include="card\target\ZSG.cs" />
+    <Compile Include="enumerations\DocumentCategory.cs" />
+    <Compile Include="nsi\InsCompany.cs" />
+    <Compile Include="nsi\Smo\InsCompanyLicenziy.cs" />
+    <Compile Include="nsi\target\CompanyPstAddress.cs" />
+    <Compile Include="nsi\packet.cs" />
+    <Compile Include="nsi\target\CompanyIncludeNameE.cs" />
+    <Compile Include="nsi\MedCompany.cs" />
+    <Compile Include="nsi\Mo\MedCompanyDoc.cs" />
+    <Compile Include="nsi\Mo\MedCompanyDocLicPic.cs" />
+    <Compile Include="nsi\Mo\MedCompanyDocMp.cs" />
+    <Compile Include="nsi\target\CompanyJurAddress.cs" />
+    <Compile Include="nsi\target\CompanyAdvice.cs" />
+    <Compile Include="nsi\target\CompanyInclude.cs" />
+    <Compile Include="nsi\Tfoms.cs" />
+    <Compile Include="zags\Dead.cs" />
+    <Compile Include="zags\DeathInfo.cs" />
+    <Compile Include="zags\DOC.cs" />
+    <Compile Include="zags\FIO.cs" />
+    <Compile Include="zags\LastAddress.cs" />
+    <Compile Include="zags\MR.cs" />
+    <Compile Include="zags\ORGZAGS.cs" />
+    <Compile Include="zags\Resurrect.cs" />
+    <Compile Include="zags\Zags.cs" />
+    <Compile Include="zags\Zags_VNov.cs" />
+    <Compile Include="zags\Zglv.cs" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
+    <Compile Include="enumerations\HL7Node.cs" />
+    <Compile Include="pfr\Doc.cs" />
+    <Compile Include="pfr\SnilsZlList.cs" />
+    <Compile Include="pfr\SnilsZlListAtr.cs" />
+    <Compile Include="pfr\Zglv.cs" />
+    <Compile Include="pfr\ZglvAtr.cs" />
+    <Compile Include="pfr\Zl.cs" />
+    <Compile Include="pfr\ZlDop.cs" />
+    <Compile Include="pfr\ZlList.cs" />
+    <Compile Include="pfr\ZlListDop.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="card\boxes\Box.cs" />
+    <Compile Include="card\boxes\Boxes.cs" />
+    <Compile Include="card\boxes\MadePolicy.cs" />
+    <Compile Include="card\target\ZQH.cs" />
+    <Compile Include="card\target\ZQH7.cs" />
+    <Compile Include="card\target\ZRH.cs" />
+    <Compile Include="card\target\ZSG1.cs" />
+    <Compile Include="card\za2\PolicyOrder.cs" />
+    <Compile Include="card\za2\PolicyOrderBatch.cs" />
+    <Compile Include="card\za2\SignedPolicyOrder.cs" />
+    <Compile Include="card\za2\ZpiZA2.cs" />
+    <Compile Include="card\za3\INSURANCE.cs" />
+    <Compile Include="card\za3\INVOICE.cs" />
+    <Compile Include="card\za3\ZpiZA3.cs" />
+    <Compile Include="commons\ConfigHelper.cs" />
+    <Compile Include="commons\ConversionHelper.cs" />
+    <Compile Include="commons\DataStreamer.cs" />
+    <Compile Include="commons\Delegates\InvokeHandler!1.cs" />
+    <Compile Include="commons\Delegates\InvokeHandler.cs" />
+    <Compile Include="commons\Delegates\ResetHandler!1.cs" />
+    <Compile Include="commons\Delegates\ValueHandler!1.cs" />
+    <Compile Include="commons\Delegates\VoidHandler.cs" />
+    <Compile Include="commons\Delegates\YieldHandler!1.cs" />
+    <Compile Include="commons\Enumerations\AssentFlag.cs" />
+    <Compile Include="commons\Enumerations\BooleanFlag.cs" />
+    <Compile Include="commons\Enumerations\CastType.cs" />
+    <Compile Include="commons\Enumerations\EntriesSortMode.cs" />
+    <Compile Include="commons\Enumerations\FatalErrorType.cs" />
+    <Compile Include="commons\Enumerations\GlobalEvent.cs" />
+    <Compile Include="commons\Enumerations\LiveState.cs" />
+    <Compile Include="commons\Enumerations\LogErrorType.cs" />
+    <Compile Include="commons\Enumerations\LogType.cs" />
+    <Compile Include="commons\Enumerations\PresenceFlag.cs" />
+    <Compile Include="commons\Enumerations\QuotationMark.cs" />
+    <Compile Include="commons\Enumerations\Resolve\FatalErrorTypes.cs" />
+    <Compile Include="commons\Enumerations\SimplePrecedence.cs" />
+    <Compile Include="commons\Enumerations\StringMatchingMode.cs" />
+    <Compile Include="commons\Enumerations\TimePart.cs" />
+    <Compile Include="commons\Enumerations\TreeCollectMode.cs" />
+    <Compile Include="commons\Enumerations\WardUnidimensional.cs" />
+    <Compile Include="commons\Enumerations\WorkflowVerb.cs" />
+    <Compile Include="commons\Enumerations\XmlVersion.cs" />
+    <Compile Include="commons\FileStreamFoms.cs" />
+    <Compile Include="commons\FileSystemPhysical.cs" />
+    <Compile Include="commons\FomsLogger.cs" />
+    <Compile Include="commons\FomsTracer.cs" />
+    <Compile Include="commons\Interfaces\ICodeMessageResolver!1.cs" />
+    <Compile Include="commons\Interfaces\IPluginConnector.cs" />
+    <Compile Include="commons\Interfaces\ISelfWriter!1.cs" />
+    <Compile Include="commons\Interfaces\IUserWorkerInteraction.cs" />
+    <Compile Include="commons\LifeService.cs" />
+    <Compile Include="commons\RegexHelper.cs" />
+    <Compile Include="commons\TextFileWriter.cs" />
+    <Compile Include="commons\TextHelper.cs" />
+    <Compile Include="commons\XmlHelper.cs" />
+    <Compile Include="dotNetX\CollectionHelper.cs" />
+    <Compile Include="dotNetX\CompareHelper.cs" />
+    <Compile Include="dotNetX\DbTypesConverter.cs" />
+    <Compile Include="dotNetX\GuidHelper.cs" />
+    <Compile Include="dotNetX\NumbersHelper.cs" />
+    <Compile Include="dotNetX\TArrayHelper.cs" />
+    <Compile Include="dotNetX\TReflector.cs" />
+    <Compile Include="dotNetX\TStringHelper.cs" />
+    <Compile Include="dotNetX\WinApiHelper.cs" />
+    <Compile Include="person\messages\Conflict.cs" />
+    <Compile Include="person\messages\ZpiZwi.cs" />
+    <Compile Include="person\requests\QBP_ZP6.cs" />
+    <Compile Include="person\requests\QBP_ZP9.cs" />
+    <Compile Include="person\requests\QPD12.cs" />
+    <Compile Include="person\requests\QPD_ZP6.cs" />
+    <Compile Include="person\requests\QPD_ZP9.cs" />
+    <Compile Include="person\requests\QueryResponseZK6.cs" />
+    <Compile Include="person\requests\QueryResponseZK9.cs" />
+    <Compile Include="person\requests\RegistrationZK8.cs" />
+    <Compile Include="person\requests\RSP_ZK6.cs" />
+    <Compile Include="person\requests\QueryResponseZP1.cs" />
+    <Compile Include="person\requests\IRspZk.cs" />
+    <Compile Include="person\requests\QueryResponse.cs" />
+    <Compile Include="person\requests\RSP_ZK9.cs" />
+    <Compile Include="person\target\CneZwpStructure.cs" />
+    <Compile Include="person\target\Zpw.cs" />
+    <Compile Include="person\target\Zvn.cs" />
+    <Compile Include="person\target\Zwl.cs" />
+    <Compile Include="person\target\Zwp.cs" />
+    <Compile Include="smo\CONFLICTLIST.cs" />
+    <Compile Include="smo\FLK_P.cs" />
+    <Compile Include="smo\OP.cs" />
+    <Compile Include="smo\OPLIST.cs" />
+    <Compile Include="smo\REC.cs" />
+    <Compile Include="smo\RECLIST.cs" />
+    <Compile Include="smo\REP.cs" />
+    <Compile Include="smo\REPLIST.cs" />
+    <Compile Include="smo\STOPLIST.cs" />
+    <Compile Include="smo\TargetClass.cs" />
+    <Compile Include="HL7Helper.cs" />
+    <Compile Include="person\target\Zqh.cs" />
+    <Compile Include="person\target\In1Card.cs" />
+    <Compile Include="person\BaseMessageTemplate.cs" />
+    <Compile Include="person\requests\QBP_ZP2.cs" />
+    <Compile Include="person\BasePersonTemplate.cs" />
+    <Compile Include="person\PersonErp.cs" />
+    <Compile Include="person\messages\ZPI_ZA1.cs" />
+    <Compile Include="person\messages\ZPI_ZA1_APPLICATION.cs" />
+    <Compile Include="enumerations\resolve\RequestSegmentsHL7.cs" />
+    <Compile Include="person\target\Zrh.cs" />
+    <Compile Include="person\target\Znd.cs" />
+    <Compile Include="person\target\Document.cs" />
+    <Compile Include="person\target\ApplicationType.cs" />
+    <Compile Include="person\target\Zah.cs" />
+    <Compile Include="person\target\IN1.cs" />
+    <Compile Include="person\target\PlanId.cs" />
+    <Compile Include="person\target\CompanyId.cs" />
+    <Compile Include="person\target\CompanyName.cs" />
+    <Compile Include="person\target\Employment.cs" />
+    <Compile Include="person\requests\QBP_ZP1.cs" />
+    <Compile Include="person\requests\QPD_ZP1.cs" />
+    <Compile Include="person\target\TelecommunicationAddress.cs" />
+    <Compile Include="person\target\Pv1.cs" />
+    <Compile Include="person\target\MessagePid.cs" />
+    <Compile Include="enumerations\resolve\ErrorsHL7.cs" />
+    <Compile Include="enumerations\resolve\DataEventTypes.cs" />
+    <Compile Include="enumerations\ProcessingMode.cs" />
+    <Compile Include="person\target\Zsg.cs" />
+    <Compile Include="person\target\National.cs" />
+    <Compile Include="person\target\Evn.cs" />
+    <Compile Include="person\target\CneStructure.cs" />
+    <Compile Include="person\target\BHS.cs" />
+    <Compile Include="person\target\BHS3.cs" />
+    <Compile Include="person\target\BHS4.cs" />
+    <Compile Include="person\target\BHS5.cs" />
+    <Compile Include="person\target\BHS6.cs" />
+    <Compile Include="person\target\PidCard.cs" />
+    <Compile Include="person\target\MSA.cs" />
+    <Compile Include="person\target\EiStructure.cs" />
+    <Compile Include="person\target\Fio.cs" />
+    <Compile Include="person\target\Surname.cs" />
+    <Compile Include="enumerations\resolve\SearchAlgorithms.cs" />
+    <Compile Include="enumerations\ConfirmationHL7.cs" />
+    <Compile Include="person\target\PID.cs" />
+    <Compile Include="person\BaseAnswerMessageTemplate.cs" />
+    <Compile Include="person\requests\RSP_ZK5.cs" />
+    <Compile Include="person\target\QAK.cs" />
+    <Compile Include="person\requests\RSP_ZK4.cs" />
+    <Compile Include="person\target\Organization.cs" />
+    <Compile Include="person\target\Identificators.cs" />
+    <Compile Include="person\target\IdentificatorsCard.cs" />
+    <Compile Include="person\target\OrganizationName.cs" />
+    <Compile Include="person\target\Country.cs" />
+    <Compile Include="person\target\Address.cs" />
+    <Compile Include="person\messages\ADT_A24.cs" />
+    <Compile Include="person\messages\ADT_A37.cs" />
+    <Compile Include="enumerations\SearchAlgorithm.cs" />
+    <Compile Include="enumerations\resolve\ProcessingModes.cs" />
+    <Compile Include="enumerations\ProcessingTarget.cs" />
+    <Compile Include="person\target\QRI.cs" />
+    <Compile Include="person\target\Enp.cs" />
+    <Compile Include="person\requests\RSP_ZK2.cs" />
+    <Compile Include="person\messages\ADT_A03.cs" />
+    <Compile Include="enumerations\ProcessingSubject.cs" />
+    <Compile Include="person\target\Nk1.cs" />
+    <Compile Include="person\target\Role.cs" />
+    <Compile Include="person\requests\RSP_ZK1.cs" />
+    <Compile Include="enumerations\DataEventType.cs" />
+    <Compile Include="person\messages\ZPI_ZA7.cs" />
+    <Compile Include="person\messages\ADT_A01.cs" />
+    <Compile Include="person\messages\ADT_A01_INSURANCE.cs" />
+    <Compile Include="enumerations\resolve\DeathMarks.cs" />
+    <Compile Include="enumerations\ErrorHL7.cs" />
+    <Compile Include="person\target\Qpd.cs" />
+    <Compile Include="person\target\DateRange.cs" />
+    <Compile Include="person\target\ERR.cs" />
+    <Compile Include="person\target\ERR2.cs" />
+    <Compile Include="person\target\ERR3.cs" />
+    <Compile Include="person\target\ERR5.cs" />
+    <Compile Include="person\target\AddressCard.cs" />
+    <Compile Include="person\target\StructureAddress.cs" />
+    <Compile Include="person\messages\Ack.cs" />
+    <Compile Include="person\PersonCard.cs" />
+    <Compile Include="enumerations\resolve\ConfirmationsHL7.cs" />
+    <Compile Include="enumerations\RequestSegmentHL7.cs" />
+    <Compile Include="person\target\MSH.cs" />
+    <Compile Include="person\target\TypeWork.cs" />
+    <Compile Include="person\target\VersionStandartId.cs" />
+    <Compile Include="person\target\MessageType.cs" />
+    <Compile Include="person\target\MessageName.cs" />
+    <Compile Include="person\target\CodeOfRegion.cs" />
+    <Compile Include="person\requests\QBP_ZP4.cs" />
+    <Compile Include="person\target\BTS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="person\Hl7.cd" />
+    <None Include="rt.srz.key" />
+    <None Include="smo\xsd\CONFLICTLIST.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\FLK_P.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\OP.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\OPLIST.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\REC.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\RECLIST.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\REP.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\REPLIST.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\STOPLIST.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="smo\xsd\TargetClass.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>

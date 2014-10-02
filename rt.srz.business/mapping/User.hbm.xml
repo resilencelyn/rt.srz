@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.User, rt.srz.model" table="[dbo].[User]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Login" column="[Login]" />
+		<property name="Password" column="[Password]" />
+		<property name="Email" column="[Email]" />
+		<property name="Salt" column="[Salt]" />
+		<property name="CreationDate" column="[CreationDate]" />
+		<property name="LastLoginDate" column="[LastLoginDate]" />
+		<property name="IsApproved" column="[IsApproved]" />
+		<property name="Fio" column="[Fio]" />
+		<many-to-one name="PointDistributionPolicy" column="[PointDistributionPolicyId]" class="Organisation"  />
+		<bag name="Settings" lazy="true" inverse="true" >
+			<key column="[UserId]"></key>
+			<one-to-many class="Setting"></one-to-many>
+		</bag>
+		<bag name="Statements" lazy="true" inverse="true" >
+			<key column="[UserId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+		<bag name="UserActions" lazy="true" inverse="true" >
+			<key column="[UserId]"></key>
+			<one-to-many class="UserAction"></one-to-many>
+		</bag>
+		<bag name="UserGroupRoles" lazy="true" inverse="true" >
+			<key column="[UserId]"></key>
+			<one-to-many class="UserGroupRole"></one-to-many>
+		</bag>
+		<bag name="UserGroups" lazy="true" inverse="true" >
+			<key column="[UserId]"></key>
+			<one-to-many class="UserGroup"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

@@ -1,0 +1,1760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ClearSrz" xml:space="preserve">
+    <value>-- Удаляем пользователькие действия
+truncate table dbo.UserAction
+
+-- Удаляем данные о запросах
+truncate table dbo.In1
+delete from dbo.QueryResponse
+delete from dbo.QueryResponseItemize
+
+-- Удаляем историю работодателей
+truncate table dbo.EmploymentHistory
+
+-- Удаляем сообщения и батчи
+truncate table dbo.MessageStatement
+delete from dbo.Message
+
+-- Удаляем ошибки
+delete from Errors
+where StatementId not in
+(
+	select s.RowId from Statement S 
+	where S.StatusId = 289
+)
+
+-- Удаляем страховки
+delete from MedicalInsurance
+where StatementId not in 
+(
+	select S.RowId from Statement S 
+	where S.StatusId = 289
+)
+
+-- Удаляем историю изменения персональных данных
+delete from StatementChangeDate 
+where StatementId not in
+(
+	select S.RowId from Statement S 
+	where S.StatusId = 289
+)
+
+--Снимаем связи
+update Statement
+set PreviousStatementId = null
+
+-- Удаляем все заявления со статусом отличном от Отклонено
+delete from Statement
+where StatusId != 289
+
+--Удаляем мертвые адреса
+delete from Address
+where RowId not in 
+(
+	select st.AddressId from Statement st where st.AddressId is not null
+	union
+	select st.Address2Id from Statement st where st.Address2Id is not null
+)
+
+-- Удалям "мертвые" личные данные застрахованного лица
+delete from InsuredPersonData
+where RowId not in 
+(
+	select st.InsuredPersonDataId from Statement st where st.InsuredPersonDataId is not null
+)
+
+-- Удаляем "мертвые контакты"
+delete from ContactInfo
+where RowId not in 
+(
+	select st.ContactInfoId from Statement st where st.ContactInfoId is not null
+)
+    
+-- Удаляем "мертвых" представителей
+delete from Representative
+where RowId not in 
+(
+	select st.RepresentativeId from Statement st where st.RepresentativeId is not null
+)
+
+--Удаляем "мертвые" документы
+--Удаляем мертвые адреса
+delete from Document
+where RowId not in 
+(
+	select st.DocumentUdlId from Statement st where st.DocumentUdlId is not null
+	union
+	select st.DocumentRegistrationId from Statement st where st.DocumentRegistrationId is not null
+	union
+	select st.ResidencyDocumentId from Statement st where st.ResidencyDocumentId is not null
+	union
+	select st.DocumentId from Representative st where st.DocumentId is not null
+)
+
+-- Удаляем счетчик для выданных полисов
+delete from NumberPolicyCounter
+
+-- Удаляем информацию о двойниках
+delete from dbo.TwinsKey
+delete from dbo.Twins
+
+-- Удаляем застрахованных персон
+delete from InsuredPerson
+where RowId not in
+(
+	select st.InsuredPersonId from Statement st where st.InsuredPersonId is not null
+)
+
+-- Удаляем информацию о смерти
+delete from DeadInfo 
+where RowId not in
+(
+	select DeadInfoId from InsuredPerson ip where ip.DeadInfoId is not null
+)</value>
+  </data>
+  <data name="Initialization" xml:space="preserve">
+    <value>declare @dt datetime
+set @dt = GETDATE()
+--1
+INSERT INTO [dbo].[Address] with (tablockx)
+           ([RowId]
+           ,[IsHomeless]
+           ,[Postcode]
+           ,[Subject]
+           ,[Area]
+           ,[City]
+           ,[Town]
+           ,[Street]
+           ,[House]
+           ,[Housing]
+           ,[Room]
+           ,[DateRegistration]
+           ,[IsNotStructureAddress]
+           ,[Okato]
+           ,[KladrId]  
+           ,[Unstructured])
+( 
+   select  
+           cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
+         , p.BOMJ
+         , case when p.INDX is null or p.INDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRG),
+                  (select top 1 [INDEX] from KLADR k where OCATD = p.RN)), '000000')
+            else p.INDX end
+         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.SUBJ + '000000' = OCATD), '')
+         , p.RNNAME
+         , p.CITY
+         , p.NP
+         , p.UL
+         , p.DOM
+         , p.KOR
+         , case when p.KV = '' then null when p.KV not LIKE '%[^0-9]%' and LEN (p.kv)&lt;=4 then cast (p.kv AS smallint) else null end
+         , p.DMJ
+         , case when p.KLADRG is null then 1 else 0 end
+         , p.RN
+         , isnull((select top 1 ID from KLADR where CODE = p.KLADRG),
+                  (select top 1 ID from KLADR k where OCATD = p.RN))  
+         , null
+   from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where   przbuf.ID is null 
+    and st.RowId is null
+    
+);
+--2
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--3
+INSERT INTO [dbo].[Address] with (tablockx)
+           ([RowId]
+           ,[IsHomeless]
+           ,[Postcode]
+           ,[Subject]
+           ,[Area]
+           ,[City]
+           ,[Town]
+           ,[Street]
+           ,[House]
+           ,[Housing]
+           ,[Room]
+           ,[DateRegistration]
+           ,[IsNotStructureAddress]
+           ,[Okato]
+           ,[KladrId] 
+           ,[Unstructured])
+( 
+   select  cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+         , p.BOMJ
+         ,  case when p.INDX is null or p.INDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRG),
+                  (select top 1 [INDEX] from KLADR k where OCATD = p.RN)), '000000')
+            else p.INDX end
+         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.SUBJ + '000000' = OCATD), '')
+         , p.RNNAME
+         , p.CITY
+         , p.NP
+         , p.UL
+         , p.DOM
+         , p.KOR
+         , case when p.KV = '' then null when p.KV not LIKE '%[^0-9]%' and LEN (p.kv)&lt;=4 then cast (p.kv AS smallint) else null end
+         , p.DMJ
+         , case when SUBSTRING(p.ZADDR, 1, 1)='1' then 1 else 0 end as IsNotStructureAddress
+         , p.RN
+         , isnull((select top 1 ID from KLADR where CODE = p.KLADRG),
+                  (select top 1 ID from KLADR k where OCATD = p.RN))  
+         , null
+   from atl_srz_empty.dbo.PEOPLE_T p
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where st.RowId is null 
+    
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--4
+INSERT INTO [dbo].[Address] with (tablockx)
+           ([RowId]
+           ,[IsHomeless]
+           ,[Postcode]
+           ,[Subject]
+           ,[Area]
+           ,[City]
+           ,[Town]
+           ,[Street]
+           ,[House]
+           ,[Housing]
+           ,[Room]
+           ,[DateRegistration]
+           ,[IsNotStructureAddress]
+           ,[Okato]
+           ,[KladrId]
+           ,[Unstructured])
+(  
+   select   t.[RowId]
+           ,t.[IsHomeless]
+           ,t.[Postcode]
+           ,t.[Subject]
+           ,t.[Area]
+           ,t.[City]
+           ,t.[Town]
+           ,t.[Street]
+           ,t.[House]
+           ,t.[Housing]
+           ,t.[Room]
+           ,t.[DateRegistration]
+           ,t.[IsNotStructureAddress]
+           ,t.[Okato]
+           ,t.[KladrId]
+           ,t.[Unstructured]
+   from (
+   select cast(cast(p.id  + 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         , p.BOMJ as [IsHomeless]
+         , case when p.PINDX is null or p.PINDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRP),
+                  (select top 1 [INDEX] from KLADR k where OCATD = p.PRN)), '000000')
+            else p.PINDX end as [Postcode]
+         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.PSUBJ + '000000' = OCATD), '') as [Subject]
+         , p.PRNNAME as [Area]
+         , p.PCITY as [City]
+         , p.PNP as [Town]
+         , p.PUL as [Street]
+         , p.PDOM as [House]
+         , p.PKOR as [Housing]
+         , case when p.PKV = '' then null when p.PKV not LIKE '%[^0-9]%' and LEN (p.PKV)&lt;=4 then cast (p.PKV AS smallint) else null end as Room
+         , p.PDMJ as DateRegistration
+         , case when p.KLADRP is null then 1 else 0 end as IsNotStructureAddress
+         , p.PRN as [Okato]
+         , isnull((select top 1 ID from KLADR where CODE = p.KLADRP),
+                  (select top 1 ID from KLADR k where OCATD = p.RN)) as KladrId
+         , null as Unstructured
+   from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where przbuf.ID is null
+    and st.RowId is null) t
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--5
+INSERT INTO [dbo].[Address] with (tablockx)
+           ([RowId]
+           ,[IsHomeless]
+           ,[Postcode]
+           ,[Subject]
+           ,[Area]
+           ,[City]
+           ,[Town]
+           ,[Street]
+           ,[House]
+           ,[Housing]
+           ,[Room]
+           ,[DateRegistration]
+           ,[IsNotStructureAddress]
+           ,[Okato]
+           ,[KladrId]
+           ,[Unstructured])
+( select   t.[RowId]
+           ,t.[IsHomeless]
+           ,t.[Postcode]
+           ,t.[Subject]
+           ,t.[Area]
+           ,t.[City]
+           ,t.[Town]
+           ,t.[Street]
+           ,t.[House]
+           ,t.[Housing]
+           ,t.[Room]
+           ,t.[DateRegistration]
+           ,t.[IsNotStructureAddress]
+           ,t.[Okato]
+           ,t.[KladrId]
+           ,t.[Unstructured]
+   from (
+   select cast(cast(p.id  - 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         , p.BOMJ as [IsHomeless]
+         ,case when p.PINDX is null or p.PINDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRP),
+                  (select top 1 [INDEX] from KLADR k where OCATD = p.PRN)), '000000')
+            else p.PINDX end as [Postcode]
+         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.PSUBJ + '000000' = OCATD), '') as [Subject]
+         , p.PRNNAME as [Area]
+         , p.PCITY as [City]
+         , p.PNP as [Town]
+         , p.PUL as [Street]
+         , p.PDOM as [House]
+         , p.PKOR as [Housing]
+         , case when p.PKV = '' then null when p.PKV not LIKE '%[^0-9]%' and LEN (p.PKV)&lt;=4 then cast (p.PKV AS smallint) else null end as Room
+         , p.PDMJ as DateRegistration
+         , case when SUBSTRING(p.ZADDR, 2, 1)='1' then 1 else 0 end as IsNotStructureAddress
+         , p.PRN as [Okato]
+         , isnull((select top 1 ID from KLADR where CODE = p.KLADRP),
+                  (select top 1 ID from KLADR k where OCATD = p.RN)) as KladrId
+         , null as Unstructured
+   from atl_srz_empty.dbo.PEOPLE_T p
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where st.RowId is null  ) t
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--6
+INSERT INTO [dbo].[DeadInfo]  with (tablockx)
+           ([RowId]
+           ,[DateDead]
+           ,[ActRecordDate]
+           ,[ActRecordNumber])
+     (
+   select cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+         , p.DS
+         , ''
+         , ''
+   from atl_srz_empty.dbo.people p
+    left join dbo.DeadInfo di on di.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where    p.DS is not null
+      and di.RowId is null
+     );
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--7
+INSERT INTO [dbo].[InsuredPerson] with (tablockx)
+           ([RowId]
+           ,[StatusId]
+           ,[DeadInfoId]
+           ,[MainPolisNumber])
+
+(
+   select cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
+         , case when p.ds is not null then 467 else 465 end 
+         , case when p.ds is not null then cast(cast(p.id  as varbinary(36)) as uniqueidentifier) else null end
+         , p.ENP
+           
+   from atl_srz_empty.dbo.people  p
+    left join dbo.InsuredPerson  ip on ip.RowId = cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
+   where ip.RowId is null 
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--8
+INSERT INTO [dbo].[ContactInfo] with (tablockx)
+           ([RowId]
+           ,[HomePhone]
+           ,[WorkPhone]
+           ,[Email])
+( 
+   select cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
+         , p.PHONE
+         , p.PHONE
+         , p.EMAIL
+           
+   from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where   przbuf.ID is null and st.RowId is null
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--9
+INSERT INTO [dbo].[ContactInfo] with (tablockx)
+           ([RowId]
+           ,[HomePhone]
+           ,[WorkPhone]
+           ,[Email])
+( 
+   select cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
+         , p.PHONE
+         , p.PHONE
+         , p.EMAIL
+           
+   from atl_srz_empty.dbo.PEOPLE_T p
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where st.RowId is null 
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--10
+INSERT INTO [dbo].[InsuredPersonData] with (tablockx)
+           ([RowId]
+           ,[CitizenshipId]
+           ,[GenderId]
+           ,[CategoryId]
+           ,[OldCountryId]
+           ,[FirstName]
+           ,[LastName]
+           ,[MiddleName]
+           ,[Birthday]
+           ,[Birthday2]
+           ,[BirthdayType]
+           ,[IsIncorrectDate]
+           ,[IsNotGuru]
+           ,[Snils]
+           ,[Birthplace]
+           ,[IsNotCitizenship]
+           ,[IsRefugee]
+           ,[IsBadSnils]
+           ,[NhFirstName]
+           ,[NhLastName]
+           ,[NhMiddleName])
+   (
+   select cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+        , case 
+           when p.Cn = 'Б/Г' then null
+           when p.Cn is null and (p.DOCTP = '14' or p.DOCTP = '3' or p.DOCTP = '24') then 190  
+           else  (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.25.3' and Code = p.CN)
+           end as CitizenshipId
+        , (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.18.1' and Code = CAST (p.W as varchar)) as GenderId
+        , isnull((select top 1 id from Concept where Oid = '1.2.643.2.40.3.3.0.6.6' and Code = p.KATEG), 604) as CategoryId
+        , (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.25.3' and Code = p.BIRTH_OKSM) as OldCountryId
+        , p.IM as FirstName
+        , p.FAM as LastName
+        , p.OT as MiddleName
+        , p.DR as Birthday
+        , null as Birthday2
+        , ISNULL(p.DRT, 1) as BirthdayType
+        , p.DRA as IsIncorrectDate
+        , 1 as IsNotGuru
+        , REPLACE(REPLACE(p.SS, ' ', ''), '-', '') as Snils
+        , p.MR as Birthplace
+        , case when p.Cn = 'Б/Г' then 1 else 0 end as IsNotCitizenship
+        , case when p.KATEG = 5 or p.KATEG = 10 then 1 else 0 end as IsRefugee
+        , 0 as [IsBadSnils]
+        , 0 as [NhFirstName]
+		, 0 as [NhLastName]
+		, 0 as [NhMiddleName]
+   from atl_srz_empty.dbo.people  p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where przbuf.ID is null and st.RowId is null
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--11
+INSERT INTO [dbo].[InsuredPersonData]with (tablockx)
+           ([RowId]
+           ,[CitizenshipId]
+           ,[GenderId]
+           ,[CategoryId]
+           ,[OldCountryId]
+           ,[FirstName]
+           ,[LastName]
+           ,[MiddleName]
+           ,[Birthday]
+           ,[Birthday2]
+           ,[BirthdayType]
+           ,[IsIncorrectDate]
+           ,[IsNotGuru]
+           ,[Snils]
+           ,[Birthplace]
+           ,[IsNotCitizenship]
+           ,[IsRefugee]
+           ,[IsBadSnils]
+           ,[NhFirstName]
+           ,[NhLastName]
+           ,[NhMiddleName])
+   (
+   select cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+        , case 
+           when p.Cn = 'Б/Г' then null
+           when p.Cn is null and (p.DOCTP = '14' or p.DOCTP = '3' or p.DOCTP = '24') then 190  
+           else  (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.25.3' and Code = p.CN)
+           end as CitizenshipId
+        , (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.18.1' and Code = CAST (p.W as varchar)) as GenderId
+        , isnull((select top 1 id from Concept where Oid = '1.2.643.2.40.3.3.0.6.6' and Code = p.KATEG), 604) as CategoryId
+        , (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.25.3' and Code = p.BIRTH_OKSM) as OldCountryId
+        , p.IM as FirstName
+        , p.FAM as LastName
+        , p.OT as MiddleName
+        , p.DR as Birthday
+        , null as Birthday2
+        , ISNULL(p.DRT, 1) as BirthdayType
+        , p.DRA as IsIncorrectDate
+        , 1 as IsNotGuru
+        , REPLACE(REPLACE(p.SS, ' ', ''), '-', '') as Snils
+        , p.MR as Birthplace
+        , case when p.Cn = 'Б/Г' then 1 else 0 end as IsNotCitizenship
+        , case when p.KATEG = 5 or p.KATEG = 10 then 1 else 0 end as IsRefugee
+        , 0 as [IsBadSnils]
+        , 0 as [NhFirstName]
+		, 0 as [NhLastName]
+		, 0 as [NhMiddleName]
+   from atl_srz_empty.dbo.PEOPLE_T p
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+   where st.RowId is null 
+);
+
+--Документ УДЛ из People
+INSERT INTO [dbo].[Document] with (tablockx)
+           ([RowId]
+           ,[DocumentTypeId]
+           ,[Series]
+           ,[Number]
+           ,[IssuingAuthority]
+           ,[DateIssue]
+           ,[DateExp]
+           ,[IsBad])
+ ( 
+   select 
+            t.[RowId]
+           ,t.[DocumentTypeId]
+           ,t.[Series]
+           ,t.[Number]
+           ,t.[IssuingAuthority]
+           ,t.[DateIssue]
+           ,t.[DateExp]
+           ,t.[IsBad]
+   from (        
+  select  cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+         ,(select top 1 id from Concept where Oid = '1.2.643.2.40.5.100.203.1' and Code = p.DOCTP) as [DocumentTypeId]
+         , p.DOCS    [Series]
+         , p.DOCN	 [Number]
+         , p.DOCORG	 [IssuingAuthority]
+         , p.DOCDT	 [DateIssue]
+         , p.DOCEND	 [DateExp]
+         , 0		 [IsBad]
+  from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where   przbuf.ID is null and st.RowId is null) t
+ );
+
+--Документ разрешающий пребывание из People
+INSERT INTO [dbo].[Document] with (tablockx)
+           ([RowId]
+           ,[DocumentTypeId]
+           ,[Series]
+           ,[Number]
+           ,[IssuingAuthority]
+           ,[DateIssue]
+           ,[DateExp]
+           ,[IsBad])
+ (select 
+            t.[RowId]
+           ,t.[DocumentTypeId]
+           ,t.[Series]
+           ,t.[Number]
+           ,t.[IssuingAuthority]
+           ,t.[DateIssue]
+           ,t.[DateExp]
+           ,t.[IsBad]
+   from (     
+  select  cast(cast(p.id  + 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         ,(select top 1 id from Concept where Oid = '1.2.643.2.40.5.100.203.1' and Code = p.RDOCTP) as [DocumentTypeId]
+         , p.RDOCS    [Series]
+         , p.RDOCN	  [Number]
+         , p.RDOCORG  [IssuingAuthority]
+         , p.RDOCDT	  [DateIssue]
+         , p.RDOCEND  [DateExp]
+         , 0		  [IsBad]
+  from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where   przbuf.ID is null and st.RowId is null) t
+ );
+ 
+ --Документ представителя из People
+INSERT INTO [dbo].[Document] with (tablockx)
+           ([RowId]
+           ,[DocumentTypeId]
+           ,[Series]
+           ,[Number]
+           ,[IssuingAuthority]
+           ,[DateIssue]
+           ,[DateExp]
+           ,[IsBad])
+ ( 
+   select 
+            t.[RowId]
+           ,t.[DocumentTypeId]
+           ,t.[Series]
+           ,t.[Number]
+           ,t.[IssuingAuthority]
+           ,t.[DateIssue]
+           ,t.[DateExp]
+           ,t.[IsBad]
+   from (        
+   select  cast(cast(p.id + 20000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         ,(select top 1 id from Concept where Oid = '1.2.643.2.40.5.100.203.1' and Code = p.ZDOCTP) as [DocumentTypeId]
+         , p.ZDOCS   [Series]
+         , p.ZDOCN	 [Number]
+         , p.ZDOCORG [IssuingAuthority]
+         , p.ZDOCDT	 [DateIssue]
+         , p.ZDR	 [DateExp]
+         , 0		 [IsBad]
+   from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where   przbuf.ID is null
+        and  p.METH = 2
+        and st.RowId is null) t
+ );
+ 
+--Документ УДЛ из Przbuf
+INSERT INTO [dbo].[Document] with (tablockx)
+           ([RowId]
+           ,[DocumentTypeId]
+           ,[Series]
+           ,[Number]
+           ,[IssuingAuthority]
+           ,[DateIssue]
+           ,[DateExp]
+           ,[IsBad])
+ (
+  select  cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+         ,(select top 1 id from Concept where Oid = '1.2.643.2.40.5.100.203.1' and Code = p.DOCTP) as [DocumentTypeId]
+         , p.DOCS
+         , p.DOCN
+         , p.DOCORG
+         , p.DOCDT
+         , p.DOCEND
+         , 0
+  from atl_srz_empty.dbo.PEOPLE_T p
+  left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+  where st.RowId is null
+   
+ );
+
+-- Документ разрешающий проживание из Przbuf
+INSERT INTO [dbo].[Document] with (tablockx)
+           ([RowId]
+           ,[DocumentTypeId]
+           ,[Series]
+           ,[Number]
+           ,[IssuingAuthority]
+           ,[DateIssue]
+           ,[DateExp]
+           ,[IsBad])
+ (
+  select 
+            t.[RowId]
+           ,t.[DocumentTypeId]
+           ,t.[Series]
+           ,t.[Number]
+           ,t.[IssuingAuthority]
+           ,t.[DateIssue]
+           ,t.[DateExp]
+           ,t.[IsBad]
+  from (            
+  select  cast(cast(p.id  - 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         ,(select top 1 id from Concept where Oid = '1.2.643.2.40.5.100.203.1' and Code = p.RDOCTP) as [DocumentTypeId]
+         , p.RDOCS   [Series]
+         , p.RDOCN	 [Number]
+         , p.RDOCORG [IssuingAuthority]
+         , p.RDOCDT	 [DateIssue]
+         , p.RDOCEND [DateExp]
+         , 0		 [IsBad]
+  from atl_srz_empty.dbo.PEOPLE_T p
+   left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+  where st.RowId is null ) t
+ );
+ 
+ -- Документ представителя из Przbuf
+INSERT INTO [dbo].[Document] with (tablockx)
+           ([RowId]
+           ,[DocumentTypeId]
+           ,[Series]
+           ,[Number]
+           ,[IssuingAuthority]
+           ,[DateIssue]
+           ,[DateExp]
+           ,[IsBad])
+ (
+  select 
+            t.[RowId]
+           ,t.[DocumentTypeId]
+           ,t.[Series]
+           ,t.[Number]
+           ,t.[IssuingAuthority]
+           ,t.[DateIssue]
+           ,t.[DateExp]
+           ,t.[IsBad]
+  from (            
+  select  cast(cast(p.id  - 20000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         ,(select top 1 id from Concept where Oid = '1.2.643.2.40.5.100.203.1' and Code = p.ZDOCTP) as [DocumentTypeId]
+         , p.ZDOCS   [Series]
+         , p.ZDOCN	 [Number]
+         , p.ZDOCORG [IssuingAuthority]
+         , p.ZDOCDT	 [DateIssue]
+         , p.ZDR	 [DateExp]
+         , 0		 [IsBad]
+  from atl_srz_empty.dbo.PEOPLE_T p
+   left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+  where p.METH = 2 and st.RowId is null) t
+ );
+ 
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--16
+INSERT INTO [dbo].[Contents] with (tablockx)
+           ([RowId]
+           ,[ContentTypeId]
+           ,[DocumentContent64]
+           ,[InsuredPersonDataId]
+           ,[ChangeDate]
+           ,[FileName])
+(
+   select cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+         , 382 as [ContentTypeId]
+         , p.PHOTO  as [DocumentContent64]
+         , cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as [InsuredPersonDataId]
+         , GETDATE() as [ChangeDate]
+         , null as [FileName]
+   from atl_srz_empty.dbo.people  p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+    left join [Contents] c on c.RowId = cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
+   where   przbuf.ID is null 
+     and p.PHOTO is not null
+     and c.RowId is null
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--17
+INSERT INTO [dbo].[Contents] with (tablockx)
+           ([RowId]
+           ,[ContentTypeId]
+           ,[DocumentContent64]
+           ,[InsuredPersonDataId]
+           ,[ChangeDate]
+           ,[FileName])
+( select    t.[RowId]
+           ,t.[ContentTypeId]
+           ,t.[DocumentContent64]
+           ,t.[InsuredPersonDataId]
+           ,t.[ChangeDate]
+           ,t.[FileName]
+   from (        
+   select cast(cast(p.id  + 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         , 383 as [ContentTypeId]
+         , p.SIGNAT  as [DocumentContent64]
+         , cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as [InsuredPersonDataId]
+         , GETDATE() as [ChangeDate]
+         , null as [FileName]
+   from atl_srz_empty.dbo.people p
+    left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+     where   przbuf.ID is null  
+   and p.SIGNAT is not null) t
+    left join [Contents] c on c.RowId = t.RowId
+   where c.RowId is null
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--18
+INSERT INTO [dbo].[Contents] with (tablockx)
+           ([RowId]
+           ,[ContentTypeId]
+           ,[DocumentContent64]
+           ,[InsuredPersonDataId]
+           ,[ChangeDate]
+           ,[FileName])
+(        
+   select  
+           cast(cast(- prz.id as varbinary(36)) as uniqueidentifier) as RowId
+         , 382 as [ContentTypeId]
+         , p.PHOTO  as [DocumentContent64]
+         , cast(cast(- prz.id  as varbinary(36)) as uniqueidentifier) as [InsuredPersonDataId]
+         , GETDATE() as [ChangeDate]
+         , null as [FileName]
+   from atl_srz_empty.dbo.PRZBUFT prz 
+     inner join atl_srz_empty.dbo.PEOPLE p on p.ID = prz.PID
+     left join [dbo].[Contents] c on cast(cast(-prz.id as varbinary(36)) as uniqueidentifier) = c.RowId
+     where  p.PHOTO is not null 
+           and c.RowId is null
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+--19
+INSERT INTO [dbo].[Contents] with (tablockx)
+           ([RowId]
+           ,[ContentTypeId]
+           ,[DocumentContent64]
+           ,[InsuredPersonDataId]
+           ,[ChangeDate]
+           ,[FileName])
+(        
+   select  
+           cast(cast(-prz.id - 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
+         , 383 as [ContentTypeId]
+         , p.SIGNAT  as [DocumentContent64]
+         , cast(cast(-prz.id  as varbinary(36)) as uniqueidentifier) as [InsuredPersonDataId]
+         , GETDATE() as [ChangeDate]
+         , null as [FileName]
+   from atl_srz_empty.dbo.PRZBUFT prz 
+   inner join atl_srz_empty.dbo.PEOPLE p on p.ID = prz.PID
+     left join [dbo].[Contents] c on cast(cast(-prz.id - 10000000000000 as varbinary(36)) as uniqueidentifier) = c.RowId
+     where  p.SIGNAT is not null 
+           and c.RowId is null
+);
+
+-- Представитель из People
+INSERT INTO [dbo].[Representative] with (tablockx)
+           ([RowId]
+           ,[RelationTypeId]
+           ,[FirstName]
+           ,[LastName]
+           ,[MiddleName]
+           ,[HomePhone]
+           ,[WorkPhone]
+           ,[DocumentId])
+     ( 
+     select t.[RowId]
+           ,t.[RelationTypeId]
+           ,t.[FirstName]
+           ,t.[LastName]
+           ,t.[MiddleName]
+           ,t.[HomePhone]
+           ,t.[WorkPhone]
+           ,t.[DocumentId]
+     from (      
+			 select  cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+				   , (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.18.11' and Code = p.ZT) as [RelationTypeId]
+				   , isnull(p.ZIM, p.FIOPR) as [FirstName]
+				   , isnull(p.ZFAM, '') as [LastName]
+				   , isnull(p.ZOT, '') as [MiddleName]
+				   , p.CONTACT [HomePhone]
+				   , p.ZPHONE as [WorkPhone]
+				   , cast(cast(p.id + 20000000000000 as varbinary(36)) as uniqueidentifier) as DocumentId
+			 from atl_srz_empty.dbo.people p
+			   left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+			   left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+			 where przbuf.ID is null    
+			 and p.METH = 2
+			 and st.RowId is null
+		 ) t
+	 );
+  
+-- Представитель из PrzBuf   
+INSERT INTO [dbo].[Representative] with (tablockx)
+           ([RowId]
+           ,[RelationTypeId]
+           ,[FirstName]
+           ,[LastName]
+           ,[MiddleName]
+           ,[HomePhone]
+           ,[WorkPhone]
+           ,[DocumentId])
+     (
+     select t.[RowId]
+           ,t.[RelationTypeId]
+           ,t.[FirstName]
+           ,t.[LastName]
+           ,t.[MiddleName]
+           ,t.[HomePhone]
+           ,t.[WorkPhone]
+           ,t.[DocumentId]
+     from ( 
+			 select cast(cast(p.id  as varbinary(36)) as uniqueidentifier) as RowId
+				 , (select top 1 id from Concept where Oid = '1.2.643.2.40.5.0.18.11' and Code = p.ZT) as [RelationTypeId]
+				 , isnull(p.ZIM, p.FIOPR) as [FirstName]
+				 , isnull(p.ZFAM, '') as [LastName]
+				 , isnull(p.ZOT, '') as [MiddleName]
+				 , p.CONTACT [HomePhone]
+				 , p.ZPHONE as [WorkPhone]
+				 , cast(cast(p.id - 20000000000000 as varbinary(36)) as uniqueidentifier) as DocumentId
+			 from atl_srz_empty.dbo.PEOPLE_T p
+			  left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+			 where p.METH = 2
+			  and st.RowId is null
+		  ) t
+     );
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+INSERT INTO [dbo].[Statement] with (tablockx)
+           ([RowId]
+           ,[InsuredPersonId]
+           ,[InsuredPersonDataId]
+           ,[PointDistributionPolicyId]
+           ,[CauseFilingId]
+           ,[ModeFilingId]
+           ,[FormManufacturingId]
+           ,[DocumentUdlId]
+           ,[DocumentRegistrationId]
+           ,[ResidencyDocumentId]
+           ,[ContactInfoId]
+           ,[RepresentativeId]
+           ,[AddressId]
+           ,[Address2Id]
+           ,[DateFiling]
+           ,[HasPetition]
+           ,[NumberPolicy]
+           ,[AbsentPrevPolicy]
+           ,[StatusId]
+           ,[UserId]
+           ,[PreviousStatementId]
+           ,[IsActive]
+           ,[PolicyIsIssued]
+           ,[PrzBuffId]
+           ,[PidId]
+           ,[PolisId]
+           ,[IsExportTemp]
+           ,[IsExportPolis]
+           ,[PrzBuffPolisId]
+           ,[Version])
+
+(
+     select 
+            t.[RowId]
+           ,t.[InsuredPersonId]
+           ,t.[InsuredPersonDataId]
+           ,t.[PointDistributionPolicyId]
+           ,t.[CauseFilingId]
+           ,t.[ModeFilingId]
+           ,t.[FormManufacturingId]
+           ,t.[DocumentUdlId]
+           ,t.[DocumentRegistrationId]
+           ,t.[ResidencyDocumentId]
+           ,t.[ContactInfoId]
+           ,t.[RepresentativeId]
+           ,t.[AddressId]
+           ,t.[Address2Id]
+           ,t.[DateFiling]
+           ,t.[HasPetition]
+           ,t.[NumberPolicy]
+           ,t.[AbsentPrevPolicy]
+           ,t.[StatusId]
+           ,t.[UserId]
+           ,t.[PreviousStatementId]
+           ,t.[IsActive]
+           ,t.[PolicyIsIssued]
+           ,t.[PrzBuffId]
+           ,t.[PidId]
+           ,t.[PolisId]
+           ,t.[IsExportTemp]
+           ,t.[IsExportPolis]
+           ,t.[PrzBuffPolisId]
+           ,t.[Version]
+     from (      
+     select 
+            cast(cast(p.id as varbinary(36)) as uniqueidentifier) as RowId
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [InsuredPersonId] 
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [InsuredPersonDataId]
+          , isnull((select top 1 pvp.RowId 
+             from Organisation smo 
+               inner join Organisation pvp on pvp.Oid = '1.2.643.2.40.3.3.1.0' and pvp.ParentId = smo.RowId and pvp.Code = p.PRZ 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = p.Q),
+                   (select top 1 pvp.RowId 
+             from Organisation smo 
+               inner join Organisation pvp on pvp.Oid = '1.2.643.2.40.3.3.1.0' and pvp.ParentId = smo.RowId and (pvp.Code = '1' or pvp.Code = '001') 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = p.Q)) as [PointDistributionPolicyId]
+          , 302 as [CauseFilingId]   
+          , case when p.METH = 2 then 314 else 313 end as [ModeFilingId]
+          , case when p.POLVID = 1 then 321
+                 when p.POLVID = 2 then 440
+                 when p.POLVID = 3 then 322 
+                 else 321
+                 end as [FormManufacturingId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [DocumentUdlId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [DocumentRegistrationId]
+          , cast(cast(p.id + 10000000000000 as varbinary(36)) as uniqueidentifier) as [ResidencyDocumentId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [ContactInfoId]
+          , case when p.METH =2 then cast(cast(p.id as varbinary(36)) as uniqueidentifier) else null end as [RepresentativeId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [AddressId]       
+          , case when p.SUBJ =   p.PSUBJ 
+                  and p.RN =     p.PRN 
+                  and p.RNNAME = p.PRNNAME
+                  and p.CITY =   p.PCITY 
+                  and p.NP    =  p.PNP
+                  and p.UL    =  p.PUL
+                  and p.DOM   =  p.PDOM
+                  and p.KOR   =  p.PKOR
+                  and p.KV   =   p.PKV
+                  and p.KLADRG = p.KLADRP 
+                 then null
+                 else cast(cast(p.id + 10000000000000 as varbinary(36)) as uniqueidentifier) end as [Address2Id]
+          , p.DVIZ as [DateFiling]
+          , p.PETITION as [HasPetition]
+          , p.ENP as [NumberPolicy]
+          , 0 as [AbsentPrevPolicy]
+          , 291 as [StatusId]
+          , CAST ('01000000-0000-0000-0000-000000000000' as uniqueidentifier)  as [UserId]
+          , null as [PreviousStatementId]
+          , 1 as [IsActive]
+		  , 1 as [PolicyIsIssued]
+		  , null as [PrzBuffId]
+		  , p.id as [PidId]
+		  , null as [PolisId]
+		  , 1 as [IsExportTemp]
+		  , 1 as [IsExportPolis]
+		  , null[PrzBuffPolisId]
+		  , 0 as [Version]
+     from atl_srz_empty.dbo.people p  
+      left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+      left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where   przbuf.ID is null and st.RowId is null) t
+   
+);
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+INSERT INTO [dbo].[Statement] with (tablockx)
+           ([RowId]
+           ,[InsuredPersonId]
+           ,[InsuredPersonDataId]
+           ,[PointDistributionPolicyId]
+           ,[CauseFilingId]
+           ,[ModeFilingId]
+           ,[FormManufacturingId]
+           ,[DocumentUdlId]
+           ,[DocumentRegistrationId]
+           ,[ResidencyDocumentId]
+           ,[ContactInfoId]
+           ,[RepresentativeId]
+           ,[AddressId]
+           ,[Address2Id]
+           ,[DateFiling]
+           ,[HasPetition]
+           ,[NumberPolicy]
+           ,[AbsentPrevPolicy]
+           ,[StatusId]
+           ,[UserId]
+           ,[PreviousStatementId]
+           ,[IsActive]
+           ,[PolicyIsIssued]
+           ,[PrzBuffId]
+           ,[PidId]
+           ,[PolisId]
+           ,[IsExportTemp]
+           ,[IsExportPolis]
+           ,[PrzBuffPolisId]
+           ,[Version])
+
+(     select 
+            cast(cast(p.id as varbinary(36)) as uniqueidentifier) as RowId
+          , cast(cast(p.pid as varbinary(36)) as uniqueidentifier) as [InsuredPersonId] 
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [InsuredPersonDataId]
+          , isnull((select top 1 pvp.RowId 
+             from Organisation smo 
+               inner join Organisation pvp on pvp.Oid = '1.2.643.2.40.3.3.1.0' and pvp.ParentId = smo.RowId and pvp.Code = p.PRZ 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = p.Q),
+                   (select top 1 pvp.RowId 
+             from Organisation smo 
+               inner join Organisation pvp on pvp.Oid = '1.2.643.2.40.3.3.1.0' and pvp.ParentId = smo.RowId and (pvp.Code = '1' or pvp.Code = '001') 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = p.Q)) as [PointDistributionPolicyId]
+          ,  case 
+                  when OP = 'П010' then 303  
+                  
+                  when OP = 'П031' then 304 
+				  when OP = 'П034' then 304 
+				  
+				  when OP = 'П032' then 305 
+				  when OP = 'П035' then 305 
+				  
+				  when OP = 'П033' then 306 
+				  when OP = 'П036' then 306 
+				  
+				  when OP = 'П040' then 456 
+				  
+				  when OP = 'П061' then 308
+				  
+				  when OP = 'П062' then 311 
+				  
+				  when OP = 'П063' then 312 
+				  end as [CauseFilingId]
+          , case when p.METH = 2 then 314 else 313 end as [ModeFilingId]
+          , case when p.POLVID = 1 then 321
+                 when p.POLVID = 2 then 440
+                 when p.POLVID = 3 then 322
+                 else 321  
+                 end as [FormManufacturingId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [DocumentUdlId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [DocumentRegistrationId]
+          , cast(cast(p.id - 10000000000000 as varbinary(36)) as uniqueidentifier) as [ResidencyDocumentId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [ContactInfoId]
+          , case when p.METH =2 then cast(cast(p.id as varbinary(36)) as uniqueidentifier) else null end as [RepresentativeId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [AddressId]       
+          , case when isnull(p.SUBJ, '') =   isnull(p.PSUBJ, '') 
+                  and isnull(p.RN, '') =     isnull(p.PRN, '') 
+                  and isnull(p.RNNAME, '') = isnull(p.PRNNAME, '')
+                  and isnull(p.CITY, '') =   isnull(p.PCITY, '')
+                  and isnull(p.NP, '')    =  isnull(p.PNP, '')
+                  and isnull(p.UL, '')    =  isnull(p.PUL, '')
+                  and isnull(p.DOM, '')   =  isnull(p.PDOM, '')
+                  and isnull(p.KOR, '')   =  isnull(p.PKOR, '')
+                  and isnull(p.KV, '')   =   isnull(p.PKV, '')
+                  and isnull(p.KLADRG, '') = isnull(p.KLADRP, '')
+                 then null
+                 else cast(cast(p.id - 10000000000000 as varbinary(36)) as uniqueidentifier) end as [Address2Id]
+          , p.DVIZ as [DateFiling]
+          , p.PETITION as [HasPetition]
+          , p.ENP as [NumberPolicy]
+          , case when OP in ('П010', 'П034', 'П035', 'П036', 'П061', 'П062', 'П063') then 1 else 0 end as [AbsentPrevPolicy]
+          , case when OP in ('П010', 'П034', 'П035', 'П036', 'П061', 'П062', 'П063') and
+                      (p.EERP is null and p.EINS is null) and
+                      ((p.POLVID != 3 and p.POLISNEW is null) or (p.POLVID = 3 and not exists(select 1 from atl_srz_empty.dbo.UEC u where p.PID = u.PID) and p.POLISNEW is null)) then  290 
+                 when (p.EERP is not null) or (p.EINS is not null) then 289
+                 else 291  
+                 end as [StatusId]
+          , CAST ('01000000-0000-0000-0000-000000000000' as uniqueidentifier)  as [UserId]
+          , null as [PreviousStatementId]
+          , 0 as [IsActive]
+		  , case when OP in ('П010', 'П034', 'П035', 'П036', 'П061', 'П062', 'П063') and 
+               ((p.POLVID != 3 and p.POLISNEW is null) or 
+                (p.POLVID = 3 and not exists(select 1 from atl_srz_empty.dbo.UEC u where p.PID = u.PID) and p.POLISNEW is null)) then  0 else 1 end  as [PolicyIsIssued]
+		  , -p.id as [PrzBuffId]
+		  , p.pid as [PidId]
+		  , null as [PolisId]
+		  , 1 as [IsExportTemp]
+		  , case when OP in ('П010', 'П034', 'П035', 'П036', 'П061', 'П062', 'П063') and 
+               ((p.POLVID != 3 and p.POLISNEW is null) or 
+                (p.POLVID = 3 and not exists(select 1 from atl_srz_empty.dbo.UEC u where p.PID = u.PID) and p.POLISNEW is null)) then  0 else 1 end as [IsExportPolis]
+		  , null[PrzBuffPolisId]
+		  , 0 as [Version]
+     from atl_srz_empty.dbo.PEOPLE_T p 
+      left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+     where st.RowId is null 
+);
+
+--Вставляем ошибки
+insert into [dbo].[Errors] with (tablockx)
+           ([RowId]
+           ,[Message]
+           ,[StatementId]
+           )
+           (
+			 select
+				   NEWID()
+				   ,p.REPL
+				   ,cast(cast(p.id as varbinary(36)) as uniqueidentifier) as StatementId
+			 from atl_srz_empty.dbo.PEOPLE_T p
+			  left join [dbo].[Errors] err on err.StatementId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
+			            and p.REPL = err.[Message]
+			 where ((p.EERP is not null) or (p.EINS is not null)) and err.RowId is null
+           );
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+begin
+	select 
+		ROW_NUMBER() OVER(PARTITION BY st.InsuredPersonId ORDER BY st.DateFiling DESC, st.rowid ) as Number,
+		RowId,
+		InsuredPersonId,
+		PreviousStatementId
+	into #st    
+	from Statement st
+
+	update Statement
+	set PreviousStatementId = t.PreviousStatementIdNew,
+		IsActive = t.IsActive
+	from (
+	select st.InsuredPersonId, st.Number, st.RowId, st.PreviousStatementId, stpr.RowId as PreviousStatementIdNew,
+		  case when st.Number = 1 then 1 else 0 end as IsActive
+	from #st st
+	 left join #st stpr on st.InsuredPersonId = stpr.InsuredPersonId and st.Number + 1 = stpr.Number
+	) t
+	where t.RowId = Statement.RowId
+
+	drop table #st
+end 
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+INSERT INTO [dbo].[MedicalInsurance] with (tablockx)
+           ([RowId]
+           ,[PolisSeria]
+           ,[PolisNumber]
+           ,[DateFrom]
+           ,[DateTo]
+           ,[SmoId]
+           ,[StatementId]
+           ,[PolisTypeId]
+           ,[IsActive]
+           ,[DateStop]
+           ,[Enp]
+           ,StateDateFrom
+           ,StateDateTo
+           ,InsuredPersonId)
+    (   
+        select 
+            t.[RowId]
+           ,t.[PolisSeria]
+           ,t.[PolisNumber]
+           ,t.[DateFrom]
+           ,t.[DateTo]
+           ,t.[SmoId]
+           ,t.[StatementId]
+           ,t.[PolisTypeId]
+           ,t.[IsActive]
+           ,t.[DateStop]
+           ,t.[Enp]
+           ,t.StateDateFrom
+           ,t.StateDateTo 
+           ,t.InsuredPersonId
+    	from (select 
+            NEWID() as RowId
+          , isnull(polis.SPOL, '') as [PolisSeria]
+          , polis.NPOL as [PolisNumber]
+          , polis.DBEG as [DateFrom]
+          , isnull(polis.DEND, '2200-01-01') as [DateTo]
+          , (select top 1 smo.RowId 
+             from Organisation smo 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = polis.Q) [SmoId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [StatementId]
+          , case when polis.POLTP = 0 or polis.POLTP = 1 or polis.POLTP = 4 then 438
+                 when polis.POLTP = 2 or polis.POLTP = 5 then 439
+                 when polis.POLTP = 3 then 
+                    case when polis.POLVID = 0 or polis.POLVID = 1 then 321
+                         when polis.POLVID = 2 then 440
+                         when polis.POLVID = 3 then 322 
+                         when polis.POLVID is null then 321
+                         end 
+             end as [PolisTypeId]
+          , 1 as[IsActive]
+          , isnull(polis.DSTOP, '2200-01-01') as [DateStop]
+          , p.ENP as [Enp]
+          , GETDATE() as StateDateFrom
+          , CAST('2200-01-01' as datetime) as StateDateTo
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [InsuredPersonId]  
+        from atl_srz_empty.dbo.people p  
+          left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
+          inner join  atl_srz_empty.dbo.POLIS polis on polis.PID = p.ID  
+        where   przbuf.ID is null
+          and polis.NPOL is  null
+          and exists (select 1
+             from Organisation smo 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = polis.Q)
+             )t
+         left join MedicalInsurance m on t.StatementId = m.StatementId
+         and t.PolisTypeId = m.PolisTypeId
+         and t.PolisNumber = m. PolisNumber
+        where m.RowId is null  
+    );
+ 
+select GETDATE() - @dt;
+set @dt = GETDATE();
+   
+INSERT INTO [dbo].[MedicalInsurance] with (tablockx)
+           ([RowId]
+           ,[PolisSeria]
+           ,[PolisNumber]
+           ,[DateFrom]
+           ,[DateTo]
+           ,[SmoId]
+           ,[StatementId]
+           ,[PolisTypeId]
+           ,[IsActive]
+           ,[DateStop]
+           ,[Enp]
+           ,StateDateFrom
+           ,StateDateTo
+           ,InsuredPersonId)
+    (
+    	 select 
+            t.[RowId]
+           ,t.[PolisSeria]
+           ,t.[PolisNumber]
+           ,t.[DateFrom]
+           ,t.[DateTo]
+           ,t.[SmoId]
+           ,t.[StatementId]
+           ,t.[PolisTypeId]
+           ,t.[IsActive]
+           ,t.[DateStop]
+           ,t.[Enp]
+           ,t.StateDateFrom
+           ,t.StateDateTo 
+           ,t.InsuredPersonId
+    	from (select 
+           NEWID() as RowId
+          , isnull(polis.SPOL, '') as [PolisSeria]
+          , polis.NPOL as [PolisNumber]
+          , polis.DBEG as [DateFrom]
+          , isnull(polis.DEND, '2200-01-01') as [DateTo]
+          , (select top 1 smo.RowId 
+             from Organisation smo 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = polis.Q) [SmoId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [StatementId]
+          , case when polis.POLTP = 0 or polis.POLTP = 1 or polis.POLTP = 4 then 438
+                 when polis.POLTP = 2 or polis.POLTP = 5 then 439
+                 when polis.POLTP = 3 then 
+                    case when polis.POLVID = 0 or polis.POLVID = 1 then 321
+                         when polis.POLVID = 2 then 440
+                         when polis.POLVID = 3 then 322 
+                         when polis.POLVID is null then 321
+                         end
+             end as [PolisTypeId]
+          , 1 as[IsActive]
+          , isnull(polis.DSTOP, '2200-01-01') as [DateStop]
+          , p.ENP as [Enp]
+          , GETDATE() as StateDateFrom
+          , CAST('2200-01-01' as datetime) as StateDateTo
+          , cast(cast(p.pid as varbinary(36)) as uniqueidentifier) as [InsuredPersonId]  
+        from atl_srz_empty.dbo.PEOPLE_T p  
+          inner join atl_srz_empty.dbo.polis on p.polisid = polis.id
+         )t
+        left join MedicalInsurance m on t.StatementId = m.StatementId
+         and t.PolisTypeId = m.PolisTypeId
+         and t.PolisNumber = m. PolisNumber
+        where m.RowId is null  
+         
+    );   
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+INSERT INTO [dbo].[MedicalInsurance] with (tablockx)
+           ([RowId]
+           ,[PolisSeria]
+           ,[PolisNumber]
+           ,[DateFrom]
+           ,[DateTo]
+           ,[SmoId]
+           ,[StatementId]
+           ,[PolisTypeId]
+           ,[IsActive]
+           ,[DateStop]
+           ,[Enp]
+           ,StateDateFrom
+           ,StateDateTo
+           ,InsuredPersonId)
+    (
+    	select 
+            t.[RowId]
+           ,t.[PolisSeria]
+           ,t.[PolisNumber]
+           ,t.[DateFrom]
+           ,t.[DateTo]
+           ,t.[SmoId]
+           ,t.[StatementId]
+           ,t.[PolisTypeId]
+           ,t.[IsActive]
+           ,t.[DateStop]
+           ,t.[Enp]
+           ,t.StateDateFrom
+           ,t.StateDateTo 
+           ,t.InsuredPersonId
+    	from (select 
+            NEWID() as RowId
+          , isnull(polis.SPOL, '') as [PolisSeria]
+          , polis.NPOL as [PolisNumber]
+          , polis.DBEG as [DateFrom]
+          , isnull(polis.DEND, '2200-01-01') as [DateTo]
+          , (select top 1 smo.RowId 
+             from Organisation smo 
+             where smo.Oid = '1.2.643.2.40.3.1.4' and smo.Code = polis.Q) [SmoId]
+          , cast(cast(p.id as varbinary(36)) as uniqueidentifier) as [StatementId]
+          , case when polis.POLTP = 0 or polis.POLTP = 1 or polis.POLTP = 4 then 438
+                 when polis.POLTP = 2 or polis.POLTP = 5 then 439
+                 when polis.POLTP = 3 then 
+                    case when polis.POLVID = 0 or polis.POLVID = 1 then 321
+                         when polis.POLVID = 2 then 440
+                         when polis.POLVID = 3 then 322 
+                         when polis.POLVID is null then 321
+                         end
+             end as [PolisTypeId]
+          , 1 as[IsActive]
+          , isnull(polis.DSTOP, '2200-01-01') as [DateStop]
+          , p.ENP as [Enp]
+          , GETDATE() as StateDateFrom
+          , CAST('2200-01-01' as datetime) as StateDateTo
+          , cast(cast(p.pid as varbinary(36)) as uniqueidentifier) as [InsuredPersonId] 
+        from atl_srz_empty.dbo.PEOPLE_T p  
+          inner join atl_srz_empty.dbo.polis on p.POLISNEW = polis.id
+              )t
+         left join MedicalInsurance m on t.StatementId = m.StatementId
+         and t.PolisTypeId = m.PolisTypeId
+         and t.PolisNumber = m. PolisNumber
+        where m.RowId is null  
+     
+    );    
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+declare @i int
+set @i = 0
+declare @y datetime
+set @y = '2014-01-01'
+
+while (@i&lt;=20)
+begin 
+  INSERT INTO [dbo].[Period]
+           ([RowId]
+           ,[CodeId]
+           ,[Year])
+(
+  select NEWID(), id, @y from Concept 
+  where Oid = '1.2.643.2.40.3.3.0.6.14'
+  and id between 574 and 585
+  and not exists (select 1 from [dbo].[Period] where [Year] = @y)
+ );
+ 
+  set @i = @i+1;
+  set @y = DATEADD(y,1,@y);
+end;
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+--пометка всех выгруженными
+begin
+	delete from MessageStatement
+	delete from Message
+	delete from Batch
+	
+	-- Вставляем фейковый батч, если требуется
+	if not exists (select 1 from [dbo].Batch where RowId='00000000-0000-0000-0000-000000000000')
+	begin
+		insert into [dbo].[Batch]
+			   ([RowId]
+			   ,[SubjectId]
+			   ,[TypeId]
+			   ,[FileName]
+			   ,[Number]
+			   ,[CodeConfirmId]
+			   ,[PeriodId]
+			   ,[SenderId]
+			   ,[ReceiverId])
+		 values
+			   ('00000000-0000-0000-0000-000000000000'
+			   ,626 -- СМО
+			   ,628 -- Файл корректировки данных от ТФОМС в СМО
+			   ,''
+			   ,0
+			   ,599
+			   ,null
+			   ,null
+			   ,null)
+	end
+	
+	 -- Вставляем записи в MessageStatement
+	insert into [dbo].[MessageStatement]
+	   ([RowId]
+	   ,[StatementId]
+	   ,[Version]
+	   ,[TypeId])
+	select NEWID(), 
+	       [RowId], 
+	       [Version],
+	       635
+	from [dbo].[Statement]
+	
+	--Вставляем записи в Message
+	insert into [Message]
+	   ([RowId]
+	   ,[BatchId]
+	   ,[TypeId]
+	   ,[IsCommit]
+	   ,[IsError]
+	   )
+	select 
+	   RowId
+	   ,'00000000-0000-0000-0000-000000000000'
+	   ,623 -- Файлы корректировки данных от ТФОМС по отдельным записям или группам записей
+	   , 1
+	   , 0
+	from [dbo].[MessageStatement]
+end
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+-- пересчет счетчиков ЕНП
+EXECUTE [dbo].[srz_CalculateEnpNumbers]  0, 9;
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+declare @countSt int
+
+SELECT @countSt = COUNT(*)
+from Statement st
+  left join [SearchKey] k on k.StatementId = st.RowId 
+where k.RowId is null
+
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+--if @countSt &lt; 100000
+--begin
+;WITH StatementImp(RowId, InsuredPersonId, StatementXml, InsuredPersonDataXml, DocumentXml, DocumentTypeId, Okato) 
+	AS
+	(
+	  SELECT 
+			 Statement.RowId, 
+			 Statement.InsuredPersonId, 
+			   (SELECT Statement.* FROM Dual FOR XML AUTO, ELEMENTS) as StatementXml, 
+			   (SELECT InsuredPersonData.* FROM Dual FOR XML AUTO, ELEMENTS) as InsuredPersonDataXml,  
+			   (SELECT Document.* FROM Dual FOR XML AUTO, ELEMENTS) as DocumentXml, 
+			   Document.DocumentTypeId,
+			   Tfoms.Okato
+	  FROM (SELECT st.*, ROW_NUMBER() OVER (ORDER BY st.RowID) AS Quartile from Statement st
+	        left join [SearchKey] k on k.StatementId = st.RowId where k.RowId is null) Statement
+		INNER JOIN InsuredPersonData on Statement.InsuredPersonDataId = InsuredPersonData.RowId
+		INNER JOIN Document on Statement.DocumentUdlId = Document.RowId
+		INNER JOIN Address a on Statement.AddressId = a.RowId
+		LEFT JOIN Address a2 on Statement.Address2Id = a2.RowId
+		INNER JOIN Organisation PointDistributionPolicy on PointDistributionPolicy.RowId = Statement.PointDistributionPolicyId
+		INNER JOIN Organisation Smo on Smo.RowId = PointDistributionPolicy.ParentId
+		INNER JOIN Organisation Tfoms on Tfoms.RowId = Smo.ParentId
+	  --WHERE Statement.Quartile between 0 and 100000
+	)
+
+    INSERT INTO [SearchKey]
+		   (
+		    [RowId]
+		   ,[DocumentUdlTypeId]
+		   ,[InsuredPersonId]
+		   ,[StatementId] 
+		   ,[KeyValue]
+		   ,[KeyTypeId])
+	(	
+		SELECT NEWID(),
+				t1.DocumentTypeId,
+			    t1.InsuredPersonId, 
+				t1.RowId,
+				t1.KeyValue,
+				t1.KeyId
+	    FROM (
+				SELECT  t.DocumentTypeId,
+						t.InsuredPersonId,
+						t.RowId,
+						k.KeyId as KeyId,
+						k.[Hash] as KeyValue
+				FROM StatementImp t CROSS APPLY [dbo].[CalcStandardSearchKeys] (t.StatementXml, t.InsuredPersonDataXml, t.DocumentXml, t.Okato) k
+			) t1
+	)
+--end 
+--else
+--begin
+-- update SearchKeyType
+-- set Recalculated = 0
+--end
+
+delete from SearchKey
+where RowId in (
+	select k.RowId
+	from SearchKey k
+	 left join Statement st on k.StatementId = st.RowId
+	where st.RowId is null )
+	
+delete from Contents
+where RowId in (
+	select k.RowId
+	from Contents k
+	 left join InsuredPersonData st on k.InsuredPersonDataId = st.RowId
+	where st.RowId is null )	
+	
+	
+select GETDATE() - @dt;
+set @dt = GETDATE();
+
+-- удаление дублей
+delete from AutoComplete
+where RowId in (
+select a2.RowId 
+from AutoComplete a1
+ inner join AutoComplete a2 on a1.GenderId = a2.GenderId and a1.Name = a2.Name and a1.TypeId = a2.TypeId
+where a2.RowId &gt; a1.RowId);
+
+-- удаление пустых значений
+delete from AutoComplete
+where Name is null 
+ or Name = '';
+
+-- Синхронизация 
+insert into atl_srz_empty.dbo.IM (CAPTION, W)
+(
+ select Name, GenderId - 272
+from (select * from  AutoComplete where TypeId = 430 )  a 
+ left join atl_srz_empty.dbo.IM im on im.CAPTION = a.Name and im.W + 272 = a.GenderId  
+where  im.ID is null
+ );
+
+insert into AutoComplete (RowId, Name, Relevance, GenderId, TypeId)
+(
+ select NEWID(), im.CAPTION, 99999, im.W + 272, 430
+from  atl_srz_empty.dbo.IM im
+ left join (select * from  AutoComplete where TypeId = 430 ) a on im.CAPTION = a.Name and im.W + 272 = a.GenderId and a.TypeId = 430
+where a.RowId is null
+ );
+
+insert into atl_srz_empty.dbo.ot (CAPTION, W)
+(
+ select Name, GenderId - 272
+from (select * from  AutoComplete where TypeId = 431 ) a 
+ left join atl_srz_empty.dbo.ot ot on ot.CAPTION = a.Name and ot.W + 272 = a.GenderId
+where a.TypeId = 431
+ and ot.ID is null
+ )
+
+insert into AutoComplete (RowId, Name, Relevance, GenderId, TypeId)
+(
+ select NEWID(), ot.CAPTION, 99999, ot.W + 272, 431
+from  atl_srz_empty.dbo.OT ot
+ left join (select * from  AutoComplete where TypeId = 431 ) a on ot.CAPTION = a.Name and ot.W + 272 = a.GenderId and a.TypeId = 431
+where a.RowId is null
+ )
+
+-- Делаем слова с большой буквы
+update AutoComplete
+set Name = dbo.InitCap(ltrim(rtrim(Name)))
+
+SELECT 1</value>
+  </data>
+</root>

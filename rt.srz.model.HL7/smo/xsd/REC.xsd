@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified"
+           xmlns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="TargetClass.xsd" />
+
+  <xs:complexType name="RECType">
+    <xs:annotation>
+      <xs:documentation>
+        Записи
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="xs:long" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Идентификатор записи ТФОМС (ID_HISTORY)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TIP_OP" type="Operation_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Тип операции
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IS_ACTIVE" type="Active_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Признак активности записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CHANGE_DATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата изменения записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="STATE_BEGIN_DATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата начала жизни записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="STATE_END_DATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата окончания жизни записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ERR_CODE" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код ошибки
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ERR_DESC" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Описание ошибки
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OPER" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Оператор
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PERSON" type="PersonType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные о застрахованном лице
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOC" type="DocType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные документа, удостоверяющего личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ADDRES_G" type="AddressType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Адрес регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ADDRES_P" type="AddressType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Адрес фактического проживания
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VIZIT" type="VizitType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Обращение застрахованного лица
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INSURANCE" type="InsuranceType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Событие страхования
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PERSONB" type="PersonBType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Биометрическая информация о застрахованном лице
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="ATTACHMENT" type="AttachmentType" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Информация о прикреплениях
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="FCODE" type="FederalType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Информация обработки полиса в ФОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

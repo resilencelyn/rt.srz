@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.Batch, rt.srz.model" table="[dbo].[Batch]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="FileName" column="[FileName]" />
+		<property name="Number" column="[Number]" />
+		<many-to-one name="CodeConfirm" column="[CodeConfirmId]" class="Concept"  />
+		<many-to-one name="Subject" column="[SubjectId]" class="Concept"  />
+		<many-to-one name="Type" column="[TypeId]" class="Concept"  />
+		<many-to-one name="Period" column="[PeriodId]" class="Period"  />
+		<many-to-one name="Receiver" column="[ReceiverId]" class="Organisation"  />
+		<many-to-one name="Sender" column="[SenderId]" class="Organisation"  />
+		<bag name="Messages" lazy="true" inverse="true" >
+			<key column="[BatchId]"></key>
+			<one-to-many class="Message"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

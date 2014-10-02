@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+	<class name="rt.atl.model.atl.Vsdiap, rt.atl.model" table="[dbo].[VSDIAP]" lazy="true">
+		<id name="Id" column="[ID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Dedit" column="[DEDIT]" />
+		<property name="Lo" column="[LO]" />
+		<property name="Hi" column="[HI]" />
+		<many-to-one name="SMO" column="[SMOID]" class="Smo" />
+	</class>
+</hibernate-mapping>
+

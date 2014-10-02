@@ -1,0 +1,8 @@
+LIBRARY "HAL_Protocol.dll"
+
+EXPORTS
+
+protInit
+protDeinit
+protWrite
+protWriteEx

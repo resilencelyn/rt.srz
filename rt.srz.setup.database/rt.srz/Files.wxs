@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include ../Constants.wxi?>
+	<Fragment>
+		
+    <DirectoryRef Id="INSTALLLOCATION" FileSource="$(var.BaseDir)Database\" DiskId="1">
+			<Component Id="rt.srz.database.backup" Guid="*">
+				<Condition>RTSRZ_DEPLOY</Condition>
+				<File Id="rt_srz.bak" Name="rt_srz.bak" />
+			</Component>
+    </DirectoryRef>
+
+		<ComponentGroup Id="rt.srz.database">
+			<ComponentRef Id="rt.srz.database.backup"/>
+    </ComponentGroup>
+	
+  </Fragment>
+</Wix>

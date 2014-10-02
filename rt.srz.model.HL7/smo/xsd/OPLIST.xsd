@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--Created with Liquid XML Studio Developer Edition (Trial) 9.1.2.3326 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified" targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="OP.xsd" />
+  <xs:complexType name="OPListType">
+    <xs:annotation>
+      <xs:documentation>
+        Корневой элемент
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="VERS" type="xs:string" minOccurs="0" maxOccurs="1" default="2.0">
+        <xs:annotation>
+          <xs:documentation>
+            Версия
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FILENAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя файла
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SMOCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Реестровый номер страховой медицин-ской организации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PRZCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код пункта выдачи СМО
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NRECORDS" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Количество записей
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OP" type="OPType" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation xml:lang="RU">Записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OPLIST" type="OPListType" final="">
+    <xs:annotation>
+      <xs:documentation xml:lang="RU">Структура файла с изменениями от СМО в ТФОМС </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

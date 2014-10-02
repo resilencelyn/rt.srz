@@ -1,0 +1,282 @@
+﻿<XML>
+ <row>
+  <Id>1.1.1.1</Id>
+  <FullName>Тип События</FullName>
+  <ShortName>Тип события</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeEvent</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.10</Id>
+  <FullName>Источник информации о занятости</FullName>
+  <ShortName>Источник информации о занятости</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>EmploymentSourceType</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.11</Id>
+  <FullName>Перечень персональных данных застрахованного лица</FullName>
+  <ShortName>Перечень персональных данных застрахованного лица</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeFields</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.12</Id>
+  <FullName>Перечень сообщений изменения данных</FullName>
+  <ShortName>Перечень сообщений изменения данных</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>MessageType</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.13</Id>
+  <FullName>Отделения пенсионного фонда России</FullName>
+  <ShortName>Отделения пенсионного фонда России</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Opfr</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.14</Id>
+  <FullName>Тип связи заявления и сообщения</FullName>
+  <ShortName>Тип связи заявления и сообщения</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>MessageStatementType</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.15</Id>
+  <FullName>Ти события HL7</FullName>
+  <ShortName>Тип события HL7</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>HL7EventType</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.2</Id>
+  <FullName>Тип автозаполнения</FullName>
+  <ShortName>Тип автозаполнения</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>AutoComplete</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.3</Id>
+  <FullName>Статус застрахованного</FullName>
+  <ShortName>Статус застрахованного</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>StatusPerson</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.4</Id>
+  <FullName>Тип сертификата</FullName>
+  <ShortName>Тип сертификата</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeSertificate</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.5</Id>
+  <FullName>Тип дубля по человеку</FullName>
+  <ShortName>Тип дубля по человеку</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeTwin</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.6</Id>
+  <FullName>Тип использования ключа поиска</FullName>
+  <ShortName>Тип использования ключа поиска</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>OperationKey</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.7</Id>
+  <FullName>Тип файла взаимодействия</FullName>
+  <ShortName>Тип файла взаимодействия</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeFile</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.8</Id>
+  <FullName>Субъект взаимодействия</FullName>
+  <ShortName>Субъект взаимодействия</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeSubject</LatinName>
+ </row>
+ <row>
+  <Id>1.1.1.9</Id>
+  <FullName>Признак идентификации застрахованного лица в ОПФР</FullName>
+  <ShortName>Признак идентификации застрахованного лица в ОПФР</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>PfrFeature</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.1.11</Id>
+  <FullName>Уровень доверия к информации, возвращённой в ответ на запрос</FullName>
+  <ShortName>Уровень доверия к информации, возвращённой в ответ на запрос</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TrustLevel</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.1.14</Id>
+  <FullName>Код причины совпадения</FullName>
+  <ShortName>Код причины совпадения</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>KeyType</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.1.3</Id>
+  <FullName>Медицинские организации</FullName>
+  <ShortName>Медицинские организации</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Mo</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.1.4</Id>
+  <FullName>Страховые медицинские организации</FullName>
+  <ShortName>Страховые медицинские организации</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Smo</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.1.4.2</Id>
+  <FullName>Статусы заявления на выдачу полиса ОМС</FullName>
+  <ShortName>Статус заявления</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>StatusStatement</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.6.11</Id>
+  <FullName>Способ подачи заявления</FullName>
+  <ShortName>Способ подачи заявления</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>ModeFiling</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.6.14</Id>
+  <FullName>Коды отчётных периодов</FullName>
+  <ShortName>Коды отчётных периодов</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>PeriodCode</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.6.6</Id>
+  <FullName>Категория застрахованного лица</FullName>
+  <ShortName>Категория застрахованного лица</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>CotegoryPerson</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.6.7</Id>
+  <FullName>Причина подачи заявления на выбор или замену СМО</FullName>
+  <ShortName>Причины подачи заявления</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>CauseFiling</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.6.8</Id>
+  <FullName>Код типа заявления</FullName>
+  <ShortName>Код типа заявления</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeStatement</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.6.9</Id>
+  <FullName>Причина подачи заявления на выдачу дубликата</FullName>
+  <ShortName>Причины подачи заявления</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>ReasonReneval</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.0.7.2</Id>
+  <FullName>Типы вложений, использующихся при обменах</FullName>
+  <ShortName>Типы вложений, использующихся при обменах</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>ContentType</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.1</Id>
+  <FullName>Территориальные фонды</FullName>
+  <ShortName>Территориальные фонды</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Tfoms</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.3.3.1.0</Id>
+  <FullName>Пункт выдачи полисов</FullName>
+  <ShortName>Пункт выдачи полисов</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Pvp</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.0.18.1</Id>
+  <FullName>Пол</FullName>
+  <ShortName>Пол</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Sex</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.0.18.11</Id>
+  <FullName>Отношение к застрахованному лицу</FullName>
+  <ShortName>Отношение к застрахованному лицу</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>RelationType</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.0.25.3</Id>
+  <FullName>Страна</FullName>
+  <ShortName>Страна</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>Country</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.0.25.3.1.1</Id>
+  <FullName>Страна для места рождения</FullName>
+  <ShortName>Место рождения</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>CountryBirth</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.100.203</Id>
+  <FullName>Коды типа идентификатора</FullName>
+  <ShortName>Коды типа идентификатора</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeIdentificator</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.100.203.1</Id>
+  <FullName>Документ УДЛ</FullName>
+  <ShortName>Документ УДЛ</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>DocumentType</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.100.62</Id>
+  <FullName>Перечень событий изменения данных в ИС ЕРП </FullName>
+  <ShortName>Перечень событий изменения данных в ИС ЕРП</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>ReasonType</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.100.8</Id>
+  <FullName>Код подтверждения</FullName>
+  <ShortName>Код подтверждения</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>CodeConfirm</LatinName>
+ </row>
+ <row>
+  <Id>1.2.643.2.40.5.100.86</Id>
+  <FullName>Форма изготовления полиса</FullName>
+  <ShortName>Форма изготовления полиса</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>ManufacturingForm</LatinName>
+ </row>
+ <row>
+  <Id>R001</Id>
+  <FullName>Классификатор причин внесения изменений в РС ЕРЗ</FullName>
+  <ShortName>Классификатор причин внесения изменений в РС ЕРЗ</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>TypeOperation</LatinName>
+ </row>
+ <row>
+  <Id>ghadfhagfd</Id>
+  <FullName>FullName TEst</FullName>
+  <ShortName>Short name test</ShortName>
+  <DefaultId></DefaultId>
+  <LatinName>latin test</LatinName>
+ </row>
+</XML>

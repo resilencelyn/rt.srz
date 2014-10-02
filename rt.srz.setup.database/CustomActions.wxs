@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include Constants.wxi?>
+	<Fragment>
+		<Binary Id="CA" SourceFile="..\rt.srz.setup.CA\bin\$(var.Configuration)\rt.srz.setup.CA.dll" />
+		<CustomAction Id="VerifySqlConnection2" Return="check" Execute="immediate" BinaryKey="CA" DllEntry="VerifySqlConnection2" />
+		<CustomAction Id="BrowseSqlConnection" Return="check" Execute="immediate" BinaryKey="CA" DllEntry="BrowseSqlConnection" />
+		
+    <!--Действия для базы СРЗ-->
+    <CustomAction Id="SetRestoreDatabaseSrz" Return="check" Property="RestoreDatabaseSrz" Value="[RTSRZ_CONNECTION_STRING]*[INSTALLLOCATION]rt_srz.bak" />
+    <CustomAction Id="RestoreDatabaseSrz" Return="check" Execute="deferred" BinaryKey="CA" DllEntry="RestoreDatabase" Impersonate="no" />
+
+    <!--Действия для базы Quartz-->
+    <CustomAction Id="SetRestoreDatabaseQuartz" Return="check" Property="RestoreDatabaseQuartz" Value="[RTQUARTZ_CONNECTION_STRING]*[INSTALLLOCATION]rt_srz_quartz.bak" />
+    <CustomAction Id="RestoreDatabaseQuartz" Return="check" Execute="deferred" BinaryKey="CA" DllEntry="RestoreDatabase" Impersonate="no" />
+
+		<InstallExecuteSequence>
+			<!--Ставим базу СРЗ-->
+      <Custom Action="SetRestoreDatabaseSrz" After="CostFinalize">RTSRZ_DEPLOY AND (NOT REMOVE)</Custom>
+			<Custom Action="RestoreDatabaseSrz" Before="InstallFinalize">RTSRZ_DEPLOY AND (NOT REMOVE)</Custom>
+      
+      <!--Ставим бвзу Quartz-->
+      <Custom Action="SetRestoreDatabaseQuartz" After="CostFinalize">RTQUARTZ_DEPLOY AND (NOT REMOVE)</Custom>
+      <Custom Action="RestoreDatabaseQuartz" Before="InstallFinalize">RTQUARTZ_DEPLOY AND (NOT REMOVE)</Custom>
+		</InstallExecuteSequence>
+	</Fragment>
+</Wix>

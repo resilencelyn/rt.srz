@@ -1,0 +1,16 @@
+LIBRARY "HAL_Parameters.dll"
+
+EXPORTS
+
+prmGetParameter
+prmGetParameterHost
+prmGetParameterHostCin2PanSnils
+prmGetParameterKeyVer
+prmGetParameterSectorEx
+prmWriteSectorExDescr
+prmGetParameterIqFront
+prmGetParameterPattern
+GetParamFilename
+prmSetUecServiceToken
+prmSetGlobalConfigurationData
+

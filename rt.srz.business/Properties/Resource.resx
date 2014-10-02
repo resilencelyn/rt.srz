@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CaptionCheckCauseFilling" xml:space="preserve">
+    <value>Проверка применимости причины подачи заявления</value>
+  </data>
+  <data name="CaptionCheckSrs" xml:space="preserve">
+    <value>Проверки ФЛК аналогично ФЛК шлюза регионального сегмента</value>
+  </data>
+  <data name="CaptionValidatorBirthAndDeathDate" xml:space="preserve">
+    <value>Проверка соответствия даты рождения и даты смерти</value>
+  </data>
+  <data name="CaptionValidatorBirthAndIssueDate" xml:space="preserve">
+    <value>Проверка соответствия даты рождения, даты выдачи документа УДЛ и даты заявления</value>
+  </data>
+  <data name="CaptionValidatorBirthdate" xml:space="preserve">
+    <value>Проверка даты рождения</value>
+  </data>
+  <data name="CaptionValidatorBirthplace" xml:space="preserve">
+    <value>Проверка места рождения</value>
+  </data>
+  <data name="CaptionValidatorCategory" xml:space="preserve">
+    <value>Проверка категории</value>
+  </data>
+  <data name="CaptionValidatorCauseFiling" xml:space="preserve">
+    <value>Проверка заполнения причины подачи заявления</value>
+  </data>
+  <data name="CaptionValidatorChildrenAgeToHaveUdl" xml:space="preserve">
+    <value>Проверка возраста для владения УДЛ</value>
+  </data>
+  <data name="CaptionValidatorChildrenWork" xml:space="preserve">
+    <value>Проверка запрета на работу для детей</value>
+  </data>
+  <data name="CaptionValidatorCitizenship" xml:space="preserve">
+    <value>Проверка гражданства</value>
+  </data>
+  <data name="CaptionValidatorContentFormat" xml:space="preserve">
+    <value>Проверка прикрепленных файлов, в том числе фото и подписи</value>
+  </data>
+  <data name="CaptionValidatorDateIssueTemporaryCertificate" xml:space="preserve">
+    <value>Проверка даты выдачи ВС</value>
+  </data>
+  <data name="CaptionValidatorDeath" xml:space="preserve">
+    <value>Проверка смерти</value>
+  </data>
+  <data name="CaptionValidatorDocumentUdl" xml:space="preserve">
+    <value>Проверка документа УДЛ</value>
+  </data>
+  <data name="CaptionValidatorDocumentUdlExists" xml:space="preserve">
+    <value>Проверка документ УДЛ у другого лица</value>
+  </data>
+  <data name="CaptionValidatorEmail" xml:space="preserve">
+    <value>Проверка адреса электронной почты</value>
+  </data>
+  <data name="CaptionValidatorEnp" xml:space="preserve">
+    <value>Проверка ЕНП</value>
+  </data>
+  <data name="CaptionValidatorEnpExists" xml:space="preserve">
+    <value>Проверка ЕНП  у другого лица</value>
+  </data>
+  <data name="CaptionValidatorFirstAndLastName" xml:space="preserve">
+    <value>Проверка соответствия имени и фамилии</value>
+  </data>
+  <data name="CaptionValidatorFirstName" xml:space="preserve">
+    <value>Проверка имени</value>
+  </data>
+  <data name="CaptionValidatorGender" xml:space="preserve">
+    <value>Проверка пола</value>
+  </data>
+  <data name="CaptionValidatorGenderConformity" xml:space="preserve">
+    <value>Проверка соответствия имени полу</value>
+  </data>
+  <data name="CaptionValidatorInsuranceRules" xml:space="preserve">
+    <value>Проверка правил страхования</value>
+  </data>
+  <data name="CaptionValidatorIssueDatePassportBirthCertificate" xml:space="preserve">
+    <value>Проверка соответствия даты рождения и даты подачи документа</value>
+  </data>
+  <data name="CaptionValidatorLastName" xml:space="preserve">
+    <value>Проверка фамилии</value>
+  </data>
+  <data name="CaptionValidatorMiddleName" xml:space="preserve">
+    <value>Проверка отчества</value>
+  </data>
+  <data name="CaptionValidatorPolicyType" xml:space="preserve">
+    <value>Проверка типа полиса</value>
+  </data>
+  <data name="CaptionValidatorPolisCertificate" xml:space="preserve">
+    <value>Проверка длины номера бланка полиса ОМС</value>
+  </data>
+  <data name="CaptionValidatorPolisCertificateDateIssue" xml:space="preserve">
+    <value>Проверка даты выдачи полиса</value>
+  </data>
+  <data name="CaptionValidatorRegistrationAddress" xml:space="preserve">
+    <value>Проверка адреса регистрации</value>
+  </data>
+  <data name="CaptionValidatorRegistrationDocument" xml:space="preserve">
+    <value>Проверка документа регистрации</value>
+  </data>
+  <data name="CaptionValidatorRegistrationPostcode" xml:space="preserve">
+    <value>Проверка индекса адреса регистрации</value>
+  </data>
+  <data name="CaptionValidatorRepresentativeDocumentUdl" xml:space="preserve">
+    <value>Проверка документа УДЛ представителя</value>
+  </data>
+  <data name="CaptionValidatorRepresentativeFirstAndLastName" xml:space="preserve">
+    <value>Проверка имени и фамилии представителя</value>
+  </data>
+  <data name="CaptionValidatorRepresentativeFirstName" xml:space="preserve">
+    <value>Проверка имени представителя</value>
+  </data>
+  <data name="CaptionValidatorRepresentativeLastName" xml:space="preserve">
+    <value>Проверка фамилии представителя</value>
+  </data>
+  <data name="CaptionValidatorRepresentativeMiddleName" xml:space="preserve">
+    <value>Проверка отчества представителя</value>
+  </data>
+  <data name="CaptionValidatorResidencyAddress" xml:space="preserve">
+    <value>Проверка адреса проживания</value>
+  </data>
+  <data name="CaptionValidatorResidencyPostcode" xml:space="preserve">
+    <value>Проверка индекса адреса проживания</value>
+  </data>
+  <data name="CaptionValidatorSnils" xml:space="preserve">
+    <value>Проверка СНИЛС</value>
+  </data>
+  <data name="CaptionValidatorSnilsExists" xml:space="preserve">
+    <value>Проверка СНИЛС у другого человека</value>
+  </data>
+  <data name="CaptionValidatorTemporaryCertificate" xml:space="preserve">
+    <value>Проверка номера ВС</value>
+  </data>
+  <data name="CaptionValidatorTemporaryCertificateDateIssue" xml:space="preserve">
+    <value>Проверка даты выдачи временного свидетельства</value>
+  </data>
+  <data name="CaptionValidatorTemporaryCertificateNumberExists" xml:space="preserve">
+    <value>Проверка номер ВС в другом заявлении</value>
+  </data>
+  <data name="CaptionValidatorTemporaryCertificateNumberInRange" xml:space="preserve">
+    <value>Проверка попадания номера ВС в диапазон</value>
+  </data>
+  <data name="LevelCaption_Complex" xml:space="preserve">
+    <value>Комплексная</value>
+  </data>
+  <data name="LevelCaption_External" xml:space="preserve">
+    <value>Внешняя</value>
+  </data>
+  <data name="LevelCaption_Simple" xml:space="preserve">
+    <value>Простая</value>
+  </data>
+  <data name="CaptionValidatorBirthdateFuture" xml:space="preserve">
+    <value>Дата рождения больше текущей даты</value>
+  </data>
+  <data name="CaptionValidatorDocumentResidency" xml:space="preserve">
+    <value>Проверка документа разрешающего проживание на территории РФ</value>
+  </data>
+  <data name="CaptionValidatorStatementFieldLength" xml:space="preserve">
+    <value>Проверка соответствия длины полей заявления</value>
+  </data>
+  <data name="ValidatorRelationTypeCaption" xml:space="preserve">
+    <value>Проверка заполненности отношения к застрахованному лицу</value>
+  </data>
+  <data name="CaptionValidatorGenderConformityMiddleName" xml:space="preserve">
+    <value>Проверка соответствия отчества полу</value>
+  </data>
+  <data name="CaptionValidatorNewEnp" xml:space="preserve">
+    <value>Проверка вновь выданного ЕНП</value>
+  </data>
+  <data name="CaptionValidatorReinsuranceRules" xml:space="preserve">
+    <value>Проверка правил перестрахования</value>
+  </data>
+</root>

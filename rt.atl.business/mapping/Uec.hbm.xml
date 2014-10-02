@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+	<class name="rt.atl.model.atl.Uec, rt.atl.model" table="[dbo].[UEC]" lazy="true">
+		<id name="Id" column="[ID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Ncard" column="[NCARD]" />
+		<property name="Ufile" column="[UFILE]" />
+		<many-to-one name="P" column="[PID]" class="person"  />
+		<many-to-one name="POLIS" column="[POLIS]" class="Poli"  />
+		<many-to-one name="UECLASTSTATUS" column="[UECLASTSTATUS]" class="Uechiststatus"  />
+		<bag name="Uechiststatuses" lazy="true" inverse="true" >
+			<key column="[UEC]"></key>
+			<one-to-many class="Uechiststatus"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

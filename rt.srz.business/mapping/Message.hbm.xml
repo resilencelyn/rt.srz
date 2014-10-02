@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.Message, rt.srz.model" table="[dbo].[Message]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="IsCommit" column="[IsCommit]" />
+		<property name="IsError" column="[IsError]" />
+		<many-to-one name="Batch" column="[BatchId]" class="Batch"  />
+		<many-to-one name="DependsOnMessage" column="[DependsOnMessageId]" class="Message"  />
+		<many-to-one name="Reason" column="[ReasonId]" class="Concept"  />
+		<many-to-one name="Type" column="[TypeId]" class="Concept"  />
+		<bag name="Errors" lazy="true" inverse="true" >
+			<key column="[MessageId]"></key>
+			<one-to-many class="Error"></one-to-many>
+		</bag>
+		<bag name="QueryResponses" lazy="true" inverse="true" >
+			<key column="[MessageId]"></key>
+			<one-to-many class="QueryResponse"></one-to-many>
+		</bag>
+		<bag name="Messages" lazy="true" inverse="true" >
+			<key column="[DependsOnMessageId]"></key>
+			<one-to-many class="Message"></one-to-many>
+		</bag>
+		<bag name="MessageStatements" lazy="true" inverse="true" >
+			<key column="[MessageId]"></key>
+			<one-to-many class="MessageStatement"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

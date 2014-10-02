@@ -1,0 +1,102 @@
+﻿.menuPosition {
+  display: table;
+  margin: auto;
+  margin-top: 2px;
+  border: 1px solid;
+}
+
+.Menu {
+}
+
+
+  .Menu a.static {
+    margin: 4px 16px 4px 16px;
+    padding: 4px 16px 4px 16px;
+    color: black;
+    background-color: #bbe8b8;
+    text-decoration: underline;
+  }
+
+    .Menu a.static:hover {
+      text-decoration: underline;
+      background-color: #bbe8b8;
+    }
+
+  .Menu ul {
+    background-color: #bbe8b8;
+    text-decoration: none;
+
+    /*border: 1px solid green;*/
+  }
+
+    .Menu ul li {
+      color: black;
+    }
+
+      .Menu ul li a {
+        padding: 4px 16px 4px 16px;
+        border-bottom: 0;
+        background-color: #bbe8b8;
+        color: black;
+      }
+
+        .Menu ul li a:hover {
+          background-color: #0a8900;
+          color: white;
+        }
+
+
+/*синезелёное меню*/
+  /*.Menu a.static {
+    margin: 4px 16px 4px 16px;
+    padding: 4px 16px 4px 16px;
+    color: black;
+    background-color: #b8e0e8;
+    text-decoration: underline;
+  }
+
+    .Menu a.static:hover {
+      text-decoration: underline;
+      background-color: #b8e0e8;
+    }
+
+  .Menu ul {
+    background-color: #b8e0e8;
+    text-decoration: none;
+  }
+
+    .Menu ul li {
+      color: black;
+    }
+
+      .Menu ul li a {
+        padding: 4px 16px 4px 16px;
+        border-bottom: 0;
+        background-color: #b8e0e8;
+        color: black;
+      }
+
+        .Menu ul li a:hover {
+          background-color: #006c89;
+          color: white;
+        }*/
+
+
+.ItemMenu a.static {
+  border: 1px solid #FFFFFF;
+  color: black;
+  text-decoration: underline;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.ItemMenu[disabled] a.static {
+  color: red;
+}
+
+.ItemMenu a.static:hover {
+  border-radius: 4px;
+  border: 1px solid #42721e;
+  text-decoration: underline;
+  background-color: #dafec1;
+}

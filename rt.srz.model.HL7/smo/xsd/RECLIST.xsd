@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--Created with Liquid XML Studio Developer Edition (Trial) 9.1.2.3326 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified" targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="REC.xsd" />
+  <xs:complexType name="RECListType">
+    <xs:annotation>
+      <xs:documentation>
+        Корректировка данных от ТФОМС в СМО
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="VERS" type="xs:string" minOccurs="0" maxOccurs="1" default="2.0">
+        <xs:annotation>
+          <xs:documentation>
+            Версия
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FILENAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя файла
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SMOCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Реестровый номер страховой медицинской организации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="START_DATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата начала периода уведомления
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="END_DATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата конца периода уведомления
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NRECORDS" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Количество записей
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="REC" type="RECType" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RECLIST" type="RECListType">
+    <xs:annotation>
+      <xs:documentation xml:lang="RU">Структура файла корректировки данных от ТФОМС в СМО</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<?include Constants.wxi?>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id="INSTALLLOCATION" Name="$(var.RootDirectory)"/>
+			</Directory>
+		</Directory>
+	</Fragment>
+</Wix>

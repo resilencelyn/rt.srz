@@ -1,0 +1,171 @@
+﻿/*заголовок*/
+.keysCaption {
+  padding-left: 2px;
+  border: 1px groove #000000;
+  font-size: xx-large;
+}
+
+/*Заголовк на контрол по добавлению, просмотру ключа*/
+.keysControlTitle
+{
+	font-size: large;
+	text-decoration: underline;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+
+/*меню контролов*/
+.keysMenu {
+  padding-left: 1px;
+  border: 1px groove #000000;
+  margin-top: 1px;
+  padding-bottom: 5px;
+}
+
+.keysTable {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.keysListBox {
+  height: 300px;
+  text-align: left;
+}
+
+/*на котролах добаления/редактирования подписи к контролам*/
+.addKeyControlLabelsColumns {
+  text-align: right;
+  padding-left: 0px;
+}
+
+.addKeyControlValuesFirstColumn {
+  padding-left: 0px;
+  text-align: left;
+  width: 70px;
+}
+
+/*на котролах добаления/редактирования контролы*/
+.addKeyControlValuesSecondColumn {
+  padding-left: 0px;
+  text-align: left;
+  width: 70px;
+}
+
+/*блок кнопок сохранить отменить на контролах по добавлению и просмотру*/
+.keysButtons
+{
+	margin-top: 1px;
+	padding: 5px;
+	border: 1px groove #000000;
+	margin-left: 5px;
+}
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+
+/* Стили для страницы обработки дубликатов TwinPersonControl */
+
+.entireTwinControl {
+  border: 1px solid #ac9c71;
+  padding: 5px;
+}
+
+.IdTitleBox {
+  border-bottom: 1px solid #ac9c71;
+  clear: both;
+  height: 22px;
+  margin-bottom: auto;
+  margin-top: auto;
+  padding: 2px;
+}
+
+.twinControl {
+  padding-left: 3px;
+  padding-right: 5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.twinControlNoRightPadding {
+  padding-left: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.labelControl {
+  float: left;
+  width: 30%;
+  text-align: right;
+}
+
+.valueControl {
+  float: left;
+  width: 70%;
+}
+
+.labelControl1_4 {
+  float: left;
+  width: 20%;
+  text-align: right;
+}
+
+.valueControl1_4 {
+  float: left;
+  width: 20%;
+}
+
+.valueControl1_4_last {
+  float: left;
+  width: 30%;
+}
+
+.checkControl {
+  float: left;
+  width: 35%;
+}
+
+/*---------------------------------------------------------*/
+
+/* Стили для страницы обработки дубликатов Twins */
+
+.twin {
+  height: 620px;
+}
+
+.twinGrid {
+  height: 100%;
+  overflow: auto;
+  
+}
+
+.buttonDeletePartPadding {
+  clear: both;
+}
+
+.buttonDeletePart {
+  float: left;
+  width: 100%;
+}
+
+.twin1GridPart {
+  width: 100%;
+  float: left;
+}
+
+.twin1Part {
+  float: left;
+  width: 25%;
+}
+
+.twin2Part {
+  float: left;
+  width: 37.5%;
+}
+
+.controlPart {
+  padding-top: 5px;
+  padding-right: 5px;
+}

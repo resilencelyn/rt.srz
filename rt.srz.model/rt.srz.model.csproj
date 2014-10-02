@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F247928D-EA65-4D69-BD03-B1E506B09986}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.srz.model</RootNamespace>
+    <AssemblyName>rt.srz.model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v12.1.Core, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Serialize.Linq">
+      <HintPath>..\packages\Serialize.Linq.1.2\lib\net40\Serialize.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="algorithms\EnpChecker.cs" />
+    <Compile Include="algorithms\HashHelper.cs" />
+    <Compile Include="algorithms\OgrnChecker.cs" />
+    <Compile Include="algorithms\SnilsChecker.cs" />
+    <Compile Include="algorithms\StringHelper.cs" />
+    <Compile Include="common\CloneUtility.cs" />
+    <Compile Include="common\InfoUtility.cs" />
+    <Compile Include="configSection\productioncalendar\SpecialCalendarDayConfigurationCollection.cs" />
+    <Compile Include="configSection\productioncalendar\SpecialCalendarDayConfigurationElement.cs" />
+    <Compile Include="configSection\productioncalendar\SpecialCalendarDayConfigurationSection.cs" />
+    <Compile Include="configSection\productioncalendar\SpecialCalendarDayType.cs" />
+    <Compile Include="dto\DocumentUdl.cs" />
+    <Compile Include="dto\PfrStatisticInfo.cs" />
+    <Compile Include="dto\SearchAutoCompleteCriteria.cs" />
+    <Compile Include="dto\SearchBatchResult.cs" />
+    <Compile Include="dto\SearchExportSmoBatchCriteria.cs" />
+    <Compile Include="dto\SearchPdpCriteria.cs" />
+    <Compile Include="dto\SearchSmoCriteria.cs" />
+    <Compile Include="dto\SearchTwinCriteria.cs" />
+    <Compile Include="enumerations\BirthDayType.cs" />
+    <Compile Include="enumerations\KLADRObjectLevel.cs" />
+    <Compile Include="enumerations\PermissionCode.cs" />
+    <Compile Include="enumerations\TwinKeyType.cs" />
+    <Compile Include="interfaces\client\IPseudonymizationService.cs" />
+    <Compile Include="interfaces\service\uir\Ack.cs" />
+    <Compile Include="interfaces\service\uir\Birth.cs" />
+    <Compile Include="interfaces\service\uir\Document.cs" />
+    <Compile Include="interfaces\service\uir\Err.cs" />
+    <Compile Include="interfaces\service\uir\FullName.cs" />
+    <Compile Include="interfaces\service\uir\Insurance.cs" />
+    <Compile Include="interfaces\service\uir\Person.cs" />
+    <Compile Include="interfaces\service\uir\Request.cs" />
+    <Compile Include="interfaces\service\uir\Request2.cs" />
+    <Compile Include="interfaces\service\uir\Response.cs" />
+    <Compile Include="interfaces\service\uir\UIRRequest.cs" />
+    <Compile Include="interfaces\service\uir\UIRRequest2.cs" />
+    <Compile Include="interfaces\service\uir\UIRResponse.cs" />
+    <Compile Include="interfaces\service\uir\UIRResponseUIRQueryResponse.cs" />
+    <Compile Include="interfaces\service\IBarcodeService.cs" />
+    <Compile Include="interfaces\service\IKLADRService.cs" />
+    <Compile Include="interfaces\service\INsiService.cs" />
+    <Compile Include="interfaces\service\ISecurityService.cs" />
+    <Compile Include="interfaces\service\ISmoService.cs" />
+    <Compile Include="interfaces\service\IStatementService.cs" />
+    <Compile Include="interfaces\service\ITFService.cs" />
+    <Compile Include="interfaces\service\IUirService.cs" />
+    <Compile Include="logicalcontrol\ExceptionInfo.cs" />
+    <Compile Include="logicalcontrol\exceptions\FieldLengthException.cs" />
+    <Compile Include="logicalcontrol\exceptions\SearchException.cs" />
+    <Compile Include="logicalcontrol\exceptions\SetParameterSearchException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultDateFillingLessThenLastStatement.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultStep1.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDateIssueDocumentUdl.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentExpiriedException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultGenderConformityMiddleNameException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultStep2.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultRelevantDocumentUdlException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultAddressNotComplete.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultAddressSubjectEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultBirthCertificateException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultBirthdateException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultBirthdateLargerDateFillingException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultBirthdateLargerDeathdateException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultBirthdateLargerDocumentDateIssueException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultBirthplaceException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultCategoryException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultCauseFilingException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultChildrenAgeToHaveUdlException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultChildrenWorkException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultCitizenshipException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDateFutureException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultDateRegistration.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultHouseEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultStep3.cs" />
+    <Compile Include="logicalcontrol\exceptions\step4\FaultStep4.cs" />
+    <Compile Include="logicalcontrol\exceptions\step5\FaultStep5.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultDateIssueTemporaryCertificateException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultDateIssueTemporaryCertificateLessBirthdateException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultDeathException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentDateExpEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentDateIssueEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentDateIssueFutureException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentIssuingAuthorityEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentSeriesNemberPatternException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultDocumentUdlExistsException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultEmailException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultEmptyDocumentException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step5\FaultEmptyPhotoException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step5\FaultEmptySignatureException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultEnpAbsentPrevPolicyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultEnpBirthdayAndGenderException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultEnpException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultEnpExistsException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultFIException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultFirstNameTextException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultGenderConformityFirstNameException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultGenderException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultIssueDate20Exception.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultIssueDate45Exception.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultLastNameTextException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultIssue.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultMedicalInsuranceDateEndLessDateFromException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultMedicalInsuranceDateNotEquals30Exception.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultMiddleNameTextException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultPersonAlreadyBelongsToSmoException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step5\FaultPhotoFormatException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultNewEnpBirthdayAndGenderException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultNewEnpException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPoliceCertificateDateException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPoliceCertificateDateFromMoreThenDateEnd.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPoliceCertificateDateNotNeyPolisException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPoliceCertificateFutureException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPolicyTypeException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPolisCertificateDateIssueEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPolisCertificateEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPolisCertificateFormatException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPolisCertificateWrongLengthException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step3\FaultPostcodeException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultPseudonymizationServiceCallException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step4\FaultRelationTypeFilingException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step5\FaultSignatureFormatException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultSnilsException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step2\FaultSnilsExistsException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultStep6.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateDateIssueException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateDateIssueUnderDateStatementException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateEmptyException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateFormatException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateNumberExists.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateNumberInRangeException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step1\FaultThereAreUnclosedStatementsException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateWrongLengthException.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\FaultTemporaryCertificateDateIssueBiggerThenNow.cs" />
+    <Compile Include="logicalcontrol\exceptions\step6\issue\FaultPoliceCertificateFutureDateException.cs" />
+    <Compile Include="logicalcontrol\FaultNotFoundInsuredPerson.cs" />
+    <Compile Include="logicalcontrol\LogicalControlException.cs" />
+    <Compile Include="logicalcontrol\SearchTimeoutException.cs" />
+    <Compile Include="logicalcontrol\StandardSearchKeyCalculationException.cs" />
+    <Compile Include="logicalcontrol\UserSearchKeyCalculationException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="srz\concepts\HL7EventType.cs" />
+    <Compile Include="srz\concepts\MessageStatementType.cs" />
+    <Compile Include="srz\In1.cs" />
+    <Compile Include="srz\In1.generated.cs">
+      <DependentUpon>In1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\JobLockObject.cs" />
+    <Compile Include="srz\JobLockObject.generated.cs">
+      <DependentUpon>JobLockObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\JobPool.cs" />
+    <Compile Include="srz\JobPool.generated.cs">
+      <DependentUpon>JobPool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\MessageStatement.cs" />
+    <Compile Include="srz\MessageStatement.generated.cs">
+      <DependentUpon>MessageStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\QueryResponse.cs" />
+    <Compile Include="srz\QueryResponse.generated.cs">
+      <DependentUpon>QueryResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\QueryResponseItemize.cs" />
+    <Compile Include="srz\QueryResponseItemize.generated.cs">
+      <DependentUpon>QueryResponseItemize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\regex\RegexFactory.cs" />
+    <Compile Include="srz\address.cs" />
+    <Compile Include="srz\address.generated.cs">
+      <DependentUpon>address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\AutoComplete.cs" />
+    <Compile Include="srz\AutoComplete.generated.cs">
+      <DependentUpon>AutoComplete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Batch.cs" />
+    <Compile Include="srz\Batch.generated.cs">
+      <DependentUpon>Batch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\concepts\AutoComplete.cs" />
+    <Compile Include="srz\concepts\CategoryPerson.cs" />
+    <Compile Include="srz\concepts\CauseReinsurance.cs" />
+    <Compile Include="srz\Concept.cs" />
+    <Compile Include="srz\Concept.generated.cs">
+      <DependentUpon>Concept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\concepts\CodeConfirm.cs" />
+    <Compile Include="srz\concepts\Country.cs" />
+    <Compile Include="srz\concepts\DocumentType.cs" />
+    <Compile Include="srz\concepts\EmploymentSourceType.cs" />
+    <Compile Include="srz\concepts\MessageType.cs" />
+    <Compile Include="srz\concepts\OperationKey.cs" />
+    <Compile Include="srz\concepts\PeriodCode.cs" />
+    <Compile Include="srz\concepts\PfrFeature.cs" />
+    <Compile Include="srz\concepts\PolisType.cs" />
+    <Compile Include="srz\concepts\KeyType.cs" />
+    <Compile Include="srz\concepts\ModeFiling.cs" />
+    <Compile Include="srz\concepts\CauseReneval.cs" />
+    <Compile Include="srz\concepts\ReasonType.cs" />
+    <Compile Include="srz\concepts\RelationType.cs" />
+    <Compile Include="srz\concepts\Sex.cs" />
+    <Compile Include="srz\concepts\StatusPerson.cs" />
+    <Compile Include="srz\concepts\StatusStatement.cs" />
+    <Compile Include="srz\concepts\TypeContent.cs" />
+    <Compile Include="srz\concepts\TypeEvent.cs" />
+    <Compile Include="srz\concepts\TypeFields.cs" />
+    <Compile Include="srz\concepts\TypeFile.cs" />
+    <Compile Include="srz\concepts\TypeOperation.cs" />
+    <Compile Include="srz\concepts\TypeStatement.cs" />
+    <Compile Include="srz\concepts\TypeSubject.cs" />
+    <Compile Include="srz\concepts\TypeTwin.cs" />
+    <Compile Include="srz\ContactInfo.cs" />
+    <Compile Include="srz\ContactInfo.generated.cs">
+      <DependentUpon>ContactInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Content.cs" />
+    <Compile Include="srz\Content.generated.cs">
+      <DependentUpon>Content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\DeadInfo.cs" />
+    <Compile Include="srz\DeadInfo.generated.cs">
+      <DependentUpon>DeadInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Document.cs" />
+    <Compile Include="srz\Document.generated.cs">
+      <DependentUpon>Document.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dto\SearchStatementCriteria.cs" />
+    <Compile Include="dto\SearchStatementResult.cs" />
+    <Compile Include="srz\EmploymentHistory.cs" />
+    <Compile Include="srz\EmploymentHistory.generated.cs">
+      <DependentUpon>EmploymentHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Error.cs" />
+    <Compile Include="srz\Error.generated.cs">
+      <DependentUpon>Error.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Group.cs" />
+    <Compile Include="srz\Group.generated.cs">
+      <DependentUpon>Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\InsuredPerson.cs" />
+    <Compile Include="srz\InsuredPerson.generated.cs">
+      <DependentUpon>InsuredPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\InsuredPersonDatum.cs" />
+    <Compile Include="srz\InsuredPersonDatum.generated.cs">
+      <DependentUpon>InsuredPersonDatum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Kladr.cs" />
+    <Compile Include="srz\Kladr.generated.cs">
+      <DependentUpon>Kladr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\MedicalInsurance.cs" />
+    <Compile Include="srz\MedicalInsurance.generated.cs">
+      <DependentUpon>MedicalInsurance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Message.cs" />
+    <Compile Include="srz\Message.generated.cs">
+      <DependentUpon>Message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\NumberPolicyCounter.cs" />
+    <Compile Include="srz\NumberPolicyCounter.generated.cs">
+      <DependentUpon>NumberPolicyCounter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Oid.cs" />
+    <Compile Include="srz\Oid.generated.cs">
+      <DependentUpon>Oid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Organisation.cs" />
+    <Compile Include="srz\Organisation.generated.cs">
+      <DependentUpon>Organisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Period.cs" />
+    <Compile Include="srz\Period.generated.cs">
+      <DependentUpon>Period.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Permission.cs" />
+    <Compile Include="srz\Permission.generated.cs">
+      <DependentUpon>Permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\PermissionRole.cs" />
+    <Compile Include="srz\PermissionRole.generated.cs">
+      <DependentUpon>PermissionRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\RangeNumber.cs" />
+    <Compile Include="srz\RangeNumber.generated.cs">
+      <DependentUpon>RangeNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Representative.cs" />
+    <Compile Include="srz\Representative.generated.cs">
+      <DependentUpon>Representative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Role.cs" />
+    <Compile Include="srz\Role.generated.cs">
+      <DependentUpon>Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\SearchKey.cs" />
+    <Compile Include="srz\SearchKey.generated.cs">
+      <DependentUpon>SearchKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\SearchKeyType.cs" />
+    <Compile Include="srz\SearchKeyType.generated.cs">
+      <DependentUpon>SearchKeyType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\SertificateUec.cs" />
+    <Compile Include="srz\SertificateUec.generated.cs">
+      <DependentUpon>SertificateUec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Setting.cs" />
+    <Compile Include="srz\Setting.generated.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Statement.cs" />
+    <Compile Include="srz\Statement.generated.cs">
+      <DependentUpon>Statement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\StatementBatch.cs" />
+    <Compile Include="srz\StatementChangeDate.cs" />
+    <Compile Include="srz\StatementChangeDate.generated.cs">
+      <DependentUpon>StatementChangeDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\StatementMaximum.cs" />
+    <Compile Include="srz\Template.cs" />
+    <Compile Include="srz\Template.generated.cs">
+      <DependentUpon>Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Twin.cs" />
+    <Compile Include="srz\Twin.generated.cs">
+      <DependentUpon>Twin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\TwinsKey.cs" />
+    <Compile Include="srz\TwinsKey.generated.cs">
+      <DependentUpon>TwinsKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\User.cs" />
+    <Compile Include="srz\User.generated.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\UserAction.cs" />
+    <Compile Include="srz\UserAction.generated.cs">
+      <DependentUpon>UserAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\UserGroup.cs" />
+    <Compile Include="srz\UserGroup.generated.cs">
+      <DependentUpon>UserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\UserGroupRole.cs" />
+    <Compile Include="srz\UserGroupRole.generated.cs">
+      <DependentUpon>UserGroupRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="srz\Workstation.cs" />
+    <Compile Include="srz\Workstation.generated.cs">
+      <DependentUpon>Workstation.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NHibernate.csp">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
+      <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
+      <Name>rt.atl.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1B981163-21AC-4F46-8927-CF2641F54FA5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.barcode\rt.srz.model.barcode.csproj">
+      <Project>{9c095cf4-79d1-4b22-b793-ea85ce6ce595}</Project>
+      <Name>rt.srz.model.barcode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

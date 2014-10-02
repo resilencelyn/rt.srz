@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<Feature Id="rt.ui" Title="rt.ui" Level="10" AllowAdvertise="no">
+			<ComponentGroupRef Id="rt.ui.Files"/>
+      <ComponentGroupRef Id="rt.ui.Files.Nsi"/>
+			<ComponentGroupRef Id="rt.ui.Configuration"/>
+		</Feature>
+	</Fragment>
+</Wix>

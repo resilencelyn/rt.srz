@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--Created with Liquid XML Studio Developer Edition (Trial) 9.1.2.3326 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified" targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="TargetClass.xsd" />
+  <xs:complexType name="OPType" mixed="true">
+    <xs:annotation>
+      <xs:documentation>
+        Записи
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="N_REC" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Уникальный идентификатор записи в обменном файле
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:long" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>
+            Идентификатор записи ТФОМС (ID_HISTORY)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TIP_OP" type="Operation_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Тип операции
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CHANGE_DATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата изменения записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OPER" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Оператор
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PERSON" type="PersonType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные о застрахованном лице
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OLD_PERSON" type="OldPersonType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Сведения о прежних (до смены) персональных данных застрахованного лица
+            Заполняется в случае изменений в фамилии, имени, отчестве, поле или дате рождения застрахованного лица.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOC" type="DocType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные документа, удостоверяющего личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OLD_DOC" type="DocType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Старые данные документа, удостоверяющего личность
+
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ADDRES_G" type="AddressType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Адрес регшистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ADDRES_P" type="AddressType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Адрес фактического проживания
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VIZIT" type="VizitType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Обращение застрахованного лица
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INSURANCE" type="InsuranceType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Событие страхования
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PERSONB" type="PersonBType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Биометрическая информация о застрахованном лице
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ATTACHMENT" type="AttachmentType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Информация о прикреплениях
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

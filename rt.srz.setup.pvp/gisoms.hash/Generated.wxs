@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="gisoms.hash" />
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="gisoms.hash.Files">
+            <Component Id="cmpD939FB6861B215F41B489E3F0A565B10" Directory="gisoms.hash" Guid="*">
+                <File Id="fil5718AEAA6CE65045A99A98FC7A98903A" KeyPath="yes" Source="$(var.GisomsHashPath)\Castle.Core.dll" />
+            </Component>
+            <Component Id="cmp615129EFA2DDE9D075EBD1F8F3608B8A" Directory="gisoms.hash" Guid="*">
+                <File Id="filF658C444007BFD149BE5B5A6328902B8" KeyPath="yes" Source="$(var.GisomsHashPath)\Castle.Windsor.dll" />
+            </Component>
+            <Component Id="cmpDAFFA381E888AF8EAD2CC5CFE48B2536" Directory="gisoms.hash" Guid="*">
+                <File Id="fil4231A63AE9F3777DB6816E940FB95C4A" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Common.dll" />
+            </Component>
+            <Component Id="cmp42EAE5B0CCAA2FC3A03D767617D7CE62" Directory="gisoms.hash" Guid="*">
+                <File Id="fil2E66F65C4EF31BC35B5953451169D15D" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Database.dll" />
+            </Component>
+            <Component Id="cmpDA3AEE764A08951247FBB79C42029FF2" Directory="gisoms.hash" Guid="*">
+                <File Id="fil44B961E49AE2E57708BCF13CC0EA1903" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.HL7.dll" />
+            </Component>
+            <Component Id="cmp5BC7BA334AFB0A576B24015885ACDDB6" Directory="gisoms.hash" Guid="*">
+                <File Id="fil002D43F49872612FEEA145469A7F8BB6" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.HL7.FUO.dll" />
+            </Component>
+            <Component Id="cmpB203E684E1AEAC6C65FEAA1B3DC3E65C" Directory="gisoms.hash" Guid="*">
+                <File Id="fil9B03686764E7F4A7EF87AFA9F2E90AE7" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.HL7.Services.dll" />
+            </Component>
+            <Component Id="cmpBA444BA7FEEC91F8785527D4FC01A2DD" Directory="gisoms.hash" Guid="*">
+                <File Id="filB9E1B5EE1449A51E974BF4793559D83A" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.HL7.UPR.dll" />
+            </Component>
+            <Component Id="cmp77316642940E2CB198D7D12AB1EF185E" Directory="gisoms.hash" Guid="*">
+                <File Id="fil5AC1C250E8BE66892F82033EDB9F6D46" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.dll" />
+            </Component>
+            <Component Id="cmp2D796716CC0B7DDE9DD9C633C946A1B4" Directory="gisoms.hash" Guid="*">
+                <File Id="filCFEC9A0DE460BA9EDC1721AB78D29BEB" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.Fuo.Workers.dll" />
+            </Component>
+            <Component Id="cmp6499C44FF88A34599260946678B45795" Directory="gisoms.hash" Guid="*">
+                <File Id="filBC129512B161CD778321F6247F73B665" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.Library.dll" />
+            </Component>
+            <Component Id="cmp2114D242611B0527E0A7C628C9D17562" Directory="gisoms.hash" Guid="*">
+                <File Id="filCDFE36B99AE7F7A54C12F8A1645F232E" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.MVPDP.dll" />
+            </Component>
+            <Component Id="cmp89384FF7CBA3E20CD616B7C2820A6469" Directory="gisoms.hash" Guid="*">
+                <File Id="fil3B2DFCC71AB4E61BB893298EE8CAA700" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.QI.dll" />
+            </Component>
+            <Component Id="cmp9A60AEF400220258201C6821FB34955C" Directory="gisoms.hash" Guid="*">
+                <File Id="fil2591359EA46A255815D14451830E40C7" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.QI2.dll" />
+            </Component>
+            <Component Id="cmp0386F922FFFD2F0A67ECFCE2A02C8551" Directory="gisoms.hash" Guid="*">
+                <File Id="filC68EC2417659CEAC3A954A2B26B23E8E" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.UPR.bat" />
+            </Component>
+            <Component Id="cmp1D01D63054E9E3A0DD840EB6BC80753B" Directory="gisoms.hash" Guid="*">
+                <File Id="filCCF2413486943CB57E46E3784654B9FE" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.UPR.exe" />
+                <?include WindowsServices.wxi?>
+            </Component>
+            <Component Id="cmpBCF7FFFC2113EEB5FCA41662BC957239" Directory="gisoms.hash" Guid="*">
+                <File Id="fil24B2F97DCA65C32FF35360B0C55C4698" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.UPR.exe.config" />
+            </Component>
+            <Component Id="cmpB891D2242AA248A1341283EF209E5209" Directory="gisoms.hash" Guid="*">
+                <File Id="fil8C6AE158B9EABE07C95ACE8685ED0FF5" KeyPath="yes" Source="$(var.GisomsHashPath)\GISOMS.Service.UPRGate.dll" />
+            </Component>
+            <Component Id="cmpD5142D931FA243C0D8FABAF165148E2A" Directory="gisoms.hash" Guid="*">
+                <File Id="fil389112AA2568A8933EED19BD255F8015" KeyPath="yes" Source="$(var.GisomsHashPath)\HttpNamespaceManager.exe" />
+            </Component>
+            <Component Id="cmpC48E37873E9CD7DDCABFBE0A330D1BCC" Directory="gisoms.hash" Guid="*">
+                <File Id="filEDEC4B43830A44706ADACC386A492E41" KeyPath="yes" Source="$(var.GisomsHashPath)\HttpNamespaceManagerLib.dll" />
+            </Component>
+            <Component Id="cmp86A2077B451071BB4B19C0C6DF04C964" Directory="gisoms.hash" Guid="*">
+                <File Id="filBC78E9847E0B9B8474E5B2B0E0AEAF8F" KeyPath="yes" Source="$(var.GisomsHashPath)\Ionic.Zip.dll" />
+            </Component>
+            <Component Id="cmp45B8BE57B5BC72F84643AE0AB7ACAF57" Directory="gisoms.hash" Guid="*">
+                <File Id="fil37A638812D9321825A33D481C5CBDE38" KeyPath="yes" Source="$(var.GisomsHashPath)\log4net.dll" />
+            </Component>
+            <Component Id="cmpEF62063E5CC820F36BECB963D731D6C4" Directory="gisoms.hash" Guid="*">
+                <File Id="filB60A3BA0C4A38F26D3854C2D0765710D" KeyPath="yes" Source="$(var.GisomsHashPath)\Rebex.Net.Ftp.dll" />
+            </Component>
+            <Component Id="cmpD61E4D8F701FFAAEC90FB736BF3B1366" Directory="gisoms.hash" Guid="*">
+                <File Id="fil1CD34ADAAC179E12F4C5C17213E843F7" KeyPath="yes" Source="$(var.GisomsHashPath)\Rebex.Net.ProxySocket.dll" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<Property Id="RTSRZ_DEPLOY" Value="1" />
+	<Property Id="RTQUARTZ_DEPLOY" Value="1" />
+	<SetProperty Id="RTSRZ_CONNECTION_STRING" Value="Data Source=[%COMPUTERNAME];Initial Catalog=rt_srz;Integrated Security=True" Before="AppSearch" Sequence="first" />
+	<SetProperty Id="RTQUARTZ_CONNECTION_STRING" Value="Data Source=[%COMPUTERNAME];Initial Catalog=rt_srz_quartz;Integrated Security=True" Before="AppSearch" Sequence="first" />
+</Include>

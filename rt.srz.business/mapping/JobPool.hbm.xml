@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.JobPool, rt.srz.model" table="[dbo].[JobPool]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="assigned" />
+		</id>
+		<version name="Versions" column="[Versions]" />
+		<property name="Content" column="[Content]"  length="2147483647"/>
+	</class>
+</hibernate-mapping>
+

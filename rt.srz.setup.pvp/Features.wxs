@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include Constants.wxi?>
+	<Fragment>
+		<Feature Id="ApplicationFeature" Title="$(var.ProductName)" Level="1" ConfigurableDirectory="INSTALLLOCATION" Display="expand" AllowAdvertise="no" Absent="disallow">
+			<FeatureRef Id="rt.ui"/>
+		</Feature>
+	</Fragment>
+</Wix>

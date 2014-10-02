@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB35411E-647A-4EE1-BE16-10B7A9F1631C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.srz.database.business</RootNamespace>
+    <AssemblyName>rt.srz.database.business</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="cryptography\HashAlgorithm.cs" />
+    <Compile Include="cryptography\HashContext.cs" />
+    <Compile Include="cryptography\KeyContainer.cs" />
+    <Compile Include="cryptography\KeyContext.cs" />
+    <Compile Include="cryptography\NativeApi\Constants.cs" />
+    <Compile Include="cryptography\NativeApi\CryptoApi.cs" />
+    <Compile Include="interfaces\pseudonymization\IPseudonymizationManager.cs" />
+    <Compile Include="interfaces\pseudonymization\IWriteField.cs" />
+    <Compile Include="model\address.cs" />
+    <Compile Include="model\address.generated.cs" />
+    <Compile Include="model\Document.cs" />
+    <Compile Include="model\Document.generated.cs" />
+    <Compile Include="model\InsuredPersonDatum.cs" />
+    <Compile Include="model\InsuredPersonDatum.generated.cs" />
+    <Compile Include="model\MedicalInsurance.cs" />
+    <Compile Include="model\MedicalInsurance.generated.cs" />
+    <Compile Include="model\ModelAdapter.cs" />
+    <Compile Include="model\InsuredPersonDataExchange.cs" />
+    <Compile Include="model\SearchKeyType.cs" />
+    <Compile Include="model\SearchKeyType.generated.cs" />
+    <Compile Include="model\Statement.cs" />
+    <Compile Include="model\Statement.generated.cs" />
+    <Compile Include="ObjectFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="pseudonymization\PseudonymizationManager.cs" />
+    <Compile Include="pseudonymization\WriteField.cs" />
+    <Compile Include="standard\Assumptions.cs" />
+    <Compile Include="standard\DocumentPatternException.cs" />
+    <Compile Include="standard\dto.cs" />
+    <Compile Include="standard\enums\BooleanFlag.cs" />
+    <Compile Include="standard\enums\InsuranceType.cs" />
+    <Compile Include="standard\enums\RegionCoding.cs" />
+    <Compile Include="standard\enums\TEmptyStringTypes.cs" />
+    <Compile Include="standard\enums\WardUnidimensional.cs" />
+    <Compile Include="standard\hasher\HashData.cs" />
+    <Compile Include="standard\hasher\Hasher.cs" />
+    <Compile Include="standard\helpers\ConverterHelper.cs" />
+    <Compile Include="standard\helpers\KeyCode2KeyIdConverter.cs" />
+    <Compile Include="standard\helpers\StringExtension.cs" />
+    <Compile Include="standard\helpers\TStringHelper.cs" />
+    <Compile Include="standard\helpers\XMLHelper.cs" />
+    <Compile Include="IHashAlgorithm.cs" />
+    <Compile Include="standard\keyscompiler\Fields\FieldTypes.cs" />
+    <Compile Include="standard\keyscompiler\Fields\Fileld.cs" />
+    <Compile Include="standard\keyscompiler\Fields\FIO.cs" />
+    <Compile Include="standard\keyscompiler\Fields\IdCard.cs" />
+    <Compile Include="standard\keyscompiler\KeysCompiler.cs" />
+    <Compile Include="standard\keyscompiler\KeysLoader.cs" />
+    <Compile Include="standard\keyscompiler\LoadedKey.cs" />
+    <Compile Include="standard\keyscompiler\PreparedKey.cs" />
+    <Compile Include="standard\keyscompiler\Rules\Assumptions.cs" />
+    <Compile Include="standard\keyscompiler\Rules\BooleanFlag.cs" />
+    <Compile Include="standard\keyscompiler\Rules\ConversionHelper.cs" />
+    <Compile Include="standard\keyscompiler\Rules\PolicySearchFields.cs" />
+    <Compile Include="standard\keyscompiler\Rules\StringConverterBase.cs" />
+    <Compile Include="standard\keyscompiler\Rules\TEmptyStringTypes.cs" />
+    <Compile Include="standard\keyscompiler\Rules\TextRules.cs" />
+    <Compile Include="standard\keyscompiler\Rules\TStringHelper.cs" />
+    <Compile Include="standard\keyscompiler\Rules\WardUnidimensional.cs" />
+    <Compile Include="standard\keyscompiler\Rules\XmlHelper.cs" />
+    <Compile Include="standard\PolicySearchFields.cs" />
+    <Compile Include="standard\StandardPseudonymizationManager.cs" />
+    <Compile Include="standard\RegionHelper.cs" />
+    <Compile Include="standard\SoundExTransliteratedRus.cs" />
+    <Compile Include="standard\stream\DataStreamer.cs" />
+    <Compile Include="standard\stream\IWriteField.cs" />
+    <Compile Include="standard\stream\WriteField.cs" />
+    <Compile Include="standard\StringConverterBase.cs" />
+    <Compile Include="standard\TextRules.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="standard\DataFormats.xml" />
+    <Content Include="standard\keyscompiler\DataFormats.xml" />
+    <Content Include="standard\keyscompiler\KeysCompilerConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="standard\keyscompiler\TextRules.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

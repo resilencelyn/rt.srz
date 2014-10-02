@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="SettingsDialog" Width="370" Height="270" Title="!(loc.CustomizeDlg_Title)" NoMinimize="yes">
+				<Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
+				<Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+				<Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+				<!--<Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.CustomizeDlgDescription)" />-->
+				<Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Конфигурирование" />
+
+				<Control Id="RtSrzGroupBox" Type="GroupBox" X="8" Y="49" Width="356" Height="65" Text="[RTSRZ_TTITLE]"/>
+				<Control Id="RtSrzInsall" Type="CheckBox" X="15" Y="66" Width="257" Height="12" Property="RTSRZ_DEPLOY" CheckBoxValue="1" Text="Устанавливать базу данных" />
+				<Control Id="RtSrzLabel" Type="Text" X="15" Y="81" Width="146" Height="14" Text="&amp;Строка подключения к базе данных:" TabSkip="no" >
+					<Condition Action="disable">NOT RTSRZ_DEPLOY</Condition>
+					<Condition Action="enable">RTSRZ_DEPLOY</Condition>
+				</Control>
+				<Control Id="RtSrzConnection" Type="Edit" X="15" Y="96" Width="282" Height="17" Property="RTSRZ_CONNECTION_STRING" TabSkip="no" >
+					<Condition Action="disable">NOT RTSRZ_DEPLOY</Condition>
+					<Condition Action="enable">RTSRZ_DEPLOY</Condition>
+				</Control>
+				<Control Id="RtSrzBrowse" Type="PushButton" X="300" Y="95" Width="56" Height="17" Text="Выбрать">
+					<Condition Action="disable">NOT RTSRZ_DEPLOY</Condition>
+					<Condition Action="enable">RTSRZ_DEPLOY</Condition>
+				</Control>
+
+				<Control Id="RtQuartzGroupBox" Type="GroupBox" X="8" Y="127" Width="356" Height="65" Text="[RTQUARTZ_TTITLE]"/>
+				<Control Id="RtQuartzInsall" Type="CheckBox" X="15" Y="144" Width="257" Height="12" Property="RTQUARTZ_DEPLOY" CheckBoxValue="1" Text="Устанавливать базу данных" />
+				<Control Id="RtQuartzLabel" Type="Text" X="15" Y="161" Width="146" Height="14" Text="&amp;Строка подключения к базе данных:" TabSkip="no" >
+					<Condition Action="disable">NOT RTQUARTZ_DEPLOY</Condition>
+					<Condition Action="enable">RTQUARTZ_DEPLOY</Condition>
+				</Control>
+				<Control Id="RtQuartzConnection" Type="Edit" X="15" Y="174" Width="282" Height="17" Property="RTQUARTZ_CONNECTION_STRING" TabSkip="no" >
+					<Condition Action="disable">NOT RTQUARTZ_DEPLOY</Condition>
+					<Condition Action="enable">RTQUARTZ_DEPLOY</Condition>
+				</Control>
+				<Control Id="RtQuartzBrowse" Type="PushButton" X="300" Y="173" Width="56" Height="17" Text="Выбрать">
+					<Condition Action="disable">NOT RTQUARTZ_DEPLOY</Condition>
+					<Condition Action="enable">RTQUARTZ_DEPLOY</Condition>
+				</Control>
+
+				<Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" TabSkip="no" />
+				<Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="no" Text="!(loc.WixUINext)" TabSkip="no" >
+					<Condition Action="disable">(NOT RTQUARTZ_DEPLOY) AND (NOT RTSRZ_DEPLOY)</Condition>
+					<Condition Action="enable">RTQUARTZ_DEPLOY OR RTSRZ_DEPLOY</Condition>
+				</Control>
+				<Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)" TabSkip="no" />
+			</Dialog>
+		</UI>
+	</Fragment>
+</Wix>

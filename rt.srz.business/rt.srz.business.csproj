@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{49D3899B-FD42-42FD-9734-BAE4C911F7F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.srz.business</RootNamespace>
+    <AssemblyName>rt.srz.business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="configuration\algorithms\DateTimeExtension.cs" />
+    <Compile Include="configuration\algorithms\DateTymeHelper.cs" />
+    <Compile Include="configuration\algorithms\serialization\HL7Writer.cs" />
+    <Compile Include="configuration\algorithms\serialization\XmlSerializationHelper.cs" />
+    <Compile Include="configuration\algorithms\serialization\XmlStreamer.cs" />
+    <Compile Include="configuration\ConfigManager.cs" />
+    <Compile Include="exchange\export\ExportBatchSrz.cs" />
+    <Compile Include="exchange\export\pfr\ExportBatchPfr.cs" />
+    <Compile Include="exchange\export\smo\ExportBatchSmo.cs" />
+    <Compile Include="exchange\export\smo\ExportBatchSmoFlk.cs" />
+    <Compile Include="exchange\export\smo\ExportBatchSmoOp.cs" />
+    <Compile Include="exchange\export\smo\ExportBatchSmoRec.cs" />
+    <Compile Include="exchange\export\smo\ExportBatchSmoRep.cs" />
+    <Compile Include="exchange\import\BaseImporterFileQueryResponse.cs" />
+    <Compile Include="exchange\import\BaseImportFabric.cs" />
+    <Compile Include="exchange\import\gateway\ImporterFileUprak.cs" />
+    <Compile Include="exchange\import\kladr\KladrImportFabric.cs" />
+    <Compile Include="exchange\import\kladr\ParseDbf.cs" />
+    <Compile Include="exchange\import\pfr\ImporterFilePs.cs" />
+    <Compile Include="exchange\import\pfr\ImporterFileRs.cs" />
+    <Compile Include="exchange\import\nsi\ImporterFileOrganisationBase.cs" />
+    <Compile Include="exchange\import\smo\ImporterFileSmo.cs" />
+    <Compile Include="exchange\import\smo\ImporterFileSmoOp.cs" />
+    <Compile Include="exchange\import\smo\ImporterFileSmoRec.cs" />
+    <Compile Include="exchange\import\nsi\ImporterOrganisationMo.cs" />
+    <Compile Include="exchange\import\nsi\ImporterOrganisationSmo.cs" />
+    <Compile Include="exchange\import\nsi\ImporterOrganisationTfoms.cs" />
+    <Compile Include="exchange\import\zags\Implementation\xsd\Zags_V.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Zags_V.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="exchange\import\zags\Implementation\Zags_VImporter.cs" />
+    <Compile Include="exchange\import\zags\ImporterFileZags.cs" />
+    <Compile Include="exchange\import\zags\IZagsImporter.cs" />
+    <Compile Include="exchange\import\zags\IZagsImportFactory.cs" />
+    <Compile Include="exchange\import\zags\ZagsImporter.cs" />
+    <Compile Include="exchange\import\zags\ZagsImportFactory.cs" />
+    <Compile Include="exchange\interfaces\import\IListenerFolder.cs" />
+    <Compile Include="manager\cache\CheckCacheManager.cs" />
+    <Compile Include="manager\cache\ICheckCacheManager.cs" />
+    <Compile Include="manager\ContentManager.cs" />
+    <Compile Include="manager\ContentManager.Generated.cs">
+      <DependentUpon>ContentManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\DocumentNumSeparator.cs" />
+    <Compile Include="manager\ExecuteStoredManager.cs" />
+    <Compile Include="manager\IContentManager.cs" />
+    <Compile Include="manager\ICounterManager.cs" />
+    <Compile Include="manager\IExecuteStoredManager.cs" />
+    <Compile Include="manager\IInsuredPersonMergeManager.cs" />
+    <Compile Include="manager\IJobLockObjectManager.cs" />
+    <Compile Include="manager\IJobPoolManager.cs" />
+    <Compile Include="manager\IMessageManager.cs" />
+    <Compile Include="manager\In1Manager.cs" />
+    <Compile Include="manager\In1Manager.Generated.cs">
+      <DependentUpon>In1Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\IQueryResponseManager.cs" />
+    <Compile Include="manager\IStatementChangeDateManager.cs" />
+    <Compile Include="manager\IStatementADT_A01Manager.cs" />
+    <Compile Include="manager\ITemplateManager.cs" />
+    <Compile Include="manager\IUirManager.cs" />
+    <Compile Include="manager\IUserActionManager.cs" />
+    <Compile Include="manager\JobLockObjectManager.cs" />
+    <Compile Include="manager\JobLockObjectManager.Generated.cs">
+      <DependentUpon>JobLockObjectManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\JobPoolManager.cs" />
+    <Compile Include="manager\JobPoolManager.Generated.cs">
+      <DependentUpon>JobPoolManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\JobPullManager.Generated.cs">
+      <DependentUpon>JobPoolManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\logicalcontrol\complex\ValidatorGenderConformityMiddleName.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorReinsuranceRules.cs" />
+    <Compile Include="manager\logicalcontrol\simple\CheckDateFutureProperty.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorBirthdateFuture.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorDocumentResidency.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorNewEnp.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorStatementFieldLength.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRelevantDocumentUdl.cs" />
+    <Compile Include="manager\MessageManager.cs" />
+    <Compile Include="manager\MessageManager.Generated.cs">
+      <DependentUpon>MessageManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\MessageStatementManager.cs" />
+    <Compile Include="manager\MessageStatementManager.Generated.cs">
+      <DependentUpon>MessageStatementManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\QueryResponseItemizeManager.cs" />
+    <Compile Include="manager\QueryResponseItemizeManager.Generated.cs">
+      <DependentUpon>QueryResponseItemizeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\QueryResponseManager.cs" />
+    <Compile Include="manager\QueryResponseManager.Generated.cs">
+      <DependentUpon>QueryResponseManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\rightedit\StatementNotEdit.cs" />
+    <Compile Include="manager\StatementChangeDateManager.cs" />
+    <Compile Include="manager\StatementChangeDateManager.Generated.cs">
+      <DependentUpon>StatementChangeDateManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\StatementADT_A01Manager.cs" />
+    <Compile Include="manager\TemplateManager.cs" />
+    <Compile Include="manager\TemplateManager.Generated.cs">
+      <DependentUpon>TemplateManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\UirManager.cs" />
+    <Compile Include="manager\UserActionManager.cs" />
+    <Compile Include="manager\UserActionManager.Generated.cs">
+      <DependentUpon>UserActionManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quartz\JobGroupNames.cs" />
+    <Compile Include="quartz\JobNames.cs" />
+    <Compile Include="registry\RepositoryRegistry.cs" />
+    <Compile Include="configuration\algorithms\ConversionHelper.cs" />
+    <Compile Include="manager\BatchManager.cs" />
+    <Compile Include="manager\BatchManager.Generated.cs">
+      <DependentUpon>BatchManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\cache\ISearchKeyTypeCacheManager.cs" />
+    <Compile Include="manager\cache\SearchKeyTypeCacheManager.cs" />
+    <Compile Include="manager\EmploymentHistoryManager.cs" />
+    <Compile Include="manager\EmploymentHistoryManager.Generated.cs">
+      <DependentUpon>EmploymentHistoryManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\GroupManager.cs" />
+    <Compile Include="manager\GroupManager.Generated.cs">
+      <DependentUpon>GroupManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\IBatchManager.cs" />
+    <Compile Include="manager\IDeadInfoManager.cs" />
+    <Compile Include="manager\IEmploymentHistoryManager.cs" />
+    <Compile Include="manager\IEventChangeManager.cs" />
+    <Compile Include="manager\IGroupManager.cs" />
+    <Compile Include="manager\INumberPolicyCounterManager.cs" />
+    <Compile Include="manager\IOrganisationManager.cs" />
+    <Compile Include="manager\IPeriodManager.cs" />
+    <Compile Include="manager\IPermissionManager.cs" />
+    <Compile Include="manager\IPermissionRoleManager.cs" />
+    <Compile Include="manager\IPfrExchangeManager.cs" />
+    <Compile Include="manager\IRangeNumberManager.cs" />
+    <Compile Include="manager\IRoleManager.cs" />
+    <Compile Include="manager\ISearchKeyTypeManager.cs" />
+    <Compile Include="manager\ISertificateUecManager.cs" />
+    <Compile Include="manager\ITwinManager.cs" />
+    <Compile Include="manager\ITwinsKeyManager.cs" />
+    <Compile Include="manager\IUserGroupManager.cs" />
+    <Compile Include="manager\IUserGroupRoleManager.cs" />
+    <Compile Include="manager\ISettingManager.cs" />
+    <Compile Include="manager\IWorkstationManager.cs" />
+    <Compile Include="manager\logicalcontrol\CheckLevelEnum.cs" />
+    <Compile Include="manager\logicalcontrol\Check.cs" />
+    <Compile Include="manager\logicalcontrol\CheckStatementManager.cs" />
+    <Compile Include="interfaces\logicalcontrol\ICheckManager.cs" />
+    <Compile Include="interfaces\logicalcontrol\ICheckStatement.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorDocumentUdlExists.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorGenderConformityFirstName.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorDeath.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorInsuranceRules.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorSnilsExists.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorTemporaryCertificateNumberExists.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorTemporaryCertificateNumberInRange.cs" />
+    <Compile Include="manager\logicalcontrol\external\CheckSrs.cs" />
+    <Compile Include="interfaces\logicalcontrol\IResponseFlc.cs" />
+    <Compile Include="manager\logicalcontrol\complex\CheckCauseFilling.cs" />
+    <Compile Include="manager\logicalcontrol\simple\CheckAddressProperty.cs" />
+    <Compile Include="manager\logicalcontrol\simple\CheckConceptProperty.cs" />
+    <Compile Include="manager\logicalcontrol\simple\CheckDocumentProperty.cs" />
+    <Compile Include="manager\logicalcontrol\simple\CheckTextProperty.cs" />
+    <Compile Include="manager\logicalcontrol\complex\ValidatorBirthAndDeathDate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorBirthAndIssueDate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorChildrenAgeToHaveUdl.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorChildrenWork.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorContentFormat.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorDateIssueTemporaryCertificate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorDocumentUdl.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorIssueDatePassportBirthCertificate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRegistrationPostcode.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRegistrationDocument.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRepresentativeDocumentUdl.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorBirthdate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorBirthplace.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorCategory.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorCauseFiling.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorCitizenship.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorEmail.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorEnp.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorFirstAndLastName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorFirstName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorGender.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorLastName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorMiddleName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorPolicyType.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorPolisCertificate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorPolisCertificateDateIssue.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRegistrationAddress.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRelationType.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRepresentativeFirstAndLastName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRepresentativeFirstName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRepresentativeLastName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorRepresentativeMiddleName.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorResidencyAddress.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorResidencyPostcode.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorSnils.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorTemporaryCertificate.cs" />
+    <Compile Include="manager\logicalcontrol\simple\ValidatorTemporaryCertificateDateIssue.cs" />
+    <Compile Include="manager\addressManager.cs" />
+    <Compile Include="manager\addressManager.Generated.cs">
+      <DependentUpon>addressManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\AutoCompleteManager.cs" />
+    <Compile Include="manager\AutoCompleteManager.Generated.cs">
+      <DependentUpon>AutoCompleteManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\cache\ConceptCacheManager.cs" />
+    <Compile Include="manager\cache\IConceptCacheManager.cs" />
+    <Compile Include="manager\cache\IOrganisationCacheManager.cs" />
+    <Compile Include="manager\cache\OrganisationCacheManager.cs" />
+    <Compile Include="manager\ConceptManager.cs" />
+    <Compile Include="manager\ConceptManager.Generated.cs">
+      <DependentUpon>ConceptManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ContactInfoManager.cs" />
+    <Compile Include="manager\ContactInfoManager.Generated.cs">
+      <DependentUpon>ContactInfoManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\DeadInfoManager.cs" />
+    <Compile Include="manager\DeadInfoManager.Generated.cs">
+      <DependentUpon>DeadInfoManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\DocumentManager.cs" />
+    <Compile Include="manager\DocumentManager.Generated.cs">
+      <DependentUpon>DocumentManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ErrorManager.cs" />
+    <Compile Include="manager\ErrorManager.Generated.cs">
+      <DependentUpon>ErrorManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\IaddressManager.cs" />
+    <Compile Include="manager\IAutoCompleteManager.cs" />
+    <Compile Include="manager\IConceptManager.cs" />
+    <Compile Include="manager\IContactInfoManager.cs" />
+    <Compile Include="manager\IDocumentManager.cs" />
+    <Compile Include="manager\IErrorManager.cs" />
+    <Compile Include="manager\IInsuredPersonDatumManager.cs" />
+    <Compile Include="manager\IInsuredPersonManager.cs" />
+    <Compile Include="manager\IKladrManager.cs" />
+    <Compile Include="manager\IMedicalInsuranceManager.cs" />
+    <Compile Include="manager\InsuredPersonDatumManager.cs" />
+    <Compile Include="manager\InsuredPersonDatumManager.Generated.cs">
+      <DependentUpon>InsuredPersonDatumManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\InsuredPersonManager.cs" />
+    <Compile Include="manager\InsuredPersonManager.Generated.cs">
+      <DependentUpon>InsuredPersonManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\IOidManager.cs" />
+    <Compile Include="manager\IRepresentativeManager.cs" />
+    <Compile Include="manager\ISearchKeyManager.cs" />
+    <Compile Include="manager\IStatementHl7Manager.cs" />
+    <Compile Include="manager\IStatementManager.cs" />
+    <Compile Include="manager\IStatementSearchManager.cs" />
+    <Compile Include="manager\IUserManager.cs" />
+    <Compile Include="manager\KladrManager.cs" />
+    <Compile Include="manager\KladrManager.Generated.cs">
+      <DependentUpon>KladrManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\MedicalInsuranceManager.cs" />
+    <Compile Include="manager\MedicalInsuranceManager.Generated.cs">
+      <DependentUpon>MedicalInsuranceManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\NumberPolicyCounterManager.cs" />
+    <Compile Include="manager\NumberPolicyCounterManager.Generated.cs">
+      <DependentUpon>NumberPolicyCounterManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\OidManager.cs" />
+    <Compile Include="manager\OidManager.Generated.cs">
+      <DependentUpon>OidManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\OrganisationManager.cs" />
+    <Compile Include="manager\OrganisationManager.Generated.cs">
+      <DependentUpon>OrganisationManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\PeriodManager.cs" />
+    <Compile Include="manager\PeriodManager.Generated.cs">
+      <DependentUpon>PeriodManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\PermissionManager.cs" />
+    <Compile Include="manager\PermissionManager.Generated.cs">
+      <DependentUpon>PermissionManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\PermissionRoleManager.cs" />
+    <Compile Include="manager\PermissionRoleManager.Generated.cs">
+      <DependentUpon>PermissionRoleManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\RangeNumberManager.cs" />
+    <Compile Include="manager\RangeNumberManager.Generated.cs">
+      <DependentUpon>RangeNumberManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\RepresentativeManager.cs" />
+    <Compile Include="manager\RepresentativeManager.Generated.cs">
+      <DependentUpon>RepresentativeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\rightedit\cause\reinsurance\CauseChoice.cs" />
+    <Compile Include="manager\rightedit\cause\CauseInitialization.cs" />
+    <Compile Include="manager\rightedit\cause\CauseEdit.cs" />
+    <Compile Include="manager\rightedit\cause\reneval\CauseGettingTheFirst.cs" />
+    <Compile Include="manager\rightedit\cause\reinsurance\CauseReinsuranceAtWill.cs" />
+    <Compile Include="manager\rightedit\cause\reinsurance\CauseReinsuranceStopFinance.cs" />
+    <Compile Include="manager\rightedit\cause\reinsurance\CauseReinsuranceWithTheMove.cs" />
+    <Compile Include="manager\rightedit\cause\reneval\CauseRenevalChangePersonDetails.cs" />
+    <Compile Include="manager\rightedit\cause\reneval\CauseRenevalExpiration.cs" />
+    <Compile Include="manager\rightedit\cause\reneval\CauseRenevalInaccuracy.cs" />
+    <Compile Include="manager\rightedit\cause\reneval\CauseRenevalLoss.cs" />
+    <Compile Include="manager\rightedit\cause\reneval\CauseRenevalUnusable.cs" />
+    <Compile Include="manager\rightedit\status\StatusCancelled.cs" />
+    <Compile Include="manager\rightedit\status\StatusCheckingTheValidity.cs" />
+    <Compile Include="manager\rightedit\status\StatusDeclined.cs" />
+    <Compile Include="manager\rightedit\status\StatusEnforceable.cs" />
+    <Compile Include="manager\rightedit\status\StatusExercised.cs" />
+    <Compile Include="manager\rightedit\status\StatusNew.cs" />
+    <Compile Include="manager\rightedit\IStatementRightToEdit.cs" />
+    <Compile Include="manager\rightedit\IStatementRightToEditManager.cs" />
+    <Compile Include="manager\rightedit\StatementRightToEdit.cs" />
+    <Compile Include="manager\rightedit\status\StatusPerformed.cs" />
+    <Compile Include="manager\RoleManager.cs" />
+    <Compile Include="manager\RoleManager.Generated.cs">
+      <DependentUpon>RoleManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\SearchKeyManager.cs" />
+    <Compile Include="manager\SearchKeyManager.Generated.cs">
+      <DependentUpon>SearchKeyManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\SearchKeyTypeManager.cs" />
+    <Compile Include="manager\SearchKeyTypeManager.Generated.cs">
+      <DependentUpon>SearchKeyTypeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\SertificateUecManager.cs" />
+    <Compile Include="manager\SertificateUecManager.Generated.cs">
+      <DependentUpon>SertificateUecManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\SettingManager.Generated.cs">
+      <DependentUpon>SettingManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\StatementHl7Manager.cs" />
+    <Compile Include="manager\StatementManager.cs" />
+    <Compile Include="manager\StatementManager.Generated.cs">
+      <DependentUpon>StatementManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\rightedit\StatementRightToEditManager.cs" />
+    <Compile Include="manager\StatementSearchManager.cs" />
+    <Compile Include="manager\TwinManager.cs" />
+    <Compile Include="manager\TwinManager.Generated.cs">
+      <DependentUpon>TwinManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\TwinsKeyManager.cs" />
+    <Compile Include="manager\TwinsKeyManager.Generated.cs">
+      <DependentUpon>TwinsKeyManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\UserGroupManager.cs" />
+    <Compile Include="manager\UserGroupManager.Generated.cs">
+      <DependentUpon>UserGroupManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\UserGroupRoleManager.cs" />
+    <Compile Include="manager\UserGroupRoleManager.Generated.cs">
+      <DependentUpon>UserGroupRoleManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\UserManager.cs" />
+    <Compile Include="manager\UserManager.Generated.cs">
+      <DependentUpon>UserManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager\SettingManager.cs" />
+    <Compile Include="manager\WorkstationManager.cs" />
+    <Compile Include="manager\WorkstationManager.Generated.cs">
+      <DependentUpon>WorkstationManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="server\CalculateKeysJob.cs" />
+    <Compile Include="server\CalculateKeysJobInfo.cs" />
+    <Compile Include="server\CalculateKeysPool.cs" />
+    <Compile Include="server\ExportSmoFormPoolJob.cs" />
+    <Compile Include="server\ExportSmoJob.cs" />
+    <Compile Include="server\ExportSmoJobInfo.cs" />
+    <Compile Include="server\ExportSmoPool.cs" />
+    <Compile Include="server\TwinsJob.cs" />
+    <Compile Include="tests\addressTests.cs" />
+    <Compile Include="tests\addressTests.generated.cs">
+      <DependentUpon>addressTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\AutoCompleteTests.cs" />
+    <Compile Include="tests\AutoCompleteTests.generated.cs">
+      <DependentUpon>AutoCompleteTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\BatchTests.cs" />
+    <Compile Include="tests\BatchTests.generated.cs">
+      <DependentUpon>BatchTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\ConceptTests.cs" />
+    <Compile Include="tests\ConceptTests.generated.cs">
+      <DependentUpon>ConceptTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\ContactInfoTests.cs" />
+    <Compile Include="tests\ContactInfoTests.generated.cs">
+      <DependentUpon>ContactInfoTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\ContentTests.cs" />
+    <Compile Include="tests\ContentTests.generated.cs">
+      <DependentUpon>ContentTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\DeadInfoTests.cs" />
+    <Compile Include="tests\DeadInfoTests.generated.cs">
+      <DependentUpon>DeadInfoTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\DocumentTests.cs" />
+    <Compile Include="tests\DocumentTests.generated.cs">
+      <DependentUpon>DocumentTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\EmploymentHistoryTests.cs" />
+    <Compile Include="tests\EmploymentHistoryTests.generated.cs">
+      <DependentUpon>EmploymentHistoryTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\ErrorTests.cs" />
+    <Compile Include="tests\ErrorTests.generated.cs">
+      <DependentUpon>ErrorTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\GroupTests.cs" />
+    <Compile Include="tests\GroupTests.generated.cs">
+      <DependentUpon>GroupTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\In1Tests.cs" />
+    <Compile Include="tests\In1Tests.generated.cs">
+      <DependentUpon>In1Tests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\InsuredPersonDatumTests.cs" />
+    <Compile Include="tests\InsuredPersonDatumTests.generated.cs">
+      <DependentUpon>InsuredPersonDatumTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\InsuredPersonTests.cs" />
+    <Compile Include="tests\InsuredPersonTests.generated.cs">
+      <DependentUpon>InsuredPersonTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\JobLockObjectTests.cs" />
+    <Compile Include="tests\JobLockObjectTests.generated.cs">
+      <DependentUpon>JobLockObjectTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\JobPoolTests.cs" />
+    <Compile Include="tests\JobPoolTests.generated.cs">
+      <DependentUpon>JobPoolTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\KladrTests.cs" />
+    <Compile Include="tests\KladrTests.generated.cs">
+      <DependentUpon>KladrTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\logicalcontrol\LogicalControlTests.cs" />
+    <Compile Include="tests\MedicalInsuranceTests.cs" />
+    <Compile Include="tests\MedicalInsuranceTests.generated.cs">
+      <DependentUpon>MedicalInsuranceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\MessageStatementTests.cs" />
+    <Compile Include="tests\MessageStatementTests.generated.cs">
+      <DependentUpon>MessageStatementTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\MessageTests.cs" />
+    <Compile Include="tests\MessageTests.generated.cs">
+      <DependentUpon>MessageTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\NumberPolicyCounterTests.cs" />
+    <Compile Include="tests\NumberPolicyCounterTests.generated.cs">
+      <DependentUpon>NumberPolicyCounterTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\OidTests.cs" />
+    <Compile Include="tests\OidTests.generated.cs">
+      <DependentUpon>OidTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\OrganisationTests.cs" />
+    <Compile Include="tests\OrganisationTests.generated.cs">
+      <DependentUpon>OrganisationTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\PeriodTests.cs" />
+    <Compile Include="tests\PeriodTests.generated.cs">
+      <DependentUpon>PeriodTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\PermissionRoleTests.cs" />
+    <Compile Include="tests\PermissionRoleTests.generated.cs">
+      <DependentUpon>PermissionRoleTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\PermissionTests.cs" />
+    <Compile Include="tests\PermissionTests.generated.cs">
+      <DependentUpon>PermissionTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\QueryResponseItemizeTests.cs" />
+    <Compile Include="tests\QueryResponseItemizeTests.generated.cs">
+      <DependentUpon>QueryResponseItemizeTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\QueryResponseTests.cs" />
+    <Compile Include="tests\QueryResponseTests.generated.cs">
+      <DependentUpon>QueryResponseTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\RangeNumberTests.cs" />
+    <Compile Include="tests\RangeNumberTests.generated.cs">
+      <DependentUpon>RangeNumberTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\RepresentativeTests.cs" />
+    <Compile Include="tests\RepresentativeTests.generated.cs">
+      <DependentUpon>RepresentativeTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\RoleTests.cs" />
+    <Compile Include="tests\RoleTests.generated.cs">
+      <DependentUpon>RoleTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\SearchKeyTests.cs" />
+    <Compile Include="tests\SearchKeyTests.generated.cs">
+      <DependentUpon>SearchKeyTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\SearchKeyTypeTests.cs" />
+    <Compile Include="tests\SearchKeyTypeTests.generated.cs">
+      <DependentUpon>SearchKeyTypeTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\SertificateUecTests.cs" />
+    <Compile Include="tests\SertificateUecTests.generated.cs">
+      <DependentUpon>SertificateUecTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\SettingTests.cs" />
+    <Compile Include="tests\SettingTests.generated.cs">
+      <DependentUpon>SettingTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\StatementChangeDateTests.cs" />
+    <Compile Include="tests\StatementChangeDateTests.generated.cs">
+      <DependentUpon>StatementChangeDateTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\StatementTests.cs" />
+    <Compile Include="tests\StatementTests.generated.cs">
+      <DependentUpon>StatementTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\TemplateTests.cs" />
+    <Compile Include="tests\TemplateTests.generated.cs">
+      <DependentUpon>TemplateTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\TwinsKeyTests.cs" />
+    <Compile Include="tests\TwinsKeyTests.generated.cs">
+      <DependentUpon>TwinsKeyTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\TwinTests.cs" />
+    <Compile Include="tests\TwinTests.generated.cs">
+      <DependentUpon>TwinTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\UserActionTests.cs" />
+    <Compile Include="tests\UserActionTests.generated.cs">
+      <DependentUpon>UserActionTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\UserGroupRoleTests.cs" />
+    <Compile Include="tests\UserGroupRoleTests.generated.cs">
+      <DependentUpon>UserGroupRoleTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\UserGroupTests.cs" />
+    <Compile Include="tests\UserGroupTests.generated.cs">
+      <DependentUpon>UserGroupTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\UserTests.cs" />
+    <Compile Include="tests\UserTests.generated.cs">
+      <DependentUpon>UserTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\WorkstationTests.cs" />
+    <Compile Include="tests\WorkstationTests.generated.cs">
+      <DependentUpon>WorkstationTests.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="exchange\import\zags\Implementation\xsd\Zags_V.xsc">
+      <DependentUpon>Zags_V.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="exchange\import\zags\Implementation\xsd\Zags_V.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="exchange\import\zags\Implementation\xsd\Zags_V.xss">
+      <DependentUpon>Zags_V.xsd</DependentUpon>
+    </None>
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NHibernate.csp">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\address.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Concept.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\ContactInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Document.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\InsuredPerson.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\InsuredPersonDatum.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Kladr.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Oid.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Representative.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\SearchKey.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Statement.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\User.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CrystalQuartz\CrystalQuartz.Core\CrystalQuartz.Core.csproj">
+      <Project>{9382e234-40e3-40d1-9a6f-5ef63cf09c90}</Project>
+      <Name>CrystalQuartz.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
+      <Project>{6310659A-9539-4660-910A-DA60B53CC5A0}</Project>
+      <Name>rt.atl.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
+      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
+      <Name>rt.core.business.security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
+      <Project>{F806BF30-72B9-41EE-8A62-93100A9D30BB}</Project>
+      <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.business\rt.srz.database.business.csproj">
+      <Project>{eb35411e-647a-4ee1-be16-10b7a9f1631c}</Project>
+      <Name>rt.srz.database.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
+      <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
+      <Name>rt.srz.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.services.client\rt.srz.services.client.csproj">
+      <Project>{EF604446-6168-4686-9D43-F3B887D0C513}</Project>
+      <Name>rt.srz.services.client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.uec.model\rt.uec.model.csproj">
+      <Project>{aad11904-afd7-4d6a-be28-a7589e9177b8}</Project>
+      <Name>rt.uec.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\StatementMaximum.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\MedicalInsurance.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Error.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\AutoComplete.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\DeadInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\SearchKeyType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\RangeNumber.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Group.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Permission.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\UserGroup.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Role.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\UserGroupRole.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\PermissionRole.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\SertificateUec.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Workstation.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Twin.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Batch.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\TwinsKey.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\EmploymentHistory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Period.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\ProcessSnilsPfr.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\NumberPolicyCounter.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Setting.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Organisation.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeys.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeysExchange.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateStandardSearchKeys.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\FindTwins.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeyForStatement.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Content.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\ProcessPfr.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateStandardSearchKeysExchange.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\ProcessZags.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Message.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\StatementChangeDate.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateKladrLevelAndParrentId.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\CreateExportSmoBatches.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\In1.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\MessageStatement.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\QueryResponse.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\QueryResponseItemize.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\StatementBatch.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\JobLockObject.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\JobPool.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\UserAction.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Template.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

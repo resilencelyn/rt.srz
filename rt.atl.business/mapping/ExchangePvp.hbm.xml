@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+	<class name="rt.atl.model.atl.ExchangePvp, rt.atl.model" table="[dbo].[ExchangePvp]" lazy="true">
+		<id name="Id" column="[RowID]">
+		 	<generator class="native" />
+		</id>
+		<property name="StatementId" column="[StatementId]" />
+		<property name="IsExport" column="[IsExport]" />
+		<property name="Error" column="[Error]" />
+		<many-to-one name="PrzBuff" column="[PrzBuffId]" class="Przbuf" />
+  </class>
+</hibernate-mapping>
+

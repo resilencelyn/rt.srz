@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AuthentificationPage.Master.cs" Inherits="rt.srz.ui.pvp.Templates.AuthentificationPage" %>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head runat="server">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title></title>
+  <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+  <link href="~/Styles/NewDesign.css" rel="stylesheet" type="text/css" />
+  <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+  <form runat="server">
+    <div class="page">
+      <div class="header">
+        <div class="padding5">
+          <asp:Label runat="server" Text="Онлайновое взаимодействие пунктов выдачи полисов СМО и ТФОМС при ведении РС ЕРЗ." ForeColor="White" Font-Size="X-Large" />
+        </div>
+      </div>
+      <div class="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+      </div>
+
+      <div class="copyRight">
+        &copy;<%= string.Format("2012–{0} Федеральный Фонд Обязательного Медицинского Страхования Российской Федерации", DateTime.Today.Year) %>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

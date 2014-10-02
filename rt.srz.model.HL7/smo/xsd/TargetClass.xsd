@@ -1,0 +1,1294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified"
+           xmlns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PolisType">
+    <xs:annotation>
+      <xs:documentation>
+        Информация о документе, подтверждающем факт страхования по ОМС
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID_POLIS" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ИД записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VPOLIS" type="Polis_type_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Тип документа, подтверждающего факт страхования по ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NPOLIS" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер документа, подтверждающего факт страхования по ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SPOLIS" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Серия документа, подтверждающего факт страхования по ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DBEG" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата выдачи документа, подтверждающего факт страхования по ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DEND" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата окончания действия документа, подтверждающего факт страхования по ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DSTOP" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата фактического прекращения действия документа, подтверждающего факт страхования по ОМС (дата снятия с учета застрахованного лица)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OrderType">
+    <xs:annotation>
+      <xs:documentation>
+        Сведения о заявке
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NORDER" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер заявки на изготовление полиса
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DORDER" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата заявки на изготовление полиса
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PRORDER" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер заявки на изготовление полиса
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PersonType">
+    <xs:annotation>
+      <xs:documentation>
+        Данные о застрахованном лице
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FAM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Фамилия ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OT" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Отчество ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="W" type="Sex_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Пол ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DR" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата рождения ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TRUE_DR" type="True_date_Enum" minOccurs="0" maxOccurs="1" default="1">
+        <xs:annotation>
+          <xs:documentation>
+            Признак достоверности даты
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="C_OKSM" type="xs:string" minOccurs="1" maxOccurs="1" default="RUS">
+        <xs:annotation>
+          <xs:documentation>
+            Гражданство ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SS" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            СНИЛС застрахованного лица
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PHONE" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Телефон(Домашний)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PHONE_WORK" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Телефон(Рабочий)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EMAIL" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Адрес электронной почты
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FIOPR" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ФИО представителя
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CONTACT" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Контакты представителя
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PR" type="AssigneeType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные о представителе
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DDEATH" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата смерти застрахованного лица
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID_HISTORY" type="xs:long" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ИД истории записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID_HUMAN_TYPE" type="xs:int" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Состояние человека в ЕРЗ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocType">
+    <xs:annotation>
+      <xs:documentation>
+        Данные документа, удостоверяющего личность
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DOCTYPE" type="Doc_type_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Тип документа, удостоверяющего личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOCSER" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Cерия документа (левая часть серии)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOCSER_R" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Правая часть серии документа
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOCNUM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер документа
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOCDATE" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата выдачи документа, удостоверяющего личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOCEXP" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата окончания действия документа
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NAME_VP" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Наименование органа, выдавшего документ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MR" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Место рождения застрахованного лица
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OldPersonType">
+    <xs:annotation>
+      <xs:documentation>
+        Сведения о прежних (до смены) персональных данных застрахованного лица
+        Заполняется в случае изменений в фамилии, имени, отчестве, поле или дате рождения застрахованного лица.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FAM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Прежняя фамилия ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Прежнее имя ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OT" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Прежнее отчество ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="W" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Прежний пол ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DR" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Прежняя дата рождения ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OLD_ENP" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Прежний ЕНП
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TRUE_DR" type="xs:int" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Признак достоверности даты рождения
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddressType">
+    <xs:annotation>
+      <xs:documentation>
+        Адрес места регистрации
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BOMG" type="Bit" minOccurs="0" maxOccurs="1" default="0">
+        <xs:annotation>
+          <xs:documentation>
+            Признак лица без определённого места жительства
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SUBJ" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код региона РФ места регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INDX" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Почтовый индекс места жительства
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OKATO" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код места регистрации по справочнику ОКАТО
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RNNAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Район места регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NPNAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Наименование населенного пункта
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UL" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Наименование улицы места регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер дома места регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="KORP" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер корпуса места регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="KV" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Номер квартиры места регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DREG" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата регистрации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TYPE_ADRESS" type="Adress_type_Enum" minOccurs="0" maxOccurs="1" default="р">
+        <xs:annotation>
+          <xs:documentation>
+            Тип адреса (г- городской, о- областной, р - Российский, и- иностранный)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UNSTRUCT_ADDRESS" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Строка адреса
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID_HOUSE" type="xs:long" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ИД дома
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="C_ADS" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код кладр
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="REF_ADS" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            todo:chenge
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="VizitType">
+    <xs:annotation>
+      <xs:documentation>
+        Обращение застрахованного лица
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DVIZIT" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Дата обращения ЗЛ (его представителя)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="METHOD" type="Choosing_way_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Способ подачи заявления
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PETITION" type="Bit" minOccurs="1" maxOccurs="1" default="0">
+        <xs:annotation>
+          <xs:documentation>
+            Признак наличия ходатайства о регистрации в качестве застрахованного лица
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RSMO" type="Smo_choise_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Повод подачи заявления о выборе (замене) СМО
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RPOLIS" type="Polis_choise_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Повод подачи заявления о выдаче (переоформлении) полиса
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="FPOLIS" type="Form_polis_Enum" minOccurs="1" maxOccurs="1" default="0">
+        <xs:annotation>
+          <xs:documentation>
+            Выбранная форма изготовления полиса
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InsuranceType">
+    <xs:annotation>
+      <xs:documentation>
+        Событие страхования
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TER_ST" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Текущая территория страхования (ОКАТО)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ENP" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Действующий Единый номер полиса ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OGRNSMO" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ОГРН СМО
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="POLIS" type="PolisType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Информация о документе, подтверждающем факт страхования по ОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ERP" type="Bit" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Признак регистрации ЕНП
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ORDERZ" type="OrderType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Сведения о заявке
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EMPLOYMENT" type="Bit" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Сведения о занятости
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PUNKT" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код ПВП
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OGRNMFC" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ОГРН МФЦ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PersonBType">
+    <xs:annotation>
+      <xs:documentation>
+        Биометрическая информация о застрахованном лице
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TYPE" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Зарезервированное поле
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PHOTO" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Вложенный файл в формате base64
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttachmentType">
+    <xs:annotation>
+      <xs:documentation>
+        Информация о прикреплениях
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID_LPU" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            ИД ЛПУ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID_ZTYPE" type="Zone_type_Enum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Тип прикрепления
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AssigneeType">
+    <xs:annotation>
+      <xs:documentation>
+        Данные представителя
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FAM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Фамилия ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IM" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OT" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Отчество ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RELATION" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Отношение представителя к ЗЛ
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOC" type="DocType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Документ удостоверяющий личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PHONE" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Телефон(Домашний)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PHONE_WORK" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Телефон(Рабочий)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FederalType">
+    <xs:annotation>
+      <xs:documentation>
+        Описание обработки записи в ЕРП
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FEDERAL_CODE" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код обработки записи в ЕРП
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FEDERAL_DESC" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Описание статуса обработки записи в ЕРП
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="Zone_type_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Зоны обслуживания
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Соматическая сеть для взрослых</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Соматическая сеть для детей</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>Стоматологическая сеть для взрослых</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="5">
+        <xs:annotation>
+          <xs:documentation>Стоматологическая сеть для детей</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="6">
+        <xs:annotation>
+          <xs:documentation>Онкологическая сеть</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="7">
+        <xs:annotation>
+          <xs:documentation>Травматологическая сеть для взрослых</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="8">
+        <xs:annotation>
+          <xs:documentation>Травматологическая сеть для детей</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="11">
+        <xs:annotation>
+          <xs:documentation>Дерматологическая сеть для взрослых</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="12">
+        <xs:annotation>
+          <xs:documentation>Дерматологическая сеть для детей</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="13">
+        <xs:annotation>
+          <xs:documentation>Женская сеть для детей</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Operation_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Типы операций
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>выдача временного свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>аннулировать запись</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>редактировать запись</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="6">
+        <xs:annotation>
+          <xs:documentation>выдача утвержденного полиса</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="7">
+        <xs:annotation>
+          <xs:documentation>перестрахование</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="8">
+        <xs:annotation>
+          <xs:documentation>переоформление полиса</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TIP_OPType">
+    <xs:annotation>
+      <xs:documentation>
+        Типы операций
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Sex_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Пол
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Мужской</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Женский</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Adress_type_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Тип адреса
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="г">
+        <xs:annotation>
+          <xs:documentation>городской</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="о">
+        <xs:annotation>
+          <xs:documentation>областной</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="р">
+        <xs:annotation>
+          <xs:documentation>Российский</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="и">
+        <xs:annotation>
+          <xs:documentation>иностранный</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="True_date_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Степень достоверности даты
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Дата достоверна.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Известны достоверно только месяц и год рождения.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Известен достоверно только год рождения.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Doc_type_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Типы документов удостоверяющих личность
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Паспорт гражданина СССР</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Загранпаспорт гражданина СССР</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Свидетельство о рождении</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>Удостоверение личности офицера</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="5">
+        <xs:annotation>
+          <xs:documentation>Справка об освобождении из места лишения свободы</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="6">
+        <xs:annotation>
+          <xs:documentation>Паспорт Минморфлота</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="7">
+        <xs:annotation>
+          <xs:documentation>Военный билет</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="8">
+        <xs:annotation>
+          <xs:documentation>Дипломатический паспорт гражданина Российской Федерации</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="9">
+        <xs:annotation>
+          <xs:documentation>Иностранный паспорт</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="10">
+        <xs:annotation>
+          <xs:documentation>Свидетельство о регистрации ходатайства о признании иммигранта беженцем</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="11">
+        <xs:annotation>
+          <xs:documentation>Вид на жительство</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="12">
+        <xs:annotation>
+          <xs:documentation>Удостоверение беженца в Российской Федерации</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="13">
+        <xs:annotation>
+          <xs:documentation>Временное удостоверение личности гражданина Российской Федерации</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="14">
+        <xs:annotation>
+          <xs:documentation>Паспорт гражданина Российской Федерации</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="15">
+        <xs:annotation>
+          <xs:documentation>Заграничный паспорт гражданина Российской Федерации</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="16">
+        <xs:annotation>
+          <xs:documentation>Паспорт моряка</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="17">
+        <xs:annotation>
+          <xs:documentation>Военный билет офицера запаса</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="18">
+        <xs:annotation>
+          <xs:documentation>Иные документы, выдаваемые органами Министерства внутренних дел</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Bit">
+    <xs:annotation>
+      <xs:documentation>
+        Значения принимающие 0 или 1
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>false</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>true</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Choosing_way_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Способ подачи заявления
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Лично</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Через представителя</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Через официальный сайт ТФОМС</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>Через единый портал государственных услуг</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Smo_choise_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Повод подачи заявления о выборе (замене) СМО
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Первичный выбор СМО</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Замена СМО в соответствии с правом замены один раз в течение календарного года</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Замена СМО в связи со сменой места жительства</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>Замена СМО в связи с прекращением действия договора о финансовом обеспечении ОМС</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Polis_choise_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Повод подачи заявле-ния о выдаче (пере-оформлении) полиса
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>первичное получение полиса ОМС единого об-разца;</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>изменение реквизитов;</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>установление ошибочно-сти сведений;</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>ветхость и непригод-ность полиса;</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="5">
+        <xs:annotation>
+          <xs:documentation>утрата ранее выданного полиса;</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="6">
+        <xs:annotation>
+          <xs:documentation>окончание срока дейст-вия полиса.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Polis_type_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Тип полиса
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="С">
+        <xs:annotation>
+          <xs:documentation>Полис ОМС старого образца</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="В">
+        <xs:annotation>
+          <xs:documentation>Временное свидетельство</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="П">
+        <xs:annotation>
+          <xs:documentation>Бумажный полис ОМС единого образца</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Э">
+        <xs:annotation>
+          <xs:documentation>Электронный полис ОМС единого образца</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="К">
+        <xs:annotation>
+          <xs:documentation>Полис ОМС в составе универсальной электронной карты</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Form_polis_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Тип полиса
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="Polis_type_Enum">
+      <xs:enumeration value="П">
+        <xs:annotation>
+          <xs:documentation>Бумажный полис ОМС единого образца</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Э">
+        <xs:annotation>
+          <xs:documentation>Электронный полис ОМС единого образца</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="К">
+        <xs:annotation>
+          <xs:documentation>Полис ОМС в составе универсальной электронной карты</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="FPolisType">
+    <xs:annotation>
+      <xs:documentation>
+        Тип полиса
+        0 - не требует изготовления полиса;
+        1 - бумажный бланк; (у People заполняется ID_POLIS_TYPE_ORDERED = 2)
+        2 - пластиковая карта; (ID_POLIS_TYPE_ORDERED = 5)
+        3 - в составе УЭК.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="[0-3]" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="VPolisType">
+    <xs:annotation>
+      <xs:documentation>
+        Тип полиса
+        0 - Запись для создания внешнего ключа
+        1 - ВС
+        2 - Бумажный
+        3 - в составе электронной соц карты.
+        4 - Старого образца
+        5 - Электронный полиса ОМС
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="[1-5]" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MSA1">
+    <xs:annotation>
+      <xs:documentation>
+        Тип прикладной обработки
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AA">
+        <xs:annotation>
+          <xs:documentation>
+            Прикладное подтверждение: приемлемо
+            Сообщение не содержит ошибок форматно-логического контроля и не противоречит
+            информации, уже имеющейся в ЕРП.
+            Обработка сообщения завершена в соответствии с штатными требованиями.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AE">
+        <xs:annotation>
+          <xs:documentation>
+            Прикладное подтверждение: ошибка
+            При обработке сообщения обнаружены ошибки, которые являются препятствием
+            для продолжения обработки.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AR">
+        <xs:annotation>
+          <xs:documentation>
+            Прикладное подтверждение: отвергнуто
+            При обработке сообщения обнаружены ошибки, являющиеся препятствием для продолжения обработки.
+            В обработке сообщения отказано.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Active_Enum">
+    <xs:annotation>
+      <xs:documentation>
+        Активность
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>Не активная</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Активная</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Буферная запись</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

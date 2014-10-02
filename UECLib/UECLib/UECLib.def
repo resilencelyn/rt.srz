@@ -1,0 +1,21 @@
+LIBRARY	"UECLib"
+EXPORTS
+	OpenCard                                      @1
+  OpenCardWithHandle                            @2
+  OpenCardWithHandleByGlobalData                @3
+  Authorise                                     @4
+	ReadPrivateData	                              @5
+  ReadPrivateDataInString                       @6
+	ReadMainOMSData                               @7
+  ReadMainOMSDataInString                       @8
+  ReadOMSData                                   @9
+  WriteOMSData                                  @10
+	CloseCard                                     @11
+  GetErrorDescription                           @12
+  GetReaderList                                 @13
+  GetReaderListInString                         @14
+  GetCurrentComputerName                        @15
+  GetCurrentComputerNameWithTakingRemoteSession @16
+  SetSystemTraceMode                            @17
+	
+

@@ -1,0 +1,1255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="rt.ui">
+            <Directory Id="dir5F3411A1DB7C4531EDCAB0D982E8C4A7" Name="Account" />
+            <Directory Id="dirA78CA2D5EF9B1904B99550D789039523" Name="App_Browsers" />
+            <Directory Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Name="bin" />
+            <Directory Id="dir66FF808EA2CCD776BC225F431114CD08" Name="Configuration" />
+            <Directory Id="dirC802C1059D2CA073D755F12AC2A800A6" Name="Controls" />
+            <Directory Id="dir948F819044F1676F7A2B66E21D5299A4" Name="HttpHandlers" />
+            <Directory Id="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Name="Pages" />
+            <Directory Id="dir58DB91498A083E2C584EEE625DE5B05E" Name="Resources" />
+            <Directory Id="dir588999226C5055BEE83B5E729E1CB89D" Name="Scripts" />
+            <Directory Id="dir7255D5C7C740471FBDBA4693642B8355" Name="Styles" />
+            <Directory Id="dirD88B283FA5E2F9E343639A1D1C3C5BFC" Name="Templates" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="rt.ui.Files">
+            <Component Id="cmpD187F09ADA3BD91294F42DEBD3698FCC" Directory="rt.ui" Guid="*">
+                <File Id="fil8ABBA3AC540BDAF9F49DFF3D37FF49B4" KeyPath="yes" Source="$(var.UIPath)\AuthGate.svc" />
+            </Component>
+            <Component Id="cmp6AE972905CB665742D05B33DBDBE4892" Directory="rt.ui" Guid="*">
+                <File Id="fil1B0B9C4947693995DF561DCF64D82A4F" KeyPath="yes" Source="$(var.UIPath)\Global.asax" />
+            </Component>
+            <Component Id="cmp92F7CA9F973E17E695631BE01A50C813" Directory="rt.ui" Guid="*">
+                <File Id="fil20ADE2450DBCF371EE6E93DF9569E485" KeyPath="yes" Source="$(var.UIPath)\KladrGate.svc" />
+            </Component>
+            <Component Id="cmpEAFE240F96C20687C930E7C4EB029045" Directory="rt.ui" Guid="*">
+                <File Id="fil90B23CDFE0D1377EF33CC2EC9438474A" KeyPath="yes" Source="$(var.UIPath)\NHibernateCfgAtl.xml" />
+            </Component>
+            <Component Id="cmp28CB6C6B691E954A5E3C4AC53EB235C6" Directory="rt.ui" Guid="*">
+                <File Id="fil1EE0F3767C2B27B9828393AC994D3C55" KeyPath="yes" Source="$(var.UIPath)\NsiGate.svc" />
+            </Component>
+            <Component Id="cmpF7999D4682C57775F30A5EE585DA5A4B" Directory="rt.ui" Guid="*">
+                <File Id="fil6BBB4D2FBF42B376DC82E75E17E9F0DF" KeyPath="yes" Source="$(var.UIPath)\packages.config" />
+            </Component>
+            <Component Id="cmpA7C8AE1E65093EAA4746FB3C3F7B4F4C" Directory="rt.ui" Guid="*">
+                <File Id="fil1930ECC17D85C99D4622370E2CCC1DB9" KeyPath="yes" Source="$(var.UIPath)\SecurityGate.svc" />
+            </Component>
+            <Component Id="cmp57B2C3D26C67EC43629B4A01803A1867" Directory="rt.ui" Guid="*">
+                <File Id="filD09E1EF4E92EC6E4B66382CA521D78A8" KeyPath="yes" Source="$(var.UIPath)\SmoGate.svc" />
+            </Component>
+            <Component Id="cmp4B0D5266AB3F90836845690E04BB0022" Directory="rt.ui" Guid="*">
+                <File Id="fil9F37F870988B03D7428E1F9339495CF0" KeyPath="yes" Source="$(var.UIPath)\StatementGate.svc" />
+            </Component>
+            <Component Id="cmpBB8325BB8F86475EA74E295F0ABB9B75" Directory="rt.ui" Guid="*">
+                <File Id="fil33773F0B2085B7F02F91B5902A7FA3B1" KeyPath="yes" Source="$(var.UIPath)\TFGate.svc" />
+            </Component>
+            <Component Id="cmp1E1FFBE48B5E252D4CBE4581B2A9FB51" Directory="rt.ui" Guid="*">
+                <File Id="filDA1817EB99E7648558FF19C049FBAF89" KeyPath="yes" Source="$(var.UIPath)\UecGate.svc" />
+            </Component>
+            <Component Id="cmp9428AB0CA96915CE12C113AF855D9CDA" Directory="rt.ui" Guid="*">
+                <File Id="fil564B4D638ADC7C83C646342DDE7A16F6" KeyPath="yes" Source="$(var.UIPath)\UirGate.svc" />
+            </Component>
+            <Component Id="cmpB426FE4141F430AD530D329DE6272AA7" Directory="rt.ui" Guid="*">
+                <File Id="fil99AF4FFCA19F7FC9EC62FB210FDB1221" KeyPath="yes" Source="$(var.UIPath)\Web.config" />
+            </Component>
+            <Component Id="cmpBF7BD347D81480AE9A2462769F40E8FC" Directory="dir5F3411A1DB7C4531EDCAB0D982E8C4A7" Guid="*">
+                <File Id="filC14E2F3BAF480E5A50EA7DCC437B20E9" KeyPath="yes" Source="$(var.UIPath)\Account\Login.aspx" />
+            </Component>
+            <Component Id="cmp712D71607AB36085516A968E061A35DA" Directory="dir5F3411A1DB7C4531EDCAB0D982E8C4A7" Guid="*">
+                <File Id="fil92BE7664DED6656471B9FFB8C18DF38E" KeyPath="yes" Source="$(var.UIPath)\Account\Manage.aspx" />
+            </Component>
+            <Component Id="cmp280B5421B8A0F514DBC1EF7E818C7993" Directory="dir5F3411A1DB7C4531EDCAB0D982E8C4A7" Guid="*">
+                <File Id="fil3637F34398F200CB421FABE107F93C80" KeyPath="yes" Source="$(var.UIPath)\Account\OpenAuthProviders.ascx" />
+            </Component>
+            <Component Id="cmp510CBC7F567709ADFB3C401D7F3AD4F5" Directory="dirA78CA2D5EF9B1904B99550D789039523" Guid="*">
+                <File Id="filA87EB294B0184B00FAA547CB2C4677E5" KeyPath="yes" Source="$(var.UIPath)\App_Browsers\firefox.browser" />
+            </Component>
+            <Component Id="cmp6F0151A0E74012793F4313253782C350" Directory="dirA78CA2D5EF9B1904B99550D789039523" Guid="*">
+                <File Id="fil0E44C9F78834B7459FFC1E0823865D10" KeyPath="yes" Source="$(var.UIPath)\App_Browsers\ie.browser" />
+            </Component>
+            <Component Id="cmp8F9C35357C5615AF918ED97A86C6F211" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil2131E0C3A9CC353EA66070AE78963733" KeyPath="yes" Source="$(var.UIPath)\bin\AjaxControlToolkit.dll" />
+            </Component>
+            <Component Id="cmp59FE8C34FF56474CB2E1816B9FF21515" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil48D2FB394B9D17B127E3E4DD493AA4E8" KeyPath="yes" Source="$(var.UIPath)\bin\AjaxMin.dll" />
+            </Component>
+            <Component Id="cmpB871385D303B1FC8A7682DA1AFE6D5AD" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filE7F8D379D19E2FC93E49FD4F848CE1B0" KeyPath="yes" Source="$(var.UIPath)\bin\Common.Logging.Core.dll" />
+            </Component>
+            <Component Id="cmp4AF4EB84B4829DF3305B9E8CF90A36A1" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil9A1A2BB017D349A259C8934B761684FF" KeyPath="yes" Source="$(var.UIPath)\bin\Common.Logging.dll" />
+            </Component>
+            <Component Id="cmp457A471A4201B7280FD96D322F9DEC32" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filE31771A6A5EDC902C7F660B44E5C3FB9" KeyPath="yes" Source="$(var.UIPath)\bin\Common.Logging.NLog20.dll" />
+            </Component>
+            <Component Id="cmp926A59E75C958AB5F1905C14C5C9E84E" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil1EA34C8CAF59439F502FE023ACC31BDF" KeyPath="yes" Source="$(var.UIPath)\bin\CrystalQuartz.Core.dll" />
+            </Component>
+            <Component Id="cmpA0080AB7058C840F0751354632712825" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil36E6C673B4FCD9FAFEB58D0E249CBD06" KeyPath="yes" Source="$(var.UIPath)\bin\CrystalQuartz.Web.dll" />
+            </Component>
+            <Component Id="cmp15A53464BC9F2224FE6F7E0A09D0331D" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil744784F90624BCE2D564FE0440E6813E" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Charts.v12.1.Core.dll" />
+            </Component>
+            <Component Id="cmp500534434D08AFD0C357FD59CA82B1D6" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil190C0F71426A576746528D1A8F11342A" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Data.v12.1.dll" />
+            </Component>
+            <Component Id="cmp39E737EA5EF32F01D0FE353DB14CE873" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil49CE4065BD0F33EB128307AAD7342258" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Office.v12.1.Core.dll" />
+            </Component>
+            <Component Id="cmp04119D2721428D9C29C8505AA6374654" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filACF6B0AFC529F5EC7B348F03BE7CEEB1" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.PivotGrid.v12.1.Core.dll" />
+            </Component>
+            <Component Id="cmp0DF9D28818BB26234583444C43F69E8A" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil0E6DBBF19BEDEFF60049C206C072A31B" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Printing.v12.1.Core.dll" />
+            </Component>
+            <Component Id="cmp1EE235A4B7E2A774B09C9F18EEA1ED6F" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filBA5F24CCEBA24BBB17CF0CF8E2119C83" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.RichEdit.v12.1.Core.dll" />
+            </Component>
+            <Component Id="cmp6CC4935036C565BF70427CC67D91645E" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil54378AB3C3B1011DF0404E965342EF26" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Utils.v12.1.dll" />
+            </Component>
+            <Component Id="cmpAD3B4F276AFB440454CE03DC28792CC2" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filF660AFDCA05E4845450E0776E3EB3B61" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Web.ASPxEditors.v12.1.dll" />
+            </Component>
+            <Component Id="cmpCB68D71C8389FF6E41FE17F8BA680041" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil72435F3276BE229348740DE948AA855F" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Web.ASPxGridView.v12.1.dll" />
+            </Component>
+            <Component Id="cmpC9EBAE5D68E7575B6CAF8A68FC6BA291" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil3A8B3FD7E1629E44CF89AA24969C2BA6" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Web.ASPxThemes.v12.1.dll" />
+            </Component>
+            <Component Id="cmpF84E1E836ED389E8C064F0C90E1E1B0D" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil35E960331CBCA43CE50F5147CBF6BFD9" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.Web.v12.1.dll" />
+            </Component>
+            <Component Id="cmpE733AD6AE840541DBB903A32133016C7" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil7BEB6D8BB4BAFFA28956A10F96E73770" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.XtraCharts.v12.1.dll" />
+            </Component>
+            <Component Id="cmpE26C632BD6F33B34682B17CA91154591" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil8603F26E769D00CE51048980A68283F5" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.XtraEditors.v12.1.dll" />
+            </Component>
+            <Component Id="cmp5A6420346D3CA88C59BEE5E9CB24EA19" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil818CC2930022393CC883247E7207D0D6" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.XtraPivotGrid.v12.1.dll" />
+            </Component>
+            <Component Id="cmp571710CEBC50062573BA85B28494115C" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filF120B6BA97C7B89EAFADB2462AB3E075" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.XtraReports.v12.1.dll" />
+            </Component>
+            <Component Id="cmp24129409250D34738461FEF7B7101CC0" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil0FBEC81E0CD5DFE735F3DA81C525BA89" KeyPath="yes" Source="$(var.UIPath)\bin\DevExpress.XtraReports.v12.1.Web.dll" />
+            </Component>
+            <Component Id="cmpF0590183E3BCCA87D9D573C43E11F32D" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil456252E3C3E82E85A7415B0395A14102" KeyPath="yes" Source="$(var.UIPath)\bin\ECM7.Migrator.dll" />
+            </Component>
+            <Component Id="cmp659EAC0919D5CBEB96F1970F98E072CC" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil786DF97725AFAC939BFDA31DF6A9A772" KeyPath="yes" Source="$(var.UIPath)\bin\ECM7.Migrator.Framework.dll" />
+            </Component>
+            <Component Id="cmpEB83E483C662925B3DD2474F2D9FC8E6" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filAF49FB61CA0EA837071542ABA1958F84" KeyPath="yes" Source="$(var.UIPath)\bin\ECM7.Migrator.Providers.Oracle.dll" />
+            </Component>
+            <Component Id="cmp9ED504CACBC6334E5567538CF7219845" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil99B3E27B7FF4E2AB20753B5AE3F56082" KeyPath="yes" Source="$(var.UIPath)\bin\ECM7.Migrator.Providers.SqlServer.dll" />
+            </Component>
+            <Component Id="cmpBD864C4E7A6FD23907A83B9E36B146A5" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil360BF5D3936E33813AB25B5B1056458B" KeyPath="yes" Source="$(var.UIPath)\bin\HtmlAgilityPack.dll" />
+            </Component>
+            <Component Id="cmpFD700376B3AF1C56C2BE5BD483D6B915" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filA0D2FCC2269189B81AA8ECBFB5E12795" KeyPath="yes" Source="$(var.UIPath)\bin\Iesi.Collections.dll" />
+            </Component>
+            <Component Id="cmp717EB93B45D32A30C718C50845B8BD64" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil44453C8DD348F8A29A5E8CD8B9589E38" KeyPath="yes" Source="$(var.UIPath)\bin\Microsoft.Data.Edm.dll" />
+            </Component>
+            <Component Id="cmp7A501DC773B89273488798AF42EDDB18" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil28DB88F7B3DF4C5175F33A97BC72AA65" KeyPath="yes" Source="$(var.UIPath)\bin\Microsoft.Data.OData.dll" />
+            </Component>
+            <Component Id="cmp94865F14FE0A0F26D9442E036E91339C" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filCDA8EE2CB83C3A8636936217608FD53A" KeyPath="yes" Source="$(var.UIPath)\bin\Microsoft.WindowsAzure.Storage.dll" />
+            </Component>
+            <Component Id="cmpAD2600FD57CF11207EC3B329392D3E1B" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil944E873C1D8E7703F3FA70E221F9D6D3" KeyPath="yes" Source="$(var.UIPath)\bin\NHibernate.dll" />
+            </Component>
+            <Component Id="cmp0DF13BEE8204A4032905479C3C02E2EB" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filA3DC4878885909DCA680E2AFE0B32BF4" KeyPath="yes" Source="$(var.UIPath)\bin\NHibernateCfgAtl.xml" />
+            </Component>
+            <Component Id="cmpBD05FC24979F9E8AF4EB3C0B90F87A3C" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil0F2797EEC9F443C192209A93AE50467A" KeyPath="yes" Source="$(var.UIPath)\bin\NLog.dll" />
+            </Component>
+            <Component Id="cmpFB2DC2013CE1B4C610F5962DFDCD0982" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filF66078B2B31E01F241221042B47DA194" KeyPath="yes" Source="$(var.UIPath)\bin\nunit.framework.dll" />
+            </Component>
+            <Component Id="cmp2DE3AE8E3A369255D00AE5D826242DC8" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filBDE19887AE6B57CE789D4A73373B1AD3" KeyPath="yes" Source="$(var.UIPath)\bin\NVelocity.dll" />
+            </Component>
+            <Component Id="cmpC8FD1F70950172C507AB7E1C933AA05E" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filD63466A9B8665529F45785888C07B2C0" KeyPath="yes" Source="$(var.UIPath)\bin\Oracle.DataAccess.dll" />
+            </Component>
+            <Component Id="cmp004A8FE7027B484EEFDCAF2B4FCF7391" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil89019B61EE430DF140F072C0FAAD4E6F" KeyPath="yes" Source="$(var.UIPath)\bin\protobuf-net.dll" />
+            </Component>
+            <Component Id="cmp8AF72EBCEE6A73ABA12D75A940269867" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil3FE28920C481DF8AEDC3B8D26D4D09E5" KeyPath="yes" Source="$(var.UIPath)\bin\Quartz.dll" />
+            </Component>
+            <Component Id="cmp3BBCA0C904632BB72C75A08B3DB27553" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil5E753CD31FD560841949BC96C8CC4238" KeyPath="yes" Source="$(var.UIPath)\bin\rt.atl.business.dll" />
+            </Component>
+            <Component Id="cmp7E68000638AA7099E32684E7B85252D2" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filA28F524229BD4AF8351E26BF845604B6" KeyPath="yes" Source="$(var.UIPath)\bin\rt.atl.model.dll" />
+            </Component>
+            <Component Id="cmpA06C0244FE3B7662F2065203212AB1EE" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filE2B2913C7A1C6A3123BB6066DAC4FE96" KeyPath="yes" Source="$(var.UIPath)\bin\rt.core.business.dll" />
+            </Component>
+            <Component Id="cmp8C88D996CB793F3F01113C141B314E02" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filF3E2181F2F73BED1257926E1FD2241E2" KeyPath="yes" Source="$(var.UIPath)\bin\rt.core.business.security.dll" />
+            </Component>
+            <Component Id="cmp736A23D6E2933FF1D612F9D09A3326EB" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filEBE2C637FC0A59462FA70B3F333EF1E3" KeyPath="yes" Source="$(var.UIPath)\bin\rt.core.model.client.dll" />
+            </Component>
+            <Component Id="cmp134BD3BECCD759F8F8D1CAA5EFA718AC" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil2FACBEB83823DC9DFB393D92DCB130F1" KeyPath="yes" Source="$(var.UIPath)\bin\rt.core.model.dll" />
+            </Component>
+            <Component Id="cmp58650517DF35D616875F44D0858E95B0" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil368FD4E4B8FC253C7460F4AC1F2A48D8" KeyPath="yes" Source="$(var.UIPath)\bin\rt.core.service.security.dll" />
+            </Component>
+            <Component Id="cmpEDCCC33F7C3BD6EBC26961250050DE71" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filA8B575266ED2B1F7D88AF35FC5D6E7F4" KeyPath="yes" Source="$(var.UIPath)\bin\rt.core.services.dll" />
+            </Component>
+            <Component Id="cmpAEAD9EF004C9739405EDDF61DB23E6C6" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filF84F13DED40DD0274CB9D890E670AB00" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.business.dll" />
+            </Component>
+            <Component Id="cmp2F187BE82181CD1370532CDBC3227FBA" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil0BFB3ACAF2AC568D0C99A68C6FCF52AE" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.database.business.dll" />
+            </Component>
+            <Component Id="cmpA4E888CF4AD3CA39ADBCF2BCAF265588" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filB042DE0FB5E62607A85589A7709470C9" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.database.business.sqlserver.dll" />
+            </Component>
+            <Component Id="cmp81A8F6730C9E1D2A6DA6D80D16BCCC3B" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil225AB7863D4326F2133F7941AA8CCA7B" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.database.migration.dll" />
+            </Component>
+            <Component Id="cmpFA86C57A74BFA29810FAAAAE387661B8" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil3F42D1FF68F070BA76A2551A67CA8566" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.model.barcode.dll" />
+            </Component>
+            <Component Id="cmp8797F87ADAC6904DCD055138BC22AADB" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil1E3801D3666CD66ACDF2F52627D8EBA4" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.model.dll" />
+            </Component>
+            <Component Id="cmpB5810FDA9568ED28812F80F0F02BE179" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filF09CD02E7F62F0EC049D55A48D2C9FC0" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.model.HL7.dll" />
+            </Component>
+            <Component Id="cmp7CB10D6AC7094C437B36EFC249C1DB1B" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil71F1371E9BEE94F7CDF9C6BD6CF77A20" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.services.client.dll" />
+            </Component>
+            <Component Id="cmp055C25BDBA75844D6CD33B192730733E" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filAA4897FD895B109CBE508C228A3BEFAD" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.services.dll" />
+            </Component>
+            <Component Id="cmp8E4436240397A25EA4F04BFF6DF5CC0B" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="fil8B20C8BA8B8651C942BE23AD9F929D3A" KeyPath="yes" Source="$(var.UIPath)\bin\rt.srz.ui.pvp.dll" />
+            </Component>
+            <Component Id="cmp2ED562EA5BE54014091549ED4A9BAA02" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filDF24FEEFE729F05000A5120484894E9D" KeyPath="yes" Source="$(var.UIPath)\bin\rt.uec.model.dll" />
+            </Component>
+            <Component Id="cmpD818C7D0AC2FCAC99BDC0C6AA750041A" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filB4160294B68B904E7E864E4172D5A706" KeyPath="yes" Source="$(var.UIPath)\bin\Serialize.Linq.dll" />
+            </Component>
+            <Component Id="cmpE3083F30A673C5B83BED42A7493A357A" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filE29EDBF1D4CD6D2EC5DC857D3D14F58B" KeyPath="yes" Source="$(var.UIPath)\bin\StructureMap.dll" />
+            </Component>
+            <Component Id="cmpE6234123C084B933ABAE93DFEFD4219D" Directory="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Guid="*">
+                <File Id="filABDDABD2C0C0C35C9520A7F7AF8CAECD" KeyPath="yes" Source="$(var.UIPath)\bin\System.Spatial.dll" />
+            </Component>
+            <Component Id="cmp22DFDFD1A1131D5431216C9BBC5ED558" Directory="dir61F09FFAA1AB4D49B0C6B9A2CFB241D7" Guid="*">
+                <File Id="filA21065B14B7237BEED19BFA0519F4A45" KeyPath="yes" Source="$(var.UIPath)\bin\ar\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp89293D7A95A94F93F463CA309DCA14CE" Directory="dirCB63A232D5B93095864D053C6231C51A" Guid="*">
+                <File Id="fil1721EF22AA5C013CE77C8D88628D83B7" KeyPath="yes" Source="$(var.UIPath)\bin\cs\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmpBBD13AF0C672E9B69E651735890A5E95" Directory="dir759E697B69F8D999197625D60D63B825" Guid="*">
+                <File Id="fil27DBED00CECC9F942B7A9C2A6DB0505B" KeyPath="yes" Source="$(var.UIPath)\bin\data\concept.xml" />
+            </Component>
+            <Component Id="cmpE9790C06C4848CF381F36F93E987ED81" Directory="dir759E697B69F8D999197625D60D63B825" Guid="*">
+                <File Id="filA9B83D6F1BB4FFDD85231981549D1A00" KeyPath="yes" Source="$(var.UIPath)\bin\data\oid.xml" />
+            </Component>
+            <Component Id="cmpC93A42A9754CACD01E4895BC81AF6B18" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filCBBCC5B491528F01241742431E0EEDC4" KeyPath="yes" Source="$(var.UIPath)\bin\de\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp4A6A14B26CBA6132C291DBF13C1FD860" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil76D1BCC5B035AB22A13BDD2E7AD64B85" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.Data.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp7580730E183AAB1510557CEBA2922B5F" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filDDEB7B02997E8FEAF398339F5E3C7087" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.PivotGrid.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmpE32B8E3299F4D2C781072C6FD3A40B1B" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filB4F81A48F57DA68C7F25C1E4A84B4FB1" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.Printing.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp379EA1B9CC5D0750AA63D6B1AD150A6A" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil201E8F775C70456A96A786C9D31F478B" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.RichEdit.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp2E8A8FF67A118CEE20B3D65856689DBE" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil6A36B55AEC1E9E4964735A7DA3A9C2C6" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.Utils.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp46A61BA2A1A30F139A868ED7BA0BEC3B" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filC1632A16B09AC221CB514FB896FBB09F" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.Web.ASPxEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp63E87A506A42287D14646E2E4ABF4B4D" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filF38C28FA3AAC6F2C2BB5B55E8A95AB48" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.Web.ASPxGridView.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp7ED37F46684149760359E3E601D6E4F4" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil3DF01345CE1CDBA6C31763E1765741D1" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.Web.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpFA8943253810BF2DFDB11AA96AD6638F" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filD0BC8071EB4EFD02757939E5ADAFA41E" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.XtraCharts.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp9A56E819FA460C92B504AA6095B81938" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil6F1D5BF5875CA6DC763F3F254B96E767" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.XtraEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpBC4D6E6DFABDB32537414BB33846FEDC" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filABD2D4A99CDBC91F4F5E7F2C2C102692" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.XtraPivotGrid.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp4F27E3B7C7A3445BFEFFC1C0D15D4482" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil48E850EFFD953EC5755B02F7500A6106" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.XtraReports.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp73CFC9D2273259D69727156916DC4A8D" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filD0D27F3635D5A4A87A017C09435111AA" KeyPath="yes" Source="$(var.UIPath)\bin\de\DevExpress.XtraReports.v12.1.Web.resources.dll" />
+            </Component>
+            <Component Id="cmp27A6D4AB3C1A3BDBB71570730DE2DE4D" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="fil8DE184F3B7888F477CB31BA1446E1A41" KeyPath="yes" Source="$(var.UIPath)\bin\de\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmpD29035EA0164D56538502910C5D6880E" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filA15DF7DD1FE93F175CDCE3008D24DDEA" KeyPath="yes" Source="$(var.UIPath)\bin\de\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmpCE730A0DA2EAF112D45A29E2005A38C2" Directory="dirED99A1FFB713A54238601CD52F5267CC" Guid="*">
+                <File Id="filD91871F42DD383C5DA031F69AD3A6A9A" KeyPath="yes" Source="$(var.UIPath)\bin\de\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmpAE39E38C1F05A944E3FA04C970C2B2B4" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil4769889E1A578884D9CB441DAD7477B9" KeyPath="yes" Source="$(var.UIPath)\bin\es\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp318CF404E493A8D6CF0E2C65D5C2965F" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="filC5D1BA5C495E5B30C399231E6D2CBCF4" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.Data.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp6074F9EBD2AA1414660436C9A7BDE957" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="filDA198FD4BE8274443D5CFD87CCE56DF3" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.PivotGrid.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp7DC7E0C8FB1B3D5410BE735392B1BCC0" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="filE6E4C2CA7992956F16EAD5CDAF9FDCEC" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.Printing.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp28D8B21E782CF21D9E20348E2CDBE69C" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil9E9DA353B2A19D03CFA80815B81BE2B3" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.RichEdit.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp4ABCA7DD61A663D14247CFF2305D6968" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="filEBEA958288F22DAFF145DFDBF3E98B91" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.Utils.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp980BA3F354F4E4DFFA0D5B5A6C3950C8" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil9F843A9BAF4524971A71F1EDF9E1543F" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.Web.ASPxEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpD8066EA46D2522BD29E8E0A105A81676" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil7F3B646DB325D929826F492AC0362837" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.Web.ASPxGridView.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpF81A49EDAE221864B03B062B126EA458" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil518741F03E1DFBBD3E440C55A5DFD524" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.Web.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpD1B5C62D4382054FEEB32FE4A31B8595" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil869A9AAF752424607AE08BCB16EB5CF8" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.XtraCharts.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpAF7163C4603EC55C9271EE3B373286AF" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil2D5EAB4A9CC3A31048B964BE265F2E74" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.XtraEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpCA92A7AE6A9BB6B27310848F018D0197" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil0B232B79885E581909096A06C53B29EF" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.XtraPivotGrid.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpFE8DE09BFF430BC318B36BACD957F1D8" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="filAA77DAA28E24FA689B297EF8392C6DB7" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.XtraReports.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp426812A55B2889DC24FB298E87820810" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil6DC7B326765BA1D6A88BE99292283570" KeyPath="yes" Source="$(var.UIPath)\bin\es\DevExpress.XtraReports.v12.1.Web.resources.dll" />
+            </Component>
+            <Component Id="cmpC494D4D334A9C7FA989C7CF9E40EE639" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil619B1CA68E8C7955BAE0749F643FEC84" KeyPath="yes" Source="$(var.UIPath)\bin\es\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp6217A27E65F8E1F0E0DF1E95EE020AC7" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil027D1A284C352C4864F05B4553173927" KeyPath="yes" Source="$(var.UIPath)\bin\es\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmp2B726402861C46DE57CFA1E3BEA0C697" Directory="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Guid="*">
+                <File Id="fil656E81B02C5468F0E0A4DA1BF732C3A1" KeyPath="yes" Source="$(var.UIPath)\bin\es\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmpBF66B11A99F508F0DFD2C6E02A35F3DB" Directory="dir6AD67C9BE6A1A8304B315832DFDED64C" Guid="*">
+                <File Id="filF6BF56B0A7DC8D0120221A28387FCC2F" KeyPath="yes" Source="$(var.UIPath)\bin\fr\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp34E74C84F993488577330164BF1C03E5" Directory="dir6AD67C9BE6A1A8304B315832DFDED64C" Guid="*">
+                <File Id="fil9870F2FF8EC65E90751400C93C73C8AB" KeyPath="yes" Source="$(var.UIPath)\bin\fr\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp8B453029188A936BF5F0858F82307087" Directory="dir6AD67C9BE6A1A8304B315832DFDED64C" Guid="*">
+                <File Id="fil06BC8A367C8EFE672999445A15FF0339" KeyPath="yes" Source="$(var.UIPath)\bin\fr\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmpA0F96E74AD50FFE0B4DFC0147A55F2B5" Directory="dir6AD67C9BE6A1A8304B315832DFDED64C" Guid="*">
+                <File Id="filE2D3911A6EF434108F71A85887C0A7B5" KeyPath="yes" Source="$(var.UIPath)\bin\fr\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmp924BD745C0C9F70F28E6B50547136727" Directory="dirBBC3DDFC73A78CB67FAB5FBCC99DA941" Guid="*">
+                <File Id="filB745B81755D5DBAAA70A99613AD8FEE5" KeyPath="yes" Source="$(var.UIPath)\bin\he\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp8ACE0A09F0C0FCFC766DCFCDD6C95C0C" Directory="dirBB0909E53478E45573D61F2422B1B0A1" Guid="*">
+                <File Id="fil6118A92F919A4E18E2D1510A32E51EB7" KeyPath="yes" Source="$(var.UIPath)\bin\hi\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp254A7250B9C2C06363F94A31583273EC" Directory="dir5C2CDC1AF8FC00C3F9D508278FB769FC" Guid="*">
+                <File Id="fil1B1336BD28099B119F77DC91B59EE799" KeyPath="yes" Source="$(var.UIPath)\bin\it\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmpF5599A57B75F3BA01A66F86FE5ACC70A" Directory="dir5C2CDC1AF8FC00C3F9D508278FB769FC" Guid="*">
+                <File Id="fil8309208641D0FEB988203500F12199D5" KeyPath="yes" Source="$(var.UIPath)\bin\it\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp51F3A7BC1DB904D421CE559E00105A9D" Directory="dir5C2CDC1AF8FC00C3F9D508278FB769FC" Guid="*">
+                <File Id="filA031EC0248EF47478362EB7B66E6917D" KeyPath="yes" Source="$(var.UIPath)\bin\it\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmp967D34752C2E9FF23635B1A73D0F11E9" Directory="dir5C2CDC1AF8FC00C3F9D508278FB769FC" Guid="*">
+                <File Id="filBEC88A5F52762F565313168AB91508B6" KeyPath="yes" Source="$(var.UIPath)\bin\it\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmp02AB1EA2511030E4C6B59BB4237CD9EF" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil45366140B15203B64D8ED1647F4EDB46" KeyPath="yes" Source="$(var.UIPath)\bin\ja\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp32F6646A34272D19E0765E2E68A6BBFE" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil350C8177252F98E14CC51CA3FED5719A" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.Data.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp97F4F8709D9069E70C89FF59601E6500" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil306F1D2F25B2EB4447820710ECD388AF" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.PivotGrid.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmpD5C6BCEA598280B58D85330800913903" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="filC51972C3B59697A57608D017F6CD8076" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.Printing.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp3F06E0F64BFADFE9A16752C36C8AB5E9" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil5012C842C6797EDC6CB268CDBFB4EF55" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.RichEdit.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmpB9B8CA5F231145E66E84D3BCC98E1B26" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil2CECC29FFB549F3D217710F26A660D5C" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.Utils.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp8BB14DDF35AB3A2A68242C87E091EA3E" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="filBB85192F956EDAC3B01B506DD4E6880C" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.Web.ASPxEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpBC4FDF4CED4051B72B634C98BB1005B2" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil65327FEFF25A703F786BC46DB70700E5" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.Web.ASPxGridView.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpE5F6D4EEE10BD753A25BB8C52BCEF479" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="filDB621A8790A47ACE3BEA19F064A05D94" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.Web.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp733B1689C51273D35B17B16034701C7C" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil5B78EF42FBD3490BD31C30F267242BEC" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.XtraCharts.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpFD6775B616E2D19127CAB89CBD23ABBC" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="filFDB6B39A4ACBA12F09C8A1BCB3BD8B83" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.XtraEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp9086C19828DDC72A74E6BFD7B131F626" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="filD6F1797DE5F98017DDBF384D4B592400" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.XtraPivotGrid.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp4E8D6A13A05B3453824C99858DAE35FF" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil59B534C99A6A4C2A75FB2D5E1091BD71" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.XtraReports.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp4A94BED791CA0F41FC0F3FEE1BD9A153" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil95F99366C8B2F85B55E2195E095C1366" KeyPath="yes" Source="$(var.UIPath)\bin\ja\DevExpress.XtraReports.v12.1.Web.resources.dll" />
+            </Component>
+            <Component Id="cmp992198D96DCD67D2AA479260C87A676B" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil714F3FC858ADDDFE72CE25602A3DA87E" KeyPath="yes" Source="$(var.UIPath)\bin\ja\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp8FDE6B0ECCA2A4FC0487034962E91F09" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil182B2ABD4BF24B4E63450E806BF69528" KeyPath="yes" Source="$(var.UIPath)\bin\ja\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmp5A568B024260643158FDAF703DD72B3F" Directory="dir0E123823153DAE7C05106793A85167BC" Guid="*">
+                <File Id="fil703F4B54B595A462373FAB59A12FBD2B" KeyPath="yes" Source="$(var.UIPath)\bin\ja\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmp6AA7E5E01651F2F815DBF1D5D1D42A6C" Directory="dir450E770EEBC4341CF7E1F8354CC19BFE" Guid="*">
+                <File Id="fil0A893EEBE6338671B705B93C5F414B55" KeyPath="yes" Source="$(var.UIPath)\bin\ko\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmpDA229EE3C2576008180EF3548B478641" Directory="dir450E770EEBC4341CF7E1F8354CC19BFE" Guid="*">
+                <File Id="fil8F16EB121F122115EE3A284508CD4382" KeyPath="yes" Source="$(var.UIPath)\bin\ko\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp75E8C4C59EE9155B9647C21072689215" Directory="dir450E770EEBC4341CF7E1F8354CC19BFE" Guid="*">
+                <File Id="fil168D4EBA83CE87244A27B1B7C400B726" KeyPath="yes" Source="$(var.UIPath)\bin\ko\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmpC884F53DF54C21A1503C91690652BA12" Directory="dir450E770EEBC4341CF7E1F8354CC19BFE" Guid="*">
+                <File Id="filEAEEEF33A102B71CBD19922492308DC2" KeyPath="yes" Source="$(var.UIPath)\bin\ko\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmp1569291D3476DA67CE7FA8AD7DC6553E" Directory="dirCD935008B3633EE426A3C616AFC848B0" Guid="*">
+                <File Id="filBE871BA223855FB6A1DCE2E9082D7BF4" KeyPath="yes" Source="$(var.UIPath)\bin\nl\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp6739C553BE68A042BAD18F4A13E339D2" Directory="dir690D8F5D8A9B7EDEDFE892D0A41B1497" Guid="*">
+                <File Id="fil28FE0C29A8BB09D1E987C0C440D2F372" KeyPath="yes" Source="$(var.UIPath)\bin\pl\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp32C08743D2FB0444D03A05188021E63C" Directory="dir4EE48FDFFDC4D7622D2E43D61680AE4C" Guid="*">
+                <File Id="fil67412E4A5442C83990DCC62AF9C9E024" KeyPath="yes" Source="$(var.UIPath)\bin\pt\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmpC932B92DA9DECBDFC82E7708382C437B" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil84FCB7EC228C659CA958DD5F53FA859A" KeyPath="yes" Source="$(var.UIPath)\bin\ru\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp2208A485A4000D74F0B22C5A3C3ADA17" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil866F0F20C68CC76AB973161C54BBEE8E" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.Data.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp4863780E5641620646E1AF7936A9C73F" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil646CCF1973B5FFAF756856A1DEFC7FA1" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.PivotGrid.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp7EA5B5921DCCFC86C74E610F3E932EEF" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="filB1552EF17F402C92F5550C074EDA3061" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.Printing.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp7B1117178115FEDCAFC9C1A6CF9B716C" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil0AE5A9192F4028973BB4BF6DF47BCDC0" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.RichEdit.v12.1.Core.resources.dll" />
+            </Component>
+            <Component Id="cmp9BC2E1D3EF87B0D4D05D70D2D99D9E5D" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil9EA732BC6770201431707613C61F8F16" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.Utils.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp221677D188E6FA4105FEA473D6EB8EAC" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil3D8B858834473C6A0AB38F4517179C74" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.Web.ASPxEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp2E652144E924B71114567A51F868EACC" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil42E1A7024D05830B52C9776B64793C32" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.Web.ASPxGridView.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpC023C8002FA847A9D67AA9DD23DD1F48" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="filF978ECC43132AFC3C35BE4D056A862A3" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.Web.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp20901878CA98D105CBE416FE366031DB" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="filC65D8305915B5902392B13AE5CE1202D" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.XtraCharts.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp2ADA9F2BAD60928C1B7F3CD2AB831366" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil9488AC393159E75248B6D57DB5660F5F" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.XtraEditors.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmp32906B6EF84ABA0C74A7E59BAC238787" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil1AA88D5CB323754007541DDAED5EE234" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.XtraPivotGrid.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpC54E4634C9CE5C5518B6098399312129" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil23C957EC8C9C24289065CD84A27766AA" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.XtraReports.v12.1.resources.dll" />
+            </Component>
+            <Component Id="cmpD23EECCACD3E072BF050D04211131B23" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil6230082EF12AA54036F94DBD924AC86B" KeyPath="yes" Source="$(var.UIPath)\bin\ru\DevExpress.XtraReports.v12.1.Web.resources.dll" />
+            </Component>
+            <Component Id="cmp4624326ECF9FCC87FBF7773AFE97ABA2" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="filC55F861D7E9658EB1DE5F6026F55CB80" KeyPath="yes" Source="$(var.UIPath)\bin\ru\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp14CEEE242983E03FD5712251D7AC458C" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil1A10205C1C1105B29B2BBA64B823A1A3" KeyPath="yes" Source="$(var.UIPath)\bin\ru\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmp45D1C02B5D794E47C868D5A1DE7ADFB2" Directory="dir6FCB41317DC7EA360D1DCCF000B628D3" Guid="*">
+                <File Id="fil237746C5064254A2857B5573AAF7C4D3" KeyPath="yes" Source="$(var.UIPath)\bin\ru\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmp69B248567657B604624C7328847FC373" Directory="dir80ED1928B2E9F6DE6AAC5DD7EA7F6677" Guid="*">
+                <File Id="filF174B4EBCF432BBB3D6C1DA9626C53D4" KeyPath="yes" Source="$(var.UIPath)\bin\tr-TR\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmpFDFB3099D7D0C2F9D2D2230711E46A26" Directory="dirC666CAF14113E4F3B6540CF7776A69AD" Guid="*">
+                <File Id="filB897B38089DFD9CE57F2F1285CCB6A16" KeyPath="yes" Source="$(var.UIPath)\bin\zh-CHS\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp5BB13099E8A01765A6057342026B94A8" Directory="dirE3877ABCC4661C8C35B41969AA2A4416" Guid="*">
+                <File Id="filA630DB51B70E10EFCD6C6522275FE2C2" KeyPath="yes" Source="$(var.UIPath)\bin\zh-CHT\AjaxControlToolkit.resources.dll" />
+            </Component>
+            <Component Id="cmp24DD0DD3E396F52D51DFE0E6F952452F" Directory="dir9828B38E844CCF15915C2D45C651BD9A" Guid="*">
+                <File Id="fil6ABC628CBD063FFEE44D3BE6BB2FD459" KeyPath="yes" Source="$(var.UIPath)\bin\zh-Hans\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmpBDF2DB1679EB4E41D77177F41816185B" Directory="dir9828B38E844CCF15915C2D45C651BD9A" Guid="*">
+                <File Id="filC84690759DD1DBA62F9B32486B94753E" KeyPath="yes" Source="$(var.UIPath)\bin\zh-Hans\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmp19354A64B9274D1F299F501302FF883F" Directory="dir9828B38E844CCF15915C2D45C651BD9A" Guid="*">
+                <File Id="fil93F37CB4BE9D0979F1CB46A8B3707083" KeyPath="yes" Source="$(var.UIPath)\bin\zh-Hans\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmpA5F775D24619F823DCD09DEAFEEFCD35" Directory="dir9DF21CB4912A3C4C41D983E974B3CA9C" Guid="*">
+                <File Id="fil22D1F3DC48C16FE6C97D3D212353C676" KeyPath="yes" Source="$(var.UIPath)\bin\zh-Hant\Microsoft.Data.Edm.resources.dll" />
+            </Component>
+            <Component Id="cmp26B42A037B2018AEF0F81234CCC55279" Directory="dir9DF21CB4912A3C4C41D983E974B3CA9C" Guid="*">
+                <File Id="fil1DCC2239B2DA6FA7806F83F1FF72D552" KeyPath="yes" Source="$(var.UIPath)\bin\zh-Hant\Microsoft.Data.OData.resources.dll" />
+            </Component>
+            <Component Id="cmp55538361017CC5840BDC322B76F336FD" Directory="dir9DF21CB4912A3C4C41D983E974B3CA9C" Guid="*">
+                <File Id="filFD78D4F81DA6E591B3872B0FE5F18446" KeyPath="yes" Source="$(var.UIPath)\bin\zh-Hant\System.Spatial.resources.dll" />
+            </Component>
+            <Component Id="cmp5F3EC0761688B5EC5BAE14E8BCDEA868" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="filE2085DCA35D02D2176AD6E50DD5B7A6A" KeyPath="yes" Source="$(var.UIPath)\Configuration\AppSettings.config" />
+            </Component>
+            <Component Id="cmp819547A47B09BB240E67B79F44CE5CD7" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil6ECA9472435712F9CD06A7BAA8AD613A" KeyPath="yes" Source="$(var.UIPath)\Configuration\ConnectionStrings.config" />
+            </Component>
+            <Component Id="cmp8BA92B928938E3BB7F82BFE4A86C51B2" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="filF0EB1C099CFE2EFF4230A7E1CF14AADB" KeyPath="yes" Source="$(var.UIPath)\Configuration\ExchangeSettings.config" />
+            </Component>
+            <Component Id="cmp3624C748FD40A6C6696B383BABA175DA" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="filEED28D6BB4BBD24B95881FF089D14694" KeyPath="yes" Source="$(var.UIPath)\Configuration\HibernateConfiguration.config" />
+            </Component>
+            <Component Id="cmp84E16310D7183D4CE2A4F559623588A4" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil08396E7ABFED6FAFCE55481513EEE8B3" KeyPath="yes" Source="$(var.UIPath)\Configuration\MigrationConfiguration.config" />
+            </Component>
+            <Component Id="cmpC1D94585B65B024EAC9804B1F65E68CD" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil41299BD2E4CE6936E24CFC3BAA0269C0" KeyPath="yes" Source="$(var.UIPath)\Configuration\NLog.config" />
+            </Component>
+            <Component Id="cmp37DA83473FD6136A93CF0E833C3E2280" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil2CB7B7AD96F9A019D7786CF6DD541CB2" KeyPath="yes" Source="$(var.UIPath)\Configuration\ProtocolSettingsSection.config" />
+            </Component>
+            <Component Id="cmpB98D4662EFD1652F982AE95079C29DC5" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil1F78425C046F0EB45A9D2A550975F3B4" KeyPath="yes" Source="$(var.UIPath)\Configuration\QuartzJobs.config" />
+            </Component>
+            <Component Id="cmpD1FDE65C3E71B834BE3EBFA726B02BCB" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil083073E42D218AB7DBB80735C3542909" KeyPath="yes" Source="$(var.UIPath)\Configuration\QuartzSettings.config" />
+            </Component>
+            <Component Id="cmpCBEA4CB249F01F3BC78784A65272B2CD" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="filC10ACDF5256B1EEFF33A5B155FB03FBC" KeyPath="yes" Source="$(var.UIPath)\Configuration\SpecialCalendarDaySection.config" />
+            </Component>
+            <Component Id="cmpF63BA1FD96B1F27B386F090B6DF4AD83" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="fil550747F87D577020539668F002F81266" KeyPath="yes" Source="$(var.UIPath)\Configuration\StructureMap.config" />
+            </Component>
+            <Component Id="cmpC286432C56F884FCFB025C9D62E2C58C" Directory="dir66FF808EA2CCD776BC225F431114CD08" Guid="*">
+                <File Id="filB59F624463BE93511A129FBA11773B81" KeyPath="yes" Source="$(var.UIPath)\Configuration\SynchronizationSettings.config" />
+            </Component>
+            <Component Id="cmpCBE9829D5BBC831C6EF0E13E0E87CDDF" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="fil178D15D34C3DB59A341F239E602BC3C3" KeyPath="yes" Source="$(var.UIPath)\Controls\DateBox.js" />
+            </Component>
+            <Component Id="cmp076ED9F03D4647372383CB56DC9A479E" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="fil5465E391237FC5BE43F465419671D4E4" KeyPath="yes" Source="$(var.UIPath)\Controls\DocumentUDLUserControl.ascx" />
+            </Component>
+            <Component Id="cmp8D5CEFE1D97FA83A35704E6CD373ACBC" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="fil47C499F0F5E7556052DEA3F8A2766834" KeyPath="yes" Source="$(var.UIPath)\Controls\Installation.ascx" />
+            </Component>
+            <Component Id="cmpD028357B2D02DC14F668F4A2FCC49955" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="filE97DC221216A5CA336E1C15EBFA54736" KeyPath="yes" Source="$(var.UIPath)\Controls\IssueOfPolicy.ascx" />
+            </Component>
+            <Component Id="cmp5C67184C6CE46DEF24C5254BD7142372" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="filECBA43E7A90E177F3BA5D4F9F7726AEB" KeyPath="yes" Source="$(var.UIPath)\Controls\KLADRIntellisenseUserControl.ascx" />
+            </Component>
+            <Component Id="cmp1D03FF720D66251EC19E4ABCAD17A9E4" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="fil809A6AD994B63A5CC3E87965C6413F17" KeyPath="yes" Source="$(var.UIPath)\Controls\KLADRUserControl.ascx" />
+            </Component>
+            <Component Id="cmp0BDDEBE13F81E83949F51C4B8DCA088F" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="fil044234EB8FA8B68FEB6250CF16056E02" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardControl.ascx" />
+            </Component>
+            <Component Id="cmpF957DD47136668A5B081913F55F39E2B" Directory="dirC802C1059D2CA073D755F12AC2A800A6" Guid="*">
+                <File Id="fil6C0B27641A9B4789B2B094CE44DB1D8F" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementsSearch.ascx" />
+            </Component>
+            <Component Id="cmp3F36C8DA26B527D540BAA185A6601AC8" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil39E868D2D38F9148781EFAA0CB1CB66D" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AddGroupControl.ascx" />
+            </Component>
+            <Component Id="cmp4A8E6995962521F7E64C67F8E2907CE9" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil59A1079DA28A0ADB08626D308D56730B" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AddPermissionControl.ascx" />
+            </Component>
+            <Component Id="cmp696532F5C60E4330BCFDF72B2628E91B" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filB7DD27167E99046961E82259FBF5D4FE" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AddRoleControl.ascx" />
+            </Component>
+            <Component Id="cmpEDF9D4E153050D5A2CBDCD54057391C3" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filA1BF5F443F1718EF2B918DB6DF26888F" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AddUserControl.ascx" />
+            </Component>
+            <Component Id="cmpE1841470BF646D1C43A5A2330D5A08B8" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filB355D7BA411B5149DC0DB323DEFEDA2A" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignGroupsToUserControl.ascx" />
+            </Component>
+            <Component Id="cmp5B2BE5409C0D56CB6E17794460D0CEA4" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filA107E0C58B6765E15222FAF4FFA8A8E4" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignPdpToUserControl.ascx" />
+            </Component>
+            <Component Id="cmpD5CD32556A18EAB0324430675AD07294" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filD193FA7C05F7D58DF7FAB0E1A1B93139" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignPermissionsToRoleControl.ascx" />
+            </Component>
+            <Component Id="cmpA7DB214C4F6DD7C9B6FA4DDC90AA5B9B" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil5A5FA0018A1643677961A6ABE3014E89" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignRolesToGroupControl.ascx" />
+            </Component>
+            <Component Id="cmpC17F39B567B9BC58CBAABB8C3E95C2A3" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil3930D9602BDD514148D0562322F7FB28" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignRolesToPermissionControl.ascx" />
+            </Component>
+            <Component Id="cmpD1C04E0BDF61BC4884898F9255EC5DD0" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil13EE000EEB9944384B1920EA4ECAF269" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignRolesToUserControl.ascx" />
+            </Component>
+            <Component Id="cmp314D9407BEB81509E5E8AF1D712341F2" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filE206A73A2C7DC8DCB3E00BE2A12B649D" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\AssignUsersToGroupControl.ascx" />
+            </Component>
+            <Component Id="cmp1741BE130186C51E2FC5EDB0760EAF9C" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil951AFA3924EB60FBBA8C56CC59A9BA2F" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\GroupsControl.ascx" />
+            </Component>
+            <Component Id="cmp546D77DB6E8F577463DF67040479B870" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filC1D59BD044E70672A4AC6AA5DA32C209" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\PdpDetailWorkstationListControl.ascx" />
+            </Component>
+            <Component Id="cmpF73417F94A5C039E27160E8F6BA8C9B8" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil69D3F3E2140387BF174FFE2AAD94BD76" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\PdpsListDetailControl.ascx" />
+            </Component>
+            <Component Id="cmpB8AE1FDAD0C352855967C0451AC9FCE5" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil2272067F064C72727CF286CB31471128" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\PermissionsControl.ascx" />
+            </Component>
+            <Component Id="cmp2B3447BEB20C97EFF1B63A71580CD79D" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil3D5F06367797676C5467492FF3725212" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\RolesControl.ascx" />
+            </Component>
+            <Component Id="cmp96059785FBD005CAD6EDD66CC87E038E" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil44D806B3C04EF0FC51D0D92EC3DC0A2F" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\SearchByNameControl.ascx" />
+            </Component>
+            <Component Id="cmpAFAF257437213BAAE25875D94D8F6404" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil41B1D37E392B00ADB3DF13F96C9C69FE" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\SmoDetailControl.ascx" />
+            </Component>
+            <Component Id="cmp03DE86FC2001D2870C97522200952B15" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="filFD4F51A062808BD30DCAF3C6B8A9CC92" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\SmosControl.ascx" />
+            </Component>
+            <Component Id="cmp13173F5D2BF88DFB7279CE9F2B010464" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil23F9E72701F8D9D5FC434EA2D1EB42FF" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\UsersControl.ascx" />
+            </Component>
+            <Component Id="cmp12A6E1D1E29F3AB97C334189396DAB3A" Directory="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Guid="*">
+                <File Id="fil743CF20382DBFBF27ECE25F9A9D94B2B" KeyPath="yes" Source="$(var.UIPath)\Controls\Administration\WorkstationDetailControl.ascx" />
+            </Component>
+            <Component Id="cmp28F9F0023FEF7D7BEE25F5B5517E15E4" Directory="dir48D8CBB4CD68B20AAFF23AD23A3D7810" Guid="*">
+                <File Id="fil7ADE35CA60BF9E26E6FFE58D20A53FA3" KeyPath="yes" Source="$(var.UIPath)\Controls\Common\ConfirmControl.ascx" />
+            </Component>
+            <Component Id="cmpE71349D908BD81A23AB972BB7619A52B" Directory="dir48D8CBB4CD68B20AAFF23AD23A3D7810" Guid="*">
+                <File Id="fil3AB7F117138816621D8294C7B23440F2" KeyPath="yes" Source="$(var.UIPath)\Controls\Common\SearchByDatesControl.ascx" />
+            </Component>
+            <Component Id="cmp70F1E99423C2E4E310FED148C3FA96C8" Directory="dir68AEE5E46590BAA23AF0DF0CE9632D47" Guid="*">
+                <File Id="fil71D600F7DE0DD736CD8FC46B9D6CEA8F" KeyPath="yes" Source="$(var.UIPath)\Controls\CustomPager\Pager.ascx" />
+            </Component>
+            <Component Id="cmpC4B0B183D21CD8E891D3A021489C61F9" Directory="dir2C27356EA9194CE1CD4781F8860000F9" Guid="*">
+                <File Id="fil2C801ECF478F3CC1309AA3EF1637D02A" KeyPath="yes" Source="$(var.UIPath)\Controls\NSI\PositionControl.ascx" />
+            </Component>
+            <Component Id="cmpAFF563BD67E4464CD3094F5DCE3A76CD" Directory="dir2C27356EA9194CE1CD4781F8860000F9" Guid="*">
+                <File Id="fil0F58C81C6C6979BAA28FDBF5088DF648" KeyPath="yes" Source="$(var.UIPath)\Controls\NSI\PositionsControl.ascx" />
+            </Component>
+            <Component Id="cmp4888038E6C2BDC273349DA2580BB3696" Directory="dir2C27356EA9194CE1CD4781F8860000F9" Guid="*">
+                <File Id="fil07118F877E3FB95395E621BB07DBBF09" KeyPath="yes" Source="$(var.UIPath)\Controls\NSI\RangeNumberControl.ascx" />
+            </Component>
+            <Component Id="cmpFCF9CDFD22AF88274FDBCC44285453C3" Directory="dir2C27356EA9194CE1CD4781F8860000F9" Guid="*">
+                <File Id="fil448555A52559E7000B352378D1779ECF" KeyPath="yes" Source="$(var.UIPath)\Controls\NSI\TemplatesVsControl.ascx" />
+            </Component>
+            <Component Id="cmpED5765761CCD4776E3637D812B31E64A" Directory="dir2C27356EA9194CE1CD4781F8860000F9" Guid="*">
+                <File Id="fil1E68D585A30052105B4087619FDDA953" KeyPath="yes" Source="$(var.UIPath)\Controls\NSI\TemplateVsControl.ascx" />
+            </Component>
+            <Component Id="cmpC7F337E553DEE1313DB895CDF83EE8EA" Directory="dir45CCB1261436BAE1B54B921C009A5094" Guid="*">
+                <File Id="fil5E1A5BA4496C56E1C93167234A976E6A" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardSteps\Step1.ascx" />
+            </Component>
+            <Component Id="cmp5554C1E54DEDFDA7E964F0C8E924D0B8" Directory="dir45CCB1261436BAE1B54B921C009A5094" Guid="*">
+                <File Id="fil0F90B7A3103E075E9A6086B0DE9A2DE3" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardSteps\Step2.ascx" />
+            </Component>
+            <Component Id="cmpECF3CBC7AB3CA7F9E010FD7C9FF0E30A" Directory="dir45CCB1261436BAE1B54B921C009A5094" Guid="*">
+                <File Id="filA938657E6BE7C14DE1ACD19A1FCE2322" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardSteps\Step3.ascx" />
+            </Component>
+            <Component Id="cmpC8D62746B390083DC186CE551858F607" Directory="dir45CCB1261436BAE1B54B921C009A5094" Guid="*">
+                <File Id="filCC84A1F7A4AF1D0A7602F6274A5197F6" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardSteps\Step4.ascx" />
+            </Component>
+            <Component Id="cmpFE83F8968752AAFE16D1E1552BF9A16F" Directory="dir45CCB1261436BAE1B54B921C009A5094" Guid="*">
+                <File Id="filF871DEE1D44AC94F896A37A7A9FF85D6" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardSteps\Step5.ascx" />
+            </Component>
+            <Component Id="cmp419455BFE10F4972EC6CF61421BB0DF1" Directory="dir45CCB1261436BAE1B54B921C009A5094" Guid="*">
+                <File Id="fil886CAF36A450FB4753C4EC5C7D842D71" KeyPath="yes" Source="$(var.UIPath)\Controls\StatementSelectionWizardSteps\Step6.ascx" />
+            </Component>
+            <Component Id="cmp1EBA26178DA235CE81C214DBEAD6DA58" Directory="dir6DFDB22663D6C6295F7D4BA47B0AED59" Guid="*">
+                <File Id="fil62CFD1D02365DFF5D7A78FBE4DB3EE00" KeyPath="yes" Source="$(var.UIPath)\Controls\Twins\SearchKeyTypeDetailControl.ascx" />
+            </Component>
+            <Component Id="cmp39B4BC913BD2E843DE303E3D3C94E782" Directory="dir6DFDB22663D6C6295F7D4BA47B0AED59" Guid="*">
+                <File Id="fil82193327DE9648F6D54E22609041F8DD" KeyPath="yes" Source="$(var.UIPath)\Controls\Twins\SearchKeyTypesControl.ascx" />
+            </Component>
+            <Component Id="cmp7D102FFD80BBC077F6E0C6EC45278AAF" Directory="dir6DFDB22663D6C6295F7D4BA47B0AED59" Guid="*">
+                <File Id="filA342C3B32D86A54C88DAFDFF335BF4FF" KeyPath="yes" Source="$(var.UIPath)\Controls\Twins\SeparateGridControl.ascx" />
+            </Component>
+            <Component Id="cmp6E537921D39A32F4D1AE9EBC7F34E766" Directory="dir6DFDB22663D6C6295F7D4BA47B0AED59" Guid="*">
+                <File Id="fil4E606382DB8612CE6FC61CAB727B0572" KeyPath="yes" Source="$(var.UIPath)\Controls\Twins\TwinPersonControl.ascx" />
+            </Component>
+            <Component Id="cmp4D45C21CB5EC990BEC24FDEAF8E90BA7" Directory="dir948F819044F1676F7A2B66E21D5299A4" Guid="*">
+                <File Id="fil0FDD7C9C8DC0B1FBA85C41DFE98ED0FC" KeyPath="yes" Source="$(var.UIPath)\HttpHandlers\GetFileHandler.ashx" />
+            </Component>
+            <Component Id="cmp6F066F4473E27029F8EF11DD8055CFAD" Directory="dir948F819044F1676F7A2B66E21D5299A4" Guid="*">
+                <File Id="fil94FC5A28E8CBBAF7C1D0542E7ED5405F" KeyPath="yes" Source="$(var.UIPath)\HttpHandlers\GetPhotoHandler.ashx" />
+            </Component>
+            <Component Id="cmp2C45A49B109BD60B774FE22AE3EFEDB6" Directory="dir948F819044F1676F7A2B66E21D5299A4" Guid="*">
+                <File Id="fil660B2C6BEE1C05FFBD2A6D7F3E54A1CB" KeyPath="yes" Source="$(var.UIPath)\HttpHandlers\UploadPhotoHandler.ashx" />
+            </Component>
+            <Component Id="cmpF25AD852B32A7242BB173B7FA309E2EE" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="filAD81B854BA0604E1B10C7BFBF3C4593E" KeyPath="yes" Source="$(var.UIPath)\Pages\ExportSmoBatches.aspx" />
+            </Component>
+            <Component Id="cmpE8E6393FB00914E75A52C31EDBF69BD3" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil1F93BEA3E02E387A21887E0090BEB4C6" KeyPath="yes" Source="$(var.UIPath)\Pages\Installation.aspx" />
+            </Component>
+            <Component Id="cmp5C5D4C25CF2B90B597E6822DDA43CEDE" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil3670996E0D61A4141776B8B4E3FF29C6" KeyPath="yes" Source="$(var.UIPath)\Pages\InsuranceHistory.aspx" />
+            </Component>
+            <Component Id="cmp8E24B46F18BA27727A5CA7A781E87217" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil38ED62EB8AD557795EDF27AD31F74ED7" KeyPath="yes" Source="$(var.UIPath)\Pages\IssueOfPolicy.aspx" />
+            </Component>
+            <Component Id="cmp6B69166321DAD43AC45465E27897C564" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil38214B95E5E36CBDB2F9E344B5DD3FB9" KeyPath="yes" Source="$(var.UIPath)\Pages\Main.aspx" />
+            </Component>
+            <Component Id="cmpAF1D8DB036A6F7F57E4198ED8555207B" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil0427C80B5844B3026A990D98108B3C78" KeyPath="yes" Source="$(var.UIPath)\Pages\NewStatementSelection.aspx" />
+            </Component>
+            <Component Id="cmpA34FF262816298D8ED498FE0953E89BB" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil2933A855AA72F84CEEE499E2F6282566" KeyPath="yes" Source="$(var.UIPath)\Pages\PfrStatistic.aspx" />
+            </Component>
+            <Component Id="cmp0B4DCB6AC2C164B1DBC0098CE266FBC5" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil166611E2DFB087E215FCE6A73AA54CA7" KeyPath="yes" Source="$(var.UIPath)\Pages\PrintStatement.aspx" />
+            </Component>
+            <Component Id="cmp5FEC0DD70D79FE1E41D597EE96438C77" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="filDECB8081CC18A9D9A1B2D86326DC35AD" KeyPath="yes" Source="$(var.UIPath)\Pages\PrintTemporaryCertificate.aspx" />
+            </Component>
+            <Component Id="cmp08F16226E39F104530A266B3EE658F1E" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil35477BC5EA1E20F191DC0DF69AFC98BF" KeyPath="yes" Source="$(var.UIPath)\Pages\SeparateNew.aspx" />
+            </Component>
+            <Component Id="cmpA61FC0F2CDF10C8279F5AF246F4A7572" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil8735D980C34B2AA3C45B03543AEF6849" KeyPath="yes" Source="$(var.UIPath)\Pages\SeparateOptions.aspx" />
+            </Component>
+            <Component Id="cmp1F8A658DD5C32BCD0AEDDC551E4120C8" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil0588BD8B05A45181C35DE0D72AA449A5" KeyPath="yes" Source="$(var.UIPath)\Pages\Settings.aspx" />
+            </Component>
+            <Component Id="cmpAE92EDED5AF90F2A00276339C0DC5B49" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil463E850ADA4BE040B4A6BB9ACAB48634" KeyPath="yes" Source="$(var.UIPath)\Pages\SMCWrite.aspx" />
+            </Component>
+            <Component Id="cmp5947559C395535FFF9DC2674D40616ED" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="filFD9A8FCE0EEE550767BBB9ADEBDA0B9D" KeyPath="yes" Source="$(var.UIPath)\Pages\StatisticInitialLoading.aspx" />
+            </Component>
+            <Component Id="cmp8C9673A85C9C7169B9305D349C59841A" Directory="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4" Guid="*">
+                <File Id="fil8791752FF9A20C7235377627C21F7140" KeyPath="yes" Source="$(var.UIPath)\Pages\UECWrite.aspx" />
+            </Component>
+            <Component Id="cmp84B428CA93476AF047C2EF1F37D5449D" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filAA39CAF226FDDDEB25A0DF8867B0DCAF" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AdministrationPermissions.aspx" />
+            </Component>
+            <Component Id="cmpA5ED97D6816EB95255DD0377544AB01B" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil1C55194DC4FCB6F701D12C3A67F05E33" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AdministrationRoles.aspx" />
+            </Component>
+            <Component Id="cmp7C3A5B779E30E6221F3AD9D40DDD1BDF" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filCEAC9B24F88FDA067FFFEFCE6D04296E" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AdministrationSmos.aspx" />
+            </Component>
+            <Component Id="cmp51BDDDF2B5634DE41C4799CE1D7C07AA" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filBAC039EC411E0941B261943D52C482BA" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AdministrationUsers.aspx" />
+            </Component>
+            <Component Id="cmpBCAB6BBE43BAA78BC327FD5E4613E0E9" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil9C07F9DDB95D28F5B7F4942ED9FAFF41" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignGroupsToUser.aspx" />
+            </Component>
+            <Component Id="cmpA63624358A0A31181F167DC64374B14E" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil43F4B4CC6A5E8532827D790EA86DC53A" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignPdp.aspx" />
+            </Component>
+            <Component Id="cmpF3100B62305E810F7B6CFE6B899C2496" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil318DDD0150FF47162C3033F04E458DCD" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignPermissionsToRole.aspx" />
+            </Component>
+            <Component Id="cmp7C67B7750B95227F003581A4AF353FAF" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filAFD7A77603C3CA880EED3AC41EA9739D" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignRolesForPermission.aspx" />
+            </Component>
+            <Component Id="cmpDDADD5034B7BA7BFF24427E843C54618" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filE9CB4AEC0002F0CFC7FF27867F768379" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignRolesToGroup.aspx" />
+            </Component>
+            <Component Id="cmp6E2B4CB426A36C38C3F9C18AA2AEDD8C" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil6CA2C85BE0423980458FAA32F6938454" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignRolesToUser.aspx" />
+            </Component>
+            <Component Id="cmpE12D0326C2387850ABE457A14AE77ED1" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil6ABDA22281F5AEE990BC146C8739DF0B" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignUecCertificates.aspx" />
+            </Component>
+            <Component Id="cmp2A751485D31FBCA688295E6BB3DBC86D" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil7A98E010ED6180FF2F320B336B541799" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\AssignUsersToGroup.aspx" />
+            </Component>
+            <Component Id="cmp1D31172EBC4C824CB237146BFC6E5E43" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filACE1E2BE36A723D32E8FB1A02A76DB42" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\BaseAddCancelPage.master" />
+            </Component>
+            <Component Id="cmp4A40A37C9DF364498DF0EE3CFF9F8D2F" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil32F178948535C7A52A9BDBA4C156E45E" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\ErrorSynchronizationView.aspx" />
+            </Component>
+            <Component Id="cmp89148C8F994477CCA332C3B6AC971E2E" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filDD8212CD653581B48FBE834D9EA07543" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\Group.aspx" />
+            </Component>
+            <Component Id="cmp560DBA95715291CFF18197E3DADBD8CB" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil1AF03532DE91BD73597C6936934EFBF2" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\GroupEx.aspx" />
+            </Component>
+            <Component Id="cmpA388E3304EF86D3F210C28494F1C2D30" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filC705F0AB416C831044965FF0C2589AA8" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\JobsProgress.aspx" />
+            </Component>
+            <Component Id="cmpD1594CA789E2416078F4A6C542FE54DA" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil5B20ACD42442DB99C5CE996EB5CA1583" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\JobsSettings.aspx" />
+            </Component>
+            <Component Id="cmp01CDC1A32003D73C332BCBF33433A6AA" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filB230DF7449B9F3A3875D34176F1E9785" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\ManageChecks.aspx" />
+            </Component>
+            <Component Id="cmp6E1E50E8D86FA4C71F12B53432A7272B" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filE39D023FEA63AAD5B186CD845BD3B25C" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\Permission.aspx" />
+            </Component>
+            <Component Id="cmpB50C10CA1F2E56DDB43BF8C2F3708F10" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filE44542CAF2F6BDDFF29FE4B0ADABD829" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\PermissionEx.aspx" />
+            </Component>
+            <Component Id="cmp1DCA6957D77205138BFF92E2D77B8D52" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil5ABBD945B3921E7409574EF5FCB22174" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\Role.aspx" />
+            </Component>
+            <Component Id="cmp6F09AA8002EA1237154BAC823293321D" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filCCC51B19AC6281685B0D0DAB10C3494C" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\RoleEx.aspx" />
+            </Component>
+            <Component Id="cmpC077B0F2B8D196E26B6904663A18C6AD" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filB837835683868222BF805C01DFC3AEC4" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\SiteIsOffline.aspx" />
+            </Component>
+            <Component Id="cmpCA1CB3CB64740DCE3593363C157702AB" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil4DDCE6D39E4BA2144A8F5BA37BD3D8F4" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\SmoAddCancelPage.master" />
+            </Component>
+            <Component Id="cmpB7E350DE04AA12D715BE511268E576E2" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil0386304CF3BC557C250D8AFBB320AED8" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\SmoDetail.aspx" />
+            </Component>
+            <Component Id="cmp1FADDB5F180EEB1AF3CC66979BF772E5" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil3A77E58339D1E843C2C10D97E08FE135" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\SmoDetailEx.aspx" />
+            </Component>
+            <Component Id="cmp4D3D5DCCDE90FFED87AA717EC5CC7962" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil8740E41E1ABFBBF8B927FBC6D3F57B93" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\Tfoms.aspx" />
+            </Component>
+            <Component Id="cmp27A4602402D424A2F042D4510313F0C5" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="filEFB3A55681C7079883F4139AC102DDF4" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\User.aspx" />
+            </Component>
+            <Component Id="cmp12E48C6987BA4EB91D0B13C7EC96FA1F" Directory="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Guid="*">
+                <File Id="fil49D0BF779AD89DC2BCAD493B766435E3" KeyPath="yes" Source="$(var.UIPath)\Pages\Administrations\UserEx.aspx" />
+            </Component>
+            <Component Id="cmp4406462301A39BD11D2ABCBB531D8E54" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="fil9C625486277A6A6B81FFA86958E37FE0" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\Concepts.aspx" />
+            </Component>
+            <Component Id="cmp3FAE34BCBE7254ED27D7CEC2941A929E" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="fil95019AC141D52E71778A5D55A11B7771" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\FirstMiddleName.aspx" />
+            </Component>
+            <Component Id="cmp47B2589FBB0D13DDACD7FE0D645A8002" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="filA4938A21A2ED3AC431E0E971BA3F4159" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\FirstMiddleNames.aspx" />
+            </Component>
+            <Component Id="cmp059747AF2619168E4FE600AAC9C3EF28" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="fil8D72B0FD98F5B540C7DC92E122C0A7BC" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\RangeNumber.aspx" />
+            </Component>
+            <Component Id="cmpB740C530A47E2DFC3E5CF7595D72007E" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="fil4F301A5237520A023050B20190ABAA3E" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\RangeNumbers.aspx" />
+            </Component>
+            <Component Id="cmp81E94368EF7910B79AD5472A2D7F2DDD" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="filBAB3410C66CC5C94C2EEB706EBE41DE2" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\TemplatesVs.aspx" />
+            </Component>
+            <Component Id="cmp99EB38DD98B6594716D710B7DF2218BC" Directory="dir5AECF84AE2CC75B2B9E67D4360C59289" Guid="*">
+                <File Id="fil06D9016E841DC893C6CF473AE2A4E219" KeyPath="yes" Source="$(var.UIPath)\Pages\NSI\TemplateVs.aspx" />
+            </Component>
+            <Component Id="cmp960C89C62FBD6F4C3649BB8703360071" Directory="dir1AF97F3C122E2FF81C617F15ACBCAE2F" Guid="*">
+                <File Id="fil154F1E3CF6D2CA77E71CB177B2147D6A" KeyPath="yes" Source="$(var.UIPath)\Pages\Twins\SearchKeyTypeDetail.aspx" />
+            </Component>
+            <Component Id="cmpDF2090295D813D0CD54B57589C51E199" Directory="dir1AF97F3C122E2FF81C617F15ACBCAE2F" Guid="*">
+                <File Id="filA59219FD17FB1C3300FD5FD172B91481" KeyPath="yes" Source="$(var.UIPath)\Pages\Twins\SearchKeyTypes.aspx" />
+            </Component>
+            <Component Id="cmp7C8EDB9DD6B1E4D4DE390177ABAD58CA" Directory="dir1AF97F3C122E2FF81C617F15ACBCAE2F" Guid="*">
+                <File Id="fil87E7F282E05079E6A51272FCCBE75B1B" KeyPath="yes" Source="$(var.UIPath)\Pages\Twins\Twins.aspx" />
+            </Component>
+            <Component Id="cmp79FA58EB16666D9562E6E3841F628369" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil590DD897BE4C1B18BA293BF60636295B" KeyPath="yes" Source="$(var.UIPath)\Resources\ajax-loader.gif" />
+            </Component>
+            <Component Id="cmp2FC1EFF15479E9AA5DD74754FE5B898A" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil3F6B1BC4AEFC1A87004FC363A0E7098F" KeyPath="yes" Source="$(var.UIPath)\Resources\archive.png" />
+            </Component>
+            <Component Id="cmpAD719B5EBB137F970ADA8DB7C2D77A99" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="filB36675DB386D9BF7CFB60F277E4B0278" KeyPath="yes" Source="$(var.UIPath)\Resources\collapse.png" />
+            </Component>
+            <Component Id="cmp288936C9BC24E40E14AB19C4ADD05304" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil7AE60D8445F72DD82DBEA6E9A4215EC0" KeyPath="yes" Source="$(var.UIPath)\Resources\create.png" />
+            </Component>
+            <Component Id="cmp81451BF649E925F0631DC3F144192E5D" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="filDC3F2D7DECC78D68FF08ED665C7CA15C" KeyPath="yes" Source="$(var.UIPath)\Resources\delete.png" />
+            </Component>
+            <Component Id="cmpBBA054C09945D57B52F33361C005BABC" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil5573DA112563433F1B5FD3820C9B4F60" KeyPath="yes" Source="$(var.UIPath)\Resources\divide.png" />
+            </Component>
+            <Component Id="cmp4DDFA79DD7EA8F701C3C3AC1F5A3EA84" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="filB2093D5792C8770B39FC005EFB6CD708" KeyPath="yes" Source="$(var.UIPath)\Resources\expand.png" />
+            </Component>
+            <Component Id="cmp4E60D60E6DCE3BA49E99C05858E9CF9D" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="filF31EDCFC40AC4745B052A4D8E03D49DB" KeyPath="yes" Source="$(var.UIPath)\Resources\fileupload.png" />
+            </Component>
+            <Component Id="cmpF71F18DB4817B4E94A314330A28C3D12" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil8740C4530FA45054DD55D17F9BD81464" KeyPath="yes" Source="$(var.UIPath)\Resources\open.png" />
+            </Component>
+            <Component Id="cmp3A394B7FEB027D47D680706A93CC1B88" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="filB2BF3F7EAFFE0735F6168962824D0E82" KeyPath="yes" Source="$(var.UIPath)\Resources\settings.png" />
+            </Component>
+            <Component Id="cmp94BC6A04923DB69CB7C16D2C332E29C7" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil7AEDB13742F2B7AFEC83BED0BD0706A6" KeyPath="yes" Source="$(var.UIPath)\Resources\sinc.png" />
+            </Component>
+            <Component Id="cmp5C12C5FA492C18F0F375182912D1AA57" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil4AA9F00FCB173B7B63F6C89CC29570C0" KeyPath="yes" Source="$(var.UIPath)\Resources\smartcard.png" />
+            </Component>
+            <Component Id="cmp2B223DE8614E47579702564613833794" Directory="dir58DB91498A083E2C584EEE625DE5B05E" Guid="*">
+                <File Id="fil148E19AD1CFAC5A2FD1CB663F69AF80B" KeyPath="yes" Source="$(var.UIPath)\Resources\uek2.png" />
+            </Component>
+            <Component Id="cmp11D3A5F33B89F475C837256EB42E117E" Directory="dir1263DEE7A786A7CA156EFF7465F9A6B5" Guid="*">
+                <File Id="fil4B7E78D9917E67BFCB277E0C6D591CD8" KeyPath="yes" Source="$(var.UIPath)\Resources\controls\ArrowHeadSmall.png" />
+            </Component>
+            <Component Id="cmp442256ED8FDE01379610668498949BB8" Directory="dir1303B4515CB9A3D30C19ED415542A181" Guid="*">
+                <File Id="filED117B20755E174A3FD233B159111643" KeyPath="yes" Source="$(var.UIPath)\Resources\Logo\logo.jpg" />
+            </Component>
+            <Component Id="cmpD67D50C8773A55F3BDFD99AB7CA342BD" Directory="dir1303B4515CB9A3D30C19ED415542A181" Guid="*">
+                <File Id="filE3076CE9D764CBA618ADED9E7B79F30B" KeyPath="yes" Source="$(var.UIPath)\Resources\Logo\rintech_160_63.jpg" />
+            </Component>
+            <Component Id="cmp751C58E3916C8481A5067C1AADCA851C" Directory="dir1303B4515CB9A3D30C19ED415542A181" Guid="*">
+                <File Id="filBAA95F9C0F0CBD4FA9EFEE964908FF22" KeyPath="yes" Source="$(var.UIPath)\Resources\Logo\rintech_160_63.png" />
+            </Component>
+            <Component Id="cmpB2C2100045E848615D15E28C1852E5C5" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil14670B2C99723BB1ED4A542BF9A926ED" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\empty.png" />
+            </Component>
+            <Component Id="cmp720D8023DF8D7D93A01B9C741F8010A2" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil4D63BB7238011A18269839E5316C1294" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\full (2).png" />
+            </Component>
+            <Component Id="cmp80BCDDCF12A7C445FFC6B7C87D15F638" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="filC3B2701CAB32CA0278503F251AF67F07" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\full.png" />
+            </Component>
+            <Component Id="cmp0F392FE84D6DE8615C074F475754B2A5" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil56A2080B606AFF76CE969687A7A487CA" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\QampatykB (31).png" />
+            </Component>
+            <Component Id="cmp8E315FB884E0EBAB3675D4391701C45B" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil78350575A35E540FBE0765AA55D7F5E0" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\QampatykB (33).png" />
+            </Component>
+            <Component Id="cmp0D047B323DE893A416CBB1922CEE3DC2" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil036D170C1C98D85EDF1B8FA1B4568CAF" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\QampatykB (37).png" />
+            </Component>
+            <Component Id="cmp468C83E920D797F24FA99F0867989DA3" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="filCB47010634580252A7CD732826E49D91" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\QampatykB (5).png" />
+            </Component>
+            <Component Id="cmp4AA289585800ABC4CB22DE8537128AA5" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil9AA38BE1EA9773CA9505114D3D61023A" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\QampatykB (77).png" />
+            </Component>
+            <Component Id="cmp4761BADED427EE2EC4CD89554B4878B0" Directory="dir37409993EF1DE6668B71ACA3DBDC9C2F" Guid="*">
+                <File Id="fil67DEC44B9D638D1B16D2A70588A893DB" KeyPath="yes" Source="$(var.UIPath)\Resources\qu\QampatykB (87).png" />
+            </Component>
+            <Component Id="cmp7D3D9078C0340E11EA9B48E3D1091327" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="filAA91165B6669B36E32AD07C54D4D3B61" KeyPath="yes" Source="$(var.UIPath)\Resources\search\empty.png" />
+            </Component>
+            <Component Id="cmpF37ACF6FA026065CA0435F1F23147D7B" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="filC3F3BFA91DC41D73F804D19723C5C6BF" KeyPath="yes" Source="$(var.UIPath)\Resources\search\full (2).png" />
+            </Component>
+            <Component Id="cmpDFC2CEE9707AED9043FD8BC26BC97381" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="fil23100BD9D1E46C730EDB0F5E26316CD9" KeyPath="yes" Source="$(var.UIPath)\Resources\search\full.png" />
+            </Component>
+            <Component Id="cmp19D3F3EE74288780785E56FC73EF9F88" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="fil8AAB6123170E468B40E35495673A5D63" KeyPath="yes" Source="$(var.UIPath)\Resources\search\QampatykB (31).png" />
+            </Component>
+            <Component Id="cmp75C913387DEECCBE2D61AB1CF9DD15F3" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="filDB7624B0DD4568079B66421656318258" KeyPath="yes" Source="$(var.UIPath)\Resources\search\QampatykB (33).png" />
+            </Component>
+            <Component Id="cmp7EE65B261C2FE5855233BBB9F2E6CEC4" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="fil281A64B0BD3D0F67EB6BB0595B8E56AA" KeyPath="yes" Source="$(var.UIPath)\Resources\search\QampatykB (37).png" />
+            </Component>
+            <Component Id="cmpAB736B95D2F5B28FCC66DBE6764F2483" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="fil675D15855352126B9F07A6CC877E4AEB" KeyPath="yes" Source="$(var.UIPath)\Resources\search\QampatykB (5).png" />
+            </Component>
+            <Component Id="cmp2068DE1B95296B1AFD1814D3CBE62B17" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="fil3E155664CBBC35A44CA2289C4DF511BC" KeyPath="yes" Source="$(var.UIPath)\Resources\search\QampatykB (77).png" />
+            </Component>
+            <Component Id="cmp00B8B42767FB2FB0801CD96C238EFC71" Directory="dirCAE52BB98B58881AB55AF163DD65A8B4" Guid="*">
+                <File Id="filE1777B7BEEC4EA4C5223A41D72DCD27B" KeyPath="yes" Source="$(var.UIPath)\Resources\search\QampatykB (87).png" />
+            </Component>
+            <Component Id="cmpF3F34BB3781D44219812846C122273DB" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="filBACE632FA7D51F277662F549CF76EE6A" KeyPath="yes" Source="$(var.UIPath)\Scripts\DateTextBox.js" />
+            </Component>
+            <Component Id="cmpC0F0C51002A3807AC544FE000054BE76" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil37E6FE8F6F36CD7F383E3FFEC2DD32AB" KeyPath="yes" Source="$(var.UIPath)\Scripts\ExtenderCustomizer.js" />
+            </Component>
+            <Component Id="cmpAFC044F792E2D297E812CFEFF8720583" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil5CCEC20EA8411A7389E01FA481B350F3" KeyPath="yes" Source="$(var.UIPath)\Scripts\generator.js" />
+            </Component>
+            <Component Id="cmpDB8EFA83B91711B0A0682F202F866ECD" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="filDE70FFBB06A65C27E113D1ACBE523579" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery-1.9.1.js" />
+            </Component>
+            <Component Id="cmp513A1831C33DF731FECE7A3A48A3E8AC" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="filFF258D5F24E8D627E1131A17827FACE2" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery-2.1.0.js" />
+            </Component>
+            <Component Id="cmpA3CCD9504A96ABFB3E9982F36C8277DF" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil72AB40657032F532CFA03092D69EB7AA" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery-2.1.0.min.js" />
+            </Component>
+            <Component Id="cmp70E4754EE943B810DA595F5949D89BEA" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil796E8195C5EE67ED6325C92F6B67DB44" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery-2.1.0.min.map" />
+            </Component>
+            <Component Id="cmp1B8FFF5681047F68EE34EEB34A4A9C67" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil4D889C1541FF72989F2E4EC63740FC01" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery-migrate-1.2.1.js" />
+            </Component>
+            <Component Id="cmp03AEAAC94F1220BA0F9136EB8C73257A" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil669C6BDEC24B9670CA0AFA63D8FAA048" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery.Jcrop.js" />
+            </Component>
+            <Component Id="cmp83A2D25348227D385885B038A5EFFD0C" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="filD57801307B1BF182769088D66DA8FE4E" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery.limitkeypress.js" />
+            </Component>
+            <Component Id="cmp85B3B3E166E80EF49046D039FE27F57D" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil6689ABEEF3C3EB643B8173697B8F9838" KeyPath="yes" Source="$(var.UIPath)\Scripts\jquery.meio.mask.js" />
+            </Component>
+            <Component Id="cmp27B3D40C9FB7ECEDEC0A93B5C158BE4A" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="filE146063DA6DD34EDB17826E291D93C1F" KeyPath="yes" Source="$(var.UIPath)\Scripts\LFM.js" />
+            </Component>
+            <Component Id="cmp40C617212BF557F2B35C2F4663437935" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil274A34091F741B534FE7014A2DFCD7D6" KeyPath="yes" Source="$(var.UIPath)\Scripts\ScrollMethods.js" />
+            </Component>
+            <Component Id="cmpDF5F317451DA6B78E5E857328C131315" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil4F2E182122BCDB15F62780DCA9AE0048" KeyPath="yes" Source="$(var.UIPath)\Scripts\shutter.mp3" />
+            </Component>
+            <Component Id="cmp1D286BC53D6280D30F1C4CAF97994894" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="filE2011DF61459AA1A45C80A0DACBE80DF" KeyPath="yes" Source="$(var.UIPath)\Scripts\webcam.js" />
+            </Component>
+            <Component Id="cmp3E6F07957C5BE109D28354F2840271BF" Directory="dir588999226C5055BEE83B5E729E1CB89D" Guid="*">
+                <File Id="fil4EE7AE6C40FD8A0200EAFA8922EC6288" KeyPath="yes" Source="$(var.UIPath)\Scripts\webcam.swf" />
+            </Component>
+            <Component Id="cmp151AEC9FB678075BB2632A7371CCDB51" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="filAF8703862747CDEFD3789F2423DD6950" KeyPath="yes" Source="$(var.UIPath)\Styles\Administration.css" />
+            </Component>
+            <Component Id="cmpC7B4B93E1E7209223DD35BAB39D27515" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="filD0B4DEFE48B331833B56FCBE609B1CE1" KeyPath="yes" Source="$(var.UIPath)\Styles\Grid.css" />
+            </Component>
+            <Component Id="cmp234A5C3168251E9111B5B3DC547C5113" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="filF51FD64915BBA7652F8DDD916C25F3CA" KeyPath="yes" Source="$(var.UIPath)\Styles\jquery.Jcrop.css" />
+            </Component>
+            <Component Id="cmpEA205D2A3CC86D5659E0EDF8B407A284" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="filCE65D88EB0133C8DBCB5F76E82AF490D" KeyPath="yes" Source="$(var.UIPath)\Styles\Menu.css" />
+            </Component>
+            <Component Id="cmpBC12106E31A19B39756735F0EE57C7C8" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="filD22C53478FA7EB9D80C44C66139451AB" KeyPath="yes" Source="$(var.UIPath)\Styles\NewDesign.css" />
+            </Component>
+            <Component Id="cmpCD12BAD27FD1DA692627DA3761A4BBF8" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="fil9C893563627F072899A56E0514DA2648" KeyPath="yes" Source="$(var.UIPath)\Styles\Site.css" />
+            </Component>
+            <Component Id="cmp62EA342F999751716F1D5A3A7E2643D0" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="fil0256602670AB60053CBF9EC45DA11539" KeyPath="yes" Source="$(var.UIPath)\Styles\Twins.css" />
+            </Component>
+            <Component Id="cmp3E93B9950DE02A14CD2B7DE3F2B1D58C" Directory="dir7255D5C7C740471FBDBA4693642B8355" Guid="*">
+                <File Id="fil0C78298B4528EFFD0827AAE04A4597B2" KeyPath="yes" Source="$(var.UIPath)\Styles\Wizard.css" />
+            </Component>
+            <Component Id="cmpDF24936BE922A62325B67AD6DDB4260C" Directory="dirD88B283FA5E2F9E343639A1D1C3C5BFC" Guid="*">
+                <File Id="fil1E5BC5B6C5966FAE49446D8D9DE3BAF9" KeyPath="yes" Source="$(var.UIPath)\Templates\AuthentificatedPage.Master" />
+            </Component>
+            <Component Id="cmpCBDB9681342B80712547A63775738DE5" Directory="dirD88B283FA5E2F9E343639A1D1C3C5BFC" Guid="*">
+                <File Id="fil368766B61BDDE24E6BFCC7E49C604767" KeyPath="yes" Source="$(var.UIPath)\Templates\AuthentificationPage.Master" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC802C1059D2CA073D755F12AC2A800A6">
+            <Directory Id="dir0320AFEC39A40807FC5A7EAA81AB2ED0" Name="Administration" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir0E123823153DAE7C05106793A85167BC" Name="ja" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir58DB91498A083E2C584EEE625DE5B05E">
+            <Directory Id="dir1263DEE7A786A7CA156EFF7465F9A6B5" Name="controls" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir58DB91498A083E2C584EEE625DE5B05E">
+            <Directory Id="dir1303B4515CB9A3D30C19ED415542A181" Name="Logo" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4">
+            <Directory Id="dir1AF97F3C122E2FF81C617F15ACBCAE2F" Name="Twins" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC802C1059D2CA073D755F12AC2A800A6">
+            <Directory Id="dir2C27356EA9194CE1CD4781F8860000F9" Name="NSI" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir58DB91498A083E2C584EEE625DE5B05E">
+            <Directory Id="dir37409993EF1DE6668B71ACA3DBDC9C2F" Name="qu" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir450E770EEBC4341CF7E1F8354CC19BFE" Name="ko" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC802C1059D2CA073D755F12AC2A800A6">
+            <Directory Id="dir45CCB1261436BAE1B54B921C009A5094" Name="StatementSelectionWizardSteps" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC802C1059D2CA073D755F12AC2A800A6">
+            <Directory Id="dir48D8CBB4CD68B20AAFF23AD23A3D7810" Name="Common" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir4EE48FDFFDC4D7622D2E43D61680AE4C" Name="pt" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4">
+            <Directory Id="dir5AECF84AE2CC75B2B9E67D4360C59289" Name="NSI" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir5C2CDC1AF8FC00C3F9D508278FB769FC" Name="it" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir61F09FFAA1AB4D49B0C6B9A2CFB241D7" Name="ar" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC802C1059D2CA073D755F12AC2A800A6">
+            <Directory Id="dir68AEE5E46590BAA23AF0DF0CE9632D47" Name="CustomPager" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir690D8F5D8A9B7EDEDFE892D0A41B1497" Name="pl" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir6AD67C9BE6A1A8304B315832DFDED64C" Name="fr" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC802C1059D2CA073D755F12AC2A800A6">
+            <Directory Id="dir6DFDB22663D6C6295F7D4BA47B0AED59" Name="Twins" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir6FCB41317DC7EA360D1DCCF000B628D3" Name="ru" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir759E697B69F8D999197625D60D63B825" Name="data" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir80ED1928B2E9F6DE6AAC5DD7EA7F6677" Name="tr-TR" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir9828B38E844CCF15915C2D45C651BD9A" Name="zh-Hans" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC3D2F8B42D5432A4C1B1BE85F2EAA1D4">
+            <Directory Id="dir9A5C67700F494BFBAF74FCB9A99B0E0D" Name="Administrations" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dir9DF21CB4912A3C4C41D983E974B3CA9C" Name="zh-Hant" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirB226D81C05DCA9FABF6F5EE1F94E5B34" Name="es" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirBB0909E53478E45573D61F2422B1B0A1" Name="hi" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirBBC3DDFC73A78CB67FAB5FBCC99DA941" Name="he" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirC666CAF14113E4F3B6540CF7776A69AD" Name="zh-CHS" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir58DB91498A083E2C584EEE625DE5B05E">
+            <Directory Id="dirCAE52BB98B58881AB55AF163DD65A8B4" Name="search" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirCB63A232D5B93095864D053C6231C51A" Name="cs" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirCD935008B3633EE426A3C616AFC848B0" Name="nl" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirE3877ABCC4661C8C35B41969AA2A4416" Name="zh-CHT" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D">
+            <Directory Id="dirED99A1FFB713A54238601CD52F5267CC" Name="de" />
+        </DirectoryRef>
+    </Fragment>
+</Wix>

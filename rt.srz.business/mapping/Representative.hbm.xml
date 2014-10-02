@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.Representative, rt.srz.model" table="[dbo].[Representative]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="FirstName" column="[FirstName]" />
+		<property name="LastName" column="[LastName]" />
+		<property name="MiddleName" column="[MiddleName]" />
+		<property name="HomePhone" column="[HomePhone]" />
+		<property name="WorkPhone" column="[WorkPhone]" />
+		<many-to-one name="Document" column="[DocumentId]" class="Document"  />
+		<many-to-one name="RelationType" column="[RelationTypeId]" class="Concept"  />
+		<bag name="Statements" lazy="true" inverse="true" >
+			<key column="[RepresentativeId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

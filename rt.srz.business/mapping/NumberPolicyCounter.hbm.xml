@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.NumberPolicyCounter, rt.srz.model" table="[dbo].[NumberPolicyCounter]" lazy="true">
+		<id name="Id" column="[Id]">
+		 	<generator class="assigned" />
+		</id>
+		<property name="CurrentNumber" column="[CurrentNumber]" />
+	</class>
+</hibernate-mapping>
+

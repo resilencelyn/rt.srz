@@ -1,0 +1,19 @@
+LIBRARY "Host.dll"
+
+EXPORTS
+
+hostCheckAuthRequestOnline
+hostCheckAuthRequestOffline
+hostPrepareIssuerSession
+hostCheckIssuerSession
+hostPrepareApdus
+hostProcessApdus
+hostPrepareServiceProviderSession
+hostAuthServiceProvider
+hostPrepareAuthResponse
+hostPrepareUnlockPukApdus
+hostEncryptServiceProviderData
+hostDecryptServiceProviderData
+hostPrepareSmIssuerSession
+hostPrepareEditIdDataApdus
+hostPrepareEditPrivateDataApdus

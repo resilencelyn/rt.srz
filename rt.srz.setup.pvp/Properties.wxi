@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<Property Id="PVP_VIRTUALDIR" Value="rt.srz" />
+
+	<SetProperty Id="RTSRZ_CONNECTION_STRING" Value="Data Source=[%COMPUTERNAME];Initial Catalog=rt_srz;Integrated Security=True" Before="AppSearch" Sequence="first" />
+	<SetProperty Id="RTQUARTZ_CONNECTION_STRING" Value="Data Source=[%COMPUTERNAME];Initial Catalog=rt_srz_quartz;Integrated Security=True" Before="AppSearch" Sequence="first" />
+	<SetProperty Id="ATLANTIC_CONNECTION_STRING" Value="Data Source=[%COMPUTERNAME];Initial Catalog=atl_srz_empty;Integrated Security=True" Before="AppSearch" Sequence="first" />
+  <SetProperty Id="SITE_BINDING" Value="" Before="AppSearch" Sequence="first" />
+  <SetProperty Id="EXCHANGE_FOLDER" Value="D:\WorkingExchange" Before="AppSearch" Sequence="first" />
+  <SetProperty Id="BACKUP_FOLDER" Value="D:\WorkingExchange" Before="AppSearch" Sequence="first" />
+	
+</Include>

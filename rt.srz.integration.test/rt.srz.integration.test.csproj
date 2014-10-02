@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{206F94CB-8072-4B72-A9D3-352A0F084326}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.srz.integration.test</RootNamespace>
+    <AssemblyName>rt.srz.integration.test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.640, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.640\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="atl\AtlTest.cs" />
+    <Compile Include="atl\ExporterToAtlTests.cs" />
+    <Compile Include="GoodStatement.cs" />
+    <Compile Include="MedInsuranceTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SituationFactory.cs" />
+    <Compile Include="TestSituation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
+      <Project>{7a4b9d23-8317-45ca-add2-467458dfd464}</Project>
+      <Name>rt.atl.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
+      <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
+      <Name>rt.atl.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
+      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
+      <Name>rt.core.business.security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
+      <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
+      <Name>rt.core.model.client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.service.security\rt.core.service.security.csproj">
+      <Project>{6757d5b1-c420-4332-824f-24dc4253de24}</Project>
+      <Name>rt.core.service.security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
+      <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
+      <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
+      <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>
+      <Name>rt.srz.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
+      <Project>{f247928d-ea65-4d69-bd03-b1e506b09986}</Project>
+      <Name>rt.srz.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.services\rt.srz.services.csproj">
+      <Project>{7a023af8-4aba-4c32-902a-929f308c5813}</Project>
+      <Name>rt.srz.services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Configuration\AppSettings.config" />
+    <None Include="Configuration\BackupSettings.config" />
+    <None Include="Configuration\ConnectionStrings.config" />
+    <None Include="Configuration\ExchangeSettings.config" />
+    <None Include="Configuration\HibernateConfiguration.config" />
+    <None Include="Configuration\NLog.config" />
+    <None Include="Configuration\ProtocolSettingsSection.config" />
+    <None Include="Configuration\QuartzJobs.config" />
+    <None Include="Configuration\QuartzSettings.config" />
+    <None Include="Configuration\SpecialCalendarDaySection.config" />
+    <None Include="Configuration\StructureMap.config" />
+    <None Include="Configuration\SynchronizationSettings.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NHibernateCfgAtl.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

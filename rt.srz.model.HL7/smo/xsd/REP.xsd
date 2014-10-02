@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified"
+           xmlns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="TargetClass.xsd" />
+
+  <xs:complexType name="REPType">
+    <xs:annotation>
+      <xs:documentation>
+        Записи с ответами ТФОМС
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="N_REC" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Уникальный идентификатор записи в обменном файле
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:long" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Идентификатор записи ТФОМС
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CODE_ERP" type="MSA1" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Результат обработки записи
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="COMMENT" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Комментарий к результату обработки
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INSURANCE" type="InsuranceType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Событие страхования
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<!-- Common -->
+	<Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
+	<Property Id="SHORTCUT_PROGRAMMENU" Value="1"/>
+	<Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+	<Property Id="INSTALLLEVEL" Value="25" />
+	<Property Id="ALLUSERS" Secure="yes"/>
+	<Property Id="MACHINENAME" Secure="yes"/>
+
+	<SetProperty Id="COMPUTERUSER" Value="[%USERDOMAIN]\[%COMPUTERNAME]$" Before="AppSearch"/>
+	
+	<Property Id="RTSRZ_TTITLE" Value="БД РТ СРЗ"/>
+	<Property Id="RTQUARTZ_TTITLE" Value="БД РТ КВАРЦ"/>
+	<Property Id="ATLANTIC_TTITLE" Value="БД СРЗ Атлантики"/>
+  <Property Id="SITE_BINDING_TTITLE" Value="Привязка сайта"/>
+  <Property Id="EXCHANGE_FOLDER_TTITLE" Value="Папка для обмена с внешними системами"/>
+  <Property Id="BACKUP_FOLDER_TTITLE" Value="Папка для хранения резервных копий БД"/>
+</Include>

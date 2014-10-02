@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Created with Liquid XML Studio Developer Edition (Trial) 9.1.2.3326 (http://www.liquid-technologies.com) -->
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd" elementFormDefault="qualified"
+           xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="TargetClass.xsd" />
+  <xs:complexType name="ConflictType">
+    <xs:annotation>
+      <xs:documentation>
+        Записи о прекращении страхования, направленные ТФОМС
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="VERS" type="xs:string" minOccurs="0" maxOccurs="1" default="2.0">
+        <xs:annotation>
+          <xs:documentation>
+            Версия
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:long" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Идентификатор записи ТФОМС (ID_HISTORY)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="REASON" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Причина снятия с учёта
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PERSON" type="PersonType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные о застрахованном лице
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOC" type="DocType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные документа, удостоверяющего личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INSURANCE" type="InsuranceType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Событие страхования
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PERSON_CURR" type="PersonType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные о застрахованном лице
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DOC_CURR" type="DocType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Данные документа, удостоверяющего личность
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INSURANCE_CURR" type="InsuranceType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Событие страхования
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConflictListType">
+    <xs:annotation>
+      <xs:documentation>
+        Извещения СМО от ТФОМС о прекращении страхования
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FILENAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя файла
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SMOCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Реестровый номер страховой медицинской организации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PRZCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код пункта выдачи полисов
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NRECORDS" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Число записей всего
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CONFLICT" type="ConflictType" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CONFLICTLIST" type="ConflictListType" />
+</xs:schema>

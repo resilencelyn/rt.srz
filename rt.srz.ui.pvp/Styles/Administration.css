@@ -1,0 +1,191 @@
+﻿/*заголовки основных контролов роли, разрешения, пользователи, группы*/
+.admCaption {
+  padding-left: 2px;
+  border: 1px groove #000000;
+  font-size: xx-large;
+}
+
+/*меню контролов роли, разрешения, пользователи, группы*/
+.admMenu {
+  padding-left: 1px;
+  border: 1px groove #000000;
+  margin-top: 1px;
+  padding-bottom: 5px;
+}
+
+/*содержимое листбоксов на контролах роли, разрешения, пользователи, группы*/
+.admBorder {
+  border: 1px groove #000000;
+  margin-top: 1px;
+}
+
+.admSection {
+  width: 100%;
+  float: left;
+  /*white-space:nowrap*/
+}
+
+.admDivSection {
+  float: left;
+  width: 30%;
+}
+
+.partHeight {
+  height: 500px;
+}
+
+.adm100Width {
+  width: 100%;
+}
+
+/*стиль содержимого, в которое добавляются контролы например для расширенного добавления - используется на странице с кнопками сохранить отменить*/
+.admCompositeControlContent {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px groove #000000;
+}
+
+/*Подписи заголовков на контролах по добавлению, просмотру, назначению элементов*/
+.admControlTitle {
+  font-size: large;
+  text-decoration: underline;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+/*блок кнопок сохранить отменить на контролах по добавлению и просмотру*/
+.admButtons {
+  margin-top: 1px;
+  padding: 5px;
+  border: 1px groove #000000;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+a.LinkButton {
+  color: white;
+  background-color: #5078B3;
+  font-family: Arial, Sans-Serif;
+  font-size: 16px;
+  font-weight: bold;
+  /*padding: 5px;  */
+  /*margin-top: 1px;  */
+  cursor: pointer;
+}
+
+.partPadding {
+  padding: 5px;
+}
+
+/*AddUserControl*/
+.admLabelControl1Fix {
+  float: left;
+  text-align: right;
+  width: 80px;
+}
+
+/*AssignPdpToUserControl*/
+.admLabelControl2Fix {
+  float: left;
+  text-align: right;
+  width: 180px;
+}
+
+/*------------------------------------------------------*/
+/*PdpDetailWorkstationListControl, WorkstationDetailControl*/
+
+.admWorkstationSection {
+  float: left;
+  width: 38%;
+}
+
+.workstationGridPart {
+  height: 210px;
+  overflow: auto;
+}
+
+.admLabelControl {
+  float: left;
+  text-align: right;
+  width: 50%;
+}
+
+.admLabelControl1_4 {
+  float: left;
+  text-align: right;
+  width: 15%;
+}
+
+.admErrorLabel {
+  float: left;
+  width: 100%;
+}
+
+.admValueControl {
+  float: left;
+  width: 50%;
+}
+
+.admValueControl1_4 {
+  float: left;
+  width: 30%;
+}
+
+.admControlPadding {
+  padding-left: 3px;
+  padding-right: 5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+/*------------------------------------------------------*/
+/*Контрол поиска по названию SearchByNameControl*/
+.admSearchByName {
+  border: 1px groove #000000;
+  margin-top: 1px;
+  height: 30px;
+}
+
+.admSearchByNameLabel {
+  float: left;
+  width: 10%;
+  text-align: right;
+}
+
+.admSearchByNameValue {
+  float: left;
+  width: 70%;
+}
+
+.admfloatLeft {
+  float: left;
+}
+
+.admSearchByNamePaddingControl {
+  padding: 5px;
+}
+
+/*------------------------------------------------------*/
+/*стили гридов*/
+.admGridHeader {
+  background-color: #c4d9f2;
+  font-family: Arial;
+  font-size: 12px;
+  color: #4929e2;
+}
+
+.admGridRowStyle {
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.admGridSelectedRowStyle {
+  background-color: #fece71;
+  font-family: Arial;
+  font-size: 12px;
+  color: White;
+}
+

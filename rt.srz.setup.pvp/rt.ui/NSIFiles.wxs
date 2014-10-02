@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <!--<DirectoryRef Id="rt.booting">
+      --><!--<Component Id="rt.ui.Files.Kladr" Guid="*">
+        <File Id="KLADR.DBF" KeyPath="yes" Source="..\..\..\..\Database\KLADR.DBF"/>
+        --><!--<CopyFile Id="KLADR_Dubl.DBF" DestinationDirectory='[EXCHANGE_FOLDER]\In'/>--><!--
+      </Component>
+      <Component Id="rt.ui.Files.Street" Guid="*">
+        <File Id="STREET.DBF" KeyPath="yes" Source="..\..\..\..\Database\STREET.DBF"/>
+        --><!--<CopyFile Id="STREET_Dubl.DBF" DestinationProperty="[EXCHANGE_FOLDER]\In"/>--><!--
+      </Component>--><!--
+      --><!--<Component Id="rt.ui.Files.Tfoms" Guid="*">
+        <File Id="TFoms.xml" KeyPath="yes" Source="..\..\..\..\Database\Справочник ТФОМС.xml"/>
+        --><!--<CopyFile Id="Tfoms_Dubl.xml" DestinationProperty="[EXCHANGE_FOLDER]\In"/>--><!--
+      </Component>
+      <Component Id="rt.ui.Files.Smo" Guid="*">
+        <File Id="Smo.xml" KeyPath="yes" Source="..\..\..\..\Database\Реестр СМО.xml"/>
+        --><!--<CopyFile Id="Smo_Dubl.xml" DestinationProperty="[EXCHANGE_FOLDER]\In"/>--><!--
+      </Component>
+      <Component Id="rt.ui.Files.Mo" Guid="*">
+        <File Id="Mo.xml" KeyPath="yes" Source="..\..\..\..\Database\Реестр МО.xml"/>
+        --><!--<CopyFile Id="Mo.xml" DestinationProperty="rt.exchange"/>--><!--
+      </Component>--><!--
+    </DirectoryRef>-->
+
+    <ComponentGroup Id="rt.ui.Files.Nsi">
+      <!--<ComponentRef Id="rt.ui.Files.Kladr"/>
+      <ComponentRef Id="rt.ui.Files.Street"/>
+      <ComponentRef Id="rt.ui.Files.Tfoms"/>
+      <ComponentRef Id="rt.ui.Files.Smo"/>
+      <ComponentRef Id="rt.ui.Files.Mo"/>-->
+    </ComponentGroup>
+	</Fragment>
+</Wix>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<?include ..\rt.srz.setup.library\Constants.wxi?>
+
+	<?define UpgradeCode="0E4C6C73-FE6B-45AA-A0B6-71FA54D39F00"?>
+	<?define RootDirectory="rt.srz" ?>
+	<?define ProductName="База данных СРЗ" ?>
+	<?define ProductNameFull="$(var.ProductName) $(var.ProductVersion)" ?>
+</Include>

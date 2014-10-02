@@ -1,0 +1,1382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99D9C445-1DFC-45C4-92FA-5F2F8F4E6DF0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.srz.ui.pvp</RootNamespace>
+    <AssemblyName>rt.srz.ui.pvp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <UseIISExpress>false</UseIISExpress>
+    <RestorePackages>true</RestorePackages>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <PlatformTarget>x64</PlatformTarget>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <PublishDatabases>false</PublishDatabases>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.7.1002, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\AjaxControlToolkit\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin, Version=5.1.5007.23725, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\AjaxControlToolkit\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.NLog20">
+      <HintPath>..\packages\Common.Logging.NLog20.2.2.0\lib\net40\Common.Logging.NLog20.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v12.1.Core, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Data.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v12.1.Core, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v12.1.Core, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v12.1.Core, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Printing.v12.1.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v12.1.Core, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Utils.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxEditors.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Web.ASPxEditors.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGridView.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Web.ASPxGridView.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Web.ASPxThemes.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.Web.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.XtraReports.v12.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v12.1.Web, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\DevExpress\DevExpress.XtraReports.v12.1.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ECM7.Migrator, Version=2.8.0.0, Culture=neutral, PublicKeyToken=46e9efbd947bd0df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.dll</HintPath>
+    </Reference>
+    <Reference Include="ECM7.Migrator.Framework, Version=2.8.0.0, Culture=neutral, PublicKeyToken=46e9efbd947bd0df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ECM7.Migrator.Providers.Oracle">
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Providers.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="ECM7.Migrator.Providers.SqlServer">
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Providers.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Serialize.Linq, Version=1.2.0.0, Culture=neutral, PublicKeyToken=25bcc11ba213b377, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Serialize.Linq.1.2\lib\net40\Serialize.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="AuthGate.svc" />
+    <Content Include="Controls\Administration\AddGroupControl.ascx" />
+    <Content Include="Controls\Administration\AddPermissionControl.ascx" />
+    <Content Include="Controls\Administration\AddRoleControl.ascx" />
+    <Content Include="Controls\Administration\AddUserControl.ascx" />
+    <Content Include="Controls\Administration\AssignGroupsToUserControl.ascx" />
+    <Content Include="Controls\Administration\AssignPdpToUserControl.ascx" />
+    <Content Include="Controls\Administration\AssignPermissionsToRoleControl.ascx" />
+    <Content Include="Controls\Administration\AssignRolesToGroupControl.ascx" />
+    <Content Include="Controls\Administration\AssignRolesToPermissionControl.ascx" />
+    <Content Include="Controls\Administration\AssignRolesToUserControl.ascx" />
+    <Content Include="Controls\Administration\AssignUsersToGroupControl.ascx" />
+    <Content Include="Controls\Administration\GroupsControl.ascx" />
+    <Content Include="Controls\Administration\PdpDetailWorkstationListControl.ascx" />
+    <Content Include="Controls\Administration\PdpsListDetailControl.ascx" />
+    <Content Include="Controls\Administration\SearchByNameControl.ascx" />
+    <Content Include="Controls\Administration\SmoDetailControl.ascx" />
+    <Content Include="Controls\Administration\SmosControl.ascx" />
+    <Content Include="Controls\Administration\UsersControl.ascx" />
+    <Content Include="Controls\Administration\WorkstationDetailControl.ascx" />
+    <Content Include="Controls\Common\ConfirmControl.ascx" />
+    <Content Include="Controls\Common\SearchByDatesControl.ascx" />
+    <Content Include="Controls\DateBox.js" />
+    <Content Include="Controls\Installation.ascx" />
+    <Content Include="Controls\DocumentUDLUserControl.ascx" />
+    <Content Include="Controls\IssueOfPolicy.ascx" />
+    <Content Include="Controls\NSI\PositionControl.ascx" />
+    <Content Include="Controls\NSI\PositionsControl.ascx" />
+    <Content Include="Controls\NSI\RangeNumberControl.ascx" />
+    <Content Include="Controls\NSI\TemplateVsControl.ascx" />
+    <Content Include="Controls\NSI\TemplatesVsControl.ascx" />
+    <Content Include="Controls\Twins\SearchKeyTypeDetailControl.ascx" />
+    <Content Include="Controls\Twins\SearchKeyTypesControl.ascx" />
+    <Content Include="Controls\KLADRIntellisenseUserControl.ascx" />
+    <Content Include="Controls\KLADRUserControl.ascx" />
+    <Content Include="Controls\CustomPager\Pager.ascx" />
+    <Content Include="Controls\Administration\RolesControl.ascx" />
+    <Content Include="Controls\Administration\PermissionsControl.ascx" />
+    <Content Include="Controls\StatementSelectionWizardSteps\Step5.ascx" />
+    <Content Include="Controls\StatementSelectionWizardSteps\Step6.ascx" />
+    <Content Include="Controls\StatementsSearch.ascx" />
+    <Content Include="Controls\StatementSelectionWizardSteps\Step1.ascx" />
+    <Content Include="Controls\StatementSelectionWizardControl.ascx" />
+    <Content Include="Controls\StatementSelectionWizardSteps\Step2.ascx" />
+    <Content Include="Controls\Twins\SeparateGridControl.ascx" />
+    <Content Include="Controls\Twins\TwinPersonControl.ascx" />
+    <Content Include="NsiGate.svc" />
+    <Content Include="HttpHandlers\GetPhotoHandler.ashx" />
+    <Content Include="HttpHandlers\UploadPhotoHandler.ashx" />
+    <Content Include="KladrGate.svc" />
+    <Content Include="NHibernateCfgAtl.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="Pages\Administrations\AdministrationPermissions.aspx" />
+    <Content Include="Pages\Administrations\AdministrationRoles.aspx" />
+    <Content Include="Pages\Administrations\AdministrationSmos.aspx" />
+    <Content Include="Pages\Administrations\AdministrationUsers.aspx" />
+    <Content Include="Pages\Administrations\AssignPdp.aspx" />
+    <Content Include="Pages\Administrations\AssignUecCertificates.aspx" />
+    <Content Include="Pages\Administrations\ErrorSynchronizationView.aspx" />
+    <Content Include="Pages\Administrations\Group.aspx" />
+    <Content Include="Pages\Administrations\GroupEx.aspx" />
+    <Content Include="Pages\Administrations\JobsProgress.aspx" />
+    <Content Include="Pages\Administrations\ManageChecks.aspx" />
+    <Content Include="Pages\Administrations\Permission.aspx" />
+    <Content Include="Pages\Administrations\PermissionEx.aspx" />
+    <Content Include="Pages\Administrations\Role.aspx" />
+    <Content Include="Pages\Administrations\RoleEx.aspx" />
+    <Content Include="Pages\Administrations\SiteIsOffline.aspx" />
+    <Content Include="Pages\Administrations\SmoDetail.aspx" />
+    <Content Include="Pages\Administrations\SmoDetailEx.aspx" />
+    <Content Include="Pages\Administrations\Tfoms.aspx" />
+    <Content Include="Pages\Administrations\User.aspx" />
+    <Content Include="Pages\Administrations\UserEx.aspx" />
+    <Content Include="Pages\Administrations\AssignGroupsToUser.aspx" />
+    <Content Include="Pages\Administrations\AssignRolesToGroup.aspx" />
+    <Content Include="Pages\Administrations\AssignRolesToUser.aspx" />
+    <Content Include="Pages\Administrations\AssignUsersToGroup.aspx" />
+    <Content Include="Pages\Administrations\BaseAddCancelPage.master" />
+    <Content Include="Pages\Administrations\SmoAddCancelPage.master" />
+    <Content Include="Configuration\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\StructureMap.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\HibernateConfiguration.config" />
+    <Content Include="Configuration\NLog.config" />
+    <Content Include="Configuration\ExchangeSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\SpecialCalendarDaySection.config" />
+    <Content Include="Configuration\ProtocolSettingsSection.config" />
+    <Content Include="Configuration\SynchronizationSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Browsers\ie.browser">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Browsers\firefox.browser" />
+    <Content Include="HttpHandlers\GetFileHandler.ashx" />
+    <Content Include="Configuration\MigrationConfiguration.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\demo.pubxml" />
+    <Content Include="Pages\IssueOfPolicy.aspx" />
+    <Content Include="Pages\NSI\TemplatesVs.aspx" />
+    <Content Include="Pages\NSI\TemplateVs.aspx" />
+    <Content Include="Pages\Administrations\JobsSettings.aspx" />
+    <Content Include="Pages\SMCWrite.aspx" />
+    <Content Include="Pages\StatisticInitialLoading.aspx" />
+    <Content Include="Resources\controls\ArrowHeadSmall.png" />
+    <Content Include="Resources\Logo\logo.jpg" />
+    <Content Include="Resources\Logo\rintech_160_63.jpg" />
+    <Content Include="Resources\Logo\rintech_160_63.png" />
+    <Content Include="Resources\qu\empty.png" />
+    <Content Include="Resources\qu\full %282%29.png" />
+    <Content Include="Resources\qu\full.png" />
+    <Content Include="Resources\qu\QampatykB %2831%29.png" />
+    <Content Include="Resources\qu\QampatykB %2833%29.png" />
+    <Content Include="Resources\qu\QampatykB %2837%29.png" />
+    <Content Include="Resources\qu\QampatykB %285%29.png" />
+    <Content Include="Resources\qu\QampatykB %2877%29.png" />
+    <Content Include="Resources\qu\QampatykB %2887%29.png" />
+    <Content Include="Resources\search\empty.png" />
+    <Content Include="Resources\search\full %282%29.png" />
+    <Content Include="Resources\search\full.png" />
+    <Content Include="Resources\search\QampatykB %2831%29.png" />
+    <Content Include="Resources\search\QampatykB %2833%29.png" />
+    <Content Include="Resources\search\QampatykB %2837%29.png" />
+    <Content Include="Resources\search\QampatykB %285%29.png" />
+    <Content Include="Resources\search\QampatykB %2877%29.png" />
+    <Content Include="Resources\search\QampatykB %2887%29.png" />
+    <Content Include="Scripts\generator.js" />
+    <Content Include="Styles\NewDesign.css" />
+    <Content Include="Styles\Grid.css" />
+    <Content Include="UirGate.svc" />
+    <Content Include="Configuration\QuartzSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\QuartzJobs.config" />
+    <None Include="Properties\PublishProfiles\deploy.pubxml" />
+    <None Include="Resources\magnifier .png" />
+    <Content Include="Controls\StatementSelectionWizardSteps\Step3.ascx" />
+    <Content Include="Controls\StatementSelectionWizardSteps\Step4.ascx" />
+    <Content Include="Pages\Administrations\AssignPermissionsToRole.aspx" />
+    <Content Include="Pages\Administrations\AssignRolesForPermission.aspx" />
+    <Content Include="Pages\SeparateNew.aspx" />
+    <Content Include="Pages\ExportSmoBatches.aspx" />
+    <Content Include="Pages\Installation.aspx" />
+    <Content Include="Pages\PrintTemporaryCertificate.aspx" />
+    <Content Include="Pages\NSI\Concepts.aspx" />
+    <Content Include="Pages\InsuranceHistory.aspx" />
+    <Content Include="Pages\Main.aspx" />
+    <Content Include="Pages\NewStatementSelection.aspx" />
+    <Content Include="Pages\NSI\RangeNumber.aspx" />
+    <Content Include="Pages\NSI\FirstMiddleName.aspx" />
+    <Content Include="Pages\NSI\FirstMiddleNames.aspx" />
+    <Content Include="Pages\NSI\RangeNumbers.aspx" />
+    <Content Include="Pages\PfrStatistic.aspx" />
+    <Content Include="Pages\PrintStatement.aspx" />
+    <Content Include="Pages\SeparateOptions.aspx" />
+    <Content Include="Pages\Settings.aspx" />
+    <Content Include="Pages\Twins\SearchKeyTypeDetail.aspx" />
+    <Content Include="Pages\Twins\SearchKeyTypes.aspx" />
+    <Content Include="Pages\Twins\Twins.aspx" />
+    <Content Include="Pages\UECWrite.aspx" />
+    <Content Include="Resources\ajax-loader.gif" />
+    <Content Include="Resources\archive.png" />
+    <Content Include="Resources\collapse.png" />
+    <Content Include="Resources\create.png" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\divide.png" />
+    <Content Include="Resources\expand.png" />
+    <Content Include="Resources\fileupload.png" />
+    <Content Include="Resources\open.png" />
+    <Content Include="Resources\settings.png" />
+    <Content Include="Resources\sinc.png" />
+    <Content Include="Resources\smartcard.png" />
+    <Content Include="Resources\uek2.png" />
+    <Content Include="Scripts\ExtenderCustomizer.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery.limitkeypress.js" />
+    <Content Include="Scripts\jquery.meio.mask.js" />
+    <Content Include="Scripts\DateTextBox.js" />
+    <Content Include="Scripts\LFM.js" />
+    <Content Include="Scripts\ScrollMethods.js" />
+    <Content Include="Scripts\shutter.mp3" />
+    <Content Include="Scripts\webcam.js" />
+    <Content Include="Scripts\webcam.swf" />
+    <Content Include="SecurityGate.svc" />
+    <Content Include="SmoGate.svc" />
+    <Content Include="StatementGate.svc" />
+    <Content Include="Styles\Administration.css" />
+    <Content Include="Styles\Twins.css" />
+    <Content Include="Styles\jquery.Jcrop.css" />
+    <Content Include="Styles\Menu.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Styles\Wizard.css" />
+    <Content Include="TFGate.svc" />
+    <Content Include="UecGate.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="rt.srz.key" />
+    <Content Include="Templates\AuthentificatedPage.Master" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IntellisenseController.cs" />
+    <Compile Include="Controls\Administration\AddGroupControl.ascx.cs">
+      <DependentUpon>AddGroupControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AddGroupControl.ascx.designer.cs">
+      <DependentUpon>AddGroupControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AddPermissionControl.ascx.cs">
+      <DependentUpon>AddPermissionControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AddPermissionControl.ascx.designer.cs">
+      <DependentUpon>AddPermissionControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AddRoleControl.ascx.cs">
+      <DependentUpon>AddRoleControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AddRoleControl.ascx.designer.cs">
+      <DependentUpon>AddRoleControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AddUserControl.ascx.cs">
+      <DependentUpon>AddUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AddUserControl.ascx.designer.cs">
+      <DependentUpon>AddUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignGroupsToUserControl.ascx.cs">
+      <DependentUpon>AssignGroupsToUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignGroupsToUserControl.ascx.designer.cs">
+      <DependentUpon>AssignGroupsToUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignPdpToUserControl.ascx.cs">
+      <DependentUpon>AssignPdpToUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignPdpToUserControl.ascx.designer.cs">
+      <DependentUpon>AssignPdpToUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignPermissionsToRoleControl.ascx.cs">
+      <DependentUpon>AssignPermissionsToRoleControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignPermissionsToRoleControl.ascx.designer.cs">
+      <DependentUpon>AssignPermissionsToRoleControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignRolesToGroupControl.ascx.cs">
+      <DependentUpon>AssignRolesToGroupControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignRolesToGroupControl.ascx.designer.cs">
+      <DependentUpon>AssignRolesToGroupControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignRolesToPermissionControl.ascx.cs">
+      <DependentUpon>AssignRolesToPermissionControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignRolesToPermissionControl.ascx.designer.cs">
+      <DependentUpon>AssignRolesToPermissionControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignRolesToUserControl.ascx.cs">
+      <DependentUpon>AssignRolesToUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignRolesToUserControl.ascx.designer.cs">
+      <DependentUpon>AssignRolesToUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignUsersToGroupControl.ascx.cs">
+      <DependentUpon>AssignUsersToGroupControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\AssignUsersToGroupControl.ascx.designer.cs">
+      <DependentUpon>AssignUsersToGroupControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\GroupsControl.ascx.cs">
+      <DependentUpon>GroupsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\GroupsControl.ascx.designer.cs">
+      <DependentUpon>GroupsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\PdpDetailWorkstationListControl.ascx.cs">
+      <DependentUpon>PdpDetailWorkstationListControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\PdpDetailWorkstationListControl.ascx.designer.cs">
+      <DependentUpon>PdpDetailWorkstationListControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\PdpsListDetailControl.ascx.cs">
+      <DependentUpon>PdpsListDetailControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\PdpsListDetailControl.ascx.designer.cs">
+      <DependentUpon>PdpsListDetailControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\SearchByNameControl.ascx.cs">
+      <DependentUpon>SearchByNameControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\SearchByNameControl.ascx.designer.cs">
+      <DependentUpon>SearchByNameControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\SmoDetailControl.ascx.cs">
+      <DependentUpon>SmoDetailControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\SmoDetailControl.ascx.designer.cs">
+      <DependentUpon>SmoDetailControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\SmosControl.ascx.cs">
+      <DependentUpon>SmosControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\SmosControl.ascx.designer.cs">
+      <DependentUpon>SmosControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\UsersControl.ascx.cs">
+      <DependentUpon>UsersControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\UsersControl.ascx.designer.cs">
+      <DependentUpon>UsersControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\WorkstationDetailControl.ascx.cs">
+      <DependentUpon>WorkstationDetailControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\WorkstationDetailControl.ascx.designer.cs">
+      <DependentUpon>WorkstationDetailControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\ConfirmControl.ascx.cs">
+      <DependentUpon>ConfirmControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\ConfirmControl.ascx.designer.cs">
+      <DependentUpon>ConfirmControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\SearchByDatesControl.ascx.cs">
+      <DependentUpon>SearchByDatesControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\SearchByDatesControl.ascx.designer.cs">
+      <DependentUpon>SearchByDatesControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DateBox.cs" />
+    <Compile Include="Controls\Installation.ascx.cs">
+      <DependentUpon>Installation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Installation.ascx.designer.cs">
+      <DependentUpon>Installation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomPager\Delegate.cs" />
+    <Compile Include="Controls\CustomPager\IntegrationPager.cs" />
+    <Compile Include="Controls\DocumentUDLUserControl.ascx.cs">
+      <DependentUpon>DocumentUDLUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\DocumentUDLUserControl.ascx.designer.cs">
+      <DependentUpon>DocumentUDLUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IssueOfPolicy.ascx.cs">
+      <DependentUpon>IssueOfPolicy.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\IssueOfPolicy.ascx.designer.cs">
+      <DependentUpon>IssueOfPolicy.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSI\PositionControl.ascx.cs">
+      <DependentUpon>PositionControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NSI\PositionControl.ascx.designer.cs">
+      <DependentUpon>PositionControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSI\PositionsControl.ascx.cs">
+      <DependentUpon>PositionsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NSI\PositionsControl.ascx.designer.cs">
+      <DependentUpon>PositionsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSI\RangeNumberControl.ascx.cs">
+      <DependentUpon>RangeNumberControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NSI\RangeNumberControl.ascx.designer.cs">
+      <DependentUpon>RangeNumberControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSI\TemplateVsControl.ascx.cs">
+      <DependentUpon>TemplateVsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NSI\TemplateVsControl.ascx.designer.cs">
+      <DependentUpon>TemplateVsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSI\TemplatesVsControl.ascx.cs">
+      <DependentUpon>TemplatesVsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NSI\TemplatesVsControl.ascx.designer.cs">
+      <DependentUpon>TemplatesVsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Twins\SearchKeyTypeDetailControl.ascx.cs">
+      <DependentUpon>SearchKeyTypeDetailControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Twins\SearchKeyTypeDetailControl.ascx.designer.cs">
+      <DependentUpon>SearchKeyTypeDetailControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Twins\SearchKeyTypesControl.ascx.cs">
+      <DependentUpon>SearchKeyTypesControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Twins\SearchKeyTypesControl.ascx.designer.cs">
+      <DependentUpon>SearchKeyTypesControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IKLADRUserControl.cs" />
+    <Compile Include="Controls\KLADRIntellisenseUserControl.ascx.cs">
+      <DependentUpon>KLADRIntellisenseUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\KLADRIntellisenseUserControl.ascx.designer.cs">
+      <DependentUpon>KLADRIntellisenseUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\KLADRUserControl.ascx.cs">
+      <DependentUpon>KLADRUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\KLADRUserControl.ascx.designer.cs">
+      <DependentUpon>KLADRUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomPager\Pager.ascx.cs">
+      <DependentUpon>Pager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomPager\Pager.ascx.designer.cs">
+      <DependentUpon>Pager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\RolesControl.ascx.cs">
+      <DependentUpon>RolesControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\RolesControl.ascx.designer.cs">
+      <DependentUpon>RolesControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\PermissionsControl.ascx.cs">
+      <DependentUpon>PermissionsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Administration\PermissionsControl.ascx.designer.cs">
+      <DependentUpon>PermissionsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSearchMenuItem.cs" />
+    <Compile Include="Controls\StatementSelectionWizardStep.cs" />
+    <Compile Include="Controls\StatementSelectionWizardSteps\IWizardStep.cs" />
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step5.ascx.cs">
+      <DependentUpon>Step5.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step5.ascx.designer.cs">
+      <DependentUpon>Step5.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step6.ascx.cs">
+      <DependentUpon>Step6.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step6.ascx.designer.cs">
+      <DependentUpon>Step6.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\WizardStep.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementsSearch.ascx.cs">
+      <DependentUpon>StatementsSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementsSearch.ascx.designer.cs">
+      <DependentUpon>StatementsSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step1.ascx.cs">
+      <DependentUpon>Step1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step1.ascx.designer.cs">
+      <DependentUpon>Step1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardControl.ascx.cs">
+      <DependentUpon>StatementSelectionWizardControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardControl.ascx.designer.cs">
+      <DependentUpon>StatementSelectionWizardControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step2.ascx.cs">
+      <DependentUpon>Step2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step2.ascx.designer.cs">
+      <DependentUpon>Step2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step3.ascx.cs">
+      <DependentUpon>Step3.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step3.ascx.designer.cs">
+      <DependentUpon>Step3.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step4.ascx.cs">
+      <DependentUpon>Step4.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\StatementSelectionWizardSteps\Step4.ascx.designer.cs">
+      <DependentUpon>Step4.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Twins\SeparateGridControl.ascx.cs">
+      <DependentUpon>SeparateGridControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Twins\SeparateGridControl.ascx.designer.cs">
+      <DependentUpon>SeparateGridControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Twins\TwinPersonControl.ascx.cs">
+      <DependentUpon>TwinPersonControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Twins\TwinPersonControl.ascx.designer.cs">
+      <DependentUpon>TwinPersonControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations\BirthdayLength.cs" />
+    <Compile Include="Enumerations\KLADRControlType.cs" />
+    <Compile Include="Enumerations\PhotoControlType.cs" />
+    <Compile Include="Enumerations\RoleCode.cs" />
+    <Compile Include="Enumerations\Utils.cs" />
+    <Compile Include="Enumerations\UdlHelper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GridViewHelper\GridGroupHelperSimpleSpan.cs" />
+    <Compile Include="GridViewHelper\GridGroupHelper.cs" />
+    <Compile Include="GridViewHelper\GridViewGroup.cs" />
+    <Compile Include="GridViewHelper\GridViewGroupList.cs" />
+    <Compile Include="GridViewHelper\GridViewHelper.cs" />
+    <Compile Include="GridViewHelper\GridViewSummary.cs" />
+    <Compile Include="GridViewHelper\GridViewSummaryList.cs" />
+    <Compile Include="HttpHandlers\GetFileHandler.ashx.cs">
+      <DependentUpon>GetFileHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpHandlers\GetPhotoHandler.ashx.cs">
+      <DependentUpon>GetPhotoHandler.ashx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpHandlers\UploadPhotoHandler.ashx.cs">
+      <DependentUpon>UploadPhotoHandler.ashx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationPermissions.aspx.cs">
+      <DependentUpon>AdministrationPermissions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationPermissions.aspx.designer.cs">
+      <DependentUpon>AdministrationPermissions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationRoles.aspx.cs">
+      <DependentUpon>AdministrationRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationRoles.aspx.designer.cs">
+      <DependentUpon>AdministrationRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationSmos.aspx.cs">
+      <DependentUpon>AdministrationSmos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationSmos.aspx.designer.cs">
+      <DependentUpon>AdministrationSmos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationUsers.aspx.cs">
+      <DependentUpon>AdministrationUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AdministrationUsers.aspx.designer.cs">
+      <DependentUpon>AdministrationUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignPdp.aspx.cs">
+      <DependentUpon>AssignPdp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignPdp.aspx.designer.cs">
+      <DependentUpon>AssignPdp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignUecCertificates.aspx.cs">
+      <DependentUpon>AssignUecCertificates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignUecCertificates.aspx.designer.cs">
+      <DependentUpon>AssignUecCertificates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\ErrorSynchronizationView.aspx.cs">
+      <DependentUpon>ErrorSynchronizationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\ErrorSynchronizationView.aspx.designer.cs">
+      <DependentUpon>ErrorSynchronizationView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\JobsProgress.aspx.cs">
+      <DependentUpon>JobsProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\JobsProgress.aspx.designer.cs">
+      <DependentUpon>JobsProgress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\ManageChecks.aspx.cs">
+      <DependentUpon>ManageChecks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\ManageChecks.aspx.designer.cs">
+      <DependentUpon>ManageChecks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\SiteIsOffline.aspx.cs">
+      <DependentUpon>SiteIsOffline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\SiteIsOffline.aspx.designer.cs">
+      <DependentUpon>SiteIsOffline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\SmoAddCancelPage.master.cs">
+      <DependentUpon>SmoAddCancelPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\SmoAddCancelPage.master.designer.cs">
+      <DependentUpon>SmoAddCancelPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\Group.aspx.cs">
+      <DependentUpon>Group.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\Group.aspx.designer.cs">
+      <DependentUpon>Group.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\GroupEx.aspx.cs">
+      <DependentUpon>GroupEx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\GroupEx.aspx.designer.cs">
+      <DependentUpon>GroupEx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\Permission.aspx.cs">
+      <DependentUpon>Permission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\Permission.aspx.designer.cs">
+      <DependentUpon>Permission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\PermissionEx.aspx.cs">
+      <DependentUpon>PermissionEx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\PermissionEx.aspx.designer.cs">
+      <DependentUpon>PermissionEx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\Role.aspx.cs">
+      <DependentUpon>Role.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\Role.aspx.designer.cs">
+      <DependentUpon>Role.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\RoleEx.aspx.cs">
+      <DependentUpon>RoleEx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\RoleEx.aspx.designer.cs">
+      <DependentUpon>RoleEx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\SmoDetail.aspx.cs">
+      <DependentUpon>SmoDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\SmoDetail.aspx.designer.cs">
+      <DependentUpon>SmoDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\SmoDetailEx.aspx.cs">
+      <DependentUpon>SmoDetailEx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\SmoDetailEx.aspx.designer.cs">
+      <DependentUpon>SmoDetailEx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\Tfoms.aspx.cs">
+      <DependentUpon>Tfoms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\Tfoms.aspx.designer.cs">
+      <DependentUpon>Tfoms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\UserEx.aspx.cs">
+      <DependentUpon>UserEx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\UserEx.aspx.designer.cs">
+      <DependentUpon>UserEx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignGroupsToUser.aspx.cs">
+      <DependentUpon>AssignGroupsToUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignGroupsToUser.aspx.designer.cs">
+      <DependentUpon>AssignGroupsToUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignRolesToGroup.aspx.cs">
+      <DependentUpon>AssignRolesToGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignRolesToGroup.aspx.designer.cs">
+      <DependentUpon>AssignRolesToGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignRolesToUser.aspx.cs">
+      <DependentUpon>AssignRolesToUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignRolesToUser.aspx.designer.cs">
+      <DependentUpon>AssignRolesToUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignUsersToGroup.aspx.cs">
+      <DependentUpon>AssignUsersToGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignUsersToGroup.aspx.designer.cs">
+      <DependentUpon>AssignUsersToGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\BaseAddCancelPage.master.cs">
+      <DependentUpon>BaseAddCancelPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\BaseAddCancelPage.master.designer.cs">
+      <DependentUpon>BaseAddCancelPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignPermissionsToRole.aspx.cs">
+      <DependentUpon>AssignPermissionsToRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignPermissionsToRole.aspx.designer.cs">
+      <DependentUpon>AssignPermissionsToRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignRolesForPermission.aspx.cs">
+      <DependentUpon>AssignRolesForPermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\AssignRolesForPermission.aspx.designer.cs">
+      <DependentUpon>AssignRolesForPermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConceptDto.cs" />
+    <Compile Include="Pages\IssueOfPolicy.aspx.cs">
+      <DependentUpon>IssueOfPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\IssueOfPolicy.aspx.designer.cs">
+      <DependentUpon>IssueOfPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\TemplatesVs.aspx.cs">
+      <DependentUpon>TemplatesVs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\TemplatesVs.aspx.designer.cs">
+      <DependentUpon>TemplatesVs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\TemplateVs.aspx.cs">
+      <DependentUpon>TemplateVs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\TemplateVs.aspx.designer.cs">
+      <DependentUpon>TemplateVs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrations\JobsSettings.aspx.cs">
+      <DependentUpon>JobsSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrations\JobsSettings.aspx.designer.cs">
+      <DependentUpon>JobsSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports\BaseStatementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports\IReport.cs" />
+    <Compile Include="Pages\Reports\StatementReinsuranceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports\StatementReinsuranceReport.Designer.cs">
+      <DependentUpon>StatementReinsuranceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports\StatementReport.Designer.cs">
+      <DependentUpon>StatementReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SMCWrite.aspx.cs">
+      <DependentUpon>SMCWrite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SMCWrite.aspx.designer.cs">
+      <DependentUpon>SMCWrite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StatisticInitialLoading.aspx.cs">
+      <DependentUpon>StatisticInitialLoading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\StatisticInitialLoading.aspx.designer.cs">
+      <DependentUpon>StatisticInitialLoading.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SeparateNew.aspx.cs">
+      <DependentUpon>SeparateNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SeparateNew.aspx.designer.cs">
+      <DependentUpon>SeparateNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExportSmoBatches.aspx.cs">
+      <DependentUpon>ExportSmoBatches.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ExportSmoBatches.aspx.designer.cs">
+      <DependentUpon>ExportSmoBatches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Installation.aspx.cs">
+      <DependentUpon>Installation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Installation.aspx.designer.cs">
+      <DependentUpon>Installation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports\TemporaryCertificateReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\PrintTemporaryCertificate.aspx.cs">
+      <DependentUpon>PrintTemporaryCertificate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PrintTemporaryCertificate.aspx.designer.cs">
+      <DependentUpon>PrintTemporaryCertificate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\Concepts.aspx.cs">
+      <DependentUpon>Concepts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\Concepts.aspx.designer.cs">
+      <DependentUpon>Concepts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InsuranceHistory.aspx.cs">
+      <DependentUpon>InsuranceHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InsuranceHistory.aspx.designer.cs">
+      <DependentUpon>InsuranceHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewStatementSelection.aspx.cs">
+      <DependentUpon>NewStatementSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NewStatementSelection.aspx.designer.cs">
+      <DependentUpon>NewStatementSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\RangeNumber.aspx.cs">
+      <DependentUpon>RangeNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\RangeNumber.aspx.designer.cs">
+      <DependentUpon>RangeNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\FirstMiddleName.aspx.cs">
+      <DependentUpon>FirstMiddleName.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\FirstMiddleName.aspx.designer.cs">
+      <DependentUpon>FirstMiddleName.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\FirstMiddleNames.aspx.cs">
+      <DependentUpon>FirstMiddleNames.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\FirstMiddleNames.aspx.designer.cs">
+      <DependentUpon>FirstMiddleNames.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NSI\RangeNumbers.aspx.cs">
+      <DependentUpon>RangeNumbers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NSI\RangeNumbers.aspx.designer.cs">
+      <DependentUpon>RangeNumbers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PfrStatistic.aspx.cs">
+      <DependentUpon>PfrStatistic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PfrStatistic.aspx.designer.cs">
+      <DependentUpon>PfrStatistic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PrintStatement.aspx.cs">
+      <DependentUpon>PrintStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PrintStatement.aspx.designer.cs">
+      <DependentUpon>PrintStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RepresentativeEx.cs" />
+    <Compile Include="Pages\SeparateOptions.aspx.cs">
+      <DependentUpon>SeparateOptions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SeparateOptions.aspx.designer.cs">
+      <DependentUpon>SeparateOptions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports\StatementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\Twins\SearchKeyTypeDetail.aspx.cs">
+      <DependentUpon>SearchKeyTypeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Twins\SearchKeyTypeDetail.aspx.designer.cs">
+      <DependentUpon>SearchKeyTypeDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Twins\SearchKeyTypes.aspx.cs">
+      <DependentUpon>SearchKeyTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Twins\SearchKeyTypes.aspx.designer.cs">
+      <DependentUpon>SearchKeyTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Twins\Twins.aspx.cs">
+      <DependentUpon>Twins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Twins\Twins.aspx.designer.cs">
+      <DependentUpon>Twins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UECWrite.aspx.cs">
+      <DependentUpon>UECWrite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UECWrite.aspx.designer.cs">
+      <DependentUpon>UECWrite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\PDPMembershipProvider.cs" />
+    <Compile Include="SessionConsts.cs" />
+    <Compile Include="Templates\AuthentificationPage.Master.cs">
+      <DependentUpon>AuthentificationPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Templates\AuthentificationPage.Master.designer.cs">
+      <DependentUpon>AuthentificationPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\AuthentificatedPage.Master.cs">
+      <DependentUpon>AuthentificatedPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Templates\AuthentificatedPage.Master.designer.cs">
+      <DependentUpon>AuthentificatedPage.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\App_Data\" />
+    <Folder Include="WorkingExchange\In\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\AuthentificationPage.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CrystalQuartz\CrystalQuartz.Web\CrystalQuartz.Web.csproj">
+      <Project>{dad3549e-fc6d-4420-b391-ce923a3cad30}</Project>
+      <Name>CrystalQuartz.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
+      <Project>{7a4b9d23-8317-45ca-add2-467458dfd464}</Project>
+      <Name>rt.atl.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
+      <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
+      <Name>rt.core.model.client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.service.security\rt.core.service.security.csproj">
+      <Project>{6757d5b1-c420-4332-824f-24dc4253de24}</Project>
+      <Name>rt.core.service.security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
+      <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
+      <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.business.sqlserver\rt.srz.database.business.sqlserver.sqlproj">
+      <Project>{254bff12-7ed6-4e3e-b916-c535c52606ff}</Project>
+      <Name>rt.srz.database.business.sqlserver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.migration\rt.srz.database.migration.csproj">
+      <Project>{8632aea6-8a98-4d6f-aab5-1112a1e72309}</Project>
+      <Name>rt.srz.database.migration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
+      <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>
+      <Name>rt.srz.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.services\rt.srz.services.csproj">
+      <Project>{7A023AF8-4ABA-4C32-902A-929F308C5813}</Project>
+      <Name>rt.srz.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
+      <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
+      <Name>rt.atl.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
+      <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
+      <Name>rt.srz.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.uec.model\rt.uec.model.csproj">
+      <Project>{aad11904-afd7-4d6a-be28-a7589e9177b8}</Project>
+      <Name>rt.uec.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Reports\BaseStatementReport.resx">
+      <DependentUpon>BaseStatementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Reports\StatementReinsuranceReport.resx">
+      <DependentUpon>StatementReinsuranceReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Reports\TemporaryCertificateReport.resx">
+      <DependentUpon>TemporaryCertificateReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Reports\StatementReport.resx">
+      <DependentUpon>StatementReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>9001</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9000</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

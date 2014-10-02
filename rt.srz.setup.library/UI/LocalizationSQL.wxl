@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="ru-RU" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+	<String Id="msierrSQLFailedCreateDatabase" Overridable="yes">Ошибка [2]: создать базу данных не удалось: [3], подробности: [4].</String>
+	<String Id="msierrSQLFailedDropDatabase" Overridable="yes">Ошибка [2]: удалить базу данных не удалось: [3], подробности: [4].</String>
+	<String Id="msierrSQLFailedConnectDatabase" Overridable="yes">Ошибка подключения к базе данных.  ([2]   [3]   [4]   [5])</String>
+	<String Id="msierrSQLFailedExecString" Overridable="yes">Ошибка [2]: не удалось выполнить SQL скрипт, подробности: [3], SQL key: [4] SQL string: [5]</String>
+	<String Id="msierrSQLDatabaseAlreadyExists" Overridable="yes">База данных [3] уже создана. Хотите продолжить?</String>
+
+	<String Id="ConfigureSql" Overridable="yes">Конфигурирование SQL сервера</String>
+	<String Id="CreateDatabase" Overridable="yes">Создание базы данных</String>
+	<String Id="DropDatabase" Overridable="yes">Удаление базы данных</String>
+	<String Id="ExecuteSqlStrings" Overridable="yes">Выполнение SQL скрипта</String>
+	<String Id="RollbackExecuteSqlStrings" Overridable="yes">Откат выполнения SQL скрипта</String>
+</WixLocalization>

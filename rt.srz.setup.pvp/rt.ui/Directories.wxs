@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ../Constants.wxi?>
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION" DiskId="1">
+      <Directory Id="rt.ui" Name="rt.srz.ui">
+        <Directory Id="rt.ui.Configuration" Name="Configuration"/>
+      </Directory>
+      <!--<Directory Id="rt.booting" Name="rt.srz.booting"></Directory>-->
+    </DirectoryRef>
+  </Fragment>
+</Wix>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+	<Fragment>
+    <Component Id="rt.ui.Configuration.ExchangeSettings" Guid="{CEDA6AB6-0F70-4C33-BDF2-661ECFD918A5}" Directory="rt.ui" >
+      <util:XmlFile Id='rt.ui.exchange.folder' File='[rt.ui.Configuration]ExchangeSettings.config' Action='setValue' ElementPath='/exchangeSettings/@WorkingFolderExchange' Value='[EXCHANGE_FOLDER]' />
+      <util:XmlFile Id='rt.ui.exchange.folder.processed' File='[rt.ui.Configuration]ExchangeSettings.config' Action='setValue' ElementPath='/exchangeSettings/@ProcessedPath' Value='[EXCHANGE_FOLDER]\Processed' />
+      <util:XmlFile Id='rt.ui.exchange.folder.failed' File='[rt.ui.Configuration]ExchangeSettings.config' Action='setValue' ElementPath='/exchangeSettings/@FailedPath' Value='[EXCHANGE_FOLDER]\Failed' />
+      <util:XmlFile Id='rt.ui.exchange.folder.watch' File='[rt.ui.Configuration]ExchangeSettings.config' Action='setValue' ElementPath='/exchangeSettings/DirectoryWatchConfiguration/add[\[]0[\]]/@Path' Value='[EXCHANGE_FOLDER]\In' />
+      <!--<util:XmlFile Id='rt.ui.exchange.folder.booting' File='[rt.ui.Configuration]ExchangeSettings.config' Action='setValue' ElementPath='/exchangeSettings/DirectoryWatchConfiguration/add[\[]1[\]]/@Path' Value='[rt.booting]'/>-->
+
+      <util:XmlFile Id='rt.ui.backup.folder' File='[rt.ui.Configuration]ExchangeSettings.config' Action='setValue' ElementPath='/exchangeSettings/@BackupOutputFolder' Value='[EXCHANGE_FOLDER]\backups' />
+
+      <util:XmlFile Id='rt.ui.nlog.folder' File='[rt.ui.Configuration]NLog.config' Action='setValue' ElementPath='/nlog/targets/target[\[]1[\]]/target/@fileName' Value='[EXCHANGE_FOLDER]\logs\srz.${level}.log'/>
+      <util:XmlFile Id='rt.ui.nlog.folder.arh' File='[rt.ui.Configuration]NLog.config' Action='setValue' ElementPath='/nlog/targets/target[\[]1[\]]/target/@archiveFileName' Value='[EXCHANGE_FOLDER]\logs\archives\${shortdate}.srz.{#####}.${level}.log'/>
+      <CreateFolder/>
+    </Component>
+
+    <ComponentGroup Id="rt.ui.Configuration.Exchange">
+      <ComponentRef Id="rt.ui.Configuration.ExchangeSettings" />
+    </ComponentGroup>
+	</Fragment>
+</Wix>

@@ -1,0 +1,8 @@
+LIBRARY "HAL_RTC.dll"
+
+EXPORTS
+
+rtcGetCurrentDate
+rtcGetTimeStamp
+rtcCompareDates
+rtcGetCurrentDateTimeStr

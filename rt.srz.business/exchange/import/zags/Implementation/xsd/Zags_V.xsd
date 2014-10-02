@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ФайлТФОМС" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="ФайлТФОМС" msdata:IsDataSet="true" msdata:Locale="en-US">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ЗаголовокФайла">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ИмяФайла" type="xs:string" minOccurs="0" />
+              <xs:element name="ВерсияФормата" type="xs:string" minOccurs="0" />
+              <xs:element name="ИсточникДанных" type="xs:string" minOccurs="0" />
+              <xs:element name="НомерОтдела" type="xs:string" minOccurs="0" />
+              <xs:element name="ОтчетныйПериод" type="xs:string" minOccurs="0" />
+              <xs:element name="КоличествоЗаписей" type="xs:string" minOccurs="0" />
+              <xs:element name="ДатаСоставления" type="xs:string" minOccurs="0" />
+              <xs:element name="ФИОРуководителя" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Фамилия" type="xs:string" minOccurs="0" />
+                    <xs:element name="Имя" type="xs:string" minOccurs="0" />
+                    <xs:element name="Отчество" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="СВЕДЕНИЯ_О_СМЕРТИ">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="НомерВпачке" type="xs:string" minOccurs="0" />
+              <xs:element name="ОрганЗАГС" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="НаименованиеОрганизации" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ФИО" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Фамилия" type="xs:string" minOccurs="0" />
+                    <xs:element name="Имя" type="xs:string" minOccurs="0" />
+                    <xs:element name="Отчество" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Пол" type="xs:string" minOccurs="0" />
+              <xs:element name="ДатаРождения" type="xs:string" minOccurs="0" />
+              <xs:element name="МестоРождения" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ТипМестаРождения" type="xs:string" minOccurs="0" />
+                    <xs:element name="ГородРождения" type="xs:string" minOccurs="0" />
+                    <xs:element name="РайонРождения" type="xs:string" minOccurs="0" />
+                    <xs:element name="РегионРождения" type="xs:string" minOccurs="0" />
+                    <xs:element name="СтранаРождения" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ДатаСмерти" type="xs:string" minOccurs="0" />
+              <xs:element name="НомерЗаписиАкта" type="xs:string" minOccurs="0" />
+              <xs:element name="ДатаЗаписиАкта" type="xs:string" minOccurs="0" />
+              <xs:element name="УдостоверяющийДокумент" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="КодУдостоверяющего" type="xs:string" minOccurs="0" />
+                    <xs:element name="ТипУдостоверяющего" type="xs:string" minOccurs="0" />
+                    <xs:element name="Серия" type="xs:string" minOccurs="0" />
+                    <xs:element name="НомерУдостоверяющего" type="xs:string" minOccurs="0" />
+                    <xs:element name="ДатаВыдачи" type="xs:string" minOccurs="0" />
+                    <xs:element name="КемВыдан" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ПоследнееМестоЖительства" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Индекс" type="xs:string" minOccurs="0" />
+                    <xs:element name="Регион" type="xs:string" minOccurs="0" />
+                    <xs:element name="Район" type="xs:string" minOccurs="0" />
+                    <xs:element name="Город" type="xs:string" minOccurs="0" />
+                    <xs:element name="НаселенныйПункт" type="xs:string" minOccurs="0" />
+                    <xs:element name="Улица" type="xs:string" minOccurs="0" />
+                    <xs:element name="Дом" type="xs:string" minOccurs="0" />
+                    <xs:element name="Корпус" type="xs:string" minOccurs="0" />
+                    <xs:element name="Квартира" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI Id="CustomWixUI_Wizard">
+			<UIRef Id="WixUI_Wizard"/>
+
+			<Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="SettingsDialog" Order="2">1</Publish>
+			<Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="SettingsDialog">1</Publish>
+			<Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="SettingsDialog" Order="1">NOT Installed OR WixUI_InstallMode = "Change"</Publish>
+
+			<Publish Dialog="SettingsDialog" Control="Back" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="Next" Event="DoAction" Value="VerifySqlConnection" Order="1">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="Next" Event="SpawnDialog" Value="MessageDialog" Order="2">DIALOG_ERROR_MESSAGE</Publish>
+			<Publish Dialog="SettingsDialog" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="3">NOT DIALOG_ERROR_MESSAGE</Publish>
+
+			<Publish Dialog="SettingsDialog" Control="RtSrzBrowse" Property="CURRENT_CONNECTION" Value="1" Order="1">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="RtSrzBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="RtSrzBrowse" Property="RTSRZ_CONNECTION_STRING" Value="[RTSRZ_CONNECTION_STRING]" Order="3">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Property="CURRENT_CONNECTION" Value="2" Order="1">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Property="RTQUARTZ_CONNECTION_STRING" Value="[RTQUARTZ_CONNECTION_STRING]" Order="3">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Property="CURRENT_CONNECTION" Value="3" Order="1">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
+			<Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Property="ATLANTIC_CONNECTION_STRING" Value="[ATLANTIC_CONNECTION_STRING]" Order="3">1</Publish>
+		</UI>
+
+		<UIRef Id="WixUI_Common" />
+	</Fragment>
+</Wix>

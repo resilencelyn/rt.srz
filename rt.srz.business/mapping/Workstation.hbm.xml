@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.Workstation, rt.srz.model" table="[dbo].[Workstation]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Name" column="[Name]" />
+		<property name="UecReaderName" column="[UecReaderName]" />
+		<property name="UecCerticateType" column="[UecCerticateType]" />
+		<property name="SmardCardReaderName" column="[SmardCardReaderName]" />
+		<property name="SmardCardTokenReaderName" column="[SmardCardTokenReaderName]" />
+		<many-to-one name="PointDistributionPolicy" column="[PointDistributionPolicyId]" class="Organisation"  />
+		<bag name="SertificateUecs" lazy="true" inverse="true" >
+			<key column="[WorkstationId]"></key>
+			<one-to-many class="SertificateUec"></one-to-many>
+		</bag>
+		<bag name="Settings" lazy="true" inverse="true" >
+			<key column="[WorkstationId]"></key>
+			<one-to-many class="Setting"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

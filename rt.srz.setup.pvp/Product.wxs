@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include Constants.wxi?>
+
+	<Product Id="$(var.ProductCode)" Name="$(var.ProductNameFull)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Codepage="$(var.Codepage)" >
+		<Package InstallerVersion="200" Compressed="yes" Manufacturer="$(var.Manufacturer)" SummaryCodepage="$(var.Codepage)" />
+		<Media Id="1" Cabinet="pvp.cab" EmbedCab="yes" />
+
+		<?include "..\rt.srz.setup.library\Properties.wxi"?>
+		<?include "Properties.wxi"?>
+		<?include "..\rt.srz.setup.library\Prerequisite.wxi"?>
+
+		<Upgrade Id="$(var.UpgradeCode)">
+			<UpgradeVersion Minimum="1.0.0.0" Maximum="99.0.0.0" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="no" />
+		</Upgrade>
+
+		<FeatureRef Id="ApplicationFeature"/>
+
+		<CustomAction Id="SetMachineName" Property="MACHINENAME" Value="[ComputerName]" Execute="immediate"></CustomAction>
+		<InstallExecuteSequence>
+			<Custom Action="SetMachineName" After="CostFinalize">Not Installed</Custom>
+			<RemoveExistingProducts After="InstallInitialize" />
+			<InstallExecute After="RemoveExistingProducts" />
+		</InstallExecuteSequence>
+
+		<UI Id="MyWixUI_Wizard">
+			<UIRef Id="CustomWixUI_Wizard" />
+			<UIRef Id="WixUI_ErrorProgressText" />
+		</UI>
+	</Product>
+</Wix>

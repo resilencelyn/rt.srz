@@ -1,0 +1,23 @@
+LIBRARY "HAL_Crypto.dll"
+
+EXPORTS
+
+cryptoPrepareSM
+cryptoProcessSM
+cryptoPrepareSession
+cryptoPrepareSessionGOST
+cryptoPrepareMutualAuthDataRsa
+cryptoPrepareMutualAuthDataGost
+cryptoAuthServiceProvider
+cryptoSetTerminalToProviderSession11
+cryptoEncryptTerminalToProvider11
+cryptoDecryptTerminalToProvider11
+cryptoGetHashSnils
+
+cryptoRsaKeyFromCertificate
+cryptoGostKeyFromCertificate
+cryptoVerifyRsaSignature
+cryptoPublicKeyFromCertificate
+cryptoCalcMessageSignature
+cryptoCheckMessageSignature
+GetRandom

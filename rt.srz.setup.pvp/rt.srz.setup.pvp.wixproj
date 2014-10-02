@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProductVersion>3.8</ProductVersion>
+    <ProjectGuid>{9472ac47-15b7-4fe0-805f-c00b68016643}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>rt.srz.setup.pvp</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SccProjectName>$/GISOMS/Main/GISOMS/SOURCE/PVP/rt.srz.setup.pvp</SccProjectName>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccAuxPath>http://dev.anoter.info:8080/tfs/defaultcollection</SccAuxPath>
+    <SccLocalPath>.</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug;BUILD=$(Configuration);UIPath=..\Binaries;ApplicationVersion=$(ApplicationVersion)</DefineConstants>
+    <Cultures>ru-RU</Cultures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>BUILD=$(Configuration);UIPath=..\Binaries;ApplicationVersion=$(ApplicationVersion)</DefineConstants>
+    <Cultures>ru-RU</Cultures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug;BUILD=$(Configuration);UIPath=..\Binaries;ApplicationVersion=$(ApplicationVersion)</DefineConstants>
+    <Cultures>ru-RU</Cultures>
+    <OutputPath>..\Install\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <DefineConstants>BUILD=$(Configuration);UIPath=..\Binaries;ApplicationVersion=$(ApplicationVersion)</DefineConstants>
+    <Cultures>ru-RU</Cultures>
+    <OutputPath>..\Install\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CustomActions.wxs" />
+    <Compile Include="Directories.wxs" />
+    <Compile Include="Features.wxs" />
+    <Compile Include="Product.wxs" />
+    <Compile Include="rt.ui\Configuration.wxs" />
+    <Compile Include="rt.ui\ConfigurationExchange.wxs" />
+    <Compile Include="rt.ui\ConfigurationIIS.wxs" />
+    <Compile Include="rt.ui\ConfigurationSQL.wxs" />
+    <Compile Include="rt.ui\Directories.wxs" />
+    <Compile Include="rt.ui\Features.wxs" />
+    <Compile Include="rt.ui\Generated.wxs">
+      <Link>rt.ui\Generated.wxs</Link>
+    </Compile>
+    <Compile Include="rt.ui\NSIFiles.wxs" />
+    <Compile Include="UI\CustomWixUI_Wizard.wxs" />
+    <Compile Include="UI\SettingsDialog.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Constants.wxi" />
+    <Content Include="Properties.wxi" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>$(WixExtDir)\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI" />
+    <Folder Include="rt.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rt.srz.setup.CA\rt.srz.setup.CA.csproj">
+      <Name>rt.srz.setup.CA</Name>
+      <Project>{6552ec06-9f57-43a8-8f43-b7240fac03a9}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.setup.library\rt.srz.setup.library.wixproj">
+      <Name>rt.srz.setup.library</Name>
+      <Project>{c4d793b3-a665-41ed-8973-5db6552cdfea}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	-->
+  <Target Name="BeforeBuild">
+    <HeatDirectory PreprocessorVariable="var.UIPath" DirectoryRefId="rt.ui" OutputFile="rt.ui\Generated.wxs" Directory="..\Binaries" SuppressUniqueIds="false" SuppressCom="true" SuppressRegistry="true" SuppressRootDirectory="true" ComponentGroupName="rt.ui.Files" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

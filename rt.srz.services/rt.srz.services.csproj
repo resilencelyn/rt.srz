@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A023AF8-4ABA-4C32-902A-929F308C5813}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.srz.services</RootNamespace>
+    <AssemblyName>rt.srz.services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Serialize.Linq">
+      <HintPath>..\packages\Serialize.Linq.1.2\lib\net40\Serialize.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Atlantiko\AtlGate.cs" />
+    <Compile Include="Atlantiko\AtlService.cs" />
+    <Compile Include="Kladr\KladrGate.cs" />
+    <Compile Include="NSI\NsiGate.cs" />
+    <Compile Include="NSI\NsiGateInternal.cs" />
+    <Compile Include="NSI\NsiService.cs" />
+    <Compile Include="registry\NsiServiceRegistry.cs" />
+    <Compile Include="registry\ServicesRegistry.cs" />
+    <Compile Include="Kladr\KladrGateInternal.cs" />
+    <Compile Include="Kladr\KladrService.cs" />
+    <Compile Include="registry\KladrServiceRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="registry\UirServiceRegistry.cs" />
+    <Compile Include="Security\SecurityGate.cs" />
+    <Compile Include="Security\SecurityGateInternal.cs" />
+    <Compile Include="Security\SecurityService.cs" />
+    <Compile Include="registry\SecurityServiceRegistry.cs" />
+    <Compile Include="Smo\SmoGate.cs" />
+    <Compile Include="Smo\SmoGateInternal.cs" />
+    <Compile Include="Smo\SmoService.cs" />
+    <Compile Include="registry\SmoServiceRegistry.cs" />
+    <Compile Include="Statement\LoggingInterceptorStatement.cs" />
+    <Compile Include="Statement\StatementGateInternal.cs" />
+    <Compile Include="Statement\StatementGate.cs" />
+    <Compile Include="Statement\StatementService.cs" />
+    <Compile Include="registry\StatementServiceRegistry.cs" />
+    <Compile Include="TF\TFGate.cs" />
+    <Compile Include="TF\TFGateInternal.cs" />
+    <Compile Include="TF\TFService.cs" />
+    <Compile Include="registry\TFServiceRegistry.cs" />
+    <Compile Include="Uec\UecGate.cs" />
+    <Compile Include="Uec\UecGateInternal.cs" />
+    <Compile Include="Uec\UecService.cs" />
+    <Compile Include="registry\UecServiceRegistry.cs" />
+    <Compile Include="Uir\UirGate.cs" />
+    <Compile Include="Uir\UirService.cs" />
+    <Compile Include="Uir\UirGateInternal.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
+      <Project>{7A4B9D23-8317-45CA-ADD2-467458DFD464}</Project>
+      <Name>rt.atl.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
+      <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
+      <Name>rt.atl.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
+      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
+      <Name>rt.core.business.security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
+      <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
+      <Name>rt.core.model.client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
+      <Project>{F806BF30-72B9-41EE-8A62-93100A9D30BB}</Project>
+      <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
+      <Project>{49D3899B-FD42-42FD-9734-BAE4C911F7F5}</Project>
+      <Name>rt.srz.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.barcode\rt.srz.model.barcode.csproj">
+      <Project>{9c095cf4-79d1-4b22-b793-ea85ce6ce595}</Project>
+      <Name>rt.srz.model.barcode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
+      <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
+      <Name>rt.srz.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.services.client\rt.srz.services.client.csproj">
+      <Project>{ef604446-6168-4686-9d43-f3b887d0c513}</Project>
+      <Name>rt.srz.services.client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.uec.model\rt.uec.model.csproj">
+      <Project>{aad11904-afd7-4d6a-be28-a7589e9177b8}</Project>
+      <Name>rt.uec.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

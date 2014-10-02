@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.DeadInfo, rt.srz.model" table="[dbo].[DeadInfo]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="DateDead" column="[DateDead]" />
+		<property name="ActRecordDate" column="[ActRecordDate]" />
+		<property name="ActRecordNumber" column="[ActRecordNumber]" />
+		<bag name="InsuredPeople" lazy="true" inverse="true" >
+			<key column="[DeadInfoId]"></key>
+			<one-to-many class="InsuredPerson"></one-to-many>
+		</bag>
+		<bag name="QueryResponses" lazy="true" inverse="true" >
+			<key column="[DeadInfoId]"></key>
+			<one-to-many class="QueryResponse"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

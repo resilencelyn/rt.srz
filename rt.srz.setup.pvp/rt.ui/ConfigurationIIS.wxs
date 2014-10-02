@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+	<Fragment>
+		
+    <DirectoryRef Id="rt.ui">
+      <Component Id="rt.ui.Configuration.IIS.WebSite" Guid="{ECCD7073-B569-4D80-9022-7D0BB29770B2}" KeyPath="yes">
+        <CreateFolder/>
+        <iis:WebAppPool Id="rt.ui.srz.Pool" Name="rt.ui.srz.Pool" ManagedRuntimeVersion="v4.0" IdleTimeout="0" RecycleMinutes="0" ManagedPipelineMode="integrated"/>
+        <iis:WebSite Id="rt.ui.srz" Description='SRZ Web Site' Directory='rt.ui' AutoStart='yes'>
+          <iis:WebAddress Id="AllUnassigned" Port="80" IP="*" Header='[SITE_BINDING]'/>
+          <iis:WebApplication Id="rt.ui.WebApplication" Name="SRZ Web Site" WebAppPool="rt.ui.srz.Pool"/>
+        </iis:WebSite>
+      </Component>
+    </DirectoryRef>
+
+		<ComponentGroup Id="rt.ui.Configuration.IIS">
+      <ComponentRef Id="rt.ui.Configuration.IIS.WebSite" />
+    </ComponentGroup>
+	</Fragment>
+</Wix>

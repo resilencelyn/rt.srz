@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<?define ProductVersion="!(bind.FileVersion.rt.uec.service.dll)" ?>
+	<?define ProductName="Сервис чтения УЭК" ?>
+	<?define ProductNameFull="$(var.ProductName) $(var.ProductVersion)" ?>
+	<?define ProductCode="A165E111-6D2E-4BD4-B025-0AACBAF3B55D"?>
+	<?define UpgradeCode="8EC605C7-93E3-474B-B85E-998260B845A5"?>
+	<?define Manufacturer='РусБИТех' ?>
+	<?define Codepage="1251" ?>
+	<?define UecBaseDir="..\rt.uec.service\"?>
+</Include>

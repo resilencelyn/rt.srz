@@ -1,0 +1,72 @@
+﻿/*********************грид формы поиска********************************/
+.GridHeaderS {
+  background-color: #c1d87c; /*#A7DBE0;*/
+  font-family: Arial;
+  font-size: 12px;
+  color: darkslategray; /*#5e6668;*/ /*#01697e;*/
+  text-align: center;
+}
+
+.ItemGrid /* th a:link, a:hover */ {
+}
+
+.GridRowStyleS {
+  font-family: Arial;
+  font-size: 12px;
+  color: gray;
+  text-align: center;
+  background-color: #eefce1; /*#eaf9dc;*/
+}
+
+.GridSelectedRowStyleS {
+  background-color: #fece71;
+  font-family: Arial;
+  font-size: 12px;
+  color: White;
+  text-align: center;
+}
+
+/******************************гриды**********************************************/
+
+.CheckHeader {
+  background-color: #FFCC00;
+}
+
+.CheckItem {
+  background-color: #fdf2c6;
+}
+
+.GridHeader {
+  background-color: #c1d87c;
+  font-family: Arial;
+  font-size: 12px;
+  color: darkslategray;
+  text-align: center;
+}
+
+.ItemGrid /* th a:link, a:hover */ {
+}
+
+.GridFooterStyle {
+  background-color: #c1d87c;
+  border: none;
+}
+
+  .GridFooterStyle td, .GridFooterStyle th {
+    border: none;
+  }
+
+.GridRowStyle {
+  font-family: Arial;
+  font-size: 12px;
+  text-align: center;
+  background-color: #eefce1; /*#eaf9dc;*/
+}
+
+.GridSelectedRowStyle {
+  background-color: #fece71;
+  font-family: Arial;
+  font-size: 12px;
+  color: White;
+  text-align: center;
+}

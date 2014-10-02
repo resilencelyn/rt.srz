@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>My Com Component</title>
+        <object id="myComComponent" name="myComComponent" classid="clsid:6C20493B-E51F-4CCC-A3FA-64CD7CEED2C7">
+        </object>
+        <script language="javascript" type="text/javascript">
+            function myButton_click() {
+                
+                try
+                {
+                    var res = myComComponent.OpenCard('lCTvbHZmX2TRl1U5dRB4hzWsK3mGAXcCc2VLJ3dUF9O7jDsYVM8olZQLv1QaTXqL8PiZ7z00eVfJJzbNe77x18V+0m1TY8lQXQOv1UmBP6nzEjPF8F43OvxmOEFEP5r3G6jK8Y/NBrebxVX6XJPQy8YUPn39yJj96TI9CNNVjNg=');
+                    alert(res.ErrorString);
+                } catch(e) {
+                    alert(e);
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <h1>My Com Component</h1>
+        <table>
+            <tr>
+                <td>
+                    <button id="myButton" onclick=" myButton_click(); ">Com Method</button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

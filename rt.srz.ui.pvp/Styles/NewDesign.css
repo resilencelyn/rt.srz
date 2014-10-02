@@ -1,0 +1,565 @@
+﻿/***************************сайт общие настройки****************************/
+
+body {
+  background: #b6b7bc;
+  font-size: .80em;
+  font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  color: #8c7844;
+
+  scrollbar-arrow-color: #6bb466;
+  scrollbar-face-color: #e5cf99;
+  scrollbar-track-color: #e9eab9;
+}
+
+a:link, a:visited {
+  color: #42721e;
+}
+
+a:hover {
+  color: #659541;
+  text-decoration: none;
+}
+
+a:active {
+  color: #b9ed94;
+  background: transparent;
+}
+
+.page {
+  width: 1200px;
+  background-color: #fff;
+  margin: 20px auto 0px auto;
+  border: 1px solid #496077;
+}
+
+.header {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  background: /*#8bc84f;*/ #178497; /*0091af*/ /*#4b6c9e;*/
+  width: 100%;
+  background: linear-gradient(to left, #42721e, #f1da36);
+  /*background: linear-gradient(to left, #fefcea, #f1da36);*/
+}
+
+.main {
+  width: 100%;
+  min-height: 420px;
+  background-color: #fdfef3;
+}
+
+.syncTime {
+  width: 100%;
+  background-color: #fdfef3;
+}
+
+/************************общее**********************/
+
+/*заголовки*/
+
+/*главное название формы на странице*/
+.formTitle {
+  color: #948356;
+  font-size: xx-large;
+  padding-bottom: 10px;
+}
+
+/*подписи разделов на форме*/
+.headerTitles {
+  font-size: large;
+  text-decoration: underline;
+  color: #ac9c71;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+/*подписи разделов второго уровня*/
+.headerSubTitles {
+  font-weight: bold;
+  color: #ac9c71;
+  padding-bottom: 7px;
+}
+
+/*разделитель*/
+.separator {
+  margin-bottom: 7px;
+  border-bottom: 1px solid #ac9c71;
+  height: 7px;
+  color: #ac9c71;
+  width: 100%;
+}
+
+*::selection {
+  background-color: #129C73; /*13969b*/
+  color: white;
+}
+
+.copyRight {
+  text-align: center;
+  font-size: 0.8em;
+  background-color: #e5e5e5;
+  padding-right: 10px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ac9c71;
+  color: black;
+  vertical-align: bottom;
+  /*background: linear-gradient(to top, #ad974c, #fdfef3);*/
+}
+
+.dataNotFound {
+  padding: 10px;
+  text-align: center;
+  color: #993300;
+  background: transparent;
+  font-size: large;
+  text-decoration: underline;
+  color: #ac9c71;
+  font-weight: bold;
+}
+
+.error {
+  text-align: left;
+  color: Red;
+  font-weight: Bold;
+  font-size: 1.2em;
+}
+
+.message-success {
+  color: #009900;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 20px 0 10px 0;
+}
+
+.paddingGridMenu {
+  padding: 5px;
+}
+
+.pagerPadding {
+  padding-top: 10px;
+}
+
+.padding5 {
+  padding: 5px;
+}
+
+.contentPadding {
+  padding: 10px;
+}
+
+.dialogContentPadding {
+  padding: 10px;
+}
+
+.padding_ltb5 {
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/**********************форма логина************************************/
+.loginContent {
+  padding: 25px;
+  width: 50%;
+  /*margin-left: auto;
+  margin-right: auto;*/
+}
+
+.loginHeader {
+  font-size: large;
+  color: #ac9c71; /*#486B79;*/
+  font-weight: bold;
+  padding-bottom: 10px;
+  /*text-align: center;*/
+}
+
+.accountInfo {
+  width: 50%;
+}
+
+.accountInfoPadding {
+  padding-top: 10px;
+}
+/**********************форма поиска********************/
+
+/*содержимое формы поиска*/
+.contentSearch {
+  /*padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 15px;
+  padding-right: 15px;*/
+}
+
+/*левая часть фильтров*/
+.searchFilter1 {
+  float: left;
+  width: 60%;
+}
+
+/*правая часть фильтров*/
+.searchFilter2 {
+  float: left;
+  width: 40%;
+}
+
+/*Отступы частей фильтра - !!!не объединять с searchFilter1 и searchFilter2*/
+.searchPartsPadding {
+  padding: 5px;
+}
+
+/*Отступы контролов внутри дива поиска*/
+.searchPartsControlPadding {
+  padding: 1px;
+}
+
+/*подписи контролов 2 части формы поиска*/
+.searchPart2_1 {
+  float: left;
+  width: 35%;
+}
+
+/*Контролы 2 части формы поиска*/
+.searchPart2_2 {
+  float: left;
+  width: 65%;
+}
+
+/*подписи контролов 1 части формы поиска*/
+.searchPart1_1 {
+  float: left;
+  width: 25%;
+}
+
+/*Контролы 1 части формы поиска*/
+.searchPart1_2 {
+  float: left;
+  width: 75%;
+}
+
+
+.labelsColumn {
+  width: 30%;
+  text-align: right;
+}
+
+.valuesColumn {
+  width: 70%;
+  text-align: left;
+}
+
+.paddingValues {
+  padding-left: 20px;
+}
+
+/**********************прогресс формы поиска********************/
+.updatePanelWithProgressDiv {
+  position: relative;
+}
+
+.updateProgressPositionDiv {
+  width: 230px;
+  position: absolute;
+  top: 20%;
+  left: 45%;
+  margin-left: -50px;
+  margin-right: -10px;
+}
+
+.updateProgress {
+  /*border-radius: 4px;*/
+  border: 1px solid #993300;
+  background-color: #f1da36; /*#e9f7cf;*/
+  width: 100%;
+  text-align: center;
+  color: #993300;
+}
+
+
+
+/***************************wizard заявления********************************/
+
+.wizardContent {
+  border-top: 1px solid #ac9c71;
+  padding-bottom: 20px;
+}
+
+#wizHeader li .prevStep {
+  background-color: #92DF11; /*#70adb9;*/ /*#669966;*/
+  color: #336600; /*#696969;*/
+}
+
+  #wizHeader li .prevStep:after {
+    border-left-color: #92DF11; /*#669966 !important;*/
+  }
+
+#wizHeader li .currentStep {
+  background-color: #FCE965;
+  color: #FD4D3E;
+}
+
+  #wizHeader li .currentStep:after {
+    border-left-color: #FCE965; /*#EFFA2E;*/
+    color: black;
+  }
+
+#wizHeader li .nextStep {
+  background-color: #e5e5e5;
+  color: #B1B1B1;
+}
+
+  #wizHeader li .nextStep:after {
+    border-left-color: #e5e5e5 !important;
+  }
+
+#wizHeader {
+  list-style: none;
+  overflow: hidden;
+  font: 18px Helvetica, Arial, Sans-Serif;
+  margin: 0px;
+}
+
+  #wizHeader li {
+    float: left;
+  }
+
+    #wizHeader li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 0 10px 55px;
+      background: brown; /* fallback color */
+      background: hsla(34,85%,35%,1);
+      position: relative;
+      display: block;
+      float: left;
+    }
+
+      #wizHeader li a:after {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+        border-bottom: 50px solid transparent;
+        border-left: 30px solid hsla(34,85%,35%,1);
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+        left: 100%;
+        z-index: 2;
+      }
+
+      #wizHeader li a:before {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+        border-left: 30px solid white;
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+        margin-left: 1px;
+        left: 100%;
+        z-index: 1;
+      }
+
+    #wizHeader li:first-child a {
+      padding-left: 10px;
+    }
+
+    #wizHeader li:last-child {
+      padding-right: 50px;
+    }
+
+    #wizHeader li a:hover {
+      background: #FFCC00; /*#FE9400;*/
+      color: white;
+    }
+
+      #wizHeader li a:hover:after {
+        border-left-color: #FFCC00 !important;
+      }
+
+
+/********************************подписи и контролы***********************************/
+.labelControl {
+  float: left;
+  text-align: right;
+  width: 30%;
+}
+
+.valueControl {
+  float: left;
+  width: 70%;
+}
+
+.controlPadding {
+  padding: 1px;
+}
+
+.labelPadding {
+  padding: 1px 20px 1px 1px;
+}
+
+
+
+/**********************************общие контролы*********************************************/
+
+.listbox {
+  background: #eefce1;
+  padding: 5px;
+  border: 1px solid darkgray;
+}
+
+.buttons, input[type=button] {
+  height: 30px;
+  background-color: #eaeec6 /*#bde4b5*/ /*#cff3ef */ /*#c4e5ec*/;
+  border-radius: 4px;
+  border: solid 1px #42721e;
+  color: #42721e; /*#106e57;*/ /*#06888E;*/ /*#02677c;*/
+}
+
+  .buttons:hover, buttons:focus,
+  input[type=button]:hover, input[type="button"]:focus {
+    height: 30px;
+    border-radius: 4px;
+    /*border: solid 1px #f59502;*/
+    text-decoration: underline;
+    background-color: #b9ed94; /*#0091af;*/ /*#e3f7fb;*/
+    color: black; /*#5998a5;*/
+  }
+
+  input[type=button][disabled], .buttons[disabled] {
+    height: 30px;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    border: solid 1px #42721e;
+    color: gray;
+  }
+
+.dropDowns {
+  border: 1px solid darkgray;
+  border-radius: 4px;
+  overflow: hidden;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  /*background: transparent;*/
+  background-image: url('/Resources/controls/ArrowHeadSmall.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  min-width: 35px;
+}
+
+  .dropDowns:hover, .dropDowns:focus {
+    background-color: #f1fce5; /*#effefc;*/ /*#e7faf8;*/
+    border: 1px solid #0091af;
+    border-radius: 4px;
+    background-image: url('/Resources/controls/ArrowHeadSmall.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    min-width: 35px;
+  }
+
+  .dropDowns[disabled] {
+    background-color: #e5e5e5;
+    min-width: 35px;
+  }
+
+  /*скрытие стрелочки дропдауна*/
+  .dropDowns::-ms-expand {
+    display: none;
+  }
+
+.controlBoxes, .firstName, .middleName, .lastName,
+.maskEditSeries, .maskEditAdditionalSeries, .maskEditNumber,
+.room, .batchNumber, .maskTwin, .rangeNum, .rangeNumInGrid {
+  border: 1px solid darkgray;
+  border-radius: 4px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+  .controlBoxes[readonly], .firstName[readonly], .middleName[readonly], .lastName[readonly],
+  .maskEditSeries[readonly], .maskEditAdditionalSeries[readonly], .maskEditNumber[readonly],
+  .room[readonly], .batchNumber[readonly], .maskTwin[readonly], .rangeNum[readonly], .rangeNumInGrid[readonly] {
+    border: 1px solid darkgray;
+    border-radius: 4px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background: transparent;
+  }
+
+
+  .controlBoxes:hover, .controlBoxes:focus,
+  .firstName:hover, .firstName:focus,
+  .middleName:hover, .middleName:focus,
+  .lastName:hover, .lastName:focus,
+  .maskEditSeries:hover, .maskEditSeries:focus,
+  .maskEditAdditionalSeries:hover, .maskEditAdditionalSeries:focus,
+  .maskEditNumber:hover, .maskEditNumber:focus,
+  .room:hover, .room:focus,
+  .batchNumber:hover, .batchNumber:focus,
+  .maskTwin:hover, .maskTwin:focus,
+  .rangeNum:hover, .rangeNum:focus,
+  .rangeNumInGrid:hover, .rangeNumInGrid:focus
+   {
+    background-color: #f1fce5; /*#effefc;*/
+    border: 1px solid #42721e;
+    border-radius: 4px;
+  }
+
+  .rangeNumInGrid:hover, .rangeNumInGrid:focus {
+    background-color: #fdf2c6;
+  }
+
+  .controlBoxes[disabled],
+  .firstName[disabled],
+  .middleName[disabled],
+  .lastName[disabled],
+  .maskEditSeries[disabled],
+  .maskEditAdditionalSeries[disabled],
+  .maskEditNumber[disabled],
+  .room[disabled],
+  .batchNumber[disabled],
+  .maskTwin[disabled],
+  .rangeNum[disabled],
+  .rangeNumInGrid[disabled] {
+    background-color: #e5e5e5;
+  }
+
+.HideControl {
+  display: none;
+}
+
+/*************контрол подтверждения (удаления, закрытия и т.д.)******************/
+
+.confirmHeader {
+  height: 25px;
+  width: 300px;
+  background-color: #b9ed94;
+  border-bottom: 1px solid #ac9c71;
+}
+
+.confirmDelete {
+  padding: 5px;
+}
+
+.confirmBorder {
+  background-color: white;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.confirmDeleteBackground {
+  background-color: Black;
+  filter: alpha(opacity=90);
+  opacity: 0.5;
+}

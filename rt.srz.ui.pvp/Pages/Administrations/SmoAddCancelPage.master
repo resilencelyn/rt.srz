@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="SmoAddCancelPage.master.cs" Inherits="rt.srz.ui.pvp.Pages.Administrations.SmoAddCancelPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+  <ajaxToolkit:ToolkitScriptManager ID="ScriptManager" runat="server" EnableScriptLocalization="True" EnableScriptGlobalization="True" EnablePageMethods="True" CombineScripts="False" ScriptMode="Release" />
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery-2.1.0.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery-migrate-1.2.1.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.meio.mask.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.Jcrop.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.limitkeypress.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/DateTextBox.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/LFM.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/ScrollMethods.js") %>"></script>
+
+  <asp:Label ID="lbTitle" runat="server" Text=""></asp:Label>
+  <asp:ContentPlaceHolder ID="ContentContent" runat="server" />
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="server">
+  <div>
+
+    <div class="separator">
+    </div>
+
+    <asp:Button ID="btnSave" runat="server" Text="Сохранить" OnClick="btnSave_Click" CssClass="buttons" />
+    <asp:Button ID="btnCancel" runat="server" Text="Отменить" OnClick="btnCancel_Click" CausesValidation="False" CssClass="buttons" />
+
+    <script type="text/javascript">
+
+      function KeyStarted(sender) {
+        $get('<%=btnSave.ClientID%>').disabled = true;
+      }
+
+      function KeyComplete(sender) {
+        $get('<%=btnSave.ClientID%>').disabled = false;
+      }
+
+    </script>
+
+  </div>
+</asp:Content>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductVersion="!(bind.FileVersion.rt.smc.service.dll)" ?>
+  <?define ProductName="Сервис чтения электронного полиса ОМС" ?>
+  <?define ProductNameFull="$(var.ProductName) $(var.ProductVersion)" ?>
+  <?define ProductCode="E4DBAA21-5390-4DA4-846C-713032B22E6D"?>
+  <?define UpgradeCode="565620FA-2665-4A5C-B29F-0E2FD3348E7C"?>
+  <?define Manufacturer='РусБИТех' ?>
+  <?define Codepage="1251" ?>
+  <?define SmcBaseDir="..\rt.smc.service\"?>
+</Include>

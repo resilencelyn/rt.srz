@@ -1,0 +1,9 @@
+LIBRARY "HAL_SCReader.dll"
+
+EXPORTS
+
+crInit
+crOpenSession
+crAPDU
+crCloseSession
+crDeinit

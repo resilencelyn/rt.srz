@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified"
+           xmlns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PRType">
+    <xs:annotation>
+      <xs:documentation>
+        Причина отказа
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OSHIB" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код ошибки
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IM_POL" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя поля
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BAS_EL" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя базового элемента для поля, в котором обнаружена ошибка.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="N_REC" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Уникальный идентификатор записи в обменном файле
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="COMMENT" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Описание ошибки
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PFLKType">
+    <xs:annotation>
+      <xs:documentation>
+        Протокол ФЛК
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="VERS" type="xs:string" minOccurs="0" maxOccurs="1" default="2.0">
+        <xs:annotation>
+          <xs:documentation>
+            Версия
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FNAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя файла протокола
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FNAME_I" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя исходного файла
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PR" type="PRType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="FLK_P" type="PFLKType" />
+
+</xs:schema>

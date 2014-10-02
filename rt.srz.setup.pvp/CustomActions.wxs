@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include Constants.wxi?>
+	<Fragment>
+		<Binary Id="CA" SourceFile="..\rt.srz.setup.CA\bin\$(var.Configuration)\rt.srz.setup.CA.dll" />
+		<CustomAction Id="VerifySqlConnection" Return="check" Execute="immediate" BinaryKey="CA" DllEntry="VerifySqlConnection" />
+		<CustomAction Id="BrowseSqlConnection" Return="check" Execute="immediate" BinaryKey="CA" DllEntry="BrowseSqlConnection" />
+		<InstallExecuteSequence>
+		</InstallExecuteSequence>
+	</Fragment>
+</Wix>

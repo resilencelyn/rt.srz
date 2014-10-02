@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension">
+	<Fragment>
+		<Component Id="rt.ui.Configuration.ConnectionString" Guid="{11441C37-8E00-4825-BE6C-1BBB835C54C7}" Directory="rt.ui" >
+			<util:XmlFile Id='rt.ui.srz' File='[rt.ui.Configuration]ConnectionStrings.config' Action='setValue' ElementPath='/connectionStrings/add[\[]@name="default"[\]]/@connectionString' Value='[RTSRZ_CONNECTION_STRING]'  />
+			<util:XmlFile Id='rt.ui.atlantic' File='[rt.ui.Configuration]ConnectionStrings.config' Action='setValue' ElementPath='/connectionStrings/add[\[]@name="NHibernateCfgAtl.xml"[\]]/@connectionString' Value='[ATLANTIC_CONNECTION_STRING]'  />
+			<CreateFolder/>
+		</Component>
+
+    <Component Id="rt.ui.Configuration.QuartzSettings" Guid="{B0A06F79-1DD7-40DB-8443-86DC6B06E3E2}" Directory="rt.ui" >
+      <util:XmlFile Id='rt.ui.quartz' File='[rt.ui.Configuration]QuartzSettings.config' Action='setValue' ElementPath='/quartz/add[\[]@key="quartz.dataSource.default.connectionString"[\]]/@value' Value='[RTQUARTZ_CONNECTION_STRING]'  />
+      <CreateFolder/>
+    </Component>
+		
+		<ComponentGroup Id="rt.ui.Configuration.Sql">
+			<ComponentRef Id="rt.ui.Configuration.ConnectionString" />
+      <ComponentRef Id="rt.ui.Configuration.QuartzSettings" />
+		</ComponentGroup>
+
+	</Fragment>
+</Wix>

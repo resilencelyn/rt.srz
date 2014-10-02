@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="MessageDialog" Width="284" Height="73" Title="Ошибка" NoMinimize="yes" >
+				<Control Id="Text" Type="Text" X="38" Y="8" Width="240" Height="40" TabSkip="no" Text="[DIALOG_ERROR_MESSAGE]">
+				</Control>
+				<Control Id="OK" Type="PushButton" X="114" Y="52" Width="56" Height="17" Default="yes"  Cancel="yes" Text="OK">
+					<Publish Property="DIALOG_ERROR_MESSAGE">1</Publish>
+					<Publish Event="EndDialog" Value="Return">1</Publish>
+				</Control>
+			</Dialog>
+		</UI>
+	</Fragment>
+</Wix>

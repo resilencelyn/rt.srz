@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+	<class name="rt.srz.model.srz.InsuredPerson, rt.srz.model" table="[dbo].[InsuredPerson]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="MainPolisNumber" column="[MainPolisNumber]" />
+		<many-to-one name="DeadInfo" column="[DeadInfoId]" class="DeadInfo"  />
+		<many-to-one name="Status" column="[StatusId]" class="Concept"  />
+		<bag name="EmploymentHistories" lazy="true" inverse="true" >
+			<key column="[InsuredPersonId]"></key>
+			<one-to-many class="EmploymentHistory"></one-to-many>
+		</bag>
+		<bag name="MedicalInsurances" lazy="true" inverse="true" >
+			<key column="[InsuredPersonId]"></key>
+			<one-to-many class="MedicalInsurance"></one-to-many>
+		</bag>
+		<bag name="SearchKeys" lazy="true" inverse="true" >
+			<key column="[InsuredPersonId]"></key>
+			<one-to-many class="SearchKey"></one-to-many>
+		</bag>
+		<bag name="Twins1" lazy="true" inverse="true" >
+			<key column="[FirstInsuredPersonId]"></key>
+			<one-to-many class="Twin"></one-to-many>
+		</bag>
+		<bag name="Twins2" lazy="true" inverse="true" >
+			<key column="[SecondInsuredPersonId]"></key>
+			<one-to-many class="Twin"></one-to-many>
+		</bag>
+		<bag name="Statements" lazy="true" inverse="true" >
+			<key column="[InsuredPersonId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

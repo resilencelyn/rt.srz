@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="BaseAddCancelPage.master.cs" Inherits="rt.srz.ui.pvp.Pages.Administrations.BaseAddCancelPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+  <ajaxToolkit:ToolkitScriptManager ID="ScriptManager" runat="server" EnableScriptLocalization="True" EnableScriptGlobalization="True" EnablePageMethods="True" CombineScripts="False" ScriptMode="Release" />
+
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery-2.1.0.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery-migrate-1.2.1.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.meio.mask.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.Jcrop.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.limitkeypress.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/DateTextBox.js") %>"></script>
+  <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/LFM.js") %>"></script>
+
+  <script type="text/javascript">
+    //Подлключение обработчика ввода допустимых символов
+    $(document).ready(function () {
+      $('.rangeNum').limitkeypress({ rexp: /^[0-9]*$/ });
+      $('.rangeNumInGrid').limitkeypress({ rexp: /^[0-9]*$/ });
+    });
+
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    prm.add_endRequest(function (s, e) {
+      $('.rangeNum').limitkeypress({ rexp: /^[0-9]*$/ });
+      $('.rangeNumInGrid').limitkeypress({ rexp: /^[0-9]*$/ });
+    });
+
+
+  </script>
+
+  <asp:Label ID="lbTitle" runat="server" Text=""></asp:Label>
+  <div>
+    <asp:UpdatePanel ID="panel" runat="server">
+      <ContentTemplate>
+        <asp:ContentPlaceHolder ID="ContentContent" runat="server" />
+
+        <div class="separator">
+        </div>
+
+        <div>
+          <asp:Button ID="btnSave" runat="server" Text="Сохранить" OnClick="btnSave_Click" CssClass="buttons" />
+          <asp:Button ID="btnCancel" runat="server" Text="Отменить" OnClick="btnCancel_Click" CausesValidation="False" CssClass="buttons" />
+        </div>
+
+      </ContentTemplate>
+    </asp:UpdatePanel>
+  </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="server">
+</asp:Content>
+

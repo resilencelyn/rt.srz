@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductVersion="!(bind.FileVersion.rt.srz.barcode.dll)" ?>
+  <?define ProductName="Сервис штения ШК полиса ОМС" ?>
+  <?define ProductNameFull="$(var.ProductName) $(var.ProductVersion)" ?>
+  <?define ProductCode="2F08515F-E581-42EE-B56A-B36CA84D1AD9"?>
+  <?define UpgradeCode="5E5FE936-5925-464C-8C26-6FC45A24C4D3"?>
+  <?define Manufacturer='РусБИТех' ?>
+  <?define Codepage="1251" ?>
+  <?define BarCodeBaseDir="..\rt.srz.barcode\"?>
+</Include>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<?define LibDir="..\rt.srz.setup.library\"?>
+	<?define ProductCode="*"?>
+	<?define Manufacturer='РусБИТех' ?>
+	<?define Codepage="1251" ?>
+	<?define BaseDir="..\..\..\..\"?>
+
+	<?if $(var.ApplicationVersion) != ""?>
+	<?define ProductVersion="$(var.ApplicationVersion)" ?>
+	<?else?>
+	<?define ProductVersion="1.0.0.0" ?>
+	<?endif?>
+</Include>

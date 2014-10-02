@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RegexBirthplace" xml:space="preserve">
+    <value>^(?i)[\d,‚.:№  _\-–—/\\|¦\(\[\{\)\]\}'`‘“"’”&lt;‹«&gt;›»„а-яёa-z-]+$</value>
+  </data>
+  <data name="RegexFio" xml:space="preserve">
+    <value>^(?i)[\d.\t_\-–—  '`‘“"’”&lt;‹«&gt;›»„а-яёa-z-]+$</value>
+  </data>
+  <data name="RegexReplaceDoubleSymb" xml:space="preserve">
+    <value>[-.'] *[-.']</value>
+  </data>
+  <data name="RegexReplaceSpaces" xml:space="preserve">
+    <value>\s\s</value>
+  </data>
+  <data name="RegexDocomentSeriaBlok" xml:space="preserve">
+    <value>DocSer="[RБS9 -]+"</value>
+  </data>
+  <data name="RegexDocomentNumberBlok" xml:space="preserve">
+    <value>DocNum="[09]+"</value>
+  </data>
+  <data name="RegexIssuingAuthority" xml:space="preserve">
+    <value>^(?i)[\d,‚.:№  _\-–—/\\|¦\(\[\{\)\]\}'`‘“"’”&lt;‹«&gt;›»„а-яёa-z-]+$</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d</value>
+  </data>
+  <data name="RegexEmail" xml:space="preserve">
+    <value>^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$</value>
+  </data>
+  <data name="RegexOnlyNumber" xml:space="preserve">
+    <value>^\d+$</value>
+  </data>
+  <data name="BarcodeDenormilizer" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
+    xmlns:user="urn:user"&gt;
+  &lt;msxsl:script language="C#" implements-prefix="user"&gt;
+    &lt;![CDATA[
+    public string PadPolicyNumber(string number)
+    {
+      return number.PadLeft(16, '0');
+    }
+    public string SplitFLP(string value, int index)
+    {
+      string[] parts = value.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+      return parts[index].Trim();
+    }
+    public string ToUInt64(string value)
+    {
+      byte[] binary = Convert.FromBase64String(value);
+      ulong ret_val = 0;
+      for (int i = 0; i &lt; binary.Length; i++)
+      {
+        ret_val &lt;&lt;= i &gt; 0 ? 8 : 0;
+        ret_val |= binary[i];
+      }
+      return ret_val.ToString();
+    }  
+  ]]&gt;
+  &lt;/msxsl:script&gt;
+  &lt;xsl:output method="xml" indent="yes"/&gt;
+    &lt;xsl:template match="BarcodeData"&gt;
+      &lt;xsl:element name="BarcodeData"&gt;
+        &lt;xsl:element name="BarcodeType"&gt;
+          &lt;xsl:value-of select="BarcodeType"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:element name="PolicyNumber"&gt;
+          &lt;xsl:value-of select="user:PadPolicyNumber(PolicyNumber)"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:if test="BarcodeType=1"&gt;
+          &lt;xsl:element name="FirstName"&gt;
+            &lt;xsl:value-of select="user:SplitFLP(FLP, 0)"/&gt;
+          &lt;/xsl:element&gt;
+          &lt;xsl:element name="LastName"&gt;
+            &lt;xsl:value-of select="user:SplitFLP(FLP, 1)"/&gt;
+          &lt;/xsl:element&gt;
+          &lt;xsl:element name="Patronymic"&gt;
+            &lt;xsl:value-of select="user:SplitFLP(FLP, 2)"/&gt;
+          &lt;/xsl:element&gt;
+        &lt;/xsl:if&gt;
+        &lt;xsl:if test="BarcodeType=2"&gt;
+          &lt;xsl:element name="FirstName"&gt;
+            &lt;xsl:value-of select="user:SplitFLP(FLP, 1)"/&gt;
+          &lt;/xsl:element&gt;
+          &lt;xsl:element name="LastName"&gt;
+            &lt;xsl:value-of select="user:SplitFLP(FLP, 0)"/&gt;
+          &lt;/xsl:element&gt;
+          &lt;xsl:element name="Patronymic"&gt;
+            &lt;xsl:value-of select="user:SplitFLP(FLP, 2)"/&gt;
+          &lt;/xsl:element&gt;
+        &lt;/xsl:if&gt;
+        &lt;xsl:element name="Sex"&gt;
+          &lt;xsl:value-of select="Sex"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:element name="BirthDate"&gt;
+          &lt;xsl:value-of select="BirthDate"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:element name="ExpireDate"&gt;
+          &lt;xsl:value-of select="ExpireDate"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:if test="BarcodeType=1"&gt;
+          &lt;xsl:element name="Ogrn"&gt;
+            &lt;xsl:value-of select="user:ToUInt64(Ogrn)"/&gt;
+          &lt;/xsl:element&gt;
+          &lt;xsl:element name="Okato"&gt;
+            &lt;xsl:value-of select="user:ToUInt64(Okato)"/&gt;
+          &lt;/xsl:element&gt;
+        &lt;/xsl:if&gt;
+        &lt;xsl:element name="EDS"&gt;
+          &lt;xsl:value-of select="EDS"/&gt;
+        &lt;/xsl:element&gt;
+      &lt;/xsl:element&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</value>
+  </data>
+  <data name="BarcodeNormilizer" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
+    xmlns:user="urn:user"&gt;
+  &lt;msxsl:script language="C#" implements-prefix="user"&gt;
+    &lt;![CDATA[
+    public string Concat(string FirstName, string LastName, string Patronymic, byte barcode_type){
+      return string.Format("{0}|{1}|{2}", FirstName.TrimEnd(), LastName.TrimEnd(), Patronymic.TrimEnd()).PadRight(barcode_type == 1 ? 56 : 68, '\x20');
+    }
+    public string ToUInt64(string value, int MaxBytes)
+    {
+      value = string.IsNullOrEmpty(value) ? "0" : value;
+      MaxBytes = MaxBytes &gt; 8 ? 8 : MaxBytes &lt; 1 ? 1 : MaxBytes;
+      ulong vs = ulong.Parse(value);
+      System.Collections.Generic.List&lt;byte&gt; ret_val = new System.Collections.Generic.List&lt;byte&gt;();
+      ret_val.AddRange(new byte[] 
+                                {   (byte)(( (ulong)vs &amp; 0xff00000000000000) &gt;&gt; 0x38), 
+                                    (byte)((vs &amp; 0x00ff000000000000) &gt;&gt; 0x30), 
+                                    (byte)((vs &amp; 0x0000ff0000000000) &gt;&gt; 0x28), 
+                                    (byte)((vs &amp; 0x000000ff00000000) &gt;&gt; 0x20), 
+                                    (byte)((vs &amp; 0x00000000ff000000) &gt;&gt; 0x18), 
+                                    (byte)((vs &amp; 0x0000000000ff0000) &gt;&gt; 0x10), 
+                                    (byte)((vs &amp; 0x000000000000ff00) &gt;&gt; 0x08), 
+                                    (byte) (vs &amp; 0x00000000000000ff) });
+      return Convert.ToBase64String(ret_val.GetRange(8 - MaxBytes, MaxBytes).ToArray());
+    }  
+  ]]&gt;
+  &lt;/msxsl:script&gt;
+  &lt;xsl:output method="xml" indent="yes"/&gt;
+    &lt;xsl:template match="BarcodeData"&gt;
+      &lt;xsl:element name="BarcodeData"&gt;
+        &lt;xsl:element name="BarcodeType"&gt;
+          &lt;xsl:value-of select="BarcodeType"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:element name="PolicyNumber"&gt;
+          &lt;xsl:value-of select="PolicyNumber"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:if test="BarcodeType=1"&gt;
+          &lt;xsl:element name="FLP"&gt;
+            &lt;xsl:value-of select="user:Concat(FirstName, LastName, Patronymic, BarcodeType)"/&gt;
+          &lt;/xsl:element&gt;
+        &lt;/xsl:if&gt;
+        &lt;xsl:if test="BarcodeType=2"&gt;
+          &lt;xsl:element name="FLP"&gt;
+            &lt;xsl:value-of select="user:Concat(LastName, FirstName, Patronymic, BarcodeType)"/&gt;
+          &lt;/xsl:element&gt;
+        &lt;/xsl:if&gt;
+        &lt;xsl:element name="Sex"&gt;
+          &lt;xsl:value-of select="Sex"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:element name="BirthDate"&gt;
+          &lt;xsl:value-of select="BirthDate"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:element name="ExpireDate"&gt;
+          &lt;xsl:value-of select="ExpireDate"/&gt;
+        &lt;/xsl:element&gt;
+        &lt;xsl:if test="BarcodeType=1"&gt;
+          &lt;xsl:element name="Ogrn"&gt;
+            &lt;xsl:value-of select="user:ToUInt64(Ogrn, 6)"/&gt;
+          &lt;/xsl:element&gt;
+          &lt;xsl:element name="Okato"&gt;
+            &lt;xsl:value-of select="user:ToUInt64(Okato, 3)"/&gt;
+          &lt;/xsl:element&gt;          
+        &lt;/xsl:if&gt;
+        &lt;xsl:element name="EDS"&gt;
+          &lt;xsl:value-of select="EDS"/&gt;
+        &lt;/xsl:element&gt;
+      &lt;/xsl:element&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</value>
+  </data>
+  <data name="BarcodeSchema" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:simpleType name="barcodeString24"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="24"/&gt;
+      &lt;xs:minLength value="0"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodeString20"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="20"/&gt;
+      &lt;xs:minLength value="0"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodeString28"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="28"/&gt;
+      &lt;xs:minLength value="0"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodeString16"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="16"/&gt;
+      &lt;xs:minLength value="0"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodePolicy"&gt;
+    &lt;xs:restriction base="xs:unsignedLong"&gt;
+      &lt;xs:totalDigits value="20"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodOgrn"&gt;
+    &lt;xs:restriction base="xs:unsignedLong"&gt;
+      &lt;xs:totalDigits value="15"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodOkato"&gt;
+    &lt;xs:restriction base="xs:unsignedInt"&gt;
+      &lt;xs:totalDigits value="8"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="BarcodeData"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="FirstName" type="barcodeString24" minOccurs="1" maxOccurs="1"/&gt;
+        &lt;xs:element name="LastName" type="barcodeString16" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Patronymic" type="barcodeString16" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="BirthDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="ExpireDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Ogrn" type="barcodOgrn" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Okato" type="barcodOkato" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="BarcodeData_V2"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="FirstName" type="barcodeString28" minOccurs="1" maxOccurs="1"/&gt;
+        &lt;xs:element name="LastName" type="barcodeString20" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Patronymic" type="barcodeString20" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="BirthDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="ExpireDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Ogrn" type="barcodOgrn" minOccurs="0" maxOccurs="1" /&gt;
+        &lt;xs:element name="Okato" type="barcodOkato" minOccurs="0" maxOccurs="1" /&gt;
+        &lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</value>
+  </data>
+  <data name="NormalizedBarcode" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:simpleType name="barcodeString56"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="56"/&gt;
+      &lt;xs:minLength value="3"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodeString68"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="68"/&gt;
+      &lt;xs:minLength value="3"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodePolicy"&gt;
+    &lt;xs:restriction base="xs:unsignedLong"&gt;
+      &lt;xs:totalDigits value="20"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodOgrn"&gt;
+    &lt;xs:restriction base="xs:base64Binary"&gt;
+      &lt;xs:minLength value="1"/&gt;
+      &lt;xs:maxLength value="6"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodOkato"&gt;
+    &lt;xs:restriction base="xs:base64Binary"&gt;
+      &lt;xs:minLength value="1"/&gt;
+      &lt;xs:maxLength value="3"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="BarcodeData"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="FLP" type="barcodeString56" minOccurs="1" maxOccurs="1"/&gt;
+        &lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="BirthDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="ExpireDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Ogrn" type="barcodOgrn" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Okato" type="barcodOkato" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="BarcodeData_V2"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="FLP" type="barcodeString68" minOccurs="1" maxOccurs="1"/&gt;
+        &lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="BirthDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="ExpireDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;  
+&lt;/xs:schema&gt;</value>
+  </data>
+  <data name="NormalizedBarcode1" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:simpleType name="barcodeString56"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="56"/&gt;
+      &lt;xs:minLength value="3"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodePolicy"&gt;
+    &lt;xs:restriction base="xs:unsignedLong"&gt;
+      &lt;xs:totalDigits value="20"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodOgrn"&gt;
+    &lt;xs:restriction base="xs:base64Binary"&gt;
+      &lt;xs:minLength value="1"/&gt;
+      &lt;xs:maxLength value="6"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name="barcodOkato"&gt;
+    &lt;xs:restriction base="xs:base64Binary"&gt;
+      &lt;xs:minLength value="1"/&gt;
+      &lt;xs:maxLength value="3"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="BarcodeData"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="FLP" type="barcodeString56" minOccurs="1" maxOccurs="1"/&gt;
+        &lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="BirthDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="ExpireDate" type="xs:date" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Ogrn" type="barcodOgrn" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Okato" type="barcodOkato" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</value>
+  </data>
+  <data name="PolicyXSD1" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+        &lt;xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+        &lt;xs:simpleType name="barcodeString24"&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+        &lt;xs:maxLength value="24"/&gt;
+        &lt;xs:minLength value="0"/&gt;
+        &lt;/xs:restriction&gt;
+        &lt;/xs:simpleType&gt;
+        &lt;xs:simpleType name="barcodeString16"&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+        &lt;xs:maxLength value="16"/&gt;
+        &lt;xs:minLength value="0"/&gt;
+        &lt;/xs:restriction&gt;
+        &lt;/xs:simpleType&gt;
+        &lt;xs:simpleType name="barcodePolicy"&gt;
+        &lt;xs:restriction base="xs:unsignedLong"&gt;
+        &lt;xs:totalDigits value="20"/&gt;
+        &lt;/xs:restriction&gt;
+        &lt;/xs:simpleType&gt;
+        &lt;xs:simpleType name="barcodOgrn"&gt;
+        &lt;xs:restriction base="xs:unsignedLong"&gt;
+        &lt;xs:totalDigits value="15"/&gt;
+        &lt;/xs:restriction&gt;
+        &lt;/xs:simpleType&gt;
+        &lt;xs:simpleType name="barcodOkato"&gt;
+        &lt;xs:restriction base="xs:unsignedInt"&gt;
+        &lt;xs:totalDigits value="8"/&gt;
+        &lt;/xs:restriction&gt;
+        &lt;/xs:simpleType&gt;
+        &lt;xs:element name="BarcodeData"&gt;
+        &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+        &lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="FirstName" type="barcodeString24" minOccurs="1" maxOccurs="1"/&gt;
+        &lt;xs:element name="LastName" type="barcodeString16" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Patronymic" type="barcodeString16" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="BirthDate" type="xs:dateTime" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="ExpireDate" type="xs:dateTime" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Ogrn" type="barcodOgrn" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="Okato" type="barcodOkato" minOccurs="1" maxOccurs="1" /&gt;
+        &lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+        &lt;/xs:schema&gt;</value>
+  </data>
+  <data name="PolicyXSD2" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;xs:simpleType name="barcodeString24"&gt;
+&lt;xs:restriction base="xs:string"&gt;
+&lt;xs:maxLength value="24"/&gt;
+&lt;xs:minLength value="0"/&gt;
+&lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+&lt;xs:simpleType name="barcodeString16"&gt;
+&lt;xs:restriction base="xs:string"&gt;
+&lt;xs:maxLength value="16"/&gt;
+&lt;xs:minLength value="0"/&gt;
+&lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+&lt;xs:simpleType name="barcodePolicy"&gt;
+&lt;xs:restriction base="xs:unsignedLong"&gt;
+&lt;xs:totalDigits value="20"/&gt;
+&lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+&lt;xs:element name="BarcodeData"&gt;
+&lt;xs:complexType&gt;
+&lt;xs:sequence&gt;
+&lt;xs:element name="BarcodeType" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="PolicyNumber" type="barcodePolicy" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="FirstName" type="barcodeString24" minOccurs="1" maxOccurs="1"/&gt;
+&lt;xs:element name="LastName" type="barcodeString16" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="Patronymic" type="barcodeString16" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="Sex" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="BirthDate" type="xs:dateTime" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="ExpireDate" type="xs:dateTime" minOccurs="1" maxOccurs="1" /&gt;
+&lt;xs:element name="EDS" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/&gt;
+&lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+&lt;/xs:schema&gt;</value>
+  </data>
+  <data name="FaultEnpAbsentPrevPolicyExceptionCode">
+    <value xml:space="preserve">99</value>
+  </data>
+  <data name="FaultEnpAbsentPrevPolicyExceptionMessage">
+    <value xml:space="preserve">Если новый полис выдавать не требуется, то ЕНП должен быть введен</value>
+  </data>
+  <data name="FaultDocumentDateIssueFutureExceptionCode">
+    <value xml:space="preserve">99</value>
+  </data>
+  <data name="FaultDocumentDateIssueFutureExceptionMessage">
+    <value xml:space="preserve">Дата выдачи документа больше текущей даты</value>
+  </data>
+  <data name="FaultDateFutureExceptionCode">
+    <value xml:space="preserve">99</value>
+  </data>
+  <data name="FaultDateFutureExceptionMessage">
+    <value xml:space="preserve">{0} больше чем текущая дата</value>
+  </data>
+  <data name="FaultBirthdateLargerDateFillingExceptionCode">
+    <value xml:space="preserve">99</value>
+  </data>
+  <data name="FaultBirthdateLargerDateFillingExceptionMessage">
+    <value xml:space="preserve">Дата рождения больше даты заявления</value>
+  </data>
+  <data name="FaultDocumentDateExpEmptyExceptionMessage">
+    <value xml:space="preserve">Не заполнен срок окончания действия документа</value>
+  </data>
+  <data name="FaultDocumentDateExpEmptyExceptionCode">
+    <value xml:space="preserve">99</value>
+  </data>
+  <data name="SetParameterSearchExceptionCode" xml:space="preserve">
+    <value>108</value>
+  </data>
+  <data name="SetParameterSearchExceptionMessage" xml:space="preserve">
+    <value>Не задан ни один параметр поиска</value>
+  </data>
+  <data name="FaultDateRegistrationCode" xml:space="preserve">
+    <value>109</value>
+  </data>
+  <data name="FaultDateRegistrationMessage" xml:space="preserve">
+    <value>Не заполнена дата регистрации</value>
+  </data>
+  <data name="FaultDateIssueDocumentUdlMessage" xml:space="preserve">
+    <value>Не корректно введена дата выдачи документа</value>
+  </data>
+  <data name="FaultDateIssueDocumentUdlCode" xml:space="preserve">
+    <value>99</value>
+  </data>
+  <data name="FaultGenderConformityMiddleNameExceptionMessage" xml:space="preserve">
+    <value>Введённое Отчество отсутствует в справочнике Отчеств.</value>
+  </data>
+  <data name="FaultGenderConformityMiddleNameExceptionCode" xml:space="preserve">
+    <value>99</value>
+  </data>
+  <data name="FaultPoliceCertificateDateNotNeyPolisExceptionCode" xml:space="preserve">
+    <value>rt109</value>
+  </data>
+  <data name="FaultPoliceCertificateDateNotNeyPolisExceptionMessage" xml:space="preserve">
+    <value>Дата выдачи полиса должна быть меньше даты подачи заявления</value>
+  </data>
+  <data name="FaultPoliceCertificateFutureExceptionMessage" xml:space="preserve">
+    <value>Дата выдачи полиса больше текущей даты.</value>
+  </data>
+</root>

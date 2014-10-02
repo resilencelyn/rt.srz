@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.core.business</RootNamespace>
+    <AssemblyName>rt.core.business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="configuration\ConfigManager.cs" />
+    <Compile Include="configuration\ExchangeSettings.cs" />
+    <Compile Include="configuration\MigratorConfiguration.cs" />
+    <Compile Include="interfaces\jobpool\IJobInfo.cs" />
+    <Compile Include="interfaces\jobpool\IJobPool.cs" />
+    <Compile Include="interfaces\jobpool\IJobPoolFactory.cs" />
+    <Compile Include="interfaces\jobpool\IJobPoolTyped.cs" />
+    <Compile Include="interfaces\quartz\IQuartzInfoProvider.cs" />
+    <Compile Include="quartz\JobGroupNames.cs" />
+    <Compile Include="quartz\JobNames.cs" />
+    <Compile Include="quartz\QuartzInfoProvider.cs" />
+    <Compile Include="server\bak\BackupJob.cs" />
+    <Compile Include="server\directorywatcher\processing\target\BatchInfo.cs" />
+    <Compile Include="configuration\target\DirectoryWatchCollection.cs" />
+    <Compile Include="configuration\target\DirectoryWatchElement.cs" />
+    <Compile Include="server\exchange\export\ExportBatch.cs" />
+    <Compile Include="server\exchange\export\ExportBatchFactory.cs" />
+    <Compile Include="server\exchange\export\ExportBatchTyped.cs" />
+    <Compile Include="server\exchange\export\ExportBatchType.cs" />
+    <Compile Include="interfaces\exchange\IExportBatchFactory.cs" />
+    <Compile Include="interfaces\exchange\IBatch.cs" />
+    <Compile Include="interfaces\exchange\IExportBatchTyped.cs" />
+    <Compile Include="interfaces\exchange\IExportBatch.cs" />
+    <Compile Include="server\exchange\export\StatusExportBatch.cs" />
+    <Compile Include="server\directorywatcher\watch\WatchersJob.cs" />
+    <Compile Include="interfaces\directorywatcher\IWatcher.cs" />
+    <Compile Include="server\directorywatcher\processing\ProcessingFilesJob.cs" />
+    <Compile Include="interfaces\directorywatcher\IImporterFile.cs" />
+    <Compile Include="interfaces\directorywatcher\IImporterFileFactory.cs" />
+    <Compile Include="server\exchange\import\ImporterFile.cs" />
+    <Compile Include="server\exchange\import\ImporterFileFactory.cs" />
+    <Compile Include="server\directorywatcher\processing\ProcessingPool.cs" />
+    <Compile Include="server\directorywatcher\watch\Watcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="server\directorywatcher\processing\target\PriorityQueue.cs" />
+    <Compile Include="nhibernate\IManagerBase.cs" />
+    <Compile Include="nhibernate\IManagerCacheBaseT.cs" />
+    <Compile Include="nhibernate\INHibernateSession.cs" />
+    <Compile Include="nhibernate\ManagerCacheBaseT.cs" />
+    <Compile Include="nhibernate\ManagerBase.cs" />
+    <Compile Include="nhibernate\NHibernateProxyUtils.cs" />
+    <Compile Include="nhibernate\NHibernateSession.cs" />
+    <Compile Include="nhibernate\SmartSessionContext.cs" />
+    <Compile Include="nhibernate\target\FileNameElement.cs" />
+    <Compile Include="nhibernate\target\FileNameElementColection.cs" />
+    <Compile Include="nhibernate\IManagerSessionFactorys.cs" />
+    <Compile Include="nhibernate\ManagerSessionFactorys.cs" />
+    <Compile Include="nhibernate\PoolNhibernateSection.cs" />
+    <Compile Include="quartz\JobBase.cs" />
+    <Compile Include="quartz\SchedulerProvider.cs" />
+    <Compile Include="registry\CoreRegistry.cs" />
+    <Compile Include="registry\NHibernateRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="registry\QuartzRegistry.cs" />
+    <Compile Include="server\jobpool\JobInfo.cs" />
+    <Compile Include="server\jobpool\JobPoolBase.cs" />
+    <Compile Include="server\jobpool\JobPoolFactory.cs" />
+    <Compile Include="server\jobpool\JobPoolId.cs" />
+    <Compile Include="server\jobpool\JobPoolType.cs" />
+    <Compile Include="server\jobpool\JobPoolTyped.cs" />
+    <Compile Include="tests\BusinessTestsBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CrystalQuartz\CrystalQuartz.Core\CrystalQuartz.Core.csproj">
+      <Project>{9382e234-40e3-40d1-9a6f-5ef63cf09c90}</Project>
+      <Name>CrystalQuartz.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1B981163-21AC-4F46-8927-CF2641F54FA5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{b91bb517-e433-4091-9c96-3386ca975c5a}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+	<?include ..\Constants.wxi?>
+	<Fragment>
+		<ComponentGroup Id="rt.ui.Configuration">
+			<ComponentGroupRef Id="rt.ui.Configuration.IIS"/>
+			<ComponentGroupRef Id="rt.ui.Configuration.Sql"/>
+      <ComponentGroupRef Id="rt.ui.Configuration.Exchange"/>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

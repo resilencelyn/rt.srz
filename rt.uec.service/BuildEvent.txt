@@ -1,0 +1,2 @@
+﻿copy /Y $(ProjectDir)..\ThirdParty\UEKLib_v_beta\* $(TargetDir)
+call register.bat

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--Created with Liquid XML Studio Developer Edition (Trial) 9.1.2.3326 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd"
+           elementFormDefault="qualified" targetNamespace="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="REP.xsd" />
+  <xs:complexType name="REPListType">
+    <xs:annotation>
+      <xs:documentation>
+        Подтверждения/отклонения изменений
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="VERS" type="xs:string" minOccurs="0" maxOccurs="1" default="2.0">
+        <xs:annotation>
+          <xs:documentation>
+            Версия
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FILENAME" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Имя файла
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SMOCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Реестровый номер страховой медицинской организации
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PRZCOD" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Код пункта выдачи полисов
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NRECORDS" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Число записей всего
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NERR" type="xs:int" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Число записей с ошибками ФЛК
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="REP" type="REPType" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="REPLIST" type="REPListType">
+    <xs:annotation>
+      <xs:documentation xml:lang="RU">Структура файла подтверждения/отклонения изменений: протокол обработки файла с изменениями от ТФОМС в СМО</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

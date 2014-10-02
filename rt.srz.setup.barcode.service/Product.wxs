@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <?include Constants.wxi?>
+
+  <Product Id="$(var.ProductCode)" Name="$(var.ProductName)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Codepage="$(var.Codepage)">
+    <Package InstallPrivileges="elevated" InstallerVersion="200" Compressed="yes" Manufacturer="$(var.Manufacturer)" SummaryCodepage="$(var.Codepage)" InstallScope="perMachine" />
+
+    <?include "Properties.wxi"?>
+
+    <CustomAction Id="RunRegisterScript" ExeCommand="[INSTALLFOLDER]register.bat" Directory="INSTALLFOLDER" Execute="deferred" Return="asyncWait" Impersonate ='no'/>
+		<CustomAction Id="RunUnRegisterScript" ExeCommand="[INSTALLFOLDER]unregister.bat" Directory="INSTALLFOLDER" Execute="deferred" Return="ignore" Impersonate ='no'/>
+		<CustomAction Id="Cleanup_tlb" Directory="INSTALLFOLDER" ExeCommand="cmd /C &quot;del rt.srz.model.barcode.tlb rt.srz.barcode.tlb&quot;"
+      Execute="deferred" Return="ignore" HideTarget="no" Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <Custom Action="RunRegisterScript" After="InstallFiles"/>
+      <Custom Action="RunUnRegisterScript" Before="RemoveFiles"/>			
+      <Custom Action="Cleanup_tlb" Before="RemoveFiles">REMOVE="ALL"</Custom>
+    </InstallExecuteSequence>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
+
+
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+
+      <!-- Skip license dialog -->
+      <Publish Dialog="WelcomeDlg"
+							 Control="Next"
+							 Event="NewDialog"
+							 Value="InstallDirDlg"
+							 Order="2">1</Publish>
+      <Publish Dialog="InstallDirDlg"
+							 Control="Back"
+							 Event="NewDialog"
+							 Value="WelcomeDlg"
+							 Order="2">1</Publish>
+    </UI>
+
+    <MediaTemplate	EmbedCab="yes"/>
+
+    <Feature Id="ProductFeature" Title="$(var.ProductName)" Description="$(var.ProductName)" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+  </Product>
+
+  <?define BarCodeOutputDir="$(var.BarCodeBaseDir)\bin\$(var.BUILD)\"?>
+  <Fragment>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="$(var.BarCodeOutputDir)" DiskId="1">
+      <Component Id="rt.srz.barcode.dll" Guid="*">
+        <File Id='rt.srz.barcode.dll' Name='rt.srz.barcode.dll'/>
+      </Component>
+      <Component Id="rt.srz.model.barcode.dll" Guid="*">
+        <File Id='rt.srz.model.barcode.dll' Name='rt.srz.model.barcode.dll'/>
+      </Component>
+      <Component Id="rt.srz.barcode.dll.config" Guid="*">
+        <File Id='rt.srz.barcode.dll.config' Name='rt.srz.barcode.dll.config'/>
+      </Component>
+      <Component Id="register.bat" Guid="*">
+        <File Id='register.bat' Name='register.bat' />
+      </Component>
+			<Component Id="unregister.bat" Guid="*">
+				<File Id='unregister.bat' Name='unregister.bat' />
+			</Component>
+		</DirectoryRef>
+    
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <ComponentRef Id="rt.srz.barcode.dll"/>
+      <ComponentRef Id="rt.srz.model.barcode.dll"/>
+      <ComponentRef Id="rt.srz.barcode.dll.config"/>
+      <ComponentRef Id="register.bat"/>
+			<ComponentRef Id="unregister.bat"/>
+		</ComponentGroup>
+  
+  </Fragment>
+</Wix>
