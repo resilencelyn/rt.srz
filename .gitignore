@@ -22,7 +22,6 @@ mscorlib.Behaviors.dll
 *.favorit
 *.ncrunch*
 packages/
-tests/
 Binaries/
 Install/
 Database/
