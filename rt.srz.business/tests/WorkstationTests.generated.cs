@@ -45,7 +45,7 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test T";
+			entity.Name = "Test Test Test Test Test Test Tes";
 			entity.UecReaderName = "Test Test ";
 			entity.UecCerticateType = default(Byte);
 			entity.SmardCardReaderName = "Test Test ";
@@ -115,7 +115,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.Workstation entityA = GetFirstWorkstation();
 				
-				entityA.Name = "Test Test Test Test Test Tes";
+				entityA.Name = "Test Test Test Test Test Test Test Te";
 				
 				manager.Update(entityA);
 

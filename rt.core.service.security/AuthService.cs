@@ -23,8 +23,8 @@ namespace rt.core.service.security
 
   using rt.core.business.security.interfaces;
   using rt.core.model.client;
+  using rt.core.model.core;
   using rt.core.model.security;
-  using rt.srz.model.srz;
 
   using StructureMap;
 

@@ -50,12 +50,12 @@
         </div>
         <div style="float: left;">
           <div class="padding5">
-            <asp:Button ID="btnClear" runat="server" Text="Очистить" OnClick="btnClear_Click" UseSubmitBehavior="False" CssClass="buttons" />
+            <asp:Button ID="btnClear" runat="server" Text="Очистить" OnClick="BtnClearClick" UseSubmitBehavior="False" CssClass="buttons" />
           </div>
         </div>
         <div style="float: left">
           <div class="padding5">
-            <asp:Button ID="btnSearch" runat="server" Text="Поиск" OnClick="btnSearch_Click" CssClass="buttons" />
+            <asp:Button ID="btnSearch" runat="server" Text="Поиск" OnClick="BtnSearchClick" CssClass="buttons" />
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Операции">
               <ItemTemplate>
-                <asp:Button ID="btnExport" runat="server" Text="Пометить как не выгруженный" OnClick="btnExport_Click" CssClass="buttons"></asp:Button>
+                <asp:Button ID="btnExport" runat="server" Text="Пометить как не выгруженный" OnClick="BtnExportClick" CssClass="buttons"></asp:Button>
                 <asp:HiddenField runat="server" ID="hfId" Value='<%# ((SearchBatchResult)Container.DataItem).Id %>' />
               </ItemTemplate>
             </asp:TemplateField>
@@ -132,8 +132,8 @@
       </div>
       <%--Пэйджер--%>
       <div class="pagerPadding">
-        <uc:Pager ID="custPager" runat="server" OnPageIndexChanged="custPager_PageIndexChanged"
-          OnPageSizeChanged="custPager_PageSizeChanged" />
+        <uc:Pager ID="custPager" runat="server" OnPageIndexChanged="CustPagerPageIndexChanged"
+          OnPageSizeChanged="CustPagerPageSizeChanged" />
       </div>
     </ContentTemplate>
   </asp:UpdatePanel>

@@ -9,6 +9,8 @@ using rt.srz.model.srz.concepts;
 
 namespace rt.core.business.test
 {
+  using rt.core.model.core;
+
   public class GoodStatement
   {
     public static Statement CreateGoodStatement(User currentUser)
@@ -82,7 +84,7 @@ namespace rt.core.business.test
       statement.DocumentRegistration.Number = "172046";
       statement.DocumentRegistration.Series = "15 30";
 
-      statement.PointDistributionPolicy = currentUser.PointDistributionPolicy;
+      statement.PointDistributionPolicy = currentUser.PointDistributionPolicy();
 
       return statement;
     }

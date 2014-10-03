@@ -47,17 +47,17 @@ namespace rt.srz.business.tests
 			
 			entity.IsHomeless = true;
 			entity.Postcode = "Test Te";
-			entity.Subject = "Test Test Test Test Test Test Tes";
-			entity.Area = "Test Test Test Test Test Test Test Test Test";
-			entity.City = "Test Test Test Test Test Test Test Test Test ";
-			entity.Town = "Tes";
-			entity.Street = "Test Test Test Test Test T";
-			entity.House = "Tes";
-			entity.Housing = "Te";
+			entity.Subject = "Te";
+			entity.Area = "Test Test Test Test Test Test Test Test T";
+			entity.City = "Test Test Test Test Test Test Test Te";
+			entity.Town = "Test Test Test Test Test T";
+			entity.Street = "Test Test Test Test Test Test Test";
+			entity.House = "Test T";
+			entity.Housing = "Test Test Test T";
 			entity.Room = default(Int16);
 			entity.DateRegistration = System.DateTime.Now;
 			entity.IsNotStructureAddress = true;
-			entity.Okato = "Test Test Test Test";
+			entity.Okato = "Test Test Test Te";
 			entity.Unstructured = "Test Test ";
 			
 			using(rt.srz.business.manager.IKladrManager kladrManager = ObjectFactory.GetInstance<IKladrManager>())

@@ -45,8 +45,8 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.RangelFrom = 14;
-			entity.RangelTo = 19;
+			entity.RangelFrom = 13;
+			entity.RangelTo = 3;
 			entity.ChangeDate = System.DateTime.Now;
 			
 			using(rt.srz.business.manager.IRangeNumberManager rangeNumberMemberManager = ObjectFactory.GetInstance<IRangeNumberManager>())
@@ -131,7 +131,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.RangeNumber entityA = GetFirstRangeNumber();
 				
-				entityA.RangelFrom = 12;
+				entityA.RangelFrom = 65;
 				
 				manager.Update(entityA);
 

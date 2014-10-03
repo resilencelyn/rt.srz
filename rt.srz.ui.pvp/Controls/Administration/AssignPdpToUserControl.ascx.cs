@@ -1,275 +1,373 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using rt.srz.model.enumerations;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.srz;
-using rt.srz.ui.pvp.Enumerations;
-using StructureMap;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssignPdpToUserControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controls.Administration
 {
-  public partial class AssignPdpToUserControl : System.Web.UI.UserControl
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Web.UI;
+  using System.Web.UI.WebControls;
+
+  using rt.core.model.core;
+  using rt.srz.business.manager;
+  using rt.srz.model.interfaces.service;
+  using rt.srz.model.srz;
+
+  using StructureMap;
+
+  /// <summary>
+  /// The assign pdp to user control.
+  /// </summary>
+  public partial class AssignPdpToUserControl : UserControl
   {
-    private ISecurityService _securityService;
-    private ISmoService _smoService;
-    private Guid _userId;
+    #region Fields
 
-    protected void Page_Init(object sender, EventArgs e)
-    {
-      _securityService = ObjectFactory.GetInstance<ISecurityService>();
-      _smoService = ObjectFactory.GetInstance<ISmoService>();
-    }
+    /// <summary>
+    /// The _security service.
+    /// </summary>
+    private ISecurityService securityService;
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-      if (Request.QueryString["userId"] == null)
-      {
-        _userId = Guid.Empty;
-      }
-      else
-      {
-        _userId = Guid.Parse(Request.QueryString["userId"]);
-      }
-      if (!IsPostBack)
-      {
-        string userName = string.Empty;
-        lbTitle.Text = string.Format("Назначение пункта выдачи для пользователя: {0}", Request.QueryString["userName"]);
+    /// <summary>
+    /// The _smo service.
+    /// </summary>
+    private ISmoService smoService;
 
-        User currentUser = _securityService.GetCurrentUser();
-        if (_securityService.IsUserHasAdminPermissions(currentUser))
-        {
-          AssignDataSourcesForAdminMode(currentUser);
-        }
-        else if (currentUser.PointDistributionPolicy != null && _securityService.IsUserAdminSmo(currentUser.Id))
-        {
-          AssignDataSourcesForOwnSmo(currentUser);
-        }
-        else if (currentUser.PointDistributionPolicy != null && _securityService.IsUserAdminTF(currentUser.Id))
-        {
-          AssignDataSourcesForOwnRegion(currentUser);
-        }
+    /// <summary>
+    /// The _user id.
+    /// </summary>
+    private Guid userId;
 
-        //случай добавления нового пользователя
-        if (_userId == Guid.Empty)
-        {
-          //устанавливаем значения комбобоксов по умолчанию исходя из текущего пользователя, если для редактируемого пользователя не назначен pdp
-          SetComboboValues(currentUser);
-          //соответствует элементу не выбран
-          dlPdp.SelectedIndex = 0;
-          return;
-        }
+    #endregion
 
-        //открыли на редактирование
-        if (_userId != Guid.Empty)
-        {
-          User user = _securityService.GetUser(_userId);
+    #region Public Methods and Operators
 
-          bool allowAssignPdp = true;
-          //администратор смо не может назначать пункт выдачи для администратора территорального фонда
-          if (!_securityService.IsUserHasAdminPermissions(currentUser) &&
-            !_securityService.IsUserAdminTF(currentUser.Id))
-          {
-            allowAssignPdp = !_securityService.IsUserAdminTF(_userId);
-          }
-          dlTFoms.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
-          dlSmo.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
-          dlPdp.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
-
-
-          if (user.PointDistributionPolicy != null)
-          {
-            SetComboboValues(user);
-          }
-          else
-          {
-            //устанавливаем значения комбобоксов по умолчанию исходя из текущего пользователя, если для редактируемого пользователя не назначен pdp
-            SetComboboValues(currentUser);
-            //соответствует элементу не выбран
-            dlPdp.SelectedIndex = 0;
-          }
-        }
-      }
-    }
-
-    private void SetComboboValues(User user)
-    {
-      if (user.PointDistributionPolicy == null)
-      {
-        return;
-      }
-      dlTFoms.SelectedValue = user.PointDistributionPolicy.Parent.Parent.Id.ToString();
-      dlSmo.SelectedValue = user.PointDistributionPolicy.Parent.Id.ToString();
-      dlPdp.SelectedValue = user.PointDistributionPolicy.Id.ToString();
-    }
-
+    /// <summary>
+    /// The assign data sources for admin mode.
+    /// </summary>
+    /// <param name="currentUser">
+    /// The current user.
+    /// </param>
     public void AssignDataSourcesForAdminMode(User currentUser)
     {
-      //все территориальные фонды
-      IList<Organisation> foms = _smoService.GetAllTfoms();
+      // все территориальные фонды
+      var foms = smoService.GetAllTfoms();
       dlTFoms.DataSource = foms;
       dlTFoms.DataBind();
 
-      User user = _securityService.GetUser(_userId);
-      if (user != null && user.PointDistributionPolicy != null)
+      var user = securityService.GetUser(userId);
+      if (user != null && user.PointDistributionPolicyId != null)
       {
-        //страховые медицинские организации принадлежащие территорильному фонду пользователя
-        dlSmo.DataSource = _smoService.GetSmosByTfom(user.PointDistributionPolicy.Parent.Parent.Id);
+        // страховые медицинские организации принадлежащие территорильному фонду пользователя
+        dlSmo.DataSource = smoService.GetSmosByTfom(user.GetTf().Id);
         dlSmo.DataBind();
 
-        //пункты выдачи страховой медицинской организации пользователя
-        dlPdp.DataSource = GetPDPsBySmo(user.PointDistributionPolicy.Parent.Id);
+        // пункты выдачи страховой медицинской организации пользователя
+        dlPdp.DataSource = GetPdPsBySmo(user.GetSmo().Id);
         dlPdp.DataBind();
       }
       else
       {
         if (foms.Count > 0)
         {
-          Guid fomId;
-          Guid smoId;
-          if (currentUser.PointDistributionPolicy != null)
-          {
-            fomId = currentUser.PointDistributionPolicy.Parent.Parent.Id;
-          }
-          else
-          {
-            fomId = foms.First().Id;
-          }
-          //все страховые медицинские организации по первому территориальномну фонду в выпадающем списке или по фонду текущего пользователя
-          IList<Organisation> smos = _smoService.GetSmosByTfom(fomId);
+          var fomId = currentUser.PointDistributionPolicyId != null ? currentUser.GetTf().Id : foms.First().Id;
+
+          // все страховые медицинские организации по первому территориальномну фонду в выпадающем списке или по фонду текущего пользователя
+          var smos = smoService.GetSmosByTfom(fomId);
           dlSmo.DataSource = smos;
           dlSmo.DataBind();
           if (smos.Count > 0)
           {
-            if (currentUser.PointDistributionPolicy != null)
-            {
-              smoId = currentUser.PointDistributionPolicy.Parent.Id;
-            }
-            else
-            {
-              smoId = smos.First().Id;
-            }
-            //все пункты выдачи по первой страховой медицинской организации
-            dlPdp.DataSource = GetPDPsBySmo(smoId);
+            var smoId = currentUser.PointDistributionPolicyId != null ? currentUser.GetSmo().Id : smos.First().Id;
+
+            // все пункты выдачи по первой страховой медицинской организации
+            dlPdp.DataSource = GetPdPsBySmo(smoId);
             dlPdp.DataBind();
           }
         }
       }
     }
 
-    public void AssignDataSourcesForOwnSmo(User currentUser)
-    {
-      var smo = _smoService.GetSmo(currentUser.PointDistributionPolicy.Parent.Id);
-
-      //страховая медицинская огранизация текущего пользователя
-      dlSmo.DataSource = new List<Organisation>() { smo };
-      dlSmo.DataBind();
-
-      //территориальный фонд организации текущего пользователя
-      dlTFoms.DataSource = new List<Organisation>() { smo.Parent };
-      dlTFoms.DataBind();
-
-      //пункты выдачи страховой медицинской организации текущего пользователя
-      dlPdp.DataSource = GetPDPsBySmo(smo.Id);
-      dlPdp.DataBind();
-    }
-
+    /// <summary>
+    /// The assign data sources for own region.
+    /// </summary>
+    /// <param name="currentUser">
+    /// The current user.
+    /// </param>
     public void AssignDataSourcesForOwnRegion(User currentUser)
     {
-      var smo = _smoService.GetSmo(currentUser.PointDistributionPolicy.Parent.Id);
+      var smo = smoService.GetSmo(currentUser.GetSmo().Id);
 
-      //территориальный фонд страховой медицинской организации текущего пользователя
-      dlTFoms.DataSource = new List<Organisation>() { smo.Parent };
+      // территориальный фонд страховой медицинской организации текущего пользователя
+      dlTFoms.DataSource = new List<Organisation> { smo.Parent };
       dlTFoms.DataBind();
 
-      //страховые мед организации принадлежащие фонду текущего пользователя
-      IList<Organisation> smos = _smoService.GetSmosByTfom(smo.Parent.Id);
+      // страховые мед организации принадлежащие фонду текущего пользователя
+      var smos = smoService.GetSmosByTfom(smo.Parent.Id);
       dlSmo.DataSource = smos;
       dlSmo.DataBind();
 
-      User user = _securityService.GetUser(_userId);
-      if (user != null && user.PointDistributionPolicy != null)
+      var user = securityService.GetUser(userId);
+      if (user != null && user.PointDistributionPolicyId != null)
       {
-        //пункты выдачи огрганизации пользователя
-        dlPdp.DataSource = GetPDPsBySmo(user.PointDistributionPolicy.Parent.Id);
+        // пункты выдачи огрганизации пользователя
+        dlPdp.DataSource = GetPdPsBySmo(user.GetSmo().Id);
         dlPdp.DataBind();
       }
       else
       {
-        //пункты выдачи для первой в выпадающем списке страховой мед организации
+        // пункты выдачи для первой в выпадающем списке страховой мед организации
         if (smos.Count > 0)
         {
-          Guid smoId;
-          if (currentUser.PointDistributionPolicy != null)
-          {
-            smoId = currentUser.PointDistributionPolicy.Parent.Id;
-          }
-          else
-          {
-            smoId = smos.First().Id;
-          }
-          dlPdp.DataSource = GetPDPsBySmo(smoId);
+          Guid smoId = currentUser.PointDistributionPolicyId != null ? currentUser.GetSmo().Id : smos.First().Id;
+
+          dlPdp.DataSource = GetPdPsBySmo(smoId);
           dlPdp.DataBind();
         }
       }
     }
 
+    /// <summary>
+    /// The assign data sources for own smo.
+    /// </summary>
+    /// <param name="currentUser">
+    /// The current user.
+    /// </param>
+    public void AssignDataSourcesForOwnSmo(User currentUser)
+    {
+      var smo = smoService.GetSmo(currentUser.GetSmo().Id);
+
+      // страховая медицинская огранизация текущего пользователя
+      dlSmo.DataSource = new List<Organisation> { smo };
+      dlSmo.DataBind();
+
+      // территориальный фонд организации текущего пользователя
+      dlTFoms.DataSource = new List<Organisation> { smo.Parent };
+      dlTFoms.DataBind();
+
+      // пункты выдачи страховой медицинской организации текущего пользователя
+      dlPdp.DataSource = GetPdPsBySmo(smo.Id);
+      dlPdp.DataBind();
+    }
+
+    /// <summary>
+    /// The save changes.
+    /// </summary>
     public void SaveChanges()
     {
       SaveChanges(Guid.Empty);
     }
 
+    /// <summary>
+    /// The save changes.
+    /// </summary>
+    /// <param name="newUserId">
+    /// The new user id.
+    /// </param>
     public void SaveChanges(Guid newUserId)
     {
-      Guid? pdpId = (string.IsNullOrEmpty(dlPdp.SelectedValue) || dlPdp.SelectedValue == "-1") ? null : (Guid?)Guid.Parse(dlPdp.SelectedValue);
-      _securityService.AssignPdpToUser(newUserId != Guid.Empty ? newUserId : _userId, pdpId);
+      var pdpId = (string.IsNullOrEmpty(dlPdp.SelectedValue) || dlPdp.SelectedValue == "-1")
+                    ? null
+                    : (Guid?)Guid.Parse(dlPdp.SelectedValue);
+      securityService.AssignPdpToUser(newUserId != Guid.Empty ? newUserId : userId, pdpId);
     }
 
-    protected void dlTFoms_SelectedIndexChanged(object sender, EventArgs e)
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Init(object sender, EventArgs e)
     {
-      //получаем страховые медицинские организации по территорильному фонду
-      if (string.IsNullOrEmpty(dlTFoms.SelectedValue))
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
+      smoService = ObjectFactory.GetInstance<ISmoService>();
+    }
+
+    /// <summary>
+    /// The page_ load.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      userId = Request.QueryString["userId"] == null ? Guid.Empty : Guid.Parse(Request.QueryString["userId"]);
+
+      if (!IsPostBack)
       {
-        return;
+        lbTitle.Text = string.Format("Назначение пункта выдачи для пользователя: {0}", Request.QueryString["userName"]);
+
+        var currentUser = securityService.GetCurrentUser();
+        if (securityService.IsUserHasAdminPermissions(currentUser))
+        {
+          AssignDataSourcesForAdminMode(currentUser);
+        }
+        else
+        {
+          if (currentUser.PointDistributionPolicy() != null && securityService.IsUserAdminSmo(currentUser.Id))
+          {
+            AssignDataSourcesForOwnSmo(currentUser);
+          }
+          else
+          {
+            if (currentUser.PointDistributionPolicy() != null && securityService.IsUserAdminTF(currentUser.Id))
+            {
+              AssignDataSourcesForOwnRegion(currentUser);
+            }
+          }
+        }
+
+        // случай добавления нового пользователя
+        if (userId == Guid.Empty)
+        {
+          // устанавливаем значения комбобоксов по умолчанию исходя из текущего пользователя, если для редактируемого пользователя не назначен pdp
+          SetComboboValues(currentUser);
+
+          // соответствует элементу не выбран
+          dlPdp.SelectedIndex = 0;
+          return;
+        }
+
+        // открыли на редактирование
+        if (userId != Guid.Empty)
+        {
+          var user = securityService.GetUser(userId);
+
+          var allowAssignPdp = true;
+
+          // администратор смо не может назначать пункт выдачи для администратора территорального фонда
+          if (!securityService.IsUserHasAdminPermissions(currentUser)
+              && !securityService.IsUserAdminTF(currentUser.Id))
+          {
+            allowAssignPdp = !securityService.IsUserAdminTF(userId);
+          }
+
+          dlTFoms.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
+          dlSmo.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
+          dlPdp.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
+
+          if (user.PointDistributionPolicy() != null)
+          {
+            SetComboboValues(user);
+          }
+          else
+          {
+            // устанавливаем значения комбобоксов по умолчанию исходя из текущего пользователя, если для редактируемого пользователя не назначен pdp
+            SetComboboValues(currentUser);
+
+            // соответствует элементу не выбран
+            dlPdp.SelectedIndex = 0;
+          }
+        }
       }
-      dlSmo.DataSource = _smoService.GetSmosByTfom(Guid.Parse(dlTFoms.SelectedValue));
-      dlSmo.DataBind();
-      dlSmo_SelectedIndexChanged(null, null);
     }
 
-    protected void dlSmo_SelectedIndexChanged(object sender, EventArgs e)
+    /// <summary>
+    /// The dl smo_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DlSmoSelectedIndexChanged(object sender, EventArgs e)
     {
-      //получаем пункты выдачи по страховой медицинской организации
+      // получаем пункты выдачи по страховой медицинской организации
       if (string.IsNullOrEmpty(dlSmo.SelectedValue))
       {
         return;
       }
-      dlPdp.DataSource = GetPDPsBySmo(Guid.Parse(dlSmo.SelectedValue));
+
+      dlPdp.DataSource = GetPdPsBySmo(Guid.Parse(dlSmo.SelectedValue));
       dlPdp.DataBind();
+    }
+
+    /// <summary>
+    /// The dl t foms_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DlTFomsSelectedIndexChanged(object sender, EventArgs e)
+    {
+      // получаем страховые медицинские организации по территорильному фонду
+      if (string.IsNullOrEmpty(dlTFoms.SelectedValue))
+      {
+        return;
+      }
+
+      dlSmo.DataSource = smoService.GetSmosByTfom(Guid.Parse(dlTFoms.SelectedValue));
+      dlSmo.DataBind();
+      DlSmoSelectedIndexChanged(null, null);
+    }
+
+    /// <summary>
+    /// The rf point_ server validate.
+    /// </summary>
+    /// <param name="source">
+    /// The source.
+    /// </param>
+    /// <param name="args">
+    /// The args.
+    /// </param>
+    protected void RfPointServerValidate(object source, ServerValidateEventArgs args)
+    {
+      args.IsValid = Guid.Parse(dlPdp.SelectedValue) != Guid.Empty;
     }
 
     /// <summary>
     /// Получает список плюс пустой элемент для удобства выбора и сброса значения в выпадающем списке
     /// </summary>
-    /// <param name="smoId"></param>
-    /// <returns></returns>
-    private IList<Organisation> GetPDPsBySmo(Guid smoId)
+    /// <param name="smoId">
+    /// The smo Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    private IList<Organisation> GetPdPsBySmo(Guid smoId)
     {
-      IList<Organisation> result = _smoService.GetPDPsBySmo(smoId);
-      var pdp = new Organisation();
-      pdp.ShortName = "Не выбран";
-      pdp.Id = Guid.Empty;
+      var result = smoService.GetPDPsBySmo(smoId);
+      var pdp = new Organisation { ShortName = "Не выбран", Id = Guid.Empty };
       result.Insert(0, pdp);
       return result;
     }
 
-    protected void rfPoint_ServerValidate(object source, ServerValidateEventArgs args)
+    /// <summary>
+    /// The set combobo values.
+    /// </summary>
+    /// <param name="user">
+    /// The user.
+    /// </param>
+    private void SetComboboValues(User user)
     {
-      args.IsValid = Guid.Parse(dlPdp.SelectedValue) != Guid.Empty;
+      if (user.PointDistributionPolicyId == null)
+      {
+        return;
+      }
+
+      dlTFoms.SelectedValue = user.GetTf().Id.ToString();
+      dlSmo.SelectedValue = user.GetSmo().Id.ToString();
+      dlPdp.SelectedValue = user.PointDistributionPolicyId.ToString();
     }
 
+    #endregion
   }
 }

@@ -14,7 +14,7 @@
 <asp:UpdatePanel ID="MenuUpdatePanel" runat="server" UpdateMode="Conditional">
   <ContentTemplate>
     <div class="paddingGridMenu">
-      <asp:Menu ID="menu1" runat="server" OnMenuItemClick="menuRoles_MenuItemClick" Orientation="Horizontal" CssClass="ItemMenu" OnPreRender="menu1_PreRender">
+      <asp:Menu ID="menu1" runat="server" OnMenuItemClick="menuRoles_MenuItemClick" Orientation="Horizontal" CssClass="ItemMenu" OnPreRender="Menu1PreRender">
         <Items>
           <asp:MenuItem Text="Добавить" Value="Add" ImageUrl="~/Resources/create.png"></asp:MenuItem>
           <asp:MenuItem Text="Добавить расширенно" Value="AddEx" ImageUrl="~/Resources/create.png"></asp:MenuItem>
@@ -30,7 +30,7 @@
 <asp:UpdatePanel ID="contentUpdatePanel" runat="server" UpdateMode="Conditional">
   <ContentTemplate>
     <div class="partHeight">
-      <asp:ListBox ID="lstRoles" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="Id" Width="100%" Height="100%" CssClass="listbox" OnSelectedIndexChanged="lstRoles_SelectedIndexChanged"></asp:ListBox>
+      <asp:ListBox ID="lstRoles" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="Id" Width="100%" Height="100%" CssClass="listbox" OnSelectedIndexChanged="LstRolesSelectedIndexChanged"></asp:ListBox>
     </div>
   </ContentTemplate>
 </asp:UpdatePanel>

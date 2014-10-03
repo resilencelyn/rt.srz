@@ -47,17 +47,18 @@ namespace rt.srz.business.tests
 			
 			entity.DateFiling = System.DateTime.Now;
 			entity.HasPetition = true;
-			entity.NumberPolicy = "Test Test Test Te";
+			entity.NumberPolicy = "Test Test";
 			entity.AbsentPrevPolicy = true;
 			entity.IsActive = true;
 			entity.PolicyIsIssued = true;
-			entity.PrzBuffId = 65;
-			entity.PidId = 72;
-			entity.PolisId = 59;
+			entity.PrzBuffId = 27;
+			entity.PidId = 71;
+			entity.PolisId = 58;
 			entity.IsExportTemp = true;
 			entity.IsExportPolis = true;
-			entity.PrzBuffPolisId = 51;
-			entity.Version = 5;
+			entity.PrzBuffPolisId = 86;
+			entity.Version = 68;
+			entity.UserId = System.Guid.NewGuid();
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
@@ -83,15 +84,6 @@ namespace rt.srz.business.tests
 					if (all.Count > 0)
 					{
 						entity.Status = all[0];
-					}
-				}	
-			
-			using(rt.srz.business.manager.IUserManager userManager = ObjectFactory.GetInstance<IUserManager>())
-				{
-				    var all = userManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.User = all[0];
 					}
 				}	
 			

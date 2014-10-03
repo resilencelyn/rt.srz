@@ -86,6 +86,34 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="BusinessBase.cs" />
+    <Compile Include="core\Group.cs" />
+    <Compile Include="core\Group.generated.cs">
+      <DependentUpon>Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="core\Permission.cs" />
+    <Compile Include="core\Permission.generated.cs">
+      <DependentUpon>Permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="core\PermissionRole.cs" />
+    <Compile Include="core\PermissionRole.generated.cs">
+      <DependentUpon>PermissionRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="core\Role.cs" />
+    <Compile Include="core\Role.generated.cs">
+      <DependentUpon>Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="core\User.cs" />
+    <Compile Include="core\User.generated.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="core\UserGroup.cs" />
+    <Compile Include="core\UserGroup.generated.cs">
+      <DependentUpon>UserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="core\UserGroupRole.cs" />
+    <Compile Include="core\UserGroupRole.generated.cs">
+      <DependentUpon>UserGroupRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="dto\BaseSearchCriteria.cs" />
     <Compile Include="dto\SearchResult.cs" />
     <Compile Include="dto\enumerations\SortDirection.cs" />
@@ -110,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NHibernate.csp">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

@@ -37,15 +37,14 @@ namespace rt.srz.model.srz
         [DataMember(Order =  3)]
         public virtual string ValueString { get; set;}
         
-        
-				[XmlElement(Order =  4)]
+        [XmlElement(Order =  4)]
         [DataMember(Order =  4)]
-		public virtual Organisation Organisation { get; set;}
-			
+        public virtual System.Guid? UserId { get; set;}
+        
         
 				[XmlElement(Order =  5)]
         [DataMember(Order =  5)]
-		public virtual User User { get; set;}
+		public virtual Organisation Organisation { get; set;}
 			
         
 				[XmlElement(Order =  6)]

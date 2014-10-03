@@ -1,279 +1,121 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UserManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+п»ї// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserManager.cs" company="Р СѓСЃР‘РРўРµС…">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The UserManager.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
-  using System.Collections.Generic;
-
-  using NHibernate;
+  using rt.core.model.core;
+  using rt.srz.model.srz;
 
   using StructureMap;
 
-  using rt.srz.model.srz;
-  using System;
-  using System.Linq;
-  using rt.srz.model.enumerations;
-  using rt.srz.model.common;
-  using rt.core.business.security.interfaces;
-  using NHibernate.Criterion;
-  
   /// <summary>
-  ///   The UserManager.
+  /// The user manager.
   /// </summary>
-  public partial class UserManager
+  public static class UserManager
   {
-    public void MarkAsDeleted(Guid userId)
-    {
-      User user = GetById(userId);
-      user.IsApproved = false;
-      SaveOrUpdate(user);
-    }
+    #region Public Methods and Operators
 
     /// <summary>
-    /// Назначение пункта выдачи пользователю
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <param name="pdpId">
-    /// </param>
-    public void AssignPdpToUser(Guid userId, Guid? pdpId)
-    {
-      var user = GetById(userId);
-      if (pdpId == null)
-      {
-        user.PointDistributionPolicy = null;
-      }
-      else
-      {
-        var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
-        user.PointDistributionPolicy = organisationManager.GetById(pdpId.Value);
-      }
-
-      SaveOrUpdate(user);
-    }
-
-    /// <summary>
-    /// Удаление пользователя
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    public void DeleteUser(Guid userId)
-    {
-      ObjectFactory.GetInstance<IUserGroupRoleManager>().Delete(x => x.User.Id == userId);
-      ObjectFactory.GetInstance<IUserGroupManager>().Delete(x => x.User.Id == userId);
-      MarkAsDeleted(userId);
-      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом территориального фонда
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    public bool IsUserAdminTF(Guid userId)
-    {
-      return GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnRegion);
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом СМО
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    public bool IsUserAdminSmo(Guid userId)
-    {
-      return GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnSmo);
-    }
-
-    /// <summary>
-    /// Разрешено ли пользователю разрешение с указанным кодом
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <param name="permissionCode">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/> . 
-    /// </returns>
-    public bool GetIsUserAllowPermission(Guid userId, int permissionCode)
-    {
-      var user = GetById(userId);
-      return InternalGetIsUserAllowPermission(user, permissionCode);
-    }
-
-    private bool InternalGetIsUserAllowPermission(User user, int permissionCode)
-    {
-      if (user.IsAdmin)
-      {
-        return true;
-      }
-
-      // проверяем разрешение у пользователя 
-      var check = CheckRoles(user.UserGroupRoles.Select(x => x.Role), permissionCode);
-      if (check)
-      {
-        return true;
-      }
-
-      // проверяем разрешение у всех групп, куда входит пользователь. 
-      foreach (var group in user.UserGroups.Select(x => x.Group))
-      {
-        check = CheckRoles(group.UserGroupRoles.Select(x => x.Role), permissionCode);
-        if (check)
-        {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
-    /// <summary>
-    /// The check roles.
-    /// </summary>
-    /// <param name="roles">
-    /// The roles. 
-    /// </param>
-    /// <param name="permissionCode">
-    /// The permission code. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/> . 
-    /// </returns>
-    private bool CheckRoles(IEnumerable<Role> roles, int permissionCode)
-    {
-      foreach (var role in roles)
-      {
-        // если роль админа, то разрешаем
-        if (role.Code == InfoUtility.C_AdminCode)
-        {
-          return true;
-        }
-
-        var item = role.PermissionRoles.Where(x => x.Permission.Code == permissionCode).FirstOrDefault();
-        if (item != null)
-        {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
-    /// <summary>
-    ///   Список всех пользователей
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<User> GetUsers()
-    {
-      return GetBy(x => x.IsApproved == true);
-    }
-
-    /// <summary>
-    /// Имеет ли пользователь роль администратора или входит в группы любая из которых имеет роль администратора
+    /// The get pvp.
     /// </summary>
     /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="Organisation"/>.
     /// </returns>
-    public bool IsUserHasAdminPermissions(User user)
+    public static Organisation GetTf(this User user)
     {
-      if (user.IsAdmin)
+      var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
+      if (user.PointDistributionPolicyId != null)
       {
-        return true;
-      }
-
-      foreach (var group in user.UserGroups.Select(x => x.Group))
-      {
-        foreach (var role in group.UserGroupRoles.Select(x => x.Role))
+        var pvp = organisationManager.GetById(user.PointDistributionPolicyId.Value);
+        if (pvp != null && pvp.Parent != null)
         {
-          // если роль админа, то разрешаем
-          if (role.Code == InfoUtility.C_AdminCode)
-          {
-            return true;
-          }
+          return pvp.Parent.Parent;
         }
-      }
 
-      return false;
-    }
-
-    /// <summary>
-    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<User> GetUsersByCurrent()
-    {
-      var sec = ObjectFactory.GetInstance<ISecurityProvider>();
-      var currentUser = sec.GetCurrentUser();
-      if (IsUserHasAdminPermissions(currentUser))
-      {
-        return GetUsers();
-      }
-
-      if (currentUser.PointDistributionPolicy == null)
-      {
-        return null;
-      }
-
-
-        // свой регион
-      else if (IsUserAdminTF(currentUser.Id))
-      {
-        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-        User user = null;
-        Organisation foms = null;
-        Organisation smo = null;
-        Organisation pdp = null;
-        var curFomsId = currentUser.PointDistributionPolicy.Parent.Parent.Id;
-        var query =
-          session.QueryOver(() => user).JoinAlias(x => x.PointDistributionPolicy, () => pdp).JoinAlias(
-            () => pdp.Parent, () => smo).JoinAlias(() => smo.Parent, () => foms).Where(x => foms.Id == curFomsId && user.IsApproved == true);
-        return query.List();
-      }
-
-
-        // своя смо
-      else if (IsUserAdminSmo(currentUser.Id))
-      {
-        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-        User user = null;
-        Organisation foms = null;
-        Organisation smo = null;
-        Organisation pdp = null;
-        var curSmoId = currentUser.PointDistributionPolicy.Parent.Id;
-        var query =
-          session.QueryOver(() => user).JoinAlias(x => x.PointDistributionPolicy, () => pdp).JoinAlias(
-            () => pdp.Parent, () => smo).JoinAlias(() => smo.Parent, () => foms).Where(x => smo.Id == curSmoId && user.IsApproved == true);
-        return query.List();
+        return pvp;
       }
 
       return null;
     }
 
     /// <summary>
-    /// Получает список пользователей логины которых начинаются с указанного значения
+    /// The has pvp.
     /// </summary>
-    /// <param name="contains">
+    /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="bool"/>.
     /// </returns>
-    public IList<User> GetUsersByNameContains(string contains)
+    public static bool HasSmo(this User user)
     {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      return session.QueryOver<User>().Where(x => x.IsApproved == true).WhereRestrictionOn(u => u.Login).IsInsensitiveLike(contains, MatchMode.Anywhere).List();
+      var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
+      return user.PointDistributionPolicyId.HasValue && organisationManager.GetById(user.PointDistributionPolicyId.Value).Parent != null;
     }
 
+    /// <summary>
+    /// The get pvp.
+    /// </summary>
+    /// <param name="user">
+    /// The user.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Organisation"/>.
+    /// </returns>
+    public static Organisation GetSmo(this User user)
+    {
+      if (user.PointDistributionPolicyId != null)
+      {
+        var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
+        var pvp = organisationManager.GetById(user.PointDistributionPolicyId.Value);
+        return pvp.Parent;
+      }
 
+      return null;
+    }
+
+    /// <summary>
+    /// The has tf.
+    /// </summary>
+    /// <param name="user">
+    /// The user.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public static bool HasTf(this User user)
+    {
+      if (user.PointDistributionPolicyId == null)
+      {
+        return false;
+      }
+
+      var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
+      var org = organisationManager.GetById(user.PointDistributionPolicyId.Value);
+      return org != null && org.Parent != null && org.Parent.Parent != null;
+    }
+
+    /// <summary>
+    /// The point distribution policy.
+    /// </summary>
+    /// <param name="user">
+    /// The user.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Organisation"/>.
+    /// </returns>
+    public static Organisation PointDistributionPolicy(this User user)
+    {
+      var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
+      return user.PointDistributionPolicyId != null ? organisationManager.GetById(user.PointDistributionPolicyId.Value) : null;
+    }
+
+    #endregion
   }
 }

@@ -88,6 +88,8 @@
     <Compile Include="aspects\NHibernateProxyInterceptorClient.cs" />
     <Compile Include="aspects\NHibernateProxyInterceptorServer.cs" />
     <Compile Include="aspects\ObjectDumper.cs" />
+    <Compile Include="AuthGate.cs" />
+    <Compile Include="AuthService.cs" />
     <Compile Include="challenge\ChallengeAuthorizationPolicy.cs" />
     <Compile Include="challenge\ChallengeIdentity.cs" />
     <Compile Include="challenge\ChallengePrincipal.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="nhibernate\NHibernateWcfContextAttribute.cs" />
     <Compile Include="nhibernate\NHibernateWcfContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="registry\AuthServiceRegistry.cs" />
     <Compile Include="registry\ServiceClient.cs" />
     <Compile Include="registry\ServiceRegistryBase.cs" />
     <Compile Include="registry\WcfProxy.cs" />
@@ -109,10 +112,6 @@
     <None Include="rt.srz.key" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
-      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
-      <Name>rt.core.business.security</Name>
-    </ProjectReference>
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
       <Name>rt.core.business</Name>

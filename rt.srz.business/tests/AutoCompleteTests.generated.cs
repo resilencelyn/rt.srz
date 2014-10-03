@@ -46,7 +46,7 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Name = "Test Test ";
-			entity.Relevance = 2;
+			entity.Relevance = 52;
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{

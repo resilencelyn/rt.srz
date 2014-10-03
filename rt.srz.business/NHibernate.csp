@@ -22,21 +22,43 @@
         <connectionString>$(ConnectionString1)</connectionString>
         <providerType>SchemaExplorer.SqlSchemaProvider,SchemaExplorer.SqlSchemaProvider</providerType>
         <tableList>
-      <table>
-        <owner>dbo</owner>
-        <name>Dual</name>
-      </table>
-			<table>
-				<owner>dbo</owner>
-				<name>SchemaInfo</name>
-			</table>
-    </tableList>
-      </property>
-      <property name="ExcludedColumns">
-        <stringList>
-      <string>KLADR_PARENT_ID1</string>
-      <string>LEVEL1</string>
-    </stringList>
+          <table>
+            <owner>dbo</owner>
+            <name>Dual</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>Group</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>Permission</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>PermissionRole</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>Role</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>SchemaInfo</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>User</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>UserGroup</name>
+          </table>
+          <table>
+            <owner>dbo</owner>
+            <name>UserGroupRole</name>
+          </table>
+        </tableList>
       </property>
     </propertySet>
   </propertySets>

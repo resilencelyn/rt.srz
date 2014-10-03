@@ -82,7 +82,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::rt.srz.ui.pvp.Controls.KLADRIntellisenseUserControl mainAddressKladrIntellisense;
+        protected global::rt.srz.ui.pvp.Controls.KladrIntellisenseUserControl mainAddressKladrIntellisense;
         
         /// <summary>
         /// mainAddressKladrDiv control.
@@ -100,7 +100,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::rt.srz.ui.pvp.Controls.KLADRUserControl mainAddressKladr;
+        protected global::rt.srz.ui.pvp.Controls.KladrUserControl mainAddressKladr;
         
         /// <summary>
         /// dateRegistrationDiv control.
@@ -208,7 +208,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::rt.srz.ui.pvp.Controls.KLADRIntellisenseUserControl residencyAddressKladrIntellisense;
+        protected global::rt.srz.ui.pvp.Controls.KladrIntellisenseUserControl residencyAddressKladrIntellisense;
         
         /// <summary>
         /// residencyAddressKladrDiv control.
@@ -226,7 +226,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::rt.srz.ui.pvp.Controls.KLADRUserControl residencyAddressKladr;
+        protected global::rt.srz.ui.pvp.Controls.KladrUserControl residencyAddressKladr;
         
         /// <summary>
         /// Labe10 control.

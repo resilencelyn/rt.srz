@@ -1,41 +1,59 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Global.asax.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Global.asax.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The global.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-using System;
-using System.Web;
-using NHibernate;
-using NHibernate.Context;
-using StructureMap;
-
-#endregion
 
 namespace rt.srz.ui.pvp
 {
-  using System.Web.Security;
+  using System;
   using System.Linq;
+  using System.Web;
+  using System.Web.Management;
+  using System.Web.Security;
 
-  using rt.core.model;
-  using rt.srz.ui.pvp.Enumerations;
-  using rt.srz.model.interfaces.service;
-  using rt.srz.business.manager;
+  using NHibernate;
+  using NHibernate.Context;
+
+  using NLog;
+
   using rt.atl.business.exchange.impl;
+  using rt.core.model;
+  using rt.core.model.core;
+  using rt.srz.business.manager;
+  using rt.srz.model.interfaces.service;
+  using rt.srz.ui.pvp.Enumerations;
+
+  using StructureMap;
 
   /// <summary>
-  /// The global.
+  ///   The global.
   /// </summary>
   public class Global : HttpApplication
   {
+    #region Fields
+
+    /// <summary>
+    /// The _redirect to offline.
+    /// </summary>
+    private bool redirectToOffline;
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The application_ acquire request state.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Application_AcquireRequestState(object sender, EventArgs e)
     {
-      model.srz.User currentUser = null;
+      User currentUser = null;
       try
       {
         currentUser = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
@@ -50,9 +68,10 @@ namespace rt.srz.ui.pvp
       }
 
       // Получаем время окончания последней синхронизации
-      var syncTimeSrz2Pvp = ObjectFactory.GetInstance<ISettingManager>()
-        .GetBy(x => x.Name == typeof(ExporterToPvp).FullName)
-        .FirstOrDefault();
+      var syncTimeSrz2Pvp =
+        ObjectFactory.GetInstance<ISettingManager>()
+                     .GetBy(x => x.Name == typeof(ExporterToPvp).FullName)
+                     .FirstOrDefault();
 
       DateTime? syncTime = null;
       if (syncTimeSrz2Pvp != null)
@@ -78,7 +97,7 @@ namespace rt.srz.ui.pvp
         HttpContext.Current.Response.End();
       }
     }
-    
+
     /// <summary>
     /// The application_ begin request.
     /// </summary>
@@ -101,29 +120,18 @@ namespace rt.srz.ui.pvp
       CurrentSessionContext.Bind(session);
     }
 
-    bool _redirectToOffline = false;
-
-    private bool ProcessOffline()
+    /// <summary>
+    /// The application_ end.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    private void Application_End(object sender, EventArgs e)
     {
-      if (!SiteMode.IsOnline)
-      {
-        if (!_redirectToOffline)
-        {
-          _redirectToOffline = true;
-          RedirectUtils.RedirectToTechnical(Response);
-        }
-        //если мы открываем страницу ещё одну - например любой справочник, 
-        //то если режим офлайн надо редиректить на техническую страницу независимо от того что на неё ранее был сделан редирект
-        if (!Request.Url.AbsoluteUri.Contains("SiteIsOffline.aspx") && !Request.Url.AbsoluteUri.Contains("settings.png") &&
-          !Request.Url.AbsoluteUri.Contains(".css"))
-        {
-          RedirectUtils.RedirectToTechnical(Response);
-        }
-        return true;
-      }
-      
-      _redirectToOffline = false;
-      return false;
+      Bootstrapper.Stop();
     }
 
     /// <summary>
@@ -151,7 +159,6 @@ namespace rt.srz.ui.pvp
       ////  }
       ////  return;
       ////}
-
       var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
       var session = CurrentSessionContext.Unbind(sessionFactory);
       if (session != null)
@@ -166,8 +173,36 @@ namespace rt.srz.ui.pvp
         session.Close();
         session.Dispose();
       }
+    }
 
+    /// <summary>
+    /// The application_ error.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    private void Application_Error(object sender, EventArgs e)
+    {
+      var context = HttpContext.Current;
+      var ex = context.Server.GetLastError();
+      LogManager.GetCurrentClassLogger().Fatal("Application_Error", ex);
 
+      LogManager.GetCurrentClassLogger().Fatal("Server.GetLastError()", Server.GetLastError());
+      LogManager.GetCurrentClassLogger()
+                .Fatal("Server.GetLastError().GetBaseException()", Server.GetLastError().GetBaseException());
+
+      // Ошибка генерируемая при загрузке слишком большого по размеру файла
+      // при загрузке файла большего размера чем положено параметром httpRuntime - maxRequestLength надо скрыть сообщение ие. 
+      // Своё отображается клиентским скриптом OnClientUploadError="onUploadError" у AsyncFileUpload
+      if (ex.InnerException != null && ex.InnerException.GetType() == typeof(HttpException)
+          && ((HttpException)ex.InnerException).WebEventCode == WebEventCodes.RuntimeErrorPostTooLarge
+          && Request.Url.Query.Contains("AsyncFileUploadID="))
+      {
+        Response.Close();
+      }
     }
 
     /// <summary>
@@ -185,60 +220,34 @@ namespace rt.srz.ui.pvp
     }
 
     /// <summary>
-    /// The application_ end.
+    /// The process offline.
     /// </summary>
-    /// <param name="sender">
-    /// The sender.
-    /// </param>
-    /// <param name="e">
-    /// The e.
-    /// </param>
-    private void Application_End(object sender, EventArgs e)
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    private bool ProcessOffline()
     {
-      Bootstrapper.Stop();
-    }
-
-    /// <summary>
-    /// The application_ error.
-    /// </summary>
-    /// <param name="sender">
-    /// The sender.
-    /// </param>
-    /// <param name="e">
-    /// The e.
-    /// </param>
-    private void Application_Error(object sender, EventArgs e)
-    {
-      HttpContext context = HttpContext.Current;
-      Exception ex = context.Server.GetLastError();
-      NLog.LogManager.GetCurrentClassLogger().Fatal("Application_Error", ex);
-
-      NLog.LogManager.GetCurrentClassLogger().Fatal("Server.GetLastError()", Server.GetLastError());
-      NLog.LogManager.GetCurrentClassLogger().Fatal("Server.GetLastError().GetBaseException()", Server.GetLastError().GetBaseException());
-
-      //Ошибка генерируемая при загрузке слишком большого по размеру файла
-      //при загрузке файла большего размера чем положено параметром httpRuntime - maxRequestLength надо скрыть сообщение ие. 
-      //Своё отображается клиентским скриптом OnClientUploadError="onUploadError" у AsyncFileUpload
-      if (ex.InnerException != null && ex.InnerException.GetType() == typeof(HttpException) && 
-        ((HttpException)ex.InnerException).WebEventCode == System.Web.Management.WebEventCodes.RuntimeErrorPostTooLarge && 
-        Request.Url.Query.Contains("AsyncFileUploadID="))
+      if (!SiteMode.IsOnline)
       {
-        Response.Close(); 
-      }
-    }
+        if (!redirectToOffline)
+        {
+          redirectToOffline = true;
+          RedirectUtils.RedirectToTechnical(Response);
+        }
 
-    /// <summary>
-    /// The session_ start.
-    /// </summary>
-    /// <param name="sender">
-    /// The sender.
-    /// </param>
-    /// <param name="e">
-    /// The e.
-    /// </param>
-    private void Session_Start(object sender, EventArgs e)
-    {
-      // Code that runs when a new session is started
+        // если мы открываем страницу ещё одну - например любой справочник, 
+        // то если режим офлайн надо редиректить на техническую страницу независимо от того что на неё ранее был сделан редирект
+        if (!Request.Url.AbsoluteUri.Contains("SiteIsOffline.aspx") && !Request.Url.AbsoluteUri.Contains("settings.png")
+            && !Request.Url.AbsoluteUri.Contains(".css"))
+        {
+          RedirectUtils.RedirectToTechnical(Response);
+        }
+
+        return true;
+      }
+
+      redirectToOffline = false;
+      return false;
     }
 
     /// <summary>
@@ -257,5 +266,21 @@ namespace rt.srz.ui.pvp
       // is set to InProc in the Web.config file. If session mode is set to StateServer 
       // or SQLServer, the event is not raised.
     }
+
+    /// <summary>
+    /// The session_ start.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    private void Session_Start(object sender, EventArgs e)
+    {
+      // Code that runs when a new session is started
+    }
+
+    #endregion
   }
 }

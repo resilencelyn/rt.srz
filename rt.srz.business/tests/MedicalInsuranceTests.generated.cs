@@ -45,13 +45,13 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.PolisSeria = "Test Test Test Test Test Test";
-			entity.PolisNumber = "Test Test Test Test";
+			entity.PolisSeria = "Test ";
+			entity.PolisNumber = "Test Test Test Test Test Test Test Test Test ";
 			entity.DateFrom = System.DateTime.Now;
 			entity.DateTo = System.DateTime.Now;
 			entity.IsActive = true;
 			entity.DateStop = System.DateTime.Now;
-			entity.Enp = "T";
+			entity.Enp = "Tes";
 			entity.StateDateFrom = System.DateTime.Now;
 			entity.StateDateTo = System.DateTime.Now;
 			
@@ -146,7 +146,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.MedicalInsurance entityA = GetFirstMedicalInsurance();
 				
-				entityA.PolisSeria = "Te";
+				entityA.PolisSeria = "Test Tes";
 				
 				manager.Update(entityA);
 

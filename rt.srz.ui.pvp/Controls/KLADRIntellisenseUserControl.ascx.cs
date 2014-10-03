@@ -1,41 +1,76 @@
-﻿using System;
-using System.Configuration;
-using System.Web;
-using System.Text;
-using StructureMap;
-using rt.srz.model.srz;
-using rt.srz.model.interfaces.service;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="KladrIntellisenseUserControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controls
 {
-  public partial class KLADRIntellisenseUserControl : System.Web.UI.UserControl, IKLADRUserControl
-  {
-    protected string uniqueKey;
-    private IKladrService _kladrService;
-    private ISecurityService _securityService;
+  using System;
+  using System.Configuration;
+  using System.Text;
+  using System.Web.UI;
 
+  using rt.srz.business.manager;
+  using rt.srz.model.interfaces.service;
+
+  using StructureMap;
+
+  /// <summary>
+  ///   The kladr intellisense user control.
+  /// </summary>
+  public partial class KladrIntellisenseUserControl : UserControl, IKLADRUserControl
+  {
+    #region Fields
+
+    /// <summary>
+    ///   The unique key.
+    /// </summary>
+    private string uniqueKey;
+
+    /// <summary>
+    ///   The _kladr service.
+    /// </summary>
+    private IKladrService kladrService;
+
+    /// <summary>
+    ///   The _security service.
+    /// </summary>
+    private ISecurityService securityService;
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    ///   Gets or sets the selected kladr id.
+    /// </summary>
     public Guid SelectedKLADRId
     {
       get
       {
         if (!string.IsNullOrEmpty(hfKLADRHierarchy.Value))
         {
-          string[] hierarchy = hfKLADRHierarchy.Value.Split(new char[] { ';' });
+          var hierarchy = hfKLADRHierarchy.Value.Split(new[] { ';' });
           if (hierarchy.Length > 0)
+          {
             return new Guid(hierarchy[hierarchy.Length - 1]);
+          }
         }
+
         return Guid.Empty;
       }
+
       set
       {
         if (value != Guid.Empty)
         {
-          //Восстановление иерархии
-          IKladrService service = ObjectFactory.GetInstance<IKladrService>();
+          // Восстановление иерархии
+          var service = ObjectFactory.GetInstance<IKladrService>();
 
-          StringBuilder valueBuilder = new StringBuilder();
-          StringBuilder hierarchyBuilder = new StringBuilder();
-          Kladr kladr = service.GetKLADR(value);
+          var valueBuilder = new StringBuilder();
+          var hierarchyBuilder = new StringBuilder();
+          var kladr = service.GetKLADR(value);
           do
           {
             valueBuilder.Insert(0, string.Format("," + kladr.Name + " " + kladr.Socr + "."));
@@ -45,11 +80,16 @@ namespace rt.srz.ui.pvp.Controls
           while (kladr != null);
 
           if (valueBuilder.Length > 0)
+          {
             valueBuilder.Remove(0, 1);
+          }
+
           valueBuilder.Append(",");
 
           if (hierarchyBuilder.Length > 0)
+          {
             hierarchyBuilder.Remove(0, 1);
+          }
 
           tbKLADRIntellisense.Text = valueBuilder.ToString();
           hfKLADRHierarchy.Value = hierarchyBuilder.ToString();
@@ -57,19 +97,93 @@ namespace rt.srz.ui.pvp.Controls
       }
     }
 
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The enable.
+    /// </summary>
+    /// <param name="enable">
+    /// The b enable.
+    /// </param>
+    public void Enable(bool enable)
+    {
+      tbPostcode.Enabled = enable;
+      tbKLADRIntellisense.Enabled = enable;
+      tbHouse.Enabled = enable;
+      tbHousing.Enabled = enable;
+      tbRoom.Enabled = enable;
+    }
+
+    /// <summary>
+    ///   The set default subject.
+    /// </summary>
+    public void SetDefaultSubject()
+    {
+      // Получение текущего региона для текущего пользователя
+      var currentUser = securityService.GetCurrentUser();
+      if (currentUser.HasTf())
+      {
+        var tfom = currentUser.GetTf();
+        var kladr = kladrService.GetFirstLevelByTfoms(tfom);
+        if (kladr != null)
+        {
+          // Установка региона по умолчанию
+          SelectedKLADRId = kladr.Id;
+
+          // Инициализация AutoComplete компонента
+          aceKLADRIntellisense.ContextKey = SelectedKLADRId.ToString();
+
+          // Установка идекса по умолчанию
+          SetPostcode();
+        }
+      }
+    }
+
+    /// <summary>
+    ///   The set focus first control.
+    /// </summary>
+    public void SetFocusFirstControl()
+    {
+      tbKLADRIntellisense.Focus();
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _kladrService = ObjectFactory.GetInstance<IKladrService>();
-      _securityService = ObjectFactory.GetInstance<ISecurityService>();
+      kladrService = ObjectFactory.GetInstance<IKladrService>();
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
       if (!IsPostBack)
       {
         SetDefaultSubject();
       }
     }
 
+    /// <summary>
+    /// The page_ load.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Load(object sender, EventArgs e)
     {
-      //Решение вопроса размещения нескольких компонентов на одной форме
+      // Решение вопроса размещения нескольких компонентов на одной форме
       uniqueKey = Guid.NewGuid().ToString("N");
       aceKLADRIntellisense.OnClientItemSelected = "KLADR_itemSelected_" + uniqueKey;
       aceKLADRIntellisense.OnClientPopulating = "KLADR_ListPopulating_" + uniqueKey;
@@ -82,54 +196,23 @@ namespace rt.srz.ui.pvp.Controls
       tbKLADRIntellisense.Attributes["onmouseup"] = "KLADR_MouseUp_" + uniqueKey + "();";
       tbKLADRIntellisense.Attributes["onfocus"] = "KLADR_OnFocus_" + uniqueKey + "();";
 
-      aceKLADRIntellisense.MinimumPrefixLength = int.Parse(ConfigurationManager.AppSettings["MinimumPrefixLengthForAdress"]);
+      aceKLADRIntellisense.MinimumPrefixLength =
+        int.Parse(ConfigurationManager.AppSettings["MinimumPrefixLengthForAdress"]);
     }
 
+    /// <summary>
+    ///   The set postcode.
+    /// </summary>
     private void SetPostcode()
     {
-      if (SelectedKLADRId == null)
-        return;
-
       tbPostcode.Text = string.Empty;
-      Kladr kladr = _kladrService.GetKLADR(SelectedKLADRId);
+      var kladr = kladrService.GetKLADR(SelectedKLADRId);
       if (kladr != null && kladr.Index != null)
-        tbPostcode.Text = kladr.Index.ToString();
-    }
-
-    public void SetFocusFirstControl()
-    {
-      tbKLADRIntellisense.Focus();
-    }
-    
-    public void Enable(bool bEnable)
-    {
-      tbPostcode.Enabled = bEnable;
-      tbKLADRIntellisense.Enabled = bEnable;
-      tbHouse.Enabled = bEnable;
-      tbHousing.Enabled = bEnable;
-      tbRoom.Enabled = bEnable;
-    }
-
-    public void SetDefaultSubject()
-    {
-      //Получение текущего региона для текущего пользователя
-      User currentUser = _securityService.GetCurrentUser();
-      if (currentUser != null && currentUser.PointDistributionPolicy != null && currentUser.PointDistributionPolicy.Parent != null && currentUser.PointDistributionPolicy.Parent.Parent != null)
       {
-        var tfom = currentUser.PointDistributionPolicy.Parent.Parent;
-        Kladr kladr = _kladrService.GetFirstLevelByTfoms(tfom);
-        if (kladr != null)
-        {
-          //Установка региона по умолчанию
-          SelectedKLADRId = kladr.Id;
-
-          //Инициализация AutoComplete компонента
-          aceKLADRIntellisense.ContextKey = SelectedKLADRId.ToString();
-
-          //Установка идекса по умолчанию
-          SetPostcode();
-        }
+        tbPostcode.Text = kladr.Index.ToString();
       }
     }
+
+    #endregion
   }
 }

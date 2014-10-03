@@ -45,22 +45,22 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FirstName = "Te";
-			entity.LastName = "Test Test ";
-			entity.MiddleName = "Test Test Test Test Test ";
+			entity.FirstName = "Test Test Test Test Test Test Test Test T";
+			entity.LastName = "Te";
+			entity.MiddleName = "Test Test Test Test Test Test T";
 			entity.Birthday = System.DateTime.Now;
-			entity.Birthday2 = "Test ";
-			entity.BirthdayType = 46;
+			entity.Birthday2 = "Te";
+			entity.BirthdayType = 59;
 			entity.IsIncorrectDate = true;
 			entity.IsNotGuru = true;
-			entity.Snils = "Test T";
+			entity.Snils = "Test";
 			entity.Birthplace = "Test Test ";
 			entity.IsNotCitizenship = true;
 			entity.IsRefugee = true;
 			entity.IsBadSnils = true;
-			entity.NhFirstName = 96;
-			entity.NhLastName = 5;
-			entity.NhMiddleName = 20;
+			entity.NhFirstName = 71;
+			entity.NhLastName = 92;
+			entity.NhMiddleName = 58;
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
@@ -153,7 +153,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.InsuredPersonDatum entityA = GetFirstInsuredPersonDatum();
 				
-				entityA.FirstName = "Test Test Test Test Test Test Test Test Test Te";
+				entityA.FirstName = "Test Test Test Test Test Test Test Te";
 				
 				manager.Update(entityA);
 

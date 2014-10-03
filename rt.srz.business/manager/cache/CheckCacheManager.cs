@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckCacheManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckCacheManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,11 +20,18 @@ namespace rt.srz.business.manager.cache
   #endregion
 
   /// <summary>
-  /// The check cache manager.
+  ///   The check cache manager.
   /// </summary>
   public class CheckCacheManager : ManagerCacheBaseT<Setting, Guid>, ICheckCacheManager
   {
-    private Guid currentGuid;
+    #region Fields
+
+    /// <summary>
+    ///   The current guid.
+    /// </summary>
+    private readonly Guid currentGuid;
+
+    #endregion
 
     #region Constructors and Destructors
 
@@ -32,7 +39,7 @@ namespace rt.srz.business.manager.cache
     /// Initializes a new instance of the <see cref="CheckCacheManager"/> class.
     /// </summary>
     /// <param name="repository">
-    /// The repository. 
+    /// The repository.
     /// </param>
     public CheckCacheManager(ISettingManager repository)
       : base(repository)
@@ -50,27 +57,29 @@ namespace rt.srz.business.manager.cache
     /// Возвращает настройку по имени класса (ValidatorName = тип валидатора), которая записывается в поле name.
     /// </summary>
     /// <param name="className">
-    /// The class Name. 
+    /// The class Name.
     /// </param>
     /// <returns>
-    /// The <see cref="Setting"/> . 
+    /// The <see cref="Setting"/> .
     /// </returns>
     public Setting GetByClassName(string className)
     {
       // в таблице Settings в поле Name записывается имя класса (например ValidatorPolisCertificate наследованного от Check)
       // если у пользователя который изменял настройку и у текущего пользователя совпадают тер фонды то это та настройка что нужна
-      return Cache.SingleOrDefault(s => s.Organisation != null && (s.Name == className && s.Organisation.Id == currentGuid));
+      return
+        Cache.SingleOrDefault(s => s.Organisation != null && (s.Name == className && s.Organisation.Id == currentGuid));
     }
 
     /// <summary>
-    /// Возвращает настройку по имени класса (ValidatorName = тип валидатора), которая записывается в поле name. 
-    ///   без учёта принадлежности текущего пользователя территориальному фонду пользователя для которого эта настройка есть в базе
+    /// Возвращает настройку по имени класса (ValidatorName = тип валидатора), которая записывается в поле name.
+    ///   без учёта принадлежности текущего пользователя территориальному фонду пользователя для которого эта настройка есть в
+    ///   базе
     /// </summary>
     /// <param name="className">
-    /// The class Name. 
+    /// The class Name.
     /// </param>
     /// <returns>
-    /// The <see cref="Setting"/> . 
+    /// The <see cref="Setting"/> .
     /// </returns>
     public Setting GetByClassNameOnly(string className)
     {
@@ -118,9 +127,10 @@ namespace rt.srz.business.manager.cache
     public void UpdateCacheRecord(Setting setting)
     {
       var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      var newRecord = Repository.GetBy(s => s.Organisation.Id == currentUser.PointDistributionPolicy.Parent.Parent.Id && s.Name == setting.Name)
-        .SingleOrDefault();
-      var oldRecord = Cache.SingleOrDefault(s => s.Organisation != null && s.Organisation.Id == currentUser.GetTf().Id && s.Name == setting.Name);
+      var tf = currentUser.GetTf();
+      var newRecord = Repository.GetBy(s => s.Organisation.Id == tf.Id && s.Name == setting.Name).SingleOrDefault();
+      var oldRecord =
+        Cache.SingleOrDefault(s => s.Organisation != null && s.Organisation.Id == tf.Id && s.Name == setting.Name);
       if (oldRecord == null)
       {
         if (newRecord != null)

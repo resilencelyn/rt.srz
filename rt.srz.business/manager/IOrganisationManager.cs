@@ -12,6 +12,7 @@ using rt.srz.model.dto;
 using rt.core.model;
 namespace rt.srz.business.manager
 {
+  using rt.core.model.core;
   using rt.core.model.dto;
 
   /// <summary>
@@ -218,6 +219,32 @@ namespace rt.srz.business.manager
     /// </returns>
     SearchResult<Organisation> GetPdps(SearchPdpCriteria criteria);
 
+    /// <summary>
+    ///   —писок пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользовател€)
+    /// </summary>
+    /// <returns> The <see cref="IList" /> . </returns>
+    IList<User> GetUsersByCurrent();
+
+    /// <summary>
+    /// явл€етс€ ли пользователь админом —ћќ
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    bool IsUserAdminSmo(Guid userId);
+
+    /// <summary>
+    /// явл€етс€ ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    bool IsUserAdminTF(Guid userId);
+
         /// <summary>
     /// ѕолучает список всех организаций
     /// </summary>
@@ -256,7 +283,5 @@ namespace rt.srz.business.manager
     /// <param name="isOnline">
     /// </param>
     void SetTfomIsOnline(Guid id, bool isOnline);
-
-
   }
 }

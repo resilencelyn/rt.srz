@@ -73,7 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AuthGate.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -86,10 +85,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AuthGate.svc.cs">
-      <DependentUpon>AuthGate.svc</DependentUpon>
-    </Compile>
     <Compile Include="AuthService.cs" />
+    <Compile Include="AuthGate.cs" />
     <Compile Include="registry\AuthServiceRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -118,10 +115,6 @@
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
       <Name>rt.core.services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
-      <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
-      <Name>rt.srz.model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

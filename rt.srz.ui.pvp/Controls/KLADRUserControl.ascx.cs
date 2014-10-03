@@ -1,93 +1,169 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI.WebControls;
-using StructureMap;
-using rt.srz.model.enumerations;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.srz;
-using System.Web.UI;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="KladrUserControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controls
 {
-  public enum KLADRUserControlMode
+  using System;
+  using System.Collections.Generic;
+  using System.Web.UI;
+  using System.Web.UI.WebControls;
+
+  using rt.srz.business.manager;
+  using rt.srz.model.enumerations;
+  using rt.srz.model.interfaces.service;
+  using rt.srz.model.srz;
+
+  using StructureMap;
+
+  /// <summary>
+  ///   The kladr user control mode.
+  /// </summary>
+  public enum KladrUserControlMode
   {
-    Database, //Все данные загружаются из справочника в БД
-    Free      //Данные для населенного пунута и улицы можно ввести вручную
+    /// <summary>
+    ///   The database.
+    /// </summary>
+    Database, // Все данные загружаются из справочника в БД
+
+    /// <summary>
+    ///   The free.
+    /// </summary>
+    Free // Данные для населенного пунута и улицы можно ввести вручную
   }
 
-  public partial class KLADRUserControl : System.Web.UI.UserControl, IKLADRUserControl
+  /// <summary>
+  ///   The kladr user control.
+  /// </summary>
+  public partial class KladrUserControl : UserControl, IKLADRUserControl
   {
     #region Constants
+
+    /// <summary>
+    ///   The moscow okato.
+    /// </summary>
     private const string MoscowOkato = "45000000000";
+
+    /// <summary>
+    ///   The st petersburg okato.
+    /// </summary>
     private const string StPetersburgOkato = "40000000000";
+
     #endregion
 
     #region Fields
-    private IKladrService _kladrService;
-    private ISecurityService _securityService;
+
+    /// <summary>
+    ///   The _kladr service.
+    /// </summary>
+    private IKladrService kladrService;
+
+    /// <summary>
+    ///   The _security service.
+    /// </summary>
+    private ISecurityService securityService;
+
     #endregion
 
-    #region Event Handlers
+    #region Public Properties
 
-    protected void Page_Init(object sender, EventArgs e)
+    /// <summary>
+    ///   Выбранный район
+    /// </summary>
+    public string Area
     {
-      _kladrService = ObjectFactory.GetInstance<IKladrService>();
-      _securityService = ObjectFactory.GetInstance<ISecurityService>();
-
-      if (!IsPostBack)
+      get
       {
-        //Режим по умолчанию - работа с базой данных
-        Mode = KLADRUserControlMode.Database;
-        LoadSubjects();
-        ClearAndShowAllControls();
-        SetDefaultSubject();
+        if (ddlArea.SelectedIndex != 0)
+        {
+          return ddlArea.SelectedItem.Text;
+        }
+
+        return null;
+      }
+
+      set
+      {
+        if (string.IsNullOrEmpty(value))
+        {
+          return;
+        }
+
+        foreach (ListItem item in ddlArea.Items)
+        {
+          if (item.Text == value)
+          {
+            ddlArea.SelectedValue = item.Value;
+            break;
+          }
+        }
+
+        DdlAreaSelectedIndexChanged(null, null);
       }
     }
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-      if (!IsPostBack)
-        UniqueKey = Guid.NewGuid().ToString("N");
-    }
-
-    protected void chbIsFreeAddress_CheckedChanged(object sender, EventArgs e)
-    {
-      //if (chbIsFreeAddress.Checked)
-      //    Mode = KLADRUserControlMode.Free;
-      //else
-      //    Mode = KLADRUserControlMode.Database;
-    }
-
-    #endregion
-
-    #region Properties
-/// <summary>
-    ///   The unique key.
+    /// <summary>
+    ///   Выбранный город
     /// </summary>
-    protected string UniqueKey { get; set; }
+    public string City
+    {
+      get
+      {
+        if (ddlCity.SelectedIndex != 0)
+        {
+          return ddlCity.SelectedItem.Text;
+        }
 
-    public KLADRUserControlMode Mode
+        return null;
+      }
+
+      set
+      {
+        if (string.IsNullOrEmpty(value))
+        {
+          return;
+        }
+
+        foreach (ListItem item in ddlCity.Items)
+        {
+          if (item.Text == value)
+          {
+            ddlCity.SelectedValue = item.Value;
+            break;
+          }
+        }
+
+        DdlCitySelectedIndexChanged(null, null);
+      }
+    }
+
+    /// <summary>
+    ///   Gets or sets the mode.
+    /// </summary>
+    public KladrUserControlMode Mode
     {
       get
       {
         if (ViewState["Mode"] != null)
-          return (KLADRUserControlMode)ViewState["Mode"];
-        else
         {
-          //TODO
-          //что возвращать если "Mode" нет во ViewState?
-          return KLADRUserControlMode.Database;
+          return (KladrUserControlMode)ViewState["Mode"];
         }
+
+        // TODO
+        // что возвращать если "Mode" нет во ViewState?
+        return KladrUserControlMode.Database;
       }
+
       set
       {
         switch (value)
         {
-          case KLADRUserControlMode.Database:
+          case KladrUserControlMode.Database:
             SetDatabaseMode();
             break;
-          case KLADRUserControlMode.Free:
+          case KladrUserControlMode.Free:
             SetFreeMode();
             break;
         }
@@ -98,163 +174,50 @@ namespace rt.srz.ui.pvp.Controls
     }
 
     /// <summary>
-    /// Выбранный регион
+    ///   Gets or sets the selected kladr id.
     /// </summary>
-    public string Subject
+    public Guid SelectedKLADRId
     {
       get
       {
-        if (ddlSubject.SelectedIndex != 0)
-          return ddlSubject.SelectedItem.Text;
+        // if (Mode == KLADRUserControlMode.Database)
+        // {
+        if (ddlStreet.SelectedIndex != 0)
+        {
+          return new Guid(ddlStreet.SelectedValue);
+        }
 
-        return null;
-      }
-      set
-      {
-        if (string.IsNullOrEmpty(value))
-          return;
+        if (ddlTown.SelectedIndex != 0)
+        {
+          return new Guid(ddlTown.SelectedValue);
+        }
 
-        foreach (ListItem item in ddlSubject.Items)
-          if (item.Text == value)
-          {
-            ddlSubject.SelectedValue = item.Value;
-            break;
-          }
-
-        ddlSubject_SelectedIndexChanged(null, null);
-      }
-    }
-
-    /// <summary>
-    /// Выбранный регион
-    /// </summary>
-    public string SubjectId
-    {
-      get
-      {
-        if (ddlSubject.SelectedIndex != 0)
-          return ddlSubject.SelectedValue;
-
-        return null;
-      }
-      set
-      {
-        if (string.IsNullOrEmpty(value))
-          return;
-
-        ddlSubject.SelectedValue = value;
-        ddlSubject_SelectedIndexChanged(null, null);
-      }
-    }
-
-    /// <summary>
-    /// Выбранный район
-    /// </summary>
-    public string Area
-    {
-      get
-      {
-        if (ddlArea.SelectedIndex != 0)
-          return ddlArea.SelectedItem.Text;
-
-        return null;
-      }
-      set
-      {
-        if (string.IsNullOrEmpty(value))
-          return;
-
-        foreach (ListItem item in ddlArea.Items)
-          if (item.Text == value)
-          {
-            ddlArea.SelectedValue = item.Value;
-            break;
-          }
-
-        ddlArea_SelectedIndexChanged(null, null);
-      }
-    }
-
-    /// <summary>
-    /// Выбранный город
-    /// </summary>
-    public string City
-    {
-      get
-      {
         if (ddlCity.SelectedIndex != 0)
-          return ddlCity.SelectedItem.Text;
+        {
+          return new Guid(ddlCity.SelectedValue);
+        }
 
-        return null;
+        if (ddlArea.SelectedIndex != 0)
+        {
+          return new Guid(ddlArea.SelectedValue);
+        }
+
+        if (ddlSubject.SelectedIndex != 0)
+        {
+          return new Guid(ddlSubject.SelectedValue);
+        }
+
+        // }
+        return Guid.Empty;
       }
+
       set
       {
-        if (string.IsNullOrEmpty(value))
-          return;
-
-        foreach (ListItem item in ddlCity.Items)
-          if (item.Text == value)
-          {
-            ddlCity.SelectedValue = item.Value;
-            break;
-          }
-
-        ddlCity_SelectedIndexChanged(null, null);
       }
     }
 
     /// <summary>
-    /// Выбранный населенный пункт
-    /// </summary>
-    public string Town
-    {
-      get
-      {
-        switch (Mode)
-        {
-          case KLADRUserControlMode.Database:
-            {
-              if (ddlTown.SelectedIndex != 0)
-                return ddlTown.SelectedItem.Text;
-              return null;
-            }
-          case KLADRUserControlMode.Free:
-            {
-              if (tbTown.Text.Length != 0)
-                return tbTown.Text;
-
-              return null;
-            }
-          default:
-            return null;
-        }
-      }
-      set
-      {
-        if (string.IsNullOrEmpty(value))
-          return;
-
-        if (Mode == KLADRUserControlMode.Database)
-        {
-          foreach (ListItem item in ddlTown.Items)
-          {
-            if (item.Text == value)
-            {
-              ddlTown.SelectedValue = item.Value;
-              break;
-            }
-          }
-          ddlTown_SelectedIndexChanged(null, null);
-        }
-        else
-        {
-          tbTown.Text = value;
-        }
-      }
-    }
-
-    /// <summary>
-    /// Выбранная улица
+    ///   Выбранная улица
     /// </summary>
     public string Street
     {
@@ -262,29 +225,39 @@ namespace rt.srz.ui.pvp.Controls
       {
         switch (Mode)
         {
-          case KLADRUserControlMode.Database:
+          case KladrUserControlMode.Database:
+          {
+            if (ddlStreet.SelectedIndex != 0)
             {
-              if (ddlStreet.SelectedIndex != 0)
-                return ddlStreet.SelectedItem.Text;
-              return null;
+              return ddlStreet.SelectedItem.Text;
             }
-          case KLADRUserControlMode.Free:
-            {
-              if (tbStreet.Text.Length != 0)
-                return tbStreet.Text;
 
-              return null;
+            return null;
+          }
+
+          case KladrUserControlMode.Free:
+          {
+            if (tbStreet.Text.Length != 0)
+            {
+              return tbStreet.Text;
             }
+
+            return null;
+          }
+
           default:
             return null;
         }
       }
+
       set
       {
         if (string.IsNullOrEmpty(value))
+        {
           return;
+        }
 
-        if (Mode == KLADRUserControlMode.Database)
+        if (Mode == KladrUserControlMode.Database)
         {
           foreach (ListItem item in ddlStreet.Items)
           {
@@ -294,7 +267,8 @@ namespace rt.srz.ui.pvp.Controls
               break;
             }
           }
-          ddlStreet_SelectedIndexChanged(null, null);
+
+          DdlStreetSelectedIndexChanged(null, null);
         }
         else
         {
@@ -303,187 +277,268 @@ namespace rt.srz.ui.pvp.Controls
       }
     }
 
-    //Текущее значение идентификатора и базы КЛАДР
-    public Guid SelectedKLADRId
+    /// <summary>
+    ///   Выбранный регион
+    /// </summary>
+    public string Subject
     {
       get
       {
-        //if (Mode == KLADRUserControlMode.Database)
-        //{
-          if (ddlStreet.SelectedIndex != 0)
-            return new Guid(ddlStreet.SelectedValue);
-          else if (ddlTown.SelectedIndex != 0)
-            return new Guid(ddlTown.SelectedValue);
-          else if (ddlCity.SelectedIndex != 0)
-            return new Guid(ddlCity.SelectedValue);
-          else if (ddlArea.SelectedIndex != 0)
-            return new Guid(ddlArea.SelectedValue);
-          else if (ddlSubject.SelectedIndex != 0)
-            return new Guid(ddlSubject.SelectedValue);
-        //}
+        if (ddlSubject.SelectedIndex != 0)
+        {
+          return ddlSubject.SelectedItem.Text;
+        }
 
-          return Guid.Empty;
+        return null;
       }
+
       set
       {
+        if (string.IsNullOrEmpty(value))
+        {
+          return;
+        }
+
+        foreach (ListItem item in ddlSubject.Items)
+        {
+          if (item.Text == value)
+          {
+            ddlSubject.SelectedValue = item.Value;
+            break;
+          }
+        }
+
+        DdlSubjectSelectedIndexChanged(null, null);
       }
+    }
+
+    /// <summary>
+    ///   Выбранный регион
+    /// </summary>
+    public string SubjectId
+    {
+      get
+      {
+        if (ddlSubject.SelectedIndex != 0)
+        {
+          return ddlSubject.SelectedValue;
+        }
+
+        return null;
+      }
+
+      set
+      {
+        if (string.IsNullOrEmpty(value))
+        {
+          return;
+        }
+
+        ddlSubject.SelectedValue = value;
+        DdlSubjectSelectedIndexChanged(null, null);
+      }
+    }
+
+    /// <summary>
+    ///   Выбранный населенный пункт
+    /// </summary>
+    public string Town
+    {
+      get
+      {
+        switch (Mode)
+        {
+          case KladrUserControlMode.Database:
+          {
+            if (ddlTown.SelectedIndex != 0)
+            {
+              return ddlTown.SelectedItem.Text;
+            }
+
+            return null;
+          }
+
+          case KladrUserControlMode.Free:
+          {
+            if (tbTown.Text.Length != 0)
+            {
+              return tbTown.Text;
+            }
+
+            return null;
+          }
+
+          default:
+            return null;
+        }
+      }
+
+      set
+      {
+        if (string.IsNullOrEmpty(value))
+        {
+          return;
+        }
+
+        if (Mode == KladrUserControlMode.Database)
+        {
+          foreach (ListItem item in ddlTown.Items)
+          {
+            if (item.Text == value)
+            {
+              ddlTown.SelectedValue = item.Value;
+              break;
+            }
+          }
+
+          DdlTownSelectedIndexChanged(null, null);
+        }
+        else
+        {
+          tbTown.Text = value;
+        }
+      }
+    }
+
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    ///   The unique key.
+    /// </summary>
+    protected string UniqueKey { get; set; }
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The enable.
+    /// </summary>
+    /// <param name="enable">
+    /// The b enable.
+    /// </param>
+    public void Enable(bool enable)
+    {
+      tbPostcode.Enabled = enable;
+      ddlSubject.Enabled = enable;
+      ddlArea.Enabled = enable;
+      ddlCity.Enabled = enable;
+      ddlTown.Enabled = enable;
+      ddlStreet.Enabled = enable;
+      tbStreet.Enabled = enable;
+      tbTown.Enabled = enable;
+      tbHouse.Enabled = enable;
+      tbHousing.Enabled = enable;
+      tbRoom.Enabled = enable;
+    }
+
+    /// <summary>
+    ///   The set default subject.
+    /// </summary>
+    public void SetDefaultSubject()
+    {
+      // Получение текущего региона для текущего пользователя
+      var currentUser = securityService.GetCurrentUser();
+      if (currentUser.HasTf())
+      {
+        var tfom = currentUser.GetTf();
+        var kladr = kladrService.GetFirstLevelByTfoms(tfom);
+        if (kladr != null)
+        {
+          // Установка региона по умолчанию
+          SubjectId = kladr.Id.ToString();
+
+          // Установка индекса по умолчанию
+          SetPostcode();
+        }
+      }
+    }
+
+    /// <summary>
+    ///   The set focus first control.
+    /// </summary>
+    public void SetFocusFirstControl()
+    {
+      ddlSubject.Focus();
     }
 
     #endregion
 
     #region Methods
 
-    public void SetFocusFirstControl()
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Init(object sender, EventArgs e)
     {
-      ddlSubject.Focus();
-    }
+      kladrService = ObjectFactory.GetInstance<IKladrService>();
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
 
-    private void SetPostcode()
-    {
-      if (SelectedKLADRId == null)
-        return;
-
-      tbPostcode.Text = string.Empty;
-      Kladr kladr = _kladrService.GetKLADR(SelectedKLADRId);
-      if (kladr != null && kladr.Index != null)
-        tbPostcode.Text = kladr.Index.ToString();
-
-      UpdatePanelPostcode.Update();
-    }
-    
-    public void Enable(bool bEnable)
-    {
-      tbPostcode.Enabled = bEnable;
-      ddlSubject.Enabled = bEnable;
-      ddlArea.Enabled = bEnable;
-      ddlCity.Enabled = bEnable;
-      ddlTown.Enabled = bEnable;
-      ddlStreet.Enabled = bEnable;
-      tbStreet.Enabled = bEnable;
-      tbTown.Enabled = bEnable;
-      tbHouse.Enabled = bEnable;
-      tbHousing.Enabled = bEnable;
-      tbRoom.Enabled = bEnable;
-    }
-    
-    public void SetDefaultSubject()
-    {
-      //Получение текущего региона для текущего пользователя
-      User currentUser = _securityService.GetCurrentUser();
-      if (currentUser != null && currentUser.PointDistributionPolicy != null && currentUser.PointDistributionPolicy.Parent != null && currentUser.PointDistributionPolicy.Parent.Parent != null)
+      if (!IsPostBack)
       {
-        var tfom = currentUser.PointDistributionPolicy.Parent.Parent;
-        Kladr kladr = _kladrService.GetFirstLevelByTfoms(tfom);
-        if (kladr != null)
-        {
-          //Установка региона по умолчанию
-          SubjectId = kladr.Id.ToString();
-
-          //Установка индекса по умолчанию
-          SetPostcode();
-        }
+        // Режим по умолчанию - работа с базой данных
+        Mode = KladrUserControlMode.Database;
+        LoadSubjects();
+        ClearAndShowAllControls();
+        SetDefaultSubject();
       }
-    }
-
-    private void ClearAndShowAllControls()
-    {
-      ClearAndShowControl(ddlArea, lblArea, "район");
-      ClearAndShowControl(ddlCity, lblCity, "город");
-      ClearAndShowControl(ddlTown, lblTown, "населенный пункт");
-      ClearAndShowControl(ddlStreet, lblStreet, "улицу");
-      if (Mode == KLADRUserControlMode.Free)
-      {
-        ddlTown.Visible = false;
-        ddlStreet.Visible = false;
-      }
-    }
-
-    private void ClearAndShowControl(DropDownList dropDownList, Label label, String text)
-    {
-      dropDownList.Items.Clear();
-      dropDownList.Items.Add("Выберите " + text);
-      dropDownList.Visible = true;
-      label.Visible = true;
-    }
-
-    private void ClearControl(DropDownList dropDownList, String text)
-    {
-      dropDownList.Items.Clear();
-      dropDownList.Items.Add("Выберите " + text);
-    }
-
-    private void FillDdl(IList<Kladr> addressObjects, DropDownList dropDownList)
-    {
-      foreach (Kladr addressObject in addressObjects)
-        dropDownList.Items.Add(new ListItem(addressObject.Name + " " + addressObject.Socr, addressObject.Id.ToString()));
-    }
-
-    private void SetDatabaseMode()
-    {
-      //ClearAndShowAllControls();
-      ddlTown.Visible = true;
-      ddlStreet.Visible = true;
-      tbTown.Visible = false;
-      tbStreet.Visible = false;
-    }
-
-    private void SetFreeMode()
-    {
-      //ClearAndShowAllControls();
-      ddlTown.Visible = false;
-      tbTown.Text = string.Empty;
-      tbTown.Visible = true;
-      lblTown.Visible = true;
-
-      ddlStreet.Visible = false;
-      tbStreet.Text = string.Empty;
-      tbStreet.Visible = true;
-      lblStreet.Visible = true;
     }
 
     /// <summary>
-    /// Загрузка всех регионов
+    /// The page_ load.
     /// </summary>
-    private void LoadSubjects()
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Load(object sender, EventArgs e)
     {
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(null, null, KLADRLevel.Subject);
-      foreach (Kladr addressObject in addressObjects)
-        ddlSubject.Items.Add(new ListItem(addressObject.Name + " " + addressObject.Socr, addressObject.Id.ToString()));
-    }
-
-    #endregion
-
-    #region SelectedIndexChanged
-
-    protected void ddlSubject_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      ClearAndShowAllControls();
-
-      if (ddlSubject.SelectedIndex != 0)
+      if (!IsPostBack)
       {
-        LoadAreasByProvince();
-
-        //Спец. Случай для Москвы и Питера
-        //загружаем их же в поле "Населенный пункт"
-        Kladr obj = _kladrService.GetKLADR(new Guid(ddlSubject.SelectedValue));
-        if (obj != null && !string.IsNullOrEmpty(obj.Ocatd))
-        {
-          if (obj.Ocatd == MoscowOkato || obj.Ocatd == StPetersburgOkato)
-          {
-            ddlTown.Items.Add(new ListItem(obj.Name + " " + obj.Socr, obj.Id.ToString()));
-            ddlTown.SelectedValue = obj.Id.ToString();
-          }
-        }
+        UniqueKey = Guid.NewGuid().ToString("N");
       }
-
-      SetPostcode();
-      UpdatePanelKLADR.Update();
     }
 
-    protected void ddlArea_SelectedIndexChanged(object sender, EventArgs e)
+    /// <summary>
+    /// The chb is free address_ checked changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void ChbIsFreeAddressCheckedChanged(object sender, EventArgs e)
+    {
+      // if (chbIsFreeAddress.Checked)
+      // Mode = KLADRUserControlMode.Free;
+      // else
+      // Mode = KLADRUserControlMode.Database;
+    }
+
+    /// <summary>
+    /// The ddl area_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DdlAreaSelectedIndexChanged(object sender, EventArgs e)
     {
       ClearAndShowControl(ddlCity, lblCity, "город");
-      if (Mode == KLADRUserControlMode.Database)
+      if (Mode == KladrUserControlMode.Database)
       {
         ClearAndShowControl(ddlTown, lblTown, "населенный пункт");
         ClearAndShowControl(ddlStreet, lblStreet, "улицу");
@@ -495,22 +550,35 @@ namespace rt.srz.ui.pvp.Controls
       }
 
       if (ddlArea.SelectedIndex != 0)
+      {
         LoadCityByArea();
+      }
       else
       {
         ClearAndShowAllControls();
 
         if (ddlSubject.SelectedIndex != 0)
+        {
           LoadAreasByProvince();
+        }
       }
 
       SetPostcode();
       UpdatePanelKLADR.Update();
     }
 
-    protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
+    /// <summary>
+    /// The ddl city_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DdlCitySelectedIndexChanged(object sender, EventArgs e)
     {
-      if (Mode == KLADRUserControlMode.Database)
+      if (Mode == KladrUserControlMode.Database)
       {
         ClearAndShowControl(ddlTown, lblTown, "населенный пункт");
         ClearAndShowControl(ddlStreet, lblStreet, "улицу");
@@ -523,45 +591,38 @@ namespace rt.srz.ui.pvp.Controls
 
       if (ddlCity.SelectedIndex != 0)
       {
-        //lblArea.Visible = false;
-        //ddlArea.Visible = false;
+        // lblArea.Visible = false;
+        // ddlArea.Visible = false;
         LoadTownsByCity();
       }
       else
       {
-        //lblArea.Visible = true;
-        //ddlArea.Visible = true;
+        // lblArea.Visible = true;
+        // ddlArea.Visible = true;
         if (ddlArea.SelectedIndex != 0)
+        {
           LoadTownsByArea();
+        }
         else
+        {
           LoadStreetsByProvince();
+        }
       }
 
       SetPostcode();
       UpdatePanelKLADR.Update();
     }
 
-    protected void ddlTown_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      if (Mode == KLADRUserControlMode.Database)
-      {
-        ClearAndShowControl(ddlStreet, lblStreet, "улицу");
-      }
-      else
-      {
-        ClearControl(ddlStreet, "улицу");
-      }
-
-      if (ddlTown.SelectedIndex != 0)
-        LoadStreetsByTown();
-      else
-        LoadStreetsByCity();
-
-      SetPostcode();
-      UpdatePanelKLADR.Update();
-    }
-
-    protected void ddlStreet_SelectedIndexChanged(object sender, EventArgs e)
+    /// <summary>
+    /// The ddl street_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DdlStreetSelectedIndexChanged(object sender, EventArgs e)
     {
       if (ddlStreet.SelectedIndex != 0)
       {
@@ -603,233 +664,449 @@ namespace rt.srz.ui.pvp.Controls
       UpdatePanelKLADR.Update();
     }
 
-    #endregion
+    /// <summary>
+    /// The ddl subject_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DdlSubjectSelectedIndexChanged(object sender, EventArgs e)
+    {
+      ClearAndShowAllControls();
 
-    #region Загрузка объектов по региону
+      if (ddlSubject.SelectedIndex != 0)
+      {
+        LoadAreasByProvince();
+
+        // Спец. Случай для Москвы и Питера
+        // загружаем их же в поле "Населенный пункт"
+        var obj = kladrService.GetKLADR(new Guid(ddlSubject.SelectedValue));
+        if (obj != null && !string.IsNullOrEmpty(obj.Ocatd))
+        {
+          if (obj.Ocatd == MoscowOkato || obj.Ocatd == StPetersburgOkato)
+          {
+            ddlTown.Items.Add(new ListItem(obj.Name + " " + obj.Socr, obj.Id.ToString()));
+            ddlTown.SelectedValue = obj.Id.ToString();
+          }
+        }
+      }
+
+      SetPostcode();
+      UpdatePanelKLADR.Update();
+    }
 
     /// <summary>
-    /// Загрузка районов по региону (если у региона нет округов)
+    /// The ddl town_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void DdlTownSelectedIndexChanged(object sender, EventArgs e)
+    {
+      if (Mode == KladrUserControlMode.Database)
+      {
+        ClearAndShowControl(ddlStreet, lblStreet, "улицу");
+      }
+      else
+      {
+        ClearControl(ddlStreet, "улицу");
+      }
+
+      if (ddlTown.SelectedIndex != 0)
+      {
+        LoadStreetsByTown();
+      }
+      else
+      {
+        LoadStreetsByCity();
+      }
+
+      SetPostcode();
+      UpdatePanelKLADR.Update();
+    }
+
+    /// <summary>
+    ///   The clear and show all controls.
+    /// </summary>
+    private void ClearAndShowAllControls()
+    {
+      ClearAndShowControl(ddlArea, lblArea, "район");
+      ClearAndShowControl(ddlCity, lblCity, "город");
+      ClearAndShowControl(ddlTown, lblTown, "населенный пункт");
+      ClearAndShowControl(ddlStreet, lblStreet, "улицу");
+      if (Mode == KladrUserControlMode.Free)
+      {
+        ddlTown.Visible = false;
+        ddlStreet.Visible = false;
+      }
+    }
+
+    /// <summary>
+    /// The clear and show control.
+    /// </summary>
+    /// <param name="dropDownList">
+    /// The drop down list.
+    /// </param>
+    /// <param name="label">
+    /// The label.
+    /// </param>
+    /// <param name="text">
+    /// The text.
+    /// </param>
+    private void ClearAndShowControl(DropDownList dropDownList, Label label, string text)
+    {
+      dropDownList.Items.Clear();
+      dropDownList.Items.Add("Выберите " + text);
+      dropDownList.Visible = true;
+      label.Visible = true;
+    }
+
+    /// <summary>
+    /// The clear control.
+    /// </summary>
+    /// <param name="dropDownList">
+    /// The drop down list.
+    /// </param>
+    /// <param name="text">
+    /// The text.
+    /// </param>
+    private void ClearControl(DropDownList dropDownList, string text)
+    {
+      dropDownList.Items.Clear();
+      dropDownList.Items.Add("Выберите " + text);
+    }
+
+    /// <summary>
+    /// The fill ddl.
+    /// </summary>
+    /// <param name="addressObjects">
+    /// The address objects.
+    /// </param>
+    /// <param name="dropDownList">
+    /// The drop down list.
+    /// </param>
+    private void FillDdl(IEnumerable<Kladr> addressObjects, DropDownList dropDownList)
+    {
+      foreach (var addressObject in addressObjects)
+      {
+        dropDownList.Items.Add(new ListItem(addressObject.Name + " " + addressObject.Socr, addressObject.Id.ToString()));
+      }
+    }
+
+    /// <summary>
+    ///   Загрузка районов по региону (если у региона нет округов)
     /// </summary>
     private void LoadAreasByProvince()
     {
       if (ddlSubject.SelectedIndex == 0)
+      {
         return;
+      }
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Area);
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Area);
       if (addressObjects.Count == 0)
       {
         lblArea.Visible = false;
         ddlArea.Visible = false;
       }
       else
+      {
         FillDdl(addressObjects, ddlArea);
+      }
 
       LoadCitiesByProvince();
     }
 
     /// <summary>
-    /// Загрузка городов по региону (если у региона нет округов и районов)
+    ///   Загрузка городов по региону (если у региона нет округов и районов)
     /// </summary>
     private void LoadCitiesByProvince()
     {
       if (ddlSubject.SelectedIndex == 0)
+      {
         return;
+      }
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.City);
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.City);
       if (addressObjects.Count == 0)
       {
         lblCity.Visible = false;
         ddlCity.Visible = false;
       }
       else
+      {
         FillDdl(addressObjects, ddlCity);
+      }
 
       LoadTownsByProvince();
     }
 
     /// <summary>
-    /// Загрузка населенного пункта по региону (если у региона нет округов, районов, городов и внутригородских районов)
-    /// </summary>
-    private void LoadTownsByProvince()
-    {
-      if (ddlSubject.SelectedIndex == 0)
-        return;
-
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Town);
-      if (addressObjects.Count == 0)
-      {
-        ddlTown.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
-        {
-          lblTown.Visible = false;
-        }
-      }
-      else
-        FillDdl(addressObjects, ddlTown);
-
-      LoadStreetsByProvince();
-    }
-
-    /// <summary>
-    /// Загрузка улицы по региону (если у региона нет округов, районов, городов, внутригородских районов и населенных пунктов)
-    /// </summary>
-    private void LoadStreetsByProvince()
-    {
-      if (ddlSubject.SelectedIndex == 0)
-        return;
-
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Street);
-      if (addressObjects.Count == 0)
-      {
-        ddlStreet.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
-        {
-          lblStreet.Visible = false;
-        }
-      }
-      else
-        FillDdl(addressObjects, ddlStreet);
-    }
-
-    #endregion
-
-    #region Загрузка объектов по району
-
-    /// <summary>
-    /// Загрузка городов по району
+    ///   Загрузка городов по району
     /// </summary>
     private void LoadCityByArea()
     {
       if (ddlArea.SelectedIndex == 0)
+      {
         return;
+      }
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.City);
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.City);
       if (addressObjects.Count == 0)
       {
         lblCity.Visible = false;
         ddlCity.Visible = false;
       }
       else
+      {
         FillDdl(addressObjects, ddlCity);
+      }
 
       LoadTownsByArea();
     }
 
     /// <summary>
-    /// Загрузка населенного пункта по району (если у района нет городов и внутригородских районов)
+    ///   Загрузка улицы по району (если у района нет городов, внутригородских районов и населенных пунктов)
+    /// </summary>
+    private void LoadStreetsByArea()
+    {
+      if (ddlArea.SelectedIndex == 0)
+      {
+        return;
+      }
+
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.Street);
+      if (addressObjects.Count == 0)
+      {
+        ddlStreet.Visible = false;
+        if (Mode == KladrUserControlMode.Database)
+        {
+          lblStreet.Visible = false;
+        }
+      }
+      else
+      {
+        FillDdl(addressObjects, ddlStreet);
+      }
+    }
+
+    /// <summary>
+    ///   Загрузка улицы по городу (если у города нет внутригородских районов и населенных пунктов)
+    /// </summary>
+    private void LoadStreetsByCity()
+    {
+      if (ddlCity.SelectedIndex == 0)
+      {
+        return;
+      }
+
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlCity.SelectedValue), null, KLADRLevel.Street);
+      if (addressObjects.Count == 0)
+      {
+        ddlStreet.Visible = false;
+        if (Mode == KladrUserControlMode.Database)
+        {
+          lblStreet.Visible = false;
+        }
+      }
+      else
+      {
+        FillDdl(addressObjects, ddlStreet);
+      }
+    }
+
+    /// <summary>
+    ///   Загрузка улицы по региону (если у региона нет округов, районов, городов, внутригородских районов и населенных
+    ///   пунктов)
+    /// </summary>
+    private void LoadStreetsByProvince()
+    {
+      if (ddlSubject.SelectedIndex == 0)
+      {
+        return;
+      }
+
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Street);
+      if (addressObjects.Count == 0)
+      {
+        ddlStreet.Visible = false;
+        if (Mode == KladrUserControlMode.Database)
+        {
+          lblStreet.Visible = false;
+        }
+      }
+      else
+      {
+        FillDdl(addressObjects, ddlStreet);
+      }
+    }
+
+    /// <summary>
+    ///   Загрузка улицы по населенному пкнкту
+    /// </summary>
+    private void LoadStreetsByTown()
+    {
+      if (ddlTown.SelectedIndex == 0)
+      {
+        return;
+      }
+
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlTown.SelectedValue), null, KLADRLevel.Street);
+      if (addressObjects.Count == 0)
+      {
+        ddlStreet.Visible = false;
+        if (Mode == KladrUserControlMode.Database)
+        {
+          lblStreet.Visible = false;
+        }
+      }
+      else
+      {
+        FillDdl(addressObjects, ddlStreet);
+      }
+    }
+
+    /// <summary>
+    ///   Загрузка всех регионов
+    /// </summary>
+    private void LoadSubjects()
+    {
+      var addressObjects = kladrService.GetKLADRs(null, null, KLADRLevel.Subject);
+      foreach (var addressObject in addressObjects)
+      {
+        ddlSubject.Items.Add(new ListItem(addressObject.Name + " " + addressObject.Socr, addressObject.Id.ToString()));
+      }
+    }
+
+    /// <summary>
+    ///   Загрузка населенного пункта по району (если у района нет городов и внутригородских районов)
     /// </summary>
     private void LoadTownsByArea()
     {
       if (ddlArea.SelectedIndex == 0)
+      {
         return;
+      }
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.Town);
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.Town);
       if (addressObjects.Count == 0)
       {
         ddlTown.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
+        if (Mode == KladrUserControlMode.Database)
         {
           lblTown.Visible = false;
         }
       }
       else
+      {
         FillDdl(addressObjects, ddlTown);
+      }
 
       LoadStreetsByArea();
     }
 
     /// <summary>
-    /// Загрузка улицы по району (если у района нет городов, внутригородских районов и населенных пунктов)
-    /// </summary>
-    private void LoadStreetsByArea()
-    {
-      if (ddlArea.SelectedIndex == 0)
-        return;
-
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.Street);
-      if (addressObjects.Count == 0)
-      {
-        ddlStreet.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
-        {
-          lblStreet.Visible = false;
-        }
-      }
-      else
-        FillDdl(addressObjects, ddlStreet);
-    }
-
-    #endregion
-
-    #region Загрузка объектов по городу
-
-    /// <summary>
-    /// Загрузка населенного пункта по городу (если у города нет внутригородских районов)
+    ///   Загрузка населенного пункта по городу (если у города нет внутригородских районов)
     /// </summary>
     private void LoadTownsByCity()
     {
       if (ddlCity.SelectedIndex == 0)
+      {
         return;
+      }
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlCity.SelectedValue), null, KLADRLevel.Town);
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlCity.SelectedValue), null, KLADRLevel.Town);
       if (addressObjects.Count == 0)
       {
         ddlTown.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
+        if (Mode == KladrUserControlMode.Database)
         {
           lblTown.Visible = false;
         }
       }
       else
+      {
         FillDdl(addressObjects, ddlTown);
+      }
 
       LoadStreetsByCity();
     }
 
     /// <summary>
-    /// Загрузка улицы по городу (если у города нет внутригородских районов и населенных пунктов)
+    ///   Загрузка населенного пункта по региону (если у региона нет округов, районов, городов и внутригородских районов)
     /// </summary>
-    private void LoadStreetsByCity()
+    private void LoadTownsByProvince()
     {
-      if (ddlCity.SelectedIndex == 0)
+      if (ddlSubject.SelectedIndex == 0)
+      {
         return;
+      }
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlCity.SelectedValue), null, KLADRLevel.Street);
+      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Town);
       if (addressObjects.Count == 0)
       {
-        ddlStreet.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
+        ddlTown.Visible = false;
+        if (Mode == KladrUserControlMode.Database)
         {
-          lblStreet.Visible = false;
+          lblTown.Visible = false;
         }
       }
       else
-        FillDdl(addressObjects, ddlStreet);
+      {
+        FillDdl(addressObjects, ddlTown);
+      }
+
+      LoadStreetsByProvince();
     }
 
-    #endregion
-
-    #region Загрузка объектов по населенному пункту
+    /// <summary>
+    ///   The set database mode.
+    /// </summary>
+    private void SetDatabaseMode()
+    {
+      // ClearAndShowAllControls();
+      ddlTown.Visible = true;
+      ddlStreet.Visible = true;
+      tbTown.Visible = false;
+      tbStreet.Visible = false;
+    }
 
     /// <summary>
-    /// Загрузка улицы по населенному пкнкту
+    ///   The set free mode.
     /// </summary>
-    private void LoadStreetsByTown()
+    private void SetFreeMode()
     {
-      if (ddlTown.SelectedIndex == 0)
-        return;
+      // ClearAndShowAllControls();
+      ddlTown.Visible = false;
+      tbTown.Text = string.Empty;
+      tbTown.Visible = true;
+      lblTown.Visible = true;
 
-      IList<Kladr> addressObjects = _kladrService.GetKLADRs(new Guid(ddlTown.SelectedValue), null, KLADRLevel.Street);
-      if (addressObjects.Count == 0)
+      ddlStreet.Visible = false;
+      tbStreet.Text = string.Empty;
+      tbStreet.Visible = true;
+      lblStreet.Visible = true;
+    }
+
+    /// <summary>
+    ///   The set postcode.
+    /// </summary>
+    private void SetPostcode()
+    {
+      tbPostcode.Text = string.Empty;
+      var kladr = kladrService.GetKLADR(SelectedKLADRId);
+      if (kladr != null && kladr.Index != null)
       {
-        ddlStreet.Visible = false;
-        if (Mode == KLADRUserControlMode.Database)
-        {
-          lblStreet.Visible = false;
-        }
+        tbPostcode.Text = kladr.Index.ToString();
       }
-      else
-        FillDdl(addressObjects, ddlStreet);
+
+      UpdatePanelPostcode.Update();
     }
 
     #endregion

@@ -43,9 +43,9 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.NumberPolicyCounter entity = new rt.srz.model.srz.NumberPolicyCounter();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = "Test";
+			entity.Id = "Test T";
 			
-			entity.CurrentNumber = 37;
+			entity.CurrentNumber = 21;
 			
 			return entity;
 		}
@@ -102,7 +102,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.NumberPolicyCounter entityA = GetFirstNumberPolicyCounter();
 				
-				entityA.CurrentNumber = 97;
+				entityA.CurrentNumber = 21;
 				
 				manager.Update(entityA);
 

@@ -47,12 +47,12 @@ namespace rt.srz.business.tests
 			
 			entity.IsActive = true;
 			entity.IsOnLine = true;
-			entity.Code = "Test Test Test Te";
+			entity.Code = "Test Test Te";
 			entity.FullName = "Test Test ";
 			entity.ShortName = "Test Test ";
-			entity.Inn = "Test Test";
-			entity.Ogrn = "T";
-			entity.Postcode = "Test ";
+			entity.Inn = "Test Te";
+			entity.Ogrn = "Tes";
+			entity.Postcode = "Tes";
 			entity.LastName = "Test Test ";
 			entity.FirstName = "Test Test ";
 			entity.MiddleName = "Test Test ";
@@ -61,7 +61,7 @@ namespace rt.srz.business.tests
 			entity.EMail = "Test Test ";
 			entity.Website = "Test Test ";
 			entity.LicenseData = "Test Test ";
-			entity.LicenseNumber = "Test Test Test Test Test Test Tes";
+			entity.LicenseNumber = "Test Test Test Test Test Test Test Test Test Test";
 			entity.DateLicensing = System.DateTime.Now;
 			entity.DateExpiryLicense = System.DateTime.Now;
 			entity.IsSubordination = true;
@@ -69,12 +69,13 @@ namespace rt.srz.business.tests
 			entity.DateExcludeRegister = System.DateTime.Now;
 			entity.HasActivePolicy = true;
 			entity.DateNotification = System.DateTime.Now;
-			entity.CountInsured = 73;
+			entity.CountInsured = 11;
 			entity.DateLastEdit = System.DateTime.Now;
-			entity.Okato = "Test Tes";
+			entity.Okato = "Te";
 			entity.TimeRunFrom = System.DateTime.Now;
 			entity.TimeRunTo = System.DateTime.Now;
 			entity.Address = "Test Test ";
+			entity.PointDistributionPolicyId = System.Guid.NewGuid();
 			
 			using(rt.srz.business.manager.IOidManager oidManager = ObjectFactory.GetInstance<IOidManager>())
 				{

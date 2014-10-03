@@ -58,12 +58,13 @@ namespace rt.srz.business.manager
     {
       var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       var sertificateUecManager = ObjectFactory.GetInstance<ISertificateUecManager>();
+      var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
 
       // Ищем сертификаты уровня рабочей станции
-      var workstation = GetBy(x => x.Name == workstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicy.Id)
+      var workstation = GetBy(x => x.Name == workstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
         .FirstOrDefault();
 
-      SertificateUec sert;
+      SertificateUec sert = null;
       if (workstation != null)
       {
         sert = sertificateUecManager.GetBy(x => x.IsActive && x.Version == version && x.Workstation.Id == workstation.Id && x.Type.Id == type)
@@ -75,9 +76,13 @@ namespace rt.srz.business.manager
       }
 
       // Ищем сертификаты уровня СМО
-      var smo = user.PointDistributionPolicy.Parent;
-      sert = sertificateUecManager.GetBy(x => x.IsActive && x.Version == version && x.Smo.Id == smo.Id && x.Type.Id == type)
-        .FirstOrDefault();
+      if (user.PointDistributionPolicyId != null)
+      {
+        var smo = organisationManager.GetById(user.PointDistributionPolicyId.Value);
+        sert = sertificateUecManager.GetBy(x => x.IsActive && x.Version == version && x.Smo.Id == smo.Id && x.Type.Id == type)
+                                    .FirstOrDefault();
+      }
+
       return sert != null ? sert.Key : null;
     }
 
@@ -148,7 +153,7 @@ namespace rt.srz.business.manager
     public int GetCurrentCryptographyType(string workstationName)
     {
       var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      var workstation = GetBy(x => x.Name == workstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicy.Id)
+      var workstation = GetBy(x => x.Name == workstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
         .FirstOrDefault();
       return
         (workstation != null && workstation.UecCerticateType != null
@@ -195,7 +200,7 @@ namespace rt.srz.business.manager
     public string GetCurrentReaderName(string worstationName)
     {
       var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
-      var workstation = GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicy.Id)
+      var workstation = GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
         .FirstOrDefault();
       return workstation != null && !string.IsNullOrEmpty(workstation.UecReaderName)
                ? workstation.UecReaderName
@@ -239,7 +244,7 @@ namespace rt.srz.business.manager
     public string GetCurrentSmcReaderName(string worstationName)
     {
       var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
-      var workstation = GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicy.Id)
+      var workstation = GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
           .FirstOrDefault();
       return workstation != null && !string.IsNullOrEmpty(workstation.SmardCardReaderName)
                ? workstation.SmardCardReaderName
@@ -258,7 +263,7 @@ namespace rt.srz.business.manager
     public string GetCurrentSmcTokenReaderName(string worstationName)
     {
       var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
-      var workstation = GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicy.Id)
+      var workstation = GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
         .FirstOrDefault();
       return workstation != null && !string.IsNullOrEmpty(workstation.SmardCardTokenReaderName)
                ? workstation.SmardCardTokenReaderName

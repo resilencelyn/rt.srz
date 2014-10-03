@@ -95,7 +95,6 @@
     <Compile Include="algorithms\SnilsChecker.cs" />
     <Compile Include="algorithms\StringHelper.cs" />
     <Compile Include="common\CloneUtility.cs" />
-    <Compile Include="common\InfoUtility.cs" />
     <Compile Include="configSection\productioncalendar\SpecialCalendarDayConfigurationCollection.cs" />
     <Compile Include="configSection\productioncalendar\SpecialCalendarDayConfigurationElement.cs" />
     <Compile Include="configSection\productioncalendar\SpecialCalendarDayConfigurationSection.cs" />
@@ -331,10 +330,6 @@
     <Compile Include="srz\Error.generated.cs">
       <DependentUpon>Error.cs</DependentUpon>
     </Compile>
-    <Compile Include="srz\Group.cs" />
-    <Compile Include="srz\Group.generated.cs">
-      <DependentUpon>Group.cs</DependentUpon>
-    </Compile>
     <Compile Include="srz\InsuredPerson.cs" />
     <Compile Include="srz\InsuredPerson.generated.cs">
       <DependentUpon>InsuredPerson.cs</DependentUpon>
@@ -371,14 +366,6 @@
     <Compile Include="srz\Period.generated.cs">
       <DependentUpon>Period.cs</DependentUpon>
     </Compile>
-    <Compile Include="srz\Permission.cs" />
-    <Compile Include="srz\Permission.generated.cs">
-      <DependentUpon>Permission.cs</DependentUpon>
-    </Compile>
-    <Compile Include="srz\PermissionRole.cs" />
-    <Compile Include="srz\PermissionRole.generated.cs">
-      <DependentUpon>PermissionRole.cs</DependentUpon>
-    </Compile>
     <Compile Include="srz\RangeNumber.cs" />
     <Compile Include="srz\RangeNumber.generated.cs">
       <DependentUpon>RangeNumber.cs</DependentUpon>
@@ -386,10 +373,6 @@
     <Compile Include="srz\Representative.cs" />
     <Compile Include="srz\Representative.generated.cs">
       <DependentUpon>Representative.cs</DependentUpon>
-    </Compile>
-    <Compile Include="srz\Role.cs" />
-    <Compile Include="srz\Role.generated.cs">
-      <DependentUpon>Role.cs</DependentUpon>
     </Compile>
     <Compile Include="srz\SearchKey.cs" />
     <Compile Include="srz\SearchKey.generated.cs">
@@ -429,21 +412,9 @@
     <Compile Include="srz\TwinsKey.generated.cs">
       <DependentUpon>TwinsKey.cs</DependentUpon>
     </Compile>
-    <Compile Include="srz\User.cs" />
-    <Compile Include="srz\User.generated.cs">
-      <DependentUpon>User.cs</DependentUpon>
-    </Compile>
     <Compile Include="srz\UserAction.cs" />
     <Compile Include="srz\UserAction.generated.cs">
       <DependentUpon>UserAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="srz\UserGroup.cs" />
-    <Compile Include="srz\UserGroup.generated.cs">
-      <DependentUpon>UserGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="srz\UserGroupRole.cs" />
-    <Compile Include="srz\UserGroupRole.generated.cs">
-      <DependentUpon>UserGroupRole.cs</DependentUpon>
     </Compile>
     <Compile Include="srz\Workstation.cs" />
     <Compile Include="srz\Workstation.generated.cs">

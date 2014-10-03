@@ -18,13 +18,22 @@ namespace rt.srz.services.Security
   using NHibernate;
   using NHibernate.Criterion;
 
+  using rt.core.business.manager;
   using rt.core.business.security.interfaces;
+  using rt.core.model.core;
   using rt.srz.business.manager;
   using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
 
   using StructureMap;
+
+  using IPermissionManager = rt.core.business.manager.IPermissionManager;
+  using IPermissionRoleManager = rt.core.business.manager.IPermissionRoleManager;
+  using IRoleManager = rt.core.business.manager.IRoleManager;
+  using IUserGroupManager = rt.core.business.manager.IUserGroupManager;
+  using IUserGroupRoleManager = rt.core.business.manager.IUserGroupRoleManager;
+  using IUserManager = rt.core.business.manager.IUserManager;
 
   #endregion
 
@@ -356,7 +365,7 @@ namespace rt.srz.services.Security
     /// <returns></returns>
     public bool IsUserAdminTF(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserManager>().IsUserAdminTF(userId);
+      return ObjectFactory.GetInstance<IOrganisationManager>().IsUserAdminTF(userId);
     }
 
     /// <summary>
@@ -367,7 +376,7 @@ namespace rt.srz.services.Security
     /// <returns></returns>
     public bool IsUserAdminSmo(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserManager>().IsUserAdminSmo(userId);
+      return ObjectFactory.GetInstance<IOrganisationManager>().IsUserAdminSmo(userId);
     }
 
     /// <summary>
@@ -562,8 +571,10 @@ namespace rt.srz.services.Security
     /// <returns> The <see cref="IList" /> . </returns>
     public IList<User> GetUsersByCurrent()
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetUsersByCurrent();
+      return ObjectFactory.GetInstance<IOrganisationManager>().GetUsersByCurrent();
     }
+
+   
 
     /// <summary>
     /// Получает список всех пользователей группы

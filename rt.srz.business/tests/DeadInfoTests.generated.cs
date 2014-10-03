@@ -47,7 +47,7 @@ namespace rt.srz.business.tests
 			
 			entity.DateDead = System.DateTime.Now;
 			entity.ActRecordDate = System.DateTime.Now;
-			entity.ActRecordNumber = 25;
+			entity.ActRecordNumber = 13;
 			
 			return entity;
 		}

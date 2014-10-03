@@ -52,7 +52,7 @@ namespace rt.srz.business.tests
 			entity.RelatedType = "Test Test ";
 			entity.DateFrom = System.DateTime.Now;
 			entity.DateTo = System.DateTime.Now;
-			entity.Relevance = 42;
+			entity.Relevance = 72;
 			
 			using(rt.srz.business.manager.IOidManager oidManager = ObjectFactory.GetInstance<IOidManager>())
 				{

@@ -98,10 +98,6 @@
       <Project>{80B4EE32-6E5B-44CC-AF7A-EE3DC3F56858}</Project>
       <Name>rt.core.model.client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
-      <Project>{f247928d-ea65-4d69-bd03-b1e506b09986}</Project>
-      <Name>rt.srz.model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

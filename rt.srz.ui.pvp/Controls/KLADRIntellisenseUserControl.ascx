@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="KLADRIntellisenseUserControl.ascx.cs" Inherits="rt.srz.ui.pvp.Controls.KLADRIntellisenseUserControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="KladrIntellisenseUserControl.ascx.cs" Inherits="rt.srz.ui.pvp.Controls.KladrIntellisenseUserControl" %>
 
 <script type="text/javascript">
   //Подлключение обработчика ввода допустимых символов
@@ -7,8 +7,8 @@
   });
 
   //Добавляет новый элемент в список текущей иерархии
-  var symbolsAfterCommaCounter_<%=uniqueKey %> = 0;
-    function KLADR_AddHierarchyId_<%=uniqueKey %>(id) {
+  var symbolsAfterCommaCounter_<%=UniqueKey %> = 0;
+    function KLADR_AddHierarchyId_<%=UniqueKey %>(id) {
     var hierarchyField = $get('<%= hfKLADRHierarchy.ClientID%>');
       if (hierarchyField.value.length > 0)
         hierarchyField.value += ";"
@@ -16,7 +16,7 @@
     }
 
     //Удаляет последний добавленный элемент из текущей иерархии
-    function KLADR_RemoveLastHierarchyId_<%=uniqueKey %>() {
+    function KLADR_RemoveLastHierarchyId_<%=UniqueKey %>() {
 
     var hierarchyField = $get('<%= hfKLADRHierarchy.ClientID%>');
     var spittedHierarchy = hierarchyField.value.split(';');
@@ -28,7 +28,7 @@
   }
 
   //Возвращает последний добавленный элемент из текущей иерархии
-  function KLADR_GetCurrentHierarchyId_<%=uniqueKey %>() {
+  function KLADR_GetCurrentHierarchyId_<%=UniqueKey %>() {
     var hierarchyField = $get('<%= hfKLADRHierarchy.ClientID%>');
       var spittedHierarchy = hierarchyField.value.split(';');
       if (spittedHierarchy.length > 0)
@@ -36,42 +36,42 @@
       return null;
     }
 
-    function KLADR_itemSelected_<%=uniqueKey %>(sender, e) {
+    function KLADR_itemSelected_<%=UniqueKey %>(sender, e) {
     $find('<%=aceKLADRIntellisense.ClientID%>').set_contextKey(e.get_value());
-      KLADR_AddHierarchyId_<%=uniqueKey %>(e.get_value());
+      KLADR_AddHierarchyId_<%=UniqueKey %>(e.get_value());
       var textBox = $get('<%= tbKLADRIntellisense.ClientID%>');
       textBox.value += ",";
-      symbolsAfterCommaCounter_<%=uniqueKey %> = 0;
+      symbolsAfterCommaCounter_<%=UniqueKey %> = 0;
 
       //Принудительный Postback для обновления индекса
-        var kladrId = KLADR_GetCurrentHierarchyId_<%=uniqueKey %>();
-      PageMethods.GetPostcodeByKLADRId(kladrId, onSuccessGet_<%=uniqueKey %>, onErrorGet_<%=uniqueKey %>);
+        var kladrId = KLADR_GetCurrentHierarchyId_<%=UniqueKey %>();
+      PageMethods.GetPostcodeByKLADRId(kladrId, onSuccessGet_<%=UniqueKey %>, onErrorGet_<%=UniqueKey %>);
     }
 
-    function onSuccessGet_<%=uniqueKey %>(result) {
+    function onSuccessGet_<%=UniqueKey %>(result) {
     var tbPostcode = $get('<%= tbPostcode.ClientID%>');
       tbPostcode.value = result;
     }
 
-    function onErrorGet_<%=uniqueKey %>(result) {
+    function onErrorGet_<%=UniqueKey %>(result) {
   }
 
   var maxChars = 1000;
 
-  function KLADR_KeyPress_<%=uniqueKey %>(e) {
+  function KLADR_KeyPress_<%=UniqueKey %>(e) {
       var evt = e || window.event;
       if (evt) {
         var keyCode = evt.charCode || evt.keyCode;
-        if (symbolsAfterCommaCounter_<%=uniqueKey %> >= maxChars) {   //Количество символов больше 3, запрещаем ввод
+        if (symbolsAfterCommaCounter_<%=UniqueKey %> >= maxChars) {   //Количество символов больше 3, запрещаем ввод
               evt.returnValue = false;
             }
             else {
-              symbolsAfterCommaCounter_<%=uniqueKey %>++; //Увеличиваем счетчик введенных символов
+              symbolsAfterCommaCounter_<%=UniqueKey %>++; //Увеличиваем счетчик введенных символов
             }
           }
         }
 
-        function KLADR_KeyDown_<%=uniqueKey %>(e) {
+        function KLADR_KeyDown_<%=UniqueKey %>(e) {
     var evt = e || window.event;
     if (evt) {
       var keyCode = evt.charCode || evt.keyCode;
@@ -102,19 +102,19 @@
                   var hierarchyField = $get('<%= hfKLADRHierarchy.ClientID%>');
                   var spittedHierarchy = hierarchyField.value.split(';');
           if (spittedValue.length <= spittedHierarchy.length) {
-            KLADR_RemoveLastHierarchyId_<%=uniqueKey %>();
-            $find('<%=aceKLADRIntellisense.ClientID%>').set_contextKey(KLADR_GetCurrentHierarchyId_<%=uniqueKey %>());
+            KLADR_RemoveLastHierarchyId_<%=UniqueKey %>();
+            $find('<%=aceKLADRIntellisense.ClientID%>').set_contextKey(KLADR_GetCurrentHierarchyId_<%=UniqueKey %>());
           }
           evt.returnValue = false;
 
                   //Принудительный Postback для обновления индекса
-                  var kladrId = KLADR_GetCurrentHierarchyId_<%=uniqueKey %>();
-                        PageMethods.GetPostcodeByKLADRId(kladrId, onSuccessGet_<%=uniqueKey %>, onErrorGet_<%=uniqueKey %>);
+                  var kladrId = KLADR_GetCurrentHierarchyId_<%=UniqueKey %>();
+                        PageMethods.GetPostcodeByKLADRId(kladrId, onSuccessGet_<%=UniqueKey %>, onErrorGet_<%=UniqueKey %>);
               }
             }
           }
 
-          function KLADR_DisableSelection_<%=uniqueKey %>() {
+          function KLADR_DisableSelection_<%=UniqueKey %>() {
     var tbKLADRIntellisesne = $get('<%= tbKLADRIntellisense.ClientID%>');
       if (typeof tbKLADRIntellisesne.onselectstart != "undefined") //For IE 
         tbKLADRIntellisesne.onselectstart = function () {
@@ -130,19 +130,19 @@
     }
 
 
-    function KLADR_ListPopulating_<%=uniqueKey %>(source, e) {
+    function KLADR_ListPopulating_<%=UniqueKey %>(source, e) {
     var textboxControl = $get('<%= tbKLADRIntellisense.ClientID%>'); // Get the textbox control.
       textboxControl.style.backgroundImage = 'url(~/Resources/ajax-loader.gif)';
       textboxControl.style.backgroundRepeat = 'no-repeat';
       textboxControl.style.backgroundPosition = 'right';
     }
 
-    function KLADR_ListPopulated_<%=uniqueKey %>(sender, e) {
+    function KLADR_ListPopulated_<%=UniqueKey %>(sender, e) {
     var textboxControl = $get('<%= tbKLADRIntellisense.ClientID%>'); // Get the textbox control.
       textboxControl.style.backgroundImage = 'none';
     }
 
-    function KLADR_ListShowing_<%=uniqueKey %>(sender, e) {
+    function KLADR_ListShowing_<%=UniqueKey %>(sender, e) {
     var searchList = sender.get_completionList().childNodes;
     if (searchList.length == 1) {
       sender._setText(searchList[0]);
@@ -150,7 +150,7 @@
     }
   }
 
-  function KLADR_MouseUp_<%=uniqueKey %>() {
+  function KLADR_MouseUp_<%=UniqueKey %>() {
     var tbKLADRIntellisesne = $get('<%= tbKLADRIntellisense.ClientID%>');
       if (tbKLADRIntellisesne.createTextRange) {
         //IE  
@@ -167,7 +167,7 @@
       }
     }
 
-    function KLADR_OnFocus_<%=uniqueKey %>() {
+    function KLADR_OnFocus_<%=UniqueKey %>() {
     var tbKLADRIntellisesne = $get('<%= tbKLADRIntellisense.ClientID%>');
       if (tbKLADRIntellisesne.createTextRange) {
         //IE  

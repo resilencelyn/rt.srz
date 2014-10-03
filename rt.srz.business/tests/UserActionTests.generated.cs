@@ -43,6 +43,7 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.UserAction entity = new rt.srz.model.srz.UserAction();
 			
 			
+			entity.UserId = System.Guid.NewGuid();
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
@@ -59,15 +60,6 @@ namespace rt.srz.business.tests
 					if (all.Count > 0)
 					{
 						entity.Statement = all[0];
-					}
-				}	
-			
-			using(rt.srz.business.manager.IUserManager userManager = ObjectFactory.GetInstance<IUserManager>())
-				{
-				    var all = userManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.User = all[0];
 					}
 				}	
 			
@@ -108,6 +100,31 @@ namespace rt.srz.business.tests
                 rt.srz.model.srz.UserAction entityB = manager.GetById(entityA.Id);
 
                 Assert.AreEqual(entityA, entityB);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.ToString());
+            }
+        }
+		[Test]
+		public void Update()
+        {
+            try
+            {
+				rt.srz.model.srz.UserAction entityC = CreateNewUserAction();
+				manager.Save(entityC);
+				manager.Session.GetISession().Flush();
+				manager.Session.GetISession().Clear();
+			
+                rt.srz.model.srz.UserAction entityA = GetFirstUserAction();
+				
+				entityA.UserId = System.Guid.NewGuid();
+				
+				manager.Update(entityA);
+
+                rt.srz.model.srz.UserAction entityB = manager.GetById(entityA.Id);
+
+                Assert.AreEqual(entityA.UserId, entityB.UserId);
             }
             catch (Exception ex)
             {

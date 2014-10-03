@@ -45,7 +45,7 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.MainPolisNumber = "Test Tes";
+			entity.MainPolisNumber = "Test Test";
 			
 			using(rt.srz.business.manager.IDeadInfoManager deadInfoManager = ObjectFactory.GetInstance<IDeadInfoManager>())
 				{
@@ -120,7 +120,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.InsuredPerson entityA = GetFirstInsuredPerson();
 				
-				entityA.MainPolisNumber = "T";
+				entityA.MainPolisNumber = "Test Te";
 				
 				manager.Update(entityA);
 

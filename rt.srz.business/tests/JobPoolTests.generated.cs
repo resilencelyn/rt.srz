@@ -43,10 +43,10 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.JobPool entity = new rt.srz.model.srz.JobPool();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = 3;
+			entity.Id = 6;
 			
 			entity.Content = new System.Byte[]{};
-			entity.Versions = 4;
+			entity.Versions = 51;
 			
 			return entity;
 		}

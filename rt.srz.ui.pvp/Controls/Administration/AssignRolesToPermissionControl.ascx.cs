@@ -1,76 +1,128 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.srz;
-using StructureMap;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssignRolesToPermissionControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controls.Administration
 {
-	public partial class AssignRolesToPermissionControl : System.Web.UI.UserControl
-	{
-		private ISecurityService _securityService;
-    private Guid _permissionId;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Web.UI;
+  using System.Web.UI.WebControls;
 
-		protected void Page_Init(object sender, EventArgs e)
-		{
-			_securityService = ObjectFactory.GetInstance<ISecurityService>();
-		}
+  using rt.srz.model.interfaces.service;
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			if (Request.QueryString["permissionId"] == null)
-			{
-        _permissionId = Guid.Empty;
-			}
-			else
-			{
-        _permissionId = Guid.Parse(Request.QueryString["permissionId"]);
-			}
-			if (!IsPostBack)
-			{
-				string permissionName = string.Empty;
-				lbTitle.Text = string.Format("Назначение ролей для разрешения: {0}", Request.QueryString["permissionName"]);
-				IList<Role> roles = _securityService.GetRolesByPermission(_permissionId);
-				IList<Role> allRoles = _securityService.GetRoles();
+  using StructureMap;
 
-				cblRoles.DataSource = allRoles;
-				cblRoles.DataBind();
+  /// <summary>
+  /// The assign roles to permission control.
+  /// </summary>
+  public partial class AssignRolesToPermissionControl : UserControl
+  {
+    #region Fields
 
-				foreach (ListItem item in cblRoles.Items)
-				{
-          if (roles.Select(p => p.Id).Contains(Guid.Parse(item.Value)))
-					{
-						item.Selected = true;
-					}
-				}
-			}
-		}
+    /// <summary>
+    /// The _permission id.
+    /// </summary>
+    private Guid permissionId;
 
-		public void SaveChanges()
-		{
+    /// <summary>
+    /// The _security service.
+    /// </summary>
+    private ISecurityService securityService;
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The save changes.
+    /// </summary>
+    public void SaveChanges()
+    {
       SaveChanges(Guid.Empty);
-		}
+    }
 
-		public void SaveChanges(Guid newPermissionId)
-		{
+    /// <summary>
+    /// The save changes.
+    /// </summary>
+    /// <param name="newPermissionId">
+    /// The new permission id.
+    /// </param>
+    public void SaveChanges(Guid newPermissionId)
+    {
       var assignList = new List<Guid>();
       var detachList = new List<Guid>();
-			foreach (ListItem item in cblRoles.Items)
-			{
-				if (item.Selected)
-				{
+      foreach (ListItem item in cblRoles.Items)
+      {
+        if (item.Selected)
+        {
           assignList.Add(Guid.Parse(item.Value));
-				}
-				else
-				{
+        }
+        else
+        {
           detachList.Add(Guid.Parse(item.Value));
-				}
-			}
-      _securityService.AssignRolesToPermission(newPermissionId != Guid.Empty ? newPermissionId : _permissionId, assignList, detachList);
-		}
-	}
+        }
+      }
+
+      securityService.AssignRolesToPermission(
+                                               newPermissionId != Guid.Empty ? newPermissionId : permissionId, 
+                                               assignList, 
+                                               detachList);
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Init(object sender, EventArgs e)
+    {
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
+    }
+
+    /// <summary>
+    /// The page_ load.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      permissionId = Request.QueryString["permissionId"] == null ? Guid.Empty : Guid.Parse(Request.QueryString["permissionId"]);
+
+      if (!IsPostBack)
+      {
+        lbTitle.Text = string.Format("Назначение ролей для разрешения: {0}", Request.QueryString["permissionName"]);
+        var roles = securityService.GetRolesByPermission(permissionId);
+        var allRoles = securityService.GetRoles();
+
+        cblRoles.DataSource = allRoles;
+        cblRoles.DataBind();
+
+        foreach (ListItem item in cblRoles.Items)
+        {
+          if (roles.Select(p => p.Id).Contains(Guid.Parse(item.Value)))
+          {
+            item.Selected = true;
+          }
+        }
+      }
+    }
+
+    #endregion
+  }
 }

@@ -268,9 +268,10 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   The get document type for registration document
     /// </summary>
-    /// <param name="categoryId"> The category id. </param>
-    /// <param name="age"> The age. </param>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   . </returns>
     public IList<Concept> GetDocumentTypeForRegistrationDocument()
     {
       return ObjectFactory.GetInstance<IOidManager>().GetDocumentTypeForRegistrationDocument();
@@ -587,9 +588,6 @@ namespace rt.srz.services.Statement
     /// <summary>
     /// Проверяет проверку и возвращает информацию об ошибке (текст ошибки из исключения)
     /// </summary>
-    /// <param name="statement"></param>
-    /// <param name="expression"></param>
-    /// <returns></returns>
     public string TryCheckProperty1(Statement statement, ExpressionNode expression)
     {
       try
@@ -618,6 +616,18 @@ namespace rt.srz.services.Statement
     /// <summary>
     /// Получает ошибки существующие в заявлениях за указанный период
     /// </summary>
+    /// <param name="startDate">
+    /// The start Date.
+    /// </param>
+    /// <param name="endDate">
+    /// The end Date.
+    /// </param>
+    /// <returns>
+    /// The <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
     public IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate)
     {
       return ObjectFactory.GetInstance<IStatementManager>().GetErrorsByPeriod(startDate, endDate);
@@ -626,7 +636,9 @@ namespace rt.srz.services.Statement
     /// <summary>
     /// Удаление инфы о смерти
     /// </summary>
-    /// <param name="statementId"></param>
+    /// <param name="statementId">
+    /// The statement Id.
+    /// </param>
     public void DeleteDeathInfo(Guid statementId)
     {
       ObjectFactory.GetInstance<IInsuredPersonManager>().DeleteDeathInfo(statementId);

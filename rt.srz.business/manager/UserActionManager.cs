@@ -13,6 +13,8 @@ using rt.srz.model.srz;
 
 namespace rt.srz.business.manager
 {
+  using rt.core.model.core;
+
   /// <summary>
   /// The UserActionManager.
   /// </summary>
@@ -27,7 +29,7 @@ namespace rt.srz.business.manager
       {
         var userAction = new UserAction()
         {
-          User = user,
+          UserId = user.Id,
           Statement = statement,
           Event = session.QueryOver<Concept>()
             .Where(f => f.Name == Event || f.ShortName == Event)

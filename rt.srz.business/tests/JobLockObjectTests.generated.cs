@@ -43,9 +43,9 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.JobLockObject entity = new rt.srz.model.srz.JobLockObject();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = 89;
+			entity.Id = 45;
 			
-			entity.Versions = 12;
+			entity.Versions = 7;
 			
 			return entity;
 		}

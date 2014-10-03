@@ -1,11 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatementsSearch.ascx.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatementsSearch.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-
-using rt.srz.business.manager;
-using rt.srz.business.manager.cache;
 
 namespace rt.srz.ui.pvp.Controls
 {
@@ -16,18 +13,20 @@ namespace rt.srz.ui.pvp.Controls
   using System.Drawing;
   using System.Globalization;
   using System.Linq;
-  using System.Web.Security;
+  using System.Text;
   using System.Web.UI;
   using System.Web.UI.WebControls;
 
-  using rt.atl.business.quartz;
   using rt.core.model.dto;
-  using rt.core.model.security;
+  using rt.srz.business.manager;
+  using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
   using rt.srz.model.dto;
+  using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
   using rt.srz.services;
   using rt.srz.ui.pvp.Controls.CustomPager;
   using rt.srz.ui.pvp.Enumerations;
@@ -35,11 +34,6 @@ namespace rt.srz.ui.pvp.Controls
   using StructureMap;
 
   using SortDirection = rt.core.model.dto.enumerations.SortDirection;
-  using rt.srz.model.enumerations;
-  using rt.srz.model.srz.concepts;
-  using rt.srz.ui.pvp.Controls.Common;
-  using System.Text;
-  using NHibernate.Context;
 
   #endregion
 
@@ -55,40 +49,44 @@ namespace rt.srz.ui.pvp.Controls
     /// </summary>
     public const string SearchCriteriaViewStateKey = "SearchCriteria";
 
-    //при изменении значения изменить также в ConfirmedArgument для <ConfirmDeleteControl ID="confirmDeath">
-    private const string CArgumentDeleteDeathInfo = "DeleteDeathInfo";
-
     #endregion
 
     #region Fields
 
     /// <summary>
-    ///   The auth service.
-    /// </summary>
-    protected IAuthService _authService;
-
-    /// <summary>
     ///   The security service.
     /// </summary>
-    protected ISecurityService _securityService;
+    private ISecurityService securityService;
 
     /// <summary>
     ///   The service.
     /// </summary>
-    protected IStatementService _statementService;
+    private IStatementService statementService;
 
     #endregion
 
     #region Properties
 
-    private DateTime DefaultStartDateFilling
-    {
-      get { return DateTime.Today.AddDays(-30); }
-    }
-
+    /// <summary>
+    ///   Gets the default end date filling.
+    /// </summary>
     private DateTime DefaultEndDateFilling
     {
-      get { return DateTime.Today; }
+      get
+      {
+        return DateTime.Today;
+      }
+    }
+
+    /// <summary>
+    ///   Gets the default start date filling.
+    /// </summary>
+    private DateTime DefaultStartDateFilling
+    {
+      get
+      {
+        return DateTime.Today.AddDays(-30);
+      }
     }
 
     #endregion
@@ -117,17 +115,28 @@ namespace rt.srz.ui.pvp.Controls
 
     #region Methods
 
+    /// <summary>
+    ///   The get url uec gate.
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="string" />.
+    /// </returns>
+    protected string GetUrlUecGate()
+    {
+      var url = Request.Url.AbsoluteUri.Replace("Pages/Main.aspx", "UecGate.svc");
+      return url;
+    }
 
     /// <summary>
     /// The menu_ menu item click.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
+    protected void MenuMenuItemClick(object sender, MenuEventArgs e)
     {
       StatementSearchMenuItem item;
       if (!Enum.TryParse(e.Item.Value, out item))
@@ -156,6 +165,7 @@ namespace rt.srz.ui.pvp.Controls
 
             RedirectUtils.RedirectToStatement(Response);
           }
+
           break;
 
         case StatementSearchMenuItem.Reneval:
@@ -163,6 +173,7 @@ namespace rt.srz.ui.pvp.Controls
             FillExample();
             RedirectUtils.RedirectToStatement(Response);
           }
+
           break;
 
         // Переход на страницу выдачи полиса
@@ -182,8 +193,8 @@ namespace rt.srz.ui.pvp.Controls
               }
             }
           }
-          break;
 
+          break;
 
         // Переход на страницу редактирования заявления
         case StatementSearchMenuItem.Edit:
@@ -197,12 +208,14 @@ namespace rt.srz.ui.pvp.Controls
                 ////userActionManager.LogAccessToPersonalData(_statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value), "Выдача полиса");
 
                 // Переход
-                //Session[SessionConsts.CGuidStatementId] = SearchResultGridView.SelectedDataKey.Value;
-                Session[SessionConsts.CCurrentStatement] = _statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value);
+                // Session[SessionConsts.CGuidStatementId] = SearchResultGridView.SelectedDataKey.Value;
+                Session[SessionConsts.CCurrentStatement] =
+                  statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value);
                 RedirectUtils.RedirectToStatement(Response);
               }
             }
           }
+
           break;
 
         // Удаление заявления
@@ -240,57 +253,33 @@ namespace rt.srz.ui.pvp.Controls
       }
     }
 
-    private void DeleteDeathInfo()
+    /// <summary>
+    /// The menu_ pre render.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void MenuPreRender(object sender, EventArgs e)
     {
-      if (SearchResultGridView.SelectedDataKey == null)
-      {
-        return;
-      }
-      _statementService.DeleteDeathInfo((Guid)SearchResultGridView.SelectedDataKey.Value);
-      RefreshCurrentSearchGridPage();
-    }
-
-    private void CancelStatement()
-    {
-      if (SearchResultGridView.SelectedDataKey == null || SearchResultGridView.SelectedDataKey.Value == null)
-      {
-        return;
-      }
-      Session[SessionConsts.CGuidStatementId] = SearchResultGridView.SelectedDataKey.Value;
-      Guid id;
-      if (Guid.TryParse(SearchResultGridView.SelectedDataKey.Value.ToString(), out id))
-      {
-        _statementService.CanceledStatement(id);
-      }
-      RefreshCurrentSearchGridPage();
-    }
-
-    private void RefreshCurrentSearchGridPage()
-    {
-      var currentCriteria = Session[SearchCriteriaViewStateKey] as SearchStatementCriteria;
-      if (currentCriteria == null)
-      {
-        return;
-      }
-      currentCriteria.SearchResult = null;
-      Session[SearchCriteriaViewStateKey] = currentCriteria;
-      MakeStatementSearch(currentCriteria);
+      UtilsHelper.MenuPreRender(Menu);
     }
 
     /// <summary>
     /// The page_ init.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _statementService = ObjectFactory.GetInstance<IStatementService>();
-      _securityService = ObjectFactory.GetInstance<ISecurityService>();
-      _authService = ObjectFactory.GetInstance<IAuthService>();
+      statementService = ObjectFactory.GetInstance<IStatementService>();
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
       if (!IsPostBack)
       {
         FillStatusStatement();
@@ -301,102 +290,27 @@ namespace rt.srz.ui.pvp.Controls
       }
     }
 
-    private void SetMenuByPermission(User currentUser)
-    {
-      SetMenuByPermission(currentUser, SessionConsts.CReinsuranse, PermissionCode.Search_Create);
-      SetMenuByPermission(currentUser, SessionConsts.CReneval, PermissionCode.Search_Reneval);
-      SetMenuByPermission(currentUser, SessionConsts.CEdit, PermissionCode.Search_Edit);
-      SetMenuByPermission(currentUser, SessionConsts.CDelete, PermissionCode.Search_Delete);
-      SetMenuByPermission(currentUser, SessionConsts.CReadUEC, PermissionCode.Search_ReadUec);
-      SetMenuByPermission(currentUser, SessionConsts.CWriteUEC, PermissionCode.Search_WriteUec);
-      SetMenuByPermission(currentUser, SessionConsts.CReadSmartCard, PermissionCode.Search_ReadSmartCard);
-      SetMenuByPermission(currentUser, SessionConsts.CSeparate, PermissionCode.Search_Separate);
-      SetMenuByPermission(currentUser, SessionConsts.CInsuranceHistory, PermissionCode.Search_InsuranceHistory);
-      SetMenuByPermission(currentUser, SessionConsts.CDeleteDeathInfo, PermissionCode.CancelDeath);
-      SetMenuByPermission(currentUser, SessionConsts.CIssue, PermissionCode.Search_GiveOut);
-    }
-
-    private void SetMenuByPermission(User currentUser, string menuItemValue, PermissionCode permissionCode)
-    {
-      UtilsHelper.SetMenuItemByPermission(Session, Menu, _securityService, menuItemValue, permissionCode);
-    }
-
-    /// <summary>
-    /// Обновляет краткую инфу по фильтру в уголке, которая отображается при свёрнутом фильтре
-    /// </summary>
-    private void UpdateBriefFilterInfoInCorner()
-    {
-      //Отображаются последние заявления
-      lbLastStatementsF.Visible = cbReturnLastStatement.Checked;
-
-      //даты подачи заявления
-      SetTextToBriefFilter(lbDatesF, "Дата подачи заявления", chbUseDateFilling.Checked ? string.Format("{0} - {1}", tbDateFillingFrom.Text, tbDateFillingTo.Text) : "");
-
-      //удл
-      SetTextToBriefFilter(lbUdlF, "Документ УДЛ", documentUDL.DocumentTypeStr == "Выберите вид документа" ? "" : documentUDL.DocumentTypeStr,
-        documentUDL.DocumentSeries, documentUDL.DocumentNumber,
-        documentUDL.DocumentIssuingAuthority, documentUDL.DocumentIssueDate.HasValue ? documentUDL.DocumentIssueDate.Value.ToShortDateString() : "");
-
-      // ФИО
-      SetTextToBriefFilter(lbFioF, "ФИО", tbLastName.Text, tbFirstName.Text, tbMiddleName.Text);
-
-      // Дата рождения
-      SetTextToBriefFilter(lbDatebirthF, "Дата рождения", tbBirthDate.Text);
-
-      // СНИЛС
-      if (!string.IsNullOrEmpty(tbSnils.Text.Replace("-", "").Replace(" ", "").Replace("_", "")))
-      {
-        SetTextToBriefFilter(lbSnilsF, "СНИЛС", tbSnils.Text);
-      }
-      else
-      {
-        SetTextToBriefFilter(lbSnilsF, "СНИЛС", "");
-      }
-
-      // Место рождения
-      SetTextToBriefFilter(lbBirthPlaceF, "Место рождения", tbBirthPlace.Text);
-
-      //текст ошибки
-      //0 индекс соответсвует тому когда данные не выбраны
-      SetTextToBriefFilter(lbErrorF, "Причина отклонения", (hSelectedError.Value == "Данные не выбраны" || hSelectedError.Value == "-1") ? "" : hSelectedError.Value);
-    }
-
-    private void SetTextToBriefFilter(Label label, string baseText, params string[] valuesText)
-    {
-      string resultValue = string.Join(" ", valuesText).Trim();
-      if (string.IsNullOrEmpty(resultValue))
-      {
-        label.Visible = false;
-        return;
-      }
-      else
-      {
-        label.Visible = true;
-      }
-      StringBuilder sb = new StringBuilder();
-      sb.Append("<span><b>").Append(baseText).Append(": </b></span>").Append(resultValue).Append("; ");
-      label.Text = sb.ToString();
-    }
-
     /// <summary>
     /// The page_ load.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
     protected void Page_Load(object sender, EventArgs e)
     {
       if (!IsPostBack)
       {
-        ViewState["OpenNotOwnSmo"] = _securityService.GetIsCurrentUserAllowPermission(PermissionCode.Search_OpenNotOwnSmo);
+        ViewState["OpenNotOwnSmo"] = securityService.GetIsCurrentUserAllowPermission(
+                                                                                     PermissionCode.Search_OpenNotOwnSmo);
 
-        User currentUser = _securityService.GetCurrentUser();
+        var currentUser = securityService.GetCurrentUser();
         Menu.FindItem(SessionConsts.CDelete).NavigateUrl = confirmDelete.ViewConfirmScript;
+
         ////Menu.FindItem(SessionConsts.CDeleteDeathInfo).NavigateUrl = confirmDeath.ViewConfirmScript;
-        SetMenuByPermission(currentUser);
+        SetMenuByPermission();
         DisableMenuItems();
 
         var searchCriteria = (SearchStatementCriteria)Session[SearchCriteriaViewStateKey];
@@ -449,13 +363,15 @@ namespace rt.srz.ui.pvp.Controls
         ddlErrors.Enabled = false;
         if (chbUseDateFilling.Checked)
         {
-          //если выбран статус заявления отклонено или вообще не выбран, то только в этом случае отображаем список с ошибками
-          if (ddlCertificateStatus.SelectedValue == ((int)StatusStatement.Declined).ToString() || ddlCertificateStatus.SelectedValue == "-1")
+          // если выбран статус заявления отклонено или вообще не выбран, то только в этом случае отображаем список с ошибками
+          if (ddlCertificateStatus.SelectedValue == StatusStatement.Declined.ToString(CultureInfo.InvariantCulture)
+              || ddlCertificateStatus.SelectedValue == "-1")
           {
             ddlErrors.Enabled = true;
             ddlErrors.Style.Value = "display: block";
             lbErrors.Style.Value = "display: block";
           }
+
           tbDateFillingTo.Enabled = true;
           tbDateFillingFrom.Enabled = true;
 
@@ -463,77 +379,63 @@ namespace rt.srz.ui.pvp.Controls
           tbDateFillingTo.Style.Value = "display: block";
           lblDateFilling.Style.Value = "display: block";
           Label8.Style.Value = "display: block";
-       }
+        }
 
-        //Отмена заявления
-        if (Request.Form[Page.postEventSourceID] == confirmDelete.ConfirmedTargetUnique &&
-          Request.Form[Page.postEventArgumentID] == confirmDelete.ConfirmedArgumentUnique)
+        // Отмена заявления
+        if (Request.Form[Page.postEventSourceID] == confirmDelete.ConfirmedTargetUnique
+            && Request.Form[Page.postEventArgumentID] == confirmDelete.ConfirmedArgumentUnique)
         {
           CancelStatement();
           return;
         }
-        //Отмена смерти
-        if (Request.Form[Page.postEventSourceID] == confirmDeath.ConfirmedTargetUnique &&
-          Request.Form[Page.postEventArgumentID] == confirmDeath.ConfirmedArgumentUnique)
+
+        // Отмена смерти
+        if (Request.Form[Page.postEventSourceID] == confirmDeath.ConfirmedTargetUnique
+            && Request.Form[Page.postEventArgumentID] == confirmDeath.ConfirmedArgumentUnique)
         {
           DeleteDeathInfo();
           return;
         }
       }
 
-      //обновляем инфу в уголке по краткому содержанию фильтра
+      // обновляем инфу в уголке по краткому содержанию фильтра
       UpdateBriefFilterInfoInCorner();
     }
 
-    private void DisableMenuItems()
+    /// <summary>
+    /// The search result grid view_ row command.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void SearchResultGridViewRowCommand(object sender, GridViewCommandEventArgs e)
     {
-      SetMenuItemEnable(SessionConsts.CReneval, false);
-      SetMenuItemEnable(SessionConsts.CIssue, false);
-      SetMenuItemEnable(SessionConsts.CEdit, false);
-      SetMenuItemEnable(SessionConsts.CDelete, false);
-      SetMenuItemEnable(SessionConsts.CWriteUEC, false);
-      SetMenuItemEnable(SessionConsts.CSeparate, false);
-      SetMenuItemEnable(SessionConsts.CDeleteDeathInfo, false);
-      SetMenuItemEnable(SessionConsts.CInsuranceHistory, false);
-      MenuUpdatePanel.Update();
-    }
-
-    private void SetMenuItemEnable(string itemName, bool value)
-    {
-      //все элементы на одном уровне
-      var item = Menu.FindItem(itemName);
-      if (item != null)
+      switch (e.CommandName)
       {
-        item.Enabled = value;
+        // case "SingleClick":
+        // SearchResultGridView.SelectedIndex = int.Parse(e.CommandArgument.ToString());
+        // SearchResultGridView_SelectedIndexChanged(SearchResultGridView, new EventArgs());
+        // break;
+        case "DoubleClick":
+          SearchResultGridView.SelectedIndex = int.Parse(e.CommandArgument.ToString());
+          MenuMenuItemClick(Menu, new MenuEventArgs(Menu.Items[(int)StatementSearchMenuItem.Edit]));
+          break;
       }
-    }
-
-    private void SetMenuItemText(string itemName, string text)
-    {
-      //все элементы на одном уровне
-      var item = Menu.FindItem(itemName);
-      if (item != null)
-      {
-        item.Text = text;
-      }
-    }
-
-    protected string GetUrlUecGate()
-    {
-      var url = Request.Url.AbsoluteUri.Replace("Pages/Main.aspx", "UecGate.svc");
-      return url;
     }
 
     /// <summary>
     /// The search result grid view_ row data bound.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void SearchResultGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void SearchResultGridViewRowDataBound(object sender, GridViewRowEventArgs e)
     {
       if (e.Row.RowType != DataControlRowType.DataRow)
       {
@@ -543,16 +445,17 @@ namespace rt.srz.ui.pvp.Controls
       e.Row.Attributes["onmouseover"] = "this.style.cursor='pointer';this.style.textDecoration='underline';";
       e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';";
       e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackEventReference(
-        SearchResultGridView, "Select$" + e.Row.RowIndex);
-
+                                                                                SearchResultGridView,
+                                                                                "Select$" + e.Row.RowIndex);
 
       // Get the LinkButton control in the second cell
-      LinkButton _doubleClickButton = (LinkButton)e.Row.Cells[12].Controls[0];
-      // Get the javascript which is assigned to this LinkButton
-      string _jsDouble = Page.ClientScript.GetPostBackClientHyperlink(_doubleClickButton, "");
-      // Add this JavaScript to the ondblclick Attribute of the row
-      e.Row.Attributes["ondblclick"] = _jsDouble;
+      var doubleClickButton = (LinkButton)e.Row.Cells[12].Controls[0];
 
+      // Get the javascript which is assigned to this LinkButton
+      var jsdouble = Page.ClientScript.GetPostBackClientHyperlink(doubleClickButton, string.Empty);
+
+      // Add this JavaScript to the ondblclick Attribute of the row
+      e.Row.Attributes["ondblclick"] = jsdouble;
 
       var strFromCurrentSmo = e.Row.Cells[0].Text;
       bool fromCurrentSmo;
@@ -566,19 +469,19 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      e.Row.ForeColor = Color.Black; //Color.FromArgb(0, 145, 175); //Color.Green;
+      e.Row.ForeColor = Color.Black; // Color.FromArgb(0, 145, 175); //Color.Green;
     }
 
     /// <summary>
     /// The search result grid view_ selected index changed.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void SearchResultGridView_SelectedIndexChanged(object sender, EventArgs e)
+    protected void SearchResultGridViewSelectedIndexChanged(object sender, EventArgs e)
     {
       hfSearchResultGVSelectedRowIndex.Value = SearchResultGridView.SelectedIndex.ToString(CultureInfo.InvariantCulture);
       if (SearchResultGridView.SelectedIndex == -1)
@@ -588,43 +491,52 @@ namespace rt.srz.ui.pvp.Controls
 
       Guid id;
       Statement statement = null;
-      var user = _securityService.GetCurrentUser();
-      if (SearchResultGridView.SelectedDataKey != null && Guid.TryParse(SearchResultGridView.SelectedDataKey.Value.ToString(), out id))
+      var user = securityService.GetCurrentUser();
+      if (SearchResultGridView.SelectedDataKey != null
+          && Guid.TryParse(SearchResultGridView.SelectedDataKey.Value.ToString(), out id))
       {
-        statement = _statementService.GetStatement(id);
+        statement = statementService.GetStatement(id);
       }
 
       bool fromCurrentSmo;
 #if(IgnoreSmo)
       fromCurrentSmo = true;
 #else
-      fromCurrentSmo = statement != null
-        && user.PointDistributionPolicy != null
-        && user.PointDistributionPolicy.Parent != null
-        && statement.PointDistributionPolicy != null
-        && statement.PointDistributionPolicy.Parent != null
-        && statement.PointDistributionPolicy.Parent.Id == user.PointDistributionPolicy.Parent.Id;
+
+      fromCurrentSmo = statement != null && user.HasSmo() && statement.PointDistributionPolicy != null
+                       && statement.PointDistributionPolicy.Parent != null
+                       && statement.PointDistributionPolicy.Parent.Id == user.GetSmo().Id;
 #endif
 
-      SetMenuItemEnable(SessionConsts.CReinsuranse, statement != null && statement.IsActive && statement.Status.Id == StatusStatement.Exercised);
-      SetMenuItemEnable(SessionConsts.CReneval, statement != null && statement.IsActive && fromCurrentSmo && statement.Status.Id == StatusStatement.Exercised);
+      var value = statement != null && statement.IsActive && statement.Status.Id == StatusStatement.Exercised;
+      SetMenuItemEnable(SessionConsts.CReinsuranse, value);
+      SetMenuItemEnable(SessionConsts.CReneval, value && fromCurrentSmo);
 
-      //для отклонённых и отменённых заявлений кнопка выдать полис должна быть недоступна
-      SetMenuItemEnable(SessionConsts.CIssue, fromCurrentSmo && (!statement.PolicyIsIssued.HasValue || !statement.PolicyIsIssued.Value) &&
-        statement.Status.Id != StatusStatement.Declined && statement.Status.Id != StatusStatement.Cancelled);
+      // для отклонённых и отменённых заявлений кнопка выдать полис должна быть недоступна
+      SetMenuItemEnable(
+                        SessionConsts.CIssue,
+                        fromCurrentSmo
+                        && (!statement.PolicyIsIssued.HasValue || !statement.PolicyIsIssued.Value)
+                        && statement.Status.Id != StatusStatement.Declined
+                        && statement.Status.Id != StatusStatement.Cancelled);
 
       SetMenuItemEnable(SessionConsts.CEdit, fromCurrentSmo || (bool)ViewState["OpenNotOwnSmo"]);
 
       SetMenuItemText(SessionConsts.CReinsuranse, fromCurrentSmo ? "Создать" : "Перестраховать");
 
-      var statusForDelete = statement != null && (statement.Status.Id == StatusStatement.Declined || statement.Status.Id == StatusStatement.New);
+      var statusForDelete = statement != null
+                            && (statement.Status.Id == StatusStatement.Declined
+                                || statement.Status.Id == StatusStatement.New);
       SetMenuItemEnable(SessionConsts.CDelete, fromCurrentSmo && statusForDelete);
       SetMenuItemEnable(SessionConsts.CWriteUEC, fromCurrentSmo);
       SetMenuItemEnable(SessionConsts.CInsuranceHistory, fromCurrentSmo);
-      var insuredInJoined = _statementService.InsuredInJoined(_statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value).InsuredPerson.Id);
+      var insuredInJoined =
+        statementService.InsuredInJoined(statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value).InsuredPerson.Id);
       SetMenuItemEnable(SessionConsts.CSeparate, insuredInJoined && fromCurrentSmo);
 
-      SetMenuItemEnable(SessionConsts.CDeleteDeathInfo, statement != null && statement.InsuredPerson.Status.Id == StatusPerson.Dead);
+      SetMenuItemEnable(
+                        SessionConsts.CDeleteDeathInfo,
+                        statement != null && statement.InsuredPerson.Status.Id == StatusPerson.Dead);
 
       SetMenuItemEnable(SessionConsts.CInsuranceHistory, statement != null);
 
@@ -635,12 +547,12 @@ namespace rt.srz.ui.pvp.Controls
     /// The search result grid view_ sorting.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void SearchResultGridView_Sorting(object sender, GridViewSortEventArgs e)
+    protected void SearchResultGridViewSorting(object sender, GridViewSortEventArgs e)
     {
       var currentCriteria = Session[SearchCriteriaViewStateKey] as SearchStatementCriteria;
       if (currentCriteria != null)
@@ -666,38 +578,27 @@ namespace rt.srz.ui.pvp.Controls
         }
       }
 
-      //очищаем чтобы вызвался поиск
-      currentCriteria.SearchResult = null;
-      Session[SearchCriteriaViewStateKey] = currentCriteria;
-
-      // Запускаем новый поиск
-      MakeStatementSearch(currentCriteria);
-      custPager.ReloadPager();
-    }
-
-    protected void SearchResultGridView_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-      switch (e.CommandName)
+      // очищаем чтобы вызвался поиск
+      if (currentCriteria != null)
       {
-        //case "SingleClick":
-        //  SearchResultGridView.SelectedIndex = int.Parse(e.CommandArgument.ToString());
-        //  SearchResultGridView_SelectedIndexChanged(SearchResultGridView, new EventArgs());
-        //  break;
-        case "DoubleClick":
-          SearchResultGridView.SelectedIndex = int.Parse(e.CommandArgument.ToString());
-          Menu_MenuItemClick(Menu, new MenuEventArgs(Menu.Items[(int)StatementSearchMenuItem.Edit]));
-          break;
+        currentCriteria.SearchResult = null;
+        Session[SearchCriteriaViewStateKey] = currentCriteria;
+
+        // Запускаем новый поиск
+        MakeStatementSearch(currentCriteria);
       }
+
+      custPager.ReloadPager();
     }
 
     /// <summary>
     /// The validate snils.
     /// </summary>
     /// <param name="source">
-    /// The source. 
+    /// The source.
     /// </param>
     /// <param name="args">
-    /// The args. 
+    /// The args.
     /// </param>
     protected void ValidateSnils(object source, ServerValidateEventArgs args)
     {
@@ -706,7 +607,7 @@ namespace rt.srz.ui.pvp.Controls
         var st = new Statement();
         st.InsuredPersonData = new InsuredPersonDatum();
         st.InsuredPersonData.Snils = SnilsChecker.SsToShort(tbSnils.Text.Replace("_", string.Empty));
-        args.IsValid = _statementService.TryCheckProperty(st, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
+        args.IsValid = statementService.TryCheckProperty(st, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
         cbNotCheckSnils.Visible = !args.IsValid;
         return;
       }
@@ -718,27 +619,31 @@ namespace rt.srz.ui.pvp.Controls
     /// The validate temporary certificate number.
     /// </summary>
     /// <param name="source">
-    /// The source. 
+    /// The source.
     /// </param>
     /// <param name="args">
-    /// The args. 
+    /// The args.
     /// </param>
     protected void ValidateTemporaryCertificateNumber(object source, ServerValidateEventArgs args)
     {
       if (!string.IsNullOrEmpty(tbTemporaryCertificateNumber.Text))
       {
         var st = new Statement
-        {
-          MedicalInsurances = new List<MedicalInsurance>{new MedicalInsurance
-             {
-                PolisType = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(PolisType.В),
-                PolisNumber = tbTemporaryCertificateNumber.Text
-             }}
-        };
+                 {
+                   MedicalInsurances =
+                     new List<MedicalInsurance>
+                     {
+                       new MedicalInsurance
+                       {
+                         PolisType = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(PolisType.В), 
+                         PolisNumber = tbTemporaryCertificateNumber.Text
+                       }
+                     }
+                 };
         try
         {
-          ObjectFactory.GetInstance<IStatementService>().CheckPropertyStatement(
-            st, Utils.GetExpressionNode(x => x.MedicalInsurances[0].PolisNumber));
+          ObjectFactory.GetInstance<IStatementService>()
+                       .CheckPropertyStatement(st, Utils.GetExpressionNode(x => x.MedicalInsurances[0].PolisNumber));
         }
         catch (LogicalControlException e)
         {
@@ -752,12 +657,12 @@ namespace rt.srz.ui.pvp.Controls
     /// The btn clear_ click.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void btnClear_Click(object sender, EventArgs e)
+    protected void BtnClearClick(object sender, EventArgs e)
     {
       Session[SearchCriteriaViewStateKey] = null;
       Response.Redirect("~/Pages/Main.aspx");
@@ -767,12 +672,12 @@ namespace rt.srz.ui.pvp.Controls
     /// The btn search_ click.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void btnSearch_Click(object sender, EventArgs e)
+    protected void BtnSearchClick(object sender, EventArgs e)
     {
       if (!Validate())
       {
@@ -780,7 +685,8 @@ namespace rt.srz.ui.pvp.Controls
       }
 
       var searchCriteria = GetSearchCriteria();
-      //очищаем чтобы вызвался поиск
+
+      // очищаем чтобы вызвался поиск
       searchCriteria.SearchResult = null;
       Session[SearchCriteriaViewStateKey] = searchCriteria;
       MakeStatementSearch(searchCriteria);
@@ -805,45 +711,53 @@ namespace rt.srz.ui.pvp.Controls
     /// The cust pager_ page index changed.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void custPager_PageIndexChanged(object sender, CustomPageChangeArgs e)
+    protected void CustPagerPageIndexChanged(object sender, CustomPageChangeArgs e)
     {
       // SearchResultGridView.PageIndex = 1;
       SearchResultGridView.PageSize = e.CurrentPageSize;
 
       var searchCriteria = Session[SearchCriteriaViewStateKey] as SearchStatementCriteria;
-      //очищаем чтобы вызвался поиск
-      searchCriteria.SearchResult = null;
-      Session[SearchCriteriaViewStateKey] = searchCriteria;
 
-      MakeStatementSearch(searchCriteria);
+      // очищаем чтобы вызвался поиск
+      if (searchCriteria != null)
+      {
+        searchCriteria.SearchResult = null;
+        Session[SearchCriteriaViewStateKey] = searchCriteria;
+
+        MakeStatementSearch(searchCriteria);
+      }
     }
 
     /// <summary>
     /// The cust pager_ page size changed.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
-    protected void custPager_PageSizeChanged(object sender, CustomPageChangeArgs e)
+    protected void CustPagerPageSizeChanged(object sender, CustomPageChangeArgs e)
     {
       // SearchResultGridView.PageIndex = 0;
       SearchResultGridView.PageSize = e.CurrentPageSize;
       custPager.CurrentPageIndex = 0;
 
       var searchCriteria = Session[SearchCriteriaViewStateKey] as SearchStatementCriteria;
-      //очищаем чтобы вызвался поиск
-      searchCriteria.SearchResult = null;
-      Session[SearchCriteriaViewStateKey] = searchCriteria;
 
-      MakeStatementSearch(searchCriteria);
+      // очищаем чтобы вызвался поиск
+      if (searchCriteria != null)
+      {
+        searchCriteria.SearchResult = null;
+        Session[SearchCriteriaViewStateKey] = searchCriteria;
+
+        MakeStatementSearch(searchCriteria);
+      }
     }
 
     /// <summary>
@@ -863,13 +777,33 @@ namespace rt.srz.ui.pvp.Controls
     }
 
     /// <summary>
+    ///   The cancel statement.
+    /// </summary>
+    private void CancelStatement()
+    {
+      if (SearchResultGridView.SelectedDataKey == null || SearchResultGridView.SelectedDataKey.Value == null)
+      {
+        return;
+      }
+
+      Session[SessionConsts.CGuidStatementId] = SearchResultGridView.SelectedDataKey.Value;
+      Guid id;
+      if (Guid.TryParse(SearchResultGridView.SelectedDataKey.Value.ToString(), out id))
+      {
+        statementService.CanceledStatement(id);
+      }
+
+      RefreshCurrentSearchGridPage();
+    }
+
+    /// <summary>
     /// The convert sort direction.
     /// </summary>
     /// <param name="sortDirection">
-    /// The sort direction. 
+    /// The sort direction.
     /// </param>
     /// <returns>
-    /// The <see cref="System.Web.UI.WebControls.SortDirection"/> . 
+    /// The <see cref="System.Web.UI.WebControls.SortDirection"/> .
     /// </returns>
     private SortDirection ConvertSortDirection(System.Web.UI.WebControls.SortDirection sortDirection)
     {
@@ -885,6 +819,36 @@ namespace rt.srz.ui.pvp.Controls
     }
 
     /// <summary>
+    ///   The delete death info.
+    /// </summary>
+    private void DeleteDeathInfo()
+    {
+      if (SearchResultGridView.SelectedDataKey == null)
+      {
+        return;
+      }
+
+      statementService.DeleteDeathInfo((Guid)SearchResultGridView.SelectedDataKey.Value);
+      RefreshCurrentSearchGridPage();
+    }
+
+    /// <summary>
+    ///   The disable menu items.
+    /// </summary>
+    private void DisableMenuItems()
+    {
+      SetMenuItemEnable(SessionConsts.CReneval, false);
+      SetMenuItemEnable(SessionConsts.CIssue, false);
+      SetMenuItemEnable(SessionConsts.CEdit, false);
+      SetMenuItemEnable(SessionConsts.CDelete, false);
+      SetMenuItemEnable(SessionConsts.CWriteUEC, false);
+      SetMenuItemEnable(SessionConsts.CSeparate, false);
+      SetMenuItemEnable(SessionConsts.CDeleteDeathInfo, false);
+      SetMenuItemEnable(SessionConsts.CInsuranceHistory, false);
+      MenuUpdatePanel.Update();
+    }
+
+    /// <summary>
     ///   The fill document type.
     /// </summary>
     private void FillDocumentType()
@@ -892,8 +856,11 @@ namespace rt.srz.ui.pvp.Controls
       var documentList = new List<ListItem>();
       documentList.Insert(0, new ListItem("Выберите вид документа", "-1"));
       documentList.AddRange(
-        _statementService.GetNsiRecords(Oid.ДокументУдл).Select(
-          x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
+                            statementService.GetNsiRecords(Oid.ДокументУдл)
+                                            .Select(
+                                                    x =>
+                                                    new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
+                                            .ToArray());
       documentUDL.FillDocumentTypeDdl(documentList.ToArray(), "0");
     }
 
@@ -909,17 +876,17 @@ namespace rt.srz.ui.pvp.Controls
       if (SearchResultGridView.SelectedDataKey != null && SearchResultGridView.SelectedDataKey.Value != null)
       {
         var exampleId = (Guid)SearchResultGridView.SelectedDataKey.Value;
-        example = _statementService.GetStatement(exampleId);
-        example = _statementService.CreateFromExample(example);
+        example = statementService.GetStatement(exampleId);
+        example = statementService.CreateFromExample(example);
         Session[SessionConsts.CPreviosStatementId] = exampleId;
       }
       else
       {
         example = new Statement();
-        example.Status = _statementService.GetConcept(StatusStatement.New);
+        example.Status = statementService.GetConcept(StatusStatement.New);
         example.AbsentPrevPolicy = false;
         example.DocumentUdl = new Document();
-        example.DocumentUdl.DocumentType = _statementService.GetConcept(documentUDL.DocumentType);
+        example.DocumentUdl.DocumentType = statementService.GetConcept(documentUDL.DocumentType);
         example.DocumentUdl.Series = documentUDL.DocumentSeries;
         example.DocumentUdl.Number = documentUDL.DocumentNumber;
         example.DocumentUdl.IssuingAuthority = documentUDL.DocumentIssuingAuthority;
@@ -940,7 +907,7 @@ namespace rt.srz.ui.pvp.Controls
         example.InsuredPersonData.Snils = SnilsChecker.SsToShort(tbSnils.Text.Replace("_", string.Empty));
         example.InsuredPersonData.Birthplace = tbBirthPlace.Text;
         example.NumberPolicy = tbPolicyNumber.Text;
-        example.InsuredPersonData.Gender = _statementService.GetConcept(int.Parse(ddlGender.SelectedValue));
+        example.InsuredPersonData.Gender = statementService.GetConcept(int.Parse(ddlGender.SelectedValue));
       }
 
       Session[SessionConsts.CExampleStatement] = example;
@@ -952,8 +919,11 @@ namespace rt.srz.ui.pvp.Controls
     private void FillGender()
     {
       ddlGender.Items.AddRange(
-        _statementService.GetNsiRecords(Oid.Пол).Select(
-          x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
+                               statementService.GetNsiRecords(Oid.Пол)
+                                               .Select(
+                                                       x =>
+                                                       new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
+                                               .ToArray());
     }
 
     /// <summary>
@@ -962,8 +932,13 @@ namespace rt.srz.ui.pvp.Controls
     private void FillStatusStatement()
     {
       ddlCertificateStatus.Items.AddRange(
-        _statementService.GetNsiRecords(Oid.СтатусызаявлениянавыдачуполисаОмс).Select(
-          x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
+                                          statementService.GetNsiRecords(Oid.СтатусызаявлениянавыдачуполисаОмс)
+                                                          .Select(
+                                                                  x =>
+                                                                  new ListItem(
+                                                                    x.Name,
+                                                                    x.Id.ToString(CultureInfo.InvariantCulture)))
+                                                          .ToArray());
 
       ddlCertificateStatus.Items.Add(new ListItem("Коллизия документов УДЛ", "9000"));
       ddlCertificateStatus.Items.Add(new ListItem("Коллизия СНИЛС", "9001"));
@@ -975,72 +950,13 @@ namespace rt.srz.ui.pvp.Controls
     private void FillTypeStatement()
     {
       ddlCertificateType.Items.AddRange(
-        _statementService.GetNsiRecords(Oid.Кодтипазаявления).Select(
-          x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
-    }
-
-    private void SetSearchCriteria(SearchStatementCriteria criteria)
-    {
-      // Показывать последние заявления ЗЛ
-      cbReturnLastStatement.Checked = criteria.ReturnLastStatement;
-
-      // Учитывать дату подачи заявления
-      chbUseDateFilling.Checked = criteria.UseDateFiling;
-
-      //ошибки
-      if (criteria.UseDateFiling)
-      {
-        hSelectedError.Value = criteria.Error;
-      }
-
-      // даты подачи заявления
-      tbDateFillingFrom.Text = criteria.DateFilingFrom.HasValue ? criteria.DateFilingFrom.Value.ToString("dd.MM.yyyy") : DefaultStartDateFilling.ToShortDateString();
-      tbDateFillingTo.Text = criteria.DateFilingTo.HasValue ? criteria.DateFilingTo.Value.ToString("dd.MM.yyyy") : DefaultEndDateFilling.ToShortDateString();
-
-      // Статус заявления
-      ddlCertificateStatus.SelectedValue = criteria.StatementStatus.ToString(CultureInfo.InvariantCulture);
-
-      // Тип заявления
-      ddlCertificateType.SelectedValue = criteria.StatementType.ToString(CultureInfo.InvariantCulture);
-
-      // Документ УДЛ
-      documentUDL.DocumentType = criteria.DocumentTypeId;
-      documentUDL.DocumentSeries = criteria.DocumentSeries;
-      documentUDL.DocumentNumber = criteria.DocumentNumber;
-      documentUDL.DocumentIssuingAuthority = criteria.DocumentIssuingAuthority;
-      documentUDL.DocumentIssueDate = criteria.DocumentIssueDate;
-
-      // ФИО
-      tbFirstName.Text = criteria.FirstName;
-      tbLastName.Text = criteria.LastName;
-      tbMiddleName.Text = criteria.MiddleName;
-
-      // Дата рождения
-      tbBirthDate.Text = criteria.BirthDate.HasValue ? criteria.BirthDate.Value.ToString("dd.MM.yyyy") : string.Empty;
-
-      // СНИЛС
-      tbSnils.Text = SnilsChecker.SsToLong(criteria.SNILS);
-      cbNotCheckSnils.Checked = criteria.NotCheckSnils;
-
-      // Место рождения
-      tbBirthPlace.Text = criteria.BirthPlace;
-
-      // Пол
-      ddlGender.SelectedValue = criteria.Gender;
-
-      // Номер ВС 
-      tbTemporaryCertificateNumber.Text = criteria.CertificateNumber;
-
-      // Полис
-      tbPolicyNumber.Text = criteria.PolicyNumber;
-      tbDatePolicyFrom.Text = criteria.DatePolicyFrom.HasValue ? criteria.DatePolicyFrom.Value.ToString("dd.MM.yyyy") : string.Empty;
-      tbDatePolicyTo.Text = criteria.DatePolicyTo.HasValue ? criteria.DatePolicyTo.Value.ToString("dd.MM.yyyy") : string.Empty;
-
-      // СМО
-      tbSmo.Text = criteria.Smo;
-
-      // ТФ
-      tbTfoms.Text = criteria.Tfoms;
+                                        statementService.GetNsiRecords(Oid.Кодтипазаявления)
+                                                        .Select(
+                                                                x =>
+                                                                new ListItem(
+                                                                  x.Name,
+                                                                  x.Id.ToString(CultureInfo.InvariantCulture)))
+                                                        .ToArray());
     }
 
     /// <summary>
@@ -1058,7 +974,6 @@ namespace rt.srz.ui.pvp.Controls
       criteria.UseDateFiling = chbUseDateFilling.Checked;
 
       // даты подачи заявления
-
       criteria.DateFilingFrom = !chbUseDateFilling.Checked || string.IsNullOrEmpty(tbDateFillingFrom.Text)
                                   ? null
                                   : (DateTime?)DateTime.Parse(tbDateFillingFrom.Text);
@@ -1148,7 +1063,7 @@ namespace rt.srz.ui.pvp.Controls
     /// The make statement search.
     /// </summary>
     /// <param name="criteria">
-    /// The criteria. 
+    /// The criteria.
     /// </param>
     private void MakeStatementSearch(SearchStatementCriteria criteria)
     {
@@ -1162,7 +1077,7 @@ namespace rt.srz.ui.pvp.Controls
         var searchResult = new SearchResult<SearchStatementResult> { Rows = new List<SearchStatementResult>() };
         try
         {
-          searchResult = _statementService.Search(criteria);
+          searchResult = statementService.Search(criteria);
           lbSeachError.Text = string.Empty;
         }
         catch (LogicalControlException exception)
@@ -1217,6 +1132,7 @@ namespace rt.srz.ui.pvp.Controls
       {
         SearchResultGridView.SelectedIndex = -1;
       }
+
       DisableMenuItems();
 
       if (hfSearchResultGVSelectedRowIndex.Value != null && hfSearchResultGVSelectedRowIndex.Value != "-1")
@@ -1227,12 +1143,249 @@ namespace rt.srz.ui.pvp.Controls
       GridUpdatePanel.Update();
     }
 
-    #endregion
-
-    protected void Menu_PreRender(object sender, EventArgs e)
+    /// <summary>
+    ///   The refresh current search grid page.
+    /// </summary>
+    private void RefreshCurrentSearchGridPage()
     {
-      UtilsHelper.MenuPreRender(Menu);
+      var currentCriteria = Session[SearchCriteriaViewStateKey] as SearchStatementCriteria;
+      if (currentCriteria == null)
+      {
+        return;
+      }
+
+      currentCriteria.SearchResult = null;
+      Session[SearchCriteriaViewStateKey] = currentCriteria;
+      MakeStatementSearch(currentCriteria);
     }
 
+    /// <summary>
+    /// The set menu by permission.
+    /// </summary>
+    private void SetMenuByPermission()
+    {
+      SetMenuByPermission(SessionConsts.CReinsuranse, PermissionCode.Search_Create);
+      SetMenuByPermission(SessionConsts.CReneval, PermissionCode.Search_Reneval);
+      SetMenuByPermission(SessionConsts.CEdit, PermissionCode.Search_Edit);
+      SetMenuByPermission(SessionConsts.CDelete, PermissionCode.Search_Delete);
+      SetMenuByPermission(SessionConsts.CReadUEC, PermissionCode.Search_ReadUec);
+      SetMenuByPermission(SessionConsts.CWriteUEC, PermissionCode.Search_WriteUec);
+      SetMenuByPermission(SessionConsts.CReadSmartCard, PermissionCode.Search_ReadSmartCard);
+      SetMenuByPermission(SessionConsts.CSeparate, PermissionCode.Search_Separate);
+      SetMenuByPermission(SessionConsts.CInsuranceHistory, PermissionCode.Search_InsuranceHistory);
+      SetMenuByPermission(SessionConsts.CDeleteDeathInfo, PermissionCode.CancelDeath);
+      SetMenuByPermission(SessionConsts.CIssue, PermissionCode.Search_GiveOut);
+    }
+
+    /// <summary>
+    /// The set menu by permission.
+    /// </summary>
+    /// <param name="menuItemValue">
+    /// The menu item value.
+    /// </param>
+    /// <param name="permissionCode">
+    /// The permission code.
+    /// </param>
+    private void SetMenuByPermission(string menuItemValue, PermissionCode permissionCode)
+    {
+      UtilsHelper.SetMenuItemByPermission(Session, Menu, securityService, menuItemValue, permissionCode);
+    }
+
+    /// <summary>
+    /// The set menu item enable.
+    /// </summary>
+    /// <param name="itemName">
+    /// The item name.
+    /// </param>
+    /// <param name="value">
+    /// The value.
+    /// </param>
+    private void SetMenuItemEnable(string itemName, bool value)
+    {
+      // все элементы на одном уровне
+      var item = Menu.FindItem(itemName);
+      if (item != null)
+      {
+        item.Enabled = value;
+      }
+    }
+
+    /// <summary>
+    /// The set menu item text.
+    /// </summary>
+    /// <param name="itemName">
+    /// The item name.
+    /// </param>
+    /// <param name="text">
+    /// The text.
+    /// </param>
+    private void SetMenuItemText(string itemName, string text)
+    {
+      // все элементы на одном уровне
+      var item = Menu.FindItem(itemName);
+      if (item != null)
+      {
+        item.Text = text;
+      }
+    }
+
+    /// <summary>
+    /// The set search criteria.
+    /// </summary>
+    /// <param name="criteria">
+    /// The criteria.
+    /// </param>
+    private void SetSearchCriteria(SearchStatementCriteria criteria)
+    {
+      // Показывать последние заявления ЗЛ
+      cbReturnLastStatement.Checked = criteria.ReturnLastStatement;
+
+      // Учитывать дату подачи заявления
+      chbUseDateFilling.Checked = criteria.UseDateFiling;
+
+      // ошибки
+      if (criteria.UseDateFiling)
+      {
+        hSelectedError.Value = criteria.Error;
+      }
+
+      // даты подачи заявления
+      tbDateFillingFrom.Text = criteria.DateFilingFrom.HasValue
+                                 ? criteria.DateFilingFrom.Value.ToString("dd.MM.yyyy")
+                                 : DefaultStartDateFilling.ToShortDateString();
+      tbDateFillingTo.Text = criteria.DateFilingTo.HasValue
+                               ? criteria.DateFilingTo.Value.ToString("dd.MM.yyyy")
+                               : DefaultEndDateFilling.ToShortDateString();
+
+      // Статус заявления
+      ddlCertificateStatus.SelectedValue = criteria.StatementStatus.ToString(CultureInfo.InvariantCulture);
+
+      // Тип заявления
+      ddlCertificateType.SelectedValue = criteria.StatementType.ToString(CultureInfo.InvariantCulture);
+
+      // Документ УДЛ
+      documentUDL.DocumentType = criteria.DocumentTypeId;
+      documentUDL.DocumentSeries = criteria.DocumentSeries;
+      documentUDL.DocumentNumber = criteria.DocumentNumber;
+      documentUDL.DocumentIssuingAuthority = criteria.DocumentIssuingAuthority;
+      documentUDL.DocumentIssueDate = criteria.DocumentIssueDate;
+
+      // ФИО
+      tbFirstName.Text = criteria.FirstName;
+      tbLastName.Text = criteria.LastName;
+      tbMiddleName.Text = criteria.MiddleName;
+
+      // Дата рождения
+      tbBirthDate.Text = criteria.BirthDate.HasValue ? criteria.BirthDate.Value.ToString("dd.MM.yyyy") : string.Empty;
+
+      // СНИЛС
+      tbSnils.Text = SnilsChecker.SsToLong(criteria.SNILS);
+      cbNotCheckSnils.Checked = criteria.NotCheckSnils;
+
+      // Место рождения
+      tbBirthPlace.Text = criteria.BirthPlace;
+
+      // Пол
+      ddlGender.SelectedValue = criteria.Gender;
+
+      // Номер ВС 
+      tbTemporaryCertificateNumber.Text = criteria.CertificateNumber;
+
+      // Полис
+      tbPolicyNumber.Text = criteria.PolicyNumber;
+      tbDatePolicyFrom.Text = criteria.DatePolicyFrom.HasValue
+                                ? criteria.DatePolicyFrom.Value.ToString("dd.MM.yyyy")
+                                : string.Empty;
+      tbDatePolicyTo.Text = criteria.DatePolicyTo.HasValue
+                              ? criteria.DatePolicyTo.Value.ToString("dd.MM.yyyy")
+                              : string.Empty;
+
+      // СМО
+      tbSmo.Text = criteria.Smo;
+
+      // ТФ
+      tbTfoms.Text = criteria.Tfoms;
+    }
+
+    /// <summary>
+    /// The set text to brief filter.
+    /// </summary>
+    /// <param name="label">
+    /// The label.
+    /// </param>
+    /// <param name="baseText">
+    /// The base text.
+    /// </param>
+    /// <param name="valuesText">
+    /// The values text.
+    /// </param>
+    private void SetTextToBriefFilter(Label label, string baseText, params string[] valuesText)
+    {
+      var resultValue = string.Join(" ", valuesText).Trim();
+      if (string.IsNullOrEmpty(resultValue))
+      {
+        label.Visible = false;
+        return;
+      }
+
+      label.Visible = true;
+      var sb = new StringBuilder();
+      sb.Append("<span><b>").Append(baseText).Append(": </b></span>").Append(resultValue).Append("; ");
+      label.Text = sb.ToString();
+    }
+
+    /// <summary>
+    ///   Обновляет краткую инфу по фильтру в уголке, которая отображается при свёрнутом фильтре
+    /// </summary>
+    private void UpdateBriefFilterInfoInCorner()
+    {
+      // Отображаются последние заявления
+      lbLastStatementsF.Visible = cbReturnLastStatement.Checked;
+
+      // даты подачи заявления
+      var valuesText = chbUseDateFilling.Checked ? string.Format("{0} - {1}", tbDateFillingFrom.Text, tbDateFillingTo.Text) : string.Empty;
+      SetTextToBriefFilter(lbDatesF, "Дата подачи заявления", valuesText);
+
+      // удл
+      var text = documentUDL.DocumentTypeStr == "Выберите вид документа"
+                   ? string.Empty
+                   : documentUDL.DocumentTypeStr;
+      var s = documentUDL.DocumentIssueDate.HasValue
+                ? documentUDL.DocumentIssueDate.Value.ToShortDateString()
+                : string.Empty;
+      SetTextToBriefFilter(lbUdlF, "Документ УДЛ", text, documentUDL.DocumentSeries, documentUDL.DocumentNumber, documentUDL.DocumentIssuingAuthority, s);
+
+      // ФИО
+      SetTextToBriefFilter(lbFioF, "ФИО", tbLastName.Text, tbFirstName.Text, tbMiddleName.Text);
+
+      // Дата рождения
+      SetTextToBriefFilter(lbDatebirthF, "Дата рождения", tbBirthDate.Text);
+
+      // СНИЛС
+      if (
+        !string.IsNullOrEmpty(
+                              tbSnils.Text.Replace("-", string.Empty)
+                                     .Replace(" ", string.Empty)
+                                     .Replace("_", string.Empty)))
+      {
+        SetTextToBriefFilter(lbSnilsF, "СНИЛС", tbSnils.Text);
+      }
+      else
+      {
+        SetTextToBriefFilter(lbSnilsF, "СНИЛС", string.Empty);
+      }
+
+      // Место рождения
+      SetTextToBriefFilter(lbBirthPlaceF, "Место рождения", tbBirthPlace.Text);
+
+      // текст ошибки
+      // 0 индекс соответсвует тому когда данные не выбраны
+      var s1 = (hSelectedError.Value == "Данные не выбраны" || hSelectedError.Value == "-1")
+                          ? string.Empty
+                          : hSelectedError.Value;
+      SetTextToBriefFilter(lbErrorF, "Причина отклонения", s1);
+    }
+
+    #endregion
   }
 }

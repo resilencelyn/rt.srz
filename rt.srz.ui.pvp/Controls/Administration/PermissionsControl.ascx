@@ -14,7 +14,7 @@
 <asp:UpdatePanel ID="MenuUpdatePanel" runat="server" UpdateMode="Conditional">
   <ContentTemplate>
     <div class="paddingGridMenu">
-      <asp:Menu ID="menu1" runat="server" OnMenuItemClick="menu1_MenuItemClick" Orientation="Horizontal" CssClass="ItemMenu" OnPreRender="menu1_PreRender">
+      <asp:Menu ID="menu1" runat="server" OnMenuItemClick="Menu1MenuItemClick" Orientation="Horizontal" CssClass="ItemMenu" OnPreRender="Menu1PreRender">
         <Items>
           <asp:MenuItem Text="Добавить" Value="Add" ImageUrl="~/Resources/create.png"></asp:MenuItem>
           <asp:MenuItem Text="Добавить расширенно" Value="AddEx" ImageUrl="~/Resources/create.png"></asp:MenuItem>

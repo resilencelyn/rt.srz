@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="KLADRUserControl.ascx.cs" Inherits="rt.srz.ui.pvp.Controls.KLADRUserControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="KladrUserControl.ascx.cs" Inherits="rt.srz.ui.pvp.Controls.KladrUserControl" %>
 <%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions" %>
 
 <script type="text/javascript">
@@ -90,7 +90,7 @@
                 <tr> <%--Регион--%>
                     <td class="regLeftColumn"><asp:Label id="lblSubject" runat="Server" Text="Регион РФ*:" /></td>
                     <td class="regRightColumn">
-                        <asp:DropDownList id="ddlSubject" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="ddlSubject_SelectedIndexChanged" CssClass="dropDowns">
+                        <asp:DropDownList id="ddlSubject" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="DdlSubjectSelectedIndexChanged" CssClass="dropDowns">
                             <asp:ListItem Text="Выберите регион" Value="-1" />
                         </asp:DropDownList>
                     </td>
@@ -100,23 +100,23 @@
                 </tr>
                 <tr> <%--Район--%>
                     <td class="regLeftColumn"><asp:Label id="lblArea" runat="Server" Text="Район:" /></td>
-                    <td class="regRightColumn"><asp:DropDownList id="ddlArea"  runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="ddlArea_SelectedIndexChanged" CssClass="dropDowns" /></td>
+                    <td class="regRightColumn"><asp:DropDownList id="ddlArea"  runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="DdlAreaSelectedIndexChanged" CssClass="dropDowns" /></td>
                 </tr>
                 <tr> <%--Город--%>
                     <td class="regLeftColumn"><asp:Label id="lblCity" runat="Server" Text="Город:" /></td>
-                    <td class="regRightColumn"><asp:DropDownList id="ddlCity" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged" CssClass="dropDowns"/></td>
+                    <td class="regRightColumn"><asp:DropDownList id="ddlCity" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="DdlCitySelectedIndexChanged" CssClass="dropDowns"/></td>
                 </tr>
                 <tr> <%--Населенный пункт--%>
                     <td class="regLeftColumn"><asp:Label id="lblTown" runat="Server" Text="Населенный пункт:" /></td>
                     <td class="regRightColumn">
-                        <asp:DropDownList id="ddlTown" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="ddlTown_SelectedIndexChanged" CssClass="dropDowns"/>
+                        <asp:DropDownList id="ddlTown" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="DdlTownSelectedIndexChanged" CssClass="dropDowns"/>
                         <asp:TextBox id="tbTown" runat="Server" Width="100%" Visible="false" CssClass="controlBoxes"/>
                      </td>
                 </tr>
                 <tr> <%--Улица--%>
                     <td class="regLeftColumn"><asp:Label id="lblStreet" runat="Server" Text="Улица:" /></td>
                     <td class="regRightColumn">
-                        <asp:DropDownList id="ddlStreet" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="ddlStreet_SelectedIndexChanged" CssClass="dropDowns"/>
+                        <asp:DropDownList id="ddlStreet" runat="Server" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="DdlStreetSelectedIndexChanged" CssClass="dropDowns"/>
                         <asp:TextBox id="tbStreet" runat="Server" Width="100%" Visible="false" CssClass="controlBoxes"/>
                     </td>
                 </tr>

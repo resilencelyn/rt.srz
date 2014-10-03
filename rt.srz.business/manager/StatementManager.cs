@@ -929,17 +929,17 @@ namespace rt.srz.business.manager
 
       // Присваиваем автора
       var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      if (statement.User == null)
+      if (statement.UserId == null)
       {
-        statement.User = currentUser;
+        statement.UserId = currentUser.Id;
       }
 
       // Назначение ПВП
       if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization)
       {
-        if (statement.PointDistributionPolicy == null && currentUser != null && currentUser.PointDistributionPolicy != null)
+        if (statement.PointDistributionPolicy == null && currentUser != null && currentUser.PointDistributionPolicyId != null)
         {
-          statement.PointDistributionPolicy = currentUser.PointDistributionPolicy;
+          statement.PointDistributionPolicy = ObjectFactory.GetInstance<IOrganisationCacheManager>().GetById(currentUser.PointDistributionPolicyId.Value);
         }
       }
 

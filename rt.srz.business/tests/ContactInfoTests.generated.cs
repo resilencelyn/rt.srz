@@ -45,9 +45,9 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.HomePhone = "Test Test Test Test Test Tes";
-			entity.WorkPhone = "Test Test Test Test T";
-			entity.Email = "Test Test Test Test Test Test Test Test Te";
+			entity.HomePhone = "Test Test Test Test Test Test Test ";
+			entity.WorkPhone = "Test Test Test Test Test Test Test Test ";
+			entity.Email = "Test Test Test Test Test Test Test Test";
 			
 			return entity;
 		}
@@ -104,7 +104,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.ContactInfo entityA = GetFirstContactInfo();
 				
-				entityA.HomePhone = "Test Test Test Test Test Test Test Test T";
+				entityA.HomePhone = "Test Test Test Te";
 				
 				manager.Update(entityA);
 

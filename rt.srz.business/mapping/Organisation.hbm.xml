@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
 	<class name="rt.srz.model.srz.Organisation, rt.srz.model" table="[dbo].[Organisation]" lazy="true">
 		<id name="Id" column="[RowId]">
@@ -34,6 +34,7 @@
 		<property name="TimeRunFrom" column="[TimeRunFrom]" />
 		<property name="TimeRunTo" column="[TimeRunTo]" />
 		<property name="Address" column="[Address]" />
+		<property name="PointDistributionPolicyId" column="[PointDistributionPolicyId]" />
 		<many-to-one name="Oid" column="[Oid]" class="Oid"  />
 		<many-to-one name="Parent" column="[ParentId]" class="Organisation"  />
 		<many-to-one name="ChangedRow" column="[ChangedRowId]" class="Organisation"  />
@@ -78,10 +79,6 @@
 		<bag name="Statements" lazy="true" inverse="true" >
 			<key column="[PointDistributionPolicyId]"></key>
 			<one-to-many class="Statement"></one-to-many>
-		</bag>
-		<bag name="Users" lazy="true" inverse="true" >
-			<key column="[PointDistributionPolicyId]"></key>
-			<one-to-many class="User"></one-to-many>
 		</bag>
 		<bag name="Workstations" lazy="true" inverse="true" >
 			<key column="[PointDistributionPolicyId]"></key>

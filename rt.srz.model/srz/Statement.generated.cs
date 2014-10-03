@@ -81,25 +81,24 @@ namespace rt.srz.model.srz
         [DataMember(Order =  14)]
         public virtual int Version { get; set;}
         
-        
-				[XmlElement(Order =  15)]
+        [XmlElement(Order =  15)]
         [DataMember(Order =  15)]
-		public virtual Organisation PointDistributionPolicy { get; set;}
-			
+        public virtual System.Guid? UserId { get; set;}
+        
         
 				[XmlElement(Order =  16)]
         [DataMember(Order =  16)]
-		public virtual Statement PreviousStatement { get; set;}
+		public virtual Organisation PointDistributionPolicy { get; set;}
 			
         
 				[XmlElement(Order =  17)]
         [DataMember(Order =  17)]
-		public virtual Concept Status { get; set;}
+		public virtual Statement PreviousStatement { get; set;}
 			
         
 				[XmlElement(Order =  18)]
         [DataMember(Order =  18)]
-		public virtual User User { get; set;}
+		public virtual Concept Status { get; set;}
 			
         
 				[XmlElement(Order =  19)]

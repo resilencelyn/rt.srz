@@ -13,7 +13,9 @@ using rt.srz.model.srz;
 
 namespace rt.srz.business.manager
 {
-    public partial interface IOrganisationManager : IManagerBase<rt.srz.model.srz.Organisation, System.Guid>
+  using rt.core.model.core;
+
+  public partial interface IOrganisationManager : IManagerBase<rt.srz.model.srz.Organisation, System.Guid>
     {
 		// Get Methods
 		IList<Organisation> GetByOid(System.String oid);
@@ -22,6 +24,8 @@ namespace rt.srz.business.manager
 		IList<Organisation> GetByCauseRegistrationId(System.Int32 concept1);
 		IList<Organisation> GetByCauseExclusionId(System.Int32 concept2);
 		IList<Organisation> GetByCode(System.String code);
+
+     
     }
 
     partial class OrganisationManager : ManagerBase<rt.srz.model.srz.Organisation, System.Guid>, IOrganisationManager

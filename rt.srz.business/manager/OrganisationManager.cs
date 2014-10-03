@@ -15,7 +15,10 @@ namespace rt.srz.business.manager
   using NHibernate.Criterion;
   using NLog;
 
+  using rt.core.business.manager;
+  using rt.core.model.core;
   using rt.core.model.dto;
+  using rt.srz.model.enumerations;
   using rt.srz.model.srz;
   using rt.uec.model.dto;
   using StructureMap;
@@ -57,6 +60,8 @@ namespace rt.srz.business.manager
       pdp.IsActive = false;
       session.SaveOrUpdate(pdp);
     }
+
+   
 
     /// <summary>
     ///   Возвращает список всех зарегестрированных ТФОМС
@@ -492,26 +497,30 @@ namespace rt.srz.business.manager
       var query = session.QueryOver(() => pdp).JoinAlias(x => x.Parent, () => smo).JoinAlias(
         () => smo.Parent, () => foms);
 
-      if (currentUser.PointDistributionPolicy != null)
+      if (currentUser.PointDistributionPolicyId != null)
       {
         if (umanager.IsUserHasAdminPermissions(currentUser))
         {
         }
-
-        // свой регион
-        else if (umanager.IsUserAdminTF(currentUser.Id))
+        else
         {
-          query.Where(x => foms.Id == currentUser.PointDistributionPolicy.Parent.Parent.Id);
-        }
-
-        // своя смо
-        else if (umanager.IsUserAdminSmo(currentUser.Id))
-        {
-          query.Where(p => smo.Id == currentUser.PointDistributionPolicy.Parent.Id);
+          // свой регион
+          if (IsUserAdminTF(currentUser.Id))
+          {
+            query.Where(x => foms.Id == currentUser.GetTf().Id);
+          }
+          else
+          {
+            // своя смо
+            if (IsUserAdminSmo(currentUser.Id))
+            {
+              query.Where(p => smo.Id == currentUser.GetSmo().Id);
+            }
+          }
         }
       }
 
-      query.Where(p => p.IsActive || p.IsActive == null);
+      query.Where(p => p.IsActive);
 
       if (!string.IsNullOrEmpty(criteria.ShortName))
       {
@@ -545,22 +554,26 @@ namespace rt.srz.business.manager
       Organisation smo = null;
       Organisation tfom = null;
       var query = session.QueryOver(() => smo).JoinAlias(x => x.Parent, () => tfom);
-      if (currentUser.PointDistributionPolicy != null)
+      if (currentUser.PointDistributionPolicyId != null)
       {
         if (umanager.IsUserHasAdminPermissions(currentUser))
         {
         }
-
-        // свой регион
-        else if (umanager.IsUserAdminTF(currentUser.Id))
+        else
         {
-          query.Where(x => tfom.Id == currentUser.PointDistributionPolicy.Parent.Parent.Id);
-        }
-
-        // своя смо
-        else if (umanager.IsUserAdminSmo(currentUser.Id))
-        {
-          query.Where(s => s.Id == currentUser.PointDistributionPolicy.Parent.Id);
+          // свой регион
+          if (IsUserAdminTF(currentUser.Id))
+          {
+            query.Where(x => tfom.Id == currentUser.GetTf().Id);
+          }
+          else
+          {
+            // своя смо
+            if (IsUserAdminSmo(currentUser.Id))
+            {
+              query.Where(s => s.Id == currentUser.GetSmo().Id);
+            }
+          }
         }
       }
 
@@ -585,6 +598,107 @@ namespace rt.srz.business.manager
 
       searchResult.Rows = query.List();
       return searchResult;
+    }
+
+    /// <summary>
+    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
+    /// </summary>
+    /// <returns> The <see cref="IList" /> . </returns>
+    public IList<User> GetUsersByCurrent()
+    {
+      var sec = ObjectFactory.GetInstance<ISecurityProvider>();
+      var currentUser = sec.GetCurrentUser();
+      var userManager = ObjectFactory.GetInstance<IUserManager>();
+      if (userManager.IsUserHasAdminPermissions(currentUser))
+      {
+        return userManager.GetUsers();
+      }
+
+      if (!currentUser.PointDistributionPolicyId.HasValue)
+      {
+        return null;
+      }
+
+
+      // свой регион
+      if (IsUserAdminTF(currentUser.Id))
+      {
+        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+        User user = null;
+        Organisation foms = null;
+        Organisation smo = null;
+        Organisation pdp = null;
+        var pvpUser = GetById(currentUser.PointDistributionPolicyId.Value);
+        var curFomsId = pvpUser.Parent.Parent.Id;
+
+        var pvps = QueryOver.Of<Organisation>()
+          .JoinAlias(x => x.Parent, () => smo)
+          .JoinAlias(() => smo.Parent, () => foms)
+          .Where(x => foms.Id == curFomsId)
+          .Where(x => x.Id == user.PointDistributionPolicyId)
+          .Select(x => x.Id);
+
+        var query =
+          session.QueryOver(() => user)
+                 .Where(x => x.IsApproved)
+                 .WithSubquery.WhereExists(pvps);
+        return query.List();
+      }
+
+
+      // своя смо
+      if (IsUserAdminSmo(currentUser.Id))
+      {
+        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+        User user = null;
+        Organisation foms = null;
+        Organisation smo = null;
+        Organisation pdp = null;
+        var curSmoId = currentUser.GetSmo().Id;
+
+        var over = QueryOver.Of(() => pdp)
+                                 .JoinAlias(() => pdp.Parent, () => smo)
+                                 .JoinAlias(() => smo.Parent, () => foms)
+                                 .Where(x => smo.Id == curSmoId && user.PointDistributionPolicyId == pdp.Id)
+                                 .Select(x => x.Id);
+
+        var query =
+          session.QueryOver(() => user)
+                 .WithSubquery.WhereExists(over)
+                 .Where(x => user.IsApproved);
+        return query.List();
+      }
+
+      return null;
+    }
+
+
+    /// <summary>
+    /// Является ли пользователь админом СМО
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IsUserAdminSmo(Guid userId)
+    {
+      var userManager = ObjectFactory.GetInstance<IUserManager>();
+      return userManager.GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnSmo);
+    }
+
+    /// <summary>
+    /// Является ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IsUserAdminTF(Guid userId)
+    {
+      var userManager = ObjectFactory.GetInstance<IUserManager>();
+      return userManager.GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnRegion);
     }
 
     /// <summary>
@@ -762,6 +876,8 @@ namespace rt.srz.business.manager
 
       return query;
     }
+
+  
 
     #endregion
   }

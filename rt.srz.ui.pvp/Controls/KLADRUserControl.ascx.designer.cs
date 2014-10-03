@@ -10,7 +10,7 @@
 namespace rt.srz.ui.pvp.Controls {
     
     
-    public partial class KLADRUserControl {
+    public partial class KladrUserControl {
         
         /// <summary>
         /// UpdatePanelKLADR control.

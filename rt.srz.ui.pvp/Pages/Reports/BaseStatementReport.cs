@@ -12,6 +12,8 @@ using rt.srz.business.manager.cache;
 
 namespace rt.srz.ui.pvp.Pages.Reports
 {
+  using rt.core.model.core;
+
   /// <summary>
   /// Summary description for StatementReport
   /// </summary>

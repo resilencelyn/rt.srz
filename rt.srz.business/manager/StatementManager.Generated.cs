@@ -19,7 +19,7 @@ namespace rt.srz.business.manager
 		IList<Statement> GetByPointDistributionPolicyId(System.Guid organisation);
 		IList<Statement> GetByPreviousStatementId(System.Guid statementMember);
 		IList<Statement> GetByStatusId(System.Int32 concept1);
-		IList<Statement> GetByUserId(System.Guid user);
+		IList<Statement> GetByUserId(System.Guid userId);
 		IList<Statement> GetByInsuredPersonDataId(System.Guid insuredPersonDatum);
 		IList<Statement> GetByInsuredPersonId(System.Guid insuredPerson);
 		IList<Statement> GetByCauseFilingId(System.Int32 concept2);
@@ -75,13 +75,13 @@ namespace rt.srz.business.manager
 			return criteria.List<Statement>();
         }
 		
-		public IList<Statement> GetByUserId(System.Guid user)
+		public IList<Statement> GetByUserId(System.Guid userId)
         {
             ICriteria criteria = Session.GetISession().CreateCriteria(typeof(Statement));
 			
 			
-			ICriteria userCriteria = criteria.CreateCriteria("User");
-            userCriteria.Add(NHibernate.Criterion.Expression.Eq("Id", user));
+			ICriteria userIdCriteria = criteria.CreateCriteria("UserId");
+            userIdCriteria.Add(NHibernate.Criterion.Expression.Eq("Id", userId));
 			
 			return criteria.List<Statement>();
         }

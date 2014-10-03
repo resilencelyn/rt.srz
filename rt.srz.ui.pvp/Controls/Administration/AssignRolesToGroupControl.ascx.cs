@@ -1,75 +1,125 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.srz;
-using StructureMap;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssignRolesToGroupControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controls.Administration
 {
-	public partial class AssignRolesToGroupControl : System.Web.UI.UserControl
-	{
-		private ISecurityService _securityService;
-    private Guid _groupId;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Web.UI;
+  using System.Web.UI.WebControls;
 
-		protected void Page_Init(object sender, EventArgs e)
-		{
-			_securityService = ObjectFactory.GetInstance<ISecurityService>();
-		}
+  using rt.srz.model.interfaces.service;
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			if (Request.QueryString["GroupId"] == null)
-			{
-        _groupId = Guid.Empty;
-			}
-			else
-			{
-        _groupId = Guid.Parse(Request.QueryString["GroupId"]);
-			}
-			if (!IsPostBack)
-			{
-				lbTitle.Text = string.Format("Назначение ролей для группы: {0}", Request.QueryString["GroupName"]);
-				IList<Role> roles = _securityService.GetRolesByGroup(_groupId);
-				IList<Role> allRoles = _securityService.GetRoles();
+  using StructureMap;
 
-				cblRoles.DataSource = allRoles;
-				cblRoles.DataBind();
+  /// <summary>
+  /// The assign roles to group control.
+  /// </summary>
+  public partial class AssignRolesToGroupControl : UserControl
+  {
+    #region Fields
 
-				foreach (ListItem item in cblRoles.Items)
-				{
-          if (roles.Select(p => p.Id).Contains(Guid.Parse(item.Value)))
-					{
-						item.Selected = true;
-					}
-				}
-			}
-		}
+    /// <summary>
+    /// The _group id.
+    /// </summary>
+    private Guid groupId;
 
-		public void SaveChanges()
-		{
+    /// <summary>
+    /// The _security service.
+    /// </summary>
+    private ISecurityService securityService;
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The save changes.
+    /// </summary>
+    public void SaveChanges()
+    {
       SaveChanges(Guid.Empty);
-		}
+    }
 
-		public void SaveChanges(Guid newGroupId)
-		{
+    /// <summary>
+    /// The save changes.
+    /// </summary>
+    /// <param name="newGroupId">
+    /// The new group id.
+    /// </param>
+    public void SaveChanges(Guid newGroupId)
+    {
       var assignList = new List<Guid>();
       var detachList = new List<Guid>();
-			foreach (ListItem item in cblRoles.Items)
-			{
-				if (item.Selected)
-				{
+      foreach (ListItem item in cblRoles.Items)
+      {
+        if (item.Selected)
+        {
           assignList.Add(Guid.Parse(item.Value));
-				}
-				else
-				{
+        }
+        else
+        {
           detachList.Add(Guid.Parse(item.Value));
-				}
-			}
-			_securityService.AssignRolesToGroup(newGroupId != Guid.Empty ? newGroupId : _groupId, assignList, detachList);
-		}
-	}
+        }
+      }
+
+      securityService.AssignRolesToGroup(newGroupId != Guid.Empty ? newGroupId : groupId, assignList, detachList);
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Init(object sender, EventArgs e)
+    {
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
+    }
+
+    /// <summary>
+    /// The page_ load.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      groupId = Request.QueryString["GroupId"] == null ? Guid.Empty : Guid.Parse(Request.QueryString["GroupId"]);
+
+      if (!IsPostBack)
+      {
+        lbTitle.Text = string.Format("Назначение ролей для группы: {0}", Request.QueryString["GroupName"]);
+        var roles = securityService.GetRolesByGroup(groupId);
+        var allRoles = securityService.GetRoles();
+
+        cblRoles.DataSource = allRoles;
+        cblRoles.DataBind();
+
+        foreach (ListItem item in cblRoles.Items)
+        {
+          if (roles.Select(p => p.Id).Contains(Guid.Parse(item.Value)))
+          {
+            item.Selected = true;
+          }
+        }
+      }
+    }
+
+    #endregion
+  }
 }

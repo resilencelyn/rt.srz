@@ -1,41 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using NHibernate;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.srz;
-using StructureMap;
-using rt.srz.ui.pvp.Enumerations;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GroupsControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controls.Administration
 {
-  public partial class GroupsControl : System.Web.UI.UserControl
-  {
-    private ISecurityService _securityService;
+  using System;
+  using System.Web.UI;
+  using System.Web.UI.WebControls;
 
+  using rt.srz.model.interfaces.service;
+  using rt.srz.ui.pvp.Enumerations;
+
+  using StructureMap;
+
+  /// <summary>
+  /// The groups control.
+  /// </summary>
+  public partial class GroupsControl : UserControl
+  {
+    #region Fields
+
+    /// <summary>
+    /// The _security service.
+    /// </summary>
+    private ISecurityService securityService;
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The refresh data.
+    /// </summary>
+    public void RefreshData()
+    {
+      menu1.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu];
+
+      var groups = securityService.GetGroups();
+      lstGroups.DataSource = groups;
+      lstGroups.DataBind();
+      if (lstGroups.SelectedIndex < 0 && groups.Count > 0)
+      {
+        lstGroups.SelectedIndex = 0;
+      }
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _securityService = ObjectFactory.GetInstance<ISecurityService>();
-      searchByNameControl.Clear += searchByNameControl_Clear;
-      searchByNameControl.Search += searchByNameControl_Search;
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
+      searchByNameControl.Clear += SearchByNameControlClear;
+      searchByNameControl.Search += SearchByNameControlSearch;
     }
 
-    void searchByNameControl_Search()
-    {
-      lstGroups.DataSource = _securityService.GetGroupsByNameContains(searchByNameControl.NameValue);
-      lstGroups.DataBind();
-      contentUpdatePanel.Update();
-    }
-
-    void searchByNameControl_Clear()
-    {
-      RefreshData();
-      contentUpdatePanel.Update();
-    }
-
+    /// <summary>
+    /// The page_ load.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Load(object sender, EventArgs e)
     {
       UtilsHelper.AddDoubleClick(lstGroups, Page.ClientScript);
@@ -46,36 +86,38 @@ namespace rt.srz.ui.pvp.Controls.Administration
       }
       else
       {
-        //удаление
+        // удаление
         UtilsHelper.PerformConfirmedAction(confirmDelete, DeleteGroup, Request);
-        //двойной клик по списку
+
+        // двойной клик по списку
         UtilsHelper.PerformDoubleClickAction(lstGroups.UniqueID, Open, Request);
       }
     }
 
-    public void RefreshData()
+    /// <summary>
+    /// The menu 1_ pre render.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Menu1PreRender(object sender, EventArgs e)
     {
-      menu1.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu];
-
-      IList<Group> groups = _securityService.GetGroups();
-      lstGroups.DataSource = groups;
-      lstGroups.DataBind();
-      if (lstGroups.SelectedIndex < 0 && groups.Count > 0)
-      {
-        lstGroups.SelectedIndex = 0;
-      }
+      UtilsHelper.MenuPreRender(menu1);
     }
 
-    private void Open()
-    {
-      if (string.IsNullOrEmpty(lstGroups.SelectedValue))
-      {
-        return;
-      }
-      Response.Redirect(string.Format("~/Pages/Administrations/GroupEx.aspx?GroupId={0}", lstGroups.SelectedValue));
-    }
-
-    protected void menu_MenuItemClick(object sender, MenuEventArgs e)
+    /// <summary>
+    /// The menu_ menu item click.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void MenuMenuItemClick(object sender, MenuEventArgs e)
     {
       switch (e.Item.Value)
       {
@@ -96,33 +138,75 @@ namespace rt.srz.ui.pvp.Controls.Administration
           {
             return;
           }
-          Response.Redirect(string.Format("~/Pages/Administrations/AssignUsersToGroup.aspx?GroupName={0}&GroupId={1}", lstGroups.SelectedItem.Text, lstGroups.SelectedItem.Value));
+
+          Response.Redirect(
+                            string.Format(
+                                          "~/Pages/Administrations/AssignUsersToGroup.aspx?GroupName={0}&GroupId={1}", 
+                                          lstGroups.SelectedItem.Text, 
+                                          lstGroups.SelectedItem.Value));
           break;
         case "AssignRoles":
           if (lstGroups.SelectedItem == null)
           {
             return;
           }
-          Response.Redirect(string.Format("~/Pages/Administrations/AssignRolesToGroup.aspx?GroupName={0}&GroupId={1}", lstGroups.SelectedItem.Text, lstGroups.SelectedItem.Value));
+
+          Response.Redirect(
+                            string.Format(
+                                          "~/Pages/Administrations/AssignRolesToGroup.aspx?GroupName={0}&GroupId={1}", 
+                                          lstGroups.SelectedItem.Text, 
+                                          lstGroups.SelectedItem.Value));
           break;
       }
     }
 
+    /// <summary>
+    /// The delete group.
+    /// </summary>
     private void DeleteGroup()
     {
       if (string.IsNullOrEmpty(lstGroups.SelectedValue))
       {
         return;
       }
-      _securityService.DeleteGroup(Guid.Parse(lstGroups.SelectedValue));
+
+      securityService.DeleteGroup(Guid.Parse(lstGroups.SelectedValue));
       lstGroups.Items.RemoveAt(lstGroups.SelectedIndex);
       contentUpdatePanel.Update();
     }
 
-    protected void menu1_PreRender(object sender, EventArgs e)
+    /// <summary>
+    /// The open.
+    /// </summary>
+    private void Open()
     {
-      UtilsHelper.MenuPreRender(menu1);
+      if (string.IsNullOrEmpty(lstGroups.SelectedValue))
+      {
+        return;
+      }
+
+      Response.Redirect(string.Format("~/Pages/Administrations/GroupEx.aspx?GroupId={0}", lstGroups.SelectedValue));
     }
 
+    /// <summary>
+    /// The search by name control_ clear.
+    /// </summary>
+    private void SearchByNameControlClear()
+    {
+      RefreshData();
+      contentUpdatePanel.Update();
+    }
+
+    /// <summary>
+    /// The search by name control_ search.
+    /// </summary>
+    private void SearchByNameControlSearch()
+    {
+      lstGroups.DataSource = securityService.GetGroupsByNameContains(searchByNameControl.NameValue);
+      lstGroups.DataBind();
+      contentUpdatePanel.Update();
+    }
+
+    #endregion
   }
 }

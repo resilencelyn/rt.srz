@@ -142,10 +142,6 @@
       <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
       <Name>rt.atl.model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
-      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
-      <Name>rt.core.business.security</Name>
-    </ProjectReference>
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
       <Name>rt.core.business</Name>

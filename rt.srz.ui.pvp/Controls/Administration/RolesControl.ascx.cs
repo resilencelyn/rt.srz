@@ -1,49 +1,92 @@
-﻿namespace rt.srz.ui.pvp.Controls.Administration
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RolesControl.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.ui.pvp.Controls.Administration
 {
   using System;
-  using System.Collections.Generic;
+  using System.Web.UI;
   using System.Web.UI.WebControls;
 
   using rt.srz.model.interfaces.service;
-  using rt.srz.model.srz;
+  using rt.srz.ui.pvp.Enumerations;
 
   using StructureMap;
-  using rt.srz.ui.pvp.Controls.Common;
-  using rt.srz.ui.pvp.Enumerations;
-  using System.Web.UI;
 
   /// <summary>
-  /// Контрол для редактирования ролей
+  ///   Контрол для редактирования ролей
   /// </summary>
-  public partial class RolesControl : System.Web.UI.UserControl
+  public partial class RolesControl : UserControl
   {
-    private ISecurityService _securityService;
+    #region Fields
 
-    private int SelectedRoleId
+    /// <summary>
+    /// The _security service.
+    /// </summary>
+    private ISecurityService securityService;
+
+    #endregion
+
+    #region Properties
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The refresh data.
+    /// </summary>
+    public void RefreshData()
     {
-      get { return lstRoles.SelectedIndex >= 0 ? int.Parse(lstRoles.SelectedValue) : -1; }
+      if (Session[SessionConsts.CAdminPermission] == null)
+      {
+        Session[SessionConsts.CAdminPermission] =
+          securityService.IsUserHasAdminPermissions(securityService.GetCurrentUser());
+      }
+
+      menu1.Enabled = (bool)Session[SessionConsts.CAdminPermission];
+
+      var roles = securityService.GetRoles();
+      lstRoles.DataSource = roles;
+      lstRoles.DataBind();
+      if (lstRoles.SelectedIndex < 0 && roles.Count > 0)
+      {
+        lstRoles.SelectedIndex = 0;
+        LstRolesSelectedIndexChanged(null, null);
+      }
     }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _securityService = ObjectFactory.GetInstance<ISecurityService>();
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
       searchByNameControl.Clear += searchByNameControl_Clear;
       searchByNameControl.Search += searchByNameControl_Search;
     }
 
-    void searchByNameControl_Search()
-    {
-      lstRoles.DataSource = _securityService.GetRolesByNameContains(searchByNameControl.NameValue);
-      lstRoles.DataBind();
-      contentUpdatePanel.Update();
-    }
-
-    void searchByNameControl_Clear()
-    {
-      RefreshData();
-      contentUpdatePanel.Update();
-    }
-
+    /// <summary>
+    /// The page_ load.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Load(object sender, EventArgs e)
     {
       UtilsHelper.AddDoubleClick(lstRoles, Page.ClientScript);
@@ -54,40 +97,66 @@
       }
       else
       {
-        //удаление
+        // удаление
         UtilsHelper.PerformConfirmedAction(confirmDelete, DeleteRole, Request);
-        //двойной клик по списку
+
+        // двойной клик по списку
         UtilsHelper.PerformDoubleClickAction(lstRoles.UniqueID, OpenRole, Request);
       }
     }
 
-    public void RefreshData()
+    /// <summary>
+    /// The lst roles_ selected index changed.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void LstRolesSelectedIndexChanged(object sender, EventArgs e)
     {
-      if (Session[SessionConsts.CAdminPermission] == null)
-      {
-        Session[SessionConsts.CAdminPermission] = _securityService.IsUserHasAdminPermissions(_securityService.GetCurrentUser());
-      }
-      menu1.Enabled = (bool)Session[SessionConsts.CAdminPermission];
-
-      IList<Role> roles = _securityService.GetRoles();
-      lstRoles.DataSource = roles;
-      lstRoles.DataBind();
-      if (lstRoles.SelectedIndex < 0 && roles.Count > 0)
-      {
-        lstRoles.SelectedIndex = 0;
-        lstRoles_SelectedIndexChanged(null, null);
-      }
-    }
-
-    private void OpenRole()
-    {
-      if (string.IsNullOrEmpty(lstRoles.SelectedValue))
+      if (lstRoles.SelectedItem == null)
       {
         return;
       }
-      Response.Redirect(string.Format("~/Pages/Administrations/RoleEx.aspx?RoleId={0}", lstRoles.SelectedValue));
+
+      // TODO: заменить на код Utils.C_AdminCode = 1
+      if (lstRoles.SelectedItem.Text.ToLower() == "администратор")
+      {
+        menu1.FindItem("Delete").Enabled = false;
+      }
+      else
+      {
+        menu1.FindItem("Delete").Enabled = (bool)Session[SessionConsts.CAdminPermission];
+      }
+
+      MenuUpdatePanel.Update();
     }
 
+    /// <summary>
+    /// The menu 1_ pre render.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Menu1PreRender(object sender, EventArgs e)
+    {
+      UtilsHelper.MenuPreRender(menu1);
+    }
+
+    /// <summary>
+    /// The menu roles_ menu item click.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void menuRoles_MenuItemClick(object sender, MenuEventArgs e)
     {
       switch (e.Item.Value)
@@ -109,44 +178,63 @@
           {
             return;
           }
-          Response.Redirect(string.Format("~/Pages/Administrations/AssignPermissionsToRole.aspx?RoleName={0}&RoleId={1}", lstRoles.SelectedItem.Text, lstRoles.SelectedItem.Value));
+
+          Response.Redirect(
+                            string.Format(
+                                          "~/Pages/Administrations/AssignPermissionsToRole.aspx?RoleName={0}&RoleId={1}", 
+                                          lstRoles.SelectedItem.Text, 
+                                          lstRoles.SelectedItem.Value));
           break;
       }
     }
 
+    /// <summary>
+    /// The delete role.
+    /// </summary>
     private void DeleteRole()
     {
       if (string.IsNullOrEmpty(lstRoles.SelectedValue))
       {
         return;
       }
-      _securityService.DeleteRole(Guid.Parse(lstRoles.SelectedValue));
+
+      securityService.DeleteRole(Guid.Parse(lstRoles.SelectedValue));
       lstRoles.Items.RemoveAt(lstRoles.SelectedIndex);
       contentUpdatePanel.Update();
     }
 
-    protected void lstRoles_SelectedIndexChanged(object sender, EventArgs e)
+    /// <summary>
+    /// The open role.
+    /// </summary>
+    private void OpenRole()
     {
-      if (lstRoles.SelectedItem == null)
+      if (string.IsNullOrEmpty(lstRoles.SelectedValue))
       {
         return;
       }
-      //TODO: заменить на код Utils.C_AdminCode = 1
-      if (lstRoles.SelectedItem.Text.ToLower() == "администратор")
-      {
-        menu1.FindItem("Delete").Enabled = false;
-      }
-      else
-      {
-        menu1.FindItem("Delete").Enabled = (bool)Session[SessionConsts.CAdminPermission];
-      }
-      MenuUpdatePanel.Update();
+
+      Response.Redirect(string.Format("~/Pages/Administrations/RoleEx.aspx?RoleId={0}", lstRoles.SelectedValue));
     }
 
-    protected void menu1_PreRender(object sender, EventArgs e)
+    /// <summary>
+    /// The search by name control_ clear.
+    /// </summary>
+    private void searchByNameControl_Clear()
     {
-      UtilsHelper.MenuPreRender(menu1);
+      RefreshData();
+      contentUpdatePanel.Update();
     }
 
+    /// <summary>
+    /// The search by name control_ search.
+    /// </summary>
+    private void searchByNameControl_Search()
+    {
+      lstRoles.DataSource = securityService.GetRolesByNameContains(searchByNameControl.NameValue);
+      lstRoles.DataBind();
+      contentUpdatePanel.Update();
+    }
+
+    #endregion
   }
 }

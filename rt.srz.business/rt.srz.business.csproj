@@ -220,6 +220,7 @@
     <Compile Include="manager\UserActionManager.Generated.cs">
       <DependentUpon>UserActionManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="manager\UserManager.cs" />
     <Compile Include="quartz\JobGroupNames.cs" />
     <Compile Include="quartz\JobNames.cs" />
     <Compile Include="registry\RepositoryRegistry.cs" />
@@ -234,29 +235,19 @@
     <Compile Include="manager\EmploymentHistoryManager.Generated.cs">
       <DependentUpon>EmploymentHistoryManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="manager\GroupManager.cs" />
-    <Compile Include="manager\GroupManager.Generated.cs">
-      <DependentUpon>GroupManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="manager\IBatchManager.cs" />
     <Compile Include="manager\IDeadInfoManager.cs" />
     <Compile Include="manager\IEmploymentHistoryManager.cs" />
     <Compile Include="manager\IEventChangeManager.cs" />
-    <Compile Include="manager\IGroupManager.cs" />
     <Compile Include="manager\INumberPolicyCounterManager.cs" />
     <Compile Include="manager\IOrganisationManager.cs" />
     <Compile Include="manager\IPeriodManager.cs" />
-    <Compile Include="manager\IPermissionManager.cs" />
-    <Compile Include="manager\IPermissionRoleManager.cs" />
     <Compile Include="manager\IPfrExchangeManager.cs" />
     <Compile Include="manager\IRangeNumberManager.cs" />
-    <Compile Include="manager\IRoleManager.cs" />
     <Compile Include="manager\ISearchKeyTypeManager.cs" />
     <Compile Include="manager\ISertificateUecManager.cs" />
     <Compile Include="manager\ITwinManager.cs" />
     <Compile Include="manager\ITwinsKeyManager.cs" />
-    <Compile Include="manager\IUserGroupManager.cs" />
-    <Compile Include="manager\IUserGroupRoleManager.cs" />
     <Compile Include="manager\ISettingManager.cs" />
     <Compile Include="manager\IWorkstationManager.cs" />
     <Compile Include="manager\logicalcontrol\CheckLevelEnum.cs" />
@@ -371,7 +362,6 @@
     <Compile Include="manager\IStatementHl7Manager.cs" />
     <Compile Include="manager\IStatementManager.cs" />
     <Compile Include="manager\IStatementSearchManager.cs" />
-    <Compile Include="manager\IUserManager.cs" />
     <Compile Include="manager\KladrManager.cs" />
     <Compile Include="manager\KladrManager.Generated.cs">
       <DependentUpon>KladrManager.cs</DependentUpon>
@@ -395,14 +385,6 @@
     <Compile Include="manager\PeriodManager.cs" />
     <Compile Include="manager\PeriodManager.Generated.cs">
       <DependentUpon>PeriodManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\PermissionManager.cs" />
-    <Compile Include="manager\PermissionManager.Generated.cs">
-      <DependentUpon>PermissionManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\PermissionRoleManager.cs" />
-    <Compile Include="manager\PermissionRoleManager.Generated.cs">
-      <DependentUpon>PermissionRoleManager.cs</DependentUpon>
     </Compile>
     <Compile Include="manager\RangeNumberManager.cs" />
     <Compile Include="manager\RangeNumberManager.Generated.cs">
@@ -434,10 +416,6 @@
     <Compile Include="manager\rightedit\IStatementRightToEditManager.cs" />
     <Compile Include="manager\rightedit\StatementRightToEdit.cs" />
     <Compile Include="manager\rightedit\status\StatusPerformed.cs" />
-    <Compile Include="manager\RoleManager.cs" />
-    <Compile Include="manager\RoleManager.Generated.cs">
-      <DependentUpon>RoleManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="manager\SearchKeyManager.cs" />
     <Compile Include="manager\SearchKeyManager.Generated.cs">
       <DependentUpon>SearchKeyManager.cs</DependentUpon>
@@ -467,18 +445,6 @@
     <Compile Include="manager\TwinsKeyManager.cs" />
     <Compile Include="manager\TwinsKeyManager.Generated.cs">
       <DependentUpon>TwinsKeyManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\UserGroupManager.cs" />
-    <Compile Include="manager\UserGroupManager.Generated.cs">
-      <DependentUpon>UserGroupManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\UserGroupRoleManager.cs" />
-    <Compile Include="manager\UserGroupRoleManager.Generated.cs">
-      <DependentUpon>UserGroupRoleManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\UserManager.cs" />
-    <Compile Include="manager\UserManager.Generated.cs">
-      <DependentUpon>UserManager.cs</DependentUpon>
     </Compile>
     <Compile Include="manager\SettingManager.cs" />
     <Compile Include="manager\WorkstationManager.cs" />
@@ -539,10 +505,6 @@
     <Compile Include="tests\ErrorTests.generated.cs">
       <DependentUpon>ErrorTests.cs</DependentUpon>
     </Compile>
-    <Compile Include="tests\GroupTests.cs" />
-    <Compile Include="tests\GroupTests.generated.cs">
-      <DependentUpon>GroupTests.cs</DependentUpon>
-    </Compile>
     <Compile Include="tests\In1Tests.cs" />
     <Compile Include="tests\In1Tests.generated.cs">
       <DependentUpon>In1Tests.cs</DependentUpon>
@@ -596,14 +558,6 @@
     <Compile Include="tests\PeriodTests.generated.cs">
       <DependentUpon>PeriodTests.cs</DependentUpon>
     </Compile>
-    <Compile Include="tests\PermissionRoleTests.cs" />
-    <Compile Include="tests\PermissionRoleTests.generated.cs">
-      <DependentUpon>PermissionRoleTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\PermissionTests.cs" />
-    <Compile Include="tests\PermissionTests.generated.cs">
-      <DependentUpon>PermissionTests.cs</DependentUpon>
-    </Compile>
     <Compile Include="tests\QueryResponseItemizeTests.cs" />
     <Compile Include="tests\QueryResponseItemizeTests.generated.cs">
       <DependentUpon>QueryResponseItemizeTests.cs</DependentUpon>
@@ -619,10 +573,6 @@
     <Compile Include="tests\RepresentativeTests.cs" />
     <Compile Include="tests\RepresentativeTests.generated.cs">
       <DependentUpon>RepresentativeTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\RoleTests.cs" />
-    <Compile Include="tests\RoleTests.generated.cs">
-      <DependentUpon>RoleTests.cs</DependentUpon>
     </Compile>
     <Compile Include="tests\SearchKeyTests.cs" />
     <Compile Include="tests\SearchKeyTests.generated.cs">
@@ -664,18 +614,6 @@
     <Compile Include="tests\UserActionTests.generated.cs">
       <DependentUpon>UserActionTests.cs</DependentUpon>
     </Compile>
-    <Compile Include="tests\UserGroupRoleTests.cs" />
-    <Compile Include="tests\UserGroupRoleTests.generated.cs">
-      <DependentUpon>UserGroupRoleTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\UserGroupTests.cs" />
-    <Compile Include="tests\UserGroupTests.generated.cs">
-      <DependentUpon>UserGroupTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\UserTests.cs" />
-    <Compile Include="tests\UserTests.generated.cs">
-      <DependentUpon>UserTests.cs</DependentUpon>
-    </Compile>
     <Compile Include="tests\WorkstationTests.cs" />
     <Compile Include="tests\WorkstationTests.generated.cs">
       <DependentUpon>WorkstationTests.cs</DependentUpon>
@@ -711,48 +649,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\address.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Concept.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\ContactInfo.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Document.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\InsuredPerson.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\InsuredPersonDatum.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Kladr.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Oid.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Representative.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\SearchKey.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Statement.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\User.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CrystalQuartz\CrystalQuartz.Core\CrystalQuartz.Core.csproj">
       <Project>{9382e234-40e3-40d1-9a6f-5ef63cf09c90}</Project>
       <Name>CrystalQuartz.Core</Name>
@@ -760,10 +656,6 @@
     <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
       <Project>{6310659A-9539-4660-910A-DA60B53CC5A0}</Project>
       <Name>rt.atl.model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
-      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
-      <Name>rt.core.business.security</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
@@ -799,131 +691,43 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\StatementMaximum.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\MedicalInsurance.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Error.hbm.xml" />
+    <EmbeddedResource Include="mapping\address.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\AutoComplete.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\DeadInfo.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\SearchKeyType.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\RangeNumber.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Group.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Permission.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\UserGroup.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Role.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\UserGroupRole.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\PermissionRole.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\SertificateUec.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Workstation.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Twin.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="mapping\Batch.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\TwinsKey.hbm.xml" />
+    <EmbeddedResource Include="mapping\Concept.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\ContactInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Content.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\DeadInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Document.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\EmploymentHistory.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\Period.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\ProcessSnilsPfr.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\NumberPolicyCounter.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Setting.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Organisation.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeys.hbm.xml" />
-    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeysExchange.hbm.xml" />
-    <EmbeddedResource Include="mapping\storedprocedures\CalculateStandardSearchKeys.hbm.xml" />
-    <EmbeddedResource Include="mapping\storedprocedures\FindTwins.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeyForStatement.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Content.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\ProcessPfr.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\CalculateStandardSearchKeysExchange.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\ProcessZags.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Message.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\StatementChangeDate.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\CalculateKladrLevelAndParrentId.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\storedprocedures\CreateExportSmoBatches.hbm.xml" />
+    <EmbeddedResource Include="mapping\Error.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\In1.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\MessageStatement.hbm.xml" />
+    <EmbeddedResource Include="mapping\InsuredPerson.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\QueryResponse.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\QueryResponseItemize.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\StatementBatch.hbm.xml" />
+    <EmbeddedResource Include="mapping\InsuredPersonDatum.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\JobLockObject.hbm.xml" />
@@ -932,10 +736,73 @@
     <EmbeddedResource Include="mapping\JobPool.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapping\UserAction.hbm.xml" />
+    <EmbeddedResource Include="mapping\Kladr.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\MedicalInsurance.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Message.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\MessageStatement.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\NumberPolicyCounter.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Oid.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Organisation.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Period.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\QueryResponse.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\QueryResponseItemize.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\RangeNumber.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Representative.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\SearchKey.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\SearchKeyType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\SertificateUec.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Setting.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Statement.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\StatementChangeDate.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\Template.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Twin.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\TwinsKey.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\UserAction.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\Workstation.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

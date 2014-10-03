@@ -42,7 +42,7 @@
   // Чтение электронного полиса
   function smardCardRead() {
     try {
-      window.smardcardReader.OpenConnection(<%= string.Format("'{0}{1}'", _authService.GetAuthToken().Signature, GetUrlUecGate()) %>);
+      window.smardcardReader.OpenConnection(<%= string.Format("'{0}{1}'", AuthService.GetAuthToken().Signature, GetUrlUecGate()) %>);
       window.smardcardReader.SetCardReader();
       var cardInfo = window.smardcardReader.GetOwnerInfo();
       if (cardInfo != null) {
@@ -192,7 +192,7 @@
 
     try {
       //открытие карты
-      var res = window.uecReader.OpenCard(<%= string.Format("'{0}'", _authService.GetAuthToken().Signature) %>); //открытие карты
+      var res = window.uecReader.OpenCard(<%= string.Format("'{0}'", AuthService.GetAuthToken().Signature) %>); //открытие карты
       if (res.Result == 0) {
         readMode = true;
         //Вывод окна для ввода пина для УЭК карты
@@ -212,7 +212,7 @@
     $get('<%= UECLabelDiv.ClientID%>').style.display = 'inline-block';
     try {
       //открытие карты
-      var res = window.uecReader.OpenCard(<%= string.Format("'{0}'", _authService.GetAuthToken().Signature) %>); //открытие карты
+      var res = window.uecReader.OpenCard(<%= string.Format("'{0}'", AuthService.GetAuthToken().Signature) %>); //открытие карты
       if (res.Result == 0) {
         readMode = false;
         //Вывод окна для ввода пина для УЭК карты
@@ -268,7 +268,7 @@
   $(document).ready(function () {
     SetDesignerSettingsDatesAndErrors();
     limitKeyPressForLFM();
-    window.barcodeReader.Start('<%= _securityService.GetSetting("COMPort") != null ? _securityService.GetSetting("COMPort").ValueString : string.Empty %>');
+    window.barcodeReader.Start('<%= SecurityService.GetSetting("COMPort") != null ? SecurityService.GetSetting("COMPort").ValueString : string.Empty %>');
   });
 
   //Закрытия окна для ввода пина по ESC
@@ -477,7 +477,7 @@
           </table>
         </div>
       </asp:Panel>
-      <asp:Menu ID="Menu" runat="server" StaticDisplayLevels="3" Orientation="Horizontal" OnMenuItemClick="Menu_MenuItemClick" CssClass="ItemMenu" OnPreRender="Menu_PreRender">
+      <asp:Menu ID="Menu" runat="server" StaticDisplayLevels="3" Orientation="Horizontal" OnMenuItemClick="MenuMenuItemClick" CssClass="ItemMenu" OnPreRender="MenuPreRender">
         <Items>
           <asp:MenuItem Text="Создать" Value="Reinsuranse" ImageUrl="~/Resources/search/empty.png"></asp:MenuItem>
           <asp:MenuItem Text="Переоформить" Value="Reneval" ImageUrl="~/Resources/search/full (2).png"></asp:MenuItem>
@@ -873,12 +873,12 @@
           <div style="clear: both">
             <div style="float: right">
               <div class="searchPartsControlPadding">
-                <asp:Button ID="btnClear" runat="server" Text="Очистить" OnClick="btnClear_Click" Height="30px" Width="75px" CssClass="buttons" />
+                <asp:Button ID="btnClear" runat="server" Text="Очистить" OnClick="BtnClearClick" Height="30px" Width="75px" CssClass="buttons" />
               </div>
             </div>
             <div style="float: right">
               <div class="searchPartsControlPadding">
-                <asp:Button ID="btnSearch" runat="server" Text="Искать" OnClick="btnSearch_Click" Height="30px" Width="75px" CssClass="buttons" UseSubmitBehavior="true" />
+                <asp:Button ID="btnSearch" runat="server" Text="Искать" OnClick="BtnSearchClick" Height="30px" Width="75px" CssClass="buttons" UseSubmitBehavior="true" />
               </div>
             </div>
           </div>
@@ -933,9 +933,9 @@
 
             <asp:HiddenField ID="hfSearchResultGVSelectedRowIndex" runat="server" />
             <asp:GridView ID="SearchResultGridView" runat="server" EnableModelValidation="True" Style="width: 100%"
-              AutoGenerateColumns="False" AllowSorting="True" OnRowDataBound="SearchResultGridView_RowDataBound"
-              OnSorting="SearchResultGridView_Sorting" OnSelectedIndexChanged="SearchResultGridView_SelectedIndexChanged"
-              OnRowCommand="SearchResultGridView_RowCommand" DataKeyNames="ID" CellPadding="4" ForeColor="#333333" GridLines="Both">
+              AutoGenerateColumns="False" AllowSorting="True" OnRowDataBound="SearchResultGridViewRowDataBound"
+              OnSorting="SearchResultGridViewSorting" OnSelectedIndexChanged="SearchResultGridViewSelectedIndexChanged"
+              OnRowCommand="SearchResultGridViewRowCommand" DataKeyNames="ID" CellPadding="4" ForeColor="#333333" GridLines="Both">
               <HeaderStyle CssClass="GridHeaderS" />
               <RowStyle CssClass="GridRowStyleS" />
               <SelectedRowStyle CssClass="GridSelectedRowStyleS" />
@@ -1084,8 +1084,8 @@
             </asp:GridView>
           </div>
           <div class="pagerPadding">
-            <uc:Pager ID="custPager" runat="server" OnPageIndexChanged="custPager_PageIndexChanged"
-              OnPageSizeChanged="custPager_PageSizeChanged" />
+            <uc:Pager ID="custPager" runat="server" OnPageIndexChanged="CustPagerPageIndexChanged"
+              OnPageSizeChanged="CustPagerPageSizeChanged" />
           </div>
         </ContentTemplate>
       </asp:UpdatePanel>

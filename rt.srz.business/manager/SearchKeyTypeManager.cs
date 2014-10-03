@@ -63,7 +63,7 @@ namespace rt.srz.business.manager
       var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       if (currentUser != null && currentUser.HasTf())
       {
-        tfomsId = currentUser.PointDistributionPolicy.Parent.Parent.Id;
+        tfomsId = currentUser.GetTf().Id;
       }
 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
@@ -86,10 +86,9 @@ namespace rt.srz.business.manager
     {
       // Назначаем ТФОМС текущего пользователя
       var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-
       if (currentUser != null && currentUser.HasTf())
       {
-        keyType.Tfoms = currentUser.PointDistributionPolicy.Parent.Parent;
+        keyType.Tfoms = currentUser.GetTf();
       }
 
       if (!EqualsBd(keyType))

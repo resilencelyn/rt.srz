@@ -43,7 +43,7 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.Oid entity = new rt.srz.model.srz.Oid();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = "Test Test Test T";
+			entity.Id = "Test Test Test Test Te";
 			
 			entity.FullName = "Test Test ";
 			entity.ShortName = "Test Test ";

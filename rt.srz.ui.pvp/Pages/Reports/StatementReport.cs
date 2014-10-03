@@ -9,6 +9,8 @@ using rt.srz.model.srz.concepts;
 
 namespace rt.srz.ui.pvp.Pages.Reports
 {
+  using rt.core.model.core;
+
   public partial class StatementReport : rt.srz.ui.pvp.Pages.Reports.BaseStatementReport
   {
     public StatementReport()

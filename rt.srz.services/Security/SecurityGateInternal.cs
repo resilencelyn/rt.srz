@@ -14,6 +14,7 @@ namespace rt.srz.services.Security
   using System;
   using System.Collections.Generic;
 
+  using rt.core.model.core;
   using rt.core.services.aspects;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;

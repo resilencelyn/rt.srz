@@ -15,6 +15,7 @@ namespace rt.srz.ui.pvp.Templates
   using System.Web.Security;
 
   using rt.core.model;
+  using rt.core.model.core;
   using rt.srz.business.manager;
   using rt.atl.business.exchange.impl;
 
@@ -142,9 +143,9 @@ namespace rt.srz.ui.pvp.Templates
     {
       try
       {
-        if (currentUser != null && currentUser.PointDistributionPolicy != null)
+        if (currentUser != null && currentUser.PointDistributionPolicyId != null)
         {
-          var pdp = currentUser.PointDistributionPolicy;
+          var pdp = currentUser.PointDistributionPolicy();
           if (pdp != null)
           {
             lblPDPTitle.Text = string.Format(

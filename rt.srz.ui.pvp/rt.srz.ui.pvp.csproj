@@ -249,8 +249,8 @@
     <Content Include="Controls\NSI\TemplatesVsControl.ascx" />
     <Content Include="Controls\Twins\SearchKeyTypeDetailControl.ascx" />
     <Content Include="Controls\Twins\SearchKeyTypesControl.ascx" />
-    <Content Include="Controls\KLADRIntellisenseUserControl.ascx" />
-    <Content Include="Controls\KLADRUserControl.ascx" />
+    <Content Include="Controls\KladrIntellisenseUserControl.ascx" />
+    <Content Include="Controls\KladrUserControl.ascx" />
     <Content Include="Controls\CustomPager\Pager.ascx" />
     <Content Include="Controls\Administration\RolesControl.ascx" />
     <Content Include="Controls\Administration\PermissionsControl.ascx" />
@@ -687,19 +687,19 @@
       <DependentUpon>SearchKeyTypesControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\IKLADRUserControl.cs" />
-    <Compile Include="Controls\KLADRIntellisenseUserControl.ascx.cs">
-      <DependentUpon>KLADRIntellisenseUserControl.ascx</DependentUpon>
+    <Compile Include="Controls\KladrIntellisenseUserControl.ascx.cs">
+      <DependentUpon>KladrIntellisenseUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Controls\KLADRIntellisenseUserControl.ascx.designer.cs">
-      <DependentUpon>KLADRIntellisenseUserControl.ascx</DependentUpon>
+    <Compile Include="Controls\KladrIntellisenseUserControl.ascx.designer.cs">
+      <DependentUpon>KladrIntellisenseUserControl.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\KLADRUserControl.ascx.cs">
-      <DependentUpon>KLADRUserControl.ascx</DependentUpon>
+    <Compile Include="Controls\KladrUserControl.ascx.cs">
+      <DependentUpon>KladrUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Controls\KLADRUserControl.ascx.designer.cs">
-      <DependentUpon>KLADRUserControl.ascx</DependentUpon>
+    <Compile Include="Controls\KladrUserControl.ascx.designer.cs">
+      <DependentUpon>KladrUserControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomPager\Pager.ascx.cs">
       <DependentUpon>Pager.ascx</DependentUpon>
@@ -1272,10 +1272,6 @@
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.core.service.security\rt.core.service.security.csproj">
-      <Project>{6757d5b1-c420-4332-824f-24dc4253de24}</Project>
-      <Name>rt.core.service.security</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>

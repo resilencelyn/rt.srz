@@ -12,7 +12,7 @@
   </div>
   <div class="admValueControl">
     <div class="admControlPadding">
-      <asp:DropDownList ID="dlTFoms" runat="server" DataTextField="ShortName" DataValueField="Id" AutoPostBack="True" OnSelectedIndexChanged="dlTFoms_SelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
+      <asp:DropDownList ID="dlTFoms" runat="server" DataTextField="ShortName" DataValueField="Id" AutoPostBack="True" OnSelectedIndexChanged="DlTFomsSelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
   </div>
   <div class="admValueControl">
     <div class="admControlPadding">
-      <asp:DropDownList ID="dlSmo" runat="server" DataTextField="ShortName" DataValueField="Id" AutoPostBack="True" OnSelectedIndexChanged="dlSmo_SelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
+      <asp:DropDownList ID="dlSmo" runat="server" DataTextField="ShortName" DataValueField="Id" AutoPostBack="True" OnSelectedIndexChanged="DlSmoSelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@
   </div>
   <div class="errorMessage">
     <div class="admControlPadding">
-      <asp:CustomValidator ID="rfPoint" runat="server" ErrorMessage="Не заполнен пункт выдачи!" OnServerValidate="rfPoint_ServerValidate"></asp:CustomValidator>
+      <asp:CustomValidator ID="rfPoint" runat="server" ErrorMessage="Не заполнен пункт выдачи!" OnServerValidate="RfPointServerValidate"></asp:CustomValidator>
     </div>
   </div>
 </div>

@@ -103,10 +103,6 @@
       <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
       <Name>rt.atl.model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.core.business.security\rt.core.business.security.csproj">
-      <Project>{6a450def-16da-42b8-94a1-86b22a8615f6}</Project>
-      <Name>rt.core.business.security</Name>
-    </ProjectReference>
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
       <Name>rt.core.business</Name>
@@ -118,10 +114,6 @@
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.core.service.security\rt.core.service.security.csproj">
-      <Project>{6757d5b1-c420-4332-824f-24dc4253de24}</Project>
-      <Name>rt.core.service.security</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>

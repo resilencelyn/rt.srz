@@ -1,87 +1,47 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="TwinManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TwinManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using NHibernate;
-using NHibernate.Criterion;
-
-using NLog;
-
-using rt.core.business.security.interfaces;
-using rt.srz.business.manager.cache;
-using rt.srz.model.srz;
-using rt.srz.model.srz.concepts;
-
-using StructureMap;
-using rt.srz.model.enumerations;
-using rt.core.model;
-using rt.srz.model.dto;
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
+  using NHibernate;
+  using NHibernate.Criterion;
+
+  using NLog;
+
+  using rt.core.business.security.interfaces;
   using rt.core.model.dto;
+  using rt.srz.business.manager.cache;
+  using rt.srz.model.dto;
+  using rt.srz.model.enumerations;
+  using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
+
+  using StructureMap;
 
   /// <summary>
-  /// The TwinManager.
+  ///   The TwinManager.
   /// </summary>
   public partial class TwinManager
   {
-    /// <summary>
-    /// Получает все дубликаты
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    public IList<Twin> GetTwins()
-    {
-      // зачитываем все дубликаты со статусом - Кандидат в дубликаты
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      Concept t = null;
-      InsuredPerson insuredPerson1 = null;
-      MedicalInsurance medicalInsurance1 = null;
-      Organisation smo1 = null;
-
-      InsuredPerson insuredPerson2 = null;
-      MedicalInsurance medicalInsurance2 = null;
-      Organisation smo2 = null;
-
-      var query = session.QueryOver<Twin>()
-                  .JoinAlias(x => x.TwinType, () => t)
-                  .Where(x => t.Id == TypeTwin.TypeTwin2);
-
-      if (currentUser.HasTf())
-      {
-        query
-          .JoinAlias(x => x.FirstInsuredPerson, () => insuredPerson1)
-          .JoinAlias(() => insuredPerson1.MedicalInsurances, () => medicalInsurance1)
-          .JoinAlias(() => medicalInsurance1.Smo, () => smo1)
-          .And(() => medicalInsurance1.IsActive)
-          .And(() => smo1.Parent.Id == currentUser.PointDistributionPolicy.Parent.Parent.Id)
-          .JoinAlias(x => x.SecondInsuredPerson, () => insuredPerson2)
-          .JoinAlias(() => insuredPerson2.MedicalInsurances, () => medicalInsurance2)
-          .JoinAlias(() => medicalInsurance2.Smo, () => smo2)
-          .And(() => medicalInsurance2.IsActive)
-          .And(() => smo2.Parent.Id == currentUser.GetTf().Id);
-      }
-
-      return query.List();
-    }
+    #region Public Methods and Operators
 
     /// <summary>
-    /// Помечает дубликат как удаленный
+    /// Аннулирование дубликата
     /// </summary>
-    /// <param name="Id"></param>
-    public void RemoveTwin(Guid Id)
+    /// <param name="twinId">
+    /// The twin Id.
+    /// </param>
+    public void AnnulateTwin(Guid twinId)
     {
-      // проставляем статус - Дубликат не подтверждён
-      Twin twin = GetById(Id);
+      // ставим у дубликата статус не подтверждён
+      var twin = GetById(twinId);
       twin.TwinType = ObjectFactory.GetInstance<IConceptCacheManager>().Single(x => x.Id == TypeTwin.TypeTwin1);
       SaveOrUpdate(twin);
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
@@ -120,15 +80,126 @@ where RowId in (
           and not exists (select 1 from TwinsKey tk where tk.TwinId = t.RowId and tk.KeyTypeId != @key ))";
 
         session.CreateSQLQuery(sql).SetParameter("key", keyId).UniqueResult();
-       
+
         transaction.Commit();
       }
       catch (Exception ex)
       {
-        LogManager.GetCurrentClassLogger().ErrorException(ex.Message, ex);
+        LogManager.GetCurrentClassLogger().Error(ex.Message, ex);
         transaction.Rollback();
         throw;
       }
+    }
+
+    /// <summary>
+    ///   Получает все дубликаты
+    /// </summary>
+    /// <returns>
+    ///   The <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
+    public IList<Twin> GetTwins()
+    {
+      // зачитываем все дубликаты со статусом - Кандидат в дубликаты
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      Concept t = null;
+      InsuredPerson insuredPerson1 = null;
+      MedicalInsurance medicalInsurance1 = null;
+      Organisation smo1 = null;
+
+      InsuredPerson insuredPerson2 = null;
+      MedicalInsurance medicalInsurance2 = null;
+      Organisation smo2 = null;
+
+      var query = session.QueryOver<Twin>().JoinAlias(x => x.TwinType, () => t).Where(x => t.Id == TypeTwin.TypeTwin2);
+
+      if (currentUser.HasTf())
+      {
+        query.JoinAlias(x => x.FirstInsuredPerson, () => insuredPerson1)
+             .JoinAlias(() => insuredPerson1.MedicalInsurances, () => medicalInsurance1)
+             .JoinAlias(() => medicalInsurance1.Smo, () => smo1)
+             .And(() => medicalInsurance1.IsActive)
+             .And(() => smo1.Parent.Id == currentUser.GetTf().Id)
+             .JoinAlias(x => x.SecondInsuredPerson, () => insuredPerson2)
+             .JoinAlias(() => insuredPerson2.MedicalInsurances, () => medicalInsurance2)
+             .JoinAlias(() => medicalInsurance2.Smo, () => smo2)
+             .And(() => medicalInsurance2.IsActive)
+             .And(() => smo2.Parent.Id == currentUser.GetTf().Id);
+      }
+
+      return query.List();
+    }
+
+    /// <summary>
+    /// Дубликаты по критерию для разбивки постранично
+    /// </summary>
+    /// <param name="criteria">
+    /// The criteria.
+    /// </param>
+    /// <returns>
+    /// The <see>
+    ///     <cref>SearchResult</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
+    public SearchResult<Twin> GetTwins(SearchTwinCriteria criteria)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      Concept twinType = null;
+      InsuredPerson insuredPerson1 = null;
+      MedicalInsurance medicalInsurance1 = null;
+      Organisation smo1 = null;
+
+      InsuredPerson insuredPerson2 = null;
+      MedicalInsurance medicalInsurance2 = null;
+      Organisation smo2 = null;
+
+      var query =
+        session.QueryOver<Twin>()
+               .JoinAlias(x => x.TwinType, () => twinType)
+               .Where(x => twinType.Id == TypeTwin.TypeTwin2);
+
+      if (currentUser.HasTf())
+      {
+        var tf = currentUser.GetTf();
+        query.JoinAlias(x => x.FirstInsuredPerson, () => insuredPerson1)
+             .JoinAlias(() => insuredPerson1.MedicalInsurances, () => medicalInsurance1)
+             .JoinAlias(() => medicalInsurance1.Smo, () => smo1)
+             .And(() => medicalInsurance1.IsActive)
+             .And(() => smo1.Parent.Id == tf.Id)
+             .JoinAlias(x => x.SecondInsuredPerson, () => insuredPerson2)
+             .JoinAlias(() => insuredPerson2.MedicalInsurances, () => medicalInsurance2)
+             .JoinAlias(() => medicalInsurance2.Smo, () => smo2)
+             .And(() => medicalInsurance2.IsActive)
+             .And(() => smo2.Parent.Id == tf.Id);
+      }
+
+      TwinsKey twinKeys = null;
+      SearchKeyType skt = null;
+      switch (criteria.KeyType)
+      {
+        case TwinKeyType.All:
+          break;
+        case TwinKeyType.Standard:
+          query.JoinAlias(t => t.TwinsKeys, () => twinKeys)
+               .JoinAlias(t => twinKeys.KeyType, () => skt)
+               .WhereRestrictionOn(t => skt.Tfoms)
+               .IsNull();
+          break;
+        case TwinKeyType.NonStandard:
+          query.JoinAlias(t => t.TwinsKeys, () => twinKeys).Where(t => twinKeys.KeyType.Id == criteria.KeyId);
+          break;
+      }
+
+      var count = query.RowCount();
+      var searchResult = new SearchResult<Twin> { Skip = criteria.Skip, Total = count };
+      query.Skip(criteria.Skip).Take(criteria.Take);
+      searchResult.Rows = query.List();
+      return searchResult;
     }
 
     /// <summary>
@@ -230,6 +301,21 @@ where RowId in (
     }
 
     /// <summary>
+    /// Помечает дубликат как удаленный
+    /// </summary>
+    /// <param name="id">
+    /// The Id.
+    /// </param>
+    public void RemoveTwin(Guid id)
+    {
+      // проставляем статус - Дубликат не подтверждён
+      var twin = GetById(id);
+      twin.TwinType = ObjectFactory.GetInstance<IConceptCacheManager>().Single(x => x.Id == TypeTwin.TypeTwin1);
+      SaveOrUpdate(twin);
+      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+    }
+
+    /// <summary>
     /// Разделение
     /// </summary>
     /// <param name="personId">
@@ -251,8 +337,8 @@ where RowId in (
       var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       var personManager = ObjectFactory.GetInstance<IInsuredPersonManager>();
       var statementManager = ObjectFactory.GetInstance<IStatementManager>();
-      var searchKeyManager = ObjectFactory.GetInstance<ISearchKeyManager>();
       var twinManager = ObjectFactory.GetInstance<ITwinManager>();
+      var numberPolicyCounterManager = ObjectFactory.GetInstance<INumberPolicyCounterManager>();
 
       var transaction = session.BeginTransaction();
       try
@@ -260,25 +346,32 @@ where RowId in (
         var person = personManager.GetById(personId);
         var statementToSeparateIdList = statementsToSeparate.Select(x => x.Id).ToList();
 
-        var searchKeys = session.QueryOver<SearchKey>()
-          .WhereRestrictionOn(x => x.Statement.Id).IsIn(statementToSeparateIdList)
-          .List();
+        var searchKeys =
+          session.QueryOver<SearchKey>().WhereRestrictionOn(x => x.Statement.Id).IsIn(statementToSeparateIdList).List();
 
         // Создаем пипла
-        var personNew = new InsuredPerson
-        {
-          Status = conceptManager.GetById(status)
-        };
+        var personNew = new InsuredPerson { Status = conceptManager.GetById(status) };
 
         // Определяем ЕНП, последний, заполненный
-        var enp = statementsToSeparate.Where(x => !string.IsNullOrEmpty(x.NumberPolicy)).OrderByDescending(x => x.DateFiling).Select(x => x.NumberPolicy).FirstOrDefault();
+        var enp =
+          statementsToSeparate.Where(x => !string.IsNullOrEmpty(x.NumberPolicy))
+                              .OrderByDescending(x => x.DateFiling)
+                              .Select(x => x.NumberPolicy)
+                              .FirstOrDefault();
         if (enp == null)
         {
           var statement = statementsToSeparate.OrderByDescending(x => x.DateFiling).FirstOrDefault();
           if (statement != null)
           {
             var personData = statement.InsuredPersonData;
-            enp = ObjectFactory.GetInstance<INumberPolicyCounterManager>().GetNextEnpNumber(currentUser.GetTf().Id, personData.Gender.Id, personData.Birthday.Value);
+
+            if (personData.Birthday != null)
+            {
+              enp = numberPolicyCounterManager.GetNextEnpNumber(
+                                                                currentUser.GetTf().Id, 
+                                                                personData.Gender.Id, 
+                                                                personData.Birthday.Value);
+            }
           }
         }
 
@@ -287,10 +380,12 @@ where RowId in (
         // создаём новую персону и делаем копию инфы о смерти
         if (copyDeadInfo && person.DeadInfo != null)
         {
-          var resultDeadInfo = new DeadInfo();
-          resultDeadInfo.ActRecordDate = person.DeadInfo.ActRecordDate;
-          resultDeadInfo.ActRecordNumber = person.DeadInfo.ActRecordNumber;
-          resultDeadInfo.DateDead = person.DeadInfo.DateDead;
+          var resultDeadInfo = new DeadInfo
+                               {
+                                 ActRecordDate = person.DeadInfo.ActRecordDate,
+                                 ActRecordNumber = person.DeadInfo.ActRecordNumber,
+                                 DateDead = person.DeadInfo.DateDead
+                               };
           session.Save(resultDeadInfo);
           personNew.DeadInfo = resultDeadInfo;
         }
@@ -311,9 +406,11 @@ where RowId in (
         // переставляем ссылки в периодах страхования
         MedicalInsurance medicalInsurance = null;
 
-        var periodInsurances = session.QueryOver<MedicalInsurance>()
-          .WhereRestrictionOn(x => medicalInsurance.Statement.Id).IsIn(statementToSeparateIdList)
-          .List();
+        var periodInsurances =
+          session.QueryOver<MedicalInsurance>()
+                 .WhereRestrictionOn(x => medicalInsurance.Statement.Id)
+                 .IsIn(statementToSeparateIdList)
+                 .List();
         foreach (var periodInsurance in periodInsurances)
         {
           periodInsurance.InsuredPerson = personNew;
@@ -360,11 +457,11 @@ where RowId in (
 
         // А теперь помечаем пару как обработанный дубликат
         var twin1 = new Twin
-                      {
-                        FirstInsuredPerson = person,
-                        SecondInsuredPerson = personNew,
-                        TwinType = conceptManager.GetById(TypeTwin.TypeTwin3)
-                      };
+                    {
+                      FirstInsuredPerson = person, 
+                      SecondInsuredPerson = personNew, 
+                      TwinType = conceptManager.GetById(TypeTwin.TypeTwin3)
+                    };
         session.Save(twin1);
 
         session.Flush();
@@ -377,82 +474,6 @@ where RowId in (
       }
     }
 
-    /// <summary>
-    /// Аннулирование дубликата
-    /// </summary>
-    /// <param name="twinId">
-    /// The twin Id.
-    /// </param>
-    public void AnnulateTwin(Guid twinId)
-    {
-      // ставим у дубликата статус не подтверждён
-      var twin = GetById(twinId);
-      twin.TwinType = ObjectFactory.GetInstance<IConceptCacheManager>().Single(x => x.Id == TypeTwin.TypeTwin1);
-      SaveOrUpdate(twin);
-      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-    }
-
-    /// <summary>
-    /// Дубликаты по критерию для разбивки постранично
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> . 
-    /// </returns>
-    public SearchResult<Twin> GetTwins(SearchTwinCriteria criteria)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      Concept twinType = null;
-      InsuredPerson insuredPerson1 = null;
-      MedicalInsurance medicalInsurance1 = null;
-      Organisation smo1 = null;
-
-      InsuredPerson insuredPerson2 = null;
-      MedicalInsurance medicalInsurance2 = null;
-      Organisation smo2 = null;
-
-      var query =
-        session.QueryOver<Twin>().JoinAlias(x => x.TwinType, () => twinType).Where(
-          x => twinType.Id == TypeTwin.TypeTwin2);
-
-      if (currentUser.PointDistributionPolicy != null && currentUser.PointDistributionPolicy.Parent != null
-          && currentUser.PointDistributionPolicy.Parent.Parent != null)
-      {
-        query.JoinAlias(x => x.FirstInsuredPerson, () => insuredPerson1)
-          .JoinAlias(() => insuredPerson1.MedicalInsurances, () => medicalInsurance1)
-          .JoinAlias(() => medicalInsurance1.Smo, () => smo1)
-          .And(() => medicalInsurance1.IsActive)
-          .And(() => smo1.Parent.Id == currentUser.PointDistributionPolicy.Parent.Parent.Id)
-          .JoinAlias(x => x.SecondInsuredPerson, () => insuredPerson2)
-          .JoinAlias(() => insuredPerson2.MedicalInsurances, () => medicalInsurance2)
-          .JoinAlias(() => medicalInsurance2.Smo, () => smo2)
-          .And(() => medicalInsurance2.IsActive)
-          .And(() => smo2.Parent.Id == currentUser.PointDistributionPolicy.Parent.Parent.Id);
-      }
-
-      TwinsKey twinKeys = null;
-      SearchKeyType skt = null;
-      switch (criteria.KeyType)
-      {
-        case TwinKeyType.All:
-          break;
-        case TwinKeyType.Standard:
-          query.JoinAlias(t => t.TwinsKeys, () => twinKeys).JoinAlias(t => twinKeys.KeyType, () => skt).
-            WhereRestrictionOn(t => skt.Tfoms).IsNull();
-          break;
-        case TwinKeyType.NonStandard:
-          query.JoinAlias(t => t.TwinsKeys, () => twinKeys).Where(t => twinKeys.KeyType.Id == criteria.KeyId);
-          break;
-      }
-
-      var count = query.RowCount();
-      var searchResult = new SearchResult<Twin> { Skip = criteria.Skip, Total = count };
-      query.Skip(criteria.Skip).Take(criteria.Take);
-      searchResult.Rows = query.List();
-      return searchResult;
-    }
-
+    #endregion
   }
 }

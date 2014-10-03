@@ -10,7 +10,9 @@ using StructureMap;
 
 namespace rt.srz.ui.pvp.Controls.Administration
 {
-	public partial class AssignGroupsToUserControl : System.Web.UI.UserControl
+  using rt.core.model.core;
+
+  public partial class AssignGroupsToUserControl : System.Web.UI.UserControl
 	{
 		private ISecurityService _securityService;
     private Guid _userId;

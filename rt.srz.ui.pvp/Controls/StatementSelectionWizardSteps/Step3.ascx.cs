@@ -228,8 +228,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         {
           chbIsFreeMainAddress.Checked = (bool)statement.Address.IsNotStructureAddress;
           mainAddressKladr.Mode = (bool)statement.Address.IsNotStructureAddress
-                                    ? KLADRUserControlMode.Free
-                                    : KLADRUserControlMode.Database;
+                                    ? KladrUserControlMode.Free
+                                    : KladrUserControlMode.Database;
         }
 
         // switch (GetKLADRControlType())
@@ -440,8 +440,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
               mainAddressKladrIntellisenseDiv.Style.Remove("display");
               mainAddressKladrDiv.Style.Add("display", "none");
 
-              mainAddressKladr.Mode = KLADRUserControlMode.Free;
-              residencyAddressKladr.Mode = KLADRUserControlMode.Free;
+              mainAddressKladr.Mode = KladrUserControlMode.Free;
+              residencyAddressKladr.Mode = KladrUserControlMode.Free;
             }
 
             break;
@@ -775,7 +775,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <param name="address">
     /// The address. 
     /// </param>
-    private void MoveDataFromGui2Object(KLADRUserControl control, address address)
+    private void MoveDataFromGui2Object(KladrUserControl control, address address)
     {
       var selectedKladrid = control.SelectedKLADRId;
       if (selectedKladrid != Guid.Empty)
@@ -829,7 +829,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <param name="address">
     /// The address. 
     /// </param>
-    private void MoveDataFromGui2Object(KLADRIntellisenseUserControl control, address address)
+    private void MoveDataFromGui2Object(KladrIntellisenseUserControl control, address address)
     {
       // Лицо без определенного места жительства
       address.IsHomeless = chBIsHomeless.Checked;
@@ -915,7 +915,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <param name="control">
     /// The control. 
     /// </param>
-    private void MoveDataFromObject2GUI(address address, KLADRUserControl control)
+    private void MoveDataFromObject2GUI(address address, KladrUserControl control)
     {
       // Регион
       control.Subject = address.Subject;
@@ -955,7 +955,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <param name="control">
     /// The control. 
     /// </param>
-    private void MoveDataFromObject2GUI(address address, KLADRIntellisenseUserControl control)
+    private void MoveDataFromObject2GUI(address address, KladrIntellisenseUserControl control)
     {
       // Адрес
       if (address.Kladr != null && address.Kladr.Id != Guid.Empty)

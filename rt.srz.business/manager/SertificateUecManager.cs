@@ -45,11 +45,11 @@ namespace rt.srz.business.manager
       var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
       var workstationManager = ObjectFactory.GetInstance<IWorkstationManager>();
       var sertificateUecManager = ObjectFactory.GetInstance<ISertificateUecManager>();
-
+      var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();
       // Ищем сертификаты уровня рабочей станции
       var workstation =
         workstationManager.GetBy(
-          x => x.Name == workstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicy.Id).FirstOrDefault();
+          x => x.Name == workstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId).FirstOrDefault();
 
       SertificateUec sert;
       if (workstation != null)
@@ -63,11 +63,11 @@ namespace rt.srz.business.manager
           return sert.Key;
         }
       }
-
+      
       // Ищем сертификаты уровня СМО
       sert =
         sertificateUecManager
-          .GetBy(x => x.IsActive && x.Version == version && x.Type.Id == type && x.Smo.Id == user.PointDistributionPolicy.Parent.Id)
+          .GetBy(x => x.IsActive && x.Version == version && x.Type.Id == type && x.Smo.Id == user.GetSmo().Id)
           .FirstOrDefault();
       
       if (sert != null)

@@ -30,12 +30,12 @@
           </div>
           <div class="valueControl">
             <div style="padding-left: 5px; padding-top: 5px; padding-bottom: 5px">
-              <asp:DropDownList ID="ddlKeyTypes" runat="server" Width="100%" OnSelectedIndexChanged="ddlKeyTypes_SelectedIndexChanged" AutoPostBack="True" CssClass="dropDowns">
+              <asp:DropDownList ID="ddlKeyTypes" runat="server" Width="100%" OnSelectedIndexChanged="DdlKeyTypesSelectedIndexChanged" AutoPostBack="True" CssClass="dropDowns">
                 <asp:ListItem Value="All">Все</asp:ListItem>
                 <asp:ListItem Value="Standard">Стандартные</asp:ListItem>
               </asp:DropDownList>
               <div style="padding-top: 2px">
-                <asp:Button ID="btnDeleteTwins" runat="server" Text="Удалить дубликаты по ключу" Enabled="false" Width="100%" OnClick="btnDeleteTwins_Click" CssClass="buttons" />
+                <asp:Button ID="btnDeleteTwins" runat="server" Text="Удалить дубликаты по ключу" Enabled="false" Width="100%" OnClick="BtnDeleteTwinsClick" CssClass="buttons" />
               </div>
             </div>
           </div>
@@ -47,8 +47,8 @@
             <ContentTemplate>
               <div class="twinGrid">
                 <asp:GridView Style="width: 100%; table-layout: fixed;" ID="grid" runat="server" EnableModelValidation="True"
-                  AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="grid_Deleting"
-                  DataKeyNames="ID" CellPadding="4" ForeColor="#333333" GridLines="Both" OnSelectedIndexChanged="grid_SelectedIndexChanged" CssClass="ItemGrid">
+                  AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridDeleting"
+                  DataKeyNames="ID" CellPadding="4" ForeColor="#333333" GridLines="Both" OnSelectedIndexChanged="GridSelectedIndexChanged" CssClass="ItemGrid">
                   <HeaderStyle CssClass="GridHeader" />
                   <RowStyle CssClass="GridRowStyle" />
                   <SelectedRowStyle CssClass="GridSelectedRowStyle" />
@@ -76,8 +76,8 @@
               </div>
 
               <div class="pagerPadding">
-                <uc:Pager ID="custPager" runat="server" OnPageIndexChanged="custPager_PageIndexChanged"
-                  OnPageSizeChanged="custPager_PageSizeChanged" />
+                <uc:Pager ID="custPager" runat="server" OnPageIndexChanged="CustPagerPageIndexChanged"
+                  OnPageSizeChanged="CustPagerPageSizeChanged" />
               </div>
 
             </ContentTemplate>
@@ -92,7 +92,7 @@
           <div>
             <asp:UpdatePanel ID="buttonPanel" runat="server" UpdateMode="Conditional">
               <ContentTemplate>
-                <asp:Button ID="btnDelete" runat="server" Text="Удалить связь" OnClick="btnDelete_Click" CssClass="buttons" />
+                <asp:Button ID="btnDelete" runat="server" Text="Удалить связь" OnClick="BtnDeleteClick" CssClass="buttons" />
               </ContentTemplate>
             </asp:UpdatePanel>
           </div>

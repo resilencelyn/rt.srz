@@ -49,7 +49,7 @@
         <asp:GridView Style="width: 100%;" ID="grid" runat="server" EnableModelValidation="True"
           AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ClassName"
           CellPadding="4" ForeColor="#333333" GridLines="Both"
-          OnSelectedIndexChanged="grid_SelectedIndexChanged"
+          OnSelectedIndexChanged="GridSelectedIndexChanged"
           EnableViewState="true"
           OnDataBound="OnDataBound">
           <HeaderStyle CssClass="GridHeader" />
@@ -70,7 +70,7 @@
               <HeaderStyle CssClass="CheckHeader" />
               <ItemStyle CssClass="CheckItem" />
               <ItemTemplate>
-                <asp:CheckBox ID="cbAllowChange" runat="server" Checked='<%# ((ICheckStatement)Container.DataItem).AllowChange %>' Enabled="false" OnCheckedChanged="cbAllowChange_CheckedChanged" AutoPostBack="true"></asp:CheckBox>
+                <asp:CheckBox ID="cbAllowChange" runat="server" Checked='<%# ((ICheckStatement)Container.DataItem).AllowChange %>' Enabled="false" OnCheckedChanged="CbAllowChangeCheckedChanged" AutoPostBack="true"></asp:CheckBox>
               </ItemTemplate>
             </asp:TemplateField>
 
@@ -78,7 +78,7 @@
               <HeaderStyle CssClass="CheckHeader" />
               <ItemStyle CssClass="CheckItem" />
               <ItemTemplate>
-                <asp:CheckBox ID="cbCheck" runat="server" Checked='<%# ((ICheckStatement)Container.DataItem).CheckRequired %>' OnCheckedChanged="cbCheck_CheckedChanged" AutoPostBack="true"></asp:CheckBox>
+                <asp:CheckBox ID="cbCheck" runat="server" Checked='<%# ((ICheckStatement)Container.DataItem).CheckRequired %>' OnCheckedChanged="CbCheckCheckedChanged" AutoPostBack="true"></asp:CheckBox>
                 <asp:HiddenField ID="hfAllowChange" runat="server" Value='<%# ((ICheckStatement)Container.DataItem).AllowChange %>'></asp:HiddenField>
                 <asp:HiddenField ID="hfClassName" runat="server" Value='<%# ((ICheckStatement)Container.DataItem).ClassName %>'></asp:HiddenField>
                 <asp:HiddenField ID="hfVisible" runat="server" Value='<%# ((ICheckStatement)Container.DataItem).Visible %>'></asp:HiddenField>

@@ -15,6 +15,7 @@ namespace rt.srz.model.interfaces.service
   using System.Collections.Generic;
   using System.ServiceModel;
 
+  using rt.core.model.core;
   using rt.srz.model.srz;
   using rt.srz.model.enumerations;
 

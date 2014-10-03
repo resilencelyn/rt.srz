@@ -47,8 +47,8 @@ namespace rt.srz.business.tests
 			
 			entity.DocumentContent = new System.Byte[]{};
 			entity.ChangeDate = System.DateTime.Now;
-			entity.FileName = "Test Tes";
-			entity.DocumentContent64 = "T";
+			entity.FileName = "Test Test Test Tes";
+			entity.DocumentContent64 = "Test";
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{

@@ -10,7 +10,7 @@
 namespace rt.srz.ui.pvp.Controls {
     
     
-    public partial class KLADRIntellisenseUserControl {
+    public partial class KladrIntellisenseUserControl {
         
         /// <summary>
         /// hfKLADRHierarchy control.

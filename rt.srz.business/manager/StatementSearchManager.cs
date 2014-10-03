@@ -1,10 +1,7 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatementSearchManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatementSearchManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The statement search manager.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -15,24 +12,25 @@ namespace rt.srz.business.manager
   using System.Collections.Generic;
   using System.Linq;
   using System.Linq.Expressions;
+
   using NHibernate;
   using NHibernate.Criterion;
   using NHibernate.Exceptions;
   using NHibernate.SqlCommand;
   using NHibernate.Transform;
+
   using rt.core.business.security.interfaces;
   using rt.core.model.dto;
+  using rt.core.model.dto.enumerations;
   using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
   using rt.srz.model.dto;
-  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.logicalcontrol.exceptions;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
+
   using StructureMap;
-  using rt.core.model;
-  using rt.core.model.dto.enumerations;
 
   #endregion
 
@@ -74,6 +72,9 @@ namespace rt.srz.business.manager
     /// <param name="statement">
     /// The statement.
     /// </param>
+    /// <param name="keys">
+    /// The keys.
+    /// </param>
     /// <returns>
     /// The <see cref="InsuredPerson"/>.
     /// </returns>
@@ -95,9 +96,11 @@ namespace rt.srz.business.manager
 
       // Новое застрахованное лицо
       var insuredPersonByStatement = new InsuredPerson
-                                       {
-                                         Status = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(StatusPerson.Active),
-                                       };
+                                     {
+                                       Status =
+                                         ObjectFactory.GetInstance<IConceptCacheManager>()
+                                                      .GetById(StatusPerson.Active),
+                                     };
 
       if (!string.IsNullOrEmpty(statement.NumberPolicy))
       {
@@ -106,13 +109,61 @@ namespace rt.srz.business.manager
       else
       {
         var insuredPersonDatum = statement.InsuredPersonData;
-        insuredPersonByStatement.MainPolisNumber = numberPolicyCounterManager.GetNextEnpNumber(statement.PointDistributionPolicy.Parent.Parent.Id, insuredPersonDatum.Gender.Id, insuredPersonDatum.Birthday.Value);
+        if (insuredPersonDatum.Birthday != null)
+        {
+          insuredPersonByStatement.MainPolisNumber =
+            numberPolicyCounterManager.GetNextEnpNumber(
+                                                        statement.PointDistributionPolicy.Parent.Parent.Id,
+                                                        insuredPersonDatum.Gender.Id,
+                                                        insuredPersonDatum.Birthday.Value);
+        }
       }
 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       session.Save(insuredPersonByStatement);
 
       return insuredPersonByStatement;
+    }
+
+    /// <summary>
+    /// The get insured persons by keys.
+    /// </summary>
+    /// <param name="keys">
+    /// The keys.
+    /// </param>
+    /// <returns>
+    /// The <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
+    public IList<InsuredPerson> GetInsuredPersonsByKeys(IEnumerable<SearchKey> keys)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var insuredPersonManager = ObjectFactory.GetInstance<IInsuredPersonManager>();
+      IList<InsuredPerson> insuredPersons = new List<InsuredPerson>();
+      var searchKeys = keys as IList<SearchKey> ?? keys.ToList();
+      var keysInserting = searchKeys.Where(x => x.KeyType.Insertion);
+
+      // поиск по ключам
+      if (searchKeys.Any())
+      {
+        SearchKeyType kt = null;
+        var query =
+          session.QueryOver<SearchKey>()
+                 .JoinAlias(x => x.KeyType, () => kt)
+                 .Where(x => kt.Insertion)
+                 .WhereRestrictionOn(x => x.KeyValue)
+                 .IsIn(keysInserting.Select(y => y.KeyValue).ToList())
+                 .OrderBy(x => kt.Weight)
+                 .Asc.SelectList(x => x.SelectGroup(y => y.InsuredPerson.Id).SelectGroup(y => kt.Weight))
+                 .List<object[]>();
+
+        insuredPersons =
+          query.GroupBy(x => x[0]).Select(x => insuredPersonManager.GetById((Guid)x.Key)).Where(x => x != null).ToList();
+      }
+
+      return insuredPersons;
     }
 
     /// <summary>
@@ -137,9 +188,8 @@ namespace rt.srz.business.manager
       {
         searchResult = Search(criteria, AddCriteriaKeys);
       }
-      catch (GenericADOException ex)
+      catch (GenericADOException)
       {
-
       }
 
       // поиск по вхождению  
@@ -166,26 +216,37 @@ namespace rt.srz.business.manager
     /// The add criteria data.
     /// </summary>
     /// <param name="criteria">
-    ///   The criteria.
+    /// The criteria.
     /// </param>
     /// <param name="deatachQuery">
-    ///   The deatach query.
+    /// The deatach query.
     /// </param>
     /// <param name="dpersonDatum">
-    ///   The dperson datum.
+    /// The dperson datum.
     /// </param>
     /// <param name="ddocument">
-    ///   The ddocument.
+    /// The ddocument.
     /// </param>
-    /// <param name="dmedicalInsurance"></param>
-    /// <param name="emptyCriteria"></param>
-    private void AddCriteriaData(SearchStatementCriteria criteria, QueryOver<Statement, Statement> deatachQuery, InsuredPersonDatum dpersonDatum, Document ddocument, MedicalInsurance dmedicalInsurance, bool emptyCriteria)
+    /// <param name="dmedicalInsurance">
+    /// The dmedical Insurance.
+    /// </param>
+    /// <param name="emptyCriteria">
+    /// The empty Criteria.
+    /// </param>
+    private void AddCriteriaData(
+      SearchStatementCriteria criteria,
+      QueryOver<Statement, Statement> deatachQuery,
+      InsuredPersonDatum dpersonDatum,
+      Document ddocument,
+      MedicalInsurance dmedicalInsurance,
+      bool emptyCriteria)
     {
       // Номер ВС
       if (!string.IsNullOrEmpty(criteria.CertificateNumber))
       {
         emptyCriteria = false;
-        deatachQuery.Where(x => dmedicalInsurance.PolisNumber == criteria.CertificateNumber).And(x => dmedicalInsurance.PolisType.Id == PolisType.В);
+        deatachQuery.Where(x => dmedicalInsurance.PolisNumber == criteria.CertificateNumber)
+                    .And(x => dmedicalInsurance.PolisType.Id == PolisType.В);
       }
 
       // Имя
@@ -199,7 +260,7 @@ namespace rt.srz.business.manager
       if (!string.IsNullOrEmpty(criteria.LastName))
       {
         emptyCriteria = false;
-        deatachQuery.Where(x => dpersonDatum.LastName== criteria.LastName.Trim());
+        deatachQuery.Where(x => dpersonDatum.LastName == criteria.LastName.Trim());
       }
 
       // Отчество
@@ -217,7 +278,8 @@ namespace rt.srz.business.manager
       }
 
       // Тип документа
-      if (criteria.DocumentTypeId > 0 && (!string.IsNullOrEmpty(criteria.DocumentSeries) || !string.IsNullOrEmpty(criteria.DocumentNumber)))
+      if (criteria.DocumentTypeId > 0
+          && (!string.IsNullOrEmpty(criteria.DocumentSeries) || !string.IsNullOrEmpty(criteria.DocumentNumber)))
       {
         emptyCriteria = false;
         deatachQuery.Where(x => ddocument.DocumentType.Id == criteria.DocumentTypeId);
@@ -248,8 +310,10 @@ namespace rt.srz.business.manager
       if (!string.IsNullOrEmpty(criteria.PolicyNumber))
       {
         emptyCriteria = false;
-        //deatachQuery.Where(x => x.NumberPolicy == criteria.PolicyNumber.Trim());
-        deatachQuery.Where(x => dmedicalInsurance.Enp == criteria.PolicyNumber.Trim()).And(x => dmedicalInsurance.PolisType.Id != PolisType.В);
+
+        // deatachQuery.Where(x => x.NumberPolicy == criteria.PolicyNumber.Trim());
+        deatachQuery.Where(x => dmedicalInsurance.Enp == criteria.PolicyNumber.Trim())
+                    .And(x => dmedicalInsurance.PolisType.Id != PolisType.В);
       }
 
       // Дата рождения
@@ -288,6 +352,9 @@ namespace rt.srz.business.manager
     /// <param name="ddocument">
     /// The ddocument.
     /// </param>
+    /// <param name="dmedicalInsurance">
+    /// The dmedical Insurance.
+    /// </param>
     /// <param name="emptyCriteria">
     /// The empty Criteria.
     /// </param>
@@ -322,30 +389,29 @@ namespace rt.srz.business.manager
 
       ////  deatachQuery.WhereRestrictionOn(x => x.DateFiling).IsBetween(criteria.DateFilingFrom).And(criteria.DateFilingTo);
       ////}
-
       var statement = new Statement
-                        {
-                          InsuredPersonData =
-                            new InsuredPersonDatum
-                              {
-                                Birthday = criteria.BirthDate,
-                                Birthplace = criteria.BirthPlace,
-                                FirstName = criteria.FirstName,
-                                LastName = criteria.LastName,
-                                MiddleName = criteria.MiddleName,
-                                Snils = criteria.SNILS,
-                                NotCheckSnils = criteria.NotCheckSnils
-                              },
-                          DocumentUdl =
-                            new Document
-                              {
-                                Series = criteria.DocumentSeries,
-                                Number = criteria.DocumentNumber,
-                                DocumentType =
-                                  ObjectFactory.GetInstance<IConceptCacheManager>()
-                                  .GetById(criteria.DocumentTypeId)
-                              },
-                        };
+                      {
+                        InsuredPersonData =
+                          new InsuredPersonDatum
+                          {
+                            Birthday = criteria.BirthDate,
+                            Birthplace = criteria.BirthPlace,
+                            FirstName = criteria.FirstName,
+                            LastName = criteria.LastName,
+                            MiddleName = criteria.MiddleName,
+                            Snils = criteria.SNILS,
+                            NotCheckSnils = criteria.NotCheckSnils
+                          },
+                        DocumentUdl =
+                          new Document
+                          {
+                            Series = criteria.DocumentSeries,
+                            Number = criteria.DocumentNumber,
+                            DocumentType =
+                              ObjectFactory.GetInstance<IConceptCacheManager>()
+                                           .GetById(criteria.DocumentTypeId)
+                          },
+                      };
 
       var searchKeyManager = ObjectFactory.GetInstance<ISearchKeyManager>();
 
@@ -353,9 +419,9 @@ namespace rt.srz.business.manager
 
       var queryKeys =
         QueryOver.Of<SearchKey>()
-          .WhereRestrictionOn(x => x.KeyValue)
-          .IsIn(keys.Select(y => y.KeyValue).ToList())
-          .Select(x => x.InsuredPerson.Id);
+                 .WhereRestrictionOn(x => x.KeyValue)
+                 .IsIn(keys.Select(y => y.KeyValue).ToList())
+                 .Select(x => x.InsuredPerson.Id);
 
       deatachQuery.WithSubquery.WhereProperty(x => x.InsuredPerson.Id).In(queryKeys);
     }
@@ -364,41 +430,49 @@ namespace rt.srz.business.manager
     /// The add order.
     /// </summary>
     /// <param name="criteria">
-    ///   The criteria.
+    /// The criteria.
     /// </param>
     /// <param name="statement">
-    ///   The statement.
+    /// The statement.
     /// </param>
-    /// <param name="cause"></param>
+    /// <param name="cause">
+    /// The cause.
+    /// </param>
     /// <param name="smo">
-    ///   The smo.
+    /// The smo.
     /// </param>
     /// <param name="personDatum">
-    ///   The person datum.
+    /// The person datum.
     /// </param>
     /// <param name="gender">
-    ///   The gender.
+    /// The gender.
     /// </param>
     /// <param name="citizenship">
-    ///   The citizenship.
+    /// The citizenship.
     /// </param>
     /// <param name="documentType">
-    ///   The document type.
+    /// The document type.
     /// </param>
     /// <param name="document">
-    ///   The document.
+    /// The document.
     /// </param>
-    /// <param name="dmedicalInsurance"></param>
     /// <param name="query">
-    ///   The query.
-    /// </param>
-    /// <param name="causeReinsurance">
-    /// The cause filing.
+    /// The query.
     /// </param>
     /// <returns>
     /// The <see cref="IQueryOver"/>.
     /// </returns>
-    private IQueryOver<Statement, Statement> AddOrder(SearchStatementCriteria criteria, Statement statement, Concept cause, Organisation smo, InsuredPersonDatum personDatum, Concept gender, Concept citizenship, Concept documentType, Document document, MedicalInsurance dmedicalInsurance, IQueryOver<Statement, Statement> query)
+    private IQueryOver<Statement, Statement> AddOrder(
+      SearchStatementCriteria criteria,
+      Statement statement,
+      Concept cause,
+      Organisation smo,
+      InsuredPersonDatum personDatum,
+      Concept gender,
+      Concept citizenship,
+      Concept documentType,
+      Document document,
+      IQueryOver<Statement, Statement> query)
     {
       // Сортировка
       if (!string.IsNullOrEmpty(criteria.SortExpression))
@@ -443,6 +517,7 @@ namespace rt.srz.business.manager
           case "SNILS":
             expression = () => personDatum.Snils;
             break;
+
           ////case "NumberTemporaryCertificate":
           ////  expression = () => statement.NumberTemporaryCertificate;
           ////  break;
@@ -451,50 +526,10 @@ namespace rt.srz.business.manager
         query = criteria.SortDirection == SortDirection.Ascending
                   ? query.OrderBy(expression).Asc
                   : query.OrderBy(expression).Desc;
-
-
       }
 
       query = query.OrderBy(x => x.Id).Asc;
       return query;
-    }
-
-    /// <summary>
-    /// The get insured persons by keys.
-    /// </summary>
-    /// <param name="keys">
-    /// The keys.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    public IList<InsuredPerson> GetInsuredPersonsByKeys(IEnumerable<SearchKey> keys)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var insuredPersonManager = ObjectFactory.GetInstance<IInsuredPersonManager>();
-      IList<InsuredPerson> insuredPersons = new List<InsuredPerson>();
-      var keysInserting = keys.Where(x => x.KeyType.Insertion);
-
-      // поиск по ключам
-      if (keys.Any())
-      {
-        SearchKeyType kt = null;
-        var query = session.QueryOver<SearchKey>()
-          .JoinAlias(x => x.KeyType, () => kt)
-          .Where(x => kt.Insertion)
-          .WhereRestrictionOn(x => x.KeyValue).IsIn(keysInserting.Select(y => y.KeyValue).ToList())
-          .OrderBy(x => kt.Weight).Asc
-          .SelectList(x => x
-            .SelectGroup(y => y.InsuredPerson.Id)
-            .SelectGroup(y => kt.Weight))
-          .List<object[]>();
-
-
-
-        insuredPersons = query.GroupBy(x => x[0]).Select(x => insuredPersonManager.GetById((Guid)x.Key)).Where(x=> x != null).ToList();
-      }
-
-      return insuredPersons;
     }
 
     /// <summary>
@@ -507,13 +542,19 @@ namespace rt.srz.business.manager
     /// The add criteria delegate.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/>.
+    /// The
+    ///   <see>
+    ///     <cref>SearchResult</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     private SearchResult<SearchStatementResult> Search(
       SearchStatementCriteria criteria,
       Action<SearchStatementCriteria, QueryOver<Statement, Statement>, InsuredPersonDatum, Document, MedicalInsurance, bool> addCriteriaDelegate)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      var currentSmo = currentUser.GetSmo();
 
       InsuredPersonDatum dpersonDatum = null;
       InsuredPerson dperson = null;
@@ -521,11 +562,11 @@ namespace rt.srz.business.manager
       MedicalInsurance dmedicalInsurance = null;
       var deatachQuery =
         QueryOver.Of<Statement>()
-          .JoinAlias(x => x.InsuredPersonData, () => dpersonDatum)
-          .JoinAlias(x => x.InsuredPerson, () => dperson)
-          .JoinAlias(x => x.DocumentUdl, () => ddocument)
-          .JoinAlias(x => x.MedicalInsurances, () => dmedicalInsurance, JoinType.LeftOuterJoin)
-          .Select(x => dperson.Id);
+                 .JoinAlias(x => x.InsuredPersonData, () => dpersonDatum)
+                 .JoinAlias(x => x.InsuredPerson, () => dperson)
+                 .JoinAlias(x => x.DocumentUdl, () => ddocument)
+                 .JoinAlias(x => x.MedicalInsurances, () => dmedicalInsurance, JoinType.LeftOuterJoin)
+                 .Select(x => dperson.Id);
 
       Statement statement = null;
       InsuredPersonDatum personDatum = null;
@@ -541,19 +582,19 @@ namespace rt.srz.business.manager
       Concept status = null;
       var query =
         session.QueryOver(() => statement)
-          .Left.JoinAlias(x => x.Status, () => status)
-          .Left.JoinAlias(x => x.InsuredPersonData, () => personDatum)
-          .Left.JoinAlias(x => x.InsuredPerson, () => person)
-          .Left.JoinAlias(x => x.CauseFiling, () => cause)
-          .Left.JoinAlias(x => x.PointDistributionPolicy, () => point)
-          .Left.JoinAlias(() => point.Parent, () => smo)
-          .Left.JoinAlias(() => smo.Parent, () => tfom)
-          .Left.JoinAlias(() => personDatum.Gender, () => gender)
-          .Left.JoinAlias(() => personDatum.Citizenship, () => citizenship)
-          .Left.JoinAlias(x => x.DocumentUdl, () => document)
-          .Left.JoinAlias(() => document.DocumentType, () => documentType)
-          .WithSubquery.WhereProperty(x => x.InsuredPerson.Id)
-          .In(deatachQuery);
+               .Left.JoinAlias(x => x.Status, () => status)
+               .Left.JoinAlias(x => x.InsuredPersonData, () => personDatum)
+               .Left.JoinAlias(x => x.InsuredPerson, () => person)
+               .Left.JoinAlias(x => x.CauseFiling, () => cause)
+               .Left.JoinAlias(x => x.PointDistributionPolicy, () => point)
+               .Left.JoinAlias(() => point.Parent, () => smo)
+               .Left.JoinAlias(() => smo.Parent, () => tfom)
+               .Left.JoinAlias(() => personDatum.Gender, () => gender)
+               .Left.JoinAlias(() => personDatum.Citizenship, () => citizenship)
+               .Left.JoinAlias(x => x.DocumentUdl, () => document)
+               .Left.JoinAlias(() => document.DocumentType, () => documentType)
+               .WithSubquery.WhereProperty(x => x.InsuredPerson.Id)
+               .In(deatachQuery);
 
       var emptyCriteria = true;
 
@@ -564,13 +605,11 @@ namespace rt.srz.business.manager
         {
           case 9000:
             query.Where(x => document.IsBad);
-            query
-              .Where(x => point.Parent.Id == ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser().PointDistributionPolicy.Parent.Id);
+            query.Where(x => point.Parent.Id == currentSmo.Id);
             break;
           case 9001:
             query.Where(x => personDatum.IsBadSnils);
-            query
-              .Where(x => point.Parent.Id == ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser().PointDistributionPolicy.Parent.Id);
+            query.Where(x => point.Parent.Id == currentSmo.Id);
             break;
           default:
             query.Where(x => x.Status.Id == criteria.StatementStatus);
@@ -612,55 +651,75 @@ namespace rt.srz.business.manager
       var count = query.RowCount();
       var searchResult = new SearchResult<SearchStatementResult> { Skip = criteria.Skip, Total = count };
 
-      query = AddOrder(criteria, statement, cause, smo, personDatum, gender, citizenship, documentType, document, dmedicalInsurance, query);
+      query = AddOrder(criteria, statement, cause, smo, personDatum, gender, citizenship, documentType, document, query);
 
       query.Skip(criteria.Skip).Take(criteria.Take);
 
       SearchStatementResult result = null;
       var res =
         query.SelectList(
-          y =>
-          y.Select(x => x.Id).WithAlias(() => result.Id)
-           .Select(x => x.DateFiling).WithAlias(() => result.DateFiling)
-           .Select(x => x.IsActive).WithAlias(() => result.IsActive)
-           .Select(x => cause.Name).WithAlias(() => result.CauseFiling)
-           .Select(x => x.CauseFiling.Id).WithAlias(() => result.CauseFilingId)
-           .Select(x => smo.Id).WithAlias(() => result.SmoId)
-           .Select(x => smo.ShortName).WithAlias(() => result.Smo)
-           .Select(x => smo.Ogrn).WithAlias(() => result.SmoOGRN)
-           .Select(x => tfom.Okato).WithAlias(() => result.TfomOKATO)
-           .Select(x => personDatum.FirstName).WithAlias(() => result.FirstName)
-           .Select(x => personDatum.LastName).WithAlias(() => result.LastName)
-           .Select(x => personDatum.MiddleName).WithAlias(() => result.MiddleName)
-           .Select(x => gender.Name).WithAlias(() => result.Gender)
-           .Select(x => personDatum.Birthday).WithAlias(() => result.Birthday)
-           .Select(x => personDatum.Birthplace).WithAlias(() => result.Birthplace)
-           .Select(x => x.Address2).WithAlias(() => result.AddressLive)
-           .Select(x => x.Address).WithAlias(() => result.AddressRegistration)
-           .Select(x => x.NumberPolicy).WithAlias(() => result.PolicyNumber)
-           .Select(x => citizenship.Name).WithAlias(() => result.Citizenship)
-           .Select(x => documentType.Name).WithAlias(() => result.DocumentType)
-           .Select(x => document.Series).WithAlias(() => result.DocumentSeria)
-           .Select(x => document.Number).WithAlias(() => result.DocumentNumber)
-           .Select(x => personDatum.Snils).WithAlias(() => result.Snils)
-           .Select(x => status.Name).WithAlias(() => result.StatusStatement)
-           .Select(x => status.Id).WithAlias(() => result.Status)
-           .Select(x => person.Status.Id).WithAlias(() => result.PersonStatus)
-           .Select(x => x.IsExportPolis).WithAlias(() => result.IsSinhronized))
-          .TransformUsing(Transformers.AliasToBean<SearchStatementResult>())
-          .List<SearchStatementResult>();
+                         y =>
+                         y.Select(x => x.Id)
+                          .WithAlias(() => result.Id)
+                          .Select(x => x.DateFiling)
+                          .WithAlias(() => result.DateFiling)
+                          .Select(x => x.IsActive)
+                          .WithAlias(() => result.IsActive)
+                          .Select(x => cause.Name)
+                          .WithAlias(() => result.CauseFiling)
+                          .Select(x => x.CauseFiling.Id)
+                          .WithAlias(() => result.CauseFilingId)
+                          .Select(x => smo.Id)
+                          .WithAlias(() => result.SmoId)
+                          .Select(x => smo.ShortName)
+                          .WithAlias(() => result.Smo)
+                          .Select(x => smo.Ogrn)
+                          .WithAlias(() => result.SmoOGRN)
+                          .Select(x => tfom.Okato)
+                          .WithAlias(() => result.TfomOKATO)
+                          .Select(x => personDatum.FirstName)
+                          .WithAlias(() => result.FirstName)
+                          .Select(x => personDatum.LastName)
+                          .WithAlias(() => result.LastName)
+                          .Select(x => personDatum.MiddleName)
+                          .WithAlias(() => result.MiddleName)
+                          .Select(x => gender.Name)
+                          .WithAlias(() => result.Gender)
+                          .Select(x => personDatum.Birthday)
+                          .WithAlias(() => result.Birthday)
+                          .Select(x => personDatum.Birthplace)
+                          .WithAlias(() => result.Birthplace)
+                          .Select(x => x.Address2)
+                          .WithAlias(() => result.AddressLive)
+                          .Select(x => x.Address)
+                          .WithAlias(() => result.AddressRegistration)
+                          .Select(x => x.NumberPolicy)
+                          .WithAlias(() => result.PolicyNumber)
+                          .Select(x => citizenship.Name)
+                          .WithAlias(() => result.Citizenship)
+                          .Select(x => documentType.Name)
+                          .WithAlias(() => result.DocumentType)
+                          .Select(x => document.Series)
+                          .WithAlias(() => result.DocumentSeria)
+                          .Select(x => document.Number)
+                          .WithAlias(() => result.DocumentNumber)
+                          .Select(x => personDatum.Snils)
+                          .WithAlias(() => result.Snils)
+                          .Select(x => status.Name)
+                          .WithAlias(() => result.StatusStatement)
+                          .Select(x => status.Id)
+                          .WithAlias(() => result.Status)
+                          .Select(x => person.Status.Id)
+                          .WithAlias(() => result.PersonStatus)
+                          .Select(x => x.IsExportPolis)
+                          .WithAlias(() => result.IsSinhronized))
+             .TransformUsing(Transformers.AliasToBean<SearchStatementResult>())
+             .List<SearchStatementResult>();
 
       var errorManager = ObjectFactory.GetInstance<IErrorManager>();
       var conceptCacheManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       // получение текущего пользователя и текущей страховой
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      Organisation currentSmo = null;
-      if (currentUser != null && currentUser.PointDistributionPolicy != null)
-      {
-        currentSmo = currentUser.PointDistributionPolicy.Parent;
-      }
-
       foreach (var statementResult in res)
       {
         if (statementResult.IsActive)
@@ -670,22 +729,38 @@ namespace rt.srz.business.manager
           {
             statementResult.StatusStatement += " , Умерший";
           }
+
           statementResult.StatusStatement += ")";
         }
 
-        statementResult.Errors = errorManager.GetBy(x => x.Statement.Id == statementResult.Id).Select(x => string.IsNullOrEmpty(x.Repl) ? x.Message1 : string.Format("{0} ({1})", x.Message1, x.Repl)).ToList();
+        statementResult.Errors =
+          errorManager.GetBy(x => x.Statement.Id == statementResult.Id)
+                      .Select(
+                              x =>
+                              string.IsNullOrEmpty(x.Repl) ? x.Message1 : string.Format("{0} ({1})", x.Message1, x.Repl))
+                      .ToList();
         statementResult.TypeStatement =
           conceptCacheManager.GetById(Statement.GetTypeStatementId(statementResult.CauseFilingId)).Name;
         statementResult.FromCurrentSmo = currentSmo.Id == statementResult.SmoId;
-        statementResult.DateInsuranceEnd = new DateTime(2030, 1, 1); //TODO: логика для даты окончания
+        statementResult.DateInsuranceEnd = new DateTime(2030, 1, 1); // TODO: логика для даты окончания
 
-        var temp = ObjectFactory.GetInstance<IMedicalInsuranceManager>().GetBy(x => x.Statement.Id == statementResult.Id && x.IsActive && x.PolisType.Id == PolisType.В).FirstOrDefault();
+        var temp =
+          ObjectFactory.GetInstance<IMedicalInsuranceManager>()
+                       .GetBy(x => x.Statement.Id == statementResult.Id && x.IsActive && x.PolisType.Id == PolisType.В)
+                       .FirstOrDefault();
         if (temp != null)
+        {
           statementResult.NumberTemporaryCertificate = temp.PolisNumber;
+        }
 
-        var polis = ObjectFactory.GetInstance<IMedicalInsuranceManager>().GetBy(x => x.Statement.Id == statementResult.Id && x.IsActive && x.PolisType.Id != PolisType.В).FirstOrDefault();
+        var polis =
+          ObjectFactory.GetInstance<IMedicalInsuranceManager>()
+                       .GetBy(x => x.Statement.Id == statementResult.Id && x.IsActive && x.PolisType.Id != PolisType.В)
+                       .FirstOrDefault();
         if (polis != null)
+        {
           statementResult.PolicyNumber = polis.Enp;
+        }
       }
 
       searchResult.Rows = res;

@@ -46,9 +46,9 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Number = default(Int16);
-			entity.PolisNumber = "Test";
-			entity.MainPolisNumber = "Test Tes";
-			entity.Snils = "Test ";
+			entity.PolisNumber = "Test Test Test";
+			entity.MainPolisNumber = "Test Test Test ";
+			entity.Snils = "Test T";
 			entity.IsActive = true;
 			entity.Employment = true;
 			

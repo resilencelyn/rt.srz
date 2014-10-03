@@ -47,6 +47,7 @@ namespace rt.srz.business.tests
 			
 			entity.Name = "Test Test ";
 			entity.ValueString = "Test Test ";
+			entity.UserId = System.Guid.NewGuid();
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
@@ -54,15 +55,6 @@ namespace rt.srz.business.tests
 					if (all.Count > 0)
 					{
 						entity.Organisation = all[0];
-					}
-				}	
-			
-			using(rt.srz.business.manager.IUserManager userManager = ObjectFactory.GetInstance<IUserManager>())
-				{
-				    var all = userManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.User = all[0];
 					}
 				}	
 			

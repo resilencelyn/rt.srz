@@ -29,20 +29,19 @@ namespace rt.srz.model.srz
       } 
 
 
-        
-				[XmlElement(Order =  2)]
+        [XmlElement(Order =  2)]
         [DataMember(Order =  2)]
-		public virtual Concept Event { get; set;}
-			
+        public virtual System.Guid UserId { get; set;}
+        
         
 				[XmlElement(Order =  3)]
         [DataMember(Order =  3)]
-		public virtual Statement Statement { get; set;}
+		public virtual Concept Event { get; set;}
 			
         
 				[XmlElement(Order =  4)]
         [DataMember(Order =  4)]
-		public virtual User User { get; set;}
+		public virtual Statement Statement { get; set;}
 			
        }
 }
