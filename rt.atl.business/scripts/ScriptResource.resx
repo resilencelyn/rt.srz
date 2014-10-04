@@ -255,9 +255,7 @@ INSERT INTO [dbo].[Address] with (tablockx)
    select  
            cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
          , p.BOMJ
-         , case when p.INDX is null or p.INDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRG),
-                  (select top 1 [INDEX] from KLADR k where OCATD = p.RN)), '000000')
-            else p.INDX end
+         , isnull (p.INDX, '000000')
          , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.SUBJ + '000000' = OCATD), '')
          , p.RNNAME
          , p.CITY
@@ -303,9 +301,7 @@ INSERT INTO [dbo].[Address] with (tablockx)
 ( 
    select  cast(cast(p.id as varbinary(36)) as uniqueidentifier)
          , p.BOMJ
-         ,  case when p.INDX is null or p.INDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRG),
-                  (select top 1 [INDEX] from KLADR k where OCATD = p.RN)), '000000')
-            else p.INDX end
+         , isnull (p.INDX, '000000')
          , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.SUBJ + '000000' = OCATD), '')
          , p.RNNAME
          , p.CITY
@@ -366,9 +362,7 @@ INSERT INTO [dbo].[Address] with (tablockx)
    from (
    select cast(cast(p.id  + 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
          , p.BOMJ as [IsHomeless]
-         , case when p.PINDX is null or p.PINDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRP),
-                  (select top 1 [INDEX] from KLADR k where OCATD = p.PRN)), '000000')
-            else p.PINDX end as [Postcode]
+         , isnull (p.PINDX, '000000') as [Postcode]
          , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.PSUBJ + '000000' = OCATD), '') as [Subject]
          , p.PRNNAME as [Area]
          , p.PCITY as [City]
@@ -429,9 +423,7 @@ INSERT INTO [dbo].[Address] with (tablockx)
    from (
    select cast(cast(p.id  - 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
          , p.BOMJ as [IsHomeless]
-         ,case when p.PINDX is null or p.PINDX = '' then isnull(isnull((select top 1 k.[INDEX] from KLADR k where CODE = p.KLADRP),
-                  (select top 1 [INDEX] from KLADR k where OCATD = p.PRN)), '000000')
-            else p.PINDX end as [Postcode]
+         , isnull (p.PINDX, '000000') as [Postcode]
          , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.PSUBJ + '000000' = OCATD), '') as [Subject]
          , p.PRNNAME as [Area]
          , p.PCITY as [City]
