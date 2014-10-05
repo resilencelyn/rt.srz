@@ -56,10 +56,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
-    </Reference>
     <Reference Include="Serialize.Linq, Version=1.1.4878.20799, Culture=neutral, PublicKeyToken=25bcc11ba213b377, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Serialize.Linq.1.2\lib\net40\Serialize.Linq.dll</HintPath>
@@ -123,10 +119,6 @@
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
-      <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
-      <Name>rt.srz.model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -45,8 +45,8 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Code = "Test Test Test Test Test Test Test Test Tes";
-			entity.Name = "Test Test Test Test Test Test Test T";
+			entity.Code = "Test Test Test Test Test Test Test Tes";
+			entity.Name = "Test Test T";
 			entity.IsActive = true;
 			entity.FirstName = true;
 			entity.LastName = true;
@@ -78,7 +78,7 @@ namespace rt.srz.business.tests
 			entity.Recalculated = true;
 			entity.Enp = true;
 			entity.MainEnp = true;
-			entity.Weight = 19;
+			entity.Weight = 33;
 			entity.Insertion = true;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
@@ -154,7 +154,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.SearchKeyType entityA = GetFirstSearchKeyType();
 				
-				entityA.Code = "Test Test Test Test Test Test Te";
+				entityA.Code = "Test Test Test Test Test Test Test Test Test T";
 				
 				manager.Update(entityA);
 

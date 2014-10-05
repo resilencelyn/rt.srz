@@ -45,7 +45,7 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Version = 63;
+			entity.Version = 92;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
@@ -129,7 +129,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.MessageStatement entityA = GetFirstMessageStatement();
 				
-				entityA.Version = 10;
+				entityA.Version = 68;
 				
 				manager.Update(entityA);
 

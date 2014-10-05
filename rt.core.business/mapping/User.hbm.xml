@@ -13,9 +13,6 @@
 		<property name="IsApproved" column="[IsApproved]" />
 		<property name="Fio" column="[Fio]" />
 		<property name="PointDistributionPolicyId" column="[PointDistributionPolicyId]" />
-		<property name="UserId1" column="[UserId]" />
-		<property name="UserId2" column="[UserId]" />
-		<property name="UserId3" column="[UserId]" />
 		<bag name="UserGroupRoles" lazy="true" inverse="true" >
 			<key column="[UserId]"></key>
 			<one-to-many class="UserGroupRole"></one-to-many>

@@ -45,7 +45,7 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FileName = "Test Test Test Test Test Test Test Test Test Te";
+			entity.FileName = "Test Test Test T";
 			entity.Number = default(Int16);
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
@@ -157,7 +157,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.Batch entityA = GetFirstBatch();
 				
-				entityA.FileName = "Test Test Test Test Test Test Test Test Test T";
+				entityA.FileName = "Test Test Test Test Test Test Test Test Test Test Tes";
 				
 				manager.Update(entityA);
 

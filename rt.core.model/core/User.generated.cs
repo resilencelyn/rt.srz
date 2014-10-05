@@ -65,18 +65,6 @@ namespace rt.core.model.core
         [DataMember(Order =  10)]
         public virtual System.Guid? PointDistributionPolicyId { get; set;}
         
-        [XmlElement(Order =  11)]
-        [DataMember(Order =  11)]
-        public virtual System.Guid? UserId1 { get; set;}
-        
-        [XmlElement(Order =  12)]
-        [DataMember(Order =  12)]
-        public virtual System.Guid? UserId2 { get; set;}
-        
-        [XmlElement(Order =  13)]
-        [DataMember(Order =  13)]
-        public virtual System.Guid UserId3 { get; set;}
-        
         [XmlIgnore] 
         public virtual IList<UserGroupRole> UserGroupRoles { get; set;}
 		

@@ -47,17 +47,17 @@ namespace rt.srz.business.tests
 			
 			entity.DateFiling = System.DateTime.Now;
 			entity.HasPetition = true;
-			entity.NumberPolicy = "Test Test";
+			entity.NumberPolicy = "Test Test Test Test";
 			entity.AbsentPrevPolicy = true;
 			entity.IsActive = true;
 			entity.PolicyIsIssued = true;
-			entity.PrzBuffId = 27;
-			entity.PidId = 71;
-			entity.PolisId = 58;
+			entity.PrzBuffId = 69;
+			entity.PidId = 75;
+			entity.PolisId = 24;
 			entity.IsExportTemp = true;
 			entity.IsExportPolis = true;
-			entity.PrzBuffPolisId = 86;
-			entity.Version = 68;
+			entity.PrzBuffPolisId = 2;
+			entity.Version = 63;
 			entity.UserId = System.Guid.NewGuid();
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())

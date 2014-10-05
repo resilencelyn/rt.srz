@@ -120,7 +120,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.InsuredPerson entityA = GetFirstInsuredPerson();
 				
-				entityA.MainPolisNumber = "Test Te";
+				entityA.MainPolisNumber = "Test Test Te";
 				
 				manager.Update(entityA);
 

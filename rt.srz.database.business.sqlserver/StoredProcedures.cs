@@ -1,188 +1,378 @@
-//------------------------------------------------------------------------------
-// <copyright file="CSSqlStoredProcedure.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StoredProcedures.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Text;
 using System.Linq;
+
 using Microsoft.SqlServer.Server;
+
 using rt.srz.database.business;
-using rt.srz.database.business.interfaces;
-using rt.srz.database.business.interfaces.pseudonymization;
-using rt.srz.database.business.model;
-using rt.srz.database.business.standard;
 using rt.srz.database.business.standard.helpers;
 
-public partial class StoredProcedures
+/// <summary>
+/// The stored procedures.
+/// </summary>
+public class StoredProcedures
 {
+  #region Public Methods and Operators
+
   /// <summary>
-  /// Класс для табличной функции
+  /// Расчитывает стандартные ключи для указанных параметров
   /// </summary>
-  private class StandardKeyHashResult
+  /// <param name="statementXml">
+  /// The statement Xml.
+  /// </param>
+  /// <param name="insuredPersonDataXml">
+  /// The insured Person Data Xml.
+  /// </param>
+  /// <param name="documentXml">
+  /// The document Xml.
+  /// </param>
+  /// <param name="okato">
+  /// The okato.
+  /// </param>
+  /// <returns>
+  /// The <see cref="IEnumerable"/>.
+  /// </returns>
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash",
+    TableDefinition = "KeyId uniqueidentifier, DocumentTypeId int, Hash varbinary(max), ErrorSqlString nvarchar(max)")]
+  public static IEnumerable CalcStandardSearchKeys(
+    SqlString statementXml,
+    SqlString insuredPersonDataXml,
+    SqlString documentXml,
+    SqlString okato)
   {
-    public SqlGuid KeyId;
-    public SqlInt32 DocumentTypeId;
-    public SqlBinary Hash;
-    
-    public StandardKeyHashResult(SqlGuid keyId, SqlInt32 documentTypeId, SqlBinary hash)
+    IEnumerable result;
+    try
     {
-      KeyId = keyId;
-      DocumentTypeId = documentTypeId;
-      Hash = hash;
+      // Расчет ключей
+      var calculatedHashes = ObjectFactory.GetStandardPseudonymizationManager()
+                                          .CalculateHashes(
+                                                           statementXml.Value,
+                                                           insuredPersonDataXml.Value,
+                                                           documentXml.Value,
+                                                           okato.Value);
+
+      result =
+        calculatedHashes.Where(x => x.hash != null)
+                        .Select(
+                                x =>
+                                new StandardKeyHashResult(
+                                  new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)),
+                                  new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)),
+                                  new SqlBinary(x.hash),
+                                  new SqlString(string.Empty)))
+                        .ToList();
     }
+    catch (Exception ex)
+    {
+      result = new List<StandardKeyHashResult>
+               {
+                 new StandardKeyHashResult(
+                   new SqlGuid(Guid.Empty),
+                   new SqlInt32(0),
+                   new SqlBinary(new byte[0]),
+                   new SqlString(ex.ToString()))
+               };
+    }
+
+    return result;
   }
 
   /// <summary>
-  /// Класс для табличной функции
+  /// Расчитывает стандартные ключи для указанных параметров
   /// </summary>
-  private class UserKeyHashResult
+  /// <param name="exchangeXml">
+  /// The exchange Xml.
+  /// </param>
+  /// <param name="documentXml">
+  /// The document Xml.
+  /// </param>
+  /// <param name="addressXml">
+  /// The address Xml.
+  /// </param>
+  /// <returns>
+  /// The <see cref="IEnumerable"/>.
+  /// </returns>
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash",
+    TableDefinition = "KeyId uniqueidentifier, DocumentTypeId int, Hash varbinary(max), ErrorSqlString nvarchar(max)")]
+  public static IEnumerable CalcStandardSearchKeysExchange(
+    SqlString exchangeXml,
+    SqlString documentXml,
+    SqlString addressXml)
   {
-    public SqlBinary Hash;
-
-    public UserKeyHashResult(SqlBinary hash)
+    IEnumerable result;
+    try
     {
-      Hash = hash;
+      // Расчет ключей
+      var calculatedHashes = ObjectFactory.GetStandardPseudonymizationManager()
+                                          .CalculateHashes(exchangeXml.Value, documentXml.Value, addressXml.Value);
+
+      result =
+        calculatedHashes.Where(x => x.hash != null)
+                        .Select(
+                                x =>
+                                new StandardKeyHashResult(
+                                  new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)),
+                                  new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)),
+                                  new SqlBinary(x.hash),
+                                  new SqlString(string.Empty)))
+                        .ToList();
     }
+    catch (Exception ex)
+    {
+      result = new List<StandardKeyHashResult>
+               {
+                 new StandardKeyHashResult(
+                   new SqlGuid(Guid.Empty),
+                   new SqlInt32(0),
+                   new SqlBinary(new byte[0]),
+                   new SqlString(ex.ToString()))
+               };
+    }
+
+    return result;
+  }
+
+  /// <summary>
+  /// Расчитывает пользовательский ключ для указанных параметров
+  /// </summary>
+  /// <param name="searchKeyTypeXml">
+  /// The search Key Type Xml.
+  /// </param>
+  /// <param name="insuredPersonDataXml">
+  /// The insured Person Data Xml.
+  /// </param>
+  /// <param name="documentXml">
+  /// The document Xml.
+  /// </param>
+  /// <param name="address1Xml">
+  /// The address 1 Xml.
+  /// </param>
+  /// <param name="address2Xml">
+  /// The address 2 Xml.
+  /// </param>
+  /// <param name="medicalInsuranceXml">
+  /// The medical Insurance Xml.
+  /// </param>
+  /// <param name="okato">
+  /// The okato.
+  /// </param>
+  /// <returns>
+  /// The <see cref="IEnumerable"/>.
+  /// </returns>
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash",
+    TableDefinition = "Hash varbinary(max)")]
+  public static IEnumerable CalcUserSearchKey(
+    SqlString searchKeyTypeXml,
+    SqlString insuredPersonDataXml,
+    SqlString documentXml,
+    SqlString address1Xml,
+    SqlString address2Xml,
+    SqlString medicalInsuranceXml,
+    SqlString okato)
+  {
+    var result = new byte[0];
+    try
+    {
+      // Расчет ключа
+      result = ObjectFactory.GetPseudonymizationManager()
+                            .CalculateUserSearchKey(
+                                                    searchKeyTypeXml.Value,
+                                                    insuredPersonDataXml.Value,
+                                                    documentXml.Value,
+                                                    address1Xml.Value,
+                                                    address2Xml.Value,
+                                                    medicalInsuranceXml.Value,
+                                                    okato.Value);
+    }
+    catch (Exception)
+    {
+      // TODO: логирование
+    }
+
+    return new List<UserKeyHashResult> { new UserKeyHashResult(result) };
+  }
+
+  /// <summary>
+  /// Расчитывает пользовательский ключ для указанных параметров
+  /// </summary>
+  /// <param name="searchKeyTypeXml">
+  /// The search Key Type Xml.
+  /// </param>
+  /// <param name="exchangeXml">
+  /// The exchange Xml.
+  /// </param>
+  /// <param name="documentXml">
+  /// The document Xml.
+  /// </param>
+  /// <param name="addressXml">
+  /// The address Xml.
+  /// </param>
+  /// <returns>
+  /// The <see cref="IEnumerable"/>.
+  /// </returns>
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash",
+    TableDefinition = "Hash varbinary(max)")]
+  public static IEnumerable CalcUserSearchKeyExchange(
+    SqlString searchKeyTypeXml,
+    SqlString exchangeXml,
+    SqlString documentXml,
+    SqlString addressXml)
+  {
+    var result = new byte[0];
+    try
+    {
+      // Расчет ключа
+      result = ObjectFactory.GetPseudonymizationManager()
+                            .CalculateUserSearchKeyExchange(
+                                                            searchKeyTypeXml.Value,
+                                                            exchangeXml.Value,
+                                                            documentXml.Value,
+                                                            addressXml.Value);
+    }
+    catch (Exception e)
+    {
+      // TODO: логирование
+    }
+
+    return new List<UserKeyHashResult> { new UserKeyHashResult(result) };
   }
 
   /// <summary>
   /// Заполняет значение для табличной функции
   /// </summary>
-  /// <param name="obj"></param>
-  /// <param name="keyId"></param>
-  /// <param name="hash"></param>
-  public static void FillStandardKeyHash(object obj, out SqlGuid keyId, out SqlInt32 documentTypeId, out SqlBinary hash)
+  /// <param name="obj">
+  /// The obj.
+  /// </param>
+  /// <param name="keyId">
+  /// The key Id.
+  /// </param>
+  /// <param name="documentTypeId">
+  /// The document Type Id.
+  /// </param>
+  /// <param name="hash">
+  /// The hash.
+  /// </param>
+  /// <param name="errorSqlString">
+  /// The error Sql String.
+  /// </param>
+  public static void FillStandardKeyHash(object obj, out SqlGuid keyId, out SqlInt32 documentTypeId, out SqlBinary hash, out SqlString errorSqlString)
   {
-    StandardKeyHashResult hashResult = (StandardKeyHashResult)obj;
+    var hashResult = (StandardKeyHashResult)obj;
     keyId = hashResult.KeyId;
     documentTypeId = hashResult.DocumentTypeId;
     hash = hashResult.Hash;
+    errorSqlString = hashResult.ErrorSqlString;
   }
 
   /// <summary>
   /// Заполняет значение для табаличной функции
   /// </summary>
-  /// <param name="obj"></param>
-  /// <param name="keyId"></param>
-  /// <param name="hash"></param>
+  /// <param name="obj">
+  /// The obj.
+  /// </param>
+  /// <param name="hash">
+  /// The hash.
+  /// </param>
   public static void FillUserKeyHash(object obj, out SqlBinary hash)
   {
-    UserKeyHashResult hashResult = (UserKeyHashResult)obj;
+    var hashResult = (UserKeyHashResult)obj;
     hash = hashResult.Hash;
   }
 
-  /// <summary>
-  /// Расчитывает стандартные ключи для указанных параметров
-  /// </summary>
-  /// <param name="searchKeyTypeXml"></param>
-  /// <param name="prfExchangeXml"></param>
-  /// <param name="keyValue"></param>
-  /// <param name="hash"></param>
-  [Microsoft.SqlServer.Server.SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash", TableDefinition = "KeyId uniqueidentifier, DocumentTypeId int, Hash varbinary(max)")]
-  public static IEnumerable CalcStandardSearchKeys(SqlString statementXml, SqlString insuredPersonDataXml, SqlString documentXml, SqlString okato)
-  {
-    IEnumerable result = new StandardKeyHashResult[0];
-    try
-    {
-       //Расчет ключей
-      List<HashDataNew> calculatedHashes = ObjectFactory.GetStandardPseudonymizationManager().CalculateHashes(statementXml.Value, insuredPersonDataXml.Value, 
-        documentXml.Value, okato.Value);
+  #endregion
 
-      result = calculatedHashes.Where(x => x.hash != null).Select(x => new StandardKeyHashResult(new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)), 
-        new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)), new SqlBinary(x.hash))).ToList();
-    }
-    catch (Exception e)
+  /// <summary>
+  ///   Класс для табличной функции
+  /// </summary>
+  private class StandardKeyHashResult
+  {
+    #region Fields
+
+    /// <summary>
+    /// The document type id.
+    /// </summary>
+    public readonly SqlInt32 DocumentTypeId;
+
+    /// <summary>
+    /// The hash.
+    /// </summary>
+    public readonly SqlBinary Hash;
+
+    /// <summary>
+    /// The key id.
+    /// </summary>
+    public readonly SqlGuid KeyId;
+
+    /// <summary>
+    /// The error sql string.
+    /// </summary>
+    public readonly SqlString ErrorSqlString;
+
+    #endregion
+
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StandardKeyHashResult"/> class.
+    /// </summary>
+    /// <param name="keyId">
+    /// The key id.
+    /// </param>
+    /// <param name="documentTypeId">
+    /// The document type id.
+    /// </param>
+    /// <param name="hash">
+    /// The hash.
+    /// </param>
+    /// <param name="errorSqlString">
+    /// The error Sql String.
+    /// </param>
+    public StandardKeyHashResult(SqlGuid keyId, SqlInt32 documentTypeId, SqlBinary hash, SqlString errorSqlString)
     {
-      //TODO: логирование
+      KeyId = keyId;
+      DocumentTypeId = documentTypeId;
+      Hash = hash;
+      ErrorSqlString = errorSqlString;
     }
-    
-    return result;
+
+    #endregion
   }
 
   /// <summary>
-  /// Расчитывает пользовательский ключ для указанных параметров
+  ///   Класс для табличной функции
   /// </summary>
-  /// <param name="searchKeyTypeXml"></param>
-  /// <param name="insuredPersonDataXml"></param>
-  /// <param name="documentXml"></param>
-  /// <param name="address1Xml"></param>
-  /// <param name="address2Xml"></param>
-  /// <param name="medicalInsuranceXml"></param>
-  /// <param name="keyValue"></param>
-  /// <param name="hash"></param>
-  [Microsoft.SqlServer.Server.SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash", TableDefinition = "Hash varbinary(max)")]
-  public static IEnumerable CalcUserSearchKey(SqlString searchKeyTypeXml, SqlString insuredPersonDataXml, SqlString documentXml,
-                                     SqlString address1Xml, SqlString address2Xml, SqlString medicalInsuranceXml, SqlString okato)
+  private class UserKeyHashResult
   {
-    byte[] result = new byte[0];
-    try
+    #region Fields
+
+    /// <summary>
+    /// The hash.
+    /// </summary>
+    public readonly SqlBinary Hash;
+
+    #endregion
+
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UserKeyHashResult"/> class.
+    /// </summary>
+    /// <param name="hash">
+    /// The hash.
+    /// </param>
+    public UserKeyHashResult(SqlBinary hash)
     {
-      //Расчет ключа
-      result = ObjectFactory.GetPseudonymizationManager().CalculateUserSearchKey(searchKeyTypeXml.Value, insuredPersonDataXml.Value,
-        documentXml.Value, address1Xml.Value, address2Xml.Value, medicalInsuranceXml.Value, okato.Value);
-    }
-    catch (Exception)
-    {
-      //TODO: логирование
+      Hash = hash;
     }
 
-    return new List<UserKeyHashResult> { new UserKeyHashResult(result) };
-  }
-
-  /// <summary>
-  /// Расчитывает стандартные ключи для указанных параметров
-  /// </summary>
-  /// <param name="searchKeyTypeXml"></param>
-  /// <param name="prfExchangeXml"></param>
-  /// <param name="keyValue"></param>
-  /// <param name="hash"></param>
-  [Microsoft.SqlServer.Server.SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash", TableDefinition = "KeyId uniqueidentifier, DocumentTypeId int, Hash varbinary(max)")]
-  public static IEnumerable CalcStandardSearchKeysExchange(SqlString exchangeXml, SqlString documentXml, SqlString addressXml)
-  {
-    IEnumerable result = new StandardKeyHashResult[0];
-    try
-    {
-       //Расчет ключей
-      List<HashDataNew> calculatedHashes = ObjectFactory.GetStandardPseudonymizationManager().CalculateHashes(exchangeXml.Value, documentXml.Value, addressXml.Value);
-
-      result = calculatedHashes.Where(x => x.hash != null).Select(x => new StandardKeyHashResult(new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)), new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)),
-        new SqlBinary(x.hash))).ToList();
-    }
-    catch (Exception e)
-    {
-      //TODO: логирование
-    }
-    
-    return result;
-  }
-  
-  /// <summary>
-  /// Расчитывает пользовательский ключ для указанных параметров
-  /// </summary>
-  /// <param name="searchKeyTypeXml"></param>
-  /// <param name="prfExchangeXml"></param>
-  /// <param name="keyValue"></param>
-  /// <param name="hash"></param>
-  [Microsoft.SqlServer.Server.SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash", TableDefinition = "Hash varbinary(max)")]
-  public static IEnumerable CalcUserSearchKeyExchange(SqlString searchKeyTypeXml, SqlString exchangeXml, SqlString documentXml, SqlString addressXml)
-  {
-    byte[] result = new byte[0];
-    try
-    {
-      //Расчет ключа
-      result = ObjectFactory.GetPseudonymizationManager().CalculateUserSearchKeyExchange(searchKeyTypeXml.Value, exchangeXml.Value, documentXml.Value, addressXml.Value);
-    }
-    catch(Exception e)
-    {
-      //TODO: логирование
-    }
-
-    return new List<UserKeyHashResult> { new UserKeyHashResult(result) };
+    #endregion
   }
 }

@@ -45,7 +45,7 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FakeField = 31;
+			entity.FakeField = 11;
 			
 			using(rt.core.business.manager.IPermissionManager permissionManager = ObjectFactory.GetInstance<IPermissionManager>())
 				{
@@ -120,7 +120,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.PermissionRole entityA = GetFirstPermissionRole();
 				
-				entityA.FakeField = 28;
+				entityA.FakeField = 61;
 				
 				manager.Update(entityA);
 

@@ -46,21 +46,21 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Name = "Test Test ";
-			entity.PosSmo = "Test Te";
-			entity.PosAddress = "Te";
-			entity.PosDay1 = "Test";
-			entity.PosMonth1 = "Test Test ";
-			entity.PosYear1 = "Test Test ";
-			entity.PosBirthplace = "Test Tes";
-			entity.PosMale = "Test Te";
-			entity.PosFemale = "Tes";
-			entity.PosDay2 = "Test ";
-			entity.PosMonth2 = "Te";
-			entity.PosYear2 = "Test Tes";
-			entity.PosFio = "Test Test T";
-			entity.PosLine1 = "Test Te";
-			entity.PosLin2 = "Test Test Test";
-			entity.PosLine3 = "Test Test T";
+			entity.PosSmo = "Test Test";
+			entity.PosAddress = "Test";
+			entity.PosDay1 = "Test Test ";
+			entity.PosMonth1 = "Test T";
+			entity.PosYear1 = "Tes";
+			entity.PosBirthplace = "Te";
+			entity.PosMale = "Test Tes";
+			entity.PosFemale = "Test Test Te";
+			entity.PosDay2 = "Test";
+			entity.PosMonth2 = "Test Test Test";
+			entity.PosYear2 = "Test Test Tes";
+			entity.PosFio = "Te";
+			entity.PosLine1 = "Test Test Te";
+			entity.PosLin2 = "Test Test Tes";
+			entity.PosLine3 = "Te";
 			entity.Default = true;
 			
 			return entity;

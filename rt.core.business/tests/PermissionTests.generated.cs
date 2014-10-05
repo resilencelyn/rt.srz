@@ -46,7 +46,7 @@ namespace rt.core.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Name = "Test Test ";
-			entity.Code = 33;
+			entity.Code = 9;
 			
 			return entity;
 		}

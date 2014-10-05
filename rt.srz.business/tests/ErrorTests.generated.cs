@@ -46,7 +46,7 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Message1 = "Test Test ";
-			entity.Code = "Te";
+			entity.Code = "T";
 			entity.Repl = "Test Test ";
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())

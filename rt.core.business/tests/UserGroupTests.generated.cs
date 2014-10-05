@@ -45,7 +45,7 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FakeField = 7;
+			entity.FakeField = 39;
 			
 			using(rt.core.business.manager.IGroupManager groupManager = ObjectFactory.GetInstance<IGroupManager>())
 				{
@@ -120,7 +120,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.UserGroup entityA = GetFirstUserGroup();
 				
-				entityA.FakeField = 28;
+				entityA.FakeField = 54;
 				
 				manager.Update(entityA);
 

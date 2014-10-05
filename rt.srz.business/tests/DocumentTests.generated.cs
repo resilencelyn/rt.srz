@@ -45,8 +45,8 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Series = "Test Test Test Tes";
-			entity.Number = "Test Test Test T";
+			entity.Series = "Test Test T";
+			entity.Number = "Test T";
 			entity.IssuingAuthority = "Test Test ";
 			entity.DateIssue = System.DateTime.Now;
 			entity.DateExp = System.DateTime.Now;
@@ -116,7 +116,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.Document entityA = GetFirstDocument();
 				
-				entityA.Series = "Test Test T";
+				entityA.Series = "Test Test Te";
 				
 				manager.Update(entityA);
 

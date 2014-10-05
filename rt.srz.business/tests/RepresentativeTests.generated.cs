@@ -45,11 +45,11 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FirstName = "Test Test Test Test Test Test Test Test ";
-			entity.LastName = "Test Test Test Test Tes";
-			entity.MiddleName = "Test Test Test Test Test Test Test T";
-			entity.HomePhone = "Test Test Test";
-			entity.WorkPhone = "Test ";
+			entity.FirstName = "T";
+			entity.LastName = "Test T";
+			entity.MiddleName = "Test Test Test Test ";
+			entity.HomePhone = "T";
+			entity.WorkPhone = "Test Test Test Test Test Test Test Test";
 			
 			using(rt.srz.business.manager.IDocumentManager documentManager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
@@ -124,7 +124,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.Representative entityA = GetFirstRepresentative();
 				
-				entityA.FirstName = "Test Test Test Test Test Test Tes";
+				entityA.FirstName = "Test Test Test Test Test Test Test Test Test Tes";
 				
 				manager.Update(entityA);
 

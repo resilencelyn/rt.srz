@@ -47,15 +47,15 @@ namespace rt.srz.business.tests
 			
 			entity.Version = default(Int16);
 			entity.Name = "Test Test ";
-			entity.Socr = "Test Test Tes";
-			entity.Code = "Test Test ";
-			entity.Index = 28;
+			entity.Socr = "Test Test";
+			entity.Code = "Test Test Test Test";
+			entity.Index = 69;
 			entity.Gninmb = "Te";
 			entity.Uno = "T";
-			entity.Ocatd = "T";
-			entity.Status = 56;
+			entity.Ocatd = "Test Test Test";
+			entity.Status = 77;
 			entity.FullAddress = "Test Test ";
-			entity.Level = 93;
+			entity.Level = 27;
 			
 			using(rt.srz.business.manager.IKladrManager kladrMemberManager = ObjectFactory.GetInstance<IKladrManager>())
 				{

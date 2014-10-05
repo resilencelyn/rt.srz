@@ -45,18 +45,15 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Login = "Test Test Test Test";
-			entity.Password = "Test Test Test Tes";
-			entity.Email = "Test T";
-			entity.Salt = "Test Test Test Test Test Test ";
+			entity.Login = "Test Test";
+			entity.Password = "Test Test Test Test Test Test Test Te";
+			entity.Email = "Test Test Test Test Test Test Test Test Te";
+			entity.Salt = "Test Test Test ";
 			entity.CreationDate = System.DateTime.Now;
 			entity.LastLoginDate = System.DateTime.Now;
 			entity.IsApproved = true;
 			entity.Fio = "Test Test ";
 			entity.PointDistributionPolicyId = System.Guid.NewGuid();
-			entity.UserId1 = System.Guid.NewGuid();
-			entity.UserId2 = System.Guid.NewGuid();
-			entity.UserId3 = System.Guid.NewGuid();
 			
 			return entity;
 		}
@@ -113,7 +110,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.User entityA = GetFirstUser();
 				
-				entityA.Login = "Test Test Test Test Test Test Test Test T";
+				entityA.Login = "Test Test Test Test Test ";
 				
 				manager.Update(entityA);
 

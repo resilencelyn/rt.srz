@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StatementsSearch.ascx.cs" Inherits="rt.srz.ui.pvp.Controls.StatementsSearch" %>
 <%@ Import Namespace="rt.srz.model.dto" %>
 <%@ Import Namespace="rt.srz.model.srz.concepts" %>
+<%@ Import Namespace="rt.core.services" %>
 
 <%@ Register Src="CustomPager/Pager.ascx" TagPrefix="uc" TagName="Pager" %>
 <%@ Register Src="DocumentUDLUserControl.ascx" TagPrefix="uc" TagName="DocumentUDL" %>

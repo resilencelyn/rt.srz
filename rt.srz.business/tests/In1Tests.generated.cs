@@ -46,8 +46,8 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Number = default(Int16);
-			entity.PolisSeria = "Test Test ";
-			entity.PolisNumber = "Test Test Test Test Test Test Test";
+			entity.PolisSeria = "Test Test Test Test Test Test Test Test ";
+			entity.PolisNumber = "Test Test Test Test Test Test ";
 			entity.DateFrom = System.DateTime.Now;
 			entity.DateTo = System.DateTime.Now;
 			entity.DateStop = System.DateTime.Now;

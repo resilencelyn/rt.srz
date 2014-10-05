@@ -34,7 +34,6 @@
 		<property name="TimeRunFrom" column="[TimeRunFrom]" />
 		<property name="TimeRunTo" column="[TimeRunTo]" />
 		<property name="Address" column="[Address]" />
-		<property name="PointDistributionPolicyId" column="[PointDistributionPolicyId]" />
 		<many-to-one name="Oid" column="[Oid]" class="Oid"  />
 		<many-to-one name="Parent" column="[ParentId]" class="Organisation"  />
 		<many-to-one name="ChangedRow" column="[ChangedRowId]" class="Organisation"  />

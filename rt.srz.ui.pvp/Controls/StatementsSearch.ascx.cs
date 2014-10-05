@@ -18,6 +18,7 @@ namespace rt.srz.ui.pvp.Controls
   using System.Web.UI.WebControls;
 
   using rt.core.model.dto;
+  using rt.core.model.security;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
@@ -62,6 +63,11 @@ namespace rt.srz.ui.pvp.Controls
     ///   The service.
     /// </summary>
     private IStatementService statementService;
+
+    /// <summary>
+    /// The auth service.
+    /// </summary>
+    private IAuthService authService;
 
     #endregion
 
@@ -280,6 +286,7 @@ namespace rt.srz.ui.pvp.Controls
     {
       statementService = ObjectFactory.GetInstance<IStatementService>();
       securityService = ObjectFactory.GetInstance<ISecurityService>();
+      authService = ObjectFactory.GetInstance<IAuthService>();
       if (!IsPostBack)
       {
         FillStatusStatement();

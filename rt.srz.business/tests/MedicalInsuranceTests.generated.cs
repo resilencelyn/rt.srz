@@ -46,12 +46,12 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.PolisSeria = "Test ";
-			entity.PolisNumber = "Test Test Test Test Test Test Test Test Test ";
+			entity.PolisNumber = "Test Test Test Test Test Test Test Test Test Test";
 			entity.DateFrom = System.DateTime.Now;
 			entity.DateTo = System.DateTime.Now;
 			entity.IsActive = true;
 			entity.DateStop = System.DateTime.Now;
-			entity.Enp = "Tes";
+			entity.Enp = "Test Test ";
 			entity.StateDateFrom = System.DateTime.Now;
 			entity.StateDateTo = System.DateTime.Now;
 			
@@ -146,7 +146,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.MedicalInsurance entityA = GetFirstMedicalInsurance();
 				
-				entityA.PolisSeria = "Test Tes";
+				entityA.PolisSeria = "Test Test Test Test Test Test Test T";
 				
 				manager.Update(entityA);
 

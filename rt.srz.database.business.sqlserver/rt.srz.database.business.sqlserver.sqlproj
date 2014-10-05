@@ -86,7 +86,6 @@
     <None Include="delploy\DatabaseAdjust.sql" />
     <None Include="delploy\Delete all.sql" />
     <None Include="delploy\DeployFunctions.sql" />
-    <None Include="rt.srz.database.business.sqlserver.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\rt.srz.database.business\rt.srz.database.business.csproj">

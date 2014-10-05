@@ -15,7 +15,8 @@ namespace rt.srz.database.registry
                 TABLE (
                   [KeyId] UNIQUEIDENTIFIER NULL,
                   [DocumentTypeId] INT NULL,
-                  [Hash]  VARBINARY (MAX)  NULL)
+                  [Hash]  VARBINARY (MAX)  NULL,
+                  [ErrorSqlString] nvarchar(max))
             AS
             EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcStandardSearchKeys]";
     }
@@ -39,7 +40,8 @@ namespace rt.srz.database.registry
                 TABLE (
                   [KeyId] UNIQUEIDENTIFIER NULL,
                   [DocumentTypeId] INT NULL,
-                  [Hash]  VARBINARY (MAX)  NULL)
+                  [Hash]  VARBINARY (MAX)  NULL,
+                  [ErrorSqlString] nvarchar(max))
                AS
               EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcStandardSearchKeysExchange]";
     }

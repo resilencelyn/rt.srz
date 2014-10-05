@@ -149,33 +149,29 @@ namespace rt.srz.model.srz
         [DataMember(Order =  31)]
         public virtual string Address { get; set;}
         
-        [XmlElement(Order =  32)]
-        [DataMember(Order =  32)]
-        public virtual System.Guid? PointDistributionPolicyId { get; set;}
         
+				[XmlElement(Order =  32)]
+        [DataMember(Order =  32)]
+		public virtual Oid Oid { get; set;}
+			
         
 				[XmlElement(Order =  33)]
         [DataMember(Order =  33)]
-		public virtual Oid Oid { get; set;}
+		public virtual Organisation Parent { get; set;}
 			
         
 				[XmlElement(Order =  34)]
         [DataMember(Order =  34)]
-		public virtual Organisation Parent { get; set;}
+		public virtual Organisation ChangedRow { get; set;}
 			
         
 				[XmlElement(Order =  35)]
         [DataMember(Order =  35)]
-		public virtual Organisation ChangedRow { get; set;}
+		public virtual Concept CauseRegistration { get; set;}
 			
         
 				[XmlElement(Order =  36)]
         [DataMember(Order =  36)]
-		public virtual Concept CauseRegistration { get; set;}
-			
-        
-				[XmlElement(Order =  37)]
-        [DataMember(Order =  37)]
 		public virtual Concept CauseExclusion { get; set;}
 			
         [XmlIgnore] 

@@ -45,7 +45,7 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test";
+			entity.Name = "Test Test Test Test Test Test Test Test ";
 			
 			return entity;
 		}
@@ -102,7 +102,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.Group entityA = GetFirstGroup();
 				
-				entityA.Name = "Test Test Te";
+				entityA.Name = "Test Test Test Test Test Test Test Test Test T";
 				
 				manager.Update(entityA);
 
