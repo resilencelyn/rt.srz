@@ -138,7 +138,6 @@
     <Compile Include="security\interfaces\ISecurityLogger.cs" />
     <Compile Include="security\interfaces\ISecurityProvider.cs" />
     <Compile Include="security\loggers\AuthInfoLogMessage.cs" />
-    <Compile Include="security\registry\SecurityRepositoryRegistry.cs" />
     <Compile Include="security\repository\PasswordHash.cs" />
     <Compile Include="security\repository\SecurityProvider.cs" />
     <Compile Include="server\bak\BackupJob.cs" />
@@ -267,6 +266,7 @@
   <ItemGroup>
     <EmbeddedResource Include="mapping\UserGroupRole.hbm.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

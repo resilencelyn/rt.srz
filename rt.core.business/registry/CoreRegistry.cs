@@ -22,6 +22,8 @@ using StructureMap.Configuration.DSL;
 
 namespace rt.core.business.registry
 {
+  using rt.core.business.security.interfaces;
+  using rt.core.business.security.repository;
 
   /// <summary>
   ///   The core registry.
@@ -37,6 +39,19 @@ namespace rt.core.business.registry
     {
       // Синглтоны
       ForSingletonOf<INHibernateSession>().Use<NHibernateSession>();
+
+      ForSingletonOf<ISecurityProvider>().Use<SecurityProvider>();
+
+      Scan(
+        s =>
+        {
+          s.TheCallingAssembly();
+          s.IgnoreStructureMapAttributes();
+
+          ////s.ExcludeNamespace("");
+          s.IncludeNamespace("rt.core.business.manager");
+          s.WithDefaultConventions().OnAddedPluginTypes(t => t.Singleton());
+        });
     }
 
     #endregion

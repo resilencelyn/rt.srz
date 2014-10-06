@@ -2,6 +2,7 @@
 <%@ Import Namespace="rt.srz.model.dto" %>
 <%@ Import Namespace="rt.srz.model.srz.concepts" %>
 <%@ Import Namespace="rt.core.services" %>
+<%@ Import Namespace="rt.srz.services.Security" %>
 
 <%@ Register Src="CustomPager/Pager.ascx" TagPrefix="uc" TagName="Pager" %>
 <%@ Register Src="DocumentUDLUserControl.ascx" TagPrefix="uc" TagName="DocumentUDL" %>

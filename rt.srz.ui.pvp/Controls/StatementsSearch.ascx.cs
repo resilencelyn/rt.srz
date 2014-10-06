@@ -57,17 +57,17 @@ namespace rt.srz.ui.pvp.Controls
     /// <summary>
     ///   The security service.
     /// </summary>
-    private ISecurityService securityService;
+    protected ISecurityService SecurityService;
 
     /// <summary>
     ///   The service.
     /// </summary>
-    private IStatementService statementService;
+    protected IStatementService StatementService;
 
     /// <summary>
     /// The auth service.
     /// </summary>
-    private IAuthService authService;
+    protected IAuthService AuthService;
 
     #endregion
 
@@ -191,7 +191,7 @@ namespace rt.srz.ui.pvp.Controls
               {
                 ////// Сохранение действий с ПД
                 ////var userActionManager = new UserActionManager();
-                ////userActionManager.LogAccessToPersonalData(_statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value), "Просмотр заявления");
+                ////userActionManager.LogAccessToPersonalData(_StatementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value), "Просмотр заявления");
 
                 // Переход
                 Session[SessionConsts.CGuidStatementId] = SearchResultGridView.SelectedDataKey.Value;
@@ -211,12 +211,12 @@ namespace rt.srz.ui.pvp.Controls
               {
                 ////// Сохранение действий с ПД
                 ////var userActionManager = new UserActionManager();
-                ////userActionManager.LogAccessToPersonalData(_statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value), "Выдача полиса");
+                ////userActionManager.LogAccessToPersonalData(_StatementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value), "Выдача полиса");
 
                 // Переход
                 // Session[SessionConsts.CGuidStatementId] = SearchResultGridView.SelectedDataKey.Value;
                 Session[SessionConsts.CCurrentStatement] =
-                  statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value);
+                  StatementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value);
                 RedirectUtils.RedirectToStatement(Response);
               }
             }
@@ -236,7 +236,7 @@ namespace rt.srz.ui.pvp.Controls
           }
 
           // перенесено в проверки доступности пункта меню по выбору строки грида с заявлением
-          // if (!_statementService.InsuredInJoined(_statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value).InsuredPerson.Id))
+          // if (!_StatementService.InsuredInJoined(_StatementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value).InsuredPerson.Id))
           // {
           // //todo: call message
           // break;
@@ -284,9 +284,9 @@ namespace rt.srz.ui.pvp.Controls
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      statementService = ObjectFactory.GetInstance<IStatementService>();
-      securityService = ObjectFactory.GetInstance<ISecurityService>();
-      authService = ObjectFactory.GetInstance<IAuthService>();
+      StatementService = ObjectFactory.GetInstance<IStatementService>();
+      SecurityService = ObjectFactory.GetInstance<ISecurityService>();
+      AuthService = ObjectFactory.GetInstance<IAuthService>();
       if (!IsPostBack)
       {
         FillStatusStatement();
@@ -310,10 +310,10 @@ namespace rt.srz.ui.pvp.Controls
     {
       if (!IsPostBack)
       {
-        ViewState["OpenNotOwnSmo"] = securityService.GetIsCurrentUserAllowPermission(
+        ViewState["OpenNotOwnSmo"] = SecurityService.GetIsCurrentUserAllowPermission(
                                                                                      PermissionCode.Search_OpenNotOwnSmo);
 
-        var currentUser = securityService.GetCurrentUser();
+        var currentUser = SecurityService.GetCurrentUser();
         Menu.FindItem(SessionConsts.CDelete).NavigateUrl = confirmDelete.ViewConfirmScript;
 
         ////Menu.FindItem(SessionConsts.CDeleteDeathInfo).NavigateUrl = confirmDeath.ViewConfirmScript;
@@ -498,11 +498,11 @@ namespace rt.srz.ui.pvp.Controls
 
       Guid id;
       Statement statement = null;
-      var user = securityService.GetCurrentUser();
+      var user = SecurityService.GetCurrentUser();
       if (SearchResultGridView.SelectedDataKey != null
           && Guid.TryParse(SearchResultGridView.SelectedDataKey.Value.ToString(), out id))
       {
-        statement = statementService.GetStatement(id);
+        statement = StatementService.GetStatement(id);
       }
 
       bool fromCurrentSmo;
@@ -538,7 +538,7 @@ namespace rt.srz.ui.pvp.Controls
       SetMenuItemEnable(SessionConsts.CWriteUEC, fromCurrentSmo);
       SetMenuItemEnable(SessionConsts.CInsuranceHistory, fromCurrentSmo);
       var insuredInJoined =
-        statementService.InsuredInJoined(statementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value).InsuredPerson.Id);
+        StatementService.InsuredInJoined(StatementService.GetStatement((Guid)SearchResultGridView.SelectedDataKey.Value).InsuredPerson.Id);
       SetMenuItemEnable(SessionConsts.CSeparate, insuredInJoined && fromCurrentSmo);
 
       SetMenuItemEnable(
@@ -614,7 +614,7 @@ namespace rt.srz.ui.pvp.Controls
         var st = new Statement();
         st.InsuredPersonData = new InsuredPersonDatum();
         st.InsuredPersonData.Snils = SnilsChecker.SsToShort(tbSnils.Text.Replace("_", string.Empty));
-        args.IsValid = statementService.TryCheckProperty(st, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
+        args.IsValid = StatementService.TryCheckProperty(st, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
         cbNotCheckSnils.Visible = !args.IsValid;
         return;
       }
@@ -797,7 +797,7 @@ namespace rt.srz.ui.pvp.Controls
       Guid id;
       if (Guid.TryParse(SearchResultGridView.SelectedDataKey.Value.ToString(), out id))
       {
-        statementService.CanceledStatement(id);
+        StatementService.CanceledStatement(id);
       }
 
       RefreshCurrentSearchGridPage();
@@ -835,7 +835,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      statementService.DeleteDeathInfo((Guid)SearchResultGridView.SelectedDataKey.Value);
+      StatementService.DeleteDeathInfo((Guid)SearchResultGridView.SelectedDataKey.Value);
       RefreshCurrentSearchGridPage();
     }
 
@@ -863,7 +863,7 @@ namespace rt.srz.ui.pvp.Controls
       var documentList = new List<ListItem>();
       documentList.Insert(0, new ListItem("Выберите вид документа", "-1"));
       documentList.AddRange(
-                            statementService.GetNsiRecords(Oid.ДокументУдл)
+                            StatementService.GetNsiRecords(Oid.ДокументУдл)
                                             .Select(
                                                     x =>
                                                     new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
@@ -883,17 +883,17 @@ namespace rt.srz.ui.pvp.Controls
       if (SearchResultGridView.SelectedDataKey != null && SearchResultGridView.SelectedDataKey.Value != null)
       {
         var exampleId = (Guid)SearchResultGridView.SelectedDataKey.Value;
-        example = statementService.GetStatement(exampleId);
-        example = statementService.CreateFromExample(example);
+        example = StatementService.GetStatement(exampleId);
+        example = StatementService.CreateFromExample(example);
         Session[SessionConsts.CPreviosStatementId] = exampleId;
       }
       else
       {
         example = new Statement();
-        example.Status = statementService.GetConcept(StatusStatement.New);
+        example.Status = StatementService.GetConcept(StatusStatement.New);
         example.AbsentPrevPolicy = false;
         example.DocumentUdl = new Document();
-        example.DocumentUdl.DocumentType = statementService.GetConcept(documentUDL.DocumentType);
+        example.DocumentUdl.DocumentType = StatementService.GetConcept(documentUDL.DocumentType);
         example.DocumentUdl.Series = documentUDL.DocumentSeries;
         example.DocumentUdl.Number = documentUDL.DocumentNumber;
         example.DocumentUdl.IssuingAuthority = documentUDL.DocumentIssuingAuthority;
@@ -914,7 +914,7 @@ namespace rt.srz.ui.pvp.Controls
         example.InsuredPersonData.Snils = SnilsChecker.SsToShort(tbSnils.Text.Replace("_", string.Empty));
         example.InsuredPersonData.Birthplace = tbBirthPlace.Text;
         example.NumberPolicy = tbPolicyNumber.Text;
-        example.InsuredPersonData.Gender = statementService.GetConcept(int.Parse(ddlGender.SelectedValue));
+        example.InsuredPersonData.Gender = StatementService.GetConcept(int.Parse(ddlGender.SelectedValue));
       }
 
       Session[SessionConsts.CExampleStatement] = example;
@@ -926,7 +926,7 @@ namespace rt.srz.ui.pvp.Controls
     private void FillGender()
     {
       ddlGender.Items.AddRange(
-                               statementService.GetNsiRecords(Oid.Пол)
+                               StatementService.GetNsiRecords(Oid.Пол)
                                                .Select(
                                                        x =>
                                                        new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
@@ -939,7 +939,7 @@ namespace rt.srz.ui.pvp.Controls
     private void FillStatusStatement()
     {
       ddlCertificateStatus.Items.AddRange(
-                                          statementService.GetNsiRecords(Oid.СтатусызаявлениянавыдачуполисаОмс)
+                                          StatementService.GetNsiRecords(Oid.СтатусызаявлениянавыдачуполисаОмс)
                                                           .Select(
                                                                   x =>
                                                                   new ListItem(
@@ -957,7 +957,7 @@ namespace rt.srz.ui.pvp.Controls
     private void FillTypeStatement()
     {
       ddlCertificateType.Items.AddRange(
-                                        statementService.GetNsiRecords(Oid.Кодтипазаявления)
+                                        StatementService.GetNsiRecords(Oid.Кодтипазаявления)
                                                         .Select(
                                                                 x =>
                                                                 new ListItem(
@@ -1084,7 +1084,7 @@ namespace rt.srz.ui.pvp.Controls
         var searchResult = new SearchResult<SearchStatementResult> { Rows = new List<SearchStatementResult>() };
         try
         {
-          searchResult = statementService.Search(criteria);
+          searchResult = StatementService.Search(criteria);
           lbSeachError.Text = string.Empty;
         }
         catch (LogicalControlException exception)
@@ -1195,7 +1195,7 @@ namespace rt.srz.ui.pvp.Controls
     /// </param>
     private void SetMenuByPermission(string menuItemValue, PermissionCode permissionCode)
     {
-      UtilsHelper.SetMenuItemByPermission(Session, Menu, securityService, menuItemValue, permissionCode);
+      UtilsHelper.SetMenuItemByPermission(Session, Menu, SecurityService, menuItemValue, permissionCode);
     }
 
     /// <summary>

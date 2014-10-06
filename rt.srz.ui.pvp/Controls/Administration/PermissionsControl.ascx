@@ -16,8 +16,7 @@
     <div class="paddingGridMenu">
       <asp:Menu ID="menu1" runat="server" OnMenuItemClick="Menu1MenuItemClick" Orientation="Horizontal" CssClass="ItemMenu" OnPreRender="Menu1PreRender">
         <Items>
-          <asp:MenuItem Text="Добавить" Value="Add" ImageUrl="~/Resources/create.png"></asp:MenuItem>
-          <asp:MenuItem Text="Добавить расширенно" Value="AddEx" ImageUrl="~/Resources/create.png"></asp:MenuItem>
+          <asp:MenuItem Text="Добавить" Value="AddEx" ImageUrl="~/Resources/create.png"></asp:MenuItem>
           <asp:MenuItem Text="Открыть" Value="Open" ImageUrl="~/Resources/open.png"></asp:MenuItem>
           <asp:MenuItem Text="Назначить роли для разрешения" Value="AssignRoles" ImageUrl="~/Resources/open.png"></asp:MenuItem>
           <asp:MenuItem Text="Удалить" Value="Delete" ImageUrl="~/Resources/delete.png"></asp:MenuItem>

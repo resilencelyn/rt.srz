@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KladrIntellisenseUserControl.ascx.cs" company="РусБИТех">
+// <copyright file="KLADRIntellisenseUserControl.ascx.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -22,11 +22,6 @@ namespace rt.srz.ui.pvp.Controls
   public partial class KladrIntellisenseUserControl : UserControl, IKLADRUserControl
   {
     #region Fields
-
-    /// <summary>
-    ///   The unique key.
-    /// </summary>
-    private string uniqueKey;
 
     /// <summary>
     ///   The _kladr service.
@@ -96,6 +91,15 @@ namespace rt.srz.ui.pvp.Controls
         }
       }
     }
+
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    ///   The unique key.
+    /// </summary>
+    protected string UniqueKey { get; set; }
 
     #endregion
 
@@ -184,17 +188,17 @@ namespace rt.srz.ui.pvp.Controls
     protected void Page_Load(object sender, EventArgs e)
     {
       // Решение вопроса размещения нескольких компонентов на одной форме
-      uniqueKey = Guid.NewGuid().ToString("N");
-      aceKLADRIntellisense.OnClientItemSelected = "KLADR_itemSelected_" + uniqueKey;
-      aceKLADRIntellisense.OnClientPopulating = "KLADR_ListPopulating_" + uniqueKey;
-      aceKLADRIntellisense.OnClientPopulated = "KLADR_ListPopulated_" + uniqueKey;
-      aceKLADRIntellisense.OnClientHidden = "KLADR_ListPopulated_" + uniqueKey;
-      aceKLADRIntellisense.OnClientShowing = "KLADR_ListShowing_" + uniqueKey;
-      tbKLADRIntellisense.Attributes["onkeypress"] = "KLADR_KeyPress_" + uniqueKey + "();";
-      tbKLADRIntellisense.Attributes["onkeydown"] = "KLADR_KeyDown_" + uniqueKey + "();";
-      tbKLADRIntellisense.Attributes["onfocus"] = "KLADR_DisableSelection_" + uniqueKey + "();";
-      tbKLADRIntellisense.Attributes["onmouseup"] = "KLADR_MouseUp_" + uniqueKey + "();";
-      tbKLADRIntellisense.Attributes["onfocus"] = "KLADR_OnFocus_" + uniqueKey + "();";
+      UniqueKey = Guid.NewGuid().ToString("N");
+      aceKLADRIntellisense.OnClientItemSelected = "KLADR_itemSelected_" + UniqueKey;
+      aceKLADRIntellisense.OnClientPopulating = "KLADR_ListPopulating_" + UniqueKey;
+      aceKLADRIntellisense.OnClientPopulated = "KLADR_ListPopulated_" + UniqueKey;
+      aceKLADRIntellisense.OnClientHidden = "KLADR_ListPopulated_" + UniqueKey;
+      aceKLADRIntellisense.OnClientShowing = "KLADR_ListShowing_" + UniqueKey;
+      tbKLADRIntellisense.Attributes["onkeypress"] = "KLADR_KeyPress_" + UniqueKey + "();";
+      tbKLADRIntellisense.Attributes["onkeydown"] = "KLADR_KeyDown_" + UniqueKey + "();";
+      tbKLADRIntellisense.Attributes["onfocus"] = "KLADR_DisableSelection_" + UniqueKey + "();";
+      tbKLADRIntellisense.Attributes["onmouseup"] = "KLADR_MouseUp_" + UniqueKey + "();";
+      tbKLADRIntellisense.Attributes["onfocus"] = "KLADR_OnFocus_" + UniqueKey + "();";
 
       aceKLADRIntellisense.MinimumPrefixLength =
         int.Parse(ConfigurationManager.AppSettings["MinimumPrefixLengthForAdress"]);
