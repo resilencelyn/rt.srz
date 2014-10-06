@@ -105,7 +105,7 @@ namespace rt.srz.business.server
       }
       catch (Exception ex)
       {
-        logger.FatalException("Процедура экспорта завершилась завершилась аварийно", ex);
+        logger.Fatal("Процедура экспорта завершилась завершилась аварийно", ex);
       }
       finally
       {

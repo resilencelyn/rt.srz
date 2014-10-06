@@ -122,7 +122,7 @@ namespace rt.srz.database.mssql
       }
       catch (Exception e)
       {
-        LogManager.GetCurrentClassLogger().ErrorException("Ошибка выполнения синхронизации таблиц Oid, Concept", e);
+        LogManager.GetCurrentClassLogger().Error("Ошибка выполнения синхронизации таблиц Oid, Concept", e);
         throw;
       }
     }

@@ -48,7 +48,7 @@ namespace rt.srz.database.business.model
       {
         result = adr.FirstOrDefault();
       }
-      catch (Exception e)
+      catch (Exception)
       {
       }
 

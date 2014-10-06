@@ -78,7 +78,7 @@ namespace rt.core.services.aspects
             }
             catch (Exception ex)
             {
-              // logger.ErrorException("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
+              // logger.Error("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
             }
           }
         }
@@ -136,7 +136,7 @@ namespace rt.core.services.aspects
             }
             catch (Exception ex)
             {
-              // logger.ErrorException("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
+              // logger.Error("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
             }
           }
         }
@@ -174,7 +174,7 @@ namespace rt.core.services.aspects
     /// </typeparam>
     protected virtual void OnError<T>(Func<T> target, string sessionId, Exception ex)
     {
-      logger.ErrorException("Ошибка исполнения метода SID: " + sessionId, ex);
+      logger.Error("Ошибка исполнения метода SID: " + sessionId, ex);
       if (target.Target != null)
       {
         foreach (var fieldInfo in target.Target.GetType().GetFields())
@@ -208,7 +208,7 @@ namespace rt.core.services.aspects
     /// </param>
     protected virtual void OnError(Action target, string sessionId, Exception ex)
     {
-      logger.ErrorException("Ошибка исполнения метода SID: " + sessionId, ex);
+      logger.Error("Ошибка исполнения метода SID: " + sessionId, ex);
       foreach (var fieldInfo in target.Target.GetType().GetFields())
       {
         try

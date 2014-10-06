@@ -1,18 +1,14 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InsuredPersonTests.cs" company="ÐóñÁÈÒåõ">
-//   Copyright (c) 2014. All rights reserved.
-// </copyright>
-// <summary>
-//   The insured person tests.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+ï»¿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using rt.core.business.nhibernate;
+using rt.srz.business.manager;
+using rt.srz.model.srz;
 
 namespace rt.srz.business.tests
 {
-  /// <summary>
-  ///   The insured person tests.
-  /// </summary>
-  public partial class InsuredPersonTests
-  {
-  }
+    public partial class InsuredPersonTests
+    {
+	}
 }

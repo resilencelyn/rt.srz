@@ -9,6 +9,7 @@
 
 #region references
 
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -20,6 +21,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: Guid("C5FF19F9-3D9C-44A1-8504-3722763B1266")]
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]
+[assembly: CLSCompliant(false)]

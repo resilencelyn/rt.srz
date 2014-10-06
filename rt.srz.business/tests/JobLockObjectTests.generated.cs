@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -43,9 +42,9 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.JobLockObject entity = new rt.srz.model.srz.JobLockObject();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = 86;
+			entity.Id = 74;
 			
-			entity.Versions = 42;
+			entity.Versions = 93;
 			
 			return entity;
 		}

@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
 Name: NHibernateMaster.cst
 Author: Tom DuPont
 Description: Generates a complete set of Maps, Business Objects, Manager Objects, and a ManagerFactory for NHibernate, the adds them to the specified .csproj file.
@@ -37,14 +37,6 @@ Description: Generates a complete set of Maps, Business Objects, Manager Objects
 
 <%@ Map Name="SystemCSharp" Src="System-CSharpAlias" %>
 
-<%@ Register Name="BusinessBaseTemplate" Template="BaseClasses\BusinessBase.cst" %>
-<%@ Register Name="ManagerBaseTemplate" Template="BaseClasses\ManagerBase.cst" %>
-<%@ Register Name="SessionTemplate" Template="BaseClasses\Session.cst" %>
-<%@ Register Name="SessionManagerTemplate" Template="BaseClasses\SessionManager.cst" %>
-<%@ Register Name="UnitTestsBaseTemplate" Template="BaseClasses\UnitTestsBase.cst" %>
-<%@ Register Name="XmlTypeTemplate" Template="BaseClasses\XmlType.cst" %>
-<%@ Register Name="BusinessObjectTemplate" Template="BusinessObjects\BusinessObject.cst" %>
-<%@ Register Name="EditableBusinessObjectTemplate" Template="BusinessObjects\EditableBusinessObject.cst" %>
 <%@ Register Name="HbmMapTemplate" Template="HbmMaps\Hbm.cst" %>
 <%@ Register Name="EditableManagerObjectTemplate" Template="ManagerObjects\EditableManagerObject.cst" %>
 <%@ Register Name="IEditableManagerObjectTemplate" Template="ManagerObjects\IEditableManagerObject.cst" %>
@@ -81,49 +73,10 @@ public override void Render(TextWriter writer)
 			RenderUnitTests(table);
 		}
         
-	RenderBaseClasses();
 	RenderManagerFactory();
 	RegisterReferences();
 }
 
-private void RenderBaseClasses()
-{
-  //    string fileName;
-  //string folderName = GetFolder(BaseNamespace);
-	
-  //fileName = String.Format("{0}{1}.cs", folderName, "BusinessBase");
-  //BusinessBaseTemplate businessBase = this.Create<BusinessBaseTemplate>();
-  //businessBase.BaseNamespace = this.BaseNamespace;
-  //businessBase.RenderToFile(GetOutputFile(fileName, null), true);
-	
-  //fileName = String.Format("{0}{1}.cs", folderName, "ManagerBase");
-  //ManagerBaseTemplate managerBase = this.Create<ManagerBaseTemplate>();
-  //managerBase.BaseNamespace = this.BaseNamespace;
-  //managerBase.NHibVersion = this.NHibernateVersion;
-  //managerBase.RenderToFile(GetOutputFile(fileName, null), true);
-	
-  //fileName = String.Format("{0}{1}.cs", folderName, "NHibernateSession");
-  //SessionTemplate session = this.Create<SessionTemplate>();
-  //session.BaseNamespace = this.BaseNamespace;
-  //session.RenderToFile(GetOutputFile(fileName, null), true);
-	
-  //fileName = String.Format("{0}{1}.cs", folderName, "NHibernateSessionManager");
-  //SessionManagerTemplate sessionManager = this.Create<SessionManagerTemplate>();
-  //sessionManager.BaseNamespace = this.BaseNamespace;
-  //sessionManager.RenderToFile(GetOutputFile(fileName, null), true);
-	
-  //fileName = String.Format("{0}{1}.cs", folderName, "UnitTestsBase");
-  //UnitTestsBaseTemplate unitTestsBase = this.Create<UnitTestsBaseTemplate>();
-  //unitTestsBase.BaseNamespace = this.BaseNamespace;
-  //unitTestsBase.ManagerNamespace = this.ManagerNamespace;
-  //unitTestsBase.BusinessNamespace = this.BusinessNamespace;
-  //unitTestsBase.RenderToFile(GetOutputFile(fileName, null), true);
-    
-  //  fileName = String.Format("{0}{1}.cs", folderName, "XmlType");
-  //XmlTypeTemplate xmlType = this.Create<XmlTypeTemplate>();
-  //xmlType.BaseNamespace = this.BaseNamespace;
-  //xmlType.RenderToFile(GetOutputFile(fileName, null), true);
-}
 private void RenderHbmMaps(TableSchema table)
 {
 	string fileName = String.Format("{0}{1}.hbm.xml", GetFolder("mapping"), GetClassName(table));

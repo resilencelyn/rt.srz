@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -46,9 +45,9 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Number = default(Int16);
-			entity.PolisNumber = "Te";
-			entity.MainPolisNumber = "Test Test Te";
-			entity.Snils = "T";
+			entity.PolisNumber = "Test Test T";
+			entity.MainPolisNumber = "Test T";
+			entity.Snils = "Test Tes";
 			entity.IsActive = true;
 			entity.Employment = true;
 			

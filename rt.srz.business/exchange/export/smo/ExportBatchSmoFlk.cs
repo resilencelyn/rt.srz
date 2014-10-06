@@ -140,7 +140,7 @@ namespace rt.srz.business.exchange.export.smo
       {
         // Ошибка сериализации
         // Логгируем ошибку
-        LogManager.GetCurrentClassLogger().ErrorException(ex.Message, ex);
+        LogManager.GetCurrentClassLogger().Error(ex.Message, ex);
         throw;
       }
     }

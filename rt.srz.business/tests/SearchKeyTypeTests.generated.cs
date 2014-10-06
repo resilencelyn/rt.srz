@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,8 +44,8 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Code = "Test Test Test Test Test Test Test Tes";
-			entity.Name = "Test Test T";
+			entity.Code = "Test Test Test Test Test Tes";
+			entity.Name = "Test Test Test Test Test Test";
 			entity.IsActive = true;
 			entity.FirstName = true;
 			entity.LastName = true;
@@ -78,7 +77,7 @@ namespace rt.srz.business.tests
 			entity.Recalculated = true;
 			entity.Enp = true;
 			entity.MainEnp = true;
-			entity.Weight = 33;
+			entity.Weight = 12;
 			entity.Insertion = true;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
@@ -154,7 +153,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.SearchKeyType entityA = GetFirstSearchKeyType();
 				
-				entityA.Code = "Test Test Test Test Test Test Test Test Test T";
+				entityA.Code = "Test Test Tes";
 				
 				manager.Update(entityA);
 

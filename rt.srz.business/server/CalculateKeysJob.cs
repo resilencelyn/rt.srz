@@ -101,7 +101,7 @@ namespace rt.srz.business.server
           }
           catch (Exception exception)
           {
-            logger.FatalException(
+            logger.Fatal(
                                   "Произошла ошибка удаления ключей поиска перед их пересчетом. Вычисление ключей не возможно!", 
                                   exception);
             CalculateKeysPool.Instance.Queue.Clear();
@@ -183,7 +183,7 @@ namespace rt.srz.business.server
                                              // обработка запроса на прерывание работы
                                              if (interruptEvent.WaitOne(0))
                                              {
-                                               logger.FatalException(
+                                               logger.Fatal(
                                                                      "Получен запрос на прерывание процедуры расчета ключей.", 
                                                                      exception);
                                                lock (CalculateKeysPool.LockObject)
@@ -196,7 +196,7 @@ namespace rt.srz.business.server
 
                                            if (!jobInfo.IsError)
                                            {
-                                             logger.FatalException(
+                                             logger.Fatal(
                                                                    "Произошла ошибка вызова процедуры расчета ключей. Задача будет помещена в очередь еще один раз.", 
                                                                    exception);
                                              lock (CalculateKeysPool.LockObject)
@@ -208,7 +208,7 @@ namespace rt.srz.business.server
                                              }
                                            }
 
-                                           logger.FatalException(
+                                           logger.Fatal(
                                                                  "Произошла ошибка вызова процедуры расчета ключей. Расчет ключа данного типа прекращен. Все ключи данного типа будут удалены из базы данных.", 
                                                                  exception);
                                            lock (CalculateKeysPool.LockObject)

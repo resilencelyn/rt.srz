@@ -86,7 +86,7 @@ namespace rt.srz.business.exchange.import.gateway
       catch (Exception ex)
       {
         // Ошибка десериализации либо создания бачта
-        logger.ErrorException(ex.Message, ex);
+        logger.Error(ex.Message, ex);
         throw;
       }
 

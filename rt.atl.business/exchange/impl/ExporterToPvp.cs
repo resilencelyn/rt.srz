@@ -56,13 +56,7 @@ namespace rt.atl.business.exchange.impl
     /// <summary>
     /// Initializes a new instance of the <see cref="ExporterToPvp"/> class.
     /// </summary>
-    /// <param name="sessionFactoryPvp">
-    /// The session factory pvp.
-    /// </param>
-    /// <param name="managerSessionFactorys">
-    /// The manager Session Factorys.
-    /// </param>
-    public ExporterToPvp(ISessionFactory sessionFactoryPvp, IManagerSessionFactorys managerSessionFactorys)
+    public ExporterToPvp()
       : base(ExchangeTypeEnum.ExportToPvp)
     {
     }
@@ -79,6 +73,8 @@ namespace rt.atl.business.exchange.impl
     /// </param>
     public override void Run(IJobExecutionContext context)
     {
+      var logger = LogManager.GetCurrentClassLogger();
+
       // Создаем бэкап 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       try
@@ -100,7 +96,7 @@ namespace rt.atl.business.exchange.impl
       }
       catch (Exception exception)
       {
-        // logger.FatalException("В процессе создания бэкапа произошла ошибка", exception);
+        logger.Fatal("В процессе создания бэкапа произошла ошибка", exception);
       }
 
       try
@@ -218,7 +214,7 @@ namespace rt.atl.business.exchange.impl
       }
       catch (Exception ex)
       {
-        LogManager.GetCurrentClassLogger().FatalException("Ошибка синхронизации с АТЛ", ex);
+        LogManager.GetCurrentClassLogger().Fatal("Ошибка синхронизации с АТЛ", ex);
       }
     }
 

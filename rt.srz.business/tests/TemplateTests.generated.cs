@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -46,21 +45,21 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.Name = "Test Test ";
-			entity.PosSmo = "Test Test";
-			entity.PosAddress = "Test";
-			entity.PosDay1 = "Test Test ";
-			entity.PosMonth1 = "Test T";
-			entity.PosYear1 = "Tes";
-			entity.PosBirthplace = "Te";
+			entity.PosSmo = "T";
+			entity.PosAddress = "Test Tes";
+			entity.PosDay1 = "Test Te";
+			entity.PosMonth1 = "Test Tes";
+			entity.PosYear1 = "Test Test";
+			entity.PosBirthplace = "Test Te";
 			entity.PosMale = "Test Tes";
-			entity.PosFemale = "Test Test Te";
-			entity.PosDay2 = "Test";
-			entity.PosMonth2 = "Test Test Test";
-			entity.PosYear2 = "Test Test Tes";
-			entity.PosFio = "Te";
-			entity.PosLine1 = "Test Test Te";
-			entity.PosLin2 = "Test Test Tes";
-			entity.PosLine3 = "Te";
+			entity.PosFemale = "Test Test ";
+			entity.PosDay2 = "Test T";
+			entity.PosMonth2 = "Test ";
+			entity.PosYear2 = "Test Test ";
+			entity.PosFio = "Test Test Tes";
+			entity.PosLine1 = "Test Te";
+			entity.PosLin2 = "Test Test T";
+			entity.PosLine3 = "Test Test ";
 			entity.Default = true;
 			
 			return entity;

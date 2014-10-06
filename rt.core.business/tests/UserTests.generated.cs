@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,10 +44,10 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Login = "Test Test";
-			entity.Password = "Test Test Test Test Test Test Test Te";
-			entity.Email = "Test Test Test Test Test Test Test Test Te";
-			entity.Salt = "Test Test Test ";
+			entity.Login = "Test Test Test Te";
+			entity.Password = "Test Test Test Test Test Test Test Test Test Test";
+			entity.Email = "Te";
+			entity.Salt = "Test Test T";
 			entity.CreationDate = System.DateTime.Now;
 			entity.LastLoginDate = System.DateTime.Now;
 			entity.IsApproved = true;
@@ -110,7 +109,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.User entityA = GetFirstUser();
 				
-				entityA.Login = "Test Test Test Test Test ";
+				entityA.Login = "Tes";
 				
 				manager.Update(entityA);
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,8 +44,8 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test ";
-			entity.Code = 67;
+			entity.Name = "Test Test Test Test Test Test T";
+			entity.Code = 69;
 			
 			return entity;
 		}
@@ -103,7 +102,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.Role entityA = GetFirstRole();
 				
-				entityA.Name = "Test Test Test Test ";
+				entityA.Name = "Test Test Test Test Test Test Test Test Test ";
 				
 				manager.Update(entityA);
 

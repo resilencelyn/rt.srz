@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -47,15 +46,15 @@ namespace rt.srz.business.tests
 			
 			entity.Version = default(Int16);
 			entity.Name = "Test Test ";
-			entity.Socr = "Test Test";
-			entity.Code = "Test Test Test Test";
-			entity.Index = 69;
+			entity.Socr = "Test";
+			entity.Code = "Test Test Test ";
+			entity.Index = 31;
 			entity.Gninmb = "Te";
-			entity.Uno = "T";
-			entity.Ocatd = "Test Test Test";
-			entity.Status = 77;
+			entity.Uno = "Tes";
+			entity.Ocatd = "Test Te";
+			entity.Status = 88;
 			entity.FullAddress = "Test Test ";
-			entity.Level = 27;
+			entity.Level = 13;
 			
 			using(rt.srz.business.manager.IKladrManager kladrMemberManager = ObjectFactory.GetInstance<IKladrManager>())
 				{

@@ -142,7 +142,7 @@ namespace rt.atl.business.exchange.impl
             catch (Exception ex)
             {
               transactionAtl.Dispose();
-              logger.ErrorException(ex.Message, ex);
+              logger.Error(ex.Message, ex);
               throw;
             }
 
@@ -155,7 +155,7 @@ namespace rt.atl.business.exchange.impl
         catch (Exception ex)
         {
           transactionPvp.Dispose();
-          logger.ErrorException(ex.Message, ex);
+          logger.Error(ex.Message, ex);
           throw;
         }
       }
@@ -181,9 +181,9 @@ namespace rt.atl.business.exchange.impl
     /// The errors.
     /// </param>
     private static void SetErrorsStatement(
-      ISession session, 
-      StatementMaximum st, 
-      Przbuf przBuff, 
+      ISession session,
+      StatementMaximum st,
+      Przbuf przBuff,
       IEnumerable<Testproc> errors)
     {
       var flag = true;
@@ -197,12 +197,12 @@ namespace rt.atl.business.exchange.impl
                         procedure =>
                         new Error
                         {
-                          Code = procedure.Code, 
+                          Code = procedure.Code,
                           Message1 =
                             RecodingErros.Recoding(
-                                                   int.Parse(procedure.Code), 
-                                                   procedure.Caption.ToLower().ToUpperFirstChar()), 
-                          Statement = st, 
+                                                   int.Parse(procedure.Code),
+                                                   procedure.Caption.ToLower().ToUpperFirstChar()),
+                          Statement = st,
                           Repl = przBuff.Repl
                         }))
       {
@@ -220,9 +220,9 @@ namespace rt.atl.business.exchange.impl
         session.Save(
                      new Error
                      {
-                       Code = "-1", 
-                       Message1 = przBuff.Repl ?? "СРЗ не вернула ни одной ошибки, но даные не приняла.", 
-                       Statement = st, 
+                       Code = "-1",
+                       Message1 = przBuff.Repl ?? "СРЗ не вернула ни одной ошибки, но даные не приняла.",
+                       Statement = st,
                        Repl = przBuff.Repl
                      });
       }
@@ -249,10 +249,10 @@ namespace rt.atl.business.exchange.impl
     /// <param name="context">
     /// </param>
     private void ExportByList(
-      ISession session, 
-      ISession sessionAtl, 
-      Przlog log, 
-      IList<StatementMaximum> query, 
+      ISession session,
+      ISession sessionAtl,
+      Przlog log,
+      IList<StatementMaximum> query,
       IJobExecutionContext context)
     {
       if (query.Count == 0)
@@ -368,9 +368,9 @@ namespace rt.atl.business.exchange.impl
     /// The context.
     /// </param>
     private void ExportByQuery(
-      IQueryOver<StatementMaximum, StatementMaximum> query, 
-      ISession sessionAtl, 
-      Przlog log, 
+      IQueryOver<StatementMaximum, StatementMaximum> query,
+      ISession sessionAtl,
+      Przlog log,
       IJobExecutionContext context)
     {
       var session = sessionFactoryPvp.GetCurrentSession();
@@ -440,10 +440,10 @@ namespace rt.atl.business.exchange.impl
       {
         // Экспорт полиса
         przbuffPolis = WritePrzBuff(
-                                    st, 
-                                    log, 
-                                    sessionAtl, 
-                                    polisCertificate, 
+                                    st,
+                                    log,
+                                    sessionAtl,
+                                    polisCertificate,
                                     ObjectFactory.GetInstance<IConceptCacheManager>().GetById(TypeOperation.П060).Code);
       }
       else
@@ -641,10 +641,10 @@ namespace rt.atl.business.exchange.impl
     /// The <see cref="Przbuf"/>.
     /// </returns>
     private Przbuf WritePrzBuff(
-      StatementMaximum st, 
-      Przlog log, 
-      ISession sessionAtl, 
-      MedicalInsurance medicalInsurance, 
+      StatementMaximum st,
+      Przlog log,
+      ISession sessionAtl,
+      MedicalInsurance medicalInsurance,
       string op)
     {
       var contentManager = ObjectFactory.GetInstance<IContentManager>();
@@ -668,102 +668,102 @@ namespace rt.atl.business.exchange.impl
       var okatoPrn = GetOkatoRn(address2, sessionAtl) ?? string.Empty;
       var przBuff = new Przbuf
                     {
-                      Fam = personData.LastName, 
-                      Im = personData.FirstName, 
-                      Ot = personData.MiddleName, 
-                      W = int.Parse(personData.Gender.Code), 
-                      Dr = personData.Birthday, 
-                      Dra = personData.IsIncorrectDate, 
-                      Drt = personData.BirthdayType.HasValue ? personData.BirthdayType.Value : 1, 
-                      Mr = personData.Birthplace, 
+                      Fam = personData.LastName,
+                      Im = personData.FirstName,
+                      Ot = personData.MiddleName,
+                      W = int.Parse(personData.Gender.Code),
+                      Dr = personData.Birthday,
+                      Dra = personData.IsIncorrectDate,
+                      Drt = personData.BirthdayType.HasValue ? personData.BirthdayType.Value : 1,
+                      Mr = personData.Birthplace,
                       Ss =
                         !string.IsNullOrEmpty(personData.Snils)
                           ? SnilsChecker.SsToLong(personData.Snils)
-                          : null, 
-                      Cn = personData.Citizenship != null ? personData.Citizenship.Code : "Б/Г", 
-                      Kateg = int.Parse(personData.Category.Code), 
-                      BirthOksm = personData.OldCountry != null ? personData.OldCountry.Code : null, 
+                          : null,
+                      Cn = personData.Citizenship != null ? personData.Citizenship.Code : "Б/Г",
+                      Kateg = int.Parse(personData.Category.Code),
+                      BirthOksm = personData.OldCountry != null ? personData.OldCountry.Code : null,
 
                       // Документ УДЛ
-                      Doctp = documentUdl.DocumentType.Code, 
-                      Docs = documentUdl.Series, 
-                      Docn = documentUdl.Number, 
-                      Docdt = documentUdl.DateIssue, 
-                      Docend = documentUdl.DateExp, 
-                      Docorg = documentUdl.IssuingAuthority, 
+                      Doctp = documentUdl.DocumentType.Code,
+                      Docs = documentUdl.Series,
+                      Docn = documentUdl.Number,
+                      Docdt = documentUdl.DateIssue,
+                      Docend = documentUdl.DateExp,
+                      Docorg = documentUdl.IssuingAuthority,
 
                       // Адрес регистрации
                       Subj =
                         !string.IsNullOrEmpty(address.Okato)
                           ? address.Okato.Substring(0, Math.Min(2, address.Okato.Length)) + "000"
-                          : okatoRn.Substring(0, Math.Min(2, okatoRn.Length)) + "000", 
-                      Rn = okatoRn, 
-                      Indx = address.Postcode, 
-                      Rnname = address.Area, 
-                      City = address.City, 
+                          : okatoRn.Substring(0, Math.Min(2, okatoRn.Length)) + "000",
+                      Rn = okatoRn,
+                      Indx = address.Postcode,
+                      Rnname = address.Area,
+                      City = address.City,
                       Np =
                         !string.IsNullOrEmpty(address.Town)
                           ? address.Town
-                          : !string.IsNullOrEmpty(address.City) ? address.City : address.Subject, 
-                      Ul = address.Street, 
-                      Dom = address.House, 
-                      Kor = address.Housing, 
+                          : !string.IsNullOrEmpty(address.City) ? address.City : address.Subject,
+                      Ul = address.Street,
+                      Dom = address.House,
+                      Kor = address.Housing,
                       Kv =
                         address.Room.HasValue
                           ? address.Room.Value.ToString(CultureInfo.InvariantCulture)
-                          : string.Empty, 
-                      Dmj = address.DateRegistration, 
-                      Kladrg = address.Kladr != null ? address.Kladr.Code : null, 
+                          : string.Empty,
+                      Dmj = address.DateRegistration,
+                      Kladrg = address.Kladr != null ? address.Kladr.Code : null,
 
                       // Адрес проживания
                       Psubj =
                         !string.IsNullOrEmpty(address2.Okato)
                           ? address2.Okato.Substring(0, Math.Min(2, address2.Okato.Length)) + "000"
-                          : okatoPrn.Substring(0, Math.Min(2, okatoPrn.Length)) + "000", 
-                      Prn = okatoPrn, 
-                      Pindx = address2.Postcode, 
-                      Prnname = address2.Area, 
-                      Pcity = address2.City, 
+                          : okatoPrn.Substring(0, Math.Min(2, okatoPrn.Length)) + "000",
+                      Prn = okatoPrn,
+                      Pindx = address2.Postcode,
+                      Prnname = address2.Area,
+                      Pcity = address2.City,
                       Pnp =
                         !string.IsNullOrEmpty(address2.Town)
                           ? address2.Town
-                          : !string.IsNullOrEmpty(address2.City) ? address2.City : address2.Subject, 
-                      Pul = address2.Street, 
-                      Pdom = address2.House, 
-                      Pkor = address2.Housing, 
+                          : !string.IsNullOrEmpty(address2.City) ? address2.City : address2.Subject,
+                      Pul = address2.Street,
+                      Pdom = address2.House,
+                      Pkor = address2.Housing,
                       Pkv =
                         address2.Room.HasValue
                           ? address2.Room.Value.ToString(CultureInfo.InvariantCulture)
-                          : string.Empty, 
-                      Pdmj = address2.DateRegistration, 
-                      Kladrp = address2.Kladr != null ? address2.Kladr.Code : null, 
+                          : string.Empty,
+                      Pdmj = address2.DateRegistration,
+                      Kladrp = address2.Kladr != null ? address2.Kladr.Code : null,
 
                       // Документ регистрации 
 
 
                       // Контактная информация
-                      Email = contactInfo.Email, 
-                      Phone = contactInfo.HomePhone, 
-                      Enp = medicalInsurance.Enp ?? st.NumberPolicy, 
-                      Q = smo.Code, 
-                      Qogrn = smo.Ogrn, 
-                      Prz = st.PointDistributionPolicy.Code, 
-                      Dviz = st.DateFiling, 
-                      Meth = int.Parse(st.ModeFiling.Code), 
-                      Sp = personData.Category.Code, 
-                      Petition = st.HasPetition, 
-                      Photo = foto ?? string.Empty, 
-                      Signat = signature ?? string.Empty, 
-                      PRZLOG = log, 
-                      Op = op, 
-                      Opdoc = GetPolisType(medicalInsurance.PolisType.Id), 
+                      Email = contactInfo.Email,
+                      Phone = contactInfo.HomePhone,
+                      Enp = medicalInsurance.Enp ?? st.NumberPolicy,
+                      Q = smo.Code,
+                      Qogrn = smo.Ogrn,
+                      Prz = st.PointDistributionPolicy.Code,
+                      Dviz = st.DateFiling,
+                      Meth = int.Parse(st.ModeFiling.Code),
+                      Sp = personData.Category.Code,
+                      Petition = st.HasPetition,
+                      Photo = foto ?? string.Empty,
+                      Signat = signature ?? string.Empty,
+                      PRZLOG = log,
+                      Op = op,
+                      Opdoc = GetPolisType(medicalInsurance.PolisType.Id),
                       Spol =
                         !string.IsNullOrEmpty(medicalInsurance.PolisSeria)
                           ? medicalInsurance.PolisSeria
-                          : null, 
-                      Npol = medicalInsurance.PolisNumber, 
-                      Dbeg = medicalInsurance.DateFrom, 
-                      Dend = medicalInsurance.DateTo, 
+                          : null,
+                      Npol = medicalInsurance.PolisNumber,
+                      Dbeg = medicalInsurance.DateFrom,
+                      Dend = medicalInsurance.DateTo,
                       Dstop = medicalInsurance.DateStop
                     };
 
@@ -869,13 +869,9 @@ namespace rt.atl.business.exchange.impl
 
       // Помечаем адреса структурированный/не структурированный
       przBuff.Zaddr = string.Format(
-                                    "{0}{1}", 
-                                    address.IsNotStructureAddress.HasValue != null
-                                      ? Convert.ToInt16(address.IsNotStructureAddress.Value).ToString()
-                                      : "0", 
-                                    address2.IsNotStructureAddress.HasValue != null
-                                      ? Convert.ToInt16(address2.IsNotStructureAddress.Value).ToString()
-                                      : "0");
+                                    "{0}{1}",
+                                    address.IsNotStructureAddress.HasValue ? Convert.ToInt16(address.IsNotStructureAddress.Value).ToString(CultureInfo.InvariantCulture) : "0",
+                                    address2.IsNotStructureAddress.HasValue ? Convert.ToInt16(address2.IsNotStructureAddress.Value).ToString(CultureInfo.InvariantCulture) : "0");
 
       sessionAtl.Save(przBuff);
 

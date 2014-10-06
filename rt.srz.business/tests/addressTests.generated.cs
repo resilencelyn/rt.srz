@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -46,18 +45,18 @@ namespace rt.srz.business.tests
 			entity.Id = System.Guid.NewGuid();
 			
 			entity.IsHomeless = true;
-			entity.Postcode = "Test T";
-			entity.Subject = "Test Test Test Test Test Test Test Test";
-			entity.Area = "T";
-			entity.City = "Test Test Test Test Test Test T";
-			entity.Town = "Test Test Test Test Test Test Test Test Test";
-			entity.Street = "Test Test Test Test Test Test ";
-			entity.House = "Test T";
-			entity.Housing = "Test Te";
+			entity.Postcode = "Test Test";
+			entity.Subject = "Test Test Test Test Test Test Test Test Test Te";
+			entity.Area = "Test Test Test Test";
+			entity.City = "Test Te";
+			entity.Town = "Test Tes";
+			entity.Street = "Test Test Test Test Test ";
+			entity.House = "Tes";
+			entity.Housing = "Test Test T";
 			entity.Room = default(Int16);
 			entity.DateRegistration = System.DateTime.Now;
 			entity.IsNotStructureAddress = true;
-			entity.Okato = "Test Te";
+			entity.Okato = "Te";
 			entity.Unstructured = "Test Test ";
 			
 			using(rt.srz.business.manager.IKladrManager kladrManager = ObjectFactory.GetInstance<IKladrManager>())

@@ -1,4 +1,12 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Period.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The addressManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,35 +22,34 @@ namespace rt.srz.model.srz
    {
       public Period() { }
 
-	  [XmlElement(Order = 1)]
+	    [XmlElement(Order = 1)]
       [DataMember(Order = 1)]
       public override System.Guid Id
       {
-        get
-        {
-          return base.Id;
-        }
-        set
-        {
-          base.Id = value;
-        }
+         get
+         {
+            return base.Id;
+         }
+         set
+         {
+            base.Id = value;
+         }
       } 
 
-
-        [XmlElement(Order =  2)]
-        [DataMember(Order =  2)]
-        public virtual System.DateTime Year { get; set;}
+      [XmlElement(Order =  2)]
+      [DataMember(Order =  2)]
+      public virtual System.DateTime Year { get; set;}
         
         
-				[XmlElement(Order =  3)]
-        [DataMember(Order =  3)]
-		public virtual Concept Code { get; set;}
+		  [XmlElement(Order =  3)]
+      [DataMember(Order =  3)]
+		  public virtual Concept Code { get; set;}
 			
-        [XmlIgnore] 
-        public virtual IList<Batch> Batches { get; set;}
+      [XmlIgnore] 
+      public virtual IList<Batch> Batches { get; set;}
 		
-        [XmlIgnore] 
-        public virtual IList<EmploymentHistory> EmploymentHistories { get; set;}
+      [XmlIgnore] 
+      public virtual IList<EmploymentHistory> EmploymentHistories { get; set;}
 		
-       }
+   }
 }

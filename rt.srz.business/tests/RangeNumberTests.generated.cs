@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,8 +44,8 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.RangelFrom = 26;
-			entity.RangelTo = 48;
+			entity.RangelFrom = 23;
+			entity.RangelTo = 78;
 			entity.ChangeDate = System.DateTime.Now;
 			
 			using(rt.srz.business.manager.IRangeNumberManager rangeNumberMemberManager = ObjectFactory.GetInstance<IRangeNumberManager>())
@@ -131,7 +130,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.RangeNumber entityA = GetFirstRangeNumber();
 				
-				entityA.RangelFrom = 55;
+				entityA.RangelFrom = 21;
 				
 				manager.Update(entityA);
 

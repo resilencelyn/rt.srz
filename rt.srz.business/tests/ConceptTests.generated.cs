@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -52,7 +51,7 @@ namespace rt.srz.business.tests
 			entity.RelatedType = "Test Test ";
 			entity.DateFrom = System.DateTime.Now;
 			entity.DateTo = System.DateTime.Now;
-			entity.Relevance = 51;
+			entity.Relevance = 86;
 			
 			using(rt.srz.business.manager.IOidManager oidManager = ObjectFactory.GetInstance<IOidManager>())
 				{

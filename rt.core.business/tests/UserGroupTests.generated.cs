@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,7 +44,7 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FakeField = 39;
+			entity.FakeField = 19;
 			
 			using(rt.core.business.manager.IGroupManager groupManager = ObjectFactory.GetInstance<IGroupManager>())
 				{
@@ -120,7 +119,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.UserGroup entityA = GetFirstUserGroup();
 				
-				entityA.FakeField = 54;
+				entityA.FakeField = 2;
 				
 				manager.Update(entityA);
 

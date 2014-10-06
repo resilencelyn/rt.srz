@@ -1,18 +1,14 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatementChangeDateTests.cs" company="ÐóñÁÈÒåõ">
-//   Copyright (c) 2014. All rights reserved.
-// </copyright>
-// <summary>
-//   The statement change date tests.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+ï»¿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using rt.core.business.nhibernate;
+using rt.srz.business.manager;
+using rt.srz.model.srz;
 
 namespace rt.srz.business.tests
 {
-  /// <summary>
-  /// The statement change date tests.
-  /// </summary>
-  public partial class StatementChangeDateTests
-  {
-  }
+    public partial class StatementChangeDateTests
+    {
+	}
 }

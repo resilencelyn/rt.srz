@@ -490,7 +490,7 @@ namespace rt.srz.business.manager
         session.Flush();
         transaction.Commit();
       }
-      catch (Exception e)
+      catch (Exception)
       {
         transaction.Dispose();
         session.Clear();

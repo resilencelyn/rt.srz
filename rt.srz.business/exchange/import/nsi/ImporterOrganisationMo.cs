@@ -98,11 +98,6 @@ namespace rt.srz.business.exchange.import.smo
                  .List()
                  .SingleOrDefault();
 
-        if (mo.Ogrn.Length > 20 || mo.Mcod.Length > 20 || mo.NamMop.Length > 500 || mo.NamMok.Length > 500)
-        {
-          var i = 0;
-        }
-
         var org = new Organisation
                   {
                     IsActive = true, 

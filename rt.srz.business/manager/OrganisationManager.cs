@@ -713,7 +713,7 @@ namespace rt.srz.business.manager
       }
       catch (Exception ex)
       {
-        LogManager.GetCurrentClassLogger().ErrorException(ex.Message, ex);
+        LogManager.GetCurrentClassLogger().Error(ex.Message, ex);
         transaction.Dispose();
         throw;
       }

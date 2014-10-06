@@ -1,18 +1,14 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SearchKeyTests.cs" company="ÐóñÁÈÒåõ">
-//   Copyright (c) 2014. All rights reserved.
-// </copyright>
-// <summary>
-//   The search key tests.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+ï»¿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using rt.core.business.nhibernate;
+using rt.srz.business.manager;
+using rt.srz.model.srz;
 
 namespace rt.srz.business.tests
 {
-  /// <summary>
-  ///   The search key tests.
-  /// </summary>
-  public partial class SearchKeyTests
-  {
-  }
+    public partial class SearchKeyTests
+    {
+	}
 }

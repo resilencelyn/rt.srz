@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -47,8 +46,8 @@ namespace rt.srz.business.tests
 			
 			entity.DocumentContent = new System.Byte[]{};
 			entity.ChangeDate = System.DateTime.Now;
-			entity.FileName = "Test Test Test Test Test Test Test Test Test Test";
-			entity.DocumentContent64 = "Test Test Tes";
+			entity.FileName = "Test Test Test ";
+			entity.DocumentContent64 = "Test Te";
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{

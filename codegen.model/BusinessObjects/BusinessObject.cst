@@ -19,6 +19,14 @@ Description: Generates a Business Object for NHibernate.
 <%@ Import Namespace="NHibernateHelper" %>
 <%@ Map Name="SystemCSharp" Src="System-CSharpAlias" %>
 <% EntityManager entityManager = new EntityManager(SourceTable, ExcludedTables); %>
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="<%= GetClassName(SourceTable) %>.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The addressManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -35,40 +43,28 @@ namespace <%= BusinessNamespace %>
    {
       public <%= GetClassName(SourceTable) %>() { }
 
-	  [XmlElement(Order = 1)]
+	    [XmlElement(Order = 1)]
       [DataMember(Order = 1)]
       public override <%= SystemCSharp[GetBusinessBaseIdType(SourceTable).ToString()] %> Id
       {
-        get
-        {
-          return base.Id;
-        }
-        set
-        {
-          base.Id = value;
-        }
+         get
+         {
+            return base.Id;
+         }
+         set
+         {
+            base.Id = value;
+         }
       } 
-
-       <%--  public override int GetHashCode()
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            
-            sb.Append(this.GetType().FullName);
-            <% foreach(EntityMember em in entityManager.Members) { %>
-			sb.Append(<%= em.PropertyName %>);
-			<% } %>
-
-            return sb.ToString().GetHashCode();
-        } --%>
 
 		<% // Primary Keys %>
 		<% if(entityManager.PrimaryKey.IsCompositeKey) { %>
-	public override string Id
-		{
-			get
-			{
-				System.Text.StringBuilder uniqueId = new System.Text.StringBuilder();
-				<% bool isFirst = true; %>
+	    public override string Id
+		  {
+		  	get
+		  	{
+		   		System.Text.StringBuilder uniqueId = new System.Text.StringBuilder();
+			  	<% bool isFirst = true; %>
 				<% foreach(EntityMember em in entityManager.PrimaryKey.KeyColumns) { %>
 				<% if(isFirst) { %>
 				<% isFirst = false; %>
@@ -83,11 +79,11 @@ namespace <%= BusinessNamespace %>
 		
 		<% } %>
 		<% // Primitives %>
-        <% int order = 2; %>
+    <% int order = 2; %>
 		<% foreach(EntityMember em in entityManager.Members) { %>
-        [XmlElement(Order =  <%= order.ToString() %>)]
-        [DataMember(Order =  <%= order.ToString() %>)]
-        public virtual <%= em.SystemType %> <%= em.PropertyName %> { get; set;}
+      [XmlElement(Order =  <%= order.ToString() %>)]
+      [DataMember(Order =  <%= order.ToString() %>)]
+      public virtual <%= em.SystemType %> <%= em.PropertyName %> { get; set;}
         
 		<% order++; %>
 		<% } %>
@@ -96,17 +92,17 @@ namespace <%= BusinessNamespace %>
         <%--  [XmlElement]
 		public virtual int rf<%= association.ColumnName %> { get; set;} --%>
         
-				[XmlElement(Order =  <%= order.ToString() %>)]
-        [DataMember(Order =  <%= order.ToString() %>)]
-		public virtual <%= association.ClassName %> <%= association.ColumnName.Replace("ID", "").Replace("Id", "").Replace("_", "") %> { get; set;}
+		  [XmlElement(Order =  <%= order.ToString() %>)]
+      [DataMember(Order =  <%= order.ToString() %>)]
+		  public virtual <%= association.ClassName %> <%= association.ColumnName.Replace("ID", "").Replace("Id", "").Replace("_", "") %> { get; set;}
 			
-        <% order++; %>    
+    <% order++; %>    
 		<% } %>
 		<% // One-To-Many & Many-To-Many %>
 		<% foreach(EntityAssociation association in entityManager.ToManyUnion) { %>
-        [XmlIgnore] 
-        public virtual IList<<%= association.ClassName %>> <%= association.PropertyName %> { get; set;}
+      [XmlIgnore] 
+      public virtual IList<<%= association.ClassName %>> <%= association.PropertyName %> { get; set;}
 		
 		<% } %>
-       }
+   }
 }

@@ -243,9 +243,13 @@ namespace rt.srz.business.manager
         session.SaveOrUpdate(contentRecord);
         transaction.Commit();
       }
-      catch (Exception ex)
+      catch (Exception)
       {
-        transaction.Dispose();
+        if (transaction != null)
+        {
+          transaction.Dispose();
+        }
+
         throw;
       }
 

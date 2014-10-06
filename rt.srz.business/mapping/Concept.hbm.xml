@@ -1,164 +1,164 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-  <class name="rt.srz.model.srz.Concept, rt.srz.model" table="[dbo].[Concept]" lazy="true">
-    <id name="Id" column="[Id]">
-      <generator class="native" />
-    </id>
-    <property name="Code" column="[Code]" />
-    <property name="Name" column="[Name]" />
-    <property name="Description" column="[Description]" />
-    <property name="ShortName" column="[ShortName]" />
-    <property name="RelatedCode" column="[RelatedCode]" />
-    <property name="RelatedOid" column="[RelatedOid]" />
-    <property name="RelatedType" column="[RelatedType]" />
-    <property name="DateFrom" column="[DateFrom]" />
-    <property name="DateTo" column="[DateTo]" />
-    <property name="Relevance" column="[Relevance]" />
-    <many-to-one name="Oid" column="[Oid]" class="Oid" />
-    <bag name="AutoCompletes1" lazy="true" inverse="true">
-      <key column="[GenderId]"></key>
-      <one-to-many class="AutoComplete"></one-to-many>
-    </bag>
-    <bag name="AutoCompletes2" lazy="true" inverse="true">
-      <key column="[TypeId]"></key>
-      <one-to-many class="AutoComplete"></one-to-many>
-    </bag>
-    <bag name="Batches1" lazy="true" inverse="true">
-      <key column="[CodeConfirmId]"></key>
-      <one-to-many class="Batch"></one-to-many>
-    </bag>
-    <bag name="Batches2" lazy="true" inverse="true">
-      <key column="[SubjectId]"></key>
-      <one-to-many class="Batch"></one-to-many>
-    </bag>
-    <bag name="Batches3" lazy="true" inverse="true">
-      <key column="[TypeId]"></key>
-      <one-to-many class="Batch"></one-to-many>
-    </bag>
-    <bag name="Contents" lazy="true" inverse="true">
-      <key column="[ContentTypeId]"></key>
-      <one-to-many class="Content"></one-to-many>
-    </bag>
-    <bag name="EmploymentHistories" lazy="true" inverse="true">
-      <key column="[SourceTypeId]"></key>
-      <one-to-many class="EmploymentHistory"></one-to-many>
-    </bag>
-    <bag name="Errors" lazy="true" inverse="true">
-      <key column="[ApplicationId]"></key>
-      <one-to-many class="Error"></one-to-many>
-    </bag>
-    <bag name="InsuredPeople" lazy="true" inverse="true">
-      <key column="[StatusId]"></key>
-      <one-to-many class="InsuredPerson"></one-to-many>
-    </bag>
-    <bag name="QueryResponses1" lazy="true" inverse="true">
-      <key column="[FeatureId]"></key>
-      <one-to-many class="QueryResponse"></one-to-many>
-    </bag>
-    <bag name="QueryResponses2" lazy="true" inverse="true">
-      <key column="[TrustLevelId]"></key>
-      <one-to-many class="QueryResponse"></one-to-many>
-    </bag>
-    <bag name="MedicalInsurances" lazy="true" inverse="true">
-      <key column="[PolisTypeId]"></key>
-      <one-to-many class="MedicalInsurance"></one-to-many>
-    </bag>
-    <bag name="In1s" lazy="true" inverse="true">
-      <key column="[PolisTypeId]"></key>
-      <one-to-many class="In1"></one-to-many>
-    </bag>
-    <bag name="Messages1" lazy="true" inverse="true">
-      <key column="[ReasonId]"></key>
-      <one-to-many class="Message"></one-to-many>
-    </bag>
-    <bag name="Messages2" lazy="true" inverse="true">
-      <key column="[TypeId]"></key>
-      <one-to-many class="Message"></one-to-many>
-    </bag>
-    <bag name="MessageStatements" lazy="true" inverse="true">
-      <key column="[TypeId]"></key>
-      <one-to-many class="MessageStatement"></one-to-many>
-    </bag>
-    <bag name="Oids" lazy="true" inverse="true">
-      <key column="[DefaultId]"></key>
-      <one-to-many class="Oid"></one-to-many>
-    </bag>
-    <bag name="Periods" lazy="true" inverse="true">
-      <key column="[CodeId]"></key>
-      <one-to-many class="Period"></one-to-many>
-    </bag>
-    <bag name="SearchKeys" lazy="true" inverse="true">
-      <key column="[DocumentUdlTypeId]"></key>
-      <one-to-many class="SearchKey"></one-to-many>
-    </bag>
-    <bag name="SearchKeyTypes" lazy="true" inverse="true">
-      <key column="[OperationKeyId]"></key>
-      <one-to-many class="SearchKeyType"></one-to-many>
-    </bag>
-    <bag name="SertificateUecs" lazy="true" inverse="true">
-      <key column="[TypeId]"></key>
-      <one-to-many class="SertificateUec"></one-to-many>
-    </bag>
-    <bag name="Statements1" lazy="true" inverse="true">
-      <key column="[StatusId]"></key>
-      <one-to-many class="Statement"></one-to-many>
-    </bag>
-    <bag name="StatementChangeDates" lazy="true" inverse="true">
-      <key column="[FieldId]"></key>
-      <one-to-many class="StatementChangeDate"></one-to-many>
-    </bag>
-    <bag name="Twins" lazy="true" inverse="true">
-      <key column="[TwinTypeId]"></key>
-      <one-to-many class="Twin"></one-to-many>
-    </bag>
-    <bag name="UserActions" lazy="true" inverse="true">
-      <key column="[EventId]"></key>
-      <one-to-many class="UserAction"></one-to-many>
-    </bag>
-    <bag name="Organisations1" lazy="true" inverse="true">
-      <key column="[CauseRegistrationId]"></key>
-      <one-to-many class="Organisation"></one-to-many>
-    </bag>
-    <bag name="Organisations2" lazy="true" inverse="true">
-      <key column="[CauseExclusionId]"></key>
-      <one-to-many class="Organisation"></one-to-many>
-    </bag>
-    <bag name="Statements2" lazy="true" inverse="true">
-      <key column="[CauseFilingId]"></key>
-      <one-to-many class="Statement"></one-to-many>
-    </bag>
-    <bag name="Statements3" lazy="true" inverse="true">
-      <key column="[ModeFilingId]"></key>
-      <one-to-many class="Statement"></one-to-many>
-    </bag>
-    <bag name="Statements4" lazy="true" inverse="true">
-      <key column="[FormManufacturingId]"></key>
-      <one-to-many class="Statement"></one-to-many>
-    </bag>
-    <bag name="InsuredPersonData1" lazy="true" inverse="true">
-      <key column="[CitizenshipId]"></key>
-      <one-to-many class="InsuredPersonDatum"></one-to-many>
-    </bag>
-    <bag name="Documents" lazy="true" inverse="true">
-      <key column="[DocumentTypeId]"></key>
-      <one-to-many class="Document"></one-to-many>
-    </bag>
-    <bag name="InsuredPersonData2" lazy="true" inverse="true">
-      <key column="[GenderId]"></key>
-      <one-to-many class="InsuredPersonDatum"></one-to-many>
-    </bag>
-    <bag name="InsuredPersonData3" lazy="true" inverse="true">
-      <key column="[CategoryId]"></key>
-      <one-to-many class="InsuredPersonDatum"></one-to-many>
-    </bag>
-    <bag name="Representatives" lazy="true" inverse="true">
-      <key column="[RelationTypeId]"></key>
-      <one-to-many class="Representative"></one-to-many>
-    </bag>
-    <bag name="InsuredPersonData4" lazy="true" inverse="true">
-      <key column="[OldCountryId]"></key>
-      <one-to-many class="InsuredPersonDatum"></one-to-many>
-    </bag>
-  </class>
+	<class name="rt.srz.model.srz.Concept, rt.srz.model" table="[dbo].[Concept]" lazy="true">
+		<id name="Id" column="[Id]">
+		 	<generator class="native" />
+		</id>
+		<property name="Code" column="[Code]" />
+		<property name="Name" column="[Name]" />
+		<property name="Description" column="[Description]" />
+		<property name="ShortName" column="[ShortName]" />
+		<property name="RelatedCode" column="[RelatedCode]" />
+		<property name="RelatedOid" column="[RelatedOid]" />
+		<property name="RelatedType" column="[RelatedType]" />
+		<property name="DateFrom" column="[DateFrom]" />
+		<property name="DateTo" column="[DateTo]" />
+		<property name="Relevance" column="[Relevance]" />
+		<many-to-one name="Oid" column="[Oid]" class="Oid"  />
+		<bag name="AutoCompletes1" lazy="true" inverse="true" >
+			<key column="[GenderId]"></key>
+			<one-to-many class="AutoComplete"></one-to-many>
+		</bag>
+		<bag name="AutoCompletes2" lazy="true" inverse="true" >
+			<key column="[TypeId]"></key>
+			<one-to-many class="AutoComplete"></one-to-many>
+		</bag>
+		<bag name="Batches1" lazy="true" inverse="true" >
+			<key column="[CodeConfirmId]"></key>
+			<one-to-many class="Batch"></one-to-many>
+		</bag>
+		<bag name="Batches2" lazy="true" inverse="true" >
+			<key column="[SubjectId]"></key>
+			<one-to-many class="Batch"></one-to-many>
+		</bag>
+		<bag name="Batches3" lazy="true" inverse="true" >
+			<key column="[TypeId]"></key>
+			<one-to-many class="Batch"></one-to-many>
+		</bag>
+		<bag name="Contents" lazy="true" inverse="true" >
+			<key column="[ContentTypeId]"></key>
+			<one-to-many class="Content"></one-to-many>
+		</bag>
+		<bag name="EmploymentHistories" lazy="true" inverse="true" >
+			<key column="[SourceTypeId]"></key>
+			<one-to-many class="EmploymentHistory"></one-to-many>
+		</bag>
+		<bag name="Errors" lazy="true" inverse="true" >
+			<key column="[ApplicationId]"></key>
+			<one-to-many class="Error"></one-to-many>
+		</bag>
+		<bag name="InsuredPeople" lazy="true" inverse="true" >
+			<key column="[StatusId]"></key>
+			<one-to-many class="InsuredPerson"></one-to-many>
+		</bag>
+		<bag name="QueryResponses1" lazy="true" inverse="true" >
+			<key column="[FeatureId]"></key>
+			<one-to-many class="QueryResponse"></one-to-many>
+		</bag>
+		<bag name="QueryResponses2" lazy="true" inverse="true" >
+			<key column="[TrustLevelId]"></key>
+			<one-to-many class="QueryResponse"></one-to-many>
+		</bag>
+		<bag name="MedicalInsurances" lazy="true" inverse="true" >
+			<key column="[PolisTypeId]"></key>
+			<one-to-many class="MedicalInsurance"></one-to-many>
+		</bag>
+		<bag name="In1s" lazy="true" inverse="true" >
+			<key column="[PolisTypeId]"></key>
+			<one-to-many class="In1"></one-to-many>
+		</bag>
+		<bag name="Messages1" lazy="true" inverse="true" >
+			<key column="[ReasonId]"></key>
+			<one-to-many class="Message"></one-to-many>
+		</bag>
+		<bag name="Messages2" lazy="true" inverse="true" >
+			<key column="[TypeId]"></key>
+			<one-to-many class="Message"></one-to-many>
+		</bag>
+		<bag name="MessageStatements" lazy="true" inverse="true" >
+			<key column="[TypeId]"></key>
+			<one-to-many class="MessageStatement"></one-to-many>
+		</bag>
+		<bag name="Oids" lazy="true" inverse="true" >
+			<key column="[DefaultId]"></key>
+			<one-to-many class="Oid"></one-to-many>
+		</bag>
+		<bag name="Periods" lazy="true" inverse="true" >
+			<key column="[CodeId]"></key>
+			<one-to-many class="Period"></one-to-many>
+		</bag>
+		<bag name="SearchKeys" lazy="true" inverse="true" >
+			<key column="[DocumentUdlTypeId]"></key>
+			<one-to-many class="SearchKey"></one-to-many>
+		</bag>
+		<bag name="SearchKeyTypes" lazy="true" inverse="true" >
+			<key column="[OperationKeyId]"></key>
+			<one-to-many class="SearchKeyType"></one-to-many>
+		</bag>
+		<bag name="SertificateUecs" lazy="true" inverse="true" >
+			<key column="[TypeId]"></key>
+			<one-to-many class="SertificateUec"></one-to-many>
+		</bag>
+		<bag name="Statements1" lazy="true" inverse="true" >
+			<key column="[StatusId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+		<bag name="StatementChangeDates" lazy="true" inverse="true" >
+			<key column="[FieldId]"></key>
+			<one-to-many class="StatementChangeDate"></one-to-many>
+		</bag>
+		<bag name="Twins" lazy="true" inverse="true" >
+			<key column="[TwinTypeId]"></key>
+			<one-to-many class="Twin"></one-to-many>
+		</bag>
+		<bag name="UserActions" lazy="true" inverse="true" >
+			<key column="[EventId]"></key>
+			<one-to-many class="UserAction"></one-to-many>
+		</bag>
+		<bag name="Organisations1" lazy="true" inverse="true" >
+			<key column="[CauseRegistrationId]"></key>
+			<one-to-many class="Organisation"></one-to-many>
+		</bag>
+		<bag name="Organisations2" lazy="true" inverse="true" >
+			<key column="[CauseExclusionId]"></key>
+			<one-to-many class="Organisation"></one-to-many>
+		</bag>
+		<bag name="Statements2" lazy="true" inverse="true" >
+			<key column="[CauseFilingId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+		<bag name="Statements3" lazy="true" inverse="true" >
+			<key column="[ModeFilingId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+		<bag name="Statements4" lazy="true" inverse="true" >
+			<key column="[FormManufacturingId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+		<bag name="InsuredPersonData1" lazy="true" inverse="true" >
+			<key column="[CitizenshipId]"></key>
+			<one-to-many class="InsuredPersonDatum"></one-to-many>
+		</bag>
+		<bag name="Documents" lazy="true" inverse="true" >
+			<key column="[DocumentTypeId]"></key>
+			<one-to-many class="Document"></one-to-many>
+		</bag>
+		<bag name="InsuredPersonData2" lazy="true" inverse="true" >
+			<key column="[GenderId]"></key>
+			<one-to-many class="InsuredPersonDatum"></one-to-many>
+		</bag>
+		<bag name="InsuredPersonData3" lazy="true" inverse="true" >
+			<key column="[CategoryId]"></key>
+			<one-to-many class="InsuredPersonDatum"></one-to-many>
+		</bag>
+		<bag name="Representatives" lazy="true" inverse="true" >
+			<key column="[RelationTypeId]"></key>
+			<one-to-many class="Representative"></one-to-many>
+		</bag>
+		<bag name="InsuredPersonData4" lazy="true" inverse="true" >
+			<key column="[OldCountryId]"></key>
+			<one-to-many class="InsuredPersonDatum"></one-to-many>
+		</bag>
+	</class>
 </hibernate-mapping>
+

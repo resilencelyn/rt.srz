@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,22 +44,22 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FirstName = "Test Test Test Test Test Test Test Te";
-			entity.LastName = "Test Test Test Test Test Test Test Test T";
-			entity.MiddleName = "Test Test Test Test Test Test Test Test T";
+			entity.FirstName = "Test ";
+			entity.LastName = "Test Test Test Test Test Test Test Test Test";
+			entity.MiddleName = "Test Test Test Test Tes";
 			entity.Birthday = System.DateTime.Now;
-			entity.Birthday2 = "Test Test";
-			entity.BirthdayType = 26;
+			entity.Birthday2 = "Test T";
+			entity.BirthdayType = 67;
 			entity.IsIncorrectDate = true;
 			entity.IsNotGuru = true;
-			entity.Snils = "Te";
+			entity.Snils = "Test Te";
 			entity.Birthplace = "Test Test ";
 			entity.IsNotCitizenship = true;
 			entity.IsRefugee = true;
 			entity.IsBadSnils = true;
-			entity.NhFirstName = 15;
-			entity.NhLastName = 18;
-			entity.NhMiddleName = 70;
+			entity.NhFirstName = 49;
+			entity.NhLastName = 62;
+			entity.NhMiddleName = 50;
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
@@ -153,7 +152,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.InsuredPersonDatum entityA = GetFirstInsuredPersonDatum();
 				
-				entityA.FirstName = "Test Test Test Te";
+				entityA.FirstName = "Test Test Test Test Test Test Test Test Test Te";
 				
 				manager.Update(entityA);
 

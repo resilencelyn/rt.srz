@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -43,9 +42,9 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.NumberPolicyCounter entity = new rt.srz.model.srz.NumberPolicyCounter();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = "Test T";
+			entity.Id = "Tes";
 			
-			entity.CurrentNumber = 80;
+			entity.CurrentNumber = 90;
 			
 			return entity;
 		}
@@ -102,7 +101,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.NumberPolicyCounter entityA = GetFirstNumberPolicyCounter();
 				
-				entityA.CurrentNumber = 25;
+				entityA.CurrentNumber = 15;
 				
 				manager.Update(entityA);
 

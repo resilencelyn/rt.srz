@@ -1,18 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-  <class name="rt.srz.model.srz.In1, rt.srz.model" table="[dbo].[In1]" lazy="true">
-    <id name="Id" column="[RowId]">
-      <generator class="guid.comb" />
-    </id>
-    <property name="Number" column="[Number]" />
-    <property name="PolisSeria" column="[PolisSeria]" />
-    <property name="PolisNumber" column="[PolisNumber]" />
-    <property name="DateFrom" column="[DateFrom]" />
-    <property name="DateTo" column="[DateTo]" />
-    <property name="DateStop" column="[DateStop]" />
-    <many-to-one name="QueryResponse" column="[QueryResponseId]" class="QueryResponse" />
-    <many-to-one name="PolisType" column="[PolisTypeId]" class="Concept" />
-    <many-to-one name="Smo" column="[SmoId]" class="Organisation" />
-  </class>
+	<class name="rt.srz.model.srz.In1, rt.srz.model" table="[dbo].[In1]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Number" column="[Number]" />
+		<property name="PolisSeria" column="[PolisSeria]" />
+		<property name="PolisNumber" column="[PolisNumber]" />
+		<property name="DateFrom" column="[DateFrom]" />
+		<property name="DateTo" column="[DateTo]" />
+		<property name="DateStop" column="[DateStop]" />
+		<many-to-one name="QueryResponse" column="[QueryResponseId]" class="QueryResponse"  />
+		<many-to-one name="PolisType" column="[PolisTypeId]" class="Concept"  />
+		<many-to-one name="Smo" column="[SmoId]" class="Organisation"  />
+	</class>
 </hibernate-mapping>
+

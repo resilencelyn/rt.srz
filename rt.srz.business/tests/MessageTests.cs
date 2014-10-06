@@ -1,18 +1,14 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MessageTests.cs" company="ÐóñÁÈÒåõ">
-//   Copyright (c) 2014. All rights reserved.
-// </copyright>
-// <summary>
-//   The message tests.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+ï»¿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using rt.core.business.nhibernate;
+using rt.srz.business.manager;
+using rt.srz.model.srz;
 
 namespace rt.srz.business.tests
 {
-  /// <summary>
-  /// The message tests.
-  /// </summary>
-  public partial class MessageTests
-  {
-  }
+    public partial class MessageTests
+    {
+	}
 }

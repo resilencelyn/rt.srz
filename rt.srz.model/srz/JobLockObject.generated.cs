@@ -1,4 +1,12 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobLockObject.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The addressManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,24 +22,23 @@ namespace rt.srz.model.srz
    {
       public JobLockObject() { }
 
-	  [XmlElement(Order = 1)]
+	    [XmlElement(Order = 1)]
       [DataMember(Order = 1)]
       public override int Id
       {
-        get
-        {
-          return base.Id;
-        }
-        set
-        {
-          base.Id = value;
-        }
+         get
+         {
+            return base.Id;
+         }
+         set
+         {
+            base.Id = value;
+         }
       } 
 
-
-        [XmlElement(Order =  2)]
-        [DataMember(Order =  2)]
-        public virtual int Versions { get; set;}
+      [XmlElement(Order =  2)]
+      [DataMember(Order =  2)]
+      public virtual int Versions { get; set;}
         
-       }
+   }
 }

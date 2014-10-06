@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -43,10 +42,10 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.JobPool entity = new rt.srz.model.srz.JobPool();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = 92;
+			entity.Id = 71;
 			
 			entity.Content = new System.Byte[]{};
-			entity.Versions = 91;
+			entity.Versions = 20;
 			
 			return entity;
 		}

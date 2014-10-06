@@ -1,4 +1,12 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AutoComplete.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The addressManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,38 +22,37 @@ namespace rt.srz.model.srz
    {
       public AutoComplete() { }
 
-	  [XmlElement(Order = 1)]
+	    [XmlElement(Order = 1)]
       [DataMember(Order = 1)]
       public override System.Guid Id
       {
-        get
-        {
-          return base.Id;
-        }
-        set
-        {
-          base.Id = value;
-        }
+         get
+         {
+            return base.Id;
+         }
+         set
+         {
+            base.Id = value;
+         }
       } 
 
-
-        [XmlElement(Order =  2)]
-        [DataMember(Order =  2)]
-        public virtual string Name { get; set;}
+      [XmlElement(Order =  2)]
+      [DataMember(Order =  2)]
+      public virtual string Name { get; set;}
         
-        [XmlElement(Order =  3)]
-        [DataMember(Order =  3)]
-        public virtual int Relevance { get; set;}
+      [XmlElement(Order =  3)]
+      [DataMember(Order =  3)]
+      public virtual int Relevance { get; set;}
         
         
-				[XmlElement(Order =  4)]
-        [DataMember(Order =  4)]
-		public virtual Concept Gender { get; set;}
+		  [XmlElement(Order =  4)]
+      [DataMember(Order =  4)]
+		  public virtual Concept Gender { get; set;}
 			
         
-				[XmlElement(Order =  5)]
-        [DataMember(Order =  5)]
-		public virtual Concept Type { get; set;}
+		  [XmlElement(Order =  5)]
+      [DataMember(Order =  5)]
+		  public virtual Concept Type { get; set;}
 			
-       }
+   }
 }

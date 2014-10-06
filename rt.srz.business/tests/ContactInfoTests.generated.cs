@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,9 +44,9 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.HomePhone = "Test Test Test Test Test Test Te";
-			entity.WorkPhone = "Test";
-			entity.Email = "Tes";
+			entity.HomePhone = "Test Test Test Test Test Test Test Test T";
+			entity.WorkPhone = "Test Test Test Test Test Tes";
+			entity.Email = "Test Test Test Test Test";
 			
 			return entity;
 		}
@@ -104,7 +103,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.ContactInfo entityA = GetFirstContactInfo();
 				
-				entityA.HomePhone = "Tes";
+				entityA.HomePhone = "Test Test Test Test Test Test Test";
 				
 				manager.Update(entityA);
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -47,7 +46,7 @@ namespace rt.srz.business.tests
 			
 			entity.DateDead = System.DateTime.Now;
 			entity.ActRecordDate = System.DateTime.Now;
-			entity.ActRecordNumber = 21;
+			entity.ActRecordNumber = 34;
 			
 			return entity;
 		}

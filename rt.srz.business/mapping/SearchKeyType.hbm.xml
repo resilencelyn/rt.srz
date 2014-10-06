@@ -1,58 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-  <class name="rt.srz.model.srz.SearchKeyType, rt.srz.model" table="[dbo].[SearchKeyType]" lazy="true">
-    <id name="Id" column="[RowId]">
-      <generator class="guid.comb" />
-    </id>
-    <property name="Code" column="[Code]" />
-    <property name="Name" column="[Name]" />
-    <property name="IsActive" column="[IsActive]" />
-    <property name="FirstName" column="[FirstName]" />
-    <property name="LastName" column="[LastName]" />
-    <property name="MiddleName" column="[MiddleName]" />
-    <property name="Birthday" column="[Birthday]" />
-    <property name="Birthplace" column="[Birthplace]" />
-    <property name="Snils" column="[Snils]" />
-    <property name="DocumentType" column="[DocumentType]" />
-    <property name="DocumentSeries" column="[DocumentSeries]" />
-    <property name="DocumentNumber" column="[DocumentNumber]" />
-    <property name="Okato" column="[Okato]" />
-    <property name="PolisType" column="[PolisType]" />
-    <property name="PolisSeria" column="[PolisSeria]" />
-    <property name="PolisNumber" column="[PolisNumber]" />
-    <property name="FirstNameLength" column="[FirstNameLength]" />
-    <property name="LastNameLength" column="[LastNameLength]" />
-    <property name="MiddleNameLength" column="[MiddleNameLength]" />
-    <property name="BirthdayLength" column="[BirthdayLength]" />
-    <property name="AddressStreet" column="[AddressStreet]" />
-    <property name="AddressStreetLength" column="[AddressStreetLength]" />
-    <property name="AddressHouse" column="[AddressHouse]" />
-    <property name="AddressRoom" column="[AddressRoom]" />
-    <property name="AddressStreet2" column="[AddressStreet2]" />
-    <property name="AddressStreetLength2" column="[AddressStreetLength2]" />
-    <property name="AddressHouse2" column="[AddressHouse2]" />
-    <property name="AddressRoom2" column="[AddressRoom2]" />
-    <property name="DeleteTwinChar" column="[DeleteTwinChar]" />
-    <property name="IdenticalLetters" column="[IdenticalLetters]" />
-    <property name="Recalculated" column="[Recalculated]" />
-    <property name="Enp" column="[Enp]" />
-    <property name="MainEnp" column="[MainEnp]" />
-    <property name="Weight" column="[Weight]" />
-    <property name="Insertion" column="[Insertion]" />
-    <many-to-one name="OperationKey" column="[OperationKeyId]" class="Concept" />
-    <many-to-one name="Tfoms" column="[TfomsId]" class="Organisation" />
-    <bag name="QueryResponseItemizes" lazy="true" inverse="true">
-      <key column="[KeyTypeId]"></key>
-      <one-to-many class="QueryResponseItemize"></one-to-many>
-    </bag>
-    <bag name="SearchKeys" lazy="true" inverse="true">
-      <key column="[KeyTypeId]"></key>
-      <one-to-many class="SearchKey"></one-to-many>
-    </bag>
-    <bag name="TwinsKeys" lazy="true" inverse="true">
-      <key column="[KeyTypeId]"></key>
-      <one-to-many class="TwinsKey"></one-to-many>
-    </bag>
-  </class>
+	<class name="rt.srz.model.srz.SearchKeyType, rt.srz.model" table="[dbo].[SearchKeyType]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Code" column="[Code]" />
+		<property name="Name" column="[Name]" />
+		<property name="IsActive" column="[IsActive]" />
+		<property name="FirstName" column="[FirstName]" />
+		<property name="LastName" column="[LastName]" />
+		<property name="MiddleName" column="[MiddleName]" />
+		<property name="Birthday" column="[Birthday]" />
+		<property name="Birthplace" column="[Birthplace]" />
+		<property name="Snils" column="[Snils]" />
+		<property name="DocumentType" column="[DocumentType]" />
+		<property name="DocumentSeries" column="[DocumentSeries]" />
+		<property name="DocumentNumber" column="[DocumentNumber]" />
+		<property name="Okato" column="[Okato]" />
+		<property name="PolisType" column="[PolisType]" />
+		<property name="PolisSeria" column="[PolisSeria]" />
+		<property name="PolisNumber" column="[PolisNumber]" />
+		<property name="FirstNameLength" column="[FirstNameLength]" />
+		<property name="LastNameLength" column="[LastNameLength]" />
+		<property name="MiddleNameLength" column="[MiddleNameLength]" />
+		<property name="BirthdayLength" column="[BirthdayLength]" />
+		<property name="AddressStreet" column="[AddressStreet]" />
+		<property name="AddressStreetLength" column="[AddressStreetLength]" />
+		<property name="AddressHouse" column="[AddressHouse]" />
+		<property name="AddressRoom" column="[AddressRoom]" />
+		<property name="AddressStreet2" column="[AddressStreet2]" />
+		<property name="AddressStreetLength2" column="[AddressStreetLength2]" />
+		<property name="AddressHouse2" column="[AddressHouse2]" />
+		<property name="AddressRoom2" column="[AddressRoom2]" />
+		<property name="DeleteTwinChar" column="[DeleteTwinChar]" />
+		<property name="IdenticalLetters" column="[IdenticalLetters]" />
+		<property name="Recalculated" column="[Recalculated]" />
+		<property name="Enp" column="[Enp]" />
+		<property name="MainEnp" column="[MainEnp]" />
+		<property name="Weight" column="[Weight]" />
+		<property name="Insertion" column="[Insertion]" />
+		<many-to-one name="OperationKey" column="[OperationKeyId]" class="Concept"  />
+		<many-to-one name="Tfoms" column="[TfomsId]" class="Organisation"  />
+		<bag name="QueryResponseItemizes" lazy="true" inverse="true" >
+			<key column="[KeyTypeId]"></key>
+			<one-to-many class="QueryResponseItemize"></one-to-many>
+		</bag>
+		<bag name="SearchKeys" lazy="true" inverse="true" >
+			<key column="[KeyTypeId]"></key>
+			<one-to-many class="SearchKey"></one-to-many>
+		</bag>
+		<bag name="TwinsKeys" lazy="true" inverse="true" >
+			<key column="[KeyTypeId]"></key>
+			<one-to-many class="TwinsKey"></one-to-many>
+		</bag>
+	</class>
 </hibernate-mapping>
+

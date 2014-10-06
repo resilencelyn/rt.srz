@@ -141,7 +141,7 @@ namespace rt.core.business.server.bak
         }
         catch (Exception exception)
         {
-          logger.FatalException("В процессе создания бэкапа произошла ошибка", exception);
+          logger.Fatal("В процессе создания бэкапа произошла ошибка", exception);
         }
         finally
         {

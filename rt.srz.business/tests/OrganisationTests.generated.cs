@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -47,12 +46,12 @@ namespace rt.srz.business.tests
 			
 			entity.IsActive = true;
 			entity.IsOnLine = true;
-			entity.Code = "Test Test T";
+			entity.Code = "Test Te";
 			entity.FullName = "Test Test ";
 			entity.ShortName = "Test Test ";
-			entity.Inn = "Test Tes";
-			entity.Ogrn = "Tes";
-			entity.Postcode = "Test Te";
+			entity.Inn = "Test ";
+			entity.Ogrn = "Test Test T";
+			entity.Postcode = "Test T";
 			entity.LastName = "Test Test ";
 			entity.FirstName = "Test Test ";
 			entity.MiddleName = "Test Test ";
@@ -61,7 +60,7 @@ namespace rt.srz.business.tests
 			entity.EMail = "Test Test ";
 			entity.Website = "Test Test ";
 			entity.LicenseData = "Test Test ";
-			entity.LicenseNumber = "Test Test Test Test Test Test Test Test Test ";
+			entity.LicenseNumber = "Test Test Test Test Test Te";
 			entity.DateLicensing = System.DateTime.Now;
 			entity.DateExpiryLicense = System.DateTime.Now;
 			entity.IsSubordination = true;
@@ -69,9 +68,9 @@ namespace rt.srz.business.tests
 			entity.DateExcludeRegister = System.DateTime.Now;
 			entity.HasActivePolicy = true;
 			entity.DateNotification = System.DateTime.Now;
-			entity.CountInsured = 65;
+			entity.CountInsured = 86;
 			entity.DateLastEdit = System.DateTime.Now;
-			entity.Okato = "Test Test";
+			entity.Okato = "Test ";
 			entity.TimeRunFrom = System.DateTime.Now;
 			entity.TimeRunTo = System.DateTime.Now;
 			entity.Address = "Test Test ";

@@ -295,6 +295,7 @@ namespace rt.srz.business.manager
       }
       catch (Exception ex)
       {
+        NLog.LogManager.GetCurrentClassLogger().Error(ex);
         throw new StandardSearchKeyCalculationException();
       }
 
@@ -356,7 +357,6 @@ namespace rt.srz.business.manager
       // поднимаем все страховки по InsurepPerson.PeriodInsurance.MedicalInsured
       // и мапим это все в ответ
       InsuredPerson person = null;
-      Statement statementAlias = null;
 
       return
         session.QueryOver<MedicalInsurance>()

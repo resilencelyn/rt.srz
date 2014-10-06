@@ -12,6 +12,7 @@ namespace rt.core.services.client
   #region references
 
   using System;
+  using System.Security.Authentication;
 
   using rt.core.model.client;
   using rt.core.model.security;
@@ -83,9 +84,13 @@ namespace rt.core.services.client
 
           return retVal;
         }
+        catch (AuthenticationException)
+        {
+          NLog.LogManager.GetCurrentClassLogger().Error("Неудачная попытка аутентификации №" + popitka);
+        }
         catch (Exception ex)
         {
-          ////todo: some thing
+          NLog.LogManager.GetCurrentClassLogger().Error("Неудачная попытка аутентификации №" + popitka, ex);
         }
 
         popitka++;

@@ -89,7 +89,7 @@ namespace rt.srz.business.exchange.import.kladr
       }
       catch (Exception ex)
       {
-        LogManager.GetCurrentClassLogger().ErrorException("Ошибка загрузки файла", ex);
+        LogManager.GetCurrentClassLogger().Error("Ошибка загрузки файла", ex);
         return false;
       }
     }

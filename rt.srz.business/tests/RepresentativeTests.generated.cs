@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,11 +44,11 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FirstName = "T";
-			entity.LastName = "Test T";
-			entity.MiddleName = "Test Test Test Test ";
-			entity.HomePhone = "T";
-			entity.WorkPhone = "Test Test Test Test Test Test Test Test";
+			entity.FirstName = "Test Test Test Test Test Tes";
+			entity.LastName = "Test Test Test Test Tes";
+			entity.MiddleName = "Test Test Test Test Test Test ";
+			entity.HomePhone = "Test Test Test Test Test Test Test Tes";
+			entity.WorkPhone = "Test Test Te";
 			
 			using(rt.srz.business.manager.IDocumentManager documentManager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
@@ -124,7 +123,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.Representative entityA = GetFirstRepresentative();
 				
-				entityA.FirstName = "Test Test Test Test Test Test Test Test Test Tes";
+				entityA.FirstName = "Test Test Test Test Test Test Test T";
 				
 				manager.Update(entityA);
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -47,17 +46,17 @@ namespace rt.srz.business.tests
 			
 			entity.DateFiling = System.DateTime.Now;
 			entity.HasPetition = true;
-			entity.NumberPolicy = "Test Test Test Test";
+			entity.NumberPolicy = "Test Test Test";
 			entity.AbsentPrevPolicy = true;
 			entity.IsActive = true;
 			entity.PolicyIsIssued = true;
-			entity.PrzBuffId = 69;
-			entity.PidId = 75;
-			entity.PolisId = 24;
+			entity.PrzBuffId = 94;
+			entity.PidId = 1;
+			entity.PolisId = 89;
 			entity.IsExportTemp = true;
 			entity.IsExportPolis = true;
-			entity.PrzBuffPolisId = 2;
-			entity.Version = 63;
+			entity.PrzBuffPolisId = 42;
+			entity.Version = 31;
 			entity.UserId = System.Guid.NewGuid();
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())

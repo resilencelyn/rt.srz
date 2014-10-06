@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,7 +44,7 @@ namespace rt.core.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FakeField = 11;
+			entity.FakeField = 33;
 			
 			using(rt.core.business.manager.IPermissionManager permissionManager = ObjectFactory.GetInstance<IPermissionManager>())
 				{
@@ -120,7 +119,7 @@ namespace rt.core.business.tests
 			
                 rt.core.model.core.PermissionRole entityA = GetFirstPermissionRole();
 				
-				entityA.FakeField = 61;
+				entityA.FakeField = 21;
 				
 				manager.Update(entityA);
 

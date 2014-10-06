@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -43,7 +42,7 @@ namespace rt.srz.business.tests
 			rt.srz.model.srz.Oid entity = new rt.srz.model.srz.Oid();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = "Test Test Test Test Test Test Test Test Test Te";
+			entity.Id = "Test Test Test Test Test Test Test Test ";
 			
 			entity.FullName = "Test Test ";
 			entity.ShortName = "Test Test ";

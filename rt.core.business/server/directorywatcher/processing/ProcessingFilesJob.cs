@@ -105,7 +105,7 @@ namespace rt.core.business.server.directorywatcher.processing
             }
             catch (Exception ex)
             {
-              LogManager.GetCurrentClassLogger().ErrorException(ex.Message, ex);
+              LogManager.GetCurrentClassLogger().Error(ex.Message, ex);
 
               // Если возникла ошибка, то убираем импорт из списка выполняемых задач 
               // todo надо подумать как обрабатывать такие файлы, может их перемещать в отдельную папку для анализа
@@ -151,7 +151,7 @@ namespace rt.core.business.server.directorywatcher.processing
       }
       catch (Exception ex)
       {
-        LogManager.GetCurrentClassLogger().ErrorException(ex.Message, ex);
+        LogManager.GetCurrentClassLogger().Error(ex.Message, ex);
         var moveToPath = Path.Combine(ConfigManager.ExchangeSettings.FailedPath, importer.GetFailedDirectoryToMove());
         if (!Directory.Exists(moveToPath))
         {

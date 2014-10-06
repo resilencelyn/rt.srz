@@ -91,7 +91,7 @@ namespace rt.srz.business.exchange.import.smo
       catch (Exception ex)
       {
         // Ошибка десериализации
-        logger.ErrorException(ex.Message, ex);
+        logger.Error(ex.Message, ex);
         throw;
       }
 
@@ -129,13 +129,13 @@ namespace rt.srz.business.exchange.import.smo
         catch (LogicalControlException ex)
         {
           // ошибка ФЛК
-          logger.InfoException(ex.Message, ex);
+          logger.Info(ex.Message, ex);
           logger.Info(rec);
           logger.Info(statement);
         }
         catch (Exception ex)
         {
-          logger.ErrorException(ex.Message, ex);
+          logger.Error(ex.Message, ex);
           logger.Error(rec);
           logger.Error(statement);
         }

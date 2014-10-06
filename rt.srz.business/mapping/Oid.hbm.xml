@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-  <class name="rt.srz.model.srz.Oid, rt.srz.model" table="[dbo].[Oid]" lazy="true">
-    <id name="Id" column="[Id]">
-      <generator class="assigned" />
-    </id>
-    <property name="FullName" column="[FullName]" />
-    <property name="ShortName" column="[ShortName]" />
-    <property name="LatinName" column="[LatinName]" />
-    <many-to-one name="Default" column="[DefaultId]" class="Concept" />
-    <bag name="Organisations" lazy="true" inverse="true">
-      <key column="[Oid]"></key>
-      <one-to-many class="Organisation"></one-to-many>
-    </bag>
-    <bag name="Concepts" lazy="true" inverse="true">
-      <key column="[Oid]"></key>
-      <one-to-many class="Concept"></one-to-many>
-    </bag>
-  </class>
+	<class name="rt.srz.model.srz.Oid, rt.srz.model" table="[dbo].[Oid]" lazy="true">
+		<id name="Id" column="[Id]">
+		 	<generator class="assigned" />
+		</id>
+		<property name="FullName" column="[FullName]" />
+		<property name="ShortName" column="[ShortName]" />
+		<property name="LatinName" column="[LatinName]" />
+		<many-to-one name="Default" column="[DefaultId]" class="Concept"  />
+		<bag name="Organisations" lazy="true" inverse="true" >
+			<key column="[Oid]"></key>
+			<one-to-many class="Organisation"></one-to-many>
+		</bag>
+		<bag name="Concepts" lazy="true" inverse="true" >
+			<key column="[Oid]"></key>
+			<one-to-many class="Concept"></one-to-many>
+		</bag>
+	</class>
 </hibernate-mapping>
+

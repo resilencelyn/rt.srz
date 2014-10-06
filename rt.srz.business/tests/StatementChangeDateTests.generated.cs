@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,7 +44,7 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Version = 69;
+			entity.Version = 32;
 			entity.Datum = "Test Test ";
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
@@ -121,7 +120,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.StatementChangeDate entityA = GetFirstStatementChangeDate();
 				
-				entityA.Version = 53;
+				entityA.Version = 54;
 				
 				manager.Update(entityA);
 

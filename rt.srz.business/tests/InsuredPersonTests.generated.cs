@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,7 +44,7 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.MainPolisNumber = "Test Test";
+			entity.MainPolisNumber = "Test Test Tes";
 			
 			using(rt.srz.business.manager.IDeadInfoManager deadInfoManager = ObjectFactory.GetInstance<IDeadInfoManager>())
 				{
@@ -120,7 +119,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.InsuredPerson entityA = GetFirstInsuredPerson();
 				
-				entityA.MainPolisNumber = "Test Test Te";
+				entityA.MainPolisNumber = "Tes";
 				
 				manager.Update(entityA);
 

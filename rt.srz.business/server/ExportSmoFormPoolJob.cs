@@ -117,7 +117,7 @@ namespace rt.srz.business.server
       }
       catch (Exception ex)
       {
-        logger.FatalException("Произошла ошибка расчета батчей для экспорта в СМО", ex);
+        logger.Fatal("Произошла ошибка расчета батчей для экспорта в СМО", ex);
         throw;
       }
       finally

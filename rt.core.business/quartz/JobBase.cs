@@ -53,7 +53,7 @@ namespace rt.core.business.quartz
       catch (Exception exception)
       {
         LogManager.GetCurrentClassLogger()
-                  .FatalException("Не обработаная ошибка запуска или выполнения задачи IJob", exception);
+                  .Fatal("Не обработаная ошибка запуска или выполнения задачи IJob", exception);
       }
     }
 

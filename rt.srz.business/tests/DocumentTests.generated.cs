@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using NUnit.Framework;
@@ -45,8 +44,8 @@ namespace rt.srz.business.tests
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Series = "Test Test T";
-			entity.Number = "Test T";
+			entity.Series = "Test ";
+			entity.Number = "Te";
 			entity.IssuingAuthority = "Test Test ";
 			entity.DateIssue = System.DateTime.Now;
 			entity.DateExp = System.DateTime.Now;
@@ -116,7 +115,7 @@ namespace rt.srz.business.tests
 			
                 rt.srz.model.srz.Document entityA = GetFirstDocument();
 				
-				entityA.Series = "Test Test Te";
+				entityA.Series = "T";
 				
 				manager.Update(entityA);
 
