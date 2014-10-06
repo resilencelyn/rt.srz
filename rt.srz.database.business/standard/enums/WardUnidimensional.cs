@@ -1,30 +1,39 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WardUnidimensional.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The ward unidimensional.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.database.business.standard.enums
 {
   /// <summary>
-  /// The ward unidimensional.
+  ///   The ward unidimensional.
   /// </summary>
   public enum WardUnidimensional
   {
     /// <summary>
-    /// The forward.
+    ///   The forward.
     /// </summary>
-    Forward = 0x01,
+    Forward = 0x01, 
 
     /// <summary>
-    /// The back.
+    ///   The back.
     /// </summary>
-    Back = 0x02,
+    Back = 0x02, 
 
     // оба направления
     /// <summary>
-    /// The both.
+    ///   The both.
     /// </summary>
-    Both = Forward | Back,
+    Both = Forward | Back, 
 
     // ни одного направления
     /// <summary>
-    /// The none.
+    ///   The none.
     /// </summary>
-    None = 0x00,
+    None = 0x00, 
   }
 }

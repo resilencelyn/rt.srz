@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseMessageTemplate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="BaseMessageTemplate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The base message template.

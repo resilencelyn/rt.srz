@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SecurityServiceRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SecurityServiceRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The security service registry.
@@ -11,9 +11,9 @@ namespace rt.srz.services.registry
 {
   #region
 
+  using rt.core.model.interfaces;
+  using rt.core.services;
   using rt.core.services.registry;
-  using rt.srz.model.interfaces.service;
-  using rt.srz.services.Security;
 
   #endregion
 

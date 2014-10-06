@@ -1,9 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SynchronizationToPvpJob.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SynchronizationToSrzJob.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The synchronization job.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 
 namespace rt.atl.business.quartz
 {
@@ -11,43 +13,26 @@ namespace rt.atl.business.quartz
 
   using System;
   using System.Linq;
-  using Quartz;
+
   using NHibernate;
-  using StructureMap;
-  using rt.atl.business.configuration;
+
+  using Quartz;
+
+  using rt.atl.model.configuration;
   using rt.atl.model.interfaces.Service;
   using rt.core.business.quartz;
-  using rt.atl.business.exchange.impl;
-  using rt.srz.model.srz;
   using rt.srz.business.manager;
-  
+  using rt.srz.model.srz;
+
+  using StructureMap;
 
   #endregion
 
   /// <summary>
-  /// The synchronization job.
+  ///   The synchronization job.
   /// </summary>
   public class SynchronizationToSrzJob : JobBase
   {
-    #region Private Methods
-    private void SaveSyncStartOrFinishTime(string postfix)
-    {
-      DateTime syncTime = DateTime.Now;
-      var settingManager = ObjectFactory.GetInstance<ISettingManager>();
-
-      // Пишем информацию о времени завершения синхронизации из ПВП в СРЗ
-      var syncTime2Srz = settingManager.GetBy(x => x.Name == typeof(ExporterToSrz).FullName + postfix).FirstOrDefault();
-      if (syncTime2Srz == null)
-      {
-        syncTime2Srz = new Setting();
-        syncTime2Srz.Name = typeof(ExporterToSrz).FullName + postfix;
-      }
-      syncTime2Srz.ValueString = syncTime.ToString();
-      settingManager.SaveOrUpdate(syncTime2Srz);
-      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-    }
-    #endregion
-
     #region Methods
 
     /// <summary>
@@ -66,7 +51,7 @@ namespace rt.atl.business.quartz
         {
           // Сохраянем время начала синхронизации
           SaveSyncStartOrFinishTime("_Start");
-          
+
           var atlServices = ObjectFactory.GetInstance<IAtlService>();
           if (ConfigManager.SynchronizationSettings.SynchronizationNsi)
           {
@@ -86,6 +71,30 @@ namespace rt.atl.business.quartz
           context.Scheduler.ResumeTrigger(context.Trigger.Key);
         }
       }
+    }
+
+    /// <summary>
+    /// The save sync start or finish time.
+    /// </summary>
+    /// <param name="postfix">
+    /// The postfix.
+    /// </param>
+    private void SaveSyncStartOrFinishTime(string postfix)
+    {
+      var syncTime = DateTime.Now;
+      var settingManager = ObjectFactory.GetInstance<ISettingManager>();
+
+      // Пишем информацию о времени завершения синхронизации из ПВП в СРЗ
+      var syncTime2Srz = settingManager.GetBy(x => x.Name == "ExporterToSrz" + postfix).FirstOrDefault();
+      if (syncTime2Srz == null)
+      {
+        syncTime2Srz = new Setting();
+        syncTime2Srz.Name = "ExporterToSrz" + postfix;
+      }
+
+      syncTime2Srz.ValueString = syncTime.ToString();
+      settingManager.SaveOrUpdate(syncTime2Srz);
+      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
     }
 
     #endregion

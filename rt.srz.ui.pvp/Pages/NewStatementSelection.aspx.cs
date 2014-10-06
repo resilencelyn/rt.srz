@@ -16,7 +16,7 @@ namespace rt.srz.ui.pvp.Pages
   using System.Web.Services;
   using System.Web.UI;
   using NHibernate;
-  using rt.core.business.nhibernate;
+
   using rt.srz.model.dto;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;

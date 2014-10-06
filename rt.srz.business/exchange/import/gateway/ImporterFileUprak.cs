@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.exchange.import.gateway
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ImporterFileUprak.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The importer file uprak.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.import.gateway
 {
   using System;
   using System.IO;
@@ -20,23 +29,32 @@
 
   using StructureMap;
 
+  /// <summary>
+  /// The importer file uprak.
+  /// </summary>
   public class ImporterFileUprak : ImporterFile
   {
-    #region Constructor
-    public ImporterFileUprak() : base(TypeSubject.Erz)
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ImporterFileUprak"/> class.
+    /// </summary>
+    public ImporterFileUprak()
+      : base(TypeSubject.Erz)
     {
-    
     }
+
     #endregion
 
-    #region Public Methods
+    #region Public Methods and Operators
+
     /// <summary>
     /// Применим ли импортер для данного типа сообщений?
     /// </summary>
     /// <param name="file">
     /// </param>
     /// <returns>
-    /// true, если применим, иначе false 
+    /// true, если применим, иначе false
     /// </returns>
     public override bool AppliesTo(FileInfo file)
     {
@@ -47,17 +65,17 @@
     /// Обработка
     /// </summary>
     /// <param name="file">
-    /// Путь к файлу загрузки 
+    /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
     /// </param>
     /// <returns>
-    /// был ли обработан пакет 
+    /// был ли обработан пакет
     /// </returns>
     public override bool Processing(FileInfo file, IJobExecutionContext context)
     {
       var logger = LogManager.GetCurrentClassLogger();
-      
+
       // Попытка десериализации файла
       var personErp = new PersonErp();
       try
@@ -73,7 +91,7 @@
       }
 
       // Получаем идентификатор батча
-      Guid batchId = Guid.Empty;
+      var batchId = Guid.Empty;
       if (personErp != null && personErp.BeginPacket != null)
       {
         Guid.TryParse(personErp.BeginPacket.Identificator, out batchId);
@@ -94,15 +112,16 @@
       // Парсим ошибки ФЛК от шлюза
       foreach (var ack in personErp.AckList)
       {
-        Guid messageId = Guid.Empty;
+        var messageId = Guid.Empty;
         Guid.TryParse(ack.Msa.ReferenceIdentificator, out messageId);
-          
+
         // Получаем ссылку на заявление
-        var statement = session.QueryOver<Statement>()
-          .JoinQueryOver<MessageStatement>(s => s.MessageStatements)
-          .Where(ms => ms.Message.Id == messageId)
-          .List()
-          .FirstOrDefault();
+        var statement =
+          session.QueryOver<Statement>()
+                 .JoinQueryOver<MessageStatement>(s => s.MessageStatements)
+                 .Where(ms => ms.Message.Id == messageId)
+                 .List()
+                 .FirstOrDefault();
 
         if (statement == null)
         {
@@ -110,23 +129,27 @@
           return false;
         }
 
-        //Удаляем предыдущие ошибки
-        var oldErrors = session.QueryOver<Error>()
-          .Where(x => x.Statement.Id == statement.Id && x.Application.Id == TypeSubject.Erz)
-          .List();
+        // Удаляем предыдущие ошибки
+        var oldErrors =
+          session.QueryOver<Error>()
+                 .Where(x => x.Statement.Id == statement.Id && x.Application.Id == TypeSubject.Erz)
+                 .List();
         foreach (var oldError in oldErrors)
         {
           session.Delete(oldError);
         }
+
         session.Flush();
 
         // Пишем ошибки в Errors
-        bool bWasError = false;
+        var bWasError = false;
         foreach (var uprErr in personErp.AckList.FirstOrDefault().ErrList)
         {
           // Пропускаем предупреждения
           if (uprErr.LevelSeriously != "E")
+          {
             continue;
+          }
 
           // Создаем запись в БД
           var error = new Error();
@@ -144,8 +167,7 @@
         if (bWasError)
         {
           // Меняем статус заявления на отклонено
-          statement.Status = ObjectFactory.GetInstance<IConceptCacheManager>()
-            .GetById(StatusStatement.Cancelled);
+          statement.Status = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(StatusStatement.Cancelled);
           session.Save(statement);
 
           // Пишем ошибку в сообщение
@@ -160,7 +182,7 @@
         // Чистим сессию
         session.Flush();
       }
-          
+
       return true;
     }
 
@@ -173,6 +195,7 @@
     public override void UndoBatches(string fileName)
     {
     }
+
     #endregion
 
     #region Methods
@@ -180,8 +203,11 @@
     /// <summary>
     /// Отмена загрузки пакета
     /// </summary>
-    /// <param name="batch"></param>
-    /// <returns></returns>
+    /// <param name="batch">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
     protected override bool UndoBatch(Guid batch)
     {
       return true;

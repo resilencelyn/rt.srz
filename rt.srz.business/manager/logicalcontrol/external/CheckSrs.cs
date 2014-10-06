@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckSrs.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckSrs.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The check za 7.
@@ -14,6 +14,7 @@ namespace rt.srz.business.manager.logicalcontrol.external
   using NHibernate;
 
   using rt.srz.business.Properties;
+  using rt.srz.model.enumerations;
   using rt.srz.model.srz;
 
   #endregion
@@ -38,10 +39,10 @@ namespace rt.srz.business.manager.logicalcontrol.external
     /// Initializes a new instance of the <see cref="CheckSrs"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     /// <param name="statementManager">
-    /// The statement Manager. 
+    /// The statement Manager.
     /// </param>
     public CheckSrs(ISessionFactory sessionFactory, IStatementHl7Manager statementManager)
       : base(CheckLevelEnum.External, sessionFactory)
@@ -54,7 +55,7 @@ namespace rt.srz.business.manager.logicalcontrol.external
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -72,7 +73,7 @@ namespace rt.srz.business.manager.logicalcontrol.external
     /// The check.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPostcodeException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultPostcodeException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault postcode exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
   #endregion
 
   /// <summary>
-  /// The fault postcode exception.
+  ///   The fault postcode exception.
   /// </summary>
   [Serializable]
   public class FaultPostcodeException : FaultStep3
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultPostcodeException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultPostcodeException" /> class.
     /// </summary>
     public FaultPostcodeException()
       : base(new ExceptionInfo(Resource.FaultPostcodeExceptionCode), Resource.FaultPostcodeExceptionMessage)

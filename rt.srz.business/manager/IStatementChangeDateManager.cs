@@ -1,29 +1,41 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="IStatementChangeDateManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IStatementChangeDateManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The interface StatementChangeDateManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
-using rt.srz.model.srz;
 namespace rt.srz.business.manager
 {
+  using rt.srz.model.srz;
+
   /// <summary>
-  /// The interface StatementChangeDateManager.
+  ///   The interface StatementChangeDateManager.
   /// </summary>
   public partial interface IStatementChangeDateManager
   {
-    /// <summary>
-    /// Сохраняет историю изменения приватных данных и данных документа
-    /// </summary>
-    /// <param name="newStatement"></param>
-    /// <param name="oldStatement"></param>
-    bool SaveStatementChangeHistory(Statement newStatement);
+    #region Public Methods and Operators
 
     /// <summary>
     /// Реплицирует историю изменения приватных данных и данных документа
     /// </summary>
-    /// <param name="newStatement"></param>
-    /// <param name="oldStatement"></param>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
     void ReplicateStatementChangeHistory(Statement statement);
+
+    /// <summary>
+    /// Сохраняет историю изменения приватных данных и данных документа
+    /// </summary>
+    /// <param name="newStatement">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    bool SaveStatementChangeHistory(Statement newStatement);
+
+    #endregion
   }
 }

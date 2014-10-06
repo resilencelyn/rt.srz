@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="In1Card.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="In1Card.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The in 1 card.
@@ -31,11 +31,23 @@ namespace rt.srz.model.HL7.person.target
     [XmlElement(ElementName = "IN1.19", Order = 19)]
     public List<AddressCard> AddressList = new List<AddressCard>();
 
+    /// <summary>
+    ///   Адрес смо в строке
+    /// </summary>
+    [XmlElement(ElementName = "IN1.151", Order = 151)]
+    public string AddressSmoInStr;
+
+    /// <summary>
+    ///   Страна рождения
+    /// </summary>
+    [XmlElement(ElementName = "IN1.150", Order = 150)]
+    public string BirthCountry;
+
     ///// <summary>
     /////   The address smo.
     ///// </summary>
-    //[XmlElement(ElementName = "IN1.5", Order = 5)]
-    //public AddressCard AddressSmo = new AddressCard();
+    // [XmlElement(ElementName = "IN1.5", Order = 5)]
+    // public AddressCard AddressSmo = new AddressCard();
 
     /// <summary>
     ///   The birth day.
@@ -44,7 +56,7 @@ namespace rt.srz.model.HL7.person.target
     public string BirthDay;
 
     /// <summary>
-    /// The category.
+    ///   The category.
     /// </summary>
     [XmlElement(ElementName = "IN1.100", Order = 100)]
     public CneStructure Category;
@@ -116,25 +128,19 @@ namespace rt.srz.model.HL7.person.target
     public string InsuranceSerNum;
 
     /// <summary>
-    /// Дата выдачи временного свидетельства
-    /// </summary>
-    [XmlElement(ElementName = "IN1.151", Order = 151)]
-    public string TemporaryCertificateDateIssue;
-
-    /// <summary>
     ///   The insurance type.
     /// </summary>
     [XmlElement(ElementName = "IN1.35", Order = 35)]
     public string InsuranceType;
 
     /// <summary>
-    /// The is refugee.
+    ///   The is refugee.
     /// </summary>
     [XmlElement(ElementName = "IN1.102", Order = 102)]
     public string IsRefugee;
 
     /// <summary>
-    /// The national.
+    ///   The national.
     /// </summary>
     [XmlElement(ElementName = "IN1.101", Order = 101)]
     public National National;
@@ -164,38 +170,31 @@ namespace rt.srz.model.HL7.person.target
     public string Sex;
 
     /// <summary>
-    /// The telecommunication addresse list.
+    ///   The telecommunication addresse list.
     /// </summary>
     [XmlElement(ElementName = "IN1.103", Order = 103)]
     public List<TelecommunicationAddress> TelecommunicationAddresseList;
 
     /// <summary>
-    /// Страна рождения
-    /// </summary>
-    [XmlElement(ElementName = "IN1.150", Order = 150)]
-    public string BirthCountry;
-
-    /// <summary>
-    /// Адрес смо в строке
+    ///   Дата выдачи временного свидетельства
     /// </summary>
     [XmlElement(ElementName = "IN1.151", Order = 151)]
-    public string AddressSmoInStr;
-
-    //[XmlIgnore]
-    //public string AddressSmoStr
-    //{
-    //  get
-    //  {
-    //    if (AddressSmo == null)
-    //    {
-    //      return string.Empty;
-    //    }
-    //    return AddressSmo.AddressStr;
-    //  }
-    //}
+    public string TemporaryCertificateDateIssue;
 
     #endregion
 
+    // [XmlIgnore]
+    // public string AddressSmoStr
+    // {
+    // get
+    // {
+    // if (AddressSmo == null)
+    // {
+    // return string.Empty;
+    // }
+    // return AddressSmo.AddressStr;
+    // }
+    // }
     #region Public Methods and Operators
 
     /// <summary>

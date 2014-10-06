@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterOrganisationTfoms.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterOrganisationTfoms.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The importer file tfoms organisation.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.smo
@@ -100,7 +103,7 @@ namespace rt.srz.business.exchange.import.smo
                     MiddleName = tfoms.OtDir, 
                     Phone = tfoms.Phone, 
                     Fax = tfoms.Fax, 
-                    Website = tfoms.Www,
+                    Website = tfoms.Www, 
                     EMail = tfoms.EMail
                   };
 

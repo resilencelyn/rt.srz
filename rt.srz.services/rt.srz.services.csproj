@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,7 +38,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -87,7 +87,6 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +106,6 @@
     <Compile Include="registry\KladrServiceRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="registry\UirServiceRegistry.cs" />
-    <Compile Include="Security\SecurityGate.cs" />
-    <Compile Include="Security\SecurityGateInternal.cs" />
-    <Compile Include="Security\SecurityService.cs" />
     <Compile Include="registry\SecurityServiceRegistry.cs" />
     <Compile Include="Smo\SmoGate.cs" />
     <Compile Include="Smo\SmoGateInternal.cs" />
@@ -137,50 +133,47 @@
     <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
       <Project>{7A4B9D23-8317-45CA-ADD2-467458DFD464}</Project>
       <Name>rt.atl.business</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
       <Project>{6310659a-9539-4660-910a-da60b53cc5a0}</Project>
       <Name>rt.atl.model</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
       <Name>rt.core.business</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
       <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
       <Name>rt.core.model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
-      <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
-      <Name>rt.core.model.client</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{F806BF30-72B9-41EE-8A62-93100A9D30BB}</Project>
       <Name>rt.core.services</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
       <Project>{49D3899B-FD42-42FD-9734-BAE4C911F7F5}</Project>
       <Name>rt.srz.business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.barcode\rt.srz.model.barcode.csproj">
-      <Project>{9c095cf4-79d1-4b22-b793-ea85ce6ce595}</Project>
-      <Name>rt.srz.model.barcode</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
       <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
       <Name>rt.srz.model.HL7</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
       <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
       <Name>rt.srz.model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.services.client\rt.srz.services.client.csproj">
-      <Project>{ef604446-6168-4686-9d43-f3b887d0c513}</Project>
-      <Name>rt.srz.services.client</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.uec.model\rt.uec.model.csproj">
       <Project>{aad11904-afd7-4d6a-be28-a7589e9177b8}</Project>
       <Name>rt.uec.model</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

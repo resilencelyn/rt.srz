@@ -1,36 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.Document, rt.srz.model" table="[dbo].[Document]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="Series" column="[Series]" />
-		<property name="Number" column="[Number]" />
-		<property name="IssuingAuthority" column="[IssuingAuthority]" />
-		<property name="DateIssue" column="[DateIssue]" />
-		<property name="DateExp" column="[DateExp]" />
-		<property name="IsBad" column="[IsBad]" />
-		<many-to-one name="DocumentType" column="[DocumentTypeId]" class="Concept"  />
-		<bag name="QueryResponses" lazy="true" inverse="true" >
-			<key column="[DocumentUdlId]"></key>
-			<one-to-many class="QueryResponse"></one-to-many>
-		</bag>
-		<bag name="Representatives" lazy="true" inverse="true" >
-			<key column="[DocumentId]"></key>
-			<one-to-many class="Representative"></one-to-many>
-		</bag>
-		<bag name="Statements1" lazy="true" inverse="true" >
-			<key column="[DocumentUdlId]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-		<bag name="Statements2" lazy="true" inverse="true" >
-			<key column="[ResidencyDocumentId]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-		<bag name="Statements3" lazy="true" inverse="true" >
-			<key column="[DocumentRegistrationId]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.Document, rt.srz.model" table="[dbo].[Document]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Series" column="[Series]" />
+    <property name="Number" column="[Number]" />
+    <property name="IssuingAuthority" column="[IssuingAuthority]" />
+    <property name="DateIssue" column="[DateIssue]" />
+    <property name="DateExp" column="[DateExp]" />
+    <property name="IsBad" column="[IsBad]" />
+    <many-to-one name="DocumentType" column="[DocumentTypeId]" class="Concept" />
+    <bag name="QueryResponses" lazy="true" inverse="true">
+      <key column="[DocumentUdlId]"></key>
+      <one-to-many class="QueryResponse"></one-to-many>
+    </bag>
+    <bag name="Representatives" lazy="true" inverse="true">
+      <key column="[DocumentId]"></key>
+      <one-to-many class="Representative"></one-to-many>
+    </bag>
+    <bag name="Statements1" lazy="true" inverse="true">
+      <key column="[DocumentUdlId]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+    <bag name="Statements2" lazy="true" inverse="true">
+      <key column="[ResidencyDocumentId]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+    <bag name="Statements3" lazy="true" inverse="true">
+      <key column="[DocumentRegistrationId]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

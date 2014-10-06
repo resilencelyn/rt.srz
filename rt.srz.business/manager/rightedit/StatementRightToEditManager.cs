@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatementRightToEditManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatementRightToEditManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The statement right to edit manager.
@@ -65,7 +65,11 @@ namespace rt.srz.business.manager.rightedit
     /// </returns>
     public bool IsRightToEdit(IEnumerable<Concept> propertys, Expression<Func<Statement, object>> expression)
     {
-      return propertys.All(p => (StatementRightToEdits.FirstOrDefault(x => x.ApplyTo(p.Id)) ?? new StatementNotEdit()).IsEdit(expression));
+      return
+        propertys.All(
+                      p =>
+                      (StatementRightToEdits.FirstOrDefault(x => x.ApplyTo(p.Id)) ?? new StatementNotEdit()).IsEdit(
+                                                                                                                    expression));
     }
 
     #endregion

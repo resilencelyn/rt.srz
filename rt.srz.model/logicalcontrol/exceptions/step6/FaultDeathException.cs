@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultDeathException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultDeathException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault death exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault death exception.
+  ///   The fault death exception.
   /// </summary>
   [Serializable]
   public class FaultDeathException : FaultStep6
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultDeathException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultDeathException" /> class.
     /// </summary>
     public FaultDeathException()
       : base(new ExceptionInfo(Resource.FaultDeathExceptionCode), Resource.FaultDeathExceptionMessage)
@@ -48,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     {
     }
 
-   #endregion
+    #endregion
   }
 }

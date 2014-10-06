@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IExportBatchFactory.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IExportBatchFactory.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The ExportBatchFactory interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.interfaces.exchange
@@ -30,7 +33,7 @@ namespace rt.core.business.interfaces.exchange
     /// The type.
     /// </param>
     /// <returns>
-    /// The <see cref="IExportBatchTyped{TSerializeObject,TNode}"/> . 
+    /// The <see cref="IExportBatchTyped{TSerializeObject,TNode}"/> .
     /// </returns>
     IExportBatchTyped<TSerializeObject, TNode> GetExporter(ExportBatchType type);
 

@@ -11,7 +11,7 @@ namespace rt.srz.ui.pvp.Controls
   using System.Web.UI;
   using System.Web.UI.WebControls;
 
-  using rt.srz.business.manager;
+  using rt.core.model.interfaces;
   using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;

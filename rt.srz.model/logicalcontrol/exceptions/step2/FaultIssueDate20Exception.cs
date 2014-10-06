@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultIssueDate20Exception.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultIssueDate20Exception.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault issue date 20 exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault issue date 20 exception.
+  ///   The fault issue date 20 exception.
   /// </summary>
   [Serializable]
   public class FaultIssueDate20Exception : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultIssueDate20Exception"/> class.
+    ///   Initializes a new instance of the <see cref="FaultIssueDate20Exception" /> class.
     /// </summary>
     public FaultIssueDate20Exception()
       : base(new ExceptionInfo(Resource.FaultIssueDate20ExceptionCode), Resource.FaultIssueDate20ExceptionMessage)
@@ -48,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-  #endregion
+    #endregion
   }
 }

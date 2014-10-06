@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TFGateInternal.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TFGateInternal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The statement gate.
@@ -19,6 +19,8 @@ namespace rt.srz.services.TF
   using rt.srz.model.dto;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
+
+  using User = rt.core.model.core.User;
 
   #endregion
 
@@ -70,6 +72,37 @@ namespace rt.srz.services.TF
     }
 
     /// <summary>
+    /// Возвращает сортированный список периодов в которых запускались пакетные операции экспорта в СМО для указаннго
+    ///   отправителя либо получателя
+    /// </summary>
+    /// <param name="senderId">
+    /// The sender Id.
+    /// </param>
+    /// <param name="receiverId">
+    /// The receiver Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    public IList<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId)
+    {
+      return InvokeInterceptors(() => Service.GetExportSmoBatchPeriodList(senderId, receiverId));
+    }
+
+    /// <summary>
+    /// Возвращает все глобальные УЭК сертификаты
+    /// </summary>
+    /// <param name="batchId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    public IList<SertificateUec> GetGlobalSertificates()
+    {
+      return InvokeInterceptors(() => Service.GetGlobalSertificates());
+    }
+
+    /// <summary>
     ///   Возвращает все батчи относящиеся к пфр
     /// </summary>
     /// <returns> The <see cref="IList" /> . </returns>
@@ -93,7 +126,7 @@ namespace rt.srz.services.TF
     /// <param name="batchId">
     /// </param>
     /// <returns>
-    /// The <see cref="PfrStatisticInfo"/> . 
+    /// The <see cref="PfrStatisticInfo"/> .
     /// </returns>
     public PfrStatisticInfo GetPfrStatisticInfoByBatch(Guid batchId)
     {
@@ -106,7 +139,7 @@ namespace rt.srz.services.TF
     /// <param name="periodId">
     /// </param>
     /// <returns>
-    /// The <see cref="PfrStatisticInfo"/> . 
+    /// The <see cref="PfrStatisticInfo"/> .
     /// </returns>
     public PfrStatisticInfo GetPfrStatisticInfoByPeriod(Guid periodId)
     {
@@ -119,7 +152,7 @@ namespace rt.srz.services.TF
     /// <param name="keyTypeId">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchKeyType"/> . 
+    /// The <see cref="SearchKeyType"/> .
     /// </returns>
     public SearchKeyType GetSearchKeyType(Guid keyTypeId)
     {
@@ -141,7 +174,7 @@ namespace rt.srz.services.TF
     /// <param name="id">
     /// </param>
     /// <returns>
-    /// The <see cref="Twin"/> . 
+    /// The <see cref="Twin"/> .
     /// </returns>
     public Twin GetTwin(Guid id)
     {
@@ -163,11 +196,22 @@ namespace rt.srz.services.TF
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<Twin> GetTwins(SearchTwinCriteria criteria)
     {
       return InvokeInterceptors(() => Service.GetTwins(criteria));
+    }
+
+    /// <summary>
+    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="IList" />.
+    /// </returns>
+    public IList<User> GetUsersByCurrent()
+    {
+      return InvokeInterceptors(() => Service.GetUsersByCurrent());
     }
 
     /// <summary>
@@ -182,6 +226,16 @@ namespace rt.srz.services.TF
     public void JoinTwins(Guid twinId, Guid mainInsuredPersonId, Guid secondInsuredPersonId)
     {
       InvokeInterceptors(() => Service.JoinTwins(twinId, mainInsuredPersonId, secondInsuredPersonId));
+    }
+
+    /// <summary>
+    /// Помечает батч как не выгруженный
+    /// </summary>
+    /// <param name="batchId">
+    /// </param>
+    public void MarkBatchAsUnexported(Guid batchId)
+    {
+      InvokeInterceptors(() => Service.MarkBatchAsUnexported(batchId));
     }
 
     /// <summary>
@@ -200,7 +254,7 @@ namespace rt.srz.services.TF
     /// <param name="keyType">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid SaveSearchKeyType(SearchKeyType keyType)
     {
@@ -208,51 +262,34 @@ namespace rt.srz.services.TF
     }
 
     /// <summary>
-    /// Разделение
-    /// </summary>
-    /// <param name="personId"></param>
-    /// <param name="statementsToSeparate"></param>
-    public void Separate(Guid personId, IList<Statement> statementsToSeparate, bool copyDeadInfo, int status)
-    {
-      InvokeInterceptors(() => Service.Separate(personId, statementsToSeparate,copyDeadInfo,  status));
-    }
-
-    /// <summary>
     /// Осуществляет поиск пакетных операций экспорта заявлений для СМО
     /// </summary>
-    /// <param name="criteria"></param>
-    /// <returns></returns>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/>.
+    /// </returns>
     public SearchResult<SearchBatchResult> SearchExportSmoBatches(SearchExportSmoBatchCriteria criteria)
-    { 
+    {
       return InvokeInterceptors(() => Service.SearchExportSmoBatches(criteria));
     }
 
     /// <summary>
-    /// Возвращает сортированный список периодов в которых запускались пакетные операции экспорта в СМО для указаннго отправителя либо получателя
+    /// Разделение
     /// </summary>
-    /// <returns></returns>
-    public IList<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId)
+    /// <param name="personId">
+    /// </param>
+    /// <param name="statementsToSeparate">
+    /// </param>
+    /// <param name="copyDeadInfo">
+    /// The copy Dead Info.
+    /// </param>
+    /// <param name="status">
+    /// The status.
+    /// </param>
+    public void Separate(Guid personId, IList<Statement> statementsToSeparate, bool copyDeadInfo, int status)
     {
-      return InvokeInterceptors(() => Service.GetExportSmoBatchPeriodList(senderId, receiverId));
-    }
-
-     /// <summary>
-    /// Помечает батч как не выгруженный
-    /// </summary>
-    /// <param name="batchId"></param>
-    public void MarkBatchAsUnexported(Guid batchId)
-    {
-      InvokeInterceptors(() => Service.MarkBatchAsUnexported(batchId));
-    }
-
-    /// <summary>
-    ///  Возвращает все глобальные УЭК сертификаты
-    /// </summary>
-    /// <param name="batchId"></param>
-    /// <returns></returns>
-    public IList<SertificateUec> GetGlobalSertificates()
-    {
-      return InvokeInterceptors(() => Service.GetGlobalSertificates());
+      InvokeInterceptors(() => Service.Separate(personId, statementsToSeparate, copyDeadInfo, status));
     }
 
     #endregion

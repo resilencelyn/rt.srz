@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IStatementSearchManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IStatementSearchManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The StatementSearchManager interface.
@@ -16,7 +16,6 @@ namespace rt.srz.business.manager
   using rt.core.model.dto;
   using rt.srz.model.dto;
   using rt.srz.model.srz;
-  using rt.core.model;
 
   #endregion
 
@@ -26,13 +25,6 @@ namespace rt.srz.business.manager
   public interface IStatementSearchManager
   {
     #region Public Methods and Operators
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="keys"></param>
-    /// <returns></returns>
-    IList<InsuredPerson> GetInsuredPersonsByKeys(IEnumerable<SearchKey> keys);
 
     /// <summary>
     /// The get insured person by statement.
@@ -46,6 +38,15 @@ namespace rt.srz.business.manager
     /// The <see cref="InsuredPerson"/>.
     /// </returns>
     InsuredPerson GetInsuredPersonByStatement(Statement statement, IEnumerable<SearchKey> keys);
+
+    /// <summary>
+    /// </summary>
+    /// <param name="keys">
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    IList<InsuredPerson> GetInsuredPersonsByKeys(IEnumerable<SearchKey> keys);
 
     /// <summary>
     /// Осуществляет поиск заявлений по заданному критерию

@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +33,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -89,9 +89,6 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="configuration\ConfigManager.cs" />
-    <Compile Include="configuration\ExchangeSettings.cs" />
-    <Compile Include="configuration\MigratorConfiguration.cs" />
     <Compile Include="interfaces\jobpool\IJobInfo.cs" />
     <Compile Include="interfaces\jobpool\IJobPool.cs" />
     <Compile Include="interfaces\jobpool\IJobPoolFactory.cs" />
@@ -142,14 +139,11 @@
     <Compile Include="security\repository\SecurityProvider.cs" />
     <Compile Include="server\bak\BackupJob.cs" />
     <Compile Include="server\directorywatcher\processing\target\BatchInfo.cs" />
-    <Compile Include="configuration\target\DirectoryWatchCollection.cs" />
-    <Compile Include="configuration\target\DirectoryWatchElement.cs" />
     <Compile Include="server\exchange\export\ExportBatch.cs" />
     <Compile Include="server\exchange\export\ExportBatchFactory.cs" />
     <Compile Include="server\exchange\export\ExportBatchTyped.cs" />
     <Compile Include="server\exchange\export\ExportBatchType.cs" />
     <Compile Include="interfaces\exchange\IExportBatchFactory.cs" />
-    <Compile Include="interfaces\exchange\IBatch.cs" />
     <Compile Include="interfaces\exchange\IExportBatchTyped.cs" />
     <Compile Include="interfaces\exchange\IExportBatch.cs" />
     <Compile Include="server\exchange\export\StatusExportBatch.cs" />
@@ -173,11 +167,8 @@
     <Compile Include="nhibernate\NHibernateProxyUtils.cs" />
     <Compile Include="nhibernate\NHibernateSession.cs" />
     <Compile Include="nhibernate\SmartSessionContext.cs" />
-    <Compile Include="nhibernate\target\FileNameElement.cs" />
-    <Compile Include="nhibernate\target\FileNameElementColection.cs" />
     <Compile Include="nhibernate\IManagerSessionFactorys.cs" />
     <Compile Include="nhibernate\ManagerSessionFactorys.cs" />
-    <Compile Include="nhibernate\PoolNhibernateSection.cs" />
     <Compile Include="quartz\JobBase.cs" />
     <Compile Include="quartz\SchedulerProvider.cs" />
     <Compile Include="registry\CoreRegistry.cs" />
@@ -242,10 +233,12 @@
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80B4EE32-6E5B-44CC-AF7A-EE3DC3F56858}</Project>
       <Name>rt.core.model.client</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
       <Project>{1B981163-21AC-4F46-8927-CF2641F54FA5}</Project>
       <Name>rt.core.model</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

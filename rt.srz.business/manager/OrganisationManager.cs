@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrganisationManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="OrganisationManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The OrganisationManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -11,22 +14,24 @@ namespace rt.srz.business.manager
   using System;
   using System.Collections.Generic;
   using System.Linq;
+  using System.Linq.Expressions;
+
   using NHibernate;
   using NHibernate.Criterion;
+
   using NLog;
 
   using rt.core.business.manager;
-  using rt.core.model.core;
+  using rt.core.business.security.interfaces;
   using rt.core.model.dto;
-  using rt.srz.model.enumerations;
+  using rt.core.model.dto.enumerations;
+  using rt.srz.model.dto;
   using rt.srz.model.srz;
   using rt.uec.model.dto;
+
   using StructureMap;
-  using rt.core.model;
-  using rt.core.model.dto.enumerations;
-  using System.Linq.Expressions;
-  using rt.srz.model.dto;
-  using rt.core.business.security.interfaces;
+
+  using User = rt.core.model.core.User;
 
   #endregion
 
@@ -54,6 +59,9 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Удаление пдп (пометка неактивен)
     /// </summary>
+    /// <param name="pdp">
+    /// The pdp.
+    /// </param>
     public void DeleteOrganisation(Organisation pdp)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
@@ -61,7 +69,30 @@ namespace rt.srz.business.manager
       session.SaveOrUpdate(pdp);
     }
 
-   
+    /// <summary>
+    /// Удаление смо (set пометка IsActive=false)
+    /// </summary>
+    /// <param name="smoId">
+    /// </param>
+    public void DeleteSmo(Guid smoId)
+    {
+      var smo = GetById(smoId);
+      if (smo != null)
+      {
+        smo.IsActive = false;
+        SaveOrUpdate(smo);
+
+        // удаляем пометками нактивен и все пункты выдачи данной организации
+        var pdps = GetPdPsBySmo(smo.Id);
+        foreach (var pdp in pdps)
+        {
+          pdp.IsActive = false;
+          SaveOrUpdate(pdp);
+        }
+
+        ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+      }
+    }
 
     /// <summary>
     ///   Возвращает список всех зарегестрированных ТФОМС
@@ -74,32 +105,68 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// The off hours.
+    /// The get childres.
     /// </summary>
+    /// <param name="parentId">
+    /// The parent id.
+    /// </param>
     /// <returns>
-    /// The <see cref="bool"/>.
+    /// The <see cref="List"/> .
     /// </returns>
-    public bool OffHours()
+    public IList<Organisation> GetChildrens(Guid parentId)
     {
-      return false;
+      return GetBy(x => x.Parent.Id == parentId && x.IsActive).ToList();
+    }
 
-      ////var time = DateTime.UtcNow.TimeOfDay;
+    /// <summary>
+    /// Возвращает все МО для указанного ТФОМС
+    /// </summary>
+    /// <param name="tfomsCode">
+    /// </param>
+    /// <param name="workstationName">
+    /// </param>
+    /// <returns>
+    /// The <see cref="MO[]"/> .
+    /// </returns>
+    public MO[] GetMO(string tfomsCode, string workstationName)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      Workstation workstation = null;
+      Organisation organisation = null;
+      var lpuList =
+        session.QueryOver<Organisation>()
+               .JoinAlias(x => x.Parent, () => organisation)
+               .JoinAlias(x => x.Workstations, () => workstation)
+               .Where(
+                      o =>
+                      o.Oid.Id == Oid.Mo && o.IsActive && organisation.Code == tfomsCode
+                      && workstation.Name == workstationName)
+               .List();
+      return lpuList.Select(o => new MO { Id = o.Id, Code = o.Code, Name = o.FullName }).ToArray();
+    }
 
-      ////return GetAllTfoms().Any(
-      ////  x =>
-      ////  x.TimeRunFrom.HasValue && x.TimeRunTo.HasValue 
-      ////  && (x.TimeRunFrom.Value.TimeOfDay <= time) 
-      ////  && (x.TimeRunTo.Value.TimeOfDay >= time));
+    /// <summary>
+    /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
+    /// </summary>
+    /// <param name="smoId">
+    /// The smo Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/> .
+    /// </returns>
+    public IList<Organisation> GetPDPsBySmo(Guid smoId)
+    {
+      return GetPdPsBySmo(smoId).Where(p => p.IsActive).OrderBy(d => d.ShortName).ToList();
     }
 
     /// <summary>
     /// The get parent.
     /// </summary>
     /// <param name="org">
-    /// The org. 
+    /// The org.
     /// </param>
     /// <returns>
-    /// The <see cref="Organisation"/> . 
+    /// The <see cref="Organisation"/> .
     /// </returns>
     public Organisation GetParent(Organisation org)
     {
@@ -110,17 +177,82 @@ namespace rt.srz.business.manager
     /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
     /// </summary>
     /// <param name="smoId">
-    /// The smo Id. 
+    /// The smo Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/> . 
+    /// The <see cref="IList{T}"/> .
     /// </returns>
     public IList<Organisation> GetPdPsBySmo(Guid smoId)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       return
-        session.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Pvp).And(x => x.Parent.Id == smoId).OrderBy(
-          x => x.ShortName).Asc.List();
+        session.QueryOver<Organisation>()
+               .Where(x => x.Oid.Id == Oid.Pvp)
+               .And(x => x.Parent.Id == smoId)
+               .OrderBy(x => x.ShortName)
+               .Asc.List();
+    }
+
+    /// <summary>
+    /// Получает список всех пунктов выдачи
+    /// </summary>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/> .
+    /// </returns>
+    public SearchResult<Organisation> GetPdps(SearchPdpCriteria criteria)
+    {
+      var umanager = ObjectFactory.GetInstance<IUserManager>();
+      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      Organisation pdp = null;
+      Organisation smo = null;
+      Organisation foms = null;
+      var query = session.QueryOver(() => pdp)
+                         .JoinAlias(x => x.Parent, () => smo)
+                         .JoinAlias(() => smo.Parent, () => foms);
+
+      if (currentUser.PointDistributionPolicyId != null)
+      {
+        if (umanager.IsUserHasAdminPermissions(currentUser))
+        {
+        }
+        else
+        {
+          // свой регион
+          if (umanager.IsUserAdminTf(currentUser.Id))
+          {
+            query.Where(x => foms.Id == currentUser.GetTf().Id);
+          }
+          else
+          {
+            // своя смо
+            if (umanager.IsUserAdminSmo(currentUser.Id))
+            {
+              query.Where(p => smo.Id == currentUser.GetSmo().Id);
+            }
+          }
+        }
+      }
+
+      query.Where(p => p.IsActive);
+
+      if (!string.IsNullOrEmpty(criteria.ShortName))
+      {
+        query.WhereRestrictionOn(s => s.ShortName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
+      }
+
+      var count = query.RowCount();
+
+      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
+
+      query = AddOrder(criteria, pdp, smo, query);
+      query.Skip(criteria.Skip).Take(criteria.Take);
+
+      searchResult.Rows = query.List();
+      return searchResult;
     }
 
     /// <summary>
@@ -143,25 +275,149 @@ namespace rt.srz.business.manager
       return tfoms != null
                ? session.QueryOver<Organisation>()
                         .Where(x => x.Parent.Id == tfoms.Id)
-                        .And(x => x.Ogrn == ogrn).Take(1)
-                        .List().FirstOrDefault()
+                        .And(x => x.Ogrn == ogrn)
+                        .Take(1)
+                        .List()
+                        .FirstOrDefault()
                : null;
+    }
+
+    /// <summary>
+    /// Получает список всех организаций
+    /// </summary>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/> .
+    /// </returns>
+    public SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria)
+    {
+      var umanager = ObjectFactory.GetInstance<IUserManager>();
+      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      Organisation smo = null;
+      Organisation tfom = null;
+      var query = session.QueryOver(() => smo).JoinAlias(x => x.Parent, () => tfom);
+      if (currentUser.PointDistributionPolicyId != null)
+      {
+        if (umanager.IsUserHasAdminPermissions(currentUser))
+        {
+        }
+        else
+        {
+          // свой регион
+          if (umanager.IsUserAdminTf(currentUser.Id))
+          {
+            query.Where(x => tfom.Id == currentUser.GetTf().Id);
+          }
+          else
+          {
+            // своя смо
+            if (umanager.IsUserAdminSmo(currentUser.Id))
+            {
+              query.Where(s => s.Id == currentUser.GetSmo().Id);
+            }
+          }
+        }
+      }
+
+      query.Where(s => s.IsActive);
+
+      if (!string.IsNullOrEmpty(criteria.ShortName))
+      {
+        query.WhereRestrictionOn(s => s.ShortName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
+      }
+
+      if (!string.IsNullOrEmpty(criteria.Oid))
+      {
+        query.WhereRestrictionOn(s => s.Oid.Id).IsLike(criteria.Oid);
+      }
+
+      var count = query.RowCount();
+
+      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
+
+      query = AddOrder(criteria, smo, tfom, query);
+      query.Skip(criteria.Skip).Take(criteria.Take);
+
+      searchResult.Rows = query.List();
+      return searchResult;
     }
 
     /// <summary>
     /// Возвращает список всех зарегестрированных СМО для указанного ТФОМС
     /// </summary>
     /// <param name="tfomId">
-    /// The tfom Id. 
+    /// The tfom Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/> . 
+    /// The <see cref="IList{T}"/> .
     /// </returns>
     public IList<Organisation> GetSmosByTfom(Guid tfomId)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      return session.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Smo && x.Parent.Id == tfomId && (x.IsActive || x.IsActive == null)).OrderBy(
-          x => x.ShortName).Asc.List();
+      return
+        session.QueryOver<Organisation>()
+               .Where(x => x.Oid.Id == Oid.Smo && x.Parent.Id == tfomId && (x.IsActive || x.IsActive == null))
+               .OrderBy(x => x.ShortName)
+               .Asc.List();
+    }
+
+    /// <summary>
+    /// Получает список всех организаций
+    /// </summary>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/> .
+    /// </returns>
+    public SearchResult<Organisation> GetSmosExcludeTfom(SearchSmoCriteria criteria)
+    {
+      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      Organisation smo = null;
+      var query = session.QueryOver(() => smo)
+                         .Where(s => s.IsActive)
+                         .And(x => x.Oid.Id == Oid.Smo || x.Oid.Id == Oid.Mo);
+
+      if (!string.IsNullOrEmpty(criteria.ShortName))
+      {
+        query.WhereRestrictionOn(s => s.ShortName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
+      }
+
+      var count = query.RowCount();
+
+      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
+
+      query = AddOrder(criteria, smo, null, query);
+      query.Skip(criteria.Skip).Take(criteria.Take);
+
+      searchResult.Rows = query.List();
+      return searchResult;
+    }
+
+    /// <summary>
+    /// Возвращает все ТФОМС
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="MO[]"/> .
+    /// </returns>
+    public MO[] GetTFoms(string workstationName)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      Organisation mo = null;
+      Workstation workstation = null;
+      var tfomsList =
+        session.QueryOver<Organisation>()
+               .JoinAlias(x => x.Organisations1, () => mo)
+               .JoinAlias(() => mo.Workstations, () => workstation)
+               .Where(t => t.Oid.Id == Oid.Tfoms && t.IsActive && workstation.Name == workstationName)
+               .List()
+               .Distinct();
+      return tfomsList.Select(o => new MO { Id = o.Id, Code = o.Code, Name = o.FullName }).ToArray();
     }
 
     /// <summary>
@@ -186,6 +442,38 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
+    /// Получает список всех организаций для мипа
+    /// </summary>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/> .
+    /// </returns>
+    public SearchResult<Organisation> GetTfoms(SearchSmoCriteria criteria)
+    {
+      var secService = ObjectFactory.GetInstance<ISecurityProvider>();
+      var currentUser = secService.GetCurrentUser();
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      Organisation smo = null;
+      var query = session.QueryOver(() => smo).Where(s => s.IsActive).And(x => x.Oid.Id == Oid.Tfoms);
+
+      if (!string.IsNullOrEmpty(criteria.ShortName))
+      {
+        query.WhereRestrictionOn(s => s.FullName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
+      }
+
+      var count = query.RowCount();
+
+      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
+
+      query = AddOrder(criteria, smo, null, query);
+      query.Skip(criteria.Skip).Take(criteria.Take);
+
+      searchResult.Rows = query.List();
+      return searchResult;
+    }
+
+    /// <summary>
     /// Возвращает ТФОМС
     /// </summary>
     /// <param name="okato">
@@ -197,19 +485,136 @@ namespace rt.srz.business.manager
     public Organisation GetTfomsByOkato(string okato)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      return session.QueryOver<Organisation>()
-        .Where(x => x.Oid.Id == Oid.Tfoms)
-        .And(x => x.Okato == okato)
-        .Take(1).List().FirstOrDefault();
+      return
+        session.QueryOver<Organisation>()
+               .Where(x => x.Oid.Id == Oid.Tfoms)
+               .And(x => x.Okato == okato)
+               .Take(1)
+               .List()
+               .FirstOrDefault();
     }
 
+    /// <summary>
+    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
+    /// </summary>
+    /// <returns> The <see cref="IList" /> . </returns>
+    public IList<User> GetUsersByCurrent()
+    {
+      var sec = ObjectFactory.GetInstance<ISecurityProvider>();
+      var currentUser = sec.GetCurrentUser();
+      var userManager = ObjectFactory.GetInstance<IUserManager>();
+      if (userManager.IsUserHasAdminPermissions(currentUser))
+      {
+        return userManager.GetUsers();
+      }
+
+      if (!currentUser.PointDistributionPolicyId.HasValue)
+      {
+        return null;
+      }
+
+      // свой регион
+      if (userManager.IsUserAdminTf(currentUser.Id))
+      {
+        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+        User user = null;
+        Organisation foms = null;
+        Organisation smo = null;
+        Organisation pdp = null;
+        var pvpUser = GetById(currentUser.PointDistributionPolicyId.Value);
+        var curFomsId = pvpUser.Parent.Parent.Id;
+
+        var pvps =
+          QueryOver.Of<Organisation>()
+                   .JoinAlias(x => x.Parent, () => smo)
+                   .JoinAlias(() => smo.Parent, () => foms)
+                   .Where(x => foms.Id == curFomsId)
+                   .Where(x => x.Id == user.PointDistributionPolicyId)
+                   .Select(x => x.Id);
+
+        var query = session.QueryOver(() => user).Where(x => x.IsApproved).WithSubquery.WhereExists(pvps);
+        return query.List();
+      }
+
+      // своя смо
+      if (userManager.IsUserAdminSmo(currentUser.Id))
+      {
+        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+        User user = null;
+        Organisation foms = null;
+        Organisation smo = null;
+        Organisation pdp = null;
+        var curSmoId = currentUser.GetSmo().Id;
+
+        var over =
+          QueryOver.Of(() => pdp)
+                   .JoinAlias(() => pdp.Parent, () => smo)
+                   .JoinAlias(() => smo.Parent, () => foms)
+                   .Where(x => smo.Id == curSmoId && user.PointDistributionPolicyId == pdp.Id)
+                   .Select(x => x.Id);
+
+        var query = session.QueryOver(() => user).WithSubquery.WhereExists(over).Where(x => user.IsApproved);
+        return query.List();
+      }
+
+      return null;
+    }
 
     /// <summary>
-    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в списке, будут удалены
+    ///   The off hours.
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="bool" />.
+    /// </returns>
+    public bool OffHours()
+    {
+      return false;
+
+      ////var time = DateTime.UtcNow.TimeOfDay;
+
+      ////return GetAllTfoms().Any(
+      ////  x =>
+      ////  x.TimeRunFrom.HasValue && x.TimeRunTo.HasValue 
+      ////  && (x.TimeRunFrom.Value.TimeOfDay <= time) 
+      ////  && (x.TimeRunTo.Value.TimeOfDay >= time));
+    }
+
+    /// <summary>
+    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данного мипа но
+    ///   отсутсвуют в списке, будут удалены
+    /// </summary>
+    /// <param name="mipId">
+    /// </param>
+    /// <param name="mos">
+    /// </param>
+    public void SaveMos(Guid mipId, List<Organisation> mos)
+    {
+      SavePdpsInternal(mipId, mos, true);
+    }
+
+    /// <summary>
+    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
+    ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
     /// </param>
     /// <param name="pdps">
+    /// </param>
+    public void SavePdps(Guid smoId, List<Organisation> pdps)
+    {
+      SavePdpsInternal(smoId, pdps, false);
+    }
+
+    /// <summary>
+    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
+    ///   списке, будут удалены
+    /// </summary>
+    /// <param name="smoId">
+    /// </param>
+    /// <param name="pdps">
+    /// </param>
+    /// <param name="useMoOidForPdp">
+    /// The use Mo Oid For Pdp.
     /// </param>
     public void SavePdpsInternal(Guid smoId, List<Organisation> pdps, bool useMoOidForPdp)
     {
@@ -229,6 +634,7 @@ namespace rt.srz.business.manager
         {
           pointDistributionPolicies = GetBy(x => x.Oid.Id == Oid.Pvp && x.Parent.Id == smoId && x.IsActive);
         }
+
         var pvpToDelete = pointDistributionPolicies.Where(x => pdps.All(y => y.Id != x.Id));
         foreach (var p in pvpToDelete)
         {
@@ -264,7 +670,8 @@ namespace rt.srz.business.manager
           {
             // Удаляем АРМы, которых нет в списке
             var workstationToDelete =
-              workstationManager.GetBy(x => x.PointDistributionPolicy.Id == p.Id).Where(x => p.Workstations.All(y => y.Id != x.Id));
+              workstationManager.GetBy(x => x.PointDistributionPolicy.Id == p.Id)
+                                .Where(x => p.Workstations.All(y => y.Id != x.Id));
             foreach (var old in workstationToDelete)
             {
               // удалим все сертификаты
@@ -313,30 +720,6 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в списке, будут удалены
-    /// </summary>
-    /// <param name="smoId">
-    /// </param>
-    /// <param name="pdps">
-    /// </param>
-    public void SavePdps(Guid smoId, List<Organisation> pdps)
-    {
-      SavePdpsInternal(smoId, pdps, false);
-    }
-
-    /// <summary>
-    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данного мипа но отсутсвуют в списке, будут удалены
-    /// </summary>
-    /// <param name="mipId">
-    /// </param>
-    /// <param name="mos">
-    /// </param>
-    public void SaveMos(Guid mipId, List<Organisation> mos)
-    {
-      SavePdpsInternal(mipId, mos, true);
-    }
-
-    /// <summary>
     /// Сохранение смо
     /// </summary>
     /// <param name="smo">
@@ -352,417 +735,12 @@ namespace rt.srz.business.manager
         foreach (var sert in smo.SertificateUecs)
         {
           sert.Smo = smo;
-          ObjectFactory.GetInstance<ISertificateUecManager>().SaveSmoSertificateKey(
-            smo.Id, sert.Version, sert.Type.Id, sert.Key);
+          ObjectFactory.GetInstance<ISertificateUecManager>()
+                       .SaveSmoSertificateKey(smo.Id, sert.Version, sert.Type.Id, sert.Key);
         }
       }
 
       return smo.Id;
-    }
-
-    /// <summary>
-    /// Существует ли смо с указанным кодом отличная от указанной
-    /// </summary>
-    /// <param name="smoId">
-    /// </param>
-    /// <param name="code">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/> . 
-    /// </returns>
-    public bool SmoCodeExists(Guid smoId, string code)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var rowCount =
-        session.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Smo && x.IsActive).And(
-          s => s.Id != smoId && s.Code == code).RowCount();
-      return rowCount != 0;
-    }
-
-    /// <summary>
-    /// Возвращает все МО для указанного ТФОМС
-    /// </summary>
-    /// <param name="tfomsCode">
-    /// </param>
-    /// <param name="workstationName">
-    /// </param>
-    /// <returns>
-    /// The <see cref="MO[]"/> . 
-    /// </returns>
-    public MO[] GetMO(string tfomsCode, string workstationName)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      Workstation workstation = null;
-      Organisation organisation = null;
-      var lpuList =
-        session.QueryOver<Organisation>().JoinAlias(x => x.Parent, () => organisation).JoinAlias(
-          x => x.Workstations, () => workstation).Where(
-            o =>
-            o.Oid.Id == Oid.Mo && o.IsActive && organisation.Code == tfomsCode && workstation.Name == workstationName).
-          List();
-      return lpuList.Select(o => new MO { Id = o.Id, Code = o.Code, Name = o.FullName }).ToArray();
-    }
-
-    /// <summary>
-    /// Возвращает все ТФОМС
-    /// </summary>
-    /// <param name="workstationName">
-    /// The workstation Name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="MO[]"/> . 
-    /// </returns>
-    public MO[] GetTFoms(string workstationName)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      Organisation mo = null;
-      Workstation workstation = null;
-      var tfomsList =
-        session.QueryOver<Organisation>().JoinAlias(x => x.Organisations1, () => mo).JoinAlias(
-          () => mo.Workstations, () => workstation).Where(
-            t => t.Oid.Id == Oid.Tfoms && t.IsActive && workstation.Name == workstationName).List().Distinct();
-      return tfomsList.Select(o => new MO { Id = o.Id, Code = o.Code, Name = o.FullName }).ToArray();
-    }
-
-    /// <summary>
-    /// Удаление смо (set пометка IsActive=false)
-    /// </summary>
-    /// <param name="smoId">
-    /// </param>
-    public void DeleteSmo(Guid smoId)
-    {
-      var smo = GetById(smoId);
-      if (smo != null)
-      {
-        smo.IsActive = false;
-        SaveOrUpdate(smo);
-
-        // удаляем пометками нактивен и все пункты выдачи данной организации
-        var pdps = GetPdPsBySmo(smo.Id);
-        foreach (var pdp in pdps)
-        {
-          pdp.IsActive = false;
-          SaveOrUpdate(pdp);
-        }
-
-        ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-      }
-    }
-
-    /// <summary>
-    /// The get childres.
-    /// </summary>
-    /// <param name="parentId">
-    /// The parent id. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="List"/> . 
-    /// </returns>
-    public IList<Organisation> GetChildrens(Guid parentId)
-    {
-      return GetBy(x => x.Parent.Id == parentId && x.IsActive).ToList();
-    }
-
-    /// <summary>
-    /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
-    /// </summary>
-    /// <param name="smoId">
-    /// The smo Id. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> . 
-    /// </returns>
-    public IList<Organisation> GetPDPsBySmo(Guid smoId)
-    {
-      return GetPdPsBySmo(smoId).Where(p => p.IsActive).OrderBy(d => d.ShortName).ToList();
-    }
-
-    /// <summary>
-    /// Получает список всех пунктов выдачи
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> . 
-    /// </returns>
-    public SearchResult<Organisation> GetPdps(SearchPdpCriteria criteria)
-    {
-      var umanager = ObjectFactory.GetInstance<IUserManager>();
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      Organisation pdp = null;
-      Organisation smo = null;
-      Organisation foms = null;
-      var query = session.QueryOver(() => pdp).JoinAlias(x => x.Parent, () => smo).JoinAlias(
-        () => smo.Parent, () => foms);
-
-      if (currentUser.PointDistributionPolicyId != null)
-      {
-        if (umanager.IsUserHasAdminPermissions(currentUser))
-        {
-        }
-        else
-        {
-          // свой регион
-          if (IsUserAdminTF(currentUser.Id))
-          {
-            query.Where(x => foms.Id == currentUser.GetTf().Id);
-          }
-          else
-          {
-            // своя смо
-            if (IsUserAdminSmo(currentUser.Id))
-            {
-              query.Where(p => smo.Id == currentUser.GetSmo().Id);
-            }
-          }
-        }
-      }
-
-      query.Where(p => p.IsActive);
-
-      if (!string.IsNullOrEmpty(criteria.ShortName))
-      {
-        query.WhereRestrictionOn(s => s.ShortName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
-      }
-
-      var count = query.RowCount();
-
-      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
-
-      query = AddOrder(criteria, pdp, smo, query);
-      query.Skip(criteria.Skip).Take(criteria.Take);
-
-      searchResult.Rows = query.List();
-      return searchResult;
-    }
-
-    /// <summary>
-    /// Получает список всех организаций
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> . 
-    /// </returns>
-    public SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria)
-    {
-      var umanager = ObjectFactory.GetInstance<IUserManager>();
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      Organisation smo = null;
-      Organisation tfom = null;
-      var query = session.QueryOver(() => smo).JoinAlias(x => x.Parent, () => tfom);
-      if (currentUser.PointDistributionPolicyId != null)
-      {
-        if (umanager.IsUserHasAdminPermissions(currentUser))
-        {
-        }
-        else
-        {
-          // свой регион
-          if (IsUserAdminTF(currentUser.Id))
-          {
-            query.Where(x => tfom.Id == currentUser.GetTf().Id);
-          }
-          else
-          {
-            // своя смо
-            if (IsUserAdminSmo(currentUser.Id))
-            {
-              query.Where(s => s.Id == currentUser.GetSmo().Id);
-            }
-          }
-        }
-      }
-
-      query.Where(s => s.IsActive);
-
-      if (!string.IsNullOrEmpty(criteria.ShortName))
-      {
-        query.WhereRestrictionOn(s => s.ShortName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
-      }
-
-      if (!string.IsNullOrEmpty(criteria.Oid))
-      {
-        query.WhereRestrictionOn(s => s.Oid.Id).IsLike(criteria.Oid);
-      }
-
-      var count = query.RowCount();
-
-      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
-
-      query = AddOrder(criteria, smo, tfom, query);
-      query.Skip(criteria.Skip).Take(criteria.Take);
-
-      searchResult.Rows = query.List();
-      return searchResult;
-    }
-
-    /// <summary>
-    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<User> GetUsersByCurrent()
-    {
-      var sec = ObjectFactory.GetInstance<ISecurityProvider>();
-      var currentUser = sec.GetCurrentUser();
-      var userManager = ObjectFactory.GetInstance<IUserManager>();
-      if (userManager.IsUserHasAdminPermissions(currentUser))
-      {
-        return userManager.GetUsers();
-      }
-
-      if (!currentUser.PointDistributionPolicyId.HasValue)
-      {
-        return null;
-      }
-
-
-      // свой регион
-      if (IsUserAdminTF(currentUser.Id))
-      {
-        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-        User user = null;
-        Organisation foms = null;
-        Organisation smo = null;
-        Organisation pdp = null;
-        var pvpUser = GetById(currentUser.PointDistributionPolicyId.Value);
-        var curFomsId = pvpUser.Parent.Parent.Id;
-
-        var pvps = QueryOver.Of<Organisation>()
-          .JoinAlias(x => x.Parent, () => smo)
-          .JoinAlias(() => smo.Parent, () => foms)
-          .Where(x => foms.Id == curFomsId)
-          .Where(x => x.Id == user.PointDistributionPolicyId)
-          .Select(x => x.Id);
-
-        var query =
-          session.QueryOver(() => user)
-                 .Where(x => x.IsApproved)
-                 .WithSubquery.WhereExists(pvps);
-        return query.List();
-      }
-
-
-      // своя смо
-      if (IsUserAdminSmo(currentUser.Id))
-      {
-        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-        User user = null;
-        Organisation foms = null;
-        Organisation smo = null;
-        Organisation pdp = null;
-        var curSmoId = currentUser.GetSmo().Id;
-
-        var over = QueryOver.Of(() => pdp)
-                                 .JoinAlias(() => pdp.Parent, () => smo)
-                                 .JoinAlias(() => smo.Parent, () => foms)
-                                 .Where(x => smo.Id == curSmoId && user.PointDistributionPolicyId == pdp.Id)
-                                 .Select(x => x.Id);
-
-        var query =
-          session.QueryOver(() => user)
-                 .WithSubquery.WhereExists(over)
-                 .Where(x => user.IsApproved);
-        return query.List();
-      }
-
-      return null;
-    }
-
-
-    /// <summary>
-    /// Является ли пользователь админом СМО
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    public bool IsUserAdminSmo(Guid userId)
-    {
-      var userManager = ObjectFactory.GetInstance<IUserManager>();
-      return userManager.GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnSmo);
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом территориального фонда
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    public bool IsUserAdminTF(Guid userId)
-    {
-      var userManager = ObjectFactory.GetInstance<IUserManager>();
-      return userManager.GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnRegion);
-    }
-
-    /// <summary>
-    /// Получает список всех организаций
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> . 
-    /// </returns>
-    public SearchResult<Organisation> GetSmosExcludeTfom(SearchSmoCriteria criteria)
-    {
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      Organisation smo = null;
-      var query = session.QueryOver(() => smo).Where(s => s.IsActive).And(
-        x => x.Oid.Id == Oid.Smo || x.Oid.Id == Oid.Mo);
-
-      if (!string.IsNullOrEmpty(criteria.ShortName))
-      {
-        query.WhereRestrictionOn(s => s.ShortName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
-      }
-
-      var count = query.RowCount();
-
-      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
-
-      query = AddOrder(criteria, smo, null, query);
-      query.Skip(criteria.Skip).Take(criteria.Take);
-
-      searchResult.Rows = query.List();
-      return searchResult;
-    }
-
-    /// <summary>
-    /// Получает список всех организаций для мипа
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> . 
-    /// </returns>
-    public SearchResult<Organisation> GetTfoms(SearchSmoCriteria criteria)
-    {
-      var secService = ObjectFactory.GetInstance<ISecurityProvider>();
-      var currentUser = secService.GetCurrentUser();
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      Organisation smo = null;
-      var query = session.QueryOver(() => smo).Where(s => s.IsActive).And(x => x.Oid.Id == Oid.Tfoms);
-
-      if (!string.IsNullOrEmpty(criteria.ShortName))
-      {
-        query.WhereRestrictionOn(s => s.FullName).IsInsensitiveLike(criteria.ShortName, MatchMode.Anywhere);
-      }
-
-      var count = query.RowCount();
-
-      var searchResult = new SearchResult<Organisation> { Skip = criteria.Skip, Total = count };
-
-      query = AddOrder(criteria, smo, null, query);
-      query.Skip(criteria.Skip).Take(criteria.Take);
-
-      searchResult.Rows = query.List();
-      return searchResult;
     }
 
     /// <summary>
@@ -780,6 +758,26 @@ namespace rt.srz.business.manager
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
     }
 
+    /// <summary>
+    /// Существует ли смо с указанным кодом отличная от указанной
+    /// </summary>
+    /// <param name="smoId">
+    /// </param>
+    /// <param name="code">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/> .
+    /// </returns>
+    public bool SmoCodeExists(Guid smoId, string code)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var rowCount =
+        session.QueryOver<Organisation>()
+               .Where(x => x.Oid.Id == Oid.Smo && x.IsActive)
+               .And(s => s.Id != smoId && s.Code == code)
+               .RowCount();
+      return rowCount != 0;
+    }
 
     #endregion
 
@@ -789,22 +787,25 @@ namespace rt.srz.business.manager
     /// The add order.
     /// </summary>
     /// <param name="criteria">
-    /// The criteria. 
+    /// The criteria.
     /// </param>
     /// <param name="smo">
-    /// The smo. 
+    /// The smo.
     /// </param>
     /// <param name="tfom">
-    /// The tfom. 
+    /// The tfom.
     /// </param>
     /// <param name="query">
-    /// The query. 
+    /// The query.
     /// </param>
     /// <returns>
-    /// The <see cref="IQueryOver"/> . 
+    /// The <see cref="IQueryOver"/> .
     /// </returns>
     private IQueryOver<Organisation, Organisation> AddOrder(
-      SearchSmoCriteria criteria, Organisation smo, Organisation tfom, IQueryOver<Organisation, Organisation> query)
+      SearchSmoCriteria criteria, 
+      Organisation smo, 
+      Organisation tfom, 
+      IQueryOver<Organisation, Organisation> query)
     {
       // Сортировка
       if (!string.IsNullOrEmpty(criteria.SortExpression))
@@ -835,22 +836,25 @@ namespace rt.srz.business.manager
     /// The add order.
     /// </summary>
     /// <param name="criteria">
-    /// The criteria. 
+    /// The criteria.
     /// </param>
     /// <param name="pdp">
-    /// The pdp. 
+    /// The pdp.
     /// </param>
     /// <param name="smo">
-    /// The smo. 
+    /// The smo.
     /// </param>
     /// <param name="query">
-    /// The query. 
+    /// The query.
     /// </param>
     /// <returns>
-    /// The <see cref="IQueryOver"/> . 
+    /// The <see cref="IQueryOver"/> .
     /// </returns>
     private IQueryOver<Organisation, Organisation> AddOrder(
-      SearchPdpCriteria criteria, Organisation pdp, Organisation smo, IQueryOver<Organisation, Organisation> query)
+      SearchPdpCriteria criteria, 
+      Organisation pdp, 
+      Organisation smo, 
+      IQueryOver<Organisation, Organisation> query)
     {
       // Сортировка
       if (!string.IsNullOrEmpty(criteria.SortExpression))
@@ -876,8 +880,6 @@ namespace rt.srz.business.manager
 
       return query;
     }
-
-  
 
     #endregion
   }

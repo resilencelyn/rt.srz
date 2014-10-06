@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPolisCertificateFormatException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultPolisCertificateFormatException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault polis certificate format exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault polis certificate format exception.
+  ///   The fault polis certificate format exception.
   /// </summary>
   [Serializable]
   public class FaultPolisCertificateFormatException : FaultIssue
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultPolisCertificateFormatException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultPolisCertificateFormatException" /> class.
     /// </summary>
     public FaultPolisCertificateFormatException()
       : base(

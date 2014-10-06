@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HL7EventType.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The h l 7 event type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz.concepts
 {
+  /// <summary>
+  /// The h l 7 event type.
+  /// </summary>
   public class HL7EventType : Concept
   {
+    #region Constants
+
     /// <summary> A03 </summary>
     public const int A03 = 650;
 
@@ -20,6 +29,8 @@ namespace rt.srz.model.srz.concepts
     public const int A24 = 653;
 
     /// <summary> ZWI </summary>
-    public const int ZWI = 654;  
+    public const int ZWI = 654;
+
+    #endregion
   }
 }

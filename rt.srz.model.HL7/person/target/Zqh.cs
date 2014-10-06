@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Zqh.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Zqh.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The zqh.

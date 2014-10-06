@@ -1,8 +1,19 @@
-﻿namespace rt.srz.model.srz.concepts
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CodeConfirm.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   Таблица Б.59 Код подтверждения
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.model.srz.concepts
 {
   /// <summary> Таблица Б.59 Код подтверждения </summary>
   public class CodeConfirm : Concept
   {
+    #region Constants
+
     /// <summary> Прикладное под-тверждение: прием-лемо </summary>
     public const int AA = 599;
 
@@ -22,8 +33,10 @@
     public const int CR = 598;
 
     /// <summary>
-    /// Не выгруженное сообщение
+    ///   Не выгруженное сообщение
     /// </summary>
     public const int CodeConfirm0 = 638;
+
+    #endregion
   }
 }

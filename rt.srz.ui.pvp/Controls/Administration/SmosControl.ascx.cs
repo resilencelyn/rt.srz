@@ -15,6 +15,9 @@ using rt.srz.ui.pvp.Enumerations;
 
 namespace rt.srz.ui.pvp.Controls.Administration
 {
+  using rt.core.model;
+  using rt.core.model.interfaces;
+
   public partial class SmosControl : System.Web.UI.UserControl
   {
     private ISmoService _smoService;

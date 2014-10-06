@@ -1,16 +1,19 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Country.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Country.cs" company="–ÛÒ¡»“Âı">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   —Ú‡Ì‡
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz.concepts
 {
   /// <summary> —Ú‡Ì‡ </summary>
   public class Country : Concept
   {
+    #region Constants
+
     /// <summary> ¿¡’¿«»ﬂ </summary>
     public const int ABH = 19;
 
@@ -763,5 +766,7 @@ namespace rt.srz.model.srz.concepts
 
     /// <summary> «»Ã¡¿¡¬≈ </summary>
     public const int ZWE = 89;
+
+    #endregion
   }
 }

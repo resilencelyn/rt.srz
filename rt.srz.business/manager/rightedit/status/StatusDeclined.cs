@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatusDeclined.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatusDeclined.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The status declined.
@@ -11,10 +11,6 @@ namespace rt.srz.business.manager.rightedit.status
 {
   #region references
 
-  using System;
-  using System.Linq.Expressions;
-
-  using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   #endregion

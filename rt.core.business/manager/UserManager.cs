@@ -16,6 +16,7 @@ namespace rt.core.business.manager
   using NHibernate;
   using NHibernate.Criterion;
 
+  using rt.core.model;
   using rt.core.model.core;
 
   using StructureMap;
@@ -76,12 +77,45 @@ namespace rt.core.business.manager
     }
 
     /// <summary>
+    /// явл€етс€ ли пользователь админом —ћќ
+    /// </summary>
+    /// <param name="userId">
+    /// The user Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IsUserAdminSmo(Guid userId)
+    {
+      var userManager = ObjectFactory.GetInstance<IUserManager>();
+      return userManager.GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnSmo);
+    }
+
+    /// <summary>
+    /// явл€етс€ ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// The user Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IsUserAdminTf(Guid userId)
+    {
+      var userManager = ObjectFactory.GetInstance<IUserManager>();
+      return userManager.GetIsUserAllowPermission(userId, (int)PermissionCode.AttachToOwnRegion);
+    }
+
+    /// <summary>
     ///   —писок всех пользователей
     /// </summary>
-    /// <returns> The <see>
+    /// <returns>
+    ///   The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
-    /// . </returns>
+    ///   .
+    /// </returns>
     public IList<User> GetUsers()
     {
       return GetBy(x => x.IsApproved);
@@ -94,7 +128,8 @@ namespace rt.core.business.manager
     /// The contains.
     /// </param>
     /// <returns>
-    /// The <see>
+    /// The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
     ///   .
@@ -121,7 +156,9 @@ namespace rt.core.business.manager
     /// </returns>
     public bool IsUserHasAdminPermissions(User user)
     {
-      return user.IsAdmin || user.UserGroups.Select(x => x.Group).Any(y => y.UserGroupRoles.Select(x => x.Role).Any(role => role.Code == 1));
+      return user.IsAdmin
+             || user.UserGroups.Select(x => x.Group)
+                    .Any(y => y.UserGroupRoles.Select(x => x.Role).Any(role => role.Code == 1));
     }
 
     /// <summary>
@@ -132,7 +169,7 @@ namespace rt.core.business.manager
     /// </param>
     public void MarkAsDeleted(Guid userId)
     {
-      User user = GetById(userId);
+      var user = GetById(userId);
       user.IsApproved = false;
       SaveOrUpdate(user);
     }
@@ -211,8 +248,6 @@ namespace rt.core.business.manager
 
       return false;
     }
-
-   
 
     #endregion
   }

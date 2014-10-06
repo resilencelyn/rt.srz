@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="JobLockObjectManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobLockObjectManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The JobLockObjectManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The JobLockObjectManager.
+  ///   The JobLockObjectManager.
   /// </summary>
   public partial class JobLockObjectManager
   {

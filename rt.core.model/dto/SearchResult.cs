@@ -1,17 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SearchResult.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SearchResult.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The search result.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.model.dto
 {
@@ -30,6 +24,8 @@ namespace rt.core.model.dto
   [DataContract]
   public class SearchResult<T>
   {
+    #region Public Properties
+
     /// <summary>
     ///   Gets or sets the rows.
     /// </summary>
@@ -50,5 +46,7 @@ namespace rt.core.model.dto
     [XmlElement]
     [DataMember]
     public int Total { get; set; }
+
+    #endregion
   }
 }

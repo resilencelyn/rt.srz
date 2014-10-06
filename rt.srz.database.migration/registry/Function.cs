@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Function.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The function.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.registry
 {
-  static internal class Function
+  /// <summary>
+  /// The function.
+  /// </summary>
+  internal static class Function
   {
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The calc standard search keys.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalcStandardSearchKeys()
     {
       return @"CREATE FUNCTION [dbo].[CalcStandardSearchKeys]
@@ -21,17 +36,12 @@ namespace rt.srz.database.registry
             EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcStandardSearchKeys]";
     }
 
-    public static string CalcUserSearchKey()
-    {
-      return @"CREATE FUNCTION [dbo].[CalcUserSearchKey]
-            (@searchKeyTypeXml NVARCHAR (4000), @insuredPersonDataXml NVARCHAR (4000), @documentXml NVARCHAR (4000), @address1Xml NVARCHAR (4000), @address2Xml NVARCHAR (4000), @medicalInsuranceXml NVARCHAR (4000), @okato NVARCHAR (4000))
-              RETURNS 
-                TABLE (
-                  [Hash] VARBINARY (MAX) NULL)
-              AS
-              EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcUserSearchKey]";
-    }
-
+    /// <summary>
+    /// The calc standard search keys exchange.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalcStandardSearchKeysExchange()
     {
       return @"CREATE FUNCTION [dbo].[CalcStandardSearchKeysExchange]
@@ -46,6 +56,29 @@ namespace rt.srz.database.registry
               EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcStandardSearchKeysExchange]";
     }
 
+    /// <summary>
+    /// The calc user search key.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string CalcUserSearchKey()
+    {
+      return @"CREATE FUNCTION [dbo].[CalcUserSearchKey]
+            (@searchKeyTypeXml NVARCHAR (4000), @insuredPersonDataXml NVARCHAR (4000), @documentXml NVARCHAR (4000), @address1Xml NVARCHAR (4000), @address2Xml NVARCHAR (4000), @medicalInsuranceXml NVARCHAR (4000), @okato NVARCHAR (4000))
+              RETURNS 
+                TABLE (
+                  [Hash] VARBINARY (MAX) NULL)
+              AS
+              EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcUserSearchKey]";
+    }
+
+    /// <summary>
+    /// The calc user search key exchange.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalcUserSearchKeyExchange()
     {
       return @"CREATE FUNCTION [dbo].[CalcUserSearchKeyExchange]
@@ -56,5 +89,7 @@ namespace rt.srz.database.registry
               AS
               EXTERNAL NAME [rt.srz.database.business.sqlserver].[StoredProcedures].[CalcUserSearchKeyExchange]";
     }
+
+    #endregion
   }
 }

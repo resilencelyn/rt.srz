@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CalculatingJob.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CalculateKeysJob.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The calculating job.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.server
@@ -41,7 +44,7 @@ namespace rt.srz.business.server
     #region Fields
 
     /// <summary>
-    /// The interrupt event.
+    ///   The interrupt event.
     /// </summary>
     private readonly ManualResetEvent interruptEvent = new ManualResetEvent(false);
 
@@ -66,7 +69,7 @@ namespace rt.srz.business.server
     /// The execute impl.
     /// </summary>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected override void ExecuteImpl(IJobExecutionContext context)
     {
@@ -99,7 +102,8 @@ namespace rt.srz.business.server
           catch (Exception exception)
           {
             logger.FatalException(
-              "Произошла ошибка удаления ключей поиска перед их пересчетом. Вычисление ключей не возможно!", exception);
+                                  "Произошла ошибка удаления ключей поиска перед их пересчетом. Вычисление ключей не возможно!", 
+                                  exception);
             CalculateKeysPool.Instance.Queue.Clear();
             return;
           }
@@ -135,87 +139,104 @@ namespace rt.srz.business.server
       // асинхронный пересчет
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       Action storedManagerCallAction = () =>
-      {
-        CurrentSessionContext.Bind(session);
-        try
-        {
-          context.JobDetail.JobDataMap["progress"] = 20;
-          context.JobDetail.JobDataMap["Имя ключа"] = jobInfo.IsStandard ? "Стандартные" : jobInfo.SearchKeyType.Code;
-          context.JobDetail.JobDataMap["Интервал"] = string.Format("{0} - {1}", jobInfo.From, jobInfo.To);
+                                       {
+                                         CurrentSessionContext.Bind(session);
+                                         try
+                                         {
+                                           context.JobDetail.JobDataMap["progress"] = 20;
+                                           context.JobDetail.JobDataMap["Имя ключа"] = jobInfo.IsStandard
+                                                                                         ? "Стандартные"
+                                                                                         : jobInfo.SearchKeyType.Code;
+                                           context.JobDetail.JobDataMap["Интервал"] = string.Format(
+                                                                                                    "{0} - {1}", 
+                                                                                                    jobInfo.From, 
+                                                                                                    jobInfo.To);
 
-          // вызов хранимых процедур
-          if (jobInfo.IsStandard)
-          {
-            executeStoredManager.CalculateStandardSearchKeys(jobInfo.From, jobInfo.To);
-          }
-          else
-          {
-            executeStoredManager.CalculateUserSearchKeys(jobInfo.SearchKeyType.Id, jobInfo.From, jobInfo.To);
-          }
+                                           // вызов хранимых процедур
+                                           if (jobInfo.IsStandard)
+                                           {
+                                             executeStoredManager.CalculateStandardSearchKeys(jobInfo.From, jobInfo.To);
+                                           }
+                                           else
+                                           {
+                                             executeStoredManager.CalculateUserSearchKeys(
+                                                                                          jobInfo.SearchKeyType.Id, 
+                                                                                          jobInfo.From, 
+                                                                                          jobInfo.To);
+                                           }
 
-          lock (CalculateKeysPool.LockObject)
-          {
-            context.Scheduler.PauseTrigger(context.Trigger.Key);
-            session.CreateSQLQuery("DBCC SHRINKFILE (N'srz_log' , 0, TRUNCATEONLY)").SetTimeout(int.MaxValue).UniqueResult();
-            context.Scheduler.ResumeTrigger(context.Trigger.Key);
-          }
+                                           lock (CalculateKeysPool.LockObject)
+                                           {
+                                             context.Scheduler.PauseTrigger(context.Trigger.Key);
+                                             session.CreateSQLQuery("DBCC SHRINKFILE (N'srz_log' , 0, TRUNCATEONLY)")
+                                                    .SetTimeout(int.MaxValue)
+                                                    .UniqueResult();
+                                             context.Scheduler.ResumeTrigger(context.Trigger.Key);
+                                           }
 
-          context.JobDetail.JobDataMap["progress"] = 100;
-        }
-        catch (Exception exception)
-        {
-          if (exception is ADOException)
-          {
-            // обработка запроса на прерывание работы
-            if (interruptEvent.WaitOne(0))
-            {
-              logger.FatalException("Получен запрос на прерывание процедуры расчета ключей.", exception);
-              lock (CalculateKeysPool.LockObject)
-              {
-                CalculateKeysPool.Instance.ExecutingList.Remove(jobInfo);
-                return;
-              }
-            }
-          }
+                                           context.JobDetail.JobDataMap["progress"] = 100;
+                                         }
+                                         catch (Exception exception)
+                                         {
+                                           if (exception is ADOException)
+                                           {
+                                             // обработка запроса на прерывание работы
+                                             if (interruptEvent.WaitOne(0))
+                                             {
+                                               logger.FatalException(
+                                                                     "Получен запрос на прерывание процедуры расчета ключей.", 
+                                                                     exception);
+                                               lock (CalculateKeysPool.LockObject)
+                                               {
+                                                 CalculateKeysPool.Instance.ExecutingList.Remove(jobInfo);
+                                                 return;
+                                               }
+                                             }
+                                           }
 
-          if (!jobInfo.IsError)
-          {
-            logger.FatalException(
-              "Произошла ошибка вызова процедуры расчета ключей. Задача будет помещена в очередь еще один раз.",
-              exception);
-            lock (CalculateKeysPool.LockObject)
-            {
-              jobInfo.IsError = true;
-              CalculateKeysPool.Instance.ExecutingList.Remove(jobInfo);
-              CalculateKeysPool.Instance.Queue.Enqueue(jobInfo);
-              return;
-            }
-          }
+                                           if (!jobInfo.IsError)
+                                           {
+                                             logger.FatalException(
+                                                                   "Произошла ошибка вызова процедуры расчета ключей. Задача будет помещена в очередь еще один раз.", 
+                                                                   exception);
+                                             lock (CalculateKeysPool.LockObject)
+                                             {
+                                               jobInfo.IsError = true;
+                                               CalculateKeysPool.Instance.ExecutingList.Remove(jobInfo);
+                                               CalculateKeysPool.Instance.Queue.Enqueue(jobInfo);
+                                               return;
+                                             }
+                                           }
 
-          logger.FatalException(
-            "Произошла ошибка вызова процедуры расчета ключей. Расчет ключа данного типа прекращен. Все ключи данного типа будут удалены из базы данных.",
-            exception);
-          lock (CalculateKeysPool.LockObject)
-          {
-            jobInfo.IsError = true;
+                                           logger.FatalException(
+                                                                 "Произошла ошибка вызова процедуры расчета ключей. Расчет ключа данного типа прекращен. Все ключи данного типа будут удалены из базы данных.", 
+                                                                 exception);
+                                           lock (CalculateKeysPool.LockObject)
+                                           {
+                                             jobInfo.IsError = true;
 
-            // Помечаем остальные типы данного типа как выполнение с ошибкой
-            foreach (
-              var info in
-                CalculateKeysPool.Instance.ExecutingList.Where(x => x.SearchKeyType.Id == jobInfo.SearchKeyType.Id))
-            {
-              info.IsError = true;
-            }
+                                             // Помечаем остальные типы данного типа как выполнение с ошибкой
+                                             foreach (var info in
+                                               CalculateKeysPool.Instance.ExecutingList.Where(
+                                                                                              x =>
+                                                                                              x.SearchKeyType.Id
+                                                                                              == jobInfo.SearchKeyType
+                                                                                                        .Id))
+                                             {
+                                               info.IsError = true;
+                                             }
 
-            foreach (
-              var info in
-                CalculateKeysPool.Instance.Queue.Where(x => x.SearchKeyType.Id == jobInfo.SearchKeyType.Id))
-            {
-              info.IsError = true;
-            }
-          }
-        }
-      };
+                                             foreach (var info in
+                                               CalculateKeysPool.Instance.Queue.Where(
+                                                                                      x =>
+                                                                                      x.SearchKeyType.Id
+                                                                                      == jobInfo.SearchKeyType.Id))
+                                             {
+                                               info.IsError = true;
+                                             }
+                                           }
+                                         }
+                                       };
 
       // асинхронный вызов процедуры пересчета ключей
       var asyncRes = storedManagerCallAction.BeginInvoke(null, null);
@@ -256,7 +277,7 @@ namespace rt.srz.business.server
     /// The delete keys.
     /// </summary>
     /// <param name="typeId">
-    /// The type id. 
+    /// The type id.
     /// </param>
     private void DeleteKeys(Guid? typeId = null)
     {
@@ -270,7 +291,7 @@ namespace rt.srz.business.server
       {
         var query =
           session.CreateSQLQuery(
-            "delete from [SearchKey] where KeyTypeId in (select RowId from [SearchKeyType] where TfomsId is null)");
+                                 "delete from [SearchKey] where KeyTypeId in (select RowId from [SearchKeyType] where TfomsId is null)");
         query.SetTimeout(int.MaxValue).UniqueResult();
       }
     }
@@ -293,9 +314,8 @@ namespace rt.srz.business.server
       // Удалить пользовательские ключи
       if (CalculateKeysPool.Instance.Queue.Any(x => !x.IsStandard && !x.IsDeleted))
       {
-        foreach (
-          var info in
-            CalculateKeysPool.Instance.Queue.Where(x => !x.IsStandard && !x.IsDeleted).GroupBy(x => x.SearchKeyType))
+        foreach (var info in
+          CalculateKeysPool.Instance.Queue.Where(x => !x.IsStandard && !x.IsDeleted).GroupBy(x => x.SearchKeyType))
         {
           DeleteKeys(info.Key.Id);
         }
@@ -311,7 +331,7 @@ namespace rt.srz.business.server
     /// The set recalculated.
     /// </summary>
     /// <param name="calculateJobInfo">
-    /// The job info. 
+    /// The job info.
     /// </param>
     private void SetRecalculated(CalculateKeysJobInfo calculateJobInfo)
     {

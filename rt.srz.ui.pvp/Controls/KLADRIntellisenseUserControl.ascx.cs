@@ -11,8 +11,9 @@ namespace rt.srz.ui.pvp.Controls
   using System.Text;
   using System.Web.UI;
 
-  using rt.srz.business.manager;
+  using rt.core.model.interfaces;
   using rt.srz.model.interfaces.service;
+  using rt.srz.model.srz;
 
   using StructureMap;
 

@@ -11,6 +11,7 @@ using StructureMap;
 namespace rt.srz.ui.pvp.Controls.Administration
 {
   using rt.core.model.core;
+  using rt.core.model.interfaces;
 
   public partial class AddRoleControl : System.Web.UI.UserControl
 	{

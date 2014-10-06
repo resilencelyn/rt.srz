@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Uec.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Uec.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Uec.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.atl
 {
   /// <summary>
-  /// The Uec.
+  ///   The Uec.
   /// </summary>
-  public partial class Uec 
+  public partial class Uec
   {
   }
 }

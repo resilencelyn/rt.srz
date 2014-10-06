@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KeyContext.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="KeyContext.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Контекст ключей.
@@ -23,12 +23,12 @@ namespace rt.srz.database.business.cryptography
     #region Fields
 
     /// <summary>
-    /// The disposed.
+    ///   The disposed.
     /// </summary>
     private bool disposed;
 
     /// <summary>
-    /// The handler.
+    ///   The handler.
     /// </summary>
     private IntPtr handler = IntPtr.Zero;
 
@@ -37,8 +37,8 @@ namespace rt.srz.database.business.cryptography
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="KeyContext"/> class. 
-    /// Конструктор.
+    /// Initializes a new instance of the <see cref="KeyContext"/> class.
+    ///   Конструктор.
     /// </summary>
     /// <param name="keyHandler">
     /// Дескриптор контекста.

@@ -1,13 +1,13 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISecurityService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ISecurityService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The SecurityService interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.interfaces.service
+namespace rt.core.model.interfaces
 {
   #region
 
@@ -16,8 +16,6 @@ namespace rt.srz.model.interfaces.service
   using System.ServiceModel;
 
   using rt.core.model.core;
-  using rt.srz.model.srz;
-  using rt.srz.model.enumerations;
 
   #endregion
 
@@ -35,7 +33,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="name">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid AddGroup(string name);
@@ -48,7 +46,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="name">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid AddPermission(int code, string name);
@@ -57,10 +55,10 @@ namespace rt.srz.model.interfaces.service
     /// Добавление роли
     /// </summary>
     /// <param name="name">
-    /// The name. 
+    /// The name.
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid AddRole(string name);
@@ -71,7 +69,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="user">
     /// </param>
     /// <returns>
-    /// User 
+    /// User
     /// </returns>
     [OperationContract]
     User AddUser(User user);
@@ -82,10 +80,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="userId">
     /// </param>
     /// <param name="assignGroups">
-    /// Группы в которые добавляется пользователь 
+    /// Группы в которые добавляется пользователь
     /// </param>
     /// <param name="detachGroups">
-    /// Группы из которых исключается пользователь 
+    /// Группы из которых исключается пользователь
     /// </param>
     [OperationContract]
     void AssignGroupsToUser(Guid userId, List<Guid> assignGroups, List<Guid> detachGroups);
@@ -106,10 +104,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="roleId">
     /// </param>
     /// <param name="assignPermissions">
-    /// назначаемые разрешения 
+    /// назначаемые разрешения
     /// </param>
     /// <param name="detachPermissions">
-    /// отсоединяемые разрешения 
+    /// отсоединяемые разрешения
     /// </param>
     [OperationContract]
     void AssignPermissionsToRole(Guid roleId, List<Guid> assignPermissions, List<Guid> detachPermissions);
@@ -132,10 +130,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="permissionId">
     /// </param>
     /// <param name="assignRoles">
-    /// назначаемые роли 
+    /// назначаемые роли
     /// </param>
     /// <param name="detachRoles">
-    /// отсоединяемые роли 
+    /// отсоединяемые роли
     /// </param>
     [OperationContract]
     void AssignRolesToPermission(Guid permissionId, List<Guid> assignRoles, List<Guid> detachRoles);
@@ -204,7 +202,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="code">
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     [OperationContract]
     bool ExistsPermissionCode(Guid permissionId, int code);
@@ -222,7 +220,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="groupId">
     /// </param>
     /// <returns>
-    /// The <see cref="Group"/> . 
+    /// The <see cref="Group"/> .
     /// </returns>
     [OperationContract]
     Group GetGroup(Guid groupId);
@@ -240,7 +238,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="contains">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Group> GetGroupsByNameContains(string contains);
@@ -251,10 +249,21 @@ namespace rt.srz.model.interfaces.service
     /// <param name="userId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Group> GetGroupsByUser(Guid userId);
+
+    /// <summary>
+    /// Разрешено ли текущему пользователю разрешение
+    /// </summary>
+    /// <param name="permissionCode">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    [OperationContract]
+    bool GetIsCurrentUserAllowPermission(PermissionCode permissionCode);
 
     /// <summary>
     /// Разрешено ли пользователю разрешение с указанным кодом
@@ -264,18 +273,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="permissionCode">
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     [OperationContract]
     bool GetIsUserAllowPermission(Guid userId, int permissionCode);
-
-    /// <summary>
-    /// Разрешено ли текущему пользователю разрешение
-    /// </summary>
-    /// <param name="permissionCode"></param>
-    /// <returns></returns>
-    [OperationContract]
-    bool GetIsCurrentUserAllowPermission(PermissionCode permissionCode);
 
     /// <summary>
     /// Получает разрешение по идентификатору
@@ -283,7 +284,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="permissionId">
     /// </param>
     /// <returns>
-    /// The <see cref="Permission"/> . 
+    /// The <see cref="Permission"/> .
     /// </returns>
     [OperationContract]
     Permission GetPermission(Guid permissionId);
@@ -302,7 +303,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="contains">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Permission> GetPermissionsByNameContains(string contains);
@@ -313,7 +314,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="roleId">
     /// </param>
     /// <returns>
-    /// The <see cref="Role"/> . 
+    /// The <see cref="Role"/> .
     /// </returns>
     [OperationContract]
     Role GetRole(Guid roleId);
@@ -324,7 +325,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="roleId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Permission> GetRolePermissions(Guid roleId);
@@ -342,7 +343,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="groupId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Role> GetRolesByGroup(Guid groupId);
@@ -353,7 +354,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="contains">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Role> GetRolesByNameContains(string contains);
@@ -364,7 +365,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="permissionId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Role> GetRolesByPermission(Guid permissionId);
@@ -375,22 +376,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="userId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Role> GetRolesByUser(Guid userId);
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/> . 
-    /// </returns>
-    [OperationContract]
-    Setting GetSetting(string name);
 
     /// <summary>
     /// Возвращает пользователя
@@ -398,7 +387,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="userId">
     /// </param>
     /// <returns>
-    /// The <see cref="User"/> . 
+    /// The <see cref="User"/> .
     /// </returns>
     [OperationContract]
     User GetUser(Guid userId);
@@ -409,7 +398,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="name">
     /// </param>
     /// <returns>
-    /// User 
+    /// User
     /// </returns>
     [OperationContract]
     User GetUserByName(string name);
@@ -420,7 +409,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="email">
     /// </param>
     /// <returns>
-    /// UserName 
+    /// UserName
     /// </returns>
     [OperationContract]
     string GetUserNameByEmail(string email);
@@ -433,19 +422,12 @@ namespace rt.srz.model.interfaces.service
     IList<User> GetUsers();
 
     /// <summary>
-    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    [OperationContract]
-    IList<User> GetUsersByCurrent();
-
-    /// <summary>
     /// Получает список всех пользователей группы
     /// </summary>
     /// <param name="groupId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<User> GetUsersByGroup(Guid groupId);
@@ -456,10 +438,50 @@ namespace rt.srz.model.interfaces.service
     /// <param name="contains">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<User> GetUsersByNameContains(string contains);
+
+    /// <summary>
+    /// Является ли текущий пользователь админом СМО
+    /// </summary>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    [OperationContract]
+    bool IsCurrentUserAdminSmo();
+
+    /// <summary>
+    /// Является ли текущий пользователь админом территориального фонда
+    /// </summary>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    [OperationContract]
+    bool IsCurrentUserAdminTF();
+
+    /// <summary>
+    /// Является ли пользователь админом СМО
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    [OperationContract]
+    bool IsUserAdminSmo(Guid userId);
+
+    /// <summary>
+    /// Является ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    [OperationContract]
+    bool IsUserAdminTF(Guid userId);
 
     /// <summary>
     /// Имеет ли пользователь роль администратора или входит в группы любая из которых имеет роль администратора
@@ -467,7 +489,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="user">
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     [OperationContract]
     bool IsUserHasAdminPermissions(User user);
@@ -478,7 +500,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="group">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid SaveGroup(Group @group);
@@ -489,7 +511,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="permission">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid SavePermission(Permission permission);
@@ -500,7 +522,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="role">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid SaveRole(Role role);
@@ -509,10 +531,10 @@ namespace rt.srz.model.interfaces.service
     /// The save user.
     /// </summary>
     /// <param name="user">
-    /// The user. 
+    /// The user.
     /// </param>
     /// <returns>
-    /// The <see cref="User"/> . 
+    /// The <see cref="User"/> .
     /// </returns>
     User SaveUser(User user);
 
@@ -524,42 +546,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="newPassword">
     /// </param>
     /// <returns>
-    /// User 
+    /// User
     /// </returns>
     [OperationContract]
     User UpdatePassword(string name, string newPassword);
-
-    /// <summary>
-    /// Является ли текущий пользователь админом территориального фонда
-    /// </summary>
-    /// <returns></returns>
-    [OperationContract]
-    bool IsCurrentUserAdminTF();
-    
-    /// <summary>
-    /// Является ли текущий пользователь админом СМО
-    /// </summary>
-    /// <returns></returns>
-    [OperationContract]
-    bool IsCurrentUserAdminSmo();
-
-    /// <summary>
-    /// Является ли пользователь админом территориального фонда
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    [OperationContract]
-    bool IsUserAdminTF(Guid userId);
-
-    /// <summary>
-    /// Является ли пользователь админом СМО
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    [OperationContract]
-    bool IsUserAdminSmo(Guid userId);
 
     #endregion
   }

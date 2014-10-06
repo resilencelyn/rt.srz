@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultBirthdateLargerDeathdateException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultBirthdateLargerDeathdateException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault birthdate larger deathdate exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault birthdate larger deathdate exception.
+  ///   The fault birthdate larger deathdate exception.
   /// </summary>
   [Serializable]
   public class FaultBirthdateLargerDeathdateException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultBirthdateLargerDeathdateException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultBirthdateLargerDeathdateException" /> class.
     /// </summary>
     public FaultBirthdateLargerDeathdateException()
       : base(
@@ -49,7 +49,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
       : base(info, context)
     {
     }
-    
+
     #endregion
   }
 }

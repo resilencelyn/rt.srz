@@ -1,47 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Правила>  
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Правила>
   <Текстовые ВерхнийРегистр="Да" СхлопнутьПробелы="Да" УбратьБоковыеПробелы="Да">
-    <Заменить Символы="–—¯" На="-"/>
+    <Заменить Символы="–—¯" На="-" />
 
     <!-- Таблица перекодировки латинских букв в месте рождения, фамилиях, именах и отчествах для построения ключей точного поиска -->
-    <Заменить Символы="A" На="А" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="B" На="В" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="C" На="С" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="E" На="Е" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="H" На="Н" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="K" На="К" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="M" На="М" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="O" На="О" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="P" На="Р" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="T" На="Т" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    <Заменить Символы="X" На="Х" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>
-    
+    <Заменить Символы="A" На="А" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="B" На="В" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="C" На="С" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="E" На="Е" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="H" На="Н" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="K" На="К" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="M" На="М" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="O" На="О" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="P" На="Р" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="T" На="Т" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+    <Заменить Символы="X" На="Х" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+
     <!--замена Ё на Е в текстовых полях    (впервые добавлено)-->
-    <Заменить Символы="Ё" На="Е" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace"/>    
-    
+    <Заменить Символы="Ё" На="Е" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" />
+
 
     <!-- перекодировка для поля "место рождения", для ключей точного поиска -->
-    <Заменить Коды="9,10,12,13,160" На=" " ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="_" На=" " ТолькоПоля="BirthPlace"/>
-    <Заменить Коды="34,60,62" На="&apos;" ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="`„‹‘’“”›«»" На="&apos;" ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="[{" На="(" ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="]}" На=")" ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="\|¦" На="/" ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="‚" На="," ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="…" На="." ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="•" На="." ТолькоПоля="BirthPlace"/>
-    <Заменить Символы="№" На="N" ТолькоПоля="BirthPlace"/>
-    
+    <Заменить Коды="9,10,12,13,160" На=" " ТолькоПоля="BirthPlace" />
+    <Заменить Символы="_" На=" " ТолькоПоля="BirthPlace" />
+    <Заменить Коды="34,60,62" На="&apos;" ТолькоПоля="BirthPlace" />
+    <Заменить Символы="`„‹‘’“”›«»" На="&apos;" ТолькоПоля="BirthPlace" />
+    <Заменить Символы="[{" На="(" ТолькоПоля="BirthPlace" />
+    <Заменить Символы="]}" На=")" ТолькоПоля="BirthPlace" />
+    <Заменить Символы="\|¦" На="/" ТолькоПоля="BirthPlace" />
+    <Заменить Символы="‚" На="," ТолькоПоля="BirthPlace" />
+    <Заменить Символы="…" На="." ТолькоПоля="BirthPlace" />
+    <Заменить Символы="•" На="." ТолькоПоля="BirthPlace" />
+    <Заменить Символы="№" На="N" ТолькоПоля="BirthPlace" />
+
     <!-- Таблица перекодировки латинских букв и их сочетаний в месте рождения, фамилиях, именах и отчествах для построения ключей неточного поиска -->
-    <Заменить Сочетание="V"   На="У" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="D"   На="Д" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="L"   На="Л" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="111" На="Ш" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="11"  На="П" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="III" На="Ш" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="II"  На="П" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
-    <Заменить Сочетание="I"   На="1" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да"/>
+    <Заменить Сочетание="V" На="У" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="D" На="Д" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="L" На="Л" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="111" На="Ш" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="11" На="П" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="III" На="Ш" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="II" На="П" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
+    <Заменить Сочетание="I" На="1" ТолькоПоля="FamilyName, FirstName, MiddleName, BirthPlace" ТолькоНестрогий="Да" />
 
     <!--
       Пробелы слева и справа от каждого знака препинания следует удалить.
@@ -49,7 +50,7 @@
         - В фамилиях, именах и отчествах [...] знаки препинания: "-" (минус, код знака 4510), "." (точка, код знака 4610) , "'" (апостроф, код знака 3910).
         - В месте рождения [...] знаки препинания: "-" (минус, код знака 4510), "." (точка, код знака 4610) и "," (запятая, код знака 4410).
     -->
-    <УбратьПробелы Слева="Да" Справа="Да" Символы="-.'" ТолькоПоля="FamilyName, FirstName, MiddleName"/>
-    <УбратьПробелы Слева="Да" Справа="Да" Символы="-.," ТолькоПоля="BirthPlace"/>
+    <УбратьПробелы Слева="Да" Справа="Да" Символы="-.'" ТолькоПоля="FamilyName, FirstName, MiddleName" />
+    <УбратьПробелы Слева="Да" Справа="Да" Символы="-.," ТолькоПоля="BirthPlace" />
   </Текстовые>
 </Правила>

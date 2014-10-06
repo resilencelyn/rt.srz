@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="StatementChangeDate.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StatementChangeDate.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The StatementChangeDate.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The StatementChangeDate.
+  ///   The StatementChangeDate.
   /// </summary>
-  public partial class StatementChangeDate 
+  public partial class StatementChangeDate
   {
   }
 }

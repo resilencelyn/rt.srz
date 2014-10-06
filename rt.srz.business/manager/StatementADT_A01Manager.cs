@@ -1,23 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using StructureMap;
-using NHibernate;
-using rt.srz.business.configuration.algorithms;
-using rt.srz.model.HL7.person.messages;
-using rt.srz.model.HL7.person.target;
-using rt.srz.model.srz;
-using rt.srz.model.srz.concepts;
-using rt.srz.business.manager.cache;
-using rt.srz.model.HL7;
-using rt.srz.model.HL7.person;
-using rt.srz.business.configuration.algorithms.serialization;
-using rt.core.business.configuration;
-using System.IO;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StatementADT_A01Manager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The statement ad t_ a 01 manager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
+  using System;
+  using System.Collections.Generic;
+  using System.IO;
+
+  using NHibernate;
+
+  using rt.core.model.configuration;
+  using rt.srz.business.configuration.algorithms.serialization;
+  using rt.srz.business.manager.cache;
+  using rt.srz.model.HL7;
+  using rt.srz.model.HL7.person;
+  using rt.srz.model.HL7.person.messages;
+  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
+
+  using StructureMap;
+
+  /// <summary>
+  /// The statement ad t_ a 01 manager.
+  /// </summary>
   public class StatementADT_A01Manager : IStatementADT_A01Manager
   {
     #region Public Methods and Operators
@@ -25,15 +37,18 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Создает бачт и сообщение в БД
     /// </summary>
-    /// <param name="statement"></param>
-    /// <returns></returns>
+    /// <param name="statement">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Batch"/>.
+    /// </returns>
     public Batch CreateBatchForExportADT_A01(Statement statement)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
       var organisationManager = ObjectFactory.GetInstance<IOrganisationCacheManager>();
       var tfoms = statement.PointDistributionPolicy.Parent.Parent;
-      
+
       // Создаем батч для выгрузки файла, для проверки через ФЛК шлюза ЦС ЕРЗ
       var batch = new Batch();
       batch.FileName = string.Empty;
@@ -49,34 +64,79 @@ namespace rt.srz.business.manager
 
       return batch;
     }
-    
+
     /// <summary>
     /// Выгружает ADT_A01 для выполнения ФЛК с помощью шлюза РС
     /// </summary>
-    /// <param name="statement"></param>
+    /// <param name="batch">
+    /// The batch.
+    /// </param>
+    /// <param name="statement">
+    /// </param>
     public void Export_ADT_A01_ForFLK(Batch batch, Statement statement)
     {
       var personErp = GetPersonErp(batch, statement);
-      string path = Path.Combine(ConfigManager.ExchangeSettings.WorkingFolderExchange, "Out", "Gateway", "Input");
+      var path = Path.Combine(ConfigManager.ExchangeSettings.WorkingFolderExchange, "Out", "Gateway", "Input");
       if (!Directory.Exists(path))
+      {
         Directory.CreateDirectory(path);
-      string file = Path.Combine(path, batch.FileName);
+      }
+
+      var file = Path.Combine(path, batch.FileName);
       XmlSerializationHelper.SerializeToFile(personErp, file, "person_list");
     }
-    
+
+    /// <summary>
+    /// Возвращает маппинг Statment на ADT_A01
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <param name="insurance">
+    /// The insurance.
+    /// </param>
+    /// <param name="message">
+    /// The message.
+    /// </param>
+    /// <returns>
+    /// The <see cref="ADT_A01"/>.
+    /// </returns>
+    public ADT_A01 GetADT_A01(Statement statement, MedicalInsurance insurance, Message message)
+    {
+      var adt_01 = new ADT_A01
+                   {
+                     Msh = GetMsh(statement, message), 
+                     Evn = GetEvn(statement), 
+                     InsuranceList = new List<ADT_A01_INSURANCE> { GetInsurance(statement, insurance) }, 
+                     Pid = GetPid(statement), 
+                     
+                     // Pv1 = GetPv1(statement),
+                     // Zvn = GetZvn(statement)
+                   };
+
+      return adt_01;
+    }
+
     /// <summary>
     /// Возвращает маппинг Statement на PersonErp
     /// </summary>
-    /// <param name="statment"></param>
-    /// <returns></returns>
+    /// <param name="batch">
+    /// The batch.
+    /// </param>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="PersonErp"/>.
+    /// </returns>
     public PersonErp GetPersonErp(Batch batch, Statement statement)
     {
-      var personErp = new PersonErp()
-      {
-        BeginPacket = GetBhs(batch.Id, statement),
-        Adt_A01 = new List<ADT_A01>(),
-        EndPacket = GetBts(statement.MedicalInsurances.Count)
-      };
+      var personErp = new PersonErp
+                      {
+                        BeginPacket = GetBhs(batch.Id, statement), 
+                        Adt_A01 = new List<ADT_A01>(), 
+                        EndPacket = GetBts(statement.MedicalInsurances.Count)
+                      };
 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
@@ -104,142 +164,107 @@ namespace rt.srz.business.manager
 
       return personErp;
     }
-    
-    /// <summary>
-    /// Возвращает маппинг Statment на ADT_A01
-    /// </summary>
-    /// <param name="statement">
-    /// The statement.
-    /// </param>
-    /// <returns>
-    /// The <see cref="ADT_A01"/>.
-    /// </returns>
-    public ADT_A01 GetADT_A01(Statement statement, MedicalInsurance insurance, Message message)
-    {
-      var adt_01 = new ADT_A01()
-      {
-        Msh = GetMsh(statement, message),
-        Evn = GetEvn(statement),
-        InsuranceList = new List<ADT_A01_INSURANCE>() { GetInsurance(statement, insurance) },
-        Pid = GetPid(statement),
-        //Pv1 = GetPv1(statement),
-        //Zvn = GetZvn(statement)
-      };
-
-      return adt_01;
-    }
 
     #endregion
 
     #region Methods
+
+    /// <summary>
+    /// The get bhs.
+    /// </summary>
+    /// <param name="batchId">
+    /// The batch id.
+    /// </param>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="BHS"/>.
+    /// </returns>
     private BHS GetBhs(Guid batchId, Statement statement)
     {
-      BHS bhs = new BHS();
+      var bhs = new BHS();
 
-      //BHS.1
+      // BHS.1
       bhs.FieldSeparator = HL7Helper.BHS_Delimiter;
 
-      //BHS.2
+      // BHS.2
       bhs.SpecialSymbol = HL7Helper.BHS_CodeSymbols;
 
       var tfoms = statement.PointDistributionPolicy.Parent.Parent;
-      
-      //BHS.3
+
+      // BHS.3
       bhs.OriginApplicationName = new BHS3 { Application = "СРЗ " + tfoms.Code };
 
-      //BHS.4
+      // BHS.4
       bhs.OriginOrganizationName = new BHS4 { CodeOfRegion = tfoms.Code, TableCode = Oid.Pvp, Iso = "ISO" };
-      
-      //BHS.5
-      bhs.ApplicationName = new BHS5() { Application = "ЦК ЕРП" };
 
-      //BHS.6
-      bhs.OrganizationName = new BHS6() { FomsCode = "00", TableCode = Oid.Pvp, Iso = "ISO" };
+      // BHS.5
+      bhs.ApplicationName = new BHS5 { Application = "ЦК ЕРП" };
 
-      //BHS.7
+      // BHS.6
+      bhs.OrganizationName = new BHS6 { FomsCode = "00", TableCode = Oid.Pvp, Iso = "ISO" };
+
+      // BHS.7
       bhs.DateTimeNow = HL7Helper.FormatCurrentDateTime();
 
-      //BHS.9
+      // BHS.9
       bhs.TypeWork = "P";
 
-      //BHS.11
+      // BHS.11
       bhs.Identificator = batchId.ToString();
 
       return bhs;
     }
 
+    /// <summary>
+    /// The get bts.
+    /// </summary>
+    /// <param name="messageCount">
+    /// The message count.
+    /// </param>
+    /// <returns>
+    /// The <see cref="BTS"/>.
+    /// </returns>
     private BTS GetBts(int messageCount)
     {
       return new BTS { CountMessages = messageCount.ToString() };
     }
-    
-    private MSH GetMsh(Statement statement, Message message)
-    {
-      MSH msh = new MSH();
 
-      //MSH.1
-      msh.FieldDivider = HL7Helper.BHS_Delimiter;
-
-      //MSH.2
-      msh.SpecialSymbol = HL7Helper.BHS_CodeSymbols;
-
-      var tfoms = statement.PointDistributionPolicy.Parent.Parent;
-      
-      //MSH.3
-      msh.OriginApplicationName = new BHS3 { Application = "СРЗ " + tfoms.Code };
-
-      //MSH.4
-      msh.OriginOrganizationName = new BHS4 { CodeOfRegion = tfoms.Code, TableCode = Oid.Pvp, Iso = "ISO" };
-
-      //MSH.5
-      msh.ApplicationName = new BHS5() {Application = "ЦК ЕРП"};
-
-      //MSH.6
-      msh.OrganizationName = new BHS6(){ FomsCode="00", TableCode=Oid.Pvp, Iso="ISO" };
-
-      //MSH.7
-      msh.DateTimeCreation = HL7Helper.FormatCurrentDateTime();
-
-      //MSH.9
-      msh.MessageType = new model.HL7.person.target.MessageType { MessType = "ADT", TransactionCode = "A08", StructureType = "ADT_A01", };
-
-      //MSH.10
-      msh.Identificator = message.Id.ToString();
-
-      //MSH.11
-      msh.TypeWork = new TypeWork(){ Type="P"};
-
-      //MSH.12
-      msh.VersionStandartId = new VersionStandartId();
-
-      //MSH.15
-      msh.ConfirmationTypeGateWay = "AL";
-
-      //MSH.16
-      msh.ConfirmationTypeFoms = "AL";
-
-      return msh;
-    }
-
+    /// <summary>
+    /// The get evn.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Evn"/>.
+    /// </returns>
     private Evn GetEvn(Statement statement)
     {
       var reason = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(ReasonType.П01);
       return new Evn
-      {
-        CodeReasonEvent = reason != null ? reason.Code : string.Empty,
-        DateRegistrationEvent = statement.DateFiling.HasValue ? HL7Helper.FormatDateTime(statement.DateFiling.Value) : string.Empty
-      };
-    }
-    
-    private ADT_A01_INSURANCE GetInsurance(Statement statement, MedicalInsurance insurance)
-    {
-      var ins = new ADT_A01_INSURANCE
-      {
-        In1 = GetIn1(statement, insurance)
-      };
-      return ins;
+             {
+               CodeReasonEvent = reason != null ? reason.Code : string.Empty, 
+               DateRegistrationEvent =
+                 statement.DateFiling.HasValue
+                   ? HL7Helper.FormatDateTime(statement.DateFiling.Value)
+                   : string.Empty
+             };
     }
 
+    /// <summary>
+    /// The get in 1.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <param name="insurance">
+    /// The insurance.
+    /// </param>
+    /// <returns>
+    /// The <see cref="IN1"/>.
+    /// </returns>
     private IN1 GetIn1(Statement statement, MedicalInsurance insurance)
     {
       var pvp = statement.PointDistributionPolicy;
@@ -285,42 +310,34 @@ namespace rt.srz.business.manager
 
       // IN1.16	XPN	Да	Фамилия, имя, отчество 
       in1.FioList = new List<Fio>
-                      {
-                        new Fio(
-                          new Surname(personData.FirstName), 
-                          personData.LastName, 
-                          personData.MiddleName, 
-                          "L")
-                      };
+                    {
+                      new Fio(
+                        new Surname(personData.FirstName), 
+                        personData.LastName, 
+                        personData.MiddleName, 
+                        "L")
+                    };
 
       // IN1.18	DTM	Да	Дата рождения
-      in1.BirthDay = personData.Birthday.HasValue
-                       ? HL7Helper.FormatDate(personData.Birthday.Value)
-                       : null;
+      in1.BirthDay = personData.Birthday.HasValue ? HL7Helper.FormatDate(personData.Birthday.Value) : null;
 
       var adr = statement.Address;
       var adr2 = statement.Address2 ?? adr;
       in1.AddressList = new List<Address>
-                          {
-                            adr.IsHomeless.HasValue && adr.IsHomeless.Value
-                              ? new Address { AddressType = "L" }
-                              : new Address
-                                  {
-                                    Region = tfoms.Okato, 
-                                    Country = "RUS", 
-                                    AddressType = "L", 
-                                  }
-                          };
+                        {
+                          adr.IsHomeless.HasValue && adr.IsHomeless.Value
+                            ? new Address { AddressType = "L" }
+                            : new Address
+                              {
+                                Region = tfoms.Okato, 
+                                Country = "RUS", 
+                                AddressType = "L", 
+                              }
+                        };
 
       if (!(adr.IsHomeless.HasValue && adr.IsHomeless.Value))
       {
-        in1.AddressList.Add(
-          new Address
-          {
-            Region = tfoms.Okato,
-            Country = "RUS",
-            AddressType = "H",
-          });
+        in1.AddressList.Add(new Address { Region = tfoms.Okato, Country = "RUS", AddressType = "H", });
       }
 
       // IN1.35	IS	Нет	Тип страховки
@@ -330,10 +347,7 @@ namespace rt.srz.business.manager
       in1.InsuranceSerNum = insurance.SeriesNumber;
 
       // IN1.42 
-      in1.Employment = new Employment
-      {
-        employment = CategoryPerson.IsWorking(personData.Category.Id) ? "1" : "0"
-      };
+      in1.Employment = new Employment { employment = CategoryPerson.IsWorking(personData.Category.Id) ? "1" : "0" };
 
       // IN1.43	IS	Усл	Пол
       in1.Sex = personData.Gender.Code;
@@ -344,24 +358,32 @@ namespace rt.srz.business.manager
       in1.IdentificatorsList = new List<Identificators>();
 
       in1.IdentificatorsList.Add(
-        new Identificators
-        { 
-          identificator = documentManager.GetSerNumDocument(documentUdl), 
-          identificatorType = documentUdl.DocumentType.Code,
-          identificatorFrom = HL7Helper.FormatDate(documentUdl.DateIssue),
-          identificatorTo = documentUdl.DateExp.HasValue ? HL7Helper.FormatDate(documentUdl.DateExp.Value) : null
-        });
-      
+                                 new Identificators
+                                 {
+                                   identificator = documentManager.GetSerNumDocument(documentUdl), 
+                                   identificatorType = documentUdl.DocumentType.Code, 
+                                   identificatorFrom = HL7Helper.FormatDate(documentUdl.DateIssue), 
+                                   identificatorTo =
+                                     documentUdl.DateExp.HasValue
+                                       ? HL7Helper.FormatDate(documentUdl.DateExp.Value)
+                                       : null
+                                 });
+
       // Номер полиса
       if (!string.IsNullOrEmpty(insuredPerson.MainPolisNumber))
       {
-        in1.IdentificatorsList.Add(new Identificators { identificatorType = "NI", identificator = insuredPerson.MainPolisNumber });
+        in1.IdentificatorsList.Add(
+                                   new Identificators
+                                   {
+                                     identificatorType = "NI", 
+                                     identificator = insuredPerson.MainPolisNumber
+                                   });
       }
-      
+
       // СНИЛС
       if (!string.IsNullOrEmpty(personData.Snils))
       {
-        in1.IdentificatorsList.Add(new Identificators{identificatorType = "PEN", identificator = personData.Snils});
+        in1.IdentificatorsList.Add(new Identificators { identificatorType = "PEN", identificator = personData.Snils });
       }
 
       // IN1.52	ST	Да	Место рождения
@@ -370,129 +392,222 @@ namespace rt.srz.business.manager
       return in1;
     }
 
+    /// <summary>
+    /// The get insurance.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <param name="insurance">
+    /// The insurance.
+    /// </param>
+    /// <returns>
+    /// The <see cref="ADT_A01_INSURANCE"/>.
+    /// </returns>
+    private ADT_A01_INSURANCE GetInsurance(Statement statement, MedicalInsurance insurance)
+    {
+      var ins = new ADT_A01_INSURANCE { In1 = GetIn1(statement, insurance) };
+      return ins;
+    }
+
+    /// <summary>
+    /// The get msh.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <param name="message">
+    /// The message.
+    /// </param>
+    /// <returns>
+    /// The <see cref="MSH"/>.
+    /// </returns>
+    private MSH GetMsh(Statement statement, Message message)
+    {
+      var msh = new MSH();
+
+      // MSH.1
+      msh.FieldDivider = HL7Helper.BHS_Delimiter;
+
+      // MSH.2
+      msh.SpecialSymbol = HL7Helper.BHS_CodeSymbols;
+
+      var tfoms = statement.PointDistributionPolicy.Parent.Parent;
+
+      // MSH.3
+      msh.OriginApplicationName = new BHS3 { Application = "СРЗ " + tfoms.Code };
+
+      // MSH.4
+      msh.OriginOrganizationName = new BHS4 { CodeOfRegion = tfoms.Code, TableCode = Oid.Pvp, Iso = "ISO" };
+
+      // MSH.5
+      msh.ApplicationName = new BHS5 { Application = "ЦК ЕРП" };
+
+      // MSH.6
+      msh.OrganizationName = new BHS6 { FomsCode = "00", TableCode = Oid.Pvp, Iso = "ISO" };
+
+      // MSH.7
+      msh.DateTimeCreation = HL7Helper.FormatCurrentDateTime();
+
+      // MSH.9
+      msh.MessageType = new MessageType { MessType = "ADT", TransactionCode = "A08", StructureType = "ADT_A01", };
+
+      // MSH.10
+      msh.Identificator = message.Id.ToString();
+
+      // MSH.11
+      msh.TypeWork = new TypeWork { Type = "P" };
+
+      // MSH.12
+      msh.VersionStandartId = new VersionStandartId();
+
+      // MSH.15
+      msh.ConfirmationTypeGateWay = "AL";
+
+      // MSH.16
+      msh.ConfirmationTypeFoms = "AL";
+
+      return msh;
+    }
+
+    /// <summary>
+    /// The get pid.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="MessagePid"/>.
+    /// </returns>
     private MessagePid GetPid(Statement statement)
-    { 
+    {
       var personData = statement.InsuredPersonData;
       var deadInfo = statement.InsuredPerson.DeadInfo;
       var insuredPerson = statement.InsuredPerson;
       var tfoms = statement.PointDistributionPolicy.Parent.Parent;
       var documentUdl = statement.DocumentUdl;
-      
+
       var pid = new MessagePid();
 
       // PID.11
       var adr = statement.Address;
       var adr2 = statement.Address2 ?? adr;
       pid.AddressList = new List<Address>
-                          {
-                            adr.IsHomeless.HasValue && adr.IsHomeless.Value
-                              ? new Address { AddressType = "L" }
-                              : new Address
-                                  {
-                                    Region = tfoms.Okato, 
-                                    Country = "RUS", 
-                                    AddressType = "L", 
-                                  }
-                          };
+                        {
+                          adr.IsHomeless.HasValue && adr.IsHomeless.Value
+                            ? new Address { AddressType = "L" }
+                            : new Address
+                              {
+                                Region = tfoms.Okato, 
+                                Country = "RUS", 
+                                AddressType = "L", 
+                              }
+                        };
 
       if (!(adr.IsHomeless.HasValue && adr.IsHomeless.Value))
       {
-        pid.AddressList.Add(
-          new Address
-          {
-            Region = tfoms.Okato,
-            Country = "RUS",
-            AddressType = "H",
-          });
+        pid.AddressList.Add(new Address { Region = tfoms.Okato, Country = "RUS", AddressType = "H", });
       }
 
-      //PID.7
+      // PID.7
       pid.BirthDay = personData.Birthday.HasValue ? HL7Helper.FormatDate(personData.Birthday.Value) : string.Empty;
 
-      //PID.29
-      //if (deadInfo != null && deadInfo.ActRecordDate.HasValue)
-      //{
-      //  pid.DeadDay = deadInfo.ActRecordDate.Value.ToShortDateString();
-      //}
+      // PID.29
+      // if (deadInfo != null && deadInfo.ActRecordDate.HasValue)
+      // {
+      // pid.DeadDay = deadInfo.ActRecordDate.Value.ToShortDateString();
+      // }
 
-      //PID.5
+      // PID.5
       pid.FioList = new List<Fio>
-                {
-                  new Fio(
-                    new Surname(personData.FirstName), 
-                    personData.LastName, 
-                    personData.MiddleName, 
-                    "L")
-                };
+                    {
+                      new Fio(
+                        new Surname(personData.FirstName), 
+                        personData.LastName, 
+                        personData.MiddleName, 
+                        "L")
+                    };
 
       var documentManager = ObjectFactory.GetInstance<IDocumentManager>();
-      
-      //PID.3
+
+      // PID.3
       pid.IdentificatorsList = new List<Identificators>();
-      
+
       // Документ УДЛ
       pid.IdentificatorsList.Add(
-        new Identificators 
-        { 
-          identificator = documentManager.GetSerNumDocument(documentUdl), 
-          identificatorType = documentUdl.DocumentType.Code,
-          identificatorFrom = HL7Helper.FormatDate(documentUdl.DateIssue),
-          identificatorTo = documentUdl.DateExp.HasValue ? HL7Helper.FormatDate(documentUdl.DateExp.Value) : null
-        });
+                                 new Identificators
+                                 {
+                                   identificator = documentManager.GetSerNumDocument(documentUdl), 
+                                   identificatorType = documentUdl.DocumentType.Code, 
+                                   identificatorFrom = HL7Helper.FormatDate(documentUdl.DateIssue), 
+                                   identificatorTo =
+                                     documentUdl.DateExp.HasValue
+                                       ? HL7Helper.FormatDate(documentUdl.DateExp.Value)
+                                       : null
+                                 });
 
       // Номер ЕНП
       if (!string.IsNullOrEmpty(insuredPerson.MainPolisNumber))
       {
-        pid.IdentificatorsList.Add(new Identificators { identificatorType = "NI", identificator = insuredPerson.MainPolisNumber});
+        pid.IdentificatorsList.Add(
+                                   new Identificators
+                                   {
+                                     identificatorType = "NI", 
+                                     identificator = insuredPerson.MainPolisNumber
+                                   });
       }
-      
+
       // СНИЛС
       if (!string.IsNullOrEmpty(personData.Snils))
       {
-        pid.IdentificatorsList.Add(new Identificators{identificatorType = "PEN", identificator = personData.Snils});
+        pid.IdentificatorsList.Add(new Identificators { identificatorType = "PEN", identificator = personData.Snils });
       }
-      
-      //PID.30
-      //pid.IsDead = deadInfo != null ? "1" : "0";
 
-      //PID.26"
+      // PID.30
+      // pid.IsDead = deadInfo != null ? "1" : "0";
+
+      // PID.26"
       if (!personData.IsRefugee)
       {
         pid.Nationality = new National
-        {
-          Nationality = personData.IsNotCitizenship ? "Б/Г" : personData.Citizenship.Code,
-          TableCode = Oid.Страна
-        };
+                          {
+                            Nationality = personData.IsNotCitizenship ? "Б/Г" : personData.Citizenship.Code, 
+                            TableCode = Oid.Страна
+                          };
       }
       else
       {
         pid.Nationality = new National
-        {
-          Nationality = "1", //Является беженцем
-          TableCode = "1.2.643.2.40.3.3.0.6.19"
-        };
+                          {
+                            Nationality = "1", // Является беженцем
+                            TableCode = "1.2.643.2.40.3.3.0.6.19"
+                          };
       }
-      
-      //PID.23
+
+      // PID.23
       pid.PlaceOfBirth = personData.Birthplace;
 
-      //PID.32
+      // PID.32
       pid.ReliabilityIdList = new List<string>();
 
-      //PID.8
+      // PID.8
       pid.Sex = personData.Gender.Code;
 
       return pid;
     }
 
+    /// <summary>
+    /// The get pv 1.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Pv1"/>.
+    /// </returns>
     private Pv1 GetPv1(Statement statement)
     {
       return new Pv1();
-    }
-
-    private Zvn GetZvn(Statement statment)
-    {
-      return new Zvn();
     }
 
     /// <summary>
@@ -518,7 +633,7 @@ namespace rt.srz.business.manager
           case CauseReinsurance.ReinsuranceWithTheMove:
           case CauseReinsurance.ReinsuranceStopFinance:
             return conceptCacheManager.GetById(ReasonType.П03);
-          
+
           case CauseReneval.RenevalChangePersonDetails:
           case CauseReneval.RenevalInaccuracy:
           case CauseReneval.RenevalUnusable:
@@ -545,6 +660,21 @@ namespace rt.srz.business.manager
 
       return null;
     }
+
+    /// <summary>
+    /// The get zvn.
+    /// </summary>
+    /// <param name="statment">
+    /// The statment.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Zvn"/>.
+    /// </returns>
+    private Zvn GetZvn(Statement statment)
+    {
+      return new Zvn();
+    }
+
     #endregion
   }
 }

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Request.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Request.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The request.
@@ -38,7 +38,7 @@ namespace rt.srz.model.interfaces.service.uir
     /// Initializes a new instance of the <see cref="Request"/> class.
     /// </summary>
     /// <param name="uirRequest">
-    /// The uir request. 
+    /// The uir request.
     /// </param>
     public Request(UIRRequest uirRequest)
     {

@@ -109,7 +109,7 @@ namespace rt.core.business.manager
     /// </returns>
     public IList<User> GetUsersByGroup(Guid groupId)
     {
-      return GetBy(ug => ug.Group.Id == groupId).Select(x => x.User).Where(x => x.IsApproved == true).ToList();
+      return GetBy(ug => ug.Group.Id == groupId).Select(x => x.User).Where(x => x.IsApproved).ToList();
     }
 
     #endregion

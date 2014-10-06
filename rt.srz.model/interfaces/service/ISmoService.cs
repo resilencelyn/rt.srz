@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISmoService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ISmoService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The SMOService interface.
@@ -15,7 +15,6 @@ namespace rt.srz.model.interfaces.service
   using System.Collections.Generic;
   using System.ServiceModel;
 
-  using rt.atl.model.atl;
   using rt.core.model.dto;
   using rt.srz.model.dto;
   using rt.srz.model.srz;
@@ -64,10 +63,10 @@ namespace rt.srz.model.interfaces.service
     /// The get childres.
     /// </summary>
     /// <param name="parentId">
-    /// The parent id. 
+    /// The parent id.
     /// </param>
     /// <returns>
-    /// The <see cref="List{T}"/> . 
+    /// The <see cref="List{T}"/> .
     /// </returns>
     IList<Organisation> GetChildres(Guid parentId);
 
@@ -75,10 +74,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает пункт выдачи полисов
     /// </summary>
     /// <param name="pdpId">
-    /// The pdp Id. 
+    /// The pdp Id.
     /// </param>
     /// <returns>
-    /// The <see cref="PointDistributionPolicy"/> . 
+    /// The <see cref="PointDistributionPolicy"/> .
     /// </returns>
     [OperationContract]
     Organisation GetPDP(Guid pdpId);
@@ -87,10 +86,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
     /// </summary>
     /// <param name="smoId">
-    /// The smo Id. 
+    /// The smo Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Organisation> GetPDPsBySmo(Guid smoId);
@@ -101,7 +100,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     [OperationContract]
     SearchResult<Organisation> GetPdps(SearchPdpCriteria criteria);
@@ -112,7 +111,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="smoId">
     /// </param>
     /// <returns>
-    /// The <see cref="Smo"/> . 
+    /// The <see cref="Smo"/> .
     /// </returns>
     [OperationContract]
     Organisation GetSmo(Guid smoId);
@@ -121,13 +120,13 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает СМО
     /// </summary>
     /// <param name="okato">
-    /// The okato. 
+    /// The okato.
     /// </param>
     /// <param name="ogrn">
-    /// The ogrn. 
+    /// The ogrn.
     /// </param>
     /// <returns>
-    /// The <see cref="Smo"/> . 
+    /// The <see cref="Smo"/> .
     /// </returns>
     [OperationContract]
     Organisation GetSmoByOkatoAndOgrn(string okato, string ogrn);
@@ -138,7 +137,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     [OperationContract]
     SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria);
@@ -147,10 +146,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает список всех зарегестрированных СМО для указанного ТФОМС
     /// </summary>
     /// <param name="tfomId">
-    /// The tfom Id. 
+    /// The tfom Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Organisation> GetSmosByTfom(Guid tfomId);
@@ -161,7 +160,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     [OperationContract]
     SearchResult<Organisation> GetSmosExcludeTfom(SearchSmoCriteria criteria);
@@ -170,10 +169,10 @@ namespace rt.srz.model.interfaces.service
     /// The get tfoms.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Tfom"/> . 
+    /// The <see cref="Tfom"/> .
     /// </returns>
     [OperationContract]
     Organisation GetTfoms(Guid id);
@@ -184,7 +183,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     SearchResult<Organisation> GetTfoms(SearchSmoCriteria criteria);
 
@@ -192,10 +191,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает ТФОМС
     /// </summary>
     /// <param name="okato">
-    /// The okato. 
+    /// The okato.
     /// </param>
     /// <returns>
-    /// The <see cref="Organisation"/> . 
+    /// The <see cref="Organisation"/> .
     /// </returns>
     [OperationContract]
     Organisation GetTfomsByOkato(string okato);
@@ -206,7 +205,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="workstationId">
     /// </param>
     /// <returns>
-    /// The <see cref="Workstation"/> . 
+    /// The <see cref="Workstation"/> .
     /// </returns>
     [OperationContract]
     Workstation GetWorkstation(Guid workstationId);
@@ -217,13 +216,14 @@ namespace rt.srz.model.interfaces.service
     /// <param name="pdpId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Workstation> GetWorkstationsByPdp(Guid pdpId);
 
     /// <summary>
-    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данного мипа но отсутсвуют в списке, будут удалены
+    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данного мипа но
+    ///   отсутсвуют в списке, будут удалены
     /// </summary>
     /// <param name="mipId">
     /// </param>
@@ -238,13 +238,14 @@ namespace rt.srz.model.interfaces.service
     /// <param name="pdp">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid SavePdp(Organisation pdp);
 
     /// <summary>
-    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в списке, будут удалены
+    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
+    ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
     /// </param>
@@ -259,7 +260,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="smo">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid SaveSmo(Organisation smo);
@@ -282,7 +283,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="code">
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     [OperationContract]
     bool SmoCodeExists(Guid smoId, string code);

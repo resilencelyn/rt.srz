@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AddressCard.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="AddressCard.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The address card.
@@ -62,7 +62,7 @@ namespace rt.srz.model.HL7.person.target
     public string IsHomeless;
 
     /// <summary>
-    /// The postcode.
+    ///   The postcode.
     /// </summary>
     [XmlElement(ElementName = "XAD.40", Order = 40)]
     public string Postcode;
@@ -109,23 +109,31 @@ namespace rt.srz.model.HL7.person.target
     [XmlElement(ElementName = "XAD.5", Order = 5)]
     public string Zip;
 
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// Gets the address str.
+    /// </summary>
     [XmlIgnore]
     public string AddressStr
     {
       get
       {
-        StringBuilder sb = new StringBuilder();
-        sb.Append(Postcode).Append(" ").
-          //Append(Subject).Append(" ").
-          //Append(Area).Append(" ").
-          Append(City).Append(" ").
-          Append(Town).Append(" ");
+        var sb = new StringBuilder();
+        sb.Append(Postcode).Append(" "). // Append(Subject).Append(" ").
+          // Append(Area).Append(" ").
+           Append(City).Append(" ").Append(Town).Append(" ");
         if (StructureAddress != null)
         {
-          sb.Append(StructureAddress.Street).Append(" ").
-          Append(StructureAddress.Building).Append(" ").
-          Append(StructureAddress.Room);
+          sb.Append(StructureAddress.Street)
+            .Append(" ")
+            .Append(StructureAddress.Building)
+            .Append(" ")
+            .Append(StructureAddress.Room);
         }
+
         return sb.ToString();
       }
     }

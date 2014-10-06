@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IStatementService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IStatementService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The StatementService interface.
@@ -17,7 +17,6 @@ namespace rt.srz.model.interfaces.service
 
   using rt.core.model.dto;
   using rt.srz.model.dto;
-  using rt.srz.model.HL7.person.messages;
   using rt.srz.model.srz;
 
   using Serialize.Linq.Nodes;
@@ -36,7 +35,7 @@ namespace rt.srz.model.interfaces.service
     /// Добавляет в базу настройку о том что можно включать отключать проверку данного валидатора
     /// </summary>
     /// <param name="className">
-    /// тип валидатора 
+    /// тип валидатора
     /// </param>
     [OperationContract]
     void AddAllowChangeSetting(string className);
@@ -48,6 +47,28 @@ namespace rt.srz.model.interfaces.service
     /// </param>
     [OperationContract]
     void AddSetting(string className);
+
+    /// <summary>
+    /// The calculate en period working day.
+    /// </summary>
+    /// <param name="dateFrom">
+    /// The date from.
+    /// </param>
+    /// <param name="count">
+    /// The count.
+    /// </param>
+    /// <returns>
+    /// The <see cref="DateTime"/>.
+    /// </returns>
+    DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count);
+
+    /// <summary>
+    /// The remove statement.
+    /// </summary>
+    /// <param name="statementId">
+    /// </param>
+    [OperationContract]
+    void CanceledStatement(Guid statementId);
 
     /// <summary>
     /// </summary>
@@ -69,7 +90,7 @@ namespace rt.srz.model.interfaces.service
     /// The content remove.
     /// </summary>
     /// <param name="content">
-    /// The content. 
+    /// The content.
     /// </param>
     [OperationContract]
     void ContentRemove(Content content);
@@ -78,10 +99,10 @@ namespace rt.srz.model.interfaces.service
     /// The convert to gray scale.
     /// </summary>
     /// <param name="image">
-    /// The image. 
+    /// The image.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/> . 
+    /// The <see cref="byte[]"/> .
     /// </returns>
     [OperationContract]
     byte[] ConvertToGrayScale(byte[] image);
@@ -104,13 +125,21 @@ namespace rt.srz.model.interfaces.service
     /// The create from example.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="Statement"/> . 
+    /// The <see cref="Statement"/> .
     /// </returns>
     [OperationContract]
     Statement CreateFromExample(Statement statement);
+
+    /// <summary>
+    /// Удаление инфы о смерти
+    /// </summary>
+    /// <param name="statementId">
+    /// </param>
+    [OperationContract]
+    void DeleteDeathInfo(Guid statementId);
 
     /// <summary>
     /// Получает все заявления для указанной персоны
@@ -118,7 +147,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="insuredId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Statement> GetAllByInsuredId(Guid insuredId);
@@ -129,7 +158,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="Id">
     /// </param>
     /// <returns>
-    /// The <see cref="AutoComplete"/> . 
+    /// The <see cref="AutoComplete"/> .
     /// </returns>
     [OperationContract]
     AutoComplete GetAutoComplete(Guid Id);
@@ -138,19 +167,22 @@ namespace rt.srz.model.interfaces.service
     /// The get category by citizenship.
     /// </summary>
     /// <param name="citizenshipId">
-    /// The citizenship id. 
+    /// The citizenship id.
     /// </param>
     /// <param name="isnotCitizenship">
-    /// The isnot citizenship. 
+    /// The isnot citizenship.
     /// </param>
     /// <param name="isrefugee">
-    /// The isrefugee. 
+    /// The isrefugee.
     /// </param>
-    /// <param name="age"> </param>
+    /// <param name="age">
+    /// </param>
     /// <returns>
-    /// The <see>
-    ///                 <cref>IList</cref>
-    ///               </see> . 
+    /// The
+    ///   <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [OperationContract]
     IList<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age);
@@ -159,10 +191,10 @@ namespace rt.srz.model.interfaces.service
     /// The get concept.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Concept"/> . 
+    /// The <see cref="Concept"/> .
     /// </returns>
     [OperationContract]
     Concept GetConcept(int id);
@@ -171,10 +203,10 @@ namespace rt.srz.model.interfaces.service
     /// The get content record.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Content"/> . 
+    /// The <see cref="Content"/> .
     /// </returns>
     [OperationContract]
     Content GetContentRecord(Guid id);
@@ -183,10 +215,10 @@ namespace rt.srz.model.interfaces.service
     /// The get document residency type by category.
     /// </summary>
     /// <param name="categoryId">
-    /// The category id. 
+    /// The category id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/> . 
+    /// The <see cref="IList{T}"/> .
     /// </returns>
     IList<Concept> GetDocumentResidencyTypeByCategory(int categoryId);
 
@@ -194,13 +226,13 @@ namespace rt.srz.model.interfaces.service
     /// The get document type by category.
     /// </summary>
     /// <param name="categoryId">
-    /// The category id. 
+    /// The category id.
     /// </param>
     /// <param name="age">
-    /// The age. 
+    /// The age.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age);
@@ -224,12 +256,25 @@ namespace rt.srz.model.interfaces.service
     IList<Concept> GetDocumentTypeForRepresentative();
 
     /// <summary>
+    /// Получает ошибки существующие в заявлениях за указанный период
+    /// </summary>
+    /// <param name="startDate">
+    /// </param>
+    /// <param name="endDate">
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    [OperationContract]
+    IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
+
+    /// <summary>
     /// Возвращает список вариантов для имени
     /// </summary>
     /// <param name="prefix">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<AutoComplete> GetFirstNameAutoComplete(string prefix);
@@ -238,10 +283,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает список типов полиса в зависимости от причины обращения
     /// </summary>
     /// <param name="causeFilling">
-    /// The cause Filling. 
+    /// The cause Filling.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     IList<Concept> GetFormManufacturingByCauseFilling(int causeFilling);
 
@@ -253,7 +298,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="nameId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId);
@@ -262,10 +307,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает список нормативно справочных данных
     /// </summary>
     /// <param name="oid">
-    /// The oid. 
+    /// The oid.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract(Name = "GetNsiRecordsByoid")]
     IList<Concept> GetNsiRecords(string oid);
@@ -274,10 +319,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает список нормативно справочных данных
     /// </summary>
     /// <param name="oid">
-    /// The oid. 
+    /// The oid.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract(Name = "GetNsiRecords")]
     IList<Concept> GetNsiRecords(IEnumerable<string> oid);
@@ -290,67 +335,10 @@ namespace rt.srz.model.interfaces.service
     /// <param name="series">
     /// </param>
     /// <returns>
-    /// The <see cref="Representative"/> . 
+    /// The <see cref="Representative"/> .
     /// </returns>
     [OperationContract]
     Representative GetRepresentativeContactInfoByUdl(string number, string series);
-
-    /// <summary>
-    /// The get setting current user.
-    /// </summary>
-    /// <param name="nameSetting">
-    /// The name setting. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/> . 
-    /// </returns>
-    [OperationContract]
-    string GetSettingCurrentUser(string nameSetting);
-
-    /// <summary>
-    /// Возвращает ранее сохраненное завяление
-    /// </summary>
-    /// <param name="statementId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Statement"/> . 
-    /// </returns>
-    [OperationContract]
-    Statement GetStatement(Guid statementId);
-
-    /// <summary>
-    /// Получает заявление по InsuredPersonId с IsActive = 1
-    /// </summary>
-    /// <param name="insuredPersonId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Statement"/> . 
-    /// </returns>
-    [OperationContract]
-    Statement GetStatementByInsuredPersonId(Guid insuredPersonId);
-
-    /// <summary>
-    /// The get za 7.
-    /// </summary>
-    /// <param name="statement">
-    /// The statement. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="ZPI_ZA7"/> . 
-    /// </returns>
-    [OperationContract]
-    ZPI_ZA7 GetZa7(Statement statement);
-
-    /// <summary>
-    /// Входит ли указанная персона в объединение как главное или как второе лицо
-    /// </summary>
-    /// <param name="personId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/> . 
-    /// </returns>
-    [OperationContract]
-    bool InsuredInJoined(Guid personId);
 
     /// <summary>
     /// The get search statement result.
@@ -365,145 +353,62 @@ namespace rt.srz.model.interfaces.service
     SearchStatementResult GetSearchStatementResult(Guid id);
 
     /// <summary>
-    /// The is right to edit.
+    /// The get setting.
     /// </summary>
-    /// <param name="propertys">
-    /// The propertys. 
-    /// </param>
-    /// <param name="expression">
-    /// The expression. 
+    /// <param name="name">
+    /// The name.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="Setting"/> .
     /// </returns>
     [OperationContract]
-    bool IsRightToEdit(IEnumerable<Concept> propertys, ExpressionNode expression);
+    Setting GetCurrentSetting(string name);
 
     /// <summary>
-    /// Удаляет из базы настройку о том что можно включать отключать проверку данного валидатора
+    /// The get setting.
     /// </summary>
-    /// <param name="className">
-    /// тип валидатора 
-    /// </param>
-    [OperationContract]
-    void RemoveAllowChangeSetting(string className);
-
-    /// <summary>
-    /// Удаляет настройку из базы которую надо стало проверять
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    [OperationContract]
-    void RemoveSetting(string className);
-
-    /// <summary>
-    /// The remove statement.
-    /// </summary>
-    /// <param name="statementId"> </param>
-    [OperationContract]
-    void CanceledStatement(Guid statementId);
-
-    /// <summary>
-    /// The save content record.
-    /// </summary>
-    /// <param name="typeContent">
-    /// The type content. 
-    /// </param>
-    /// <param name="content">
-    /// The content. 
-    /// </param>
-    /// <param name="fileName">
-    /// The file Name. 
+    /// <param name="name">
+    /// The name.
     /// </param>
     /// <returns>
-    /// The <see cref="Content"/> . 
+    /// The <see cref="Setting"/>.
     /// </returns>
     [OperationContract]
-    Content SaveContentRecord(int typeContent, byte[] content, string fileName = null);
+    Setting GetSetting(string name);
 
     /// <summary>
-    /// Сохраняет заявление
-    /// </summary>
-    /// <param name="statement">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Statement"/> . 
-    /// </returns>
-    [OperationContract]
-    Statement SaveStatement(Statement statement);
-
-    /// <summary>
-    /// Осуществляет поиск заявлений по заданному критерию
-    /// </summary>
-    /// <param name="criteria">
-    /// The criteria. 
-    /// </param>
-    /// <returns>
-    /// The <see>
-    ///                 <cref>IList</cref>
-    ///               </see> . 
-    /// </returns>
-    [OperationContract]
-    SearchResult<SearchStatementResult> Search(SearchStatementCriteria criteria);
-
-    /// <summary>
-    /// The set setting current user.
+    /// The get setting current user.
     /// </summary>
     /// <param name="nameSetting">
-    /// The name setting. 
-    /// </param>
-    /// <param name="value">
-    /// The value. 
-    /// </param>
-    [OperationContract]
-    void SetSettingCurrentUser(string nameSetting, string value);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="statement">
-    /// </param>
-    /// <param name="expression">
+    /// The name setting.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="string"/> .
     /// </returns>
     [OperationContract]
-    bool TryCheckProperty(Statement statement, ExpressionNode expression);
+    string GetSettingCurrentUser(string nameSetting);
 
     /// <summary>
-    /// Проверяет проверку и получает информацию об ошибке (текст ошибки из исключения)
+    /// Возвращает ранее сохраненное завяление
     /// </summary>
-    /// <param name="statement"></param>
-    /// <param name="expression"></param>
-    /// <returns></returns>
-    [OperationContract]
-    string TryCheckProperty1(Statement statement, ExpressionNode expression);
-
-
-    /// <summary>
-    /// The un bind statement.
-    /// </summary>
-    /// <param name="statement">
-    /// The statement. 
+    /// <param name="statementId">
     /// </param>
+    /// <returns>
+    /// The <see cref="Statement"/> .
+    /// </returns>
     [OperationContract]
-    void UnBindStatement(Statement statement);
+    Statement GetStatement(Guid statementId);
 
     /// <summary>
-    /// Получает ошибки существующие в заявлениях за указанный период
+    /// Получает заявление по InsuredPersonId с IsActive = 1
     /// </summary>
-    /// <param name="startDate"></param>
-    /// <param name="endDate"></param>
-    /// <returns></returns>
+    /// <param name="insuredPersonId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Statement"/> .
+    /// </returns>
     [OperationContract]
-    IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
-
-    /// <summary>
-    /// Удаление инфы о смерти
-    /// </summary>
-    /// <param name="statementId"></param>
-    [OperationContract]
-    void DeleteDeathInfo(Guid statementId);
+    Statement GetStatementByInsuredPersonId(Guid insuredPersonId);
 
     /// <summary>
     /// The get type polis by form manufacturing.
@@ -518,11 +423,146 @@ namespace rt.srz.model.interfaces.service
     IList<Concept> GetTypePolisByFormManufacturing(int formManufacturing);
 
     /// <summary>
+    /// Входит ли указанная персона в объединение как главное или как второе лицо
+    /// </summary>
+    /// <param name="personId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/> .
+    /// </returns>
+    [OperationContract]
+    bool InsuredInJoined(Guid personId);
+
+    /// <summary>
+    /// The is right to edit.
+    /// </summary>
+    /// <param name="propertys">
+    /// The propertys.
+    /// </param>
+    /// <param name="expression">
+    /// The expression.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/> .
+    /// </returns>
+    [OperationContract]
+    bool IsRightToEdit(IEnumerable<Concept> propertys, ExpressionNode expression);
+
+    /// <summary>
+    /// Удаляет из базы настройку о том что можно включать отключать проверку данного валидатора
+    /// </summary>
+    /// <param name="className">
+    /// тип валидатора
+    /// </param>
+    [OperationContract]
+    void RemoveAllowChangeSetting(string className);
+
+    /// <summary>
+    /// Удаляет настройку из базы которую надо стало проверять
+    /// </summary>
+    /// <param name="className">
+    /// </param>
+    [OperationContract]
+    void RemoveSetting(string className);
+
+    /// <summary>
+    /// The save content record.
+    /// </summary>
+    /// <param name="typeContent">
+    /// The type content.
+    /// </param>
+    /// <param name="content">
+    /// The content.
+    /// </param>
+    /// <param name="fileName">
+    /// The file Name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Content"/> .
+    /// </returns>
+    [OperationContract]
+    Content SaveContentRecord(int typeContent, byte[] content, string fileName = null);
+
+    /// <summary>
+    /// Сохраняет заявление
+    /// </summary>
+    /// <param name="statement">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Statement"/> .
+    /// </returns>
+    [OperationContract]
+    Statement SaveStatement(Statement statement);
+
+    /// <summary>
+    /// Осуществляет поиск заявлений по заданному критерию
+    /// </summary>
+    /// <param name="criteria">
+    /// The criteria.
+    /// </param>
+    /// <returns>
+    /// The
+    ///   <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
+    [OperationContract]
+    SearchResult<SearchStatementResult> Search(SearchStatementCriteria criteria);
+
+    /// <summary>
+    /// The set setting current user.
+    /// </summary>
+    /// <param name="nameSetting">
+    /// The name setting.
+    /// </param>
+    /// <param name="value">
+    /// The value.
+    /// </param>
+    [OperationContract]
+    void SetSettingCurrentUser(string nameSetting, string value);
+
+    /// <summary>
     /// Трим полей заявления
     /// </summary>
-    /// <param name="statement"></param>
+    /// <param name="statement">
+    /// </param>
     [OperationContract]
     void TrimStatementData(Statement statement);
+
+    /// <summary>
+    /// </summary>
+    /// <param name="statement">
+    /// </param>
+    /// <param name="expression">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/> .
+    /// </returns>
+    [OperationContract]
+    bool TryCheckProperty(Statement statement, ExpressionNode expression);
+
+    /// <summary>
+    /// Проверяет проверку и получает информацию об ошибке (текст ошибки из исключения)
+    /// </summary>
+    /// <param name="statement">
+    /// </param>
+    /// <param name="expression">
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    [OperationContract]
+    string TryCheckProperty1(Statement statement, ExpressionNode expression);
+
+    /// <summary>
+    /// The un bind statement.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    [OperationContract]
+    void UnBindStatement(Statement statement);
 
     #endregion
   }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorContentFormat.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorContentFormat.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator content format.
@@ -19,7 +19,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step5;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -37,7 +37,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorContentFormat"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorContentFormat(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Simple, sessionFactory, x => x.InsuredPersonData.Contents)
@@ -49,7 +49,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -67,7 +67,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultEmptyPhotoException">
     /// </exception>
@@ -80,9 +80,9 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     public override void CheckObject(Statement statement)
     {
       // проверяем только для уэк и электронного полиса
-      if (!(statement.AbsentPrevPolicy.HasValue && statement.AbsentPrevPolicy.Value
-         && (statement.FormManufacturing == null
-         || statement.FormManufacturing.Id == PolisType.Э)))
+      if (
+        !(statement.AbsentPrevPolicy.HasValue && statement.AbsentPrevPolicy.Value
+          && (statement.FormManufacturing == null || statement.FormManufacturing.Id == PolisType.Э)))
       {
         return;
       }
@@ -90,7 +90,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       // проверяем формат фотографии
       if (statement.InsuredPersonData != null)
       {
-        if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization && statement.InsuredPersonData.Contents != null)
+        if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization
+            && statement.InsuredPersonData.Contents != null)
         {
           var list = statement.InsuredPersonData.Contents.Where(x => x.ContentType.Id == TypeContent.Foto);
           if (list.Count() == 0)
@@ -100,7 +101,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
           foreach (var content in list)
           {
-
             using (var stream = new MemoryStream(content.ContentInterior))
             {
               var image = Image.FromStream(stream);

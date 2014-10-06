@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterFileOrganisationBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterFileOrganisationBase.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The importer file registry base fabric.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.smo
@@ -29,10 +32,6 @@ namespace rt.srz.business.exchange.import.smo
   /// </summary>
   public abstract class ImporterFileOrganisationBase : BaseImportFabric<Organisation>
   {
-    #region Fields
-
-    #endregion
-
     #region Constructors and Destructors
 
     /// <summary>
@@ -51,7 +50,7 @@ namespace rt.srz.business.exchange.import.smo
     #region Properties
 
     /// <summary>
-    /// Gets the oid.
+    ///   Gets the oid.
     /// </summary>
     protected abstract string Oid { get; }
 
@@ -81,15 +80,18 @@ namespace rt.srz.business.exchange.import.smo
         using (var orgCollection = Task.Factory.StartNew(
                                                          () =>
                                                          {
-                                                           var session = ObjectFactory.GetInstance<ISessionFactory>().OpenSession();
+                                                           var session =
+                                                             ObjectFactory.GetInstance<ISessionFactory>().OpenSession();
                                                            CurrentSessionContext.Bind(session);
                                                            var res = PrepairXml(file, queue, oid);
-                                                           var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
+                                                           var sessionFactory =
+                                                             ObjectFactory.GetInstance<ISessionFactory>();
                                                            session = CurrentSessionContext.Unbind(sessionFactory);
 
                                                            if (session != null)
                                                            {
-                                                             if (session.Transaction != null && session.Transaction.IsActive)
+                                                             if (session.Transaction != null
+                                                                 && session.Transaction.IsActive)
                                                              {
                                                                session.Transaction.Dispose();
                                                              }
@@ -144,12 +146,13 @@ namespace rt.srz.business.exchange.import.smo
     /// The prepair list.
     /// </summary>
     /// <param name="packet">
-    ///   The packet.
+    /// The packet.
     /// </param>
     /// <param name="cqtasks">
-    ///   The cqtasks.
+    /// The cqtasks.
     /// </param>
-    /// <param name="oid"></param>
+    /// <param name="oid">
+    /// </param>
     protected abstract void PrepairList(Packet packet, ConcurrentQueue<Organisation> cqtasks, Oid oid);
 
     /// <summary>
@@ -170,13 +173,13 @@ namespace rt.srz.business.exchange.import.smo
     /// The prepair xml.
     /// </summary>
     /// <param name="file">
-    ///   The file.
+    /// The file.
     /// </param>
     /// <param name="cqtasks">
-    ///   The cq tasks.
+    /// The cq tasks.
     /// </param>
     /// <param name="oid">
-    ///   The oid.
+    /// The oid.
     /// </param>
     /// <returns>
     /// The <see cref="int"/>.

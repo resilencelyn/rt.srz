@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultSignatureFormatException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultSignatureFormatException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault signature format exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
   #endregion
 
   /// <summary>
-  /// The fault signature format exception.
+  ///   The fault signature format exception.
   /// </summary>
   [Serializable]
   public class FaultSignatureFormatException : FaultStep5
@@ -27,11 +27,12 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultSignatureFormatException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultSignatureFormatException" /> class.
     /// </summary>
     public FaultSignatureFormatException()
       : base(
-        new ExceptionInfo(Resource.FaultSignatureFormatExceptionCode), Resource.FaultSignatureFormatExceptionMessage)
+        new ExceptionInfo(Resource.FaultSignatureFormatExceptionCode), 
+        Resource.FaultSignatureFormatExceptionMessage)
     {
     }
 

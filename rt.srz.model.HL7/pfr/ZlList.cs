@@ -1,22 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ZlList.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ZlList.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Данные работающего не найденные в РЗГ
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-
-#endregion
-
 namespace rt.srz.model.HL7.pfr
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Xml.Serialization;
+
   /// <summary>
   ///   Данные работающего не найденные в РЗГ
   /// </summary>
@@ -24,6 +20,8 @@ namespace rt.srz.model.HL7.pfr
   [XmlRoot("zl_list")]
   public class ZlList
   {
+    #region Public Properties
+
     /// <summary>
     ///   Заголовок сообщения
     /// </summary>
@@ -35,5 +33,7 @@ namespace rt.srz.model.HL7.pfr
     /// </summary>
     [XmlElement("zl")]
     public List<Zl> Zl { get; set; }
+
+    #endregion
   }
 }

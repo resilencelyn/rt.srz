@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConverterHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ConverterHelper.cs" company="–усЅ»“ех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The conversion helper.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard.helpers
 {
@@ -20,23 +14,25 @@ namespace rt.srz.database.business.standard.helpers
   using rt.srz.database.business.standard.enums;
 
   /// <summary>
-  /// The conversion helper.
+  ///   The conversion helper.
   /// </summary>
   public static class ConversionHelper
   {
     // формат вывода даты/времени
+    #region Static Fields
+
     /// <summary>
-    /// The date time format.
+    ///   The date time format.
     /// </summary>
     public static readonly string DateTimeFormat = @"yyyy'/'MM'/'dd' 'HH':'mm':'ss'.'fff";
 
-// нулевые дата/врем€
+    // нулевые дата/врем€
     /// <summary>
-    /// The date time zero.
+    ///   The date time zero.
     /// </summary>
     public static readonly DateTime DateTimeZero = new DateTime();
 
-    #region publics
+    #endregion
 
     // преобразовать из строки
     // !! на ошибке преобразовани€ выкидывает исключение (в том числе, если type == Undefined)
@@ -155,6 +151,8 @@ namespace rt.srz.database.business.standard.helpers
     // }
 
     // получить bool из строки
+    #region Public Methods and Operators
+
     /// <summary>
     /// The string to bool.
     /// </summary>
@@ -183,6 +181,8 @@ namespace rt.srz.database.business.standard.helpers
 
       return BooleanFlag.Unknown;
     }
+
+    #endregion
 
     // преобразование из строки в TimeSpan
     // !! на ошибке выкидывает исключение
@@ -437,9 +437,6 @@ namespace rt.srz.database.business.standard.helpers
     // quote = QuotationMark.None;
     // return result;
     // }
-    #endregion
-
-    #region Multiply
 
     // операци€ умножени€ дл€ TimeSpan
     // public static TimeSpan Multiply(this TimeSpan value, double multiplier)
@@ -452,9 +449,6 @@ namespace rt.srz.database.business.standard.helpers
     // {
     // return TimeSpan.FromTicks(value.Ticks * multiplier);
     // }
-    #endregion
-
-    #region Between
 
     // вернуть значение, не выход€щее за пределы [min, max]
     // public static Byte Between(this Byte value, Byte min, Byte max)
@@ -529,9 +523,6 @@ namespace rt.srz.database.business.standard.helpers
     // return min;
     // return Math.Min(max, Math.Max(min, value));
     // }
-    #endregion
-
-    #region privates
 
     // --------------------------------------------------------
 
@@ -613,7 +604,6 @@ namespace rt.srz.database.business.standard.helpers
     // --------------------------------------------------------
 
     // static char[] quoutes = { '\'', '\"' };
-    #endregion
 
     // --------------------------------------------------------
 

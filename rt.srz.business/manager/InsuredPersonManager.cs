@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InsuredPersonManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="InsuredPersonManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The InsuredPersonManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -30,11 +33,12 @@ namespace rt.srz.business.manager
     #region Public Methods and Operators
 
     /// <summary>
-    /// При приклеплении человека к одной истории, если возникает ситуация, что по другим ключам он принадлежит другому человеку, то заносим первого 
+    /// При приклеплении человека к одной истории, если возникает ситуация, что по другим ключам он принадлежит другому
+    ///   человеку, то заносим первого
     ///   (так как он будет прикреплен к первому) и все отсальные в двойники, чтобы оператор ТФ уже проверил этого двойника
     /// </summary>
     /// <param name="insuredPersons">
-    /// The insured persons. 
+    /// The insured persons.
     /// </param>
     public void AddTwinsFirstAndOther(IList<InsuredPerson> insuredPersons)
     {
@@ -54,20 +58,35 @@ namespace rt.srz.business.manager
         var p3 = p2;
         if (
           !twinsManager.Any(
-            x =>
-            ((x.FirstInsuredPerson.Id == p1.Id && x.SecondInsuredPerson.Id == p3.Id)
-             || (x.FirstInsuredPerson.Id == p3.Id && x.SecondInsuredPerson.Id == p1.Id))))
+                            x =>
+                            ((x.FirstInsuredPerson.Id == p1.Id && x.SecondInsuredPerson.Id == p3.Id)
+                             || (x.FirstInsuredPerson.Id == p3.Id && x.SecondInsuredPerson.Id == p1.Id))))
         {
           var twin = new Twin
-            {
-              FirstInsuredPerson = p1,
-              SecondInsuredPerson = p2,
-              TwinType = conceptManager.GetById(TypeTwin.TypeTwin2)
-            };
+                     {
+                       FirstInsuredPerson = p1, 
+                       SecondInsuredPerson = p2, 
+                       TwinType = conceptManager.GetById(TypeTwin.TypeTwin2)
+                     };
 
           session.Save(twin);
         }
       }
+    }
+
+    /// <summary>
+    /// Удаление инфы о смерти
+    /// </summary>
+    /// <param name="statementId">
+    /// </param>
+    public void DeleteDeathInfo(Guid statementId)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var statement = ObjectFactory.GetInstance<IStatementManager>().GetById(statementId);
+      var person = statement.InsuredPerson;
+      person.Status = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(StatusPerson.Active);
+      SaveOrUpdate(person);
+      session.Flush();
     }
 
     /// <summary>
@@ -94,7 +113,9 @@ namespace rt.srz.business.manager
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
-      if (insuredPerson.Statements != null && (!insuredPerson.Statements.Any() || insuredPerson.Statements.All(x => StatusStatement.IsAnnuled(x.Status.Id))))
+      if (insuredPerson.Statements != null
+          && (!insuredPerson.Statements.Any()
+              || insuredPerson.Statements.All(x => StatusStatement.IsAnnuled(x.Status.Id))))
       {
         insuredPerson.Status = conceptManager.GetById(StatusPerson.Annuled);
         session.Update(insuredPerson);
@@ -105,20 +126,6 @@ namespace rt.srz.business.manager
           session.Update(period);
         }
       }
-    }
-
-    /// <summary>
-    /// Удаление инфы о смерти
-    /// </summary>
-    /// <param name="statementId"></param>
-    public void DeleteDeathInfo(Guid statementId)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var statement = ObjectFactory.GetInstance<IStatementManager>().GetById(statementId);
-      var person = statement.InsuredPerson;
-      person.Status = ObjectFactory.GetInstance<IConceptCacheManager>().GetById((int)StatusPerson.Active);
-      SaveOrUpdate(person);
-      session.Flush();
     }
 
     #endregion

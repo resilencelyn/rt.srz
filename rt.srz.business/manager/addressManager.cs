@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="addressManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="addressManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The addressManager.
@@ -9,13 +9,10 @@
 
 namespace rt.srz.business.manager
 {
-  using rt.srz.model.srz;
-
   /// <summary>
   ///   The addressManager.
   /// </summary>
   public partial class addressManager
   {
-    
   }
 }

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TStringHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TStringHelper.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The t string helper.
@@ -376,10 +376,10 @@ namespace rt.srz.model.HL7.dotNetX
     {
       return
         str.Replace("&", "&amp;")
-          .Replace("'", bDoubleApostrophe ? "&apos;&apos;" : "&apos;")
-          .Replace("<", "&lt;")
-          .Replace(">", "&gt;")
-          .Replace("\"", "&quot;");
+           .Replace("'", bDoubleApostrophe ? "&apos;&apos;" : "&apos;")
+           .Replace("<", "&lt;")
+           .Replace(">", "&gt;")
+           .Replace("\"", "&quot;");
     }
 
     /// <summary>

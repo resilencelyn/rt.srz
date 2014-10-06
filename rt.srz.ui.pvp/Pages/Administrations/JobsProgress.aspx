@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="JobsProgress.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Administration.JobsProgress" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="JobsProgress.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Administrations.JobsProgress" %>
 
 
 <%@ Register Assembly="DevExpress.Web.ASPxGridView.v12.1, Version=12.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>

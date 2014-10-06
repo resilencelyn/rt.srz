@@ -1,29 +1,19 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CoreRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CoreRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The core registry.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-using System.Collections.Specialized;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using CrystalQuartz.Core.SchedulerProviders;
-using Quartz;
-using Quartz.Impl;
-using rt.core.business.configuration;
-using rt.core.business.nhibernate;
-using rt.core.business.quartz;
-using StructureMap.Configuration.DSL;
-
-#endregion
 
 namespace rt.core.business.registry
 {
+  using rt.core.business.nhibernate;
   using rt.core.business.security.interfaces;
   using rt.core.business.security.repository;
+
+  using StructureMap.Configuration.DSL;
 
   /// <summary>
   ///   The core registry.
@@ -43,15 +33,15 @@ namespace rt.core.business.registry
       ForSingletonOf<ISecurityProvider>().Use<SecurityProvider>();
 
       Scan(
-        s =>
-        {
-          s.TheCallingAssembly();
-          s.IgnoreStructureMapAttributes();
+           s =>
+           {
+             s.TheCallingAssembly();
+             s.IgnoreStructureMapAttributes();
 
-          ////s.ExcludeNamespace("");
-          s.IncludeNamespace("rt.core.business.manager");
-          s.WithDefaultConventions().OnAddedPluginTypes(t => t.Singleton());
-        });
+             ////s.ExcludeNamespace("");
+             s.IncludeNamespace("rt.core.business.manager");
+             s.WithDefaultConventions().OnAddedPluginTypes(t => t.Singleton());
+           });
     }
 
     #endregion

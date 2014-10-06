@@ -1,13 +1,23 @@
-﻿namespace rt.srz.business.manager.logicalcontrol.complex
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ValidatorGenderConformityMiddleName.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The validator gender conformity.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.manager.logicalcontrol.complex
 {
   using NHibernate;
 
-  using StructureMap;
-
   using rt.srz.business.Properties;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
+
+  using StructureMap;
 
   using AutoComplete = rt.srz.model.srz.AutoComplete;
 
@@ -22,7 +32,7 @@
     /// Initializes a new instance of the <see cref="ValidatorGenderConformityMiddleName"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorGenderConformityMiddleName(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory, x => x.InsuredPersonData.Gender.Id)
@@ -34,7 +44,7 @@
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -45,11 +55,14 @@
     }
 
     /// <summary>
-    /// Отобображать проверку или нет в списке на странице
+    ///   Отобображать проверку или нет в списке на странице
     /// </summary>
     public override bool Visible
     {
-      get { return true; }
+      get
+      {
+        return true;
+      }
     }
 
     #endregion
@@ -60,7 +73,7 @@
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultGenderException">
     /// </exception>

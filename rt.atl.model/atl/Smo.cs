@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Smo.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Smo.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Smo.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.atl
 {
   /// <summary>
-  /// The Smo.
+  ///   The Smo.
   /// </summary>
-  public partial class Smo 
+  public partial class Smo
   {
   }
 }

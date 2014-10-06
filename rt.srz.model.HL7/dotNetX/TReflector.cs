@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TReflector.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TReflector.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The t reflector.
@@ -354,11 +354,11 @@ namespace rt.srz.model.HL7.dotNetX
     public static MethodBuilder CreateMethodFromMethodInfo(TypeBuilder CostructedType, MethodInfo MethodInfo)
     {
       return CostructedType.DefineMethod(
-        MethodInfo.Name, 
-        MethodInfo.Attributes, 
-        MethodInfo.CallingConvention, 
-        MethodInfo.ReturnType, 
-        GetTypesFromParameters(MethodInfo.GetParameters()));
+                                         MethodInfo.Name, 
+                                         MethodInfo.Attributes, 
+                                         MethodInfo.CallingConvention, 
+                                         MethodInfo.ReturnType, 
+                                         GetTypesFromParameters(MethodInfo.GetParameters()));
     }
 
     /// <summary>

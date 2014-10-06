@@ -55,8 +55,6 @@ namespace rt.core.business.manager
     /// <returns> The <see cref="IList" /> . </returns>
     IList<User> GetUsers();
 
-
-
     /// <summary>
     /// ѕолучает список пользователей логины которых начинаютс€ с указанного значени€
     /// </summary>
@@ -86,5 +84,27 @@ namespace rt.core.business.manager
     void MarkAsDeleted(Guid userId);
 
     #endregion
+
+    /// <summary>
+    /// явл€етс€ ли пользователь админом —ћќ
+    /// </summary>
+    /// <param name="userId">
+    /// The user Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    bool IsUserAdminSmo(Guid userId);
+
+    /// <summary>
+    /// явл€етс€ ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// The user Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    bool IsUserAdminTf(Guid userId);
   }
 }

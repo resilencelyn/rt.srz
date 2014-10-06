@@ -5,10 +5,9 @@ using rt.srz.model.srz;
 using rt.srz.model.interfaces.service;
 using StructureMap;
 using DevExpress.XtraReports.UI;
-using rt.srz.model.HL7.person.messages;
+
 using rt.srz.model.srz.concepts;
 using System.Text;
-using rt.srz.business.manager.cache;
 
 namespace rt.srz.ui.pvp.Pages.Reports
 {

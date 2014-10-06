@@ -1,14 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BatchInfo.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="BatchInfo.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The batch info.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.business.server.directorywatcher.processing.target
 {
@@ -20,19 +17,23 @@ namespace rt.core.business.server.directorywatcher.processing.target
   /// </summary>
   public class BatchInfo
   {
+    #region Public Properties
+
     /// <summary>
-    /// Gets or sets the file info.
+    ///   Gets or sets the file info.
     /// </summary>
     public FileInfo FileInfo { get; set; }
 
     /// <summary>
-    /// Gets or sets the priority.
+    ///   Gets or sets the priority.
     /// </summary>
     public int Priority { get; set; }
 
     /// <summary>
-    /// Gets or sets the thread.
+    ///   Gets or sets the thread.
     /// </summary>
     public Task Task { get; set; }
+
+    #endregion
   }
 }

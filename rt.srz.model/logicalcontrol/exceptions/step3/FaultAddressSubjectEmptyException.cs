@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultAddressSubjectEmptyException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultAddressSubjectEmptyException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault address region exception.
@@ -27,8 +27,8 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultAddressSubjectEmptyException"/> class. 
-    ///   Initializes a new instance of the <see cref="FaultAddressRegionEmptyException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultAddressSubjectEmptyException" /> class.
+    ///   Initializes a new instance of the <see cref="FaultAddressRegionEmptyException" /> class.
     /// </summary>
     public FaultAddressSubjectEmptyException()
       : base(
@@ -52,6 +52,5 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
     }
 
     #endregion
-
-   }
+  }
 }

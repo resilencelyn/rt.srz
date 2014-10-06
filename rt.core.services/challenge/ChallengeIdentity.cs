@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ChallengeIdentity.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ChallengeIdentity.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Удостоверение
@@ -37,8 +37,8 @@ namespace rt.core.services.challenge
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ChallengeIdentity"/> class. 
-    /// Конструктор
+    /// Initializes a new instance of the <see cref="ChallengeIdentity"/> class.
+    ///   Конструктор
     /// </summary>
     /// <param name="name">
     /// Имя

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorChildrenAgeToHaveUdl.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorChildrenAgeToHaveUdl.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator children age to have udl.
@@ -16,7 +16,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -34,7 +34,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorChildrenAgeToHaveUdl"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorChildrenAgeToHaveUdl(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Simple, sessionFactory, x => x.DocumentUdl.DateIssue)
@@ -57,11 +57,14 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     }
 
     /// <summary>
-    /// Отобображать проверку или нет в списке на странице
+    ///   Отобображать проверку или нет в списке на странице
     /// </summary>
     public override bool Visible
     {
-      get { return true; }
+      get
+      {
+        return true;
+      }
     }
 
     #endregion
@@ -72,7 +75,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultChildrenAgeToHaveUdlException">
     /// </exception>
@@ -89,12 +92,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
         return;
       }
 
-      if (statement.DateFiling != null
-        && statement.InsuredPersonData != null
-        && statement.DocumentUdl != null
-        && statement.DocumentUdl.DocumentType != null
-        && Age.CalculateAgeOnDate(statement.InsuredPersonData.Birthday.Value, statement.DateFiling.Value) < 14
-        && statement.DocumentUdl.DocumentType.Id == DocumentType.PassportRf)
+      if (statement.DateFiling != null && statement.InsuredPersonData != null && statement.DocumentUdl != null
+          && statement.DocumentUdl.DocumentType != null
+          && Age.CalculateAgeOnDate(statement.InsuredPersonData.Birthday.Value, statement.DateFiling.Value) < 14
+          && statement.DocumentUdl.DocumentType.Id == DocumentType.PassportRf)
       {
         throw new FaultChildrenAgeToHaveUdlException();
       }
@@ -114,10 +115,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The calculate age.
     /// </summary>
     /// <param name="birthDate">
-    /// The birth date. 
+    /// The birth date.
     /// </param>
     /// <returns>
-    /// The <see cref="int"/> . 
+    /// The <see cref="int"/> .
     /// </returns>
     public static int CalculateAge(DateTime birthDate)
     {
@@ -128,13 +129,13 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The calculate age on date.
     /// </summary>
     /// <param name="birthDate">
-    /// The birth date. 
+    /// The birth date.
     /// </param>
     /// <param name="onDate">
-    /// The on date. 
+    /// The on date.
     /// </param>
     /// <returns>
-    /// The <see cref="int"/> . 
+    /// The <see cref="int"/> .
     /// </returns>
     public static int CalculateAgeOnDate(DateTime birthDate, DateTime onDate)
     {

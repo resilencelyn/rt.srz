@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DataStreamer.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="DataStreamer.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The data streamer.
@@ -922,64 +922,64 @@ namespace rt.srz.model.HL7.commons
       switch (typeCode)
       {
         case TypeCode.Boolean:
-          {
-            IFormatProvider provider5 = null;
-            Write(writer, data.ToBoolean(provider5));
-            return;
-          }
+        {
+          IFormatProvider provider5 = null;
+          Write(writer, data.ToBoolean(provider5));
+          return;
+        }
 
         case TypeCode.SByte:
         case TypeCode.Byte:
-          {
-            IFormatProvider provider = null;
-            Write(writer, data.ToByte(provider));
-            return;
-          }
+        {
+          IFormatProvider provider = null;
+          Write(writer, data.ToByte(provider));
+          return;
+        }
 
         case TypeCode.Int16:
         case TypeCode.UInt16:
-          {
-            IFormatProvider provider2 = null;
-            Write(writer, data.ToInt16(provider2));
-            return;
-          }
+        {
+          IFormatProvider provider2 = null;
+          Write(writer, data.ToInt16(provider2));
+          return;
+        }
 
         case TypeCode.Int32:
         case TypeCode.UInt32:
-          {
-            IFormatProvider provider3 = null;
-            Write(writer, data.ToInt32(provider3));
-            return;
-          }
+        {
+          IFormatProvider provider3 = null;
+          Write(writer, data.ToInt32(provider3));
+          return;
+        }
 
         case TypeCode.Int64:
         case TypeCode.UInt64:
-          {
-            IFormatProvider provider4 = null;
-            Write(writer, data.ToInt64(provider4));
-            return;
-          }
+        {
+          IFormatProvider provider4 = null;
+          Write(writer, data.ToInt64(provider4));
+          return;
+        }
 
         case TypeCode.Single:
-          {
-            IFormatProvider provider8 = null;
-            Write(writer, data.ToSingle(provider8));
-            return;
-          }
+        {
+          IFormatProvider provider8 = null;
+          Write(writer, data.ToSingle(provider8));
+          return;
+        }
 
         case TypeCode.Double:
-          {
-            IFormatProvider provider7 = null;
-            Write(writer, data.ToDouble(provider7));
-            return;
-          }
+        {
+          IFormatProvider provider7 = null;
+          Write(writer, data.ToDouble(provider7));
+          return;
+        }
 
         case TypeCode.DateTime:
-          {
-            IFormatProvider provider6 = null;
-            Write(writer, data.ToDateTime(provider6));
-            return;
-          }
+        {
+          IFormatProvider provider6 = null;
+          Write(writer, data.ToDateTime(provider6));
+          return;
+        }
       }
 
       ThrowUnsupportedTypeCode(typeCode);

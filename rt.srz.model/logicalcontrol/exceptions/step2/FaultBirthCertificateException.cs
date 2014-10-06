@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultBirthCertificateException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultBirthCertificateException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault birth certificate exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault birth certificate exception.
+  ///   The fault birth certificate exception.
   /// </summary>
   [Serializable]
   public class FaultBirthCertificateException : FaultStep2
@@ -27,11 +27,12 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultBirthCertificateException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultBirthCertificateException" /> class.
     /// </summary>
     public FaultBirthCertificateException()
       : base(
-        new ExceptionInfo(Resource.FaultBirthCertificateExceptionCode), Resource.FaultBirthCertificateExceptionMessage)
+        new ExceptionInfo(Resource.FaultBirthCertificateExceptionCode), 
+        Resource.FaultBirthCertificateExceptionMessage)
     {
     }
 
@@ -48,6 +49,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
       : base(info, context)
     {
     }
+
     #endregion
   }
 }

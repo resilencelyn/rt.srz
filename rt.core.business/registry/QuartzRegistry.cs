@@ -1,39 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="QuartzRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="QuartzRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The quartz registry.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.registry
 {
   #region
 
-  using System.Collections.Specialized;
-  using System.Configuration;
+  using CrystalQuartz.Core.SchedulerProviders;
+
   using Quartz;
   using Quartz.Impl;
 
+  using rt.core.business.interfaces.directorywatcher;
+  using rt.core.business.interfaces.quartz;
+  using rt.core.business.quartz;
   using rt.core.business.server.exchange.import;
 
   using StructureMap.Configuration.DSL;
-  using CrystalQuartz.Core.SchedulerProviders;
-
-  using rt.core.business.interfaces.directorywatcher;
-  using rt.core.business.quartz;
-  using rt.core.business.interfaces.exchange;
-  using rt.core.business.interfaces.quartz;
 
   #endregion
 
   /// <summary>
-  /// The quartz registry.
+  ///   The quartz registry.
   /// </summary>
   public class QuartzRegistry : Registry
   {
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="QuartzRegistry"/> class.
+    ///   Initializes a new instance of the <see cref="QuartzRegistry" /> class.
     /// </summary>
     public QuartzRegistry()
     {

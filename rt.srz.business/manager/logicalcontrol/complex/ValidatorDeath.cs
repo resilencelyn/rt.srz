@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorDeath.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorDeath.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator death.
@@ -14,7 +14,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step6;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -32,7 +32,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// Initializes a new instance of the <see cref="ValidatorDeath"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorDeath(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory)
@@ -44,7 +44,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -62,7 +62,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultDeathException">
     /// </exception>

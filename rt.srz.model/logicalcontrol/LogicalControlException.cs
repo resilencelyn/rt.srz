@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogicalControlException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="LogicalControlException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The flk exception.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.logicalcontrol
@@ -37,10 +40,10 @@ namespace rt.srz.model.logicalcontrol
     /// Initializes a new instance of the <see cref="LogicalControlException"/> class.
     /// </summary>
     /// <param name="info">
-    /// The info. 
+    /// The info.
     /// </param>
     /// <param name="message">
-    /// The message. 
+    /// The message.
     /// </param>
     public LogicalControlException(ExceptionInfo info, string message)
       : base(message)
@@ -53,10 +56,10 @@ namespace rt.srz.model.logicalcontrol
     /// Initializes a new instance of the <see cref="LogicalControlException"/> class.
     /// </summary>
     /// <param name="info">
-    /// The info. 
+    /// The info.
     /// </param>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected LogicalControlException(SerializationInfo info, StreamingContext context)
       : base(info, context)
@@ -113,7 +116,7 @@ namespace rt.srz.model.logicalcontrol
     /// The add exception.
     /// </summary>
     /// <param name="exception">
-    /// The exception. 
+    /// The exception.
     /// </param>
     public void AddException(LogicalControlException exception)
     {
@@ -157,10 +160,10 @@ namespace rt.srz.model.logicalcontrol
     #region Methods
 
     /// <summary>
-    /// Gets the step.
+    ///   Gets the step.
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     protected abstract int Step();
 

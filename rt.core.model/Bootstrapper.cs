@@ -1,19 +1,17 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Bootstrapper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Bootstrapper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   Конфигуратор начальной загрузки
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.model
 {
   using System;
-  using System.Reflection;
+
+  using NLog;
 
   using Quartz;
 
@@ -86,6 +84,7 @@ namespace rt.core.model
       {
         return;
       }
+
       // todo остановить все сервисы
       // todo почистить свой темп
       // todo отключить всех пользователей
@@ -93,6 +92,54 @@ namespace rt.core.model
       var bootstraper = new Bootstrapper();
       bootstraper.StopShedulers();
       bootstraper.StopWcfService();
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The log assemblies.
+    /// </summary>
+    private static void LogAssemblies()
+    {
+      var currentDomain = AppDomain.CurrentDomain;
+      var assems = currentDomain.GetAssemblies();
+
+      LogManager.GetCurrentClassLogger().Info("List of assemblies loaded in current appdomain:");
+      foreach (var assem in assems)
+      {
+        LogManager.GetCurrentClassLogger().Info(assem.ToString());
+      }
+    }
+
+    /// <summary>
+    ///   The bootstrap sheduler.
+    /// </summary>
+    private void BootstrapSheduler()
+    {
+      var schedulerFactory = ObjectFactory.TryGetInstance<ISchedulerFactory>();
+      if (schedulerFactory != null)
+      {
+        // Создаем шедуллер
+        var scheduler = schedulerFactory.GetScheduler();
+
+        // Стартуем шедулер
+        scheduler.Start();
+
+        scheduler.ResumeAll();
+      }
+    }
+
+    /// <summary>
+    ///   Инициализация SM
+    /// </summary>
+    private void BootstrapStructureMap()
+    {
+      if (!hasStarted)
+      {
+        ObjectFactory.Initialize(x => { x.PullConfigurationFromAppConfig = true; });
+      }
     }
 
     /// <summary>
@@ -121,7 +168,7 @@ namespace rt.core.model
     }
 
     /// <summary>
-    /// The stop wcf service.
+    ///   The stop wcf service.
     /// </summary>
     private void StopWcfService()
     {
@@ -130,47 +177,6 @@ namespace rt.core.model
       {
         // выключаем хост
         service.Shutdown(new TimeSpan(0, 0, 5, 0));
-      }
-    }
-
-    /// <summary>
-    ///   Инициализация SM
-    /// </summary>
-    private void BootstrapStructureMap()
-    {
-      if (!hasStarted)
-      {
-        ObjectFactory.Initialize(x => { x.PullConfigurationFromAppConfig = true; });
-      }
-    }
-
-    /// <summary>
-    ///   The bootstrap sheduler.
-    /// </summary>
-    private void BootstrapSheduler()
-    {
-      var schedulerFactory = ObjectFactory.TryGetInstance<ISchedulerFactory>();
-      if (schedulerFactory != null)
-      {
-        // Создаем шедуллер
-        var scheduler = schedulerFactory.GetScheduler();
-        
-        // Стартуем шедулер
-        scheduler.Start();
-
-        scheduler.ResumeAll();
-      }
-    }
-
-    private static void LogAssemblies()
-    {
-      AppDomain currentDomain = AppDomain.CurrentDomain;
-      Assembly[] assems = currentDomain.GetAssemblies();
-
-      NLog.LogManager.GetCurrentClassLogger().Info("List of assemblies loaded in current appdomain:");
-      foreach (var assem in assems)
-      {
-        NLog.LogManager.GetCurrentClassLogger().Info(assem.ToString());
       }
     }
 

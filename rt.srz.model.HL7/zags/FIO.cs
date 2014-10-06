@@ -1,8 +1,11 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="FIO.cs" company="SofTrust" author="IKhavkina">
-//     Copyright (c) 2012. All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FIO.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-----------------------------------------------------------------------
+// <summary>
+//   ФИО
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.HL7.zags
 {
@@ -10,27 +13,31 @@ namespace rt.srz.model.HL7.zags
   using System.Xml.Serialization;
 
   /// <summary>
-  /// ФИО
+  ///   ФИО
   /// </summary>
   [Serializable]
   public class FIO
   {
+    #region Public Properties
+
     /// <summary>
-    /// Фамилия
+    ///   Фамилия
     /// </summary>
     [XmlElement("Фамилия")]
     public string Fam { get; set; }
 
     /// <summary>
-    /// Имя
+    ///   Имя
     /// </summary>
     [XmlElement("Имя")]
     public string Im { get; set; }
 
     /// <summary>
-    /// Отчество
+    ///   Отчество
     /// </summary>
     [XmlElement("Отчество")]
     public string Ot { get; set; }
+
+    #endregion
   }
 }

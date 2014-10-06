@@ -1,23 +1,25 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEnpException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultNewEnpException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   The fault snils exception.
+//   The fault new enp exception.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.logicalcontrol.exceptions.step6
 {
   #region
+
   using System;
   using System.Runtime.Serialization;
+
   using rt.srz.model.Properties;
 
   #endregion
 
   /// <summary>
-  ///  The fault new enp exception.
+  ///   The fault new enp exception.
   /// </summary>
   [Serializable]
   public class FaultNewEnpException : FaultStep6
@@ -33,6 +35,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="FaultNewEnpException"/> class. 
     /// Initializes a new instance of the <see cref="FaultEnpException"/> class.
     /// </summary>
     /// <param name="info">
@@ -45,6 +48,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
       : base(info, context)
     {
     }
+
     #endregion
   }
 }

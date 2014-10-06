@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultDocumentUdlExistsException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultDocumentUdlExistsException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault document udl exists exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault document udl exists exception.
+  ///   The fault document udl exists exception.
   /// </summary>
   [Serializable]
   public class FaultDocumentUdlExistsException : FaultStep2
@@ -27,12 +27,12 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultDocumentUdlExistsException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultDocumentUdlExistsException" /> class.
     /// </summary>
     public FaultDocumentUdlExistsException()
       : base(
-        new ExceptionInfo(Resource.FaultDocumentUdlExistsExceptionCode), Resource.FaultDocumentUdlExistsExceptionMessage
-        )
+        new ExceptionInfo(Resource.FaultDocumentUdlExistsExceptionCode), 
+        Resource.FaultDocumentUdlExistsExceptionMessage)
     {
     }
 
@@ -50,6 +50,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
- #endregion
+    #endregion
   }
 }

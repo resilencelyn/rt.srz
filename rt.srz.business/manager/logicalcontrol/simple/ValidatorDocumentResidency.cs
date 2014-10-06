@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorDocumentResidency.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorDocumentResidency.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The validator document udl.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager.logicalcontrol.simple
@@ -29,7 +32,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorDocumentResidency"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorDocumentResidency(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.ResidencyDocument)
@@ -59,7 +62,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {
@@ -70,8 +73,9 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
       // Постоянно проживающее лицо без гражданства может не иметь второй документ
       if (statement.InsuredPersonData != null && statement.InsuredPersonData.Category != null
-        && (statement.InsuredPersonData.Category.Id == CategoryPerson.TerritorialStatelessPermanently || statement.InsuredPersonData.Category.Id == CategoryPerson.WorkerStatelessPermanently)
-        && statement.ResidencyDocument == null)
+          && (statement.InsuredPersonData.Category.Id == CategoryPerson.TerritorialStatelessPermanently
+              || statement.InsuredPersonData.Category.Id == CategoryPerson.WorkerStatelessPermanently)
+          && statement.ResidencyDocument == null)
       {
         return;
       }
@@ -80,7 +84,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
           && CategoryPerson.IsDocumentResidency(statement.InsuredPersonData.Category.Id))
       {
         if ((statement.InsuredPersonData.Category.Id == CategoryPerson.TerritorialStatelessPermanently
-            || statement.InsuredPersonData.Category.Id == CategoryPerson.WorkerStatelessPermanently) && statement.ResidencyDocument.DocumentType == null)
+             || statement.InsuredPersonData.Category.Id == CategoryPerson.WorkerStatelessPermanently)
+            && statement.ResidencyDocument.DocumentType == null)
         {
           return;
         }

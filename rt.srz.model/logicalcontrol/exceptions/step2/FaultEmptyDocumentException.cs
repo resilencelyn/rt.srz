@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEmptyDocumentException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultEmptyDocumentException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault snils exception.
@@ -49,6 +49,5 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     }
 
     #endregion
-
-   }
+  }
 }

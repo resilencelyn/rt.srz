@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OPLIST.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="OPLIST.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The op list type.
@@ -28,6 +28,7 @@ namespace rt.srz.model.HL7.smo
   /// </summary>
   [Serializable]
   [XmlRoot("OPLIST", Namespace = "http://tempuri.org/XMLSchema.xsd", IsNullable = false)]
+
   // [XmlRoot("OPLIST", IsNullable = false), XmlType("OPLIST")]
   public class OPListType
   {

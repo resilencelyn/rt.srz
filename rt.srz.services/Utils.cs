@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Utils.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Utils.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The utils.
@@ -39,10 +39,10 @@ namespace rt.srz.services
     /// The get expression node.
     /// </summary>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <returns>
-    /// The <see cref="ExpressionNode"/> . 
+    /// The <see cref="ExpressionNode"/> .
     /// </returns>
     public static ExpressionNode GetExpressionNode(Expression<Func<model.srz.Statement, object>> expression)
     {

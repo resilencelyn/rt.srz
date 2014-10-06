@@ -1,1 +1,1 @@
-<%@ ServiceHost Language="C#" Debug="true" Service="rt.srz.services.Security.SecurityGate"%>
+<%@ ServiceHost Language="C#" Debug="true" Service="rt.core.services.SecurityGate"%>

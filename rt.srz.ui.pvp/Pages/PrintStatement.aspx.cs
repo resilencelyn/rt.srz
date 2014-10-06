@@ -12,6 +12,8 @@ using StructureMap;
 
 namespace rt.srz.ui.pvp.Pages
 {
+  using rt.core.model.interfaces;
+
   public partial class PrintStatement : System.Web.UI.Page
   {
     private IStatementService _service;

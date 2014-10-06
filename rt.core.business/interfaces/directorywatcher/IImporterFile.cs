@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IImporterFile.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IImporterFile.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Интерфейс импортера пакетов
@@ -9,23 +9,26 @@
 
 namespace rt.core.business.interfaces.directorywatcher
 {
+  using System.IO;
+
   using Quartz;
-using System.IO;
 
   /// <summary>
   ///   Интерфейс импортера пакетов
   /// </summary>
   public interface IImporterFile
   {
+    #region Public Methods and Operators
+
     /// <summary>
-    ///   Обработка
+    /// Применим ли импортер для данного типа сообщений?
     /// </summary>
     /// <param name="file">
-    /// Путь к файлу загрузки
     /// </param>
-    /// <param name="context"> </param>
-    /// <returns> был ли обработан пакет </returns>
-    bool Processing(FileInfo file, IJobExecutionContext context);
+    /// <returns>
+    /// true, если применим, иначе false
+    /// </returns>
+    bool AppliesTo(FileInfo file);
 
     /// <summary>
     ///   Получает папку куда перемещать файлы после загрузки
@@ -40,13 +43,17 @@ using System.IO;
     string GetFailedDirectoryToMove();
 
     /// <summary>
-    /// Применим ли импортер для данного типа сообщений?
+    /// Обработка
     /// </summary>
-    /// <param name="file"> </param>
+    /// <param name="file">
+    /// Путь к файлу загрузки
+    /// </param>
+    /// <param name="context">
+    /// </param>
     /// <returns>
-    /// true, если применим, иначе false 
+    /// был ли обработан пакет 
     /// </returns>
-    bool AppliesTo(FileInfo file);
+    bool Processing(FileInfo file, IJobExecutionContext context);
 
     /// <summary>
     /// The undo batches.
@@ -55,5 +62,7 @@ using System.IO;
     /// The file name.
     /// </param>
     void UndoBatches(string fileName);
+
+    #endregion
   }
 }

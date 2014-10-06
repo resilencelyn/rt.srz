@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IUIRGate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IUirService.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The UIRGate interface.
@@ -29,10 +29,10 @@ namespace rt.srz.model.interfaces.service
     /// The get med ins state.
     /// </summary>
     /// <param name="request">
-    /// The request. 
+    /// The request.
     /// </param>
     /// <returns>
-    /// The <see cref="Response"/> . 
+    /// The <see cref="Response"/> .
     /// </returns>
     [OperationContract(Action = "urn:#GetMedInsState", 
       ReplyAction = "http://new.webservice.namespace/IUIRGate/GetMedInsStateResponse")]
@@ -45,10 +45,10 @@ namespace rt.srz.model.interfaces.service
     /// The get med ins state 2.
     /// </summary>
     /// <param name="request">
-    /// The request. 
+    /// The request.
     /// </param>
     /// <returns>
-    /// The <see cref="Response"/> . 
+    /// The <see cref="Response"/> .
     /// </returns>
     [OperationContract(Action = "urn:#GetMedInsState2", 
       ReplyAction = "http://new.webservice.namespace/IUIRGate/GetMedInsState2Response")]

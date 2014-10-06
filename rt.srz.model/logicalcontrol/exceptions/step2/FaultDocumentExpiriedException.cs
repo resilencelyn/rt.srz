@@ -1,9 +1,16 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaultDocumentExpiriedException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The fault snils exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.logicalcontrol.exceptions.step2
 {
   using System;
   using System.Runtime.Serialization;
-
-  using rt.srz.model.barcode.Properties;
 
   /// <summary>
   ///   The fault snils exception.
@@ -17,9 +24,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     ///   Initializes a new instance of the <see cref="FaultDocumentExpiriedException" /> class.
     /// </summary>
     public FaultDocumentExpiriedException()
-      : base(
-        new ExceptionInfo("99"), 
-        "Документ уже не действует")
+      : base(new ExceptionInfo("99"), "Документ уже не действует")
     {
     }
 

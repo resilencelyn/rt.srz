@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="MessageStatement.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MessageStatement.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The MessageStatement.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The MessageStatement.
+  ///   The MessageStatement.
   /// </summary>
-  public partial class MessageStatement 
+  public partial class MessageStatement
   {
   }
 }

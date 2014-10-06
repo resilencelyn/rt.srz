@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KladrManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="KladrManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The KladrManager.
@@ -43,7 +43,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public Kladr GetFirstLevelByTfoms(Organisation tfom)
     {
-      string okato = string.Format("{0}000000", tfom.Okato.Trim());
+      var okato = string.Format("{0}000000", tfom.Okato.Trim());
       return GetBy(x => x.Ocatd == okato && x.Level == 1).FirstOrDefault();
     }
 
@@ -92,7 +92,11 @@ namespace rt.srz.business.manager
     public IList<Kladr> GetKLADRs(Guid? parentID, string prefix, KLADRLevel? level)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var query = session.QueryOver<Kladr>().Where(x => x.KLADRPARENT.Id == parentID).WhereRestrictionOn(x=> x.Code).IsLike("%00");
+      var query =
+        session.QueryOver<Kladr>()
+               .Where(x => x.KLADRPARENT.Id == parentID)
+               .WhereRestrictionOn(x => x.Code)
+               .IsLike("%00");
       if (level.HasValue)
       {
         query.Where(x => x.Level == level.GetHashCode());

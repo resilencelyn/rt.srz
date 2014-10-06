@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ParseDbf.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ParseDbf.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   парсер dbf
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.kladr
@@ -114,17 +117,13 @@ namespace rt.srz.business.exchange.import.kladr
           handle.Free();
         }
 
-
-
         var fieldsNames = new Dictionary<string, string>();
         foreach (FieldDescriptor field in fields)
         {
           fieldsNames.Add(
-            field.fieldName,
-            field.fieldName.Substring(0, 1).ToUpper() + field.fieldName.Substring(1).ToLower());
+                          field.fieldName, 
+                          field.fieldName.Substring(0, 1).ToUpper() + field.fieldName.Substring(1).ToLower());
         }
-
-
 
         // Read in the first row of records, we need this to help determine column types below
         br.BaseStream.Seek(header.headerLen + 1, SeekOrigin.Begin);
@@ -132,8 +131,8 @@ namespace rt.srz.business.exchange.import.kladr
         var recReader = new BinaryReader(new MemoryStream(buffer));
 
         // Create the columns in our new DataTable
-        #region create columns
 
+        
         DataColumn col = null;
         string number;
         foreach (FieldDescriptor field in fields)
@@ -173,7 +172,7 @@ namespace rt.srz.business.exchange.import.kladr
           }
         }
 
-        #endregion
+        
 
         // Skip past the end of the header. 
         br.BaseStream.Seek(header.headerLen, SeekOrigin.Begin);
@@ -223,7 +222,9 @@ namespace rt.srz.business.exchange.import.kladr
               case 'C': // String                       
                 text =
                   document.CreateTextNode(
-                    Encoding.GetEncoding(866).GetString(recReader.ReadBytes(field.fieldLen)).TrimEnd(' '));
+                                          Encoding.GetEncoding(866)
+                                                  .GetString(recReader.ReadBytes(field.fieldLen))
+                                                  .TrimEnd(' '));
                 element2.AppendChild(text);
                 if (text.Length < 3)
                 {

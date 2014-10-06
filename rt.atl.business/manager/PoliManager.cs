@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="PoliManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PoliManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The PoliManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.business.manager
 {
   /// <summary>
-  /// The PoliManager.
+  ///   The PoliManager.
   /// </summary>
   public partial class PoliManager
   {

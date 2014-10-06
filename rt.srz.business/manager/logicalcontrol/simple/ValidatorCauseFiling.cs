@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorCauseFiling.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorCauseFiling.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator cause filing.
@@ -14,7 +14,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
   using rt.srz.model.logicalcontrol.exceptions.step1;
 
   #endregion
@@ -30,7 +29,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorCauseFiling"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorCauseFiling(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.CauseFiling.Id)
@@ -42,7 +41,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {

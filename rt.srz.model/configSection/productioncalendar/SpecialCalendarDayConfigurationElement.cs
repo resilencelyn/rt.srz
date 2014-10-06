@@ -1,16 +1,28 @@
-using System;
-using System.Configuration;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SpecialCalendarDayConfigurationElement.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   Описывает либо выходной день, выпадающий на рабочий
+//   либо рабочий день, выпадающий на выходной
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.configSection.productioncalendar
 {
+  using System;
+  using System.Configuration;
+
   /// <summary>
-  /// Описывает либо выходной день, выпадающий на рабочий
-  /// либо рабочий день, выпадающий на выходной
+  ///   Описывает либо выходной день, выпадающий на рабочий
+  ///   либо рабочий день, выпадающий на выходной
   /// </summary>
   public class SpecialCalendarDayConfigurationElement : ConfigurationElement
   {
+    #region Public Properties
+
     /// <summary>
-    /// Дата
+    ///   Дата
     /// </summary>
     [ConfigurationProperty("Date", IsRequired = true)]
     public DateTime Date
@@ -22,7 +34,7 @@ namespace rt.srz.model.configSection.productioncalendar
     }
 
     /// <summary>
-    /// Тип
+    ///   Тип
     /// </summary>
     [ConfigurationProperty("Type", IsRequired = true)]
     public SpecialCalendarDayType Type
@@ -32,5 +44,7 @@ namespace rt.srz.model.configSection.productioncalendar
         return (SpecialCalendarDayType)Enum.Parse(typeof(SpecialCalendarDayType), this["Type"].ToString());
       }
     }
+
+    #endregion
   }
 }

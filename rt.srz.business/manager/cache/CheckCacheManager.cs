@@ -2,6 +2,9 @@
 // <copyright file="CheckCacheManager.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The check cache manager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager.cache

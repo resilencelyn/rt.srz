@@ -1,14 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TokenAuthenticationManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TokenAuthenticationManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Менеджер аутентификации по токену
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using NHibernate;
-using NHibernate.Context;
 
 namespace rt.core.services.challenge
 {
@@ -21,6 +18,9 @@ namespace rt.core.services.challenge
   using System.Security.Principal;
   using System.ServiceModel;
   using System.ServiceModel.Channels;
+
+  using NHibernate;
+  using NHibernate.Context;
 
   using rt.core.business.security.interfaces;
   using rt.core.model.client;
@@ -51,7 +51,10 @@ namespace rt.core.services.challenge
     /// <returns>
     /// принципалы
     /// </returns>
-    public override ReadOnlyCollection<IAuthorizationPolicy> Authenticate(ReadOnlyCollection<IAuthorizationPolicy> authPolicy, Uri listenUri, ref Message message)
+    public override ReadOnlyCollection<IAuthorizationPolicy> Authenticate(
+      ReadOnlyCollection<IAuthorizationPolicy> authPolicy, 
+      Uri listenUri, 
+      ref Message message)
     {
       var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
       using (var session = sessionFactory.OpenSession())
@@ -63,6 +66,7 @@ namespace rt.core.services.challenge
           var credentials = TokenCredentials.FromMessageHeader(message);
 
           var user = ObjectFactory.GetInstance<ISecurityProvider>().GetDateFromToken(credentials.Token);
+
           ////var user = ObjectFactory.GetInstance<ISecurityProvider>().GetUserByName("admin");
           if (user != null)
           {

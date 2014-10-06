@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultBirthdateException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultBirthdateException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault birthdate exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault birthdate exception.
+  ///   The fault birthdate exception.
   /// </summary>
   [Serializable]
   public class FaultBirthdateException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultBirthdateException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultBirthdateException" /> class.
     /// </summary>
     public FaultBirthdateException()
       : base(new ExceptionInfo(Resource.FaultBirthdateExceptionCode), Resource.FaultBirthdateExceptionMessage)
@@ -47,6 +47,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
       : base(info, context)
     {
     }
+
     #endregion
   }
 }

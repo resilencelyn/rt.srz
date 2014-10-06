@@ -1,14 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProcessingPool.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ProcessingPool.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The processing Pool.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.business.server.directorywatcher.processing
 {
@@ -21,13 +18,19 @@ namespace rt.core.business.server.directorywatcher.processing
   /// </summary>
   public class ProcessingPool
   {
+    #region Static Fields
+
     /// <summary>
-    /// The processing Pool.
+    ///   The processing Pool.
     /// </summary>
     private static ProcessingPool processingPool;
 
+    #endregion
+
+    #region Constructors and Destructors
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProcessingPool"/> class.
+    ///   Initializes a new instance of the <see cref="ProcessingPool" /> class.
     /// </summary>
     protected ProcessingPool()
     {
@@ -36,18 +39,25 @@ namespace rt.core.business.server.directorywatcher.processing
       ProsessingFiles = new List<BatchInfo>();
     }
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
-    /// Gets the instance.
+    ///   Gets the instance.
     /// </summary>
     public static ProcessingPool Instance
     {
-      get { return processingPool ?? (processingPool = new ProcessingPool()); }
+      get
+      {
+        return processingPool ?? (processingPool = new ProcessingPool());
+      }
     }
 
     /// <summary>
-    ///   Gets the queue files.
+    ///   Gets or sets the prosessing files.
     /// </summary>
-    public Queue<string> QueueFiles { get; protected set; }
+    public List<BatchInfo> ProsessingFiles { get; protected set; }
 
     /// <summary>
     ///   Gets or sets the queue.
@@ -55,8 +65,10 @@ namespace rt.core.business.server.directorywatcher.processing
     public PriorityQueue<BatchInfo> Queue { get; protected set; }
 
     /// <summary>
-    ///   Gets or sets the prosessing files.
+    ///   Gets the queue files.
     /// </summary>
-    public List<BatchInfo> ProsessingFiles { get; protected set; }
+    public Queue<string> QueueFiles { get; protected set; }
+
+    #endregion
   }
 }

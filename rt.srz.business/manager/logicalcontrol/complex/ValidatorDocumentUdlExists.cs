@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorDocumentUdlExists.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorDocumentUdlExists.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator document udl exists.
@@ -16,13 +16,12 @@ namespace rt.srz.business.manager.logicalcontrol.complex
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
   using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
 
   using StructureMap;
-
-  using rt.srz.model.srz.concepts;
 
   #endregion
 
@@ -37,7 +36,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// Initializes a new instance of the <see cref="ValidatorDocumentUdlExists"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorDocumentUdlExists(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory)
@@ -49,7 +48,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -67,7 +66,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultDocumentUdlExistsException">
     /// Документ у другого лица
@@ -95,17 +94,16 @@ namespace rt.srz.business.manager.logicalcontrol.complex
       var series = statement.DocumentUdl.Series;
       var number = statement.DocumentUdl.Number;
 
-
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var query =
         session.QueryOver<Statement>()
-        .JoinAlias(x => x.DocumentUdl, () => d)
-        .Where(x => d.DocumentType.Id == docTypeId)
-        .And(x => d.Series == series)
-        .And(x => d.Number == number)
-        .And(x => x.Id != statement.Id)
-        .And(x => x.Status.Id != StatusStatement.Cancelled)
-        .And(x => x.Status.Id != StatusStatement.Declined);
+               .JoinAlias(x => x.DocumentUdl, () => d)
+               .Where(x => d.DocumentType.Id == docTypeId)
+               .And(x => d.Series == series)
+               .And(x => d.Number == number)
+               .And(x => x.Id != statement.Id)
+               .And(x => x.Status.Id != StatusStatement.Cancelled)
+               .And(x => x.Status.Id != StatusStatement.Declined);
       if (insuredPersonId != Guid.Empty)
       {
         query.Where(x => x.InsuredPerson.Id != insuredPersonId);

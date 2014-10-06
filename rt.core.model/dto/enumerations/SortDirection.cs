@@ -1,14 +1,15 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SortDirection.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SortDirection.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The sort direction.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.core.model.dto.enumerations
 {
-// Summary:
+  // Summary:
   // Specifies the direction in which to sort a list of items.
   /// <summary>
   ///   The sort direction.
@@ -27,8 +28,7 @@ namespace rt.core.model.dto.enumerations
     /// </summary>
     Ascending = 1, 
 
-
-// Summary:
+    // Summary:
     // Sort from largest to smallest. For example, from Z to A.
     /// <summary>
     ///   The descending.

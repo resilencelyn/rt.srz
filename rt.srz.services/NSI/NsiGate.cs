@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NsiGate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NsiGate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The nsi gate.
@@ -21,7 +21,7 @@ namespace rt.srz.services.NSI
   #endregion
 
   /// <summary>
-  /// The nsi gate.
+  ///   The nsi gate.
   /// </summary>
   [NHibernateWcfContext]
   [ErrorHandlingBehavior]
@@ -32,7 +32,7 @@ namespace rt.srz.services.NSI
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="NsiGate"/> class.
+    ///   Initializes a new instance of the <see cref="NsiGate" /> class.
     /// </summary>
     public NsiGate()
     {

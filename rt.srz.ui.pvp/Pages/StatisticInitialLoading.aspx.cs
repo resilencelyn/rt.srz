@@ -1,5 +1,4 @@
 ﻿using rt.atl.model.interfaces.Service;
-using rt.srz.business.manager;
 using rt.srz.model.dto;
 using rt.srz.model.interfaces.service;
 using StructureMap;

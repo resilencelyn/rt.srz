@@ -1,3 +1,12 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NHibernateProxyInterceptorClient.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   Аспект для логирования
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.core.services.aspects
 {
   using System;
@@ -6,31 +15,32 @@ namespace rt.core.services.aspects
 
   using NHibernate;
 
+  using rt.core.business.nhibernate;
   using rt.core.model;
 
   using StructureMap;
-
-  using rt.core.business.nhibernate;
 
   /// <summary>
   ///   Аспект для логирования
   /// </summary>
   public class NHibernateProxyInterceptorClient : IMethodInterceptor
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// Инвокер
     /// </summary>
     /// <typeparam name="T">
-    /// T 
+    /// T
     /// </typeparam>
     /// <param name="invokeNext">
-    /// Метод вызова 
+    /// Метод вызова
     /// </param>
     /// <param name="metod">
-    /// Самый конечный метод 
+    /// Самый конечный метод
     /// </param>
     /// <returns>
-    /// Результат выполнения 
+    /// Результат выполнения
     /// </returns>
     public virtual T InvokeMethod<T>(Func<T> invokeNext, Func<T> metod)
     {
@@ -41,9 +51,12 @@ namespace rt.core.services.aspects
 
         // Делаем unproxy для параметров
         var fieldInfos = metod.Target.GetType().GetFields();
-        foreach (var parameter in fieldInfos.Select(fieldInfo => fieldInfo.GetValue(metod.Target)).OfType<Business>().Where(session.Contains))
+        foreach (
+          var parameter in
+            fieldInfos.Select(fieldInfo => fieldInfo.GetValue(metod.Target)).OfType<Business>().Where(session.Contains))
         {
           parameter.UnproxyObjectTree(sessionFactory, 1);
+
           ////session.Evict(parameter);
         }
       }
@@ -58,10 +71,10 @@ namespace rt.core.services.aspects
     /// Инвокер
     /// </summary>
     /// <param name="invokeNext">
-    /// Метод вызова. 
+    /// Метод вызова.
     /// </param>
     /// <param name="metod">
-    /// Самый конечный метод. 
+    /// Самый конечный метод.
     /// </param>
     [DebuggerStepThrough]
     public virtual void InvokeMethod(Action invokeNext, Action metod)
@@ -73,14 +86,19 @@ namespace rt.core.services.aspects
 
         // Делаем unproxy для параметров
         var fieldInfos = metod.Target.GetType().GetFields();
-        foreach (var parameter in fieldInfos.Select(fieldInfo => fieldInfo.GetValue(metod.Target)).OfType<Business>().Where(session.Contains))
+        foreach (
+          var parameter in
+            fieldInfos.Select(fieldInfo => fieldInfo.GetValue(metod.Target)).OfType<Business>().Where(session.Contains))
         {
           parameter.UnproxyObjectTree(sessionFactory, 1);
+
           ////session.Evict(parameter);
         }
       }
 
       invokeNext();
     }
+
+    #endregion
   }
 }

@@ -1,20 +1,28 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Period.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Period.cs" company="–усЅ»“ех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
-
-using rt.srz.model.srz.concepts;
+// <summary>
+//   The Period.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   using System.Xml.Serialization;
 
+  using rt.srz.model.srz.concepts;
+
   /// <summary>
-  /// The Period.
+  ///   The Period.
   /// </summary>
   public partial class Period
   {
+    #region Public Properties
+
+    /// <summary>
+    /// Gets the description.
+    /// </summary>
     [XmlIgnore]
     public virtual string Description
     {
@@ -55,9 +63,12 @@ namespace rt.srz.model.srz
             return "но€брь";
           case PeriodCode.PeriodCode12:
             return "декабрь";
-          default: return null;
+          default:
+            return null;
         }
       }
     }
+
+    #endregion
   }
 }

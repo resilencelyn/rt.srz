@@ -1,9 +1,19 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StatusPerson.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   Статус застрахованного
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz.concepts
 {
   /// <summary> Статус застрахованного </summary>
   public class StatusPerson : Concept
   {
+    #region Constants
+
     /// <summary> Застрахован </summary>
     public const int Active = 465;
 
@@ -12,5 +22,7 @@ namespace rt.srz.model.srz.concepts
 
     /// <summary> Умерший </summary>
     public const int Dead = 467;
+
+    #endregion
   }
 }

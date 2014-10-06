@@ -2,6 +2,9 @@
 // <copyright file="RangeNumberManager.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The RangeNumberManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -62,10 +65,10 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// Зачитывает все записи
+    ///   Зачитывает все записи
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="IList" />.
     /// </returns>
     public IList<RangeNumber> GetRangeNumbers()
     {

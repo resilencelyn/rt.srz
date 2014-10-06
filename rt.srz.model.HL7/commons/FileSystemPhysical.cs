@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileSystemPhysical.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FileSystemPhysical.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The file system physical.
@@ -648,12 +648,12 @@ namespace rt.srz.model.HL7.commons
           break;
 
         case TreeCollectMode.LeavesOnly:
-          {
-            var list = new List<FileInfo>();
-            DoCollectFinalFiles(list, folderInfo, CorrectFileSearchMask(searchMask));
-            files = list;
-            break;
-          }
+        {
+          var list = new List<FileInfo>();
+          DoCollectFinalFiles(list, folderInfo, CorrectFileSearchMask(searchMask));
+          files = list;
+          break;
+        }
 
         case TreeCollectMode.Everywhere:
           files = folderInfo.GetFiles(CorrectFileSearchMask(searchMask), SearchOption.AllDirectories);
@@ -801,10 +801,10 @@ namespace rt.srz.model.HL7.commons
           if ((lockedException == null) || (lockedException.Message != exception.Message))
           {
             FomsLogger.WriteLog(
-              LogType.Local, 
-              string.Format("[{0}] {1}", exception.Message, path), 
-              "[FileLocked] ", 
-              LogErrorType.None);
+                                LogType.Local, 
+                                string.Format("[{0}] {1}", exception.Message, path), 
+                                "[FileLocked] ", 
+                                LogErrorType.None);
           }
 
           lockedException = exception;

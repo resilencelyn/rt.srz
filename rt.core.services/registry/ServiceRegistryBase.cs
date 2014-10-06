@@ -1,40 +1,40 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceRegistryBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ServiceRegistryBase.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   Базовый класс регистрации
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-using System;
-using System.Linq;
-using System.ServiceModel;
-using NLog;
-using StructureMap.Configuration.DSL;
-
-using rt.core.services.aspects;
-
-#endregion
 
 namespace rt.core.services.registry
 {
+  using System;
+  using System.Linq;
+  using System.ServiceModel;
+
+  using NLog;
+
   using rt.core.model;
+  using rt.core.model.interfaces;
+  using rt.core.services.aspects;
+
+  using StructureMap.Configuration.DSL;
 
   /// <summary>
   /// Базовый класс регистрации
   /// </summary>
   /// <typeparam name="I">
-  /// Интерфейс сервиса 
+  /// Интерфейс сервиса
   /// </typeparam>
   /// <typeparam name="S">
-  /// Сервис 
+  /// Сервис
   /// </typeparam>
   /// <typeparam name="G">
-  /// Шлюз 
+  /// Шлюз
   /// </typeparam>
   public abstract class ServiceRegistryBase<I, S, G> : Registry, IServiceRegistry
-    where S : I
-    where G : InterceptedBase, new()
+    where S : I where G : InterceptedBase, new()
   {
     #region Static Fields
 
@@ -57,7 +57,7 @@ namespace rt.core.services.registry
     #region Constructors and Destructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="ServiceRegistryBase{I,S,G}" /> class. 
+    ///   Initializes a new instance of the <see cref="ServiceRegistryBase{I,S,G}" /> class.
     ///   Конструктор
     /// </summary>
     protected ServiceRegistryBase()
@@ -84,7 +84,7 @@ namespace rt.core.services.registry
 
     #endregion
 
-    #region Properties
+    #region Public Properties
 
     /// <summary>
     ///   Хост
@@ -93,27 +93,31 @@ namespace rt.core.services.registry
 
     #endregion
 
-    #region Methods
+    #region Public Methods and Operators
 
     /// <summary>
     /// The shutdown.
     /// </summary>
     /// <param name="span">
-    /// The span. 
+    /// The span.
     /// </param>
     public void Shutdown(TimeSpan span)
     {
       Host.Close(span);
     }
 
+    #endregion
+
+    #region Methods
+
     /// <summary>
     /// Сервер создан
     /// </summary>
     /// <param name="sender">
-    /// Сендер 
+    /// Сендер
     /// </param>
     /// <param name="e">
-    /// Параметры 
+    /// Параметры
     /// </param>
     private void HostOpened(object sender, EventArgs e)
     {

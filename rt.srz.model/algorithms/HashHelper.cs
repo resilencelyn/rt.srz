@@ -1,21 +1,17 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HashHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="HashHelper.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The hash helper.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-using System.Security.Cryptography;
-
-#endregion
-
 namespace rt.srz.model.algorithms
 {
+  using System;
+  using System.Security.Cryptography;
+
   using rt.srz.model.HL7.algorithms.DamienG;
 
   /// <summary>
@@ -23,6 +19,8 @@ namespace rt.srz.model.algorithms
   /// </summary>
   public static class HashHelper
   {
+    #region Static Fields
+
     /// <summary>
     ///   The debug pseudo hasher name.
     /// </summary>
@@ -32,6 +30,10 @@ namespace rt.srz.model.algorithms
     ///   The default policy hasher name.
     /// </summary>
     public static readonly string DefaultPolicyHasherName = "GOST3411";
+
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The create hash algorithm.
@@ -68,5 +70,7 @@ namespace rt.srz.model.algorithms
     {
       return string.Compare(algorithm1, algorithm2, StringComparison.OrdinalIgnoreCase) == 0;
     }
+
+    #endregion
   }
 }

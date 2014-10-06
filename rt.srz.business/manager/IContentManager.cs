@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IContentManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IContentManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The interface ContentManager.
@@ -58,13 +58,29 @@ namespace rt.srz.business.manager
     byte[] ConvertToGrayScale(byte[] image);
 
     /// <summary>
+    /// Генерация пустого фото
+    /// </summary>
+    /// <returns>
+    /// The <see cref="byte[]"/>.
+    /// </returns>
+    byte[] CreateEmptyPhoto();
+
+    /// <summary>
+    /// Генерация пустой подписи
+    /// </summary>
+    /// <returns>
+    /// The <see cref="byte[]"/>.
+    /// </returns>
+    byte[] CreateEmptySign();
+
+    /// <summary>
     /// The get content.
     /// </summary>
     /// <param name="personDataId">
-    ///   The person data id.
+    /// The person data id.
     /// </param>
     /// <param name="contentTypeId">
-    ///   The content type id.
+    /// The content type id.
     /// </param>
     /// <returns>
     /// The <see cref="Content"/>.
@@ -72,10 +88,24 @@ namespace rt.srz.business.manager
     Content GetContent(Guid personDataId, int contentTypeId);
 
     /// <summary>
+    /// The get content base 64.
+    /// </summary>
+    /// <param name="personDataId">
+    /// The person data id.
+    /// </param>
+    /// <param name="contentTypeId">
+    /// The content type id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    string GetContentBase64(Guid personDataId, int contentTypeId);
+
+    /// <summary>
     /// The get foto.
     /// </summary>
     /// <param name="personDataId">
-    ///   The person data id.
+    /// The person data id.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -86,7 +116,7 @@ namespace rt.srz.business.manager
     /// The get signature.
     /// </summary>
     /// <param name="personDataId">
-    ///   The person data id.
+    /// The person data id.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -110,32 +140,6 @@ namespace rt.srz.business.manager
     /// </returns>
     Content SaveContentRecord(int typeContent, byte[] content, string fileName = null);
 
-    /// <summary>
-    /// Генерация пустой подписи
-    /// </summary>
-    /// <returns></returns>
-    byte[] CreateEmptySign();
-
-    /// <summary>
-    /// Генерация пустого фото
-    /// </summary>
-    /// <returns></returns>
-    byte[] CreateEmptyPhoto();
-
     #endregion
-
-    /// <summary>
-    /// The get content base 64.
-    /// </summary>
-    /// <param name="personDataId">
-    ///   The person data id.
-    /// </param>
-    /// <param name="contentTypeId">
-    ///   The content type id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    string GetContentBase64(Guid personDataId, int contentTypeId);
   }
 }

@@ -1,9 +1,32 @@
-﻿namespace rt.srz.database.business.standard.keyscompiler.Rules
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TEmptyStringTypes.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The t empty string types.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.database.business.standard.keyscompiler.Rules
 {
+  /// <summary>
+  /// The t empty string types.
+  /// </summary>
   public enum TEmptyStringTypes
-    {
-        Empty,     // пустая строка (string.Empty)
-        Null,      // null на месте объекта строки
-        Signature, // строка, содержащая текст "null"
-    }
+  {
+    /// <summary>
+    /// The empty.
+    /// </summary>
+    Empty, // пустая строка (string.Empty)
+
+    /// <summary>
+    /// The null.
+    /// </summary>
+    Null, // null на месте объекта строки
+
+    /// <summary>
+    /// The signature.
+    /// </summary>
+    Signature, // строка, содержащая текст "null"
+  }
 }

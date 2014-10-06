@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultChildrenWorkException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultChildrenWorkException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault children work exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault children work exception.
+  ///   The fault children work exception.
   /// </summary>
   [Serializable]
   public class FaultChildrenWorkException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultChildrenWorkException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultChildrenWorkException" /> class.
     /// </summary>
     public FaultChildrenWorkException()
       : base(new ExceptionInfo(Resource.FaultChildrenWorkExceptionCode), Resource.FaultChildrenWorkExceptionMessage)
@@ -48,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-  #endregion
+    #endregion
   }
 }

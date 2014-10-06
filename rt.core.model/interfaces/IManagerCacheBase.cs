@@ -1,13 +1,16 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IManagerCacheBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IManagerCacheBase.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The ManagerCacheBase interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.core.model
+namespace rt.core.model.interfaces
 {
   /// <summary>
-  /// The ManagerCacheBase interface.
+  ///   The ManagerCacheBase interface.
   /// </summary>
   public interface IManagerCacheBase
   {

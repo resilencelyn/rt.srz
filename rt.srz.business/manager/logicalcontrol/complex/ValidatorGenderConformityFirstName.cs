@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorGenderConformityFirstName.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorGenderConformityFirstName.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator gender conformity.
@@ -14,7 +14,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -36,7 +36,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// Initializes a new instance of the <see cref="ValidatorGenderConformityFirstName"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorGenderConformityFirstName(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory, x => x.InsuredPersonData.Gender.Id)
@@ -48,7 +48,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -59,11 +59,14 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     }
 
     /// <summary>
-    /// Отобображать проверку или нет в списке на странице
+    ///   Отобображать проверку или нет в списке на странице
     /// </summary>
     public override bool Visible
     {
-      get { return true; }
+      get
+      {
+        return true;
+      }
     }
 
     #endregion
@@ -74,7 +77,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultGenderException">
     /// </exception>
@@ -101,10 +104,10 @@ namespace rt.srz.business.manager.logicalcontrol.complex
       {
         var query =
           session.QueryOver<AutoComplete>()
-          .JoinAlias(x => x.Gender, () => concept1)
-          .Where(x => x.Name == statement.InsuredPersonData.FirstName)
-          .And(x => concept1.Code == statement.InsuredPersonData.Gender.Code)
-          .RowCount();
+                 .JoinAlias(x => x.Gender, () => concept1)
+                 .Where(x => x.Name == statement.InsuredPersonData.FirstName)
+                 .And(x => concept1.Code == statement.InsuredPersonData.Gender.Code)
+                 .RowCount();
         if (query == 0)
         {
           throw new FaultGenderConformityFirstNameException();

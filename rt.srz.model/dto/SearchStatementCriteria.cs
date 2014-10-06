@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SearchStatementCriteria.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SearchStatementCriteria.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The search statement criteria.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.dto
@@ -110,6 +113,13 @@ namespace rt.srz.model.dto
     public int DocumentTypeId { get; set; }
 
     /// <summary>
+    ///   Ошибка заявления
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public string Error { get; set; }
+
+    /// <summary>
     ///   Имя
     /// </summary>
     [XmlElement]
@@ -166,6 +176,13 @@ namespace rt.srz.model.dto
     public string SNILS { get; set; }
 
     /// <summary>
+    ///   Gets or sets the search result.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public SearchResult<SearchStatementResult> SearchResult { get; set; }
+
+    /// <summary>
     ///   Gets or sets the smo.
     /// </summary>
     [XmlElement]
@@ -199,20 +216,6 @@ namespace rt.srz.model.dto
     [XmlElement]
     [DataMember]
     public bool UseDateFiling { get; set; }
-
-    /// <summary>
-    /// Ошибка заявления
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public string Error { get; set; }
-
-    /// <summary>
-    /// Gets or sets the search result.
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public SearchResult<SearchStatementResult> SearchResult { get; set; }
 
     #endregion
   }

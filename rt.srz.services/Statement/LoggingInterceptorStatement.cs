@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LoggingInterceptorStatement.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="LoggingInterceptorStatement.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The logging interceptor statement.
@@ -29,13 +29,13 @@ namespace rt.srz.services.Statement
     /// The on error.
     /// </summary>
     /// <param name="target">
-    /// The target. 
+    /// The target.
     /// </param>
     /// <param name="sessionId">
-    /// The session id. 
+    /// The session id.
     /// </param>
     /// <param name="ex">
-    /// The ex. 
+    /// The ex.
     /// </param>
     /// <typeparam name="T">
     /// </typeparam>
@@ -55,13 +55,13 @@ namespace rt.srz.services.Statement
     /// The on error.
     /// </summary>
     /// <param name="target">
-    /// The target. 
+    /// The target.
     /// </param>
     /// <param name="sessionId">
-    /// The session id. 
+    /// The session id.
     /// </param>
     /// <param name="ex">
-    /// The ex. 
+    /// The ex.
     /// </param>
     protected override void OnError(Action target, string sessionId, Exception ex)
     {

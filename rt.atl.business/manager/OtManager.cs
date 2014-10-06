@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="OtManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="OtManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The OtManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.business.manager
 {
   /// <summary>
-  /// The OtManager.
+  ///   The OtManager.
   /// </summary>
   public partial class OtManager
   {

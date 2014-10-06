@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultDocumentDateIssueFutureException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultDocumentDateIssueFutureException.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault snils exception.
@@ -14,7 +14,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   using System;
   using System.Runtime.Serialization;
 
-  using rt.srz.model.barcode.Properties;
+  using rt.srz.model.Properties;
 
   #endregion
 
@@ -50,6 +50,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-  #endregion
+    #endregion
   }
 }

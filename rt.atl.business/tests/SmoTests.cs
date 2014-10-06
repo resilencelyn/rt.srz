@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SmoTests.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SmoTests.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The smo tests.
@@ -10,7 +10,7 @@
 namespace rt.atl.business.tests
 {
   /// <summary>
-  /// The smo tests.
+  ///   The smo tests.
   /// </summary>
   public partial class SmoTests
   {

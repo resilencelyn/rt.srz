@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IImporterFileFactory.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IImporterFileFactory.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Фабрика для импортеров пакетов
@@ -16,13 +16,18 @@ namespace rt.core.business.interfaces.directorywatcher
   /// </summary>
   public interface IImporterFileFactory
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// Возвращает ExportBatchTyped по указанному типу.
     /// </summary>
-    /// <param name="file"> </param>
+    /// <param name="file">
+    /// </param>
     /// <returns>
-    /// импортер 
+    /// импортер
     /// </returns>
     IImporterFile GetImporterFile(FileInfo file);
+
+    #endregion
   }
 }

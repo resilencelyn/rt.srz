@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FomsLogger.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FomsLogger.cs" company="–усЅ»“ех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The foms logger.
@@ -218,10 +218,10 @@ namespace rt.srz.model.HL7.commons
       if ((value != null) || writeNull)
       {
         WriteLog(
-          LogType.Local, 
-          string.Format("{0}: {1}", name, (value != null) ? value.ToString() : "<NULL>"), 
-          prefix, 
-          LogErrorType.None);
+                 LogType.Local, 
+                 string.Format("{0}: {1}", name, (value != null) ? value.ToString() : "<NULL>"), 
+                 prefix, 
+                 LogErrorType.None);
       }
     }
 
@@ -475,18 +475,18 @@ namespace rt.srz.model.HL7.commons
       switch (errorType)
       {
         case LogErrorType.Error:
-          {
-            var prefix = "[Error] ";
-            message = JoinPrefix(message, prefix);
-            return message;
-          }
+        {
+          var prefix = "[Error] ";
+          message = JoinPrefix(message, prefix);
+          return message;
+        }
 
         case LogErrorType.Exception:
-          {
-            var str2 = "[Exception] ";
-            message = JoinPrefix(message, str2);
-            return message;
-          }
+        {
+          var str2 = "[Exception] ";
+          message = JoinPrefix(message, str2);
+          return message;
+        }
       }
 
       return message;
@@ -604,9 +604,9 @@ namespace rt.srz.model.HL7.commons
       catch (Exception exception)
       {
         WriteError(
-          LogType.File | LogType.Memo | LogType.Console, 
-          exception, 
-          "»сключение при попытке записи в трассировщик");
+                   LogType.File | LogType.Memo | LogType.Console, 
+                   exception, 
+                   "»сключение при попытке записи в трассировщик");
       }
     }
 

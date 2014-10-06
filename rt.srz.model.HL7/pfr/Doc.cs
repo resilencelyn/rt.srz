@@ -1,27 +1,37 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Doc.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Doc.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Информация о документе подтверждающем личность
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-using System.Xml.Serialization;
-
-#endregion
-
 namespace rt.srz.model.HL7.pfr
 {
+  using System;
+  using System.Xml.Serialization;
+
   /// <summary>
   ///   Информация о документе подтверждающем личность
   /// </summary>
   [Serializable]
   public class Doc
   {
+    #region Public Properties
+
+    /// <summary>
+    ///   Номер документа
+    /// </summary>
+    [XmlElement("data_doc")]
+    public string DateDoc { get; set; }
+
+    /// <summary>
+    ///   Номер документа
+    /// </summary>
+    [XmlElement("n_doc")]
+    public string NDoc { get; set; }
+
     /// <summary>
     ///   Тип документа
     /// </summary>
@@ -34,16 +44,6 @@ namespace rt.srz.model.HL7.pfr
     [XmlElement("s_doc")]
     public string SDoc { get; set; }
 
-    /// <summary>
-    ///   Номер документа
-    /// </summary>
-    [XmlElement("n_doc")]
-    public string NDoc { get; set; }
-
-    /// <summary>
-    ///   Номер документа
-    /// </summary>
-    [XmlElement("data_doc")]
-    public string DateDoc { get; set; }
+    #endregion
   }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEmptySignatureException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultEmptySignatureException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault empty signature exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
   #endregion
 
   /// <summary>
-  /// The fault empty signature exception.
+  ///   The fault empty signature exception.
   /// </summary>
   [Serializable]
   public class FaultEmptySignatureException : FaultStep5
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultEmptySignatureException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultEmptySignatureException" /> class.
     /// </summary>
     public FaultEmptySignatureException()
       : base(new ExceptionInfo(Resource.FaultEmptySignatureExceptionCode), Resource.FaultEmptySignatureExceptionMessage)
@@ -48,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
     {
     }
 
-   #endregion
+    #endregion
   }
 }

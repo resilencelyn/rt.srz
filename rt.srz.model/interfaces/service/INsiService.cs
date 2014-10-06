@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="INsiService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="INsiService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The NsiService interface.
@@ -35,10 +35,37 @@ namespace rt.srz.model.interfaces.service
     /// <param name="autoComplete">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid AddOrUpdateFirstMiddleName(AutoComplete autoComplete);
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="range">
+    /// </param>
+    [OperationContract]
+    void AddOrUpdateRangeNumber(RangeNumber range);
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="template">
+    /// </param>
+    [OperationContract]
+    void AddOrUpdateTemplate(Template template);
+
+    /// <summary>
+    /// Создание копии шаблона печати
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    [OperationContract]
+    Template CreateCopyOfTemplateVs(Guid id);
 
     /// <summary>
     /// Удаление имени или отчества
@@ -49,13 +76,29 @@ namespace rt.srz.model.interfaces.service
     void DeleteFirstMiddleName(Guid id);
 
     /// <summary>
+    /// Удаление диапозона
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    [OperationContract]
+    void DeleteRangeNumber(Guid id);
+
+    /// <summary>
+    /// Удаление шаблона печати вс
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    [OperationContract]
+    void DeleteTemplateVs(Guid id);
+
+    /// <summary>
     /// Проверяет существует ли уже запись в базе с таким же именем, типом, полом
     /// </summary>
     /// <param name="firstMiddleName">
-    /// The first Middle Name. 
+    /// The first Middle Name.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     [OperationContract]
     bool FirstMiddleNameExists(AutoComplete firstMiddleName);
@@ -66,7 +109,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="id">
     /// </param>
     /// <returns>
-    /// The <see cref="Concept"/> . 
+    /// The <see cref="Concept"/> .
     /// </returns>
     [OperationContract]
     Concept GetConcept(int id);
@@ -77,7 +120,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="oidId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Concept> GetConceptsByOid(string oidId);
@@ -88,7 +131,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="id">
     /// </param>
     /// <returns>
-    /// The <see cref="AutoComplete"/> . 
+    /// The <see cref="AutoComplete"/> .
     /// </returns>
     [OperationContract]
     AutoComplete GetFirstMiddleName(Guid id);
@@ -99,7 +142,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     [OperationContract]
     SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria);
@@ -111,92 +154,67 @@ namespace rt.srz.model.interfaces.service
     [OperationContract]
     IList<Oid> GetOids();
 
-    #region Range Number
-
-    /// <summary>
-    /// Зачитывает все записи
-    /// </summary>
-    /// <returns></returns>
-    [OperationContract]
-    IList<RangeNumber> GetRangeNumbers();
-
-    /// <summary>
-    /// Удаление диапозона
-    /// </summary>
-    /// <param name="id"></param>
-    [OperationContract]
-    void DeleteRangeNumber(Guid id);
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="range"></param>
-    [OperationContract]
-    void AddOrUpdateRangeNumber(RangeNumber range);
-
     /// <summary>
     /// Возвращет объект по ид
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="RangeNumber"/>.
+    /// </returns>
     [OperationContract]
     RangeNumber GetRangeNumber(Guid id);
 
     /// <summary>
-    /// Пересекается ли указанная запись с другими по диапозону
+    /// Зачитывает все записи
     /// </summary>
-    /// <param name="range"></param>
-    /// <returns></returns>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
     [OperationContract]
-    bool IntersectWithOther(RangeNumber range);
-
-    /// <summary>
-    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
-    /// </summary>
-    /// <param name="statement"></param>
-    /// <returns></returns>
-    [OperationContract]
-    Template GetTemplateVsByStatement(Statement statement);
+    IList<RangeNumber> GetRangeNumbers();
 
     /// <summary>
     /// Шаблон по ид
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
     [OperationContract]
     Template GetTemplate(Guid id);
 
     /// <summary>
-    /// Добавление или обновление записи
+    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
     /// </summary>
-    /// <param name="template"></param>
+    /// <param name="statement">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
     [OperationContract]
-    void AddOrUpdateTemplate(Template template);
+    Template GetTemplateVsByStatement(Statement statement);
 
     /// <summary>
     /// Все шаблоны печати вс
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
     [OperationContract]
     IList<Template> GetTemplates();
 
-
     /// <summary>
-    /// Удаление шаблона печати вс
+    /// Пересекается ли указанная запись с другими по диапозону
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="range">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
     [OperationContract]
-    void DeleteTemplateVs(Guid id);
-
-    /// <summary>
-    /// Создание копии шаблона печати
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    [OperationContract]
-    Template CreateCopyOfTemplateVs(Guid id);
-
-    #endregion
+    bool IntersectWithOther(RangeNumber range);
 
     #endregion
   }

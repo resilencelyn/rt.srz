@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IConceptCacheManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IConceptCacheManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ConceptCacheManager interface.
@@ -42,10 +42,9 @@ namespace rt.srz.business.manager.cache
     /// <param name="oidId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     IList<Concept> GetConceptsByOid(string oidId);
-
 
     #endregion
   }

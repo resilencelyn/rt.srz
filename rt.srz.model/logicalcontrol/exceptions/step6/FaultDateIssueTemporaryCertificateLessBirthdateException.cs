@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultDateIssueTemporaryCertificateLessBirthdateException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultDateIssueTemporaryCertificateLessBirthdateException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault date issue temporary certificate less birthdate exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault date issue temporary certificate less birthdate exception.
+  ///   The fault date issue temporary certificate less birthdate exception.
   /// </summary>
   [Serializable]
   public class FaultDateIssueTemporaryCertificateLessBirthdateException : FaultStep6
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultDateIssueTemporaryCertificateLessBirthdateException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultDateIssueTemporaryCertificateLessBirthdateException" /> class.
     /// </summary>
     public FaultDateIssueTemporaryCertificateLessBirthdateException()
       : base(

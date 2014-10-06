@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="QBP_ZP2.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="QBP_ZP2.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The qb p_ z p 2.

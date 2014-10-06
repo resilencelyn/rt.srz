@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Response.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Response.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The response.
@@ -38,7 +38,7 @@ namespace rt.srz.model.interfaces.service.uir
     /// Initializes a new instance of the <see cref="Response"/> class.
     /// </summary>
     /// <param name="UIRResponse">
-    /// The uir response. 
+    /// The uir response.
     /// </param>
     public Response(UIRResponse UIRResponse)
     {

@@ -1,7 +1,15 @@
-﻿namespace rt.srz.business.manager.cache
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ISearchKeyTypeCacheManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The ConceptCacheManager interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.manager.cache
 {
   using System;
-  using System.Collections.Generic;
 
   using rt.core.business.nhibernate;
   using rt.srz.model.srz;

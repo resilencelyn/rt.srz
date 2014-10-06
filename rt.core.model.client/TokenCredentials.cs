@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TokenCredentials.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TokenCredentials.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Кридентиалы по токену
@@ -99,7 +99,6 @@ namespace rt.core.model.client
       ////  credentials.Token = str.Substring(start, len);
       ////  return credentials;
       ////}
-
       return null;
     }
 

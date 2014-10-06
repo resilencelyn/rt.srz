@@ -1,25 +1,28 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="dto.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="dto.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The field variation.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.business.standard
 {
   /// <summary>
-  /// The field variation.
+  ///   The field variation.
   /// </summary>
   public class FieldVariation
   {
     #region Fields
 
     /// <summary>
-    /// The field type field.
+    ///   The field type field.
     /// </summary>
     private FieldTypes fieldTypeField;
 
     /// <summary>
-    /// The value field.
+    ///   The value field.
     /// </summary>
     private string valueField;
 
@@ -28,7 +31,7 @@ namespace rt.srz.database.business.standard
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets the field type.
+    ///   Gets or sets the field type.
     /// </summary>
     public FieldTypes fieldType
     {
@@ -47,7 +50,7 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// Gets or sets the value.
+    ///   Gets or sets the value.
     /// </summary>
     public string value
     {
@@ -69,205 +72,205 @@ namespace rt.srz.database.business.standard
   }
 
   /// <summary>
-  /// The field types.
+  ///   The field types.
   /// </summary>
   public enum FieldTypes
   {
     /// <summary>
-    /// The event insurance.
+    ///   The event insurance.
     /// </summary>
-    EventInsurance = 0,
+    EventInsurance = 0, 
 
     /// <summary>
-    /// The policy type.
+    ///   The policy type.
     /// </summary>
-    PolicyType = 1,
+    PolicyType = 1, 
 
     /// <summary>
-    /// The enp.
+    ///   The enp.
     /// </summary>
-    ENP = 2,
+    ENP = 2, 
 
     /// <summary>
-    /// The event insurance date.
+    ///   The event insurance date.
     /// </summary>
-    EventInsuranceDate = 3,
+    EventInsuranceDate = 3, 
 
     /// <summary>
-    /// The policy number.
+    ///   The policy number.
     /// </summary>
-    PolicyNumber = 4,
+    PolicyNumber = 4, 
 
     /// <summary>
-    /// The family name.
+    ///   The family name.
     /// </summary>
-    FamilyName = 5,
+    FamilyName = 5, 
 
     /// <summary>
-    /// The first name.
+    ///   The first name.
     /// </summary>
-    FirstName = 6,
+    FirstName = 6, 
 
     /// <summary>
-    /// The middle name.
+    ///   The middle name.
     /// </summary>
-    MiddleName = 7,
+    MiddleName = 7, 
 
     /// <summary>
-    /// The gender.
+    ///   The gender.
     /// </summary>
-    Gender = 8,
+    Gender = 8, 
 
     /// <summary>
-    /// The birth date.
+    ///   The birth date.
     /// </summary>
-    BirthDate = 9,
+    BirthDate = 9, 
 
     /// <summary>
-    /// The birth place.
+    ///   The birth place.
     /// </summary>
-    BirthPlace = 10,
+    BirthPlace = 10, 
 
     /// <summary>
-    /// The id card type.
+    ///   The id card type.
     /// </summary>
-    IdCardType = 11,
+    IdCardType = 11, 
 
     /// <summary>
-    /// The id card number.
+    ///   The id card number.
     /// </summary>
-    IdCardNumber = 12,
+    IdCardNumber = 12, 
 
     /// <summary>
-    /// The id card date.
+    ///   The id card date.
     /// </summary>
-    IdCardDate = 13,
+    IdCardDate = 13, 
 
     /// <summary>
-    /// The snils.
+    ///   The snils.
     /// </summary>
-    SNILS = 14,
+    SNILS = 14, 
 
     /// <summary>
-    /// The insurance territory.
+    ///   The insurance territory.
     /// </summary>
-    InsuranceTerritory = 15,
+    InsuranceTerritory = 15, 
 
     /// <summary>
-    /// The insurance company code.
+    ///   The insurance company code.
     /// </summary>
-    InsuranceCompanyCode = 16,
+    InsuranceCompanyCode = 16, 
 
     /// <summary>
-    /// The policy actual from.
+    ///   The policy actual from.
     /// </summary>
-    PolicyActualFrom = 17,
+    PolicyActualFrom = 17, 
 
     /// <summary>
-    /// The policy actual to.
+    ///   The policy actual to.
     /// </summary>
-    PolicyActualTo = 18,
+    PolicyActualTo = 18, 
 
     /// <summary>
-    /// The citizenry_ oks m_3.
+    ///   The citizenry_ oks m_3.
     /// </summary>
-    Citizenry_OKSM_3 = 19,
+    Citizenry_OKSM_3 = 19, 
 
     /// <summary>
-    /// The death mark.
+    ///   The death mark.
     /// </summary>
-    DeathMark = 20,
+    DeathMark = 20, 
 
     /// <summary>
-    /// The death date.
+    ///   The death date.
     /// </summary>
-    DeathDate = 21,
+    DeathDate = 21, 
 
     /// <summary>
-    /// The registration territory.
+    ///   The registration territory.
     /// </summary>
-    RegistrationTerritory = 22,
+    RegistrationTerritory = 22, 
 
     /// <summary>
-    /// The organization type.
+    ///   The organization type.
     /// </summary>
-    OrganizationType = 23,
+    OrganizationType = 23, 
 
     /// <summary>
-    /// The pvp id.
+    ///   The pvp id.
     /// </summary>
-    PvpId = 24,
+    PvpId = 24, 
 
     /// <summary>
-    /// The insurance temp number.
+    ///   The insurance temp number.
     /// </summary>
-    InsuranceTempNumber = 25,
+    InsuranceTempNumber = 25, 
 
     /// <summary>
-    /// The region.
+    ///   The region.
     /// </summary>
-    Region = 1000,
+    Region = 1000, 
 
     /// <summary>
-    /// The insurance card id.
+    ///   The insurance card id.
     /// </summary>
-    InsuranceCardID = 1003,
+    InsuranceCardID = 1003, 
 
     /// <summary>
-    /// The insurance company coding.
+    ///   The insurance company coding.
     /// </summary>
-    InsuranceCompanyCoding = 1005,
+    InsuranceCompanyCoding = 1005, 
 
     /// <summary>
-    /// The citizenry.
+    ///   The citizenry.
     /// </summary>
-    Citizenry = 1010,
+    Citizenry = 1010, 
 
     /// <summary>
-    /// The citizenry_ oki n_2.
+    ///   The citizenry_ oki n_2.
     /// </summary>
-    Citizenry_OKIN_2 = 1011,
+    Citizenry_OKIN_2 = 1011, 
 
     /// <summary>
-    /// The id card type_ id card number.
+    ///   The id card type_ id card number.
     /// </summary>
-    IdCardType_IdCardNumber = -101,
+    IdCardType_IdCardNumber = -101, 
 
     /// <summary>
-    /// The policy type_ policy number.
+    ///   The policy type_ policy number.
     /// </summary>
-    PolicyType_PolicyNumber = -102,
+    PolicyType_PolicyNumber = -102, 
 
     /// <summary>
-    /// The insurance company code_ insurance company coding.
+    ///   The insurance company code_ insurance company coding.
     /// </summary>
-    InsuranceCompanyCode_InsuranceCompanyCoding = -103,
+    InsuranceCompanyCode_InsuranceCompanyCoding = -103, 
 
     /// <summary>
-    /// The undefined.
+    ///   The undefined.
     /// </summary>
-    Undefined = -10000,
+    Undefined = -10000, 
   }
 
   /// <summary>
-  /// The fio.
+  ///   The fio.
   /// </summary>
   public class FIO
   {
     #region Fields
 
     /// <summary>
-    /// The family name field.
+    ///   The family name field.
     /// </summary>
     private FieldVariation familyNameField;
 
     /// <summary>
-    /// The first name field.
+    ///   The first name field.
     /// </summary>
     private FieldVariation firstNameField;
 
     /// <summary>
-    /// The middle name field.
+    ///   The middle name field.
     /// </summary>
     private FieldVariation middleNameField;
 
@@ -276,7 +279,7 @@ namespace rt.srz.database.business.standard
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets the family name.
+    ///   Gets or sets the family name.
     /// </summary>
     public FieldVariation familyName
     {
@@ -295,7 +298,7 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// Gets or sets the first name.
+    ///   Gets or sets the first name.
     /// </summary>
     public FieldVariation firstName
     {
@@ -314,7 +317,7 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// Gets or sets the middle name.
+    ///   Gets or sets the middle name.
     /// </summary>
     public FieldVariation middleName
     {
@@ -336,19 +339,19 @@ namespace rt.srz.database.business.standard
   }
 
   /// <summary>
-  /// The document.
+  ///   The document.
   /// </summary>
   public class Document
   {
     #region Fields
 
     /// <summary>
-    /// The id card number field.
+    ///   The id card number field.
     /// </summary>
     private FieldVariation idCardNumberField;
 
     /// <summary>
-    /// The id card type field.
+    ///   The id card type field.
     /// </summary>
     private FieldVariation idCardTypeField;
 
@@ -357,7 +360,7 @@ namespace rt.srz.database.business.standard
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets the id card number.
+    ///   Gets or sets the id card number.
     /// </summary>
     public FieldVariation idCardNumber
     {
@@ -376,7 +379,7 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// Gets or sets the id card type.
+    ///   Gets or sets the id card type.
     /// </summary>
     public FieldVariation idCardType
     {
@@ -398,19 +401,19 @@ namespace rt.srz.database.business.standard
   }
 
   /// <summary>
-  /// The hash data.
+  ///   The hash data.
   /// </summary>
   public class HashData
   {
     #region Fields
 
     /// <summary>
-    /// The hash field.
+    ///   The hash field.
     /// </summary>
     private byte[] hashField;
 
     /// <summary>
-    /// The key field.
+    ///   The key field.
     /// </summary>
     private string keyField;
 
@@ -419,7 +422,7 @@ namespace rt.srz.database.business.standard
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets the hash.
+    ///   Gets or sets the hash.
     /// </summary>
     public byte[] hash
     {
@@ -438,7 +441,7 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// Gets or sets the key.
+    ///   Gets or sets the key.
     /// </summary>
     public string key
     {
@@ -460,29 +463,29 @@ namespace rt.srz.database.business.standard
   }
 
   /// <summary>
-  /// The hash data new.
+  ///   The hash data new.
   /// </summary>
   public class HashDataNew
   {
     #region Fields
 
     /// <summary>
-    /// The hash.
+    ///   The hash.
     /// </summary>
     public byte[] hash;
 
     /// <summary>
-    /// The key.
+    ///   The key.
     /// </summary>
     public string key;
 
     /// <summary>
-    /// The subtype.
+    ///   The subtype.
     /// </summary>
     public int subtype;
 
     /// <summary>
-    /// The type.
+    ///   The type.
     /// </summary>
     public int type;
 

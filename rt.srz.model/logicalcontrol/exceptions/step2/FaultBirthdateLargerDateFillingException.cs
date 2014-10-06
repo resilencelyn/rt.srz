@@ -1,12 +1,21 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaultBirthdateLargerDateFillingException.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The fault birthdate larger document date issue exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.logicalcontrol.exceptions.step2
 {
   using System;
   using System.Runtime.Serialization;
 
-  using Resource = rt.srz.model.barcode.Properties.Resource;
+  using rt.srz.model.Properties;
 
   /// <summary>
-  /// The fault birthdate larger document date issue exception.
+  ///   The fault birthdate larger document date issue exception.
   /// </summary>
   [Serializable]
   public class FaultBirthdateLargerDateFillingException : FaultStep2
@@ -14,7 +23,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultBirthdateLargerDateFillingException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultBirthdateLargerDateFillingException" /> class.
     /// </summary>
     public FaultBirthdateLargerDateFillingException()
       : base(
@@ -37,6 +46,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-   #endregion
+    #endregion
   }
 }

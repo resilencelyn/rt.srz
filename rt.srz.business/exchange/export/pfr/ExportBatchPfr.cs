@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatchTypedPfr.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatchPfr.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The export batch pfr.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.export.pfr
@@ -18,18 +21,41 @@ namespace rt.srz.business.exchange.export.pfr
   #endregion
 
   /// <summary>
-  /// The export batch pfr.
+  ///   The export batch pfr.
   /// </summary>
   public class ExportBatchPfr : ExportBatchTyped<SnilsZlListAtr, string>
   {
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ExportBatchPfr"/> class.
+    ///   Initializes a new instance of the <see cref="ExportBatchPfr" /> class.
     /// </summary>
     public ExportBatchPfr()
       : base(ExportBatchType.Pfr)
     {
+    }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    ///   Количество выгруженных сообщений за текущий сеанс
+    /// </summary>
+    public override int Count
+    {
+      get
+      {
+        if (SerializeObject != null)
+        {
+          if (SerializeObject.Snilses != null)
+          {
+            return SerializeObject.Snilses.Count;
+          }
+        }
+
+        return 0;
+      }
     }
 
     #endregion
@@ -51,15 +77,18 @@ namespace rt.srz.business.exchange.export.pfr
       }
     }
 
+    /// <summary>
+    /// The begin batch.
+    /// </summary>
     public override void BeginBatch()
     {
       base.BeginBatch();
-      SerializeObject = new SnilsZlListAtr
-        {
-          Snilses = new List<string>(), 
-          Zglv = new ZglvAtr { Version = "1.0" }
-        };
+      SerializeObject = new SnilsZlListAtr { Snilses = new List<string>(), Zglv = new ZglvAtr { Version = "1.0" } };
     }
+
+    #endregion
+
+    #region Methods
 
     /// <summary>
     ///   Сериализует текущий объект пакета
@@ -71,32 +100,15 @@ namespace rt.srz.business.exchange.export.pfr
       base.SerializePersonCurrent();
     }
 
+    /// <summary>
+    /// The build zglv.
+    /// </summary>
     private void BuildZglv()
     {
       SerializeObject.Zglv.Nrec = Count.ToString();
       SerializeObject.Zglv.Filename = Path.GetFileNameWithoutExtension(FileName);
       SerializeObject.Zglv.Nfile = FileName.Substring(10, 3);
       SerializeObject.Zglv.CodPfr = FileName.Substring(0, 3);
-    }
-
-
-    /// <summary>
-    ///   Количество выгруженных сообщений за текущий сеанс
-    /// </summary>
-    public override int Count
-    {
-      get
-      {
-        if (SerializeObject != null)
-        {
-          if (SerializeObject.Snilses != null)
-          {
-            return SerializeObject.Snilses.Count;
-          }
-        }
-
-        return 0;
-      }
     }
 
     #endregion

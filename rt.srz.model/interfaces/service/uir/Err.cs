@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Err.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Err.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The err.
@@ -31,7 +31,7 @@ namespace rt.srz.model.interfaces.service.uir
     /// </summary>
     [XmlElement(Order = 0)]
     public string ErrCode { get; set; }
-      
+
     /// <summary>
     ///   Gets or sets the err text.
     /// </summary>

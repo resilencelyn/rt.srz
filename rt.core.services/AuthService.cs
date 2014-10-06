@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AuthService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="AuthService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   сервис администрирования
@@ -44,14 +44,14 @@ namespace rt.core.services
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes static members of the <see cref="AuthService"/> class. 
+    ///   Initializes static members of the <see cref="AuthService" /> class.
     ///   Статический конструктор
     /// </summary>
     static AuthService()
     {
       alg = new RSACryptoServiceProvider();
       alg.FromXmlString(
-        "<RSAKeyValue><Modulus>mjjXXni9qZbQBI8BxDuSVyF8xfWui7EE0az5yZ5OLJH+ZOCaqODhwxmACT6GihIq4Z0hrm7j8qH5wW9PK+aMEelFCQ1Sdxuh9Gwj2xraWTCTxj9RV4e1zXwR7t1ijBRCGN7HmRGijnFwOijiP0+RxVzXZE68JREhKrxT7JfTWEk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>");
+                        "<RSAKeyValue><Modulus>mjjXXni9qZbQBI8BxDuSVyF8xfWui7EE0az5yZ5OLJH+ZOCaqODhwxmACT6GihIq4Z0hrm7j8qH5wW9PK+aMEelFCQ1Sdxuh9Gwj2xraWTCTxj9RV4e1zXwR7t1ijBRCGN7HmRGijnFwOijiP0+RxVzXZE68JREhKrxT7JfTWEk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>");
     }
 
     #endregion
@@ -96,10 +96,10 @@ namespace rt.core.services
     }
 
     /// <summary>
-    /// The get auth response.
+    ///   The get auth response.
     /// </summary>
     /// <returns>
-    /// The <see cref="AuthResponse"/>.
+    ///   The <see cref="AuthResponse" />.
     /// </returns>
     public Token GetAuthToken()
     {

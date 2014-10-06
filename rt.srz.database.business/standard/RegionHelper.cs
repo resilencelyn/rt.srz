@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RegionHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="RegionHelper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The region helper.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard
 {
@@ -21,7 +15,7 @@ namespace rt.srz.database.business.standard
 
   // [CLSCompliant(false)]
   /// <summary>
-  /// The region helper.
+  ///   The region helper.
   /// </summary>
   public static class RegionHelper
   {
@@ -65,6 +59,8 @@ namespace rt.srz.database.business.standard
     // }
 
     // преобразовать строку в код региона
+    #region Public Methods and Operators
+
     /// <summary>
     /// The string as region.
     /// </summary>
@@ -124,8 +120,10 @@ namespace rt.srz.database.business.standard
     /// </returns>
     public static uint StringAsОКАТО(string s)
     {
-      return (UInt32) StringAsRegion(s, RegionCoding.ОКАТО);
+      return (UInt32)StringAsRegion(s, RegionCoding.ОКАТО);
     }
+
+    #endregion
 
     // преобразовать строку в обнуляемый код региона ОКАТО
     // public static UInt32? StringAsОКАТОNullable(string s)

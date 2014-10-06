@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorDateIssueTemporaryCertificate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorDateIssueTemporaryCertificate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator date issue temporary certificate.
@@ -12,16 +12,12 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   #region
 
   using System;
-  using System.Linq;
 
   using NHibernate;
 
-  using rt.srz.business.configuration.algorithms;
-  using rt.srz.model.logicalcontrol.exceptions;
-  using rt.srz.model.Properties;
   using rt.srz.model.logicalcontrol.exceptions.step6;
+  using rt.srz.model.Properties;
   using rt.srz.model.srz;
-  using rt.srz.model.srz.concepts;
 
   using Resourcessrz = rt.srz.business.Properties.Resource;
 
@@ -38,7 +34,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorDateIssueTemporaryCertificate"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorDateIssueTemporaryCertificate(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.MedicalInsurances[0].DateFrom, Resource.Date)
@@ -50,7 +46,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -68,7 +64,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {
@@ -77,18 +73,16 @@ namespace rt.srz.business.manager.logicalcontrol.simple
         throw new ArgumentNullException("statement");
       }
 
-      if (statement.InsuredPersonData != null
-          && statement.DateIssueTemporaryCertificate.HasValue
+      if (statement.InsuredPersonData != null && statement.DateIssueTemporaryCertificate.HasValue
           && statement.InsuredPersonData.Birthday.HasValue
           && statement.DateIssueTemporaryCertificate < statement.InsuredPersonData.Birthday)
       {
         throw new FaultDateIssueTemporaryCertificateLessBirthdateException();
       }
 
-      if (statement.DateFiling.HasValue
-        && statement.ResidencyDocument!= null
-        && statement.ResidencyDocument.DateExp.HasValue
-        && statement.DateFiling.Value> statement.ResidencyDocument.DateExp.Value)
+      if (statement.DateFiling.HasValue && statement.ResidencyDocument != null
+          && statement.ResidencyDocument.DateExp.HasValue
+          && statement.DateFiling.Value > statement.ResidencyDocument.DateExp.Value)
       {
         throw new FaultMedicalInsuranceDateEndLessDateFromException();
       }

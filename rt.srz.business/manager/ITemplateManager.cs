@@ -1,30 +1,42 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="ITemplateManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ITemplateManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The interface TemplateManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
-using rt.srz.model.srz;
-using System;
 namespace rt.srz.business.manager
 {
+  using System;
+
+  using rt.srz.model.srz;
+
   /// <summary>
-  /// The interface TemplateManager.
+  ///   The interface TemplateManager.
   /// </summary>
   public partial interface ITemplateManager
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// Добавление или обновление записи
     /// </summary>
-    /// <param name="template"></param>
+    /// <param name="template">
+    /// </param>
     void AddOrUpdateTemplate(Template template);
 
     /// <summary>
     /// Создание копии шаблона печати
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
     Template CreateCopyOfTemplateVs(Guid id);
 
+    #endregion
   }
 }

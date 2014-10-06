@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Identificators.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Identificators.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The identificators.
@@ -25,22 +25,16 @@ namespace rt.srz.model.HL7.person.target
     #region Fields
 
     /// <summary>
-    ///   The identificator.
-    /// </summary>
-    [XmlElement(ElementName = "CX.1", Order = 1)]
-    public string identificator;
-
-    /// <summary>
     ///   The enp.
     /// </summary>
     [XmlElement(ElementName = "CX.4", Order = 4)]
     public Enp enp;
 
     /// <summary>
-    ///   The identificator type.
+    ///   The identificator.
     /// </summary>
-    [XmlElement(ElementName = "CX.5", Order = 5)]
-    public string identificatorType;
+    [XmlElement(ElementName = "CX.1", Order = 1)]
+    public string identificator;
 
     /// <summary>
     ///   The identificator type.
@@ -53,6 +47,12 @@ namespace rt.srz.model.HL7.person.target
     /// </summary>
     [XmlElement(ElementName = "CX.8", Order = 8)]
     public string identificatorTo;
+
+    /// <summary>
+    ///   The identificator type.
+    /// </summary>
+    [XmlElement(ElementName = "CX.5", Order = 5)]
+    public string identificatorType;
 
     /// <summary>
     ///   The identificator type name.

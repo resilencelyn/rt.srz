@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="TwinsKeyManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TwinsKeyManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The TwinsKeyManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The TwinsKeyManager.
+  ///   The TwinsKeyManager.
   /// </summary>
   public partial class TwinsKeyManager
   {

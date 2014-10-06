@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConceptCacheManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ConceptCacheManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The concept cache manager.
@@ -57,7 +57,8 @@ namespace rt.srz.business.manager.cache
     {
       if (Cache == null || (DateTime.Now - TimeQueryDb) > TimeSpan)
       {
-        Cache = Repository.GetAll(int.MaxValue).OrderBy(x => x.Oid.Id).ThenBy(x => x.Relevance).ThenBy(x => x.Name).ToList();
+        Cache =
+          Repository.GetAll(int.MaxValue).OrderBy(x => x.Oid.Id).ThenBy(x => x.Relevance).ThenBy(x => x.Name).ToList();
         TimeQueryDb = DateTime.Now;
       }
 
@@ -78,7 +79,8 @@ namespace rt.srz.business.manager.cache
       // Проверяем время и если истекло грузим из базы
       if ((DateTime.Now - TimeQueryDb) > TimeSpan || Cache == null)
       {
-        Cache = Repository.GetAll(int.MaxValue).OrderBy(x => x.Oid.Id).ThenBy(x => x.Relevance).ThenBy(x => x.Name).ToList();
+        Cache =
+          Repository.GetAll(int.MaxValue).OrderBy(x => x.Oid.Id).ThenBy(x => x.Relevance).ThenBy(x => x.Name).ToList();
         TimeQueryDb = DateTime.Now;
       }
 
@@ -92,7 +94,7 @@ namespace rt.srz.business.manager.cache
     /// <param name="oidId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Concept> GetConceptsByOid(string oidId)
     {

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CneZwpStructure.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CneZwpStructure.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The cne zwp structure.

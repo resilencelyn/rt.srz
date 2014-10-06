@@ -29,15 +29,6 @@ namespace rt.srz.test
     #region Public Methods and Operators
 
     /// <summary>
-    /// The calculate end date.
-    /// </summary>
-    [Test]
-    public void CalculateEndDate()
-    {
-      var dateTo = DateTymeHelper.CalculateEnPeriodWorkingDay(new DateTime(2012, 12, 28), 30);
-    }
-
-    /// <summary>
     ///   The check bad enp.
     /// </summary>
     [Test]

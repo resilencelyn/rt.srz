@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterFilePs.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterFilePs.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The import batch ps.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.pfr
@@ -81,10 +84,10 @@ namespace rt.srz.business.exchange.import.pfr
     /// The applies to.
     /// </summary>
     /// <param name="file">
-    /// The file. 
+    /// The file.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public override bool AppliesTo(FileInfo file)
     {
@@ -100,12 +103,14 @@ namespace rt.srz.business.exchange.import.pfr
     /// The get enumerable.
     /// </summary>
     /// <param name="obj">
-    /// The obj. 
+    /// The obj.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>IEnumerable</cref>
-    ///     </see> . 
+    /// The
+    ///   <see>
+    ///     <cref>IEnumerable</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     protected override IEnumerable<string> GetEnumerable(SnilsZlListAtr obj)
     {
@@ -116,10 +121,10 @@ namespace rt.srz.business.exchange.import.pfr
     /// The get pfr exchange.
     /// </summary>
     /// <param name="item">
-    /// The item. 
+    /// The item.
     /// </param>
     /// <param name="batch">
-    /// The batch. 
+    /// The batch.
     /// </param>
     /// <returns>
     /// The <see cref="QueryResponse"/>.
@@ -127,12 +132,12 @@ namespace rt.srz.business.exchange.import.pfr
     protected override QueryResponse GetQueryResponse(string item, Batch batch)
     {
       var result = new QueryResponse
-        {
-          Snils = SnilsChecker.SsToShort(item), 
-          Feature = ConceptCacheManager.GetById(PfrFeature.PfrFeature1), 
-          Message = batch.Messages.First(),
-          Employment = true
-        };
+                   {
+                     Snils = SnilsChecker.SsToShort(item), 
+                     Feature = ConceptCacheManager.GetById(PfrFeature.PfrFeature1), 
+                     Message = batch.Messages.First(), 
+                     Employment = true
+                   };
       return result;
     }
 
@@ -140,13 +145,13 @@ namespace rt.srz.business.exchange.import.pfr
     /// The internal processing in transaction.
     /// </summary>
     /// <param name="batch">
-    /// The batch. 
+    /// The batch.
     /// </param>
     /// <param name="xmlObj">
-    /// The xml obj. 
+    /// The xml obj.
     /// </param>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected override void InternalProcessing(Batch batch, SnilsZlListAtr xmlObj, IJobExecutionContext context)
     {
@@ -189,10 +194,10 @@ namespace rt.srz.business.exchange.import.pfr
     }
 
     /// <summary>
-    /// сколько процентов от общей работы составляет обработка записей с использованием GetQueryResponse
+    ///   сколько процентов от общей работы составляет обработка записей с использованием GetQueryResponse
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     protected override int PersentageForRecords()
     {

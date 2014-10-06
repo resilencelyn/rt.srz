@@ -1,14 +1,16 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HashAlgorithm.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="HashAlgorithm.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The hash algoritm.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.business.cryptography
 {
   using System;
   using System.IO;
-  using System.Security.Cryptography;
 
   /// <summary>
   ///   The hash algoritm.
@@ -23,7 +25,7 @@ namespace rt.srz.database.business.cryptography
     private readonly string DefaultPolicyHasherName = "GOST3411";
 
     /// <summary>
-    /// The hash algorithm.
+    ///   The hash algorithm.
     /// </summary>
     private readonly System.Security.Cryptography.HashAlgorithm hashAlgorithm;
 
@@ -32,7 +34,7 @@ namespace rt.srz.database.business.cryptography
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="HashAlgorithm"/> class.
+    ///   Initializes a new instance of the <see cref="HashAlgorithm" /> class.
     /// </summary>
     public HashAlgorithm()
     {

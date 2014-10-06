@@ -1,13 +1,13 @@
-п»ї// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DateTimeExtension.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DateTimeExtension.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The date time extension.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.business.configuration.algorithms
+namespace rt.srz.model.algorithms
 {
   #region references
 
@@ -24,7 +24,7 @@ namespace rt.srz.business.configuration.algorithms
     #region Public Methods and Operators
 
     /// <summary>
-    /// РЎСЂР°РІРЅРёРІР°РµС‚ РґРІРµ РґР°С‚С‹ СЃ С‚РѕС‡РЅРѕСЃС‚СЊСЋ РґРѕ РґРЅСЏ
+    /// Сравнивает две даты с точностью до дня
     /// </summary>
     /// <param name="date1">
     /// The date1.
@@ -33,7 +33,7 @@ namespace rt.srz.business.configuration.algorithms
     /// The date2.
     /// </param>
     /// <returns>
-    /// true РµСЃР»Рё РґР°С‚С‹ РѕРґРЅРѕРіРѕ РґРЅСЏ, РёРЅР°С‡Рµ false
+    /// true если даты одного дня, иначе false
     /// </returns>
     public static bool DayEquals(this DateTime date1, DateTime date2)
     {
@@ -41,16 +41,16 @@ namespace rt.srz.business.configuration.algorithms
     }
 
     /// <summary>
-    /// Р—Р°РјРµРЅСЏРµС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ РґР°С‚Сѓ РЅР° Р·РЅР°С‡РµРЅРёРµ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
+    /// Заменяет некорректную дату на значение по-умолчанию
     /// </summary>
     /// <param name="dt">
-    /// Р”Р°С‚Р°
+    /// Дата
     /// </param>
     /// <param name="format">
-    /// С„РѕСЂРјР°С‚
+    /// формат
     /// </param>
     /// <returns>
-    /// Р РµР·СѓР»СЊС‚Р°С‚ Р·Р°РјРµРЅС‹
+    /// Результат замены
     /// </returns>
     public static string GetDefaultForIncorrectDate(this DateTime? dt, string format)
     {
@@ -59,16 +59,16 @@ namespace rt.srz.business.configuration.algorithms
     }
 
     /// <summary>
-    /// Р—Р°РјРµРЅСЏРµС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ РґР°С‚Сѓ РЅР° Р·РЅР°С‡РµРЅРёРµ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
+    /// Заменяет некорректную дату на значение по-умолчанию
     /// </summary>
     /// <param name="dt">
-    /// Р”Р°С‚Р°
+    /// Дата
     /// </param>
     /// <param name="format">
-    /// С„РѕСЂРјР°С‚
+    /// формат
     /// </param>
     /// <returns>
-    /// Р РµР·СѓР»СЊС‚Р°С‚ Р·Р°РјРµРЅС‹
+    /// Результат замены
     /// </returns>
     public static string GetDefaultForIncorrectDate(this DateTime dt, string format)
     {
@@ -96,13 +96,13 @@ namespace rt.srz.business.configuration.algorithms
       format = format.Replace("ss", "{5}");
 
       return string.Format(
-        format, 
-        r.Year, 
-        AddZero(r.Month), 
-        AddZero(r.Day), 
-        AddZero(r.Hour), 
-        AddZero(r.Minute), 
-        AddZero(r.Second));
+                           format, 
+                           r.Year, 
+                           AddZero(r.Month), 
+                           AddZero(r.Day), 
+                           AddZero(r.Hour), 
+                           AddZero(r.Minute), 
+                           AddZero(r.Second));
     }
 
     #endregion
@@ -110,13 +110,13 @@ namespace rt.srz.business.configuration.algorithms
     #region Methods
 
     /// <summary>
-    /// Р”РѕР±Р°РІР»СЏРµС‚ РЅРѕР»СЊ РІ РЅР°С‡Р°Р»Рѕ С‡РёСЃР»Р°
+    /// Добавляет ноль в начало числа
     /// </summary>
     /// <param name="i">
-    /// С‡РёСЃР»Рѕ
+    /// число
     /// </param>
     /// <returns>
-    /// РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ С‡РёСЃР»Рѕ
+    /// преобразованное число
     /// </returns>
     private static string AddZero(int i)
     {

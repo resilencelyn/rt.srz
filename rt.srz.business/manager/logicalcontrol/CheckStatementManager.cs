@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckStatementManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckStatementManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The check statement factory.
@@ -16,6 +16,8 @@ namespace rt.srz.business.manager.logicalcontrol
   using System.Linq.Expressions;
 
   using rt.srz.business.interfaces.logicalcontrol;
+  using rt.srz.model.enumerations;
+  using rt.srz.model.interfaces;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.srz;
 
@@ -41,7 +43,7 @@ namespace rt.srz.business.manager.logicalcontrol
     /// Initializes a new instance of the <see cref="CheckStatementManager"/> class.
     /// </summary>
     /// <param name="checkStatements">
-    /// The check statements. 
+    /// The check statements.
     /// </param>
     public CheckStatementManager(ICheckStatement[] checkStatements)
     {
@@ -56,10 +58,10 @@ namespace rt.srz.business.manager.logicalcontrol
     /// The check property.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <exception cref="LogicalControlException">
     /// </exception>
@@ -99,7 +101,7 @@ namespace rt.srz.business.manager.logicalcontrol
     /// The check statement.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <param name="level">
     /// </param>

@@ -1,14 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.srz.business.manager;
-using rt.srz.model.srz;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TwinsKeyTests.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The twins key tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.tests
 {
-    public partial class TwinsKeyTests
-    {
-	}
+  /// <summary>
+  /// The twins key tests.
+  /// </summary>
+  public partial class TwinsKeyTests
+  {
+  }
 }

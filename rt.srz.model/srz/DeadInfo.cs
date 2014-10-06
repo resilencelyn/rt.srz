@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="DeadInfo.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DeadInfo.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The DeadInfo.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The DeadInfo.
+  ///   The DeadInfo.
   /// </summary>
-  public partial class DeadInfo 
+  public partial class DeadInfo
   {
   }
 }

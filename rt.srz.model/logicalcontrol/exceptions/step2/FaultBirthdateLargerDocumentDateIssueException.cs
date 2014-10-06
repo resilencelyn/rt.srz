@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultBirthdateLargerDocumentDateIssueException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultBirthdateLargerDocumentDateIssueException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault birthdate larger document date issue exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault birthdate larger document date issue exception.
+  ///   The fault birthdate larger document date issue exception.
   /// </summary>
   [Serializable]
   public class FaultBirthdateLargerDocumentDateIssueException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultBirthdateLargerDocumentDateIssueException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultBirthdateLargerDocumentDateIssueException" /> class.
     /// </summary>
     public FaultBirthdateLargerDocumentDateIssueException()
       : base(
@@ -50,6 +50,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-   #endregion
+    #endregion
   }
 }

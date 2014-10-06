@@ -1,38 +1,43 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatusStatement.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatusStatement.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Статусы заявления на выдачу полиса ОМС
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz.concepts
 {
-  using System.Globalization;
-
   /// <summary> Статусы заявления на выдачу полиса ОМС </summary>
   public class StatusStatement : Concept
   {
-    /// <summary> Новое </summary>
-    public const int New = 285;
-
-    /// <summary> Проверка правомерности </summary>
-    public const int CheckingTheValidity = 286;
-
-    /// <summary> Подлежит исполнению </summary>
-    public const int Enforceable = 287;
+    #region Constants
 
     /// <summary> Отменено </summary>
     public const int Cancelled = 288;
 
+    /// <summary> Проверка правомерности </summary>
+    public const int CheckingTheValidity = 286;
+
     /// <summary> Отклонено </summary>
     public const int Declined = 289;
+
+    /// <summary> Подлежит исполнению </summary>
+    public const int Enforceable = 287;
+
+    /// <summary> Исполнено </summary>
+    public const int Exercised = 291;
+
+    /// <summary> Новое </summary>
+    public const int New = 285;
 
     /// <summary> Исполняется </summary>
     public const int Performed = 290;
 
-    /// <summary> Исполнено </summary>
-    public const int Exercised = 291;
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The can canceled.
@@ -81,5 +86,7 @@ namespace rt.srz.model.srz.concepts
 
       return false;
     }
+
+    #endregion
   }
 }

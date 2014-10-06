@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="JobsSettings.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Administration.JobsSettings" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="JobsSettings.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Administrations.JobsSettings" %>
 
 <asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
     <ajaxToolkit:ToolkitScriptManager ID="ScriptManager" runat="server" EnableScriptLocalization="True" EnableScriptGlobalization="True" EnablePageMethods="true" CombineScripts="false" ScriptMode="Release" />

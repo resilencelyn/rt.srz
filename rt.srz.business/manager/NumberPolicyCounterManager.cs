@@ -1,8 +1,11 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="NumberPolicyCounterManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NumberPolicyCounterManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The NumberPolicyCounterManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
@@ -20,40 +23,11 @@ namespace rt.srz.business.manager
   using StructureMap;
 
   /// <summary>
-  /// The NumberPolicyCounterManager.
+  ///   The NumberPolicyCounterManager.
   /// </summary>
   public partial class NumberPolicyCounterManager
   {
-    /// <summary>
-    /// The recalculate number policy counter.
-    /// </summary>
-    /// <param name="numberPolicy">
-    /// The number policy.
-    /// </param>
-    public void RecalculateNumberPolicyCounter(string numberPolicy)
-    {
-      if (string.IsNullOrEmpty(numberPolicy) || numberPolicy.Length != 16)
-      {
-        return;
-      }
-
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-
-      // Получаем ТФОМС по коду, входящему в ЕНП
-      var facet = EnpChecker.GetTfFacet(numberPolicy);
-
-      // ищем запись
-      var numberPolicyCounter = GetById(facet) ?? new NumberPolicyCounter
-        {
-          Id = facet,
-          CurrentNumber = 1
-        };
-
-      // назначем новый номер, либо сохраняем старый
-      var number = int.Parse(numberPolicy.Substring(10, 5)) + 1;
-      numberPolicyCounter.CurrentNumber = Math.Max(numberPolicyCounter.CurrentNumber, number);
-      session.SaveOrUpdate(numberPolicyCounter);
-    }
+    #region Public Methods and Operators
 
     /// <summary>
     /// The get next enp number facets.
@@ -88,11 +62,7 @@ namespace rt.srz.business.manager
       var number = "1";
       if (numberPolicyCounter == null)
       {
-        numberPolicyCounter = new NumberPolicyCounter
-        {
-          Id = facet,
-          CurrentNumber = 2
-        };
+        numberPolicyCounter = new NumberPolicyCounter { Id = facet, CurrentNumber = 2 };
       }
       else
       {
@@ -106,5 +76,34 @@ namespace rt.srz.business.manager
       var enp = string.Format("{0}{1}", facet, number.PadLeft(5, '0'));
       return EnpChecker.AppendCheckSum(enp);
     }
+
+    /// <summary>
+    /// The recalculate number policy counter.
+    /// </summary>
+    /// <param name="numberPolicy">
+    /// The number policy.
+    /// </param>
+    public void RecalculateNumberPolicyCounter(string numberPolicy)
+    {
+      if (string.IsNullOrEmpty(numberPolicy) || numberPolicy.Length != 16)
+      {
+        return;
+      }
+
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+
+      // Получаем ТФОМС по коду, входящему в ЕНП
+      var facet = EnpChecker.GetTfFacet(numberPolicy);
+
+      // ищем запись
+      var numberPolicyCounter = GetById(facet) ?? new NumberPolicyCounter { Id = facet, CurrentNumber = 1 };
+
+      // назначем новый номер, либо сохраняем старый
+      var number = int.Parse(numberPolicy.Substring(10, 5)) + 1;
+      numberPolicyCounter.CurrentNumber = Math.Max(numberPolicyCounter.CurrentNumber, number);
+      session.SaveOrUpdate(numberPolicyCounter);
+    }
+
+    #endregion
   }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogicalControlTests.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="LogicalControlTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The logical control tests.
@@ -18,8 +18,8 @@ namespace rt.srz.business.tests.logicalcontrol
   using rt.core.business.tests;
   using rt.srz.business.interfaces.logicalcontrol;
   using rt.srz.business.manager;
-  using rt.srz.business.manager.logicalcontrol;
   using rt.srz.business.manager.rightedit;
+  using rt.srz.model.enumerations;
 
   using StructureMap;
 

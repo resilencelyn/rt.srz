@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterFileRs.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterFileRs.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The import batch .
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.pfr
@@ -33,7 +36,7 @@ namespace rt.srz.business.exchange.import.pfr
     #region Properties
 
     /// <summary>
-    /// Gets the type batch.
+    ///   Gets the type batch.
     /// </summary>
     protected override Concept TypeBatch
     {
@@ -51,10 +54,10 @@ namespace rt.srz.business.exchange.import.pfr
     /// The applies to.
     /// </summary>
     /// <param name="file">
-    /// The file. 
+    /// The file.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public override bool AppliesTo(FileInfo file)
     {
@@ -70,12 +73,14 @@ namespace rt.srz.business.exchange.import.pfr
     /// The get enumerable.
     /// </summary>
     /// <param name="obj">
-    /// The obj. 
+    /// The obj.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///                 <cref>IEnumerable</cref>
-    ///               </see> . 
+    /// The
+    ///   <see>
+    ///     <cref>IEnumerable</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     protected override IEnumerable<Zl> GetEnumerable(ZlList obj)
     {
@@ -86,7 +91,7 @@ namespace rt.srz.business.exchange.import.pfr
     /// The get pfr exchange.
     /// </summary>
     /// <param name="item">
-    /// The item. 
+    /// The item.
     /// </param>
     /// <param name="batch">
     /// The batch.
@@ -97,30 +102,34 @@ namespace rt.srz.business.exchange.import.pfr
     protected override QueryResponse GetQueryResponse(Zl item, Batch batch)
     {
       var result = new QueryResponse
-        {
-          Message = batch.Messages.First(),
-          Snils = SnilsChecker.SsToShort(item.Snils),
-          Feature = GetFeature(item),
-          InsuredPersonData =
-            new InsuredPersonDatum
-              {
-                Snils = SnilsChecker.SsToShort(item.Snils),
-                LastName = item.Fam,
-                FirstName = item.Im,
-                MiddleName = item.Ot,
-                Birthday =
-                  string.IsNullOrEmpty(item.Dr) ? null : (DateTime?)DateTime.ParseExact(item.Dr, "dd.MM.yyyy", null),
-                BirthdayType = int.Parse(item.Dostdr),
-                Birthplace = item.AddressR,
-                Gender =
-                  !string.IsNullOrEmpty(item.W) && item.W.ToLower() == "м"
-                    ? ConceptCacheManager.GetById(Sex.Sex1)
-                    : ConceptCacheManager.GetById(Sex.Sex2),
-              },
-          Address = new address { Postcode = item.Index, Unstructured = item.AddressReg },
-          DocumentUdl = new Document(),
-          Employment = item.IdZl == "1"
-        };
+                   {
+                     Message = batch.Messages.First(), 
+                     Snils = SnilsChecker.SsToShort(item.Snils), 
+                     Feature = GetFeature(item), 
+                     InsuredPersonData =
+                       new InsuredPersonDatum
+                       {
+                         Snils = SnilsChecker.SsToShort(item.Snils), 
+                         LastName = item.Fam, 
+                         FirstName = item.Im, 
+                         MiddleName = item.Ot, 
+                         Birthday =
+                           string.IsNullOrEmpty(item.Dr)
+                             ? null
+                             : (DateTime?)
+                               DateTime.ParseExact(item.Dr, "dd.MM.yyyy", null), 
+                         BirthdayType = int.Parse(item.Dostdr), 
+                         Birthplace = item.AddressR, 
+                         Gender =
+                           !string.IsNullOrEmpty(item.W)
+                           && item.W.ToLower() == "м"
+                             ? ConceptCacheManager.GetById(Sex.Sex1)
+                             : ConceptCacheManager.GetById(Sex.Sex2), 
+                       }, 
+                     Address = new address { Postcode = item.Index, Unstructured = item.AddressReg }, 
+                     DocumentUdl = new Document(), 
+                     Employment = item.IdZl == "1"
+                   };
 
       if (item.Doc != null)
       {
@@ -136,7 +145,7 @@ namespace rt.srz.business.exchange.import.pfr
         result.DocumentUdl.Series = item.Doc.SDoc;
         result.DocumentUdl.DocumentType =
           ConceptCacheManager.GetBy(x => x.ShortName == item.Doc.NameDoc && x.Oid.Id == Oid.ДокументУдл)
-          .FirstOrDefault();
+                             .FirstOrDefault();
       }
 
       return result;
@@ -163,7 +172,12 @@ namespace rt.srz.business.exchange.import.pfr
       manager.CalculateStandardSearchKeysExchange(batch.Id, 1, xmlObj.Zl.Count);
 
       // Расчет пользовательских ключей
-      var searchKeyTypes = ObjectFactory.GetInstance<ISearchKeyTypeManager>().GetBy(x => x.Tfoms.Id == batch.Receiver.Id && x.IsActive && x.OperationKey.Id == OperationKey.FullScanAndSaveKey);
+      var searchKeyTypes =
+        ObjectFactory.GetInstance<ISearchKeyTypeManager>()
+                     .GetBy(
+                            x =>
+                            x.Tfoms.Id == batch.Receiver.Id && x.IsActive
+                            && x.OperationKey.Id == OperationKey.FullScanAndSaveKey);
       foreach (var keyType in searchKeyTypes)
       {
         manager.CalculateUserSearchKeysExchange(keyType.Id, batch.Id, 1, xmlObj.Zl.Count);
@@ -175,10 +189,10 @@ namespace rt.srz.business.exchange.import.pfr
     }
 
     /// <summary>
-    /// сколько процентов от общей работы составляет обработка записей с использованием GetQueryResponse
+    ///   сколько процентов от общей работы составляет обработка записей с использованием GetQueryResponse
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     protected override int PersentageForRecords()
     {
@@ -189,10 +203,10 @@ namespace rt.srz.business.exchange.import.pfr
     /// The get feature.
     /// </summary>
     /// <param name="item">
-    /// The item. 
+    /// The item.
     /// </param>
     /// <returns>
-    /// The <see cref="Concept"/> . 
+    /// The <see cref="Concept"/> .
     /// </returns>
     private Concept GetFeature(Zl item)
     {

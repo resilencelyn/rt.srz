@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEnpBirthdayAndGenderException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultEnpBirthdayAndGenderException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault enp birthday and gender exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault enp birthday and gender exception.
+  ///   The fault enp birthday and gender exception.
   /// </summary>
   [Serializable]
   public class FaultEnpBirthdayAndGenderException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultEnpBirthdayAndGenderException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultEnpBirthdayAndGenderException" /> class.
     /// </summary>
     public FaultEnpBirthdayAndGenderException()
       : base(
@@ -50,6 +50,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-  #endregion
+    #endregion
   }
 }

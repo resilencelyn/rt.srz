@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IKLADRService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IKLADRService.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The KLADRService interface.
@@ -32,10 +32,10 @@ namespace rt.srz.model.interfaces.service
     /// The get first level by tfoms.
     /// </summary>
     /// <param name="tfom">
-    /// The tfom. 
+    /// The tfom.
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/> . 
+    /// The <see cref="Kladr"/> .
     /// </returns>
     [OperationContract]
     Kladr GetFirstLevelByTfoms(Organisation tfom);
@@ -46,7 +46,7 @@ namespace rt.srz.model.interfaces.service
     /// <param name="objectId">
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/> . 
+    /// The <see cref="Kladr"/> .
     /// </returns>
     [OperationContract]
     Kladr GetKLADR(Guid objectId);
@@ -57,12 +57,12 @@ namespace rt.srz.model.interfaces.service
     /// <param name="parentId">
     /// </param>
     /// <param name="prefix">
-    /// The prefix. 
+    /// The prefix.
     /// </param>
     /// <param name="level">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
     IList<Kladr> GetKLADRs(Guid? parentId, string prefix, KLADRLevel? level);

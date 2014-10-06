@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master"
   AutoEventWireup="true" CodeBehind="ManageChecks.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Administrations.ManageChecks" %>
-
-<%@ Import Namespace="rt.srz.business.interfaces.logicalcontrol" %>
+<%@ Import Namespace="rt.srz.model.interfaces" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

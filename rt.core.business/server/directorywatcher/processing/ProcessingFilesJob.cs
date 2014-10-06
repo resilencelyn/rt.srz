@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProcessingFilesJob.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ProcessingFilesJob.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The processing files.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.directorywatcher.processing
@@ -16,10 +19,10 @@ namespace rt.core.business.server.directorywatcher.processing
 
   using Quartz;
 
-  using rt.core.business.configuration;
   using rt.core.business.interfaces.directorywatcher;
   using rt.core.business.quartz;
   using rt.core.business.server.directorywatcher.processing.target;
+  using rt.core.model.configuration;
 
   using StructureMap;
 
@@ -30,8 +33,14 @@ namespace rt.core.business.server.directorywatcher.processing
   /// </summary>
   public class ProcessingFilesJob : JobBase
   {
+    #region Fields
 
+    /// <summary>
+    /// The max proc.
+    /// </summary>
     private int MaxProc = 20;
+
+    #endregion
 
     #region Methods
 
@@ -39,7 +48,7 @@ namespace rt.core.business.server.directorywatcher.processing
     /// The execute.
     /// </summary>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected override void ExecuteImpl(IJobExecutionContext context)
     {
@@ -114,7 +123,6 @@ namespace rt.core.business.server.directorywatcher.processing
           }
 
           importer.UndoBatches(batchInfo.FileInfo.Name);
-
         }
         finally
         {
@@ -162,10 +170,10 @@ namespace rt.core.business.server.directorywatcher.processing
     /// The file can be read.
     /// </summary>
     /// <param name="file">
-    /// The file. 
+    /// The file.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     private bool FileCanBeRead(FileInfo file)
     {
@@ -190,10 +198,10 @@ namespace rt.core.business.server.directorywatcher.processing
     /// The get priority.
     /// </summary>
     /// <param name="file">
-    /// The file. 
+    /// The file.
     /// </param>
     /// <returns>
-    /// The <see cref="int"/> . 
+    /// The <see cref="int"/> .
     /// </returns>
     private int GetPriority(FileInfo file)
     {

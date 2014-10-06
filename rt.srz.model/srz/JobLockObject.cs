@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="JobLockObject.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobLockObject.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The JobLockObject.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The JobLockObject.
+  ///   The JobLockObject.
   /// </summary>
-  public partial class JobLockObject 
+  public partial class JobLockObject
   {
   }
 }

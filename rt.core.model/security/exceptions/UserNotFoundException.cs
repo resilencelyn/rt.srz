@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UserNotFoundException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="UserNotFoundException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Пользователь не найден в системе
@@ -29,7 +29,7 @@ namespace rt.core.model.security.exceptions
     ///   Конструктор <see cref="UserNotFoundException" /> класса
     /// </summary>
     public UserNotFoundException()
-      : base(new ExceptionInfo(Resources.UserNotFoundExceptionCode), (string)Resources.UserNotFoundExceptionMessage)
+      : base(new ExceptionInfo(Resources.UserNotFoundExceptionCode), Resources.UserNotFoundExceptionMessage)
     {
     }
 

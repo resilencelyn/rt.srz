@@ -55,6 +55,7 @@
     <Compile Include="BarcodeServiceException.cs" />
     <Compile Include="BarcodeVersion.cs" />
     <Compile Include="BarcodeVersions.cs" />
+    <Compile Include="IBarcodeService.cs" />
     <Compile Include="PolicyData.cs" />
     <Compile Include="PolicyDataVersion1.cs" />
     <Compile Include="PolicyDataVersion2.cs" />

@@ -1,33 +1,41 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="TemplateManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TemplateManager.cs" company="–усЅ»“ех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The TemplateManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
-using rt.srz.model.common;
-using rt.srz.model.srz;
-using System;
 namespace rt.srz.business.manager
 {
+  using System;
+
   using NHibernate;
+
+  using rt.srz.model.common;
+  using rt.srz.model.srz;
 
   using StructureMap;
 
   /// <summary>
-  /// The TemplateManager.
+  ///   The TemplateManager.
   /// </summary>
   public partial class TemplateManager
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// ƒобавление или обновление записи
     /// </summary>
-    /// <param name="template"></param>
+    /// <param name="template">
+    /// </param>
     public void AddOrUpdateTemplate(Template template)
     {
-      //если в текущем шаблоне делаем по умолчанию использовать то во всех остальных надо этот признак обнулить
+      // если в текущем шаблоне делаем по умолчанию использовать то во всех остальных надо этот признак обнулить
       if (template.Default.HasValue && template.Default.Value)
       {
-        foreach (Template item in GetAll(int.MaxValue))
+        foreach (var item in GetAll(int.MaxValue))
         {
           if (item.Id != template.Id)
           {
@@ -36,18 +44,22 @@ namespace rt.srz.business.manager
           }
         }
       }
+
       SaveOrUpdate(template);
     }
 
     /// <summary>
     /// —оздание копии шаблона печати
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
     public Template CreateCopyOfTemplateVs(Guid id)
     {
-      Template fromTemplate = GetById(id);
-      Template result = CloneUtility.DeepClone(fromTemplate);
+      var fromTemplate = GetById(id);
+      var result = CloneUtility.DeepClone(fromTemplate);
       result.Id = Guid.Empty;
       result.Default = false;
       result.Name = string.Format(" опи€ - {0}", result.Name);
@@ -63,5 +75,6 @@ namespace rt.srz.business.manager
       return result;
     }
 
+    #endregion
   }
 }

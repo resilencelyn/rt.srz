@@ -1,20 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NHibernateRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NHibernateRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Регистрация NHibernate
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Configuration;
-using rt.core.business.configuration;
-
 namespace rt.core.business.registry
 {
   #region references
 
   using System;
+  using System.Configuration;
   using System.IO;
   using System.Linq;
 
@@ -22,9 +20,12 @@ namespace rt.core.business.registry
   using NHibernate.Cfg;
 
   using rt.core.business.nhibernate;
-  using rt.core.business.nhibernate.target;
+  using rt.core.model.configuration;
 
   using StructureMap.Configuration.DSL;
+
+  using Configuration = NHibernate.Cfg.Configuration;
+  using Environment = NHibernate.Cfg.Environment;
 
   #endregion
 
@@ -36,7 +37,7 @@ namespace rt.core.business.registry
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="NHibernateRegistry"/> class. 
+    ///   Initializes a new instance of the <see cref="NHibernateRegistry" /> class.
     ///   Конструктор
     /// </summary>
     public NHibernateRegistry()
@@ -44,7 +45,7 @@ namespace rt.core.business.registry
       var configuration = new Configuration();
       configuration.Configure();
       var defaultConnectionString = ConfigurationManager.ConnectionStrings["default"];
-      configuration.SetProperty(NHibernate.Cfg.Environment.ConnectionString, defaultConnectionString.ConnectionString);
+      configuration.SetProperty(Environment.ConnectionString, defaultConnectionString.ConnectionString);
       configuration.CurrentSessionContext<SmartSessionContext>();
       var sessionFactory = configuration.BuildSessionFactory();
       ForSingletonOf<ISessionFactory>().Use(sessionFactory);
@@ -64,7 +65,7 @@ namespace rt.core.business.registry
 
           configuration.Configure(filename);
           var connectionString = ConfigurationManager.ConnectionStrings[file.FileNameConfiguration];
-          configuration.SetProperty(NHibernate.Cfg.Environment.ConnectionString, connectionString.ConnectionString);
+          configuration.SetProperty(Environment.ConnectionString, connectionString.ConnectionString);
           configuration.CurrentSessionContext<SmartSessionContext>();
           sessionFactory = configuration.BuildSessionFactory();
           manager.AddSessionFactory(file.FileNameConfiguration, sessionFactory);

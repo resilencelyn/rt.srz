@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="SearchKeyType.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SearchKeyType.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The SearchKeyType.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The SearchKeyType.
+  ///   The SearchKeyType.
   /// </summary>
-  public partial class SearchKeyType 
+  public partial class SearchKeyType
   {
   }
 }

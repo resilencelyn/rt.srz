@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.exchange.export.smo
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ExportBatchSmoFlk.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The export batch smo flk.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.export.smo
 {
   using System;
   using System.Collections.Generic;
@@ -17,9 +26,12 @@
 
   using StructureMap;
 
+  /// <summary>
+  /// The export batch smo flk.
+  /// </summary>
   public class ExportBatchSmoFlk : ExportBatchSmo<PFLKType, PRType>
   {
-     #region Constructors and Destructors
+    #region Constructors and Destructors
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="ExportBatchSmoFlk" /> class.
@@ -57,7 +69,7 @@
     /// The add node.
     /// </summary>
     /// <param name="node">
-    /// The node. 
+    /// The node.
     /// </param>
     public override void AddNode(PRType node)
     {
@@ -132,7 +144,7 @@
         throw;
       }
     }
+
     #endregion
-  
   }
 }

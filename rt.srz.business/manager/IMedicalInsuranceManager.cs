@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IMedicalInsuranceManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IMedicalInsuranceManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The MedicalInsuranceManager interface.
@@ -11,6 +11,7 @@ namespace rt.srz.business.manager
 {
   #region references
 
+  using System;
   using System.Collections.Generic;
 
   using rt.srz.model.srz;
@@ -24,7 +25,33 @@ namespace rt.srz.business.manager
   {
     #region Public Methods and Operators
 
-    #endregion
+    /// <summary>
+    /// The calculate en period working day.
+    /// </summary>
+    /// <param name="dateFrom">
+    /// The date from.
+    /// </param>
+    /// <param name="count">
+    /// The count.
+    /// </param>
+    /// <returns>
+    /// The <see cref="DateTime"/>.
+    /// </returns>
+    DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count);
+
+    /// <summary>
+    /// The reflection medical insured 2.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <param name="medicalInsurances">
+    /// The medical insurances.
+    /// </param>
+    /// <param name="saveInSession">
+    /// The save in session.
+    /// </param>
+    void ReflectionMedicalInsured2(Statement statement, IList<MedicalInsurance> medicalInsurances, bool saveInSession);
 
     /// <summary>
     /// The save medical insurances.
@@ -34,6 +61,6 @@ namespace rt.srz.business.manager
     /// </param>
     void SaveMedicalInsurances(Statement statement);
 
-    void ReflectionMedicalInsured2(Statement statement, IList<MedicalInsurance> medicalInsurances, bool saveInSession);
+    #endregion
   }
 }

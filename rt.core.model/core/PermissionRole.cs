@@ -1,15 +1,18 @@
-﻿//-------------------------------------------------------------------------------------
-// <copyright file="PermissionRole.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PermissionRole.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The PermissionRole.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.model.core
 {
   /// <summary>
-  /// The PermissionRole.
+  ///   The PermissionRole.
   /// </summary>
-  public partial class PermissionRole 
+  public partial class PermissionRole
   {
   }
 }

@@ -1,41 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.InsuredPersonDatum, rt.srz.model" table="[dbo].[InsuredPersonData]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="FirstName" column="[FirstName]" />
-		<property name="LastName" column="[LastName]" />
-		<property name="MiddleName" column="[MiddleName]" />
-		<property name="Birthday" column="[Birthday]" />
-		<property name="Birthday2" column="[Birthday2]" />
-		<property name="BirthdayType" column="[BirthdayType]" />
-		<property name="IsIncorrectDate" column="[IsIncorrectDate]" />
-		<property name="IsNotGuru" column="[IsNotGuru]" />
-		<property name="Snils" column="[Snils]" />
-		<property name="Birthplace" column="[Birthplace]" />
-		<property name="IsNotCitizenship" column="[IsNotCitizenship]" />
-		<property name="IsRefugee" column="[IsRefugee]" />
-		<property name="IsBadSnils" column="[IsBadSnils]" />
-		<property name="NhFirstName" column="[NhFirstName]" />
-		<property name="NhLastName" column="[NhLastName]" />
-		<property name="NhMiddleName" column="[NhMiddleName]" />
-		<many-to-one name="Citizenship" column="[CitizenshipId]" class="Concept"  />
-		<many-to-one name="Gender" column="[GenderId]" class="Concept"  />
-		<many-to-one name="Category" column="[CategoryId]" class="Concept"  />
-		<many-to-one name="OldCountry" column="[OldCountryId]" class="Concept"  />
-		<bag name="Contents" lazy="true" inverse="true" >
-			<key column="[InsuredPersonDataId]"></key>
-			<one-to-many class="Content"></one-to-many>
-		</bag>
-		<bag name="QueryResponses" lazy="true" inverse="true" >
-			<key column="[InsuredPersonDataId]"></key>
-			<one-to-many class="QueryResponse"></one-to-many>
-		</bag>
-		<bag name="Statements" lazy="true" inverse="true" >
-			<key column="[InsuredPersonDataId]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.InsuredPersonDatum, rt.srz.model" table="[dbo].[InsuredPersonData]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="FirstName" column="[FirstName]" />
+    <property name="LastName" column="[LastName]" />
+    <property name="MiddleName" column="[MiddleName]" />
+    <property name="Birthday" column="[Birthday]" />
+    <property name="Birthday2" column="[Birthday2]" />
+    <property name="BirthdayType" column="[BirthdayType]" />
+    <property name="IsIncorrectDate" column="[IsIncorrectDate]" />
+    <property name="IsNotGuru" column="[IsNotGuru]" />
+    <property name="Snils" column="[Snils]" />
+    <property name="Birthplace" column="[Birthplace]" />
+    <property name="IsNotCitizenship" column="[IsNotCitizenship]" />
+    <property name="IsRefugee" column="[IsRefugee]" />
+    <property name="IsBadSnils" column="[IsBadSnils]" />
+    <property name="NhFirstName" column="[NhFirstName]" />
+    <property name="NhLastName" column="[NhLastName]" />
+    <property name="NhMiddleName" column="[NhMiddleName]" />
+    <many-to-one name="Citizenship" column="[CitizenshipId]" class="Concept" />
+    <many-to-one name="Gender" column="[GenderId]" class="Concept" />
+    <many-to-one name="Category" column="[CategoryId]" class="Concept" />
+    <many-to-one name="OldCountry" column="[OldCountryId]" class="Concept" />
+    <bag name="Contents" lazy="true" inverse="true">
+      <key column="[InsuredPersonDataId]"></key>
+      <one-to-many class="Content"></one-to-many>
+    </bag>
+    <bag name="QueryResponses" lazy="true" inverse="true">
+      <key column="[InsuredPersonDataId]"></key>
+      <one-to-many class="QueryResponse"></one-to-many>
+    </bag>
+    <bag name="Statements" lazy="true" inverse="true">
+      <key column="[InsuredPersonDataId]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

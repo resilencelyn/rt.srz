@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatchSmoRec.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatchSmoRec.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The export batch pfr.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.export.smo
@@ -73,7 +76,7 @@ namespace rt.srz.business.exchange.export.smo
     /// The add node.
     /// </summary>
     /// <param name="node">
-    /// The node. 
+    /// The node.
     /// </param>
     public override void AddNode(RECType node)
     {
@@ -118,10 +121,11 @@ namespace rt.srz.business.exchange.export.smo
         try
         {
           // Получаем записи, подлежащие обработке
-          statementList = session.QueryOver<StatementBatch>()
-            .Where(x => x.BatchId == BatchId)
-            .RootCriteria.SetTimeout(int.MaxValue)
-            .List<StatementBatch>();
+          statementList =
+            session.QueryOver<StatementBatch>()
+                   .Where(x => x.BatchId == BatchId)
+                   .RootCriteria.SetTimeout(int.MaxValue)
+                   .List<StatementBatch>();
           transaction.Commit();
         }
         catch (Exception)
@@ -183,7 +187,7 @@ namespace rt.srz.business.exchange.export.smo
         {
           batch.CodeConfirm = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(CodeConfirm.AA);
           ObjectFactory.GetInstance<IBatchManager>().SaveOrUpdate(batch);
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush(); 
+          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
         }
       }
       catch (Exception ex)
@@ -228,11 +232,11 @@ namespace rt.srz.business.exchange.export.smo
         if (!mappingWasSuccessful)
         {
           // Удаляем из Message
-          //var deleteMessageSql = string.Format(@"delete from Message where BatchId='{0}'", BatchId);
-          //ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
+          // var deleteMessageSql = string.Format(@"delete from Message where BatchId='{0}'", BatchId);
+          // ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
 
-          //var deleteMessageSql = string.Format(@"delete from Message where StatementId='{0}'", BatchId);
-          //ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
+          // var deleteMessageSql = string.Format(@"delete from Message where StatementId='{0}'", BatchId);
+          // ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
         }
 
         // Добавляем в батч

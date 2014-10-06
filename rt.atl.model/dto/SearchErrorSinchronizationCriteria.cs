@@ -1,18 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml.Serialization;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SearchErrorSinchronizationCriteria.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The search error sinchronization criteria.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.dto
 {
+  using System;
+  using System.Runtime.Serialization;
+  using System.Xml.Serialization;
+
   using rt.core.model.dto;
 
+  /// <summary>
+  /// The search error sinchronization criteria.
+  /// </summary>
   [Serializable]
   [DataContract]
   public class SearchErrorSinchronizationCriteria : BaseSearchCriteria
   {
+    #region Public Properties
+
     /// <summary>
     ///   Дата c
     /// </summary>
@@ -21,11 +32,12 @@ namespace rt.atl.model.dto
     public DateTime? DateFrom { get; set; }
 
     /// <summary>
-    /// Дата по
+    ///   Дата по
     /// </summary>
     [XmlElement]
     [DataMember]
     public DateTime? DateTo { get; set; }
 
+    #endregion
   }
 }

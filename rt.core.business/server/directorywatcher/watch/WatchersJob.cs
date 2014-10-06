@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WatchersJob.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="WatchersJob.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The watchers job.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.directorywatcher.watch
@@ -14,8 +17,8 @@ namespace rt.core.business.server.directorywatcher.watch
 
   using Quartz;
 
-  using rt.core.business.configuration;
-  using rt.core.business.configuration.target;
+  using rt.core.model.configuration;
+  using rt.core.model.configuration.target;
 
   #endregion
 
@@ -39,7 +42,7 @@ namespace rt.core.business.server.directorywatcher.watch
     /// The execute.
     /// </summary>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     public void Execute(IJobExecutionContext context)
     {
@@ -56,7 +59,9 @@ namespace rt.core.business.server.directorywatcher.watch
         var directoryWatchElements = exchangeSettings.DirectoryWatchCollection.Cast<DirectoryWatchElement>().ToList();
 
         // находим разность множеств того что в конфиге, и того что уже запущено
-        var except = directoryWatchElements.Select(dir => dir.Path).Select(Path.GetFullPath).Except(StartedWatchers.Keys);
+        var except = directoryWatchElements.Select(dir => dir.Path)
+                                           .Select(Path.GetFullPath)
+                                           .Except(StartedWatchers.Keys);
 
         // Если все прослушиватели запущены, то останавливаем триггер
         if (!except.Any())

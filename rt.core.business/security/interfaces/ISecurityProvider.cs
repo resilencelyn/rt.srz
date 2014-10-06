@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISecurityProvider.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ISecurityProvider.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Интерфейс, необходимый для аутентификации и авторизации
@@ -25,6 +25,16 @@ namespace rt.core.business.security.interfaces
     #region Public Methods and Operators
 
     /// <summary>
+    /// Сохраняет пользователя
+    /// </summary>
+    /// <param name="user">
+    /// </param>
+    /// <returns>
+    /// User
+    /// </returns>
+    User AddUser(User user);
+
+    /// <summary>
     /// Проверка пользователя и возврат информации о нём
     /// </summary>
     /// <param name="userName">
@@ -39,12 +49,34 @@ namespace rt.core.business.security.interfaces
     User CheckCridentials(string userName, string password);
 
     /// <summary>
+    /// The get auth response.
+    /// </summary>
+    /// <param name="user">
+    /// The user.
+    /// </param>
+    /// <returns>
+    /// The <see cref="AuthResponse"/>.
+    /// </returns>
+    AuthResponse GetAuthToken(User user);
+
+    /// <summary>
     ///   The get current user.
     /// </summary>
     /// <returns>
     ///   The <see cref="User" />.
     /// </returns>
     User GetCurrentUser();
+
+    /// <summary>
+    /// The get date from token.
+    /// </summary>
+    /// <param name="token">
+    /// The token.
+    /// </param>
+    /// <returns>
+    /// The <see cref="User"/>.
+    /// </returns>
+    User GetDateFromToken(Token token);
 
     /// <summary>
     /// Возвращает пользователя по имени
@@ -78,20 +110,14 @@ namespace rt.core.business.security.interfaces
     string[] GetUserRoles(string userName);
 
     /// <summary>
-    /// Сохраняет пользователя
+    /// Добавляет или сохраняет пользователя
     /// </summary>
-    /// <param name="user"> </param>
+    /// <param name="user">
+    /// </param>
     /// <returns>
-    /// User
+    /// The <see cref="User"/>.
     /// </returns>
-    User AddUser(User user);
-
-		/// <summary>
-		/// Добавляет или сохраняет пользователя
-		/// </summary>
-		/// <param name="user"></param>
-		/// <returns></returns>
-		User SaveUser(User user);
+    User SaveUser(User user);
 
     /// <summary>
     /// Обновляет пароль пользователя
@@ -106,27 +132,5 @@ namespace rt.core.business.security.interfaces
     User UpdatePassword(string name, string newPassword);
 
     #endregion
-
-    /// <summary>
-    /// The get auth response.
-    /// </summary>
-    /// <param name="user">
-    /// The user.
-    /// </param>
-    /// <returns>
-    /// The <see cref="AuthResponse"/>.
-    /// </returns>
-    AuthResponse GetAuthToken(User user);
-
-    /// <summary>
-    /// The get date from token.
-    /// </summary>
-    /// <param name="token">
-    /// The token.
-    /// </param>
-    /// <returns>
-    /// The <see cref="User"/>.
-    /// </returns>
-    User GetDateFromToken(Token token);
   }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceClientRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ServiceClientRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   регистр SM - инициализация всех репозиториев
@@ -8,18 +8,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using rt.srz.model.interfaces.service;
-
 namespace rt.srz.services.client.config
 {
   #region references
 
   using rt.atl.model.interfaces.Service;
   using rt.core.model.security;
+  using rt.srz.model.interfaces.service;
 
   using StructureMap.Configuration.DSL;
-
-  using rt.core.services.client;
 
   #endregion
 

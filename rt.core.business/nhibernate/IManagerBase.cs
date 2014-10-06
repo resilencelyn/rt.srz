@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IManagerBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IManagerBase.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ManagerBase interface.
@@ -33,12 +33,12 @@ namespace rt.core.business.nhibernate
     #region Public Properties
 
     /// <summary>
-    /// Gets the session.
+    ///   Gets the session.
     /// </summary>
     INHibernateSession Session { get; }
 
     /// <summary>
-    /// Gets the type.
+    ///   Gets the type.
     /// </summary>
     Type Type { get; }
 
@@ -58,10 +58,10 @@ namespace rt.core.business.nhibernate
     bool Any(Expression<Func<T, bool>> expression);
 
     /// <summary>
-    /// The create criteria.
+    ///   The create criteria.
     /// </summary>
     /// <returns>
-    /// The <see cref="ICriteria"/>.
+    ///   The <see cref="ICriteria" />.
     /// </returns>
     ICriteria CreateCriteria();
 
@@ -90,10 +90,10 @@ namespace rt.core.business.nhibernate
     void Evict(T entity);
 
     /// <summary>
-    /// The get all.
+    ///   The get all.
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="IList" />.
     /// </returns>
     IList<T> GetAll();
 

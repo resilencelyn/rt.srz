@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TestprocTests.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TestprocTests.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The testproc tests.
@@ -10,7 +10,7 @@
 namespace rt.atl.business.tests
 {
   /// <summary>
-  /// The testproc tests.
+  ///   The testproc tests.
   /// </summary>
   public partial class TestprocTests
   {

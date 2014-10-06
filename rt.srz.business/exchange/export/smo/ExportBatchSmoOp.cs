@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.exchange.export.smo
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ExportBatchSmoOp.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The export batch smo op.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.export.smo
 {
   using System;
   using System.Collections.Generic;
@@ -20,6 +29,9 @@
 
   using StructureMap;
 
+  /// <summary>
+  /// The export batch smo op.
+  /// </summary>
   public class ExportBatchSmoOp : ExportBatchSmo<OPListType, OPType>
   {
     #region Constructors and Destructors
@@ -60,7 +72,7 @@
     /// The add node.
     /// </summary>
     /// <param name="node">
-    /// The node. 
+    /// The node.
     /// </param>
     public override void AddNode(OPType node)
     {
@@ -86,14 +98,17 @@
     /// The bulk create and export.
     /// </summary>
     /// <param name="context">
-    ///   The context.
+    /// The context.
     /// </param>
-    /// <param name="batchId"></param>
+    /// <param name="batchId">
+    /// </param>
     public override void BulkCreateAndExport(IJobExecutionContext context, Guid batchId)
     {
       if (context.JobDetail.JobDataMap.ContainsKey("BatchId"))
+      {
         BatchId = (Guid)context.JobDetail.JobDataMap["BatchId"];
-      
+      }
+
       // Получаем Batch
       Batch = ObjectFactory.GetInstance<IBatchManager>().GetById(BatchId);
       FileName = Batch.FileName;
@@ -105,10 +120,11 @@
         try
         {
           // Получаем записи, подлежащие обработке
-          statementList = session.QueryOver<StatementBatch>()
-            .Where(x => x.BatchId == BatchId)
-            .RootCriteria.SetTimeout(int.MaxValue)
-            .List<StatementBatch>();
+          statementList =
+            session.QueryOver<StatementBatch>()
+                   .Where(x => x.BatchId == BatchId)
+                   .RootCriteria.SetTimeout(int.MaxValue)
+                   .List<StatementBatch>();
           transaction.Commit();
         }
         catch (Exception)
@@ -160,10 +176,12 @@
 
       // Вычисляем код ПВП
       SerializeObject.PRZCOD = null;
-      string[] splittedFileName = Batch.FileName.Split(new char[] { '_' });
+      var splittedFileName = Batch.FileName.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
+      {
         SerializeObject.PRZCOD = splittedFileName[1];
-      
+      }
+
       try
       {
         // Сериализуем
@@ -200,7 +218,7 @@
     private void ExportStatementList(IList<StatementBatch> statementList, IJobExecutionContext context)
     {
       var processedCounter = 0;
-      int recordCounter = 1;
+      var recordCounter = 1;
       foreach (var statement in statementList)
       {
         OPType opType = null;
@@ -222,11 +240,11 @@
         if (!mappingWasSuccessful)
         {
           // Удаляем из Message
-          //var deleteMessageSql = string.Format(@"delete from Message where BatchId='{0}'", BatchId);
-          //ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
+          // var deleteMessageSql = string.Format(@"delete from Message where BatchId='{0}'", BatchId);
+          // ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
 
-          //var deleteMessageSql = string.Format(@"delete from Message where StatementId='{0}'", BatchId);
-          //ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
+          // var deleteMessageSql = string.Format(@"delete from Message where StatementId='{0}'", BatchId);
+          // ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().CreateSQLQuery(deleteMessageSql).ExecuteUpdate();
         }
 
         // Добавляем в батч

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseImportFabric.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="BaseImportFabric.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the BaseImportFabric type.
+//   The base import fabric.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -37,6 +37,8 @@ namespace rt.srz.business.exchange.import
   public abstract class BaseImportFabric<T> : ImporterFile
     where T : BusinessBase<Guid>
   {
+    #region Constructors and Destructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="BaseImportFabric{T}"/> class.
     /// </summary>
@@ -47,6 +49,10 @@ namespace rt.srz.business.exchange.import
       : base(subject)
     {
     }
+
+    #endregion
+
+    #region Methods
 
     /// <summary>
     /// The deserialize.
@@ -69,6 +75,17 @@ namespace rt.srz.business.exchange.import
     }
 
     /// <summary>
+    /// The key value pair.
+    /// </summary>
+    /// <param name="computedEntity">
+    /// The computed entity.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Expression"/>.
+    /// </returns>
+    protected abstract Expression<Func<T, bool>> KeyValuePair(T computedEntity);
+
+    /// <summary>
     /// The save to base.
     /// </summary>
     /// <param name="entities">
@@ -83,10 +100,7 @@ namespace rt.srz.business.exchange.import
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    protected bool SaveToBase(
-      ConcurrentQueue<T> entities,
-      Task<int> prepairXml,
-      IJobExecutionContext context)
+    protected bool SaveToBase(ConcurrentQueue<T> entities, Task<int> prepairXml, IJobExecutionContext context)
     {
       try
       {
@@ -124,15 +138,6 @@ namespace rt.srz.business.exchange.import
       }
     }
 
-    /// <summary>
-    /// The key value pair.
-    /// </summary>
-    /// <param name="computedEntity">
-    /// The computed entity.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Expression"/>.
-    /// </returns>
-    protected abstract Expression<Func<T, bool>> KeyValuePair(T computedEntity);
+    #endregion
   }
 }

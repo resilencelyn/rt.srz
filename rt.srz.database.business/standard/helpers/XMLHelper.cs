@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="XMLHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="XMLHelper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   The xml helper.
+//   помощник для работы с XML
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard.helpers
 {
@@ -21,10 +15,12 @@ namespace rt.srz.database.business.standard.helpers
   using rt.srz.database.business.standard.enums;
 
   /// <summary>
-  /// помощник для работы с XML
+  ///   помощник для работы с XML
   /// </summary>
   public static class XmlHelper
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// The retrieve attribute.
     /// </summary>
@@ -44,7 +40,7 @@ namespace rt.srz.database.business.standard.helpers
     {
       var attribute = xmlNode.Attribute(attributeName);
       return attribute != null
-               ? (trimToNull ? TStringHelper.StringToNull(attribute.Value, bTrimFirst: true) : attribute.Value)
+               ? (trimToNull ? TStringHelper.StringToNull(attribute.Value, true) : attribute.Value)
                : null;
     }
 
@@ -96,8 +92,10 @@ namespace rt.srz.database.business.standard.helpers
     /// </exception>
     public static void ThrowCastException(string attribute, string type)
     {
-      throw new ArgumentException(string.Format("Не удалось преобразовать значение атрибута '{0}' в тип {1}", attribute, 
-                                                type));
+      throw new ArgumentException(
+        string.Format("Не удалось преобразовать значение атрибута '{0}' в тип {1}", attribute, type));
     }
+
+    #endregion
   }
 }

@@ -1,18 +1,27 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RegionCoding.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The region coding.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.database.business.standard.enums
 {
   /// <summary>
-  /// The region coding.
+  ///   The region coding.
   /// </summary>
   public enum RegionCoding
   {
     /// <summary>
-    /// The тфомс.
+    ///   The тфомс.
     /// </summary>
-    ТФОМС,
+    ТФОМС, 
 
     /// <summary>
-    /// The окато.
+    ///   The окато.
     /// </summary>
-    ОКАТО,
+    ОКАТО, 
   }
 }

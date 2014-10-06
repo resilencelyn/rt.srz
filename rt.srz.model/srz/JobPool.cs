@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="JobPool.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobPool.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The JobPool.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The JobPool.
+  ///   The JobPool.
   /// </summary>
-  public partial class JobPool 
+  public partial class JobPool
   {
   }
 }

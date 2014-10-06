@@ -1,39 +1,57 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MigratorConfiguration.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="MigratorConfiguration.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the MigratorConfiguration type.
+//   The migrator configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.core.business.configuration
+namespace rt.core.model.configuration
 {
   using System.Configuration;
 
   /// <summary>
-  /// The migrator configuration.
+  ///   The migrator configuration.
   /// </summary>
   public class MigratorConfiguration : ConfigurationSection
   {
+    #region Public Properties
+
     /// <summary>
     ///   Версия миграции
     /// </summary>
     [ConfigurationProperty("MigrationVersion", DefaultValue = -1, IsRequired = false)]
     public int MigrationVersion
     {
-      get { return (int)this["MigrationVersion"]; }
-      set { this["MigrationVersion"] = value; }
+      get
+      {
+        return (int)this["MigrationVersion"];
+      }
+
+      set
+      {
+        this["MigrationVersion"] = value;
+      }
     }
 
     /// <summary>
-    /// Gets or sets the provider name.
+    ///   Gets or sets the provider name.
     /// </summary>
     [ConfigurationProperty("ProviderName")]
     public string ProviderName
     {
-      get { return (string)this["ProviderName"]; }
-      set { this["ProviderName"] = value; }
+      get
+      {
+        return (string)this["ProviderName"];
+      }
+
+      set
+      {
+        this["ProviderName"] = value;
+      }
     }
+
+    #endregion
   }
 }

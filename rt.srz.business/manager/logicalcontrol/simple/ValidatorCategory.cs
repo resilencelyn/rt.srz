@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorCategory.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorCategory.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator category.
@@ -14,7 +14,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
   using rt.srz.model.logicalcontrol.exceptions.step2;
 
   #endregion
@@ -30,7 +29,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorCategory"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorCategory(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.InsuredPersonData.Category.Id)
@@ -42,7 +41,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {

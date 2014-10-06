@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CategoryPerson.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CategoryPerson.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   Категория застрахованного лица
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz.concepts
@@ -92,28 +95,28 @@ namespace rt.srz.model.srz.concepts
     ///   The working.
     /// </summary>
     private static readonly List<int> HasDocumentResidency = new List<int>
-      {
-        WorkerAlienPermanently, 
-        TerritorialAlienPermanently, 
-        WorkerAlienTeporary, 
-        TerritorialAlienTeporary, 
-        WorkerStatelessPermanently, 
-        TerritorialStatelessPermanently, 
-      };
+                                                             {
+                                                               WorkerAlienPermanently, 
+                                                               TerritorialAlienPermanently, 
+                                                               WorkerAlienTeporary, 
+                                                               TerritorialAlienTeporary, 
+                                                               WorkerStatelessPermanently, 
+                                                               TerritorialStatelessPermanently, 
+                                                             };
 
     /// <summary>
     ///   The working.
     /// </summary>
     private static readonly List<int> Working = new List<int>
-      {
-        WorkerRf, 
-        WorkerAlienPermanently, 
-        WorkerAlienTeporary, 
-        WorkerStatelessPermanently, 
-        WorkerStatelessTeporary, 
-        WorkerRefugee, 
-        Unknown
-      };
+                                                {
+                                                  WorkerRf, 
+                                                  WorkerAlienPermanently, 
+                                                  WorkerAlienTeporary, 
+                                                  WorkerStatelessPermanently, 
+                                                  WorkerStatelessTeporary, 
+                                                  WorkerRefugee, 
+                                                  Unknown
+                                                };
 
     #endregion
 
@@ -123,10 +126,10 @@ namespace rt.srz.model.srz.concepts
     /// The is document residency.
     /// </summary>
     /// <param name="category">
-    /// The category. 
+    /// The category.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public static bool IsDocumentResidency(int category)
     {
@@ -137,10 +140,10 @@ namespace rt.srz.model.srz.concepts
     /// The is working.
     /// </summary>
     /// <param name="category">
-    /// The category. 
+    /// The category.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public static bool IsWorking(int category)
     {

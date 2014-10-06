@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IManagerCacheBaseT.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IManagerCacheBaseT.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ManagerCacheBaseT interface.
@@ -15,7 +15,7 @@ namespace rt.core.business.nhibernate
   using System.Collections.Generic;
   using System.Linq.Expressions;
 
-  using rt.core.model;
+  using rt.core.model.interfaces;
 
   #endregion
 
@@ -76,9 +76,6 @@ namespace rt.core.business.nhibernate
     /// </returns>
     TClass SingleOrDefault(Expression<Func<TClass, bool>> expression);
 
-
-    #endregion
-
     /// <summary>
     /// The unproxy.
     /// </summary>
@@ -88,6 +85,8 @@ namespace rt.core.business.nhibernate
     /// <returns>
     /// The <see cref="TClass"/>.
     /// </returns>
-    TClass Unproxy (TClass proxy);
+    TClass Unproxy(TClass proxy);
+
+    #endregion
   }
 }

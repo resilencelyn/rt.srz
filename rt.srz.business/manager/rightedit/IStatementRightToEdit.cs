@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IStatementRightToEdit.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IStatementRightToEdit.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The StatementRightToEdit interface.

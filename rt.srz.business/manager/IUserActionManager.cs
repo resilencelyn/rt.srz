@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="IUserActionManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IUserActionManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The interface UserActionManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The interface UserActionManager.
+  ///   The interface UserActionManager.
   /// </summary>
   public partial interface IUserActionManager
   {

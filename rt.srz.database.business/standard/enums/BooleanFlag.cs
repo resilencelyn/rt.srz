@@ -1,23 +1,32 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BooleanFlag.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The boolean flag.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.database.business.standard.enums
 {
   /// <summary>
-  /// The boolean flag.
+  ///   The boolean flag.
   /// </summary>
   public enum BooleanFlag
   {
     /// <summary>
-    /// The unknown.
+    ///   The unknown.
     /// </summary>
-    Unknown,
+    Unknown, 
 
     /// <summary>
-    /// The false.
+    ///   The false.
     /// </summary>
-    False,
+    False, 
 
     /// <summary>
-    /// The true.
+    ///   The true.
     /// </summary>
-    True,
+    True, 
   }
 }

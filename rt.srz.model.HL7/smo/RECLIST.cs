@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RECLIST.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="RECLIST.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The rec list type.
@@ -50,6 +50,13 @@ namespace rt.srz.model.HL7.smo
     public int Nrecords { get; set; }
 
     /// <summary>
+    ///   Gets or sets the smocod.
+    /// </summary>
+    [XmlElement("PDPCODE", Order = 3)]
+    [DataMember(Name = "SMOCODE", Order = 3)]
+    public string Pdpcod { get; set; }
+
+    /// <summary>
     ///   Gets or sets the rec.
     /// </summary>
     [XmlElement("REC", Order = 7)]
@@ -62,13 +69,6 @@ namespace rt.srz.model.HL7.smo
     [XmlElement("SMOCOD", Order = 2)]
     [DataMember(Name = "SMOCOD", Order = 2)]
     public string Smocod { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the smocod.
-    /// </summary>
-    [XmlElement("PDPCODE", Order = 3)]
-    [DataMember(Name = "SMOCODE", Order = 3)]
-    public string Pdpcod { get; set; }
 
     /// <summary>
     ///   Gets or sets the start date.

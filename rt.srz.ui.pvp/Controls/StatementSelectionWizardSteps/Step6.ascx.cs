@@ -1,53 +1,65 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Step6.ascx.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Step6.ascx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web.UI.WebControls;
-using rt.srz.business.configuration.algorithms;
-using rt.srz.business.manager.cache;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.logicalcontrol;
-using rt.srz.model.srz;
-using rt.srz.model.srz.concepts;
-using rt.srz.services;
-using StructureMap;
-
-#endregion
-
 namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Globalization;
+  using System.Linq;
+  using System.Web.UI.WebControls;
+
+  using rt.srz.model.interfaces.service;
+  using rt.srz.model.logicalcontrol;
+  using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
+  using rt.srz.services;
+
+  using StructureMap;
+
   /// <summary>
-  /// The step 6.
+  ///   The step 6.
   /// </summary>
   public partial class Step6 : WizardStep
   {
-    private IStatementService _statementService; 
+    #region Fields
+
+    /// <summary>
+    ///   The statement service.
+    /// </summary>
+    private IStatementService statementService;
+
+    #endregion
 
     #region Properties
 
+    /// <summary>
+    /// Gets the previos statement id.
+    /// </summary>
     protected Guid? PreviosStatementId
     {
       get
       {
-        return Session[SessionConsts.CPreviosStatementId] != null ? (Guid?)Session[SessionConsts.CPreviosStatementId] : null;
+        return Session[SessionConsts.CPreviosStatementId] != null
+                 ? (Guid?)Session[SessionConsts.CPreviosStatementId]
+                 : null;
       }
     }
 
+    /// <summary>
+    /// Gets the polis end date.
+    /// </summary>
     private DateTime PolisEndDate
     {
       get
       {
         if (CurrentStatement.InsuredPersonData != null
-         && ((CurrentStatement.InsuredPersonData.Citizenship != null && CurrentStatement.InsuredPersonData.Citizenship.Id != Country.RUS)
-              || CurrentStatement.InsuredPersonData.Citizenship == null))
+            && ((CurrentStatement.InsuredPersonData.Citizenship != null
+                 && CurrentStatement.InsuredPersonData.Citizenship.Id != Country.RUS)
+                || CurrentStatement.InsuredPersonData.Citizenship == null))
         {
           var dateEnd = new DateTime(1900, 1, 1);
           if (CurrentStatement.DocumentUdl.DateExp.HasValue)
@@ -64,7 +76,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
           {
             if (PreviosStatementId.HasValue && PreviosStatementId.Value != Guid.Empty)
             {
-              var previousStatement = ObjectFactory.GetInstance<IStatementService>().GetStatement(PreviosStatementId.Value);
+              var previousStatement =
+                ObjectFactory.GetInstance<IStatementService>().GetStatement(PreviosStatementId.Value);
               var polis = previousStatement.PolisMedicalInsurance;
               if (polis != null)
               {
@@ -82,90 +95,134 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
     #endregion
 
-    #region #region IWizardStep implementation
+    #region Public Methods and Operators
 
     /// <summary>
-    /// Переносит данные из объекта в элементы на форме
+    ///   Проверка доступности элементов редактирования для ввода
+    /// </summary>
+    public override void CheckIsRightToEdit()
+    {
+      var propertyList = GetPropertyListForCheckIsRightToEdit();
+
+      // ВС
+      tbTemporaryCertificateNumber.Enabled = statementService.IsRightToEdit(
+                                                                            propertyList,
+                                                                            Utils.GetExpressionNode(x => x.MedicalInsurances[0].PolisNumber));
+      tbTemporaryCertificateDateIssue.Enabled = statementService.IsRightToEdit(
+                                                                               propertyList,
+                                                                               Utils.GetExpressionNode(x => x.MedicalInsurances[0].DateFrom));
+
+      tbPolicyNumber.MaxLength = CurrentStatement.FormManufacturing != null
+                                 && CurrentStatement.FormManufacturing.Id == PolisType.К ? 14 : 11;
+
+      if (CurrentStatement.AbsentPrevPolicy != null)
+      {
+        lbTemporaryCertificate.Visible =
+          tbTemporaryCertificateNumber.Visible =
+          lblTemporaryCertificateNumber.Visible =
+          tbTemporaryCertificateDateIssue.Visible =
+          lblTemporaryCertificateDateIssue.Visible = CurrentStatement.AbsentPrevPolicy.Value; /*NeedNewPolicy*/
+      }
+
+      if (CurrentStatement.CauseFiling != null)
+      {
+        // Полис
+        if (CauseReinsurance.IsReinsurance(CurrentStatement.CauseFiling.Id))
+        {
+          if (CurrentStatement.AbsentPrevPolicy.Value /*NeedNewPolicy*/)
+          {
+            chbPolicyIsIssued.Enabled = statementService.IsRightToEdit(
+                                                                       propertyList,
+                                                                       Utils.GetExpressionNode(x => x.PolicyIsIssued));
+          }
+          else
+          {
+            chbPolicyIsIssued.Enabled = false;
+            chbPolicyIsIssued.Checked = true;
+          }
+        }
+        else
+        {
+          if (CurrentStatement.CauseFiling.Id == CauseReneval.Edit)
+          {
+            chbPolicyIsIssued.Enabled = false;
+            chbPolicyIsIssued.Checked = true;
+          }
+          else
+          {
+            chbPolicyIsIssued.Enabled = statementService.IsRightToEdit(
+                                                                       propertyList,
+                                                                       Utils.GetExpressionNode(x => x.PolicyIsIssued));
+          }
+        }
+      }
+
+      tbEnpNumber.Enabled = chbPolicyIsIssued.Checked
+                            && statementService.IsRightToEdit(
+                                                              propertyList,
+                                                              Utils.GetExpressionNode(x => x.MedicalInsurances[1].Enp));
+      tbPolicyNumber.Enabled = chbPolicyIsIssued.Checked
+                               && statementService.IsRightToEdit(
+                                                                 propertyList,
+                                                                 Utils.GetExpressionNode(
+                                                                                         x =>
+                                                                                         x.MedicalInsurances[1]
+                                                                                           .PolisNumber));
+      tbPolicyDateIssue.Enabled = chbPolicyIsIssued.Checked
+                                  && statementService.IsRightToEdit(
+                                                                    propertyList,
+                                                                    Utils.GetExpressionNode(
+                                                                                            x =>
+                                                                                            x.MedicalInsurances[1]
+                                                                                              .DateFrom));
+
+      if (CurrentStatement.AbsentPrevPolicy != null)
+      {
+        if (!CurrentStatement.AbsentPrevPolicy.Value /*!NeedNewPolicy*/)
+        {
+          if (string.IsNullOrEmpty(tbPolicyDateIssue.Text))
+          {
+            tbPolicyDateIssue.Text = DateTime.Now.ToString("dd.MM.yyyy");
+          }
+
+          Parent.FindControl("FinishNavigationTemplateContainerID").FindControl("btnPrintTemporaryCertificate").Visible
+            = false;
+        }
+        else
+        {
+          Parent.FindControl("FinishNavigationTemplateContainerID").FindControl("btnPrintTemporaryCertificate").Visible
+            = true;
+        }
+      }
+    }
+
+    /// <summary>
+    ///   The copy date filling from step 1.
+    /// </summary>
+    public void CopyDateFillingFromStep1()
+    {
+      if (CurrentStatement.DateFiling.HasValue && string.IsNullOrEmpty(tbTemporaryCertificateDateIssue.Text))
+      {
+        tbTemporaryCertificateDateIssue.Text = CurrentStatement.DateFiling.Value.ToShortDateString();
+      }
+
+      if (string.IsNullOrEmpty(tbPolicyNumber.Text) && !string.IsNullOrEmpty(CurrentStatement.NumberPolicy))
+      {
+        tbEnpNumber.Text = CurrentStatement.NumberPolicy; // PoliceNumber;
+      }
+    }
+
+    /// <summary>
+    /// The move data from gui 2 object.
     /// </summary>
     /// <param name="statement">
     /// The statement.
     /// </param>
-    public override void MoveDataFromObject2GUI(Statement statement)
-    {
-      if (statement == null)
-        return;
-
-      if (statement.MedicalInsurances == null)
-      {
-        statement.MedicalInsurances = new List<MedicalInsurance>();
-      }
-
-      var temp = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id == PolisType.В);
-      if (temp != null)
-      {
-        // Номер ВС
-        tbTemporaryCertificateNumber.Text = temp.PolisNumber;
-
-        // Дата выдачи ВС
-        tbTemporaryCertificateDateIssue.Text = temp.DateFrom.ToShortDateString();
-      }
-
-      // Выдан полис
-      if (statement.PolicyIsIssued != null)
-      {
-        chbPolicyIsIssued.Checked = (bool)statement.PolicyIsIssued;
-      }
-
-      if (statement.MedicalInsurances == null)
-        return;
-
-      // Получаем полис
-      var policy = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id != PolisType.В);
-
-      // Текущим указываем запрошенный тип полиса
-      string polisType = PolisType.П.ToString(CultureInfo.InvariantCulture);
-      if (policy != null)
-      {
-        // Тип полиса
-        ddlPolicyType.SelectedValue = polisType = policy.PolisType.Id.ToString(CultureInfo.InvariantCulture);
-
-        // Номер бланка 
-        tbPolicyNumber.Text = policy.PolisNumber;
-
-        // Номер ЕНП
-        tbEnpNumber.Text = policy.Enp;
-
-        // Дата выдачи полиса на руки
-        tbPolicyDateIssue.Text = policy.DateFrom.ToShortDateString();
-
-        // Дата окончания действия полиса
-        tbPolicyDateEnd.Text = policy.DateTo.ToShortDateString();
-
-      }
-      else
-      {
-        if (statement.FormManufacturing != null)
-        {
-          ddlPolicyType.SelectedValue = polisType = statement.FormManufacturing.Id.ToString(CultureInfo.InvariantCulture);
-        }
-      }
-
-      hfRequestedPolicyType.Value = polisType;
-    }
-
-    /// <summary>
-    /// Переносит данные из элементов на форме в объект
-    /// </summary>
-    /// <param name="statement">
-    /// The statement. 
-    /// </param>
-    /// </summary>
     /// <param name="setCurrentStatement">
-    /// Обновлять ли свойство CurrentStatement после присвоения заявлению данных из дизайна 
+    /// The set current statement.
     /// </param>
     public override void MoveDataFromGui2Object(ref Statement statement, bool setCurrentStatement = true)
     {
-
       if (statement.MedicalInsurances == null)
       {
         statement.MedicalInsurances = new List<MedicalInsurance>(2);
@@ -196,11 +253,12 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
         // Дата выдачи ВС
         DateTime dateTime;
-        temp.DateFrom = !string.IsNullOrEmpty(tbTemporaryCertificateDateIssue.Text) && DateTime.TryParse(tbTemporaryCertificateDateIssue.Text, out dateTime)
-          ? dateTime
-          : new DateTime(1900, 1, 1);
+        temp.DateFrom = !string.IsNullOrEmpty(tbTemporaryCertificateDateIssue.Text)
+                        && DateTime.TryParse(tbTemporaryCertificateDateIssue.Text, out dateTime)
+                          ? dateTime
+                          : new DateTime(1900, 1, 1);
 
-        temp.DateTo = DateTymeHelper.CalculateEnPeriodWorkingDay(temp.DateFrom, 30);
+        temp.DateTo = statementService.CalculateEnPeriodWorkingDay(temp.DateFrom, 30);
         temp.DateStop = PolisEndDate != new DateTime(2200, 1, 1) ? (DateTime?)PolisEndDate : null;
       }
 
@@ -228,19 +286,19 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         // Дата выдачи ВС
         DateTime dateTime;
         polis.DateFrom = !string.IsNullOrEmpty(tbPolicyDateIssue.Text)
-                                              && DateTime.TryParse(tbPolicyDateIssue.Text, out dateTime)
-                                              ? dateTime
-                                              : new DateTime(2011, 1, 1);
+                         && DateTime.TryParse(tbPolicyDateIssue.Text, out dateTime)
+                           ? dateTime
+                           : new DateTime(2011, 1, 1);
 
         // Дата окончания действия
         polis.DateTo = !string.IsNullOrEmpty(tbPolicyDateEnd.Text)
-                                              && DateTime.TryParse(tbPolicyDateEnd.Text, out dateTime)
-                                              ? dateTime
-                                              : new DateTime(2200, 1, 1);
+                       && DateTime.TryParse(tbPolicyDateEnd.Text, out dateTime)
+                         ? dateTime
+                         : new DateTime(2200, 1, 1);
         polis.DateStop = null;
       }
 
-      //сохранение изменений в сессию
+      // сохранение изменений в сессию
       if (setCurrentStatement)
       {
         CurrentStatement = statement;
@@ -248,87 +306,80 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     }
 
     /// <summary>
-    ///   Проверка доступности элементов редактирования для ввода
+    /// Переносит данные из объекта в элементы на форме
     /// </summary>
-    public override void CheckIsRightToEdit()
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    public override void MoveDataFromObject2GUI(Statement statement)
     {
-      var propertyList = GetPropertyListForCheckIsRightToEdit();
-
-      // ВС
-      var statementService = ObjectFactory.GetInstance<IStatementService>();
-      tbTemporaryCertificateNumber.Enabled = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.MedicalInsurances[0].PolisNumber));
-      tbTemporaryCertificateDateIssue.Enabled = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.MedicalInsurances[0].DateFrom));
-
-      tbPolicyNumber.MaxLength = CurrentStatement.FormManufacturing != null && CurrentStatement.FormManufacturing.Id /*PolicyType*/ == PolisType.К ? 14 : 11;
-
-      if (CurrentStatement.AbsentPrevPolicy != null)
+      if (statement == null)
       {
-      lbTemporaryCertificate.Visible =
-      tbTemporaryCertificateNumber.Visible =
-      lblTemporaryCertificateNumber.Visible =
-      tbTemporaryCertificateDateIssue.Visible =
-          lblTemporaryCertificateDateIssue.Visible = CurrentStatement.AbsentPrevPolicy.Value; /*NeedNewPolicy*/
+        return;
       }
 
-      if (CurrentStatement.CauseFiling != null)
+      if (statement.MedicalInsurances == null)
       {
-      // Полис
-      if (CauseReinsurance.IsReinsurance(CurrentStatement.CauseFiling.Id))
-      {
-        if (CurrentStatement.AbsentPrevPolicy.Value /*NeedNewPolicy*/)
-        {
-            chbPolicyIsIssued.Enabled = statementService.IsRightToEdit(
-              propertyList, Utils.GetExpressionNode(x => x.PolicyIsIssued));
-        }
-        else
-        {
-          chbPolicyIsIssued.Enabled = false;
-          chbPolicyIsIssued.Checked = true;
-        }
-      }
-      else
-      {
-        if (CurrentStatement.CauseFiling.Id == CauseReneval.Edit)
-        {
-          chbPolicyIsIssued.Enabled = false;
-          chbPolicyIsIssued.Checked = true;
-        }
-        else
-        {
-          chbPolicyIsIssued.Enabled = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.PolicyIsIssued));
-        }
-      }
+        statement.MedicalInsurances = new List<MedicalInsurance>();
       }
 
-      tbEnpNumber.Enabled = chbPolicyIsIssued.Checked && statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.MedicalInsurances[1].Enp));
-      tbPolicyNumber.Enabled = chbPolicyIsIssued.Checked && statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.MedicalInsurances[1].PolisNumber));
-      tbPolicyDateIssue.Enabled = chbPolicyIsIssued.Checked && statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.MedicalInsurances[1].DateFrom));
-
-      if (CurrentStatement.AbsentPrevPolicy != null)
+      var temp = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id == PolisType.В);
+      if (temp != null)
       {
-      if (!CurrentStatement.AbsentPrevPolicy.Value /*!NeedNewPolicy*/)
-      {
-        if (string.IsNullOrEmpty(tbPolicyDateIssue.Text))
-        {
-          tbPolicyDateIssue.Text = DateTime.Now.ToString("dd.MM.yyyy");
-        }
+        // Номер ВС
+        tbTemporaryCertificateNumber.Text = temp.PolisNumber;
 
-          Parent.FindControl("FinishNavigationTemplateContainerID").FindControl("btnPrintTemporaryCertificate").Visible
-            = false;
+        // Дата выдачи ВС
+        tbTemporaryCertificateDateIssue.Text = temp.DateFrom.ToShortDateString();
+      }
+
+      // Выдан полис
+      if (statement.PolicyIsIssued != null)
+      {
+        chbPolicyIsIssued.Checked = (bool)statement.PolicyIsIssued;
+      }
+
+      if (statement.MedicalInsurances == null)
+      {
+        return;
+      }
+
+      // Получаем полис
+      var policy = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id != PolisType.В);
+
+      // Текущим указываем запрошенный тип полиса
+      var polisType = PolisType.П.ToString(CultureInfo.InvariantCulture);
+      if (policy != null)
+      {
+        // Тип полиса
+        ddlPolicyType.SelectedValue = polisType = policy.PolisType.Id.ToString(CultureInfo.InvariantCulture);
+
+        // Номер бланка 
+        tbPolicyNumber.Text = policy.PolisNumber;
+
+        // Номер ЕНП
+        tbEnpNumber.Text = policy.Enp;
+
+        // Дата выдачи полиса на руки
+        tbPolicyDateIssue.Text = policy.DateFrom.ToShortDateString();
+
+        // Дата окончания действия полиса
+        tbPolicyDateEnd.Text = policy.DateTo.ToShortDateString();
       }
       else
       {
-        Parent.FindControl("FinishNavigationTemplateContainerID").FindControl("btnPrintTemporaryCertificate").Visible = true;
+        if (statement.FormManufacturing != null)
+        {
+          ddlPolicyType.SelectedValue =
+            polisType = statement.FormManufacturing.Id.ToString(CultureInfo.InvariantCulture);
+        }
       }
-    }
-    }
 
-    #endregion
-
-    #region Events
+      hfRequestedPolicyType.Value = polisType;
+    }
 
     /// <summary>
-    /// Установка фокуса на контрол при смене шага
+    ///   Установка фокуса на контрол при смене шага
     /// </summary>
     public override void SetDefaultFocus()
     {
@@ -345,11 +396,30 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       }
     }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The page_ init.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _statementService = ObjectFactory.GetInstance<IStatementService>();
-      ddlPolicyType.Items.AddRange(_statementService.GetFormManufacturingByCauseFilling(-1).Select(
-          x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
+      statementService = ObjectFactory.GetInstance<IStatementService>();
+      ddlPolicyType.Items.AddRange(
+                                   statementService.GetFormManufacturingByCauseFilling(-1)
+                                                   .Select(
+                                                           x =>
+                                                           new ListItem(
+                                                             x.Name,
+                                                             x.Id.ToString(CultureInfo.InvariantCulture)))
+                                                   .ToArray());
     }
 
     /// <summary>
@@ -363,22 +433,28 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void Page_Load(object sender, EventArgs e)
     {
+      statementService = ObjectFactory.GetInstance<IStatementService>();
       CheckIsRightToEdit();
 
       if (!IsPostBack)
+      {
         return;
+      }
 
       if (CurrentStatement.FormManufacturing == null)
+      {
         return;
+      }
 
       // Пытаемся получить редактируемое заявление, и проверить наличие уже имеющегося полиса
-      var _statementService = ObjectFactory.GetInstance<IStatementService>();
-      Guid tempStatementId = Guid.Empty;
-      //Guid.TryParse(StatementId, out tempStatementId);
+      ////var _statementService = ObjectFactory.GetInstance<IStatementService>();
+      ////var tempStatementId = Guid.Empty;
+
+      // Guid.TryParse(StatementId, out tempStatementId);
       MedicalInsurance polis = null;
-      if (CurrentStatement.Id != Guid.Empty/* tempStatementId != null*/)
+      if (CurrentStatement.Id != Guid.Empty /* tempStatementId != null*/)
       {
-        //var statement = _statementService.GetStatement(tempStatementId);
+        // var statement = _statementService.GetStatement(tempStatementId);
         if (CurrentStatement != null && CurrentStatement.MedicalInsurances != null)
         {
           polis = CurrentStatement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id != PolisType.В);
@@ -400,7 +476,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         }
         else
         {
-          ddlPolicyType.SelectedValue = polisType = CurrentStatement.FormManufacturing.Id.ToString(CultureInfo.InvariantCulture);
+          ddlPolicyType.SelectedValue =
+            polisType = CurrentStatement.FormManufacturing.Id.ToString(CultureInfo.InvariantCulture);
         }
       }
 
@@ -416,32 +493,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       }
     }
 
-    #endregion
-
-    #region Methods
-
     /// <summary>
-    /// The copy date filling from step 1.
-    /// </summary>
-    public void CopyDateFillingFromStep1()
-    {
-      if (CurrentStatement.DateFiling.HasValue && string.IsNullOrEmpty(tbTemporaryCertificateDateIssue.Text))
-      {
-        tbTemporaryCertificateDateIssue.Text = CurrentStatement.DateFiling.Value.ToShortDateString();
-      }
-
-      if (string.IsNullOrEmpty(tbPolicyNumber.Text) && !string.IsNullOrEmpty(CurrentStatement.NumberPolicy))
-      {
-        tbEnpNumber.Text = CurrentStatement.NumberPolicy;//PoliceNumber;
-      }
-    }
-
-    #endregion
-
-    #region Validators
-
-    /// <summary>
-    /// The validate temporary certificate number.
+    /// The validate enp number.
     /// </summary>
     /// <param name="source">
     /// The source.
@@ -449,16 +502,88 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <param name="args">
     /// The args.
     /// </param>
-    protected void ValidateTemporaryCertificateNumber(object source, ServerValidateEventArgs args)
+    protected void ValidateEnpNumber(object source, ServerValidateEventArgs args)
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.MedicalInsurances[0].PolisNumber));
+        statementService.CheckPropertyStatement(
+                                                CurrentStatement,
+                                                Utils.GetExpressionNode(x => x.MedicalInsurances[1].Enp));
+      }
+      catch (LogicalControlException ex)
+      {
+        args.IsValid = false;
+        cvEnpNumber.Text = ex.GetAllMessages();
+      }
+    }
+
+    /// <summary>
+    /// The validate policy date issue.
+    /// </summary>
+    /// <param name="source">
+    /// The source.
+    /// </param>
+    /// <param name="args">
+    /// The args.
+    /// </param>
+    protected void ValidatePolicyDateIssue(object source, ServerValidateEventArgs args)
+    {
+      try
+      {
+        statementService.CheckPropertyStatement(
+                                                CurrentStatement,
+                                                Utils.GetExpressionNode(x => x.MedicalInsurances[1].DateFrom));
+      }
+      catch (LogicalControlException ex)
+      {
+        args.IsValid = false;
+        cvPolicyDateIssue.Text = ex.GetAllMessages();
+      }
+    }
+
+    /// <summary>
+    /// The validate policy number.
+    /// </summary>
+    /// <param name="source">
+    /// The source.
+    /// </param>
+    /// <param name="args">
+    /// The args.
+    /// </param>
+    protected void ValidatePolicyNumber(object source, ServerValidateEventArgs args)
+    {
+      try
+      {
+        statementService.CheckPropertyStatement(
+                                                CurrentStatement,
+                                                Utils.GetExpressionNode(x => x.MedicalInsurances[1].PolisNumber));
       }
       catch (LogicalControlException e)
       {
         args.IsValid = false;
-        cvTemporaryCertificateNumber.Text = e.GetAllMessages();
+        cvPolicyNumber.Text = e.GetAllMessages();
+      }
+    }
+
+    /// <summary>
+    /// The validate policy type.
+    /// </summary>
+    /// <param name="source">
+    /// The source.
+    /// </param>
+    /// <param name="args">
+    /// The args.
+    /// </param>
+    protected void ValidatePolicyType(object source, ServerValidateEventArgs args)
+    {
+      try
+      {
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.FormManufacturing.Id));
+      }
+      catch (LogicalControlException ex)
+      {
+        args.IsValid = false;
+        cvPolicyType.Text = ex.GetAllMessages();
       }
     }
 
@@ -475,7 +600,9 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.MedicalInsurances[0].DateFrom));
+        statementService.CheckPropertyStatement(
+                                                CurrentStatement,
+                                                Utils.GetExpressionNode(x => x.MedicalInsurances[0].DateFrom));
       }
       catch (LogicalControlException e)
       {
@@ -485,74 +612,26 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     }
 
     /// <summary>
-    /// 
+    /// The validate temporary certificate number.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="args"></param>
-    protected void ValidatePolicyType(object source, ServerValidateEventArgs args)
+    /// <param name="source">
+    /// The source.
+    /// </param>
+    /// <param name="args">
+    /// The args.
+    /// </param>
+    protected void ValidateTemporaryCertificateNumber(object source, ServerValidateEventArgs args)
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.FormManufacturing.Id));
-      }
-      catch (LogicalControlException ex)
-      {
-        args.IsValid = false;
-        cvPolicyType.Text = ex.GetAllMessages();
-      }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <param name="args"></param>
-    protected void ValidatePolicyNumber(object source, ServerValidateEventArgs args)
-    {
-      try
-      {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.MedicalInsurances[1].PolisNumber));
+        statementService.CheckPropertyStatement(
+                                                CurrentStatement,
+                                                Utils.GetExpressionNode(x => x.MedicalInsurances[0].PolisNumber));
       }
       catch (LogicalControlException e)
       {
         args.IsValid = false;
-        cvPolicyNumber.Text = e.GetAllMessages();
-      }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <param name="args"></param>
-    protected void ValidateEnpNumber(object source, ServerValidateEventArgs args)
-    {
-      try
-      {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.MedicalInsurances[1].Enp));
-      }
-      catch (LogicalControlException ex)
-      {
-        args.IsValid = false;
-        cvEnpNumber.Text = ex.GetAllMessages();
-      }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <param name="args"></param>
-    protected void ValidatePolicyDateIssue(object source, ServerValidateEventArgs args)
-    {
-      try
-      {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.MedicalInsurances[1].DateFrom));
-      }
-      catch (LogicalControlException ex)
-      {
-        args.IsValid = false;
-        cvPolicyDateIssue.Text = ex.GetAllMessages();
+        cvTemporaryCertificateNumber.Text = e.GetAllMessages();
       }
     }
 

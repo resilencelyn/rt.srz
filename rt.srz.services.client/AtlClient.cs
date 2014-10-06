@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AtlClient.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="AtlClient.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The atl client.
@@ -11,12 +11,14 @@ namespace rt.srz.services.client
 {
   #region references
 
+  using System.Collections.Generic;
+
   using Quartz;
+
   using rt.atl.model.dto;
   using rt.atl.model.interfaces.Service;
   using rt.core.model.dto;
   using rt.core.services.registry;
-  using System.Collections.Generic;
 
   #endregion
 
@@ -28,35 +30,23 @@ namespace rt.srz.services.client
     #region Public Methods and Operators
 
     /// <summary>
-    ///   The run export to pvp.
+    ///   The flag exported prz buff.
     /// </summary>
-    public void RunExportToPvp(IJobExecutionContext context)
+    public void FlagExportedPrzBuff()
     {
-      InvokeInterceptors(() => Service.RunExportToPvp(context));
-    }
-
-    /// <summary>
-    ///   The run export to srz.
-    /// </summary>
-    public void RunExportToSrz(IJobExecutionContext context)
-    {
-      InvokeInterceptors(() => Service.RunExportToSrz(context));
-    }
-
-    /// <summary>
-    ///   The run sinhronize nsi.
-    /// </summary>
-    public void RunSinhronizeNsi(IJobExecutionContext context)
-    {
-      InvokeInterceptors(() => Service.RunSinhronizeNsi(context));
+      InvokeInterceptors(() => Service.FlagExportedPrzBuff());
     }
 
     /// <summary>
     /// Получает список ошибок синхронизации
     /// </summary>
-    /// <param name="criteria"></param>
-    /// <returns></returns>
-    public SearchResult<ErrorSinchronizationInfoResult> GetErrorSinchronizationInfoList(SearchErrorSinchronizationCriteria criteria)
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/>.
+    /// </returns>
+    public SearchResult<ErrorSinchronizationInfoResult> GetErrorSinchronizationInfoList(
+      SearchErrorSinchronizationCriteria criteria)
     {
       return InvokeInterceptors(() => Service.GetErrorSinchronizationInfoList(criteria));
     }
@@ -64,18 +54,45 @@ namespace rt.srz.services.client
     /// <summary>
     /// Статистика первичной загрузки
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
     public IList<StatisticInitialLoading> GetStatisticInitialLoading()
     {
       return InvokeInterceptors(() => Service.GetStatisticInitialLoading());
     }
 
     /// <summary>
-    /// The flag exported prz buff.
+    /// The run export to pvp.
     /// </summary>
-    public void FlagExportedPrzBuff()
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    public void RunExportToPvp(IJobExecutionContext context)
     {
-      InvokeInterceptors(() => Service.FlagExportedPrzBuff());
+      InvokeInterceptors(() => Service.RunExportToPvp(context));
+    }
+
+    /// <summary>
+    /// The run export to srz.
+    /// </summary>
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    public void RunExportToSrz(IJobExecutionContext context)
+    {
+      InvokeInterceptors(() => Service.RunExportToSrz(context));
+    }
+
+    /// <summary>
+    /// The run sinhronize nsi.
+    /// </summary>
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    public void RunSinhronizeNsi(IJobExecutionContext context)
+    {
+      InvokeInterceptors(() => Service.RunSinhronizeNsi(context));
     }
 
     #endregion

@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorBirthdateFuture.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorBirthdateFuture.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The validator birthdate future.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager.logicalcontrol.simple
@@ -15,7 +18,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   #endregion
 
   /// <summary>
-  /// The validator birthdate future.
+  ///   The validator birthdate future.
   /// </summary>
   public class ValidatorBirthdateFuture : CheckDateFutureProperty
   {
@@ -37,7 +40,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {

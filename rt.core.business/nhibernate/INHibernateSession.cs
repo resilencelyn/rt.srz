@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="INHibernateSession.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="INHibernateSession.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The NHibernateSession interface.
@@ -26,17 +26,17 @@ namespace rt.core.business.nhibernate
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets a value indicating whether auto close session.
+    ///   Gets or sets a value indicating whether auto close session.
     /// </summary>
     bool AutoCloseSession { get; set; }
 
     /// <summary>
-    /// Gets a value indicating whether has open transaction.
+    ///   Gets a value indicating whether has open transaction.
     /// </summary>
     bool HasOpenTransaction { get; }
 
     /// <summary>
-    /// Gets a value indicating whether is open.
+    ///   Gets a value indicating whether is open.
     /// </summary>
     bool IsOpen { get; }
 
@@ -45,51 +45,54 @@ namespace rt.core.business.nhibernate
     #region Public Methods and Operators
 
     /// <summary>
-    /// The begin transaction.
+    ///   The begin transaction.
     /// </summary>
     void BeginTransaction();
 
     /// <summary>
-    /// The close.
+    ///   The close.
     /// </summary>
     void Close();
 
     /// <summary>
-    /// The commit changes.
+    ///   The commit changes.
     /// </summary>
     void CommitChanges();
 
     /// <summary>
-    /// The commit transaction.
+    ///   The commit transaction.
     /// </summary>
     void CommitTransaction();
 
     /// <summary>
-    /// The decrement ref count.
+    ///   The decrement ref count.
     /// </summary>
     void DecrementRefCount();
 
     /// <summary>
-    /// The get i session.
+    ///   The get i session.
     /// </summary>
     /// <returns>
-    /// The <see cref="ISession"/>.
+    ///   The <see cref="ISession" />.
     /// </returns>
     ISession GetISession();
 
     /// <summary>
-    /// The increment ref count.
+    ///   The increment ref count.
     /// </summary>
     void IncrementRefCount();
 
+    // Properties
     /// <summary>
-    /// The rollback transaction.
+    /// The reopen session.
+    /// </summary>
+    void ReopenSession();
+
+    /// <summary>
+    ///   The rollback transaction.
     /// </summary>
     void RollbackTransaction();
 
     #endregion
-
-    // Properties
-    void ReopenSession();
   }
 }

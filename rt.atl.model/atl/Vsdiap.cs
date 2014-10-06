@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Vsdiap.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Vsdiap.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Vsdiap.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.atl
 {
   /// <summary>
-  /// The Vsdiap.
+  ///   The Vsdiap.
   /// </summary>
-  public partial class Vsdiap 
+  public partial class Vsdiap
   {
   }
 }

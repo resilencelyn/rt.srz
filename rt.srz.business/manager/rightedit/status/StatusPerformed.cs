@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatusPerformed.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatusPerformed.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Исподняется
@@ -47,12 +47,12 @@ namespace rt.srz.business.manager.rightedit.status
       get
       {
         return new List<Expression<Func<Statement, object>>>
-                 {
-                   x => x.PolicyIsIssued, 
-                   x => x.MedicalInsurances[1].Enp,
-                   x => x.MedicalInsurances[1].PolisNumber, 
-                   x => x.MedicalInsurances[1].DateFrom
-                 };
+               {
+                 x => x.PolicyIsIssued, 
+                 x => x.MedicalInsurances[1].Enp, 
+                 x => x.MedicalInsurances[1].PolisNumber, 
+                 x => x.MedicalInsurances[1].DateFrom
+               };
       }
     }
 

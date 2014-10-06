@@ -17,10 +17,10 @@ namespace rt.srz.ui.pvp.Controls
   using System.Web.UI;
   using System.Web.UI.WebControls;
 
+  using rt.core.model;
   using rt.core.model.dto;
+  using rt.core.model.interfaces;
   using rt.core.model.security;
-  using rt.srz.business.manager;
-  using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
   using rt.srz.model.dto;
   using rt.srz.model.enumerations;
@@ -642,7 +642,7 @@ namespace rt.srz.ui.pvp.Controls
                      {
                        new MedicalInsurance
                        {
-                         PolisType = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(PolisType.В), 
+                         PolisType = StatementService.GetConcept(PolisType.В), 
                          PolisNumber = tbTemporaryCertificateNumber.Text
                        }
                      }

@@ -1,25 +1,27 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FieldLengthException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FieldLengthException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The field length exception.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Runtime.Serialization;
-
-using rt.srz.model.Properties;
-
 namespace rt.srz.model.logicalcontrol.exceptions
 {
+  using System;
+  using System.Runtime.Serialization;
+
+  using rt.srz.model.Properties;
+
   /// <summary>
-  /// The field length exception.
+  ///   The field length exception.
   /// </summary>
   [Serializable]
   public class FieldLengthException : LogicalControlException
   {
+    #region Constructors and Destructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="FieldLengthException"/> class.
     /// </summary>
@@ -27,7 +29,9 @@ namespace rt.srz.model.logicalcontrol.exceptions
     /// The field name.
     /// </param>
     public FieldLengthException(string fieldName)
-      : base(new ExceptionInfo(Resource.FaultFieldLengthExceptionCode), string.Format(Resource.FaultFieldLengthExceptionMessage, fieldName))
+      : base(
+        new ExceptionInfo(Resource.FaultFieldLengthExceptionCode), 
+        string.Format(Resource.FaultFieldLengthExceptionMessage, fieldName))
     {
     }
 
@@ -45,21 +49,31 @@ namespace rt.srz.model.logicalcontrol.exceptions
     {
     }
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
     ///   Gets or sets the info.
     /// </summary>
     [DataMember]
     public ExceptionInfo Info { get; set; }
 
+    #endregion
+
+    #region Methods
+
     /// <summary>
-    /// The step.
+    ///   The step.
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     protected override int Step()
     {
       return 6;
     }
+
+    #endregion
   }
 }

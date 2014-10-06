@@ -1,40 +1,62 @@
-﻿#region
-
-using System;
-using System.Collections.Generic;
-
-using rt.core.services.aspects;
-using rt.srz.model.enumerations;
-using rt.srz.model.interfaces.service;
-using rt.srz.model.interfaces.service.uir;
-using rt.srz.model.srz;
-
-
-#endregion
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UirGateInternal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The uir gate internal.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.services.Uir
 {
-    public class UirGateInternal :InterceptedBase, IUirService
+  using rt.core.services.aspects;
+  using rt.srz.model.interfaces.service;
+  using rt.srz.model.interfaces.service.uir;
+
+  /// <summary>
+  /// The uir gate internal.
+  /// </summary>
+  public class UirGateInternal : InterceptedBase, IUirService
+  {
+    #region Fields
+
+    /// <summary>
+    ///   The service.
+    /// </summary>
+    private readonly IUirService Service = new UirService();
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The get med ins state.
+    /// </summary>
+    /// <param name="request">
+    /// The request.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Response"/>.
+    /// </returns>
+    public Response GetMedInsState(Request request)
     {
-        #region Fields
-
-        /// <summary>
-        ///   The service.
-        /// </summary>
-        private readonly IUirService Service = new UirService();
-
-        #endregion
-
-        #region Public Methods and Operators
-        public Response GetMedInsState(Request request)
-        {
-            return InvokeInterceptors(() => Service.GetMedInsState(request));
-        }
-
-        public Response GetMedInsState2(Request2 request)
-        {
-            return InvokeInterceptors(() => Service.GetMedInsState2(request));
-        }
-        #endregion
+      return InvokeInterceptors(() => Service.GetMedInsState(request));
     }
+
+    /// <summary>
+    /// The get med ins state 2.
+    /// </summary>
+    /// <param name="request">
+    /// The request.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Response"/>.
+    /// </returns>
+    public Response GetMedInsState2(Request2 request)
+    {
+      return InvokeInterceptors(() => Service.GetMedInsState2(request));
+    }
+
+    #endregion
+  }
 }

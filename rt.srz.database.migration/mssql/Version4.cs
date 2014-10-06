@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Version2.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Version4.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The kladr migrator v 2.
@@ -12,33 +12,23 @@ namespace rt.srz.database.mssql
   using ECM7.Migrator.Framework;
 
   /// <summary>
-  /// The kladr migrator v 2.
+  ///   The kladr migrator v 2.
   /// </summary>
   [Migration(4)]
   public class Version4 : Migration
   {
+    #region Public Methods and Operators
+
     /// <summary>
-    /// The apply.
+    ///   The apply.
     /// </summary>
     public override void Apply()
     {
-      var tableMedIns = new SchemaQualifiedObjectName
-      {
-        Schema = "dbo",
-        Name = "MedicalInsurance"
-      };
+      var tableMedIns = new SchemaQualifiedObjectName { Schema = "dbo", Name = "MedicalInsurance" };
 
-      var tableInsuredPerson = new SchemaQualifiedObjectName
-      {
-        Schema = "dbo",
-        Name = "InsuredPerson"
-      };
+      var tableInsuredPerson = new SchemaQualifiedObjectName { Schema = "dbo", Name = "InsuredPerson" };
 
-      var tablePeriodIns = new SchemaQualifiedObjectName
-      {
-        Schema = "dbo",
-        Name = "PeriodInsurance"
-      };
+      var tablePeriodIns = new SchemaQualifiedObjectName { Schema = "dbo", Name = "PeriodInsurance" };
 
       if (Database.ColumnExists(tableMedIns, "InsuredPersonId") && Database.TableExists(tablePeriodIns))
       {
@@ -48,8 +38,15 @@ set StateDateFrom = t.StateDateFrom,
     InsuredPersonId = t.InsuredPersonId
 from PeriodInsurance t
 where MedicalInsurance.RowId = t.MedicalInsuranceId");
-        Database.AddForeignKey("FK_MedicalInsurance_InsuredPerson", tableMedIns,"InsuredPersonId" , tableInsuredPerson, "RowId");
+        Database.AddForeignKey(
+                               "FK_MedicalInsurance_InsuredPerson", 
+                               tableMedIns, 
+                               "InsuredPersonId", 
+                               tableInsuredPerson, 
+                               "RowId");
       }
     }
+
+    #endregion
   }
 }

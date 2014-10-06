@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultTemporaryCertificateDateIssueException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultTemporaryCertificateDateIssueException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault temporary certificate date issue exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault temporary certificate date issue exception.
+  ///   The fault temporary certificate date issue exception.
   /// </summary>
   [Serializable]
   public class FaultTemporaryCertificateDateIssueException : FaultStep6
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultTemporaryCertificateDateIssueException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultTemporaryCertificateDateIssueException" /> class.
     /// </summary>
     public FaultTemporaryCertificateDateIssueException()
       : base(

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorRegistrationAddress.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorRegistrationAddress.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator registration address.
@@ -15,6 +15,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using rt.srz.business.Properties;
   using rt.srz.model.logicalcontrol.exceptions.step3;
+  using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   #endregion
@@ -30,7 +31,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorRegistrationAddress"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorRegistrationAddress(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.Address)
@@ -42,7 +43,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -52,13 +53,17 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       }
     }
 
+    #endregion
+
+    #region Public Methods and Operators
+
     /// <summary>
     /// The check object.
     /// </summary>
     /// <param name="statement">
     /// The statement.
     /// </param>
-    public override void CheckObject(model.srz.Statement statement)
+    public override void CheckObject(Statement statement)
     {
       // Если бомж, то проверку пропускаем
       if (statement.Address.IsHomeless.HasValue && statement.Address.IsHomeless.Value)
@@ -67,8 +72,9 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       }
 
       base.CheckObject(statement);
-      
-      if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization && !statement.Address.DateRegistration.HasValue)
+
+      if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization
+          && !statement.Address.DateRegistration.HasValue)
       {
         throw new FaultDateRegistration();
       }

@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatch.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatch.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The export batch.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.exchange.export
@@ -13,8 +16,8 @@ namespace rt.core.business.server.exchange.export
 
   using NHibernate;
 
-  using rt.core.business.configuration;
   using rt.core.business.interfaces.exchange;
+  using rt.core.model.configuration;
 
   using StructureMap;
 
@@ -28,10 +31,11 @@ namespace rt.core.business.server.exchange.export
     #region Constructors and Destructors
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ExportBatch"/> class. 
     /// Конструктор
     /// </summary>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     protected ExportBatch(ExportBatchType type)
     {
@@ -53,26 +57,6 @@ namespace rt.core.business.server.exchange.export
     ///   Идентификатор пакета
     /// </summary>
     public Guid BatchId { get; protected set; }
-
-    /// <summary>
-    /// Получатель пакета
-    /// </summary>
-    public Guid SenderId { get; set; }
-
-    /// <summary>
-    /// Получатель пакета
-    /// </summary>
-    public Guid ReceiverId { get; set; }
-
-    /// <summary>
-    /// Период
-    /// </summary>
-    public Guid PeriodId { get; set; }
-
-    /// <summary>
-    /// Номер
-    /// </summary>
-    public short Number { get; set; }
 
     /// <summary>
     ///   Директория для сохранения истории
@@ -106,14 +90,34 @@ namespace rt.core.business.server.exchange.export
     public int MaxCountMessageInBatchSession { get; set; }
 
     /// <summary>
+    ///   Номер
+    /// </summary>
+    public short Number { get; set; }
+
+    /// <summary>
     ///   Директория для выгрузки
     /// </summary>
     public virtual string OutDirectory { get; set; }
 
     /// <summary>
+    ///   Период
+    /// </summary>
+    public Guid PeriodId { get; set; }
+
+    /// <summary>
+    ///   Получатель пакета
+    /// </summary>
+    public Guid ReceiverId { get; set; }
+
+    /// <summary>
     ///   Gets or sets the root directory.
     /// </summary>
     public string RootDirectory { get; set; }
+
+    /// <summary>
+    ///   Получатель пакета
+    /// </summary>
+    public Guid SenderId { get; set; }
 
     /// <summary>
     ///   Сессия
@@ -199,7 +203,10 @@ namespace rt.core.business.server.exchange.export
       if (fileInfo.Exists)
       {
         var dir = string.Format(
-          @"{0}\{1}\{2}", ConfigManager.ExchangeSettings.WorkingFolderExchange, OutDirectory, CopyDirectory);
+                                @"{0}\{1}\{2}", 
+                                ConfigManager.ExchangeSettings.WorkingFolderExchange, 
+                                OutDirectory, 
+                                CopyDirectory);
         if (!Directory.Exists(dir))
         {
           Directory.CreateDirectory(dir);

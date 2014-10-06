@@ -1,21 +1,30 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Batch.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Batch.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Batch.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   using System.Xml.Serialization;
 
-  using rt.core.business.interfaces.exchange;
+  using rt.core.model.interfaces;
+
   using CodeConfirmEn = rt.srz.model.srz.concepts.CodeConfirm;
 
   /// <summary>
-  /// The Batch.
+  ///   The Batch.
   /// </summary>
   public partial class Batch : IBatch
   {
+    #region Public Properties
+
+    /// <summary>
+    /// Gets the status description.
+    /// </summary>
     [XmlIgnore]
     public virtual string StatusDescription
     {
@@ -25,15 +34,19 @@ namespace rt.srz.model.srz
         {
           return null;
         }
+
         switch (CodeConfirm.Id)
         {
           case CodeConfirmEn.AA:
             return "Обработан";
           case CodeConfirmEn.AE:
             return "Ошибка обработки";
-          default: return null;
+          default:
+            return null;
         }
       }
     }
+
+    #endregion
   }
 }

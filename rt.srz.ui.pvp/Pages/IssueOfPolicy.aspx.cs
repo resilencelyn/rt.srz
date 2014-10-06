@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using rt.srz.business.manager;
+
 using rt.srz.model.interfaces.service;
 using rt.srz.model.logicalcontrol;
 using rt.srz.model.srz;
@@ -16,6 +16,7 @@ using StructureMap;
 
 namespace rt.srz.ui.pvp.Pages
 {
+  using rt.core.model.interfaces;
   using rt.srz.model.logicalcontrol.exceptions.step6;
   using rt.srz.ui.pvp.Controls;
 

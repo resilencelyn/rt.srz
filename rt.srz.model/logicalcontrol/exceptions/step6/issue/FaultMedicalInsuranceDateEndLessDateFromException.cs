@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultMedicalInsuranceDateEndLessDateFromException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultMedicalInsuranceDateEndLessDateFromException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault medical insurance date end less date from exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault medical insurance date end less date from exception.
+  ///   The fault medical insurance date end less date from exception.
   /// </summary>
   [Serializable]
   public class FaultMedicalInsuranceDateEndLessDateFromException : FaultIssue
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultMedicalInsuranceDateEndLessDateFromException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultMedicalInsuranceDateEndLessDateFromException" /> class.
     /// </summary>
     public FaultMedicalInsuranceDateEndLessDateFromException()
       : base(

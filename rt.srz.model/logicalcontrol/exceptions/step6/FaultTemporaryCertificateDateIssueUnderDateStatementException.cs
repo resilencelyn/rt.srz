@@ -1,12 +1,19 @@
-﻿namespace rt.srz.model.logicalcontrol.exceptions.step6
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaultTemporaryCertificateDateIssueUnderDateStatementException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The fault temporary certificate date issue exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.model.logicalcontrol.exceptions.step6
 {
   using System;
   using System.Runtime.Serialization;
 
-  using rt.srz.model.Properties;
-
   /// <summary>
-  /// The fault temporary certificate date issue exception.
+  ///   The fault temporary certificate date issue exception.
   /// </summary>
   [Serializable]
   public class FaultTemporaryCertificateDateIssueUnderDateStatementException : FaultStep6
@@ -14,12 +21,10 @@
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultTemporaryCertificateDateIssueUnderDateStatementException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultTemporaryCertificateDateIssueUnderDateStatementException" /> class.
     /// </summary>
     public FaultTemporaryCertificateDateIssueUnderDateStatementException()
-      : base(
-        new ExceptionInfo("99"), 
-        "Дата выдачи ВС меньше даты заявления.")
+      : base(new ExceptionInfo("99"), "Дата выдачи ВС меньше даты заявления.")
     {
     }
 
@@ -32,7 +37,9 @@
     /// <param name="context">
     /// The context.
     /// </param>
-    protected FaultTemporaryCertificateDateIssueUnderDateStatementException(SerializationInfo info, StreamingContext context)
+    protected FaultTemporaryCertificateDateIssueUnderDateStatementException(
+      SerializationInfo info, 
+      StreamingContext context)
       : base(info, context)
     {
     }

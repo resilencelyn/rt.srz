@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,7 +34,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -57,7 +57,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
@@ -70,8 +69,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
@@ -86,28 +83,18 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Data" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Activities" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="configuration\algorithms\DateTimeExtension.cs" />
-    <Compile Include="configuration\algorithms\DateTymeHelper.cs" />
     <Compile Include="configuration\algorithms\serialization\HL7Writer.cs" />
     <Compile Include="configuration\algorithms\serialization\XmlSerializationHelper.cs" />
     <Compile Include="configuration\algorithms\serialization\XmlStreamer.cs" />
@@ -156,7 +143,6 @@
     <Compile Include="manager\IContentManager.cs" />
     <Compile Include="manager\ICounterManager.cs" />
     <Compile Include="manager\IExecuteStoredManager.cs" />
-    <Compile Include="manager\IInsuredPersonMergeManager.cs" />
     <Compile Include="manager\IJobLockObjectManager.cs" />
     <Compile Include="manager\IJobPoolManager.cs" />
     <Compile Include="manager\IMessageManager.cs" />
@@ -220,11 +206,9 @@
     <Compile Include="manager\UserActionManager.Generated.cs">
       <DependentUpon>UserActionManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="manager\UserManager.cs" />
     <Compile Include="quartz\JobGroupNames.cs" />
     <Compile Include="quartz\JobNames.cs" />
     <Compile Include="registry\RepositoryRegistry.cs" />
-    <Compile Include="configuration\algorithms\ConversionHelper.cs" />
     <Compile Include="manager\BatchManager.cs" />
     <Compile Include="manager\BatchManager.Generated.cs">
       <DependentUpon>BatchManager.cs</DependentUpon>
@@ -250,11 +234,9 @@
     <Compile Include="manager\ITwinsKeyManager.cs" />
     <Compile Include="manager\ISettingManager.cs" />
     <Compile Include="manager\IWorkstationManager.cs" />
-    <Compile Include="manager\logicalcontrol\CheckLevelEnum.cs" />
     <Compile Include="manager\logicalcontrol\Check.cs" />
     <Compile Include="manager\logicalcontrol\CheckStatementManager.cs" />
     <Compile Include="interfaces\logicalcontrol\ICheckManager.cs" />
-    <Compile Include="interfaces\logicalcontrol\ICheckStatement.cs" />
     <Compile Include="manager\logicalcontrol\complex\ValidatorDocumentUdlExists.cs" />
     <Compile Include="manager\logicalcontrol\complex\ValidatorGenderConformityFirstName.cs" />
     <Compile Include="manager\logicalcontrol\complex\ValidatorDeath.cs" />
@@ -649,45 +631,40 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CrystalQuartz\CrystalQuartz.Core\CrystalQuartz.Core.csproj">
-      <Project>{9382e234-40e3-40d1-9a6f-5ef63cf09c90}</Project>
-      <Name>CrystalQuartz.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\rt.atl.model\rt.atl.model.csproj">
       <Project>{6310659A-9539-4660-910A-DA60B53CC5A0}</Project>
       <Name>rt.atl.model</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
       <Name>rt.core.business</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
       <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
       <Name>rt.core.model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
-      <Project>{F806BF30-72B9-41EE-8A62-93100A9D30BB}</Project>
-      <Name>rt.core.services</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.database.business\rt.srz.database.business.csproj">
       <Project>{eb35411e-647a-4ee1-be16-10b7a9f1631c}</Project>
       <Name>rt.srz.database.business</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
       <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
       <Name>rt.srz.model.HL7</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
       <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
       <Name>rt.srz.model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.services.client\rt.srz.services.client.csproj">
-      <Project>{EF604446-6168-4686-9D43-F3B887D0C513}</Project>
-      <Name>rt.srz.services.client</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.uec.model\rt.uec.model.csproj">
       <Project>{aad11904-afd7-4d6a-be28-a7589e9177b8}</Project>
       <Name>rt.uec.model</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

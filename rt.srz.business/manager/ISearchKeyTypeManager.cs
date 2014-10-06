@@ -1,39 +1,52 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="ISearchKeyTypeManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ISearchKeyTypeManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using rt.srz.model.srz;
+// <summary>
+//   The interface SearchKeyTypeManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
+  using System;
+  using System.Collections.Generic;
+
+  using rt.srz.model.srz;
+
   /// <summary>
-  /// The interface SearchKeyTypeManager.
+  ///   The interface SearchKeyTypeManager.
   /// </summary>
   public partial interface ISearchKeyTypeManager
   {
-    /// <summary>
-    /// Возвращает описатели всех ключей поиска для указанного ТФОМС 
-    /// </summary>
-    /// <returns></returns>
-    IList<SearchKeyType> GetSearchKeyTypesByTFoms();
-    
-    /// <summary>
-    /// Сохраняет ключ поиска в БД
-    /// </summary>
-    /// <param name="keyType"></param>
-    /// <returns></returns>
-    Guid SaveSearchKeyType(SearchKeyType keyType);
+    #region Public Methods and Operators
 
     /// <summary>
     /// Удаление ключа поиска (set пометка IsActive=false)
     /// </summary>
-    /// <param name="pdpId">
+    /// <param name="keyTypeId">
+    /// The key Type Id.
     /// </param>
     void DeleteSearchKeyType(Guid keyTypeId);
+
+    /// <summary>
+    /// Возвращает описатели всех ключей поиска для указанного ТФОМС
+    /// </summary>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    IList<SearchKeyType> GetSearchKeyTypesByTFoms();
+
+    /// <summary>
+    /// Сохраняет ключ поиска в БД
+    /// </summary>
+    /// <param name="keyType">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Guid"/>.
+    /// </returns>
+    Guid SaveSearchKeyType(SearchKeyType keyType);
+
+    #endregion
   }
 }

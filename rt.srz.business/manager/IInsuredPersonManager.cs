@@ -1,28 +1,25 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IInsuredPersonManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IInsuredPersonManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The interface InsuredPersonManager.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using rt.srz.model.srz;
-using System;
-using System.Collections.Generic;
 namespace rt.srz.business.manager
 {
+  using System;
+  using System.Collections.Generic;
+
+  using rt.srz.model.srz;
+
   /// <summary>
   ///   The interface InsuredPersonManager.
   /// </summary>
   public partial interface IInsuredPersonManager
   {
-    /// <summary>
-    /// Входит ли указанная персона в объединение как главное или как второе лицо
-    /// </summary>
-    /// <param name="personId"></param>
-    /// <returns></returns>
-    bool InsuredInJoined(Guid personId);
+    #region Public Methods and Operators
 
     /// <summary>
     /// The add twins.
@@ -33,6 +30,23 @@ namespace rt.srz.business.manager
     void AddTwinsFirstAndOther(IList<InsuredPerson> insuredPersons);
 
     /// <summary>
+    /// Удаление инфы о смерти
+    /// </summary>
+    /// <param name="statementId">
+    /// </param>
+    void DeleteDeathInfo(Guid statementId);
+
+    /// <summary>
+    /// Входит ли указанная персона в объединение как главное или как второе лицо
+    /// </summary>
+    /// <param name="personId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    bool InsuredInJoined(Guid personId);
+
+    /// <summary>
     /// The on canceled or remove statement.
     /// </summary>
     /// <param name="insuredPerson">
@@ -40,11 +54,6 @@ namespace rt.srz.business.manager
     /// </param>
     void OnCanceledOrRemoveStatement(InsuredPerson insuredPerson);
 
-    /// <summary>
-    /// Удаление инфы о смерти
-    /// </summary>
-    /// <param name="statementId"></param>
-    void DeleteDeathInfo(Guid statementId);
-
+    #endregion
   }
 }

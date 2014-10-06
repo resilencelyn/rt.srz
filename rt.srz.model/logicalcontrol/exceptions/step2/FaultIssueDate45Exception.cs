@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultIssueDate45Exception.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultIssueDate45Exception.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault issue date 45 exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault issue date 45 exception.
+  ///   The fault issue date 45 exception.
   /// </summary>
   [Serializable]
   public class FaultIssueDate45Exception : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultIssueDate45Exception"/> class.
+    ///   Initializes a new instance of the <see cref="FaultIssueDate45Exception" /> class.
     /// </summary>
     public FaultIssueDate45Exception()
       : base(new ExceptionInfo(Resource.FaultIssueDate45ExceptionCode), Resource.FaultIssueDate45ExceptionMessage)
@@ -48,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-   #endregion
+    #endregion
   }
 }

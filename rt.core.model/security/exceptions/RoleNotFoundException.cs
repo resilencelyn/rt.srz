@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoleNotFoundException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="RoleNotFoundException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Пользователь не найден в системе
@@ -29,7 +29,7 @@ namespace rt.core.model.security.exceptions
     ///   Конструктор <see cref="UserNotFoundException" /> класса
     /// </summary>
     public RoleNotFoundException()
-      : base(new ExceptionInfo(Resources.RoleNotFoundExceptionCode), (string)Resources.RoleNotFoundExceptionMessage)
+      : base(new ExceptionInfo(Resources.RoleNotFoundExceptionCode), Resources.RoleNotFoundExceptionMessage)
     {
     }
 

@@ -2,6 +2,9 @@
 // <copyright file="TwinManager.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The TwinManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -95,7 +98,8 @@ where RowId in (
     ///   Получает все дубликаты
     /// </summary>
     /// <returns>
-    ///   The <see>
+    ///   The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
     ///   .
@@ -140,7 +144,8 @@ where RowId in (
     /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see>
+    /// The
+    ///   <see>
     ///     <cref>SearchResult</cref>
     ///   </see>
     ///   .
@@ -382,8 +387,8 @@ where RowId in (
         {
           var resultDeadInfo = new DeadInfo
                                {
-                                 ActRecordDate = person.DeadInfo.ActRecordDate,
-                                 ActRecordNumber = person.DeadInfo.ActRecordNumber,
+                                 ActRecordDate = person.DeadInfo.ActRecordDate, 
+                                 ActRecordNumber = person.DeadInfo.ActRecordNumber, 
                                  DateDead = person.DeadInfo.DateDead
                                };
           session.Save(resultDeadInfo);

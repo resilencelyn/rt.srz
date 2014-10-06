@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TextRules.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TextRules.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The policy search field name resolver.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard
 {
@@ -27,41 +21,43 @@ namespace rt.srz.database.business.standard
   // получение поля по его имени
   // [CLSCompliant(false)]
   /// <summary>
-  /// The policy search field name resolver.
+  ///   The policy search field name resolver.
   /// </summary>
   /// <param name="fieldName">
-  /// The field name.
+  ///   The field name.
   /// </param>
   public delegate FieldTypes PolicySearchFieldNameResolver(string fieldName);
 
   // набор правил для текстов
   // [CLSCompliant(false)]
   /// <summary>
-  /// The text rules.
+  ///   The text rules.
   /// </summary>
   public sealed class TextRules
   {
     // убирать пробелы по бокам
 
     // сжимать много пробелов в один
+    #region Fields
+
     /// <summary>
-    /// The field name resolver.
+    ///   The field name resolver.
     /// </summary>
     public readonly PolicySearchFieldNameResolver FieldNameResolver;
 
     /// <summary>
-    /// The global compact.
+    ///   The global compact.
     /// </summary>
     public bool GlobalCompact = false;
 
     /// <summary>
-    /// The global trim.
+    ///   The global trim.
     /// </summary>
     public bool GlobalTrim = false;
 
     // приводить к верхнему регистру
     /// <summary>
-    /// The global upper.
+    ///   The global upper.
     /// </summary>
     public bool GlobalUpper = false;
 
@@ -69,13 +65,17 @@ namespace rt.srz.database.business.standard
     // !! может быть null
 
     /// <summary>
-    /// The converters.
+    ///   The converters.
     /// </summary>
     private Collection<StringConverterBase> converters;
+
+    #endregion
 
     // --------------------------------------------------------
 
     // основной конструктор
+    #region Constructors and Destructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="TextRules"/> class.
     /// </summary>
@@ -90,10 +90,47 @@ namespace rt.srz.database.business.standard
       this.FieldNameResolver = FieldNameResolver;
 
       if (rootRulesLoader != null)
+      {
         LoadRules(rootRulesLoader);
+      }
     }
 
+    #endregion
+
     // загрузить набор правил из xml-конфигурации
+
+    // добавить конвертер строки
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The add string converter.
+    /// </summary>
+    /// <param name="converter">
+    /// The converter.
+    /// </param>
+    public void AddStringConverter(StringConverterBase converter)
+    {
+      if (converters == null)
+      {
+        converters = new Collection<StringConverterBase>();
+      }
+
+      converters.Add(converter);
+    }
+
+    /// <summary>
+    ///   The clear rules.
+    /// </summary>
+    public void ClearRules()
+    {
+      if (converters != null)
+      {
+        converters.Clear();
+      }
+
+      GlobalTrim = GlobalCompact = GlobalUpper = false;
+    }
+
     /// <summary>
     /// The load rules.
     /// </summary>
@@ -106,7 +143,9 @@ namespace rt.srz.database.business.standard
     public void LoadRules(XElement rootRulesLoader, bool clearExistingRules = true)
     {
       if (clearExistingRules)
+      {
         ClearRules();
+      }
 
       foreach (var xmlGlobals in rootRulesLoader.XPathSelectElements("/Текстовые"))
       {
@@ -115,49 +154,30 @@ namespace rt.srz.database.business.standard
         GlobalCompact = xmlGlobals.RetrieveBool("СхлопнутьПробелы", GlobalCompact);
         GlobalUpper = xmlGlobals.RetrieveBool("ВерхнийРегистр", GlobalUpper);
 
-// триммеры пробелов
+        // триммеры пробелов
         foreach (var xmlRule in xmlGlobals.XPathSelectElements("УбратьПробелы"))
         {
-          var converter = new StringParamTrimmer(RetrieveStringMatching(xmlRule), RetrieveSearchDirection(xmlRule), 
-                                                 RetrieveFlaggedOnly(xmlRule), FieldNameResolver);
+          var converter = new StringParamTrimmer(
+            RetrieveStringMatching(xmlRule), 
+            RetrieveSearchDirection(xmlRule), 
+            RetrieveFlaggedOnly(xmlRule), 
+            FieldNameResolver);
           AddAllowedFields(converter, xmlRule);
           AddStringConverter(converter);
         }
 
-// замена строк
+        // замена строк
         foreach (var xmlRule in xmlGlobals.XPathSelectElements("Заменить"))
         {
-          var converter = new StringParamReplacer(RetrieveStringMatching(xmlRule), RetrieveReplacer(xmlRule), 
-                                                  RetrieveFlaggedOnly(xmlRule), FieldNameResolver);
+          var converter = new StringParamReplacer(
+            RetrieveStringMatching(xmlRule), 
+            RetrieveReplacer(xmlRule), 
+            RetrieveFlaggedOnly(xmlRule), 
+            FieldNameResolver);
           AddAllowedFields(converter, xmlRule);
           AddStringConverter(converter);
         }
       }
-    }
-
-    // очистить набор правил
-    /// <summary>
-    /// The clear rules.
-    /// </summary>
-    public void ClearRules()
-    {
-      if (converters != null)
-        converters.Clear();
-      GlobalTrim = GlobalCompact = GlobalUpper = false;
-    }
-
-    // добавить конвертер строки
-    /// <summary>
-    /// The add string converter.
-    /// </summary>
-    /// <param name="converter">
-    /// The converter.
-    /// </param>
-    public void AddStringConverter(StringConverterBase converter)
-    {
-      if (converters == null)
-        converters = new Collection<StringConverterBase>();
-      converters.Add(converter);
     }
 
     // разрешить все ссылки на имена обрабатываемых полей
@@ -197,8 +217,11 @@ namespace rt.srz.database.business.standard
     /// </returns>
     /// <exception cref="InvalidCastException">
     /// </exception>
-    public string PrepareString(string s, FieldTypes field = FieldTypes.Undefined, bool flagged = false, 
-                                bool emptyToNull = false)
+    public string PrepareString(
+      string s, 
+      FieldTypes field = FieldTypes.Undefined, 
+      bool flagged = false, 
+      bool emptyToNull = false)
     {
       if (s != null)
       {
@@ -217,43 +240,114 @@ namespace rt.srz.database.business.standard
           // текущее значение строки
           var saved_s = s;
 
-// преобразование к верхнему регистру
+          // преобразование к верхнему регистру
           if (GlobalUpper)
+          {
             s = s.ToUpper();
+          }
 
-// применить настраиваемые преобразования
+          // применить настраиваемые преобразования
           if (converters != null)
           {
             foreach (var converter in converters)
+            {
               s = converter.Convert(s, field, flagged);
+            }
           }
 
-// убрать боковые пробелы
+          // убрать боковые пробелы
           if (GlobalTrim)
+          {
             s = s.Trim();
+          }
 
-// убрать лишние пробелы
+          // убрать лишние пробелы
           if (GlobalCompact)
+          {
             s = TStringHelper.CompactString(s);
+          }
 
-// прерываем цикл, когда никаких изменений в строке больше нет
+          // прерываем цикл, когда никаких изменений в строке больше нет
           if (string.Compare(s, saved_s, StringComparison.Ordinal) == 0)
+          {
             break;
+          }
 
-// защита от зацикливания
+          // защита от зацикливания
           if (++cycles > 10000)
+          {
             throw new InvalidCastException(
-              string.Format("TextRules.PrepareString: зацикливание! field: {0}, flagged: {1}, string: {2}", field, 
-                            flagged, original_s));
+              string.Format(
+                            "TextRules.PrepareString: зацикливание! field: {0}, flagged: {1}, string: {2}", 
+                            field, 
+                            flagged, 
+                            original_s));
+          }
         }
- while (true);
+        while (true);
 
-// привести пустую строку к null
+        // привести пустую строку к null
         if (emptyToNull)
+        {
           s = TStringHelper.StringToNull(s);
+        }
       }
 
       return s;
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The add allowed fields.
+    /// </summary>
+    /// <param name="converter">
+    /// The converter.
+    /// </param>
+    /// <param name="xmlNode">
+    /// The xml node.
+    /// </param>
+    private static void AddAllowedFields(StringConverterBase converter, XElement xmlNode)
+    {
+      converter.AllowedFields.AddFields(xmlNode.RetrieveAttribute("ТолькоПоля", true));
+    }
+
+    /// <summary>
+    /// The retrieve flagged only.
+    /// </summary>
+    /// <param name="xmlNode">
+    /// The xml node.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    private static bool RetrieveFlaggedOnly(XElement xmlNode)
+    {
+      return xmlNode.RetrieveBool("ТолькоНестрогий", false);
+    }
+
+    /// <summary>
+    /// The retrieve replacer.
+    /// </summary>
+    /// <param name="xmlNode">
+    /// The xml node.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// </exception>
+    private static string RetrieveReplacer(XElement xmlNode)
+    {
+      var replacer = xmlNode.RetrieveAttribute("На", trimToNull: false);
+      if (replacer == null)
+      {
+        throw new ArgumentException("Обнаружена Замена без атрибута замены 'На'");
+      }
+
+      return replacer;
     }
 
     // провести подготовку строки
@@ -277,9 +371,15 @@ namespace rt.srz.database.business.standard
     {
       var direction = WardUnidimensional.None;
       if (xmlNode.RetrieveBool("Слева", false))
+      {
         direction |= WardUnidimensional.Back;
+      }
+
       if (xmlNode.RetrieveBool("Справа", false))
+      {
         direction |= WardUnidimensional.Forward;
+      }
+
       return direction;
     }
 
@@ -298,10 +398,13 @@ namespace rt.srz.database.business.standard
     /// </exception>
     private static StringMatchingBase RetrieveStringMatching(XElement xmlNode)
     {
-      var matcher = xmlNode.RetrieveAttribute("Символы", trimToNull: true);
+      var matcher = xmlNode.RetrieveAttribute("Символы", true);
       if (matcher != null)
+      {
         return new AnyCharacterMatching(matcher);
-      matcher = xmlNode.RetrieveAttribute("Коды", trimToNull: true);
+      }
+
+      matcher = xmlNode.RetrieveAttribute("Коды", true);
       if (matcher != null)
       {
         var codes = matcher.Split(',');
@@ -314,74 +417,30 @@ namespace rt.srz.database.business.standard
             var code = codes[i].Trim();
             if (code.Length > 0)
             {
-              var ch = (char) int.Parse(code);
+              var ch = (char)int.Parse(code);
               res.Append(ch);
             }
           }
 
           if (res.Length > 0)
+          {
             return new AnyCharacterMatching(res.ToString());
+          }
         }
       }
 
-      matcher = xmlNode.RetrieveAttribute("Сочетание", trimToNull: true);
+      matcher = xmlNode.RetrieveAttribute("Сочетание", true);
       if (matcher != null)
+      {
         return new SubstringMatching(matcher);
+      }
+
       throw new ArgumentException("Обнаружено текстовое правило без атрибута поиска");
     }
 
-    // --------------------------------------------------------
-
-    /// <summary>
-    /// The retrieve replacer.
-    /// </summary>
-    /// <param name="xmlNode">
-    /// The xml node.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    /// <exception cref="ArgumentException">
-    /// </exception>
-    private static string RetrieveReplacer(XElement xmlNode)
-    {
-      var replacer = xmlNode.RetrieveAttribute("На", trimToNull: false);
-      if (replacer == null)
-        throw new ArgumentException("Обнаружена Замена без атрибута замены 'На'");
-      return replacer;
-    }
+    #endregion
 
     // --------------------------------------------------------
-
-    /// <summary>
-    /// The retrieve flagged only.
-    /// </summary>
-    /// <param name="xmlNode">
-    /// The xml node.
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    private static bool RetrieveFlaggedOnly(XElement xmlNode)
-    {
-      return xmlNode.RetrieveBool("ТолькоНестрогий", false);
-    }
-
-    // --------------------------------------------------------
-
-    /// <summary>
-    /// The add allowed fields.
-    /// </summary>
-    /// <param name="converter">
-    /// The converter.
-    /// </param>
-    /// <param name="xmlNode">
-    /// The xml node.
-    /// </param>
-    private static void AddAllowedFields(StringConverterBase converter, XElement xmlNode)
-    {
-      converter.AllowedFields.AddFields(xmlNode.RetrieveAttribute("ТолькоПоля", trimToNull: true));
-    }
 
     // --------------------------------------------------------
   }
@@ -389,24 +448,30 @@ namespace rt.srz.database.business.standard
   // --------------------------------------------------------
 
   /// <summary>
-  /// The substring matching.
+  ///   The substring matching.
   /// </summary>
   public sealed class SubstringMatching : StringMatchingBase
   {
+    #region Fields
+
     /// <summary>
-    /// The matcher last pos.
+    ///   The matcher last pos.
     /// </summary>
     private readonly int matcherLastPos;
 
     /// <summary>
-    /// The matcher length.
+    ///   The matcher length.
     /// </summary>
     private readonly int matcherLength;
 
     /// <summary>
-    /// The search position.
+    ///   The search position.
     /// </summary>
     private int searchPosition = -1;
+
+    #endregion
+
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SubstringMatching"/> class.
@@ -414,16 +479,20 @@ namespace rt.srz.database.business.standard
     /// <param name="matcher">
     /// The matcher.
     /// </param>
-    public SubstringMatching(string matcher) : base(matcher)
+    public SubstringMatching(string matcher)
+      : base(matcher)
     {
       matcherLength = matcher.Length;
       matcherLastPos = matcherLength - 1;
     }
 
+    #endregion
+
     // public override void ClearSearch()
     // {
     // searchPosition = -1;
     // }
+    #region Public Methods and Operators
 
     /// <summary>
     /// The check char match.
@@ -441,7 +510,10 @@ namespace rt.srz.database.business.standard
         if (matcher[++searchPosition] == currChar)
         {
           if (searchPosition == matcherLastPos)
+          {
             return true;
+          }
+
           return false;
         }
 
@@ -452,28 +524,36 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// The retrieve match length.
+    ///   The retrieve match length.
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     public override int RetrieveMatchLength()
     {
       return matcherLength;
     }
+
+    #endregion
   }
 
   // убирает пробелы вокруг символа или сочетания символов
   // [CLSCompliant(false)]
   /// <summary>
-  /// The string param trimmer.
+  ///   The string param trimmer.
   /// </summary>
   public sealed class StringParamTrimmer : StringConverterBase
   {
+    #region Fields
+
     /// <summary>
-    /// The direction.
+    ///   The direction.
     /// </summary>
     public readonly WardUnidimensional Direction;
+
+    #endregion
+
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StringParamTrimmer"/> class.
@@ -490,15 +570,22 @@ namespace rt.srz.database.business.standard
     /// <param name="FieldNameResolver">
     /// The field name resolver.
     /// </param>
-    public StringParamTrimmer(StringMatchingBase StringMatcher, WardUnidimensional Direction, bool FlaggedOnly = false, 
-                              PolicySearchFieldNameResolver FieldNameResolver = null)
+    public StringParamTrimmer(
+      StringMatchingBase StringMatcher, 
+      WardUnidimensional Direction, 
+      bool FlaggedOnly = false, 
+      PolicySearchFieldNameResolver FieldNameResolver = null)
       : base(StringMatcher, FlaggedOnly, FieldNameResolver)
     {
       this.Direction = Direction;
     }
 
+    #endregion
+
     // отработать совпадение
     // <returns>возвращает следующую позицию после изменения (если не было изменений, то это matchStart + matchLength)</returns>
+    #region Methods
+
     /// <summary>
     /// The process match.
     /// </summary>
@@ -518,13 +605,15 @@ namespace rt.srz.database.business.standard
     {
       int i;
 
-// убираем пробелы слева
+      // убираем пробелы слева
       if ((Direction & WardUnidimensional.Back) == WardUnidimensional.Back)
       {
         for (i = matchStart - 1; i >= 0; --i)
         {
           if (!char.IsWhiteSpace(s[i]))
+          {
             break;
+          }
         }
 
         var spaceLength = matchStart - (++i);
@@ -535,7 +624,7 @@ namespace rt.srz.database.business.standard
         }
       }
 
-// убираем пробелы справа
+      // убираем пробелы справа
       var nextPos = matchStart + matchLength;
       if ((Direction & WardUnidimensional.Forward) == WardUnidimensional.Forward)
       {
@@ -543,29 +632,41 @@ namespace rt.srz.database.business.standard
         for (var len = s.Length; i < len; ++i)
         {
           if (!char.IsWhiteSpace(s[i]))
+          {
             break;
+          }
         }
 
         var spaceLength = i - nextPos;
         if (spaceLength > 0)
+        {
           s.Remove(nextPos, spaceLength);
+        }
       }
 
       return nextPos;
     }
+
+    #endregion
   }
 
   // заменяет символ или сочетание символов на подстроку
   // [CLSCompliant(false)]
   /// <summary>
-  /// The string param replacer.
+  ///   The string param replacer.
   /// </summary>
   public sealed class StringParamReplacer : StringConverterBase
   {
+    #region Fields
+
     /// <summary>
-    /// The replacer.
+    ///   The replacer.
     /// </summary>
     public readonly string Replacer;
+
+    #endregion
+
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StringParamReplacer"/> class.
@@ -582,15 +683,22 @@ namespace rt.srz.database.business.standard
     /// <param name="FieldNameResolver">
     /// The field name resolver.
     /// </param>
-    public StringParamReplacer(StringMatchingBase StringMatcher, string Replacer, bool FlaggedOnly = false, 
-                               PolicySearchFieldNameResolver FieldNameResolver = null)
+    public StringParamReplacer(
+      StringMatchingBase StringMatcher, 
+      string Replacer, 
+      bool FlaggedOnly = false, 
+      PolicySearchFieldNameResolver FieldNameResolver = null)
       : base(StringMatcher, FlaggedOnly, FieldNameResolver)
     {
       this.Replacer = Replacer;
     }
 
+    #endregion
+
     // отработать совпадение
     // <returns>возвращает следующую позицию после изменения (если не было изменений, то это matchStart + matchLength)</returns>
+    #region Methods
+
     /// <summary>
     /// The process match.
     /// </summary>
@@ -611,6 +719,8 @@ namespace rt.srz.database.business.standard
       s.Remove(matchStart, matchLength).Insert(matchStart, Replacer);
       return matchStart + Replacer.Length;
     }
+
+    #endregion
   }
 
   // виды кавычек
@@ -622,19 +732,26 @@ namespace rt.srz.database.business.standard
   // }
 
   /// <summary>
-  /// The any character matching.
+  ///   The any character matching.
   /// </summary>
   public sealed class AnyCharacterMatching : StringMatchingBase
   {
+    #region Constructors and Destructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="AnyCharacterMatching"/> class.
     /// </summary>
     /// <param name="matcher">
     /// The matcher.
     /// </param>
-    public AnyCharacterMatching(string matcher) : base(matcher)
+    public AnyCharacterMatching(string matcher)
+      : base(matcher)
     {
     }
+
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The check char match.
@@ -651,14 +768,16 @@ namespace rt.srz.database.business.standard
     }
 
     /// <summary>
-    /// The retrieve match length.
+    ///   The retrieve match length.
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     public override int RetrieveMatchLength()
     {
       return 1; // !! всегда один символ
     }
+
+    #endregion
   }
 }

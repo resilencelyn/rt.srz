@@ -1,30 +1,20 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorCitizenship.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorRelevantDocumentUdl.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator citizenship.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Activities.Expressions;
-using System.Linq;
-using NHibernate.Util;
-using rt.srz.model.logicalcontrol;
-using StructureMap;
-using rt.srz.model.srz.concepts;
-
 namespace rt.srz.business.manager.logicalcontrol.simple
 {
   #region
 
-  using System.Collections.Generic;
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
-  using rt.srz.model.logicalcontrol.exceptions.step2;
+  using rt.srz.model.enumerations;
   using rt.srz.model.srz;
 
   #endregion
@@ -37,10 +27,11 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Constructors and Destructors
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ValidatorRelevantDocumentUdl"/> class. 
     /// Initializes a new instance of the <see cref="ValidatorCitizenship"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorRelevantDocumentUdl(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Simple, sessionFactory)
@@ -52,7 +43,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -70,7 +61,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {
@@ -115,7 +106,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       ////    }
       ////    break;
 
-
       ////    // "Иностранный гражданин"
       ////  case CategoryPerson.TerritorialAlienPermanently:
       ////  case CategoryPerson.WorkerAlienPermanently:
@@ -145,7 +135,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       ////        new ExceptionInfo(model.Properties.Resource.FaultRelevantDocumentUdlExceptionTempNotRFCitizenCode),
       ////        model.Properties.Resource.FaultRelevantDocumentUdlExceptionTempNotRFCitizenMessage);
       ////    break;
-        
+
       ////  // "Беженец"
       ////  case CategoryPerson.TerritorialRefugee:
       ////  case CategoryPerson.WorkerRefugee:
@@ -156,7 +146,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       ////        new ExceptionInfo(model.Properties.Resource.FaultRelevantDocumentUdlExceptionRefugeeCode),
       ////        model.Properties.Resource.FaultRelevantDocumentUdlExceptionRefugeeMessage);
       ////    break;
-
 
       ////    // "Без гражданства"
       ////  case CategoryPerson.TerritorialStatelessPermanently:
@@ -172,7 +161,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       ////        new ExceptionInfo(model.Properties.Resource.FaultRelevantDocumentUdlExceptionNotCitizenCode),
       ////        model.Properties.Resource.FaultRelevantDocumentUdlExceptionNotCitizenMessage);
       ////    break;
-
 
       ////    // "Без гражданства"
       ////  case CategoryPerson.TerritorialStatelessTeporary:

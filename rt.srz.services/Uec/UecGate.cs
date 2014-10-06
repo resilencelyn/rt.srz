@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UecGate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="UecGate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The uec gate.
@@ -22,7 +22,7 @@ namespace rt.srz.services.Uec
   #endregion
 
   /// <summary>
-  /// The uec gate.
+  ///   The uec gate.
   /// </summary>
   [NHibernateWcfContext]
   [ErrorHandlingBehavior]
@@ -33,7 +33,7 @@ namespace rt.srz.services.Uec
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="UecGate"/> class.
+    ///   Initializes a new instance of the <see cref="UecGate" /> class.
     /// </summary>
     public UecGate()
     {

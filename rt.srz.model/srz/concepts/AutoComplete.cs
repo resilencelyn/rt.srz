@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AutoComplete.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="AutoComplete.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The auto complete.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz.concepts
 {
   /// <summary>
@@ -13,6 +14,8 @@ namespace rt.srz.model.srz.concepts
   /// </summary>
   public class AutoComplete
   {
+    #region Constants
+
     /// <summary>
     ///   The first name.
     /// </summary>
@@ -22,5 +25,7 @@ namespace rt.srz.model.srz.concepts
     ///   The middle name.
     /// </summary>
     public const int MiddleName = 431;
+
+    #endregion
   }
 }

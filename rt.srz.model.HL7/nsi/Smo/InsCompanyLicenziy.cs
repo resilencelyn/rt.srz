@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InsCompanyLicenziy.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="InsCompanyLicenziy.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ins company licenziy.

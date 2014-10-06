@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HL7Helper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="HL7Helper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The h l 7 helper.
@@ -171,6 +171,11 @@ namespace rt.srz.model.HL7
     public static readonly string FatalSeverityLevel = "E";
 
     /// <summary>
+    ///   The foms log prefix.
+    /// </summary>
+    public static readonly string FomsLogPrefix = "HL7: ";
+
+    /// <summary>
     ///   The identifiers case insesitive.
     /// </summary>
     public static readonly bool IdentifiersCaseInsesitive = false;
@@ -184,46 +189,6 @@ namespace rt.srz.model.HL7
     ///   The node name_ batch root_ kptu.
     /// </summary>
     public static readonly string NodeName_BatchRoot_KPTU = "ZPIMessageBatch";
-
-    /// <summary>
-    ///   The type code_ center error.
-    /// </summary>
-    public static readonly string TypeCode_CenterError = "1.2.643.2.40.1.13.8.2";
-
-    /// <summary>
-    ///   The type code_ region 2 code.
-    /// </summary>
-    public static readonly string TypeCode_Region2Code = "1.2.643.2.40.3.3.1.0";
-
-    /// <summary>
-    ///   The type code_ region 5 code.
-    /// </summary>
-    public static readonly string TypeCode_Region5Code = "1.2.643.2.40.3.3.1";
-
-    /// <summary>
-    ///   The type code_ region error.
-    /// </summary>
-    public static readonly string TypeCode_RegionError = "1.2.643.2.40.1.13.8.1";
-
-    /// <summary>
-    ///   The type code_ xml logic error.
-    /// </summary>
-    public static readonly string TypeCode_XmlLogicError = "1.2.643.2.40.1.13.8.3";
-
-    /// <summary>
-    ///   The unspecified error app.
-    /// </summary>
-    public static readonly string UnspecifiedErrorAPP = "99";
-
-    /// <summary>
-    ///   The unspecified error iso.
-    /// </summary>
-    public static readonly string UnspecifiedErrorISO = "207";
-
-    /// <summary>
-    ///   The foms log prefix.
-    /// </summary>
-    public static readonly string FomsLogPrefix = "HL7: ";
 
     /// <summary>
     ///   The node tag 1251_ application name_begin.
@@ -262,7 +227,8 @@ namespace rt.srz.model.HL7
 
     /// <summary>
     ///   The node tag 1251_ batch identifier_end.
-    /// </summary>public
+    /// </summary>
+    /// public
     public static readonly byte[] NodeTag1251_BatchIdentifier_end = Encoding.Default.GetBytes("</BHS.11>");
 
     /// <summary>
@@ -296,6 +262,41 @@ namespace rt.srz.model.HL7
     public static readonly byte[] NodeTag1251_OrganizationName_end = Encoding.Default.GetBytes("</BHS.4>");
 
     /// <summary>
+    ///   The type code_ center error.
+    /// </summary>
+    public static readonly string TypeCode_CenterError = "1.2.643.2.40.1.13.8.2";
+
+    /// <summary>
+    ///   The type code_ region 2 code.
+    /// </summary>
+    public static readonly string TypeCode_Region2Code = "1.2.643.2.40.3.3.1.0";
+
+    /// <summary>
+    ///   The type code_ region 5 code.
+    /// </summary>
+    public static readonly string TypeCode_Region5Code = "1.2.643.2.40.3.3.1";
+
+    /// <summary>
+    ///   The type code_ region error.
+    /// </summary>
+    public static readonly string TypeCode_RegionError = "1.2.643.2.40.1.13.8.1";
+
+    /// <summary>
+    ///   The type code_ xml logic error.
+    /// </summary>
+    public static readonly string TypeCode_XmlLogicError = "1.2.643.2.40.1.13.8.3";
+
+    /// <summary>
+    ///   The unspecified error app.
+    /// </summary>
+    public static readonly string UnspecifiedErrorAPP = "99";
+
+    /// <summary>
+    ///   The unspecified error iso.
+    /// </summary>
+    public static readonly string UnspecifiedErrorISO = "207";
+
+    /// <summary>
     ///   The pre cache threads.
     /// </summary>
     private static readonly HashSet<Thread> preCacheThreads = new HashSet<Thread>();
@@ -303,35 +304,16 @@ namespace rt.srz.model.HL7
     /// <summary>
     ///   The date time format.
     /// </summary>
-    private static string dateTimeFormat;
+    private static string dateFormat;
 
     /// <summary>
     ///   The date time format.
     /// </summary>
-    private static string dateFormat;
+    private static string dateTimeFormat;
 
     #endregion
 
     #region Public Properties
-
-    /// <summary>
-    ///   Gets the date time format.
-    /// </summary>
-    public static string DateTimeFormat
-    {
-      get
-      {
-        if (dateTimeFormat == null)
-        {
-          lock (typeof(HL7Helper))
-          {
-            dateTimeFormat = ConfigHelper.ReadConfigValue("HL7_DateTimeFormat", "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'zzz");
-          }
-        }
-
-        return dateTimeFormat;
-      }
-    }
 
     /// <summary>
     ///   Gets the date format.
@@ -349,6 +331,25 @@ namespace rt.srz.model.HL7
         }
 
         return dateFormat;
+      }
+    }
+
+    /// <summary>
+    ///   Gets the date time format.
+    /// </summary>
+    public static string DateTimeFormat
+    {
+      get
+      {
+        if (dateTimeFormat == null)
+        {
+          lock (typeof(HL7Helper))
+          {
+            dateTimeFormat = ConfigHelper.ReadConfigValue("HL7_DateTimeFormat", "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'zzz");
+          }
+        }
+
+        return dateTimeFormat;
       }
     }
 
@@ -436,20 +437,6 @@ namespace rt.srz.model.HL7
     }
 
     /// <summary>
-    /// The format date time.
-    /// </summary>
-    /// <param name="dt">
-    /// The dt.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    public static string FormatDateTime(DateTime dt)
-    {
-      return dt.ToString(DateTimeFormat);
-    }
-
-    /// <summary>
     /// The format date.
     /// </summary>
     /// <param name="dt">
@@ -461,25 +448,6 @@ namespace rt.srz.model.HL7
     public static string FormatDate(DateTime dt)
     {
       return dt.ToString(DateFormat);
-    }
-
-    /// <summary>
-    /// The format date time.
-    /// </summary>
-    /// <param name="dt">
-    /// The dt.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    public static string FormatDateTime(DateTime? dt)
-    {
-      if (!dt.HasValue)
-      {
-        return null;
-      }
-
-      return FormatDateTime(dt.Value);
     }
 
     /// <summary>
@@ -499,6 +467,39 @@ namespace rt.srz.model.HL7
       }
 
       return FormatDate(dt.Value);
+    }
+
+    /// <summary>
+    /// The format date time.
+    /// </summary>
+    /// <param name="dt">
+    /// The dt.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string FormatDateTime(DateTime dt)
+    {
+      return dt.ToString(DateTimeFormat);
+    }
+
+    /// <summary>
+    /// The format date time.
+    /// </summary>
+    /// <param name="dt">
+    /// The dt.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string FormatDateTime(DateTime? dt)
+    {
+      if (!dt.HasValue)
+      {
+        return null;
+      }
+
+      return FormatDateTime(dt.Value);
     }
 
     /// <summary>
@@ -544,148 +545,150 @@ namespace rt.srz.model.HL7
         if (start == null)
         {
           start = delegate
-            {
-              var fomsLogPrefix = FomsLogPrefix;
-              FomsLogger.WriteLog(
-                LogType.Local, 
-                string.Format("Предварительное кеширование классов сериализации: {0}", targets), 
-                fomsLogPrefix, 
-                LogErrorType.None);
-              try
-              {
-                if ((targets & ProcessingTarget.XElement) == ProcessingTarget.XElement)
-                {
-                  new XmlSerializer(typeof(XElement));
-                }
+                  {
+                    var fomsLogPrefix = FomsLogPrefix;
+                    FomsLogger.WriteLog(
+                                        LogType.Local, 
+                                        string.Format("Предварительное кеширование классов сериализации: {0}", targets), 
+                                        fomsLogPrefix, 
+                                        LogErrorType.None);
+                    try
+                    {
+                      if ((targets & ProcessingTarget.XElement) == ProcessingTarget.XElement)
+                      {
+                        new XmlSerializer(typeof(XElement));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.Ack))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.Ack))
-                {
-                  new XmlSerializer(typeof(Ack));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.Ack))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.Ack))
+                      {
+                        new XmlSerializer(typeof(Ack));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK1))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK1))
-                {
-                  new XmlSerializer(typeof(RSP_ZK1));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK1))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK1))
+                      {
+                        new XmlSerializer(typeof(RSP_ZK1));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK2))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK2))
-                {
-                  new XmlSerializer(typeof(RSP_ZK2));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK2))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK2))
+                      {
+                        new XmlSerializer(typeof(RSP_ZK2));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK4))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK4))
-                {
-                  new XmlSerializer(typeof(RSP_ZK4));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK4))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK4))
+                      {
+                        new XmlSerializer(typeof(RSP_ZK4));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK5))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK5))
-                {
-                  new XmlSerializer(typeof(RSP_ZK5));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK5))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.RSP_ZK5))
+                      {
+                        new XmlSerializer(typeof(RSP_ZK5));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA1))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA1))
-                {
-                  new XmlSerializer(typeof(ZPI_ZA1));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA1))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA1))
+                      {
+                        new XmlSerializer(typeof(ZPI_ZA1));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA7))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA7))
-                {
-                  new XmlSerializer(typeof(ZPI_ZA7));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA7))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.ZPI_ZA7))
+                      {
+                        new XmlSerializer(typeof(ZPI_ZA7));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A01))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A01))
-                {
-                  new XmlSerializer(typeof(ADT_A01));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A01))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A01))
+                      {
+                        new XmlSerializer(typeof(ADT_A01));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A03))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A03))
-                {
-                  new XmlSerializer(typeof(ADT_A03));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A03))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A03))
+                      {
+                        new XmlSerializer(typeof(ADT_A03));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A24))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A24))
-                {
-                  new XmlSerializer(typeof(ADT_A24));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A24))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A24))
+                      {
+                        new XmlSerializer(typeof(ADT_A24));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A37))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A37))
-                {
-                  new XmlSerializer(typeof(ADT_A37));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A37))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.ADT_A37))
+                      {
+                        new XmlSerializer(typeof(ADT_A37));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP1))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP1))
-                {
-                  new XmlSerializer(typeof(QBP_ZP1));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP1))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP1))
+                      {
+                        new XmlSerializer(typeof(QBP_ZP1));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP2))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP2))
-                {
-                  new XmlSerializer(typeof(QBP_ZP2));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP2))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP2))
+                      {
+                        new XmlSerializer(typeof(QBP_ZP2));
+                      }
 
-                if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP4))
-                    == (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP4))
-                {
-                  new XmlSerializer(typeof(QBP_ZP4));
-                }
+                      if ((targets & (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP4))
+                          == (ProcessingTarget.NoTargets | ProcessingTarget.QBP_ZP4))
+                      {
+                        new XmlSerializer(typeof(QBP_ZP4));
+                      }
 
-                if ((targets & ProcessingTarget.BHS) == ProcessingTarget.BHS)
-                {
-                  new XmlSerializer(typeof(BHS));
-                }
+                      if ((targets & ProcessingTarget.BHS) == ProcessingTarget.BHS)
+                      {
+                        new XmlSerializer(typeof(BHS));
+                      }
 
-                if ((targets & ProcessingTarget.BTS) == ProcessingTarget.BTS)
-                {
-                  new XmlSerializer(typeof(BTS));
-                }
+                      if ((targets & ProcessingTarget.BTS) == ProcessingTarget.BTS)
+                      {
+                        new XmlSerializer(typeof(BTS));
+                      }
 
-                if ((targets & ProcessingTarget.PersonErp) == ProcessingTarget.PersonErp)
-                {
-                  new XmlSerializer(typeof(PersonErp));
-                }
+                      if ((targets & ProcessingTarget.PersonErp) == ProcessingTarget.PersonErp)
+                      {
+                        new XmlSerializer(typeof(PersonErp));
+                      }
 
-                if ((targets & ProcessingTarget.PersonCard) == ProcessingTarget.PersonCard)
-                {
-                  new XmlSerializer(typeof(PersonCard));
-                }
+                      if ((targets & ProcessingTarget.PersonCard) == ProcessingTarget.PersonCard)
+                      {
+                        new XmlSerializer(typeof(PersonCard));
+                      }
 
-                var prefix = FomsLogPrefix;
-                FomsLogger.WriteLog(
-                  LogType.Local, 
-                  string.Format("Завершено кеширование классов сериализации: {0}", targets), 
-                  prefix, 
-                  LogErrorType.None);
-              }
-              catch (Exception exception)
-              {
-                var str3 = FomsLogPrefix;
-                FomsLogger.WriteError(
-                  LogType.Local, 
-                  string.Format("Исключение при кешировании классов сериализации: {0}", exception.Message), 
-                  str3);
-                throw;
-              }
-              finally
-              {
-                lock (preCacheThreads)
-                {
-                  preCacheThreads.Remove(Thread.CurrentThread);
-                }
-              }
-            };
+                      var prefix = FomsLogPrefix;
+                      FomsLogger.WriteLog(
+                                          LogType.Local, 
+                                          string.Format("Завершено кеширование классов сериализации: {0}", targets), 
+                                          prefix, 
+                                          LogErrorType.None);
+                    }
+                    catch (Exception exception)
+                    {
+                      var str3 = FomsLogPrefix;
+                      FomsLogger.WriteError(
+                                            LogType.Local, 
+                                            string.Format(
+                                                          "Исключение при кешировании классов сериализации: {0}", 
+                                                          exception.Message), 
+                                            str3);
+                      throw;
+                    }
+                    finally
+                    {
+                      lock (preCacheThreads)
+                      {
+                        preCacheThreads.Remove(Thread.CurrentThread);
+                      }
+                    }
+                  };
         }
 
         var item = new Thread(start);

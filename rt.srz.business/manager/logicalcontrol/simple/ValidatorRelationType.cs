@@ -1,12 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorRelationType.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorRelationType.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   ValidatorRelationType.cs
+//   The validator representative first name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 
 namespace rt.srz.business.manager.logicalcontrol.simple
 {
@@ -30,10 +29,11 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Constructors and Destructors
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ValidatorRelationType"/> class. 
     /// Initializes a new instance of the <see cref="ValidatorRepresentativeFirstName"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorRelationType(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.Representative.RelationType.Id)
@@ -45,7 +45,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -63,7 +63,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {

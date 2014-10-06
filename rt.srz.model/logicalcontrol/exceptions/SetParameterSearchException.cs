@@ -1,17 +1,29 @@
-﻿namespace rt.srz.model.logicalcontrol.exceptions
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SetParameterSearchException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The set parameter search exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.model.logicalcontrol.exceptions
 {
   using System;
   using System.Runtime.Serialization;
 
   using rt.srz.model.Properties;
 
-  using Resource = rt.srz.model.barcode.Properties.Resource;
-
+  /// <summary>
+  /// The set parameter search exception.
+  /// </summary>
   [Serializable]
-  public class SetParameterSearchException: LogicalControlException
+  public class SetParameterSearchException : LogicalControlException
   {
+    #region Constructors and Destructors
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="SetParameterSearchException"/> class.
+    ///   Initializes a new instance of the <see cref="SetParameterSearchException" /> class.
     /// </summary>
     public SetParameterSearchException()
       : base(new ExceptionInfo(Resource.SetParameterSearchExceptionCode), Resource.SetParameterSearchExceptionMessage)
@@ -32,21 +44,31 @@
     {
     }
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
     ///   Gets or sets the info.
     /// </summary>
     [DataMember]
     public ExceptionInfo Info { get; set; }
 
+    #endregion
+
+    #region Methods
+
     /// <summary>
-    /// The step.
+    ///   The step.
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     protected override int Step()
     {
       return 1;
     }
+
+    #endregion
   }
 }

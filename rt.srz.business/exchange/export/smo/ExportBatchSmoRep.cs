@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.exchange.export.smo
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ExportBatchSmoRep.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The export batch smo rep.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.export.smo
 {
   using System;
   using System.Collections.Generic;
@@ -18,6 +27,9 @@
 
   using StructureMap;
 
+  /// <summary>
+  /// The export batch smo rep.
+  /// </summary>
   public class ExportBatchSmoRep : ExportBatchSmo<REPListType, REPType>
   {
     #region Constructors and Destructors
@@ -58,7 +70,7 @@
     /// The add node.
     /// </summary>
     /// <param name="node">
-    /// The node. 
+    /// The node.
     /// </param>
     public override void AddNode(REPType node)
     {
@@ -91,7 +103,7 @@
       session.Save(Batch);
       session.Flush();
       BatchId = Batch.Id;
-      
+
       Status = StatusExportBatch.Opened;
 
       // Создаем сериализуемй объект
@@ -115,9 +127,11 @@
 
       // Вычисляем код ПВП
       SerializeObject.PRZCOD = null;
-      string[] splittedFileName = Batch.FileName.Split(new char[] { '_' });
+      var splittedFileName = Batch.FileName.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
+      {
         SerializeObject.PRZCOD = splittedFileName[1];
+      }
 
       try
       {
@@ -142,6 +156,7 @@
         throw;
       }
     }
+
     #endregion
   }
 }

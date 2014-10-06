@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Check.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Check.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The checkstatement.
@@ -16,11 +16,13 @@ namespace rt.srz.business.manager.logicalcontrol
 
   using NHibernate;
 
-  using rt.srz.business.interfaces.logicalcontrol;
-  using rt.srz.model.srz;
-  using StructureMap;
   using rt.srz.business.manager.cache;
   using rt.srz.business.Properties;
+  using rt.srz.model.enumerations;
+  using rt.srz.model.interfaces;
+  using rt.srz.model.srz;
+
+  using StructureMap;
 
   #endregion
 
@@ -69,8 +71,8 @@ namespace rt.srz.business.manager.logicalcontrol
     /// The expression.
     /// </param>
     protected Check(
-      CheckLevelEnum level,
-      ISessionFactory sessionFactory,
+      CheckLevelEnum level, 
+      ISessionFactory sessionFactory, 
       Expression<Func<Statement, object>> expression)
       : this(level, sessionFactory)
     {
@@ -80,6 +82,69 @@ namespace rt.srz.business.manager.logicalcontrol
     #endregion
 
     #region Public Properties
+
+    /// <summary>
+    ///   Можно ли включать\отключать свойство
+    /// </summary>
+    public virtual bool AllowChange
+    {
+      get
+      {
+        // если в таблице settings не нашли соответсвующую запись, то считаем что проверку можно включать/выключать 
+        var setting =
+          ObjectFactory.GetInstance<ICheckCacheManager>().GetByClassNameOnly(GetAllowChangeName(GetType().Name));
+        if (setting == null)
+        {
+          return true;
+        }
+
+        if (setting.ValueString == "0")
+        {
+          return false;
+        }
+
+        return true;
+      }
+    }
+
+    /// <summary>
+    ///   Название для отображения проверки
+    /// </summary>
+    public abstract string Caption { get; }
+
+    /// <summary>
+    ///   Проверять или нет свойство
+    /// </summary>
+    public virtual bool CheckRequired
+    {
+      get
+      {
+        // если в таблице settings не нашли соответсвующую запись, то считаем что проверка включена, т.е. надо проверять свойство
+        var setting = ObjectFactory.GetInstance<ICheckCacheManager>().GetByClassName(GetType().Name);
+        if (setting == null)
+        {
+          return true;
+        }
+
+        if (setting.ValueString == "0")
+        {
+          return false;
+        }
+
+        return true;
+      }
+    }
+
+    /// <summary>
+    ///   для грида чтобы исползовать в кастве ключа
+    /// </summary>
+    public string ClassName
+    {
+      get
+      {
+        return GetType().Name;
+      }
+    }
 
     /// <summary>
     ///   Gets the expression.
@@ -112,84 +177,42 @@ namespace rt.srz.business.manager.logicalcontrol
       }
     }
 
-
     /// <summary>
-    /// Название для отображения проверки 
-    /// </summary>
-    public abstract string Caption { get; }
-
-    /// <summary>
-    /// Проверять или нет свойство
-    /// </summary>
-    public virtual bool CheckRequired
-    {
-      get
-      {
-        //если в таблице settings не нашли соответсвующую запись, то считаем что проверка включена, т.е. надо проверять свойство
-        var setting = ObjectFactory.GetInstance<ICheckCacheManager>().GetByClassName(GetType().Name);
-        if (setting == null)
-        {
-          return true;
-        }
-        if (setting.ValueString == "0")
-        {
-          return false;
-        }
-        return true;
-      }
-    }
-
-    /// <summary>
-    /// Видимость проверки в списке на странице ( не учитывается если есть права на отображение пункта меню установка - в этом случае отображаются все)
-    /// </summary>
-    public virtual bool Visible
-    {
-      get { return false; }
-    }
-
-    /// <summary>
-    /// Можно ли включать\отключать свойство
-    /// </summary>
-    public virtual bool AllowChange 
-    { 
-      get 
-      {
-        //если в таблице settings не нашли соответсвующую запись, то считаем что проверку можно включать/выключать 
-        var setting = ObjectFactory.GetInstance<ICheckCacheManager>().GetByClassNameOnly(GetAllowChangeName(GetType().Name));
-        if (setting == null)
-        {
-          return true;
-        }
-        if (setting.ValueString == "0")
-        {
-          return false;
-        }
-        return true;
-      } 
-    }
-
-    public static string GetAllowChangeName(string validatorName)
-    {
-      //в базе когда админ главный убирает галочку с AllowChange - 
-      //возможность включать-выключать свойство (только он может это делать), в базу добавляется запись лдя валидатора с префиксом к имени AllowChange
-      return string.Format("{0}_{1}", validatorName, "AllowChange");
-    }
-
-
-    /// <summary>
-    /// для грида чтобы исползовать в кастве ключа
-    /// </summary>
-    public string ClassName { get { return GetType().Name; } }
-
-    /// <summary>
-    /// Номер записи
+    ///   Номер записи
     /// </summary>
     public int RecordNumber { get; set; }
 
+    /// <summary>
+    ///   Видимость проверки в списке на странице ( не учитывается если есть права на отображение пункта меню установка - в
+    ///   этом случае отображаются все)
+    /// </summary>
+    public virtual bool Visible
+    {
+      get
+      {
+        return false;
+      }
+    }
 
     #endregion
 
     #region Public Methods and Operators
+
+    /// <summary>
+    /// The get allow change name.
+    /// </summary>
+    /// <param name="validatorName">
+    /// The validator name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string GetAllowChangeName(string validatorName)
+    {
+      // в базе когда админ главный убирает галочку с AllowChange - 
+      // возможность включать-выключать свойство (только он может это делать), в базу добавляется запись лдя валидатора с префиксом к имени AllowChange
+      return string.Format("{0}_{1}", validatorName, "AllowChange");
+    }
 
     /// <summary>
     /// The check.

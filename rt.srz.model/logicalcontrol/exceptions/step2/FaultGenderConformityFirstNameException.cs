@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultGenderConformityFirstNameException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultGenderConformityFirstNameException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault gender conformity exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault gender conformity exception.
+  ///   The fault gender conformity exception.
   /// </summary>
   [Serializable]
   public class FaultGenderConformityFirstNameException : FaultStep2
@@ -27,11 +27,12 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultGenderConformityFirstNameException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultGenderConformityFirstNameException" /> class.
     /// </summary>
     public FaultGenderConformityFirstNameException()
       : base(
-        new ExceptionInfo(Resource.FaultGenderConformityExceptionCode), Resource.FaultGenderConformityExceptionMessage)
+        new ExceptionInfo(Resource.FaultGenderConformityExceptionCode), 
+        Resource.FaultGenderConformityExceptionMessage)
     {
     }
 
@@ -49,6 +50,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-   #endregion
+    #endregion
   }
 }

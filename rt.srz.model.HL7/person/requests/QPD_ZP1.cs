@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="QPD_ZP1.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="QPD_ZP1.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The qp d_ z p 1.

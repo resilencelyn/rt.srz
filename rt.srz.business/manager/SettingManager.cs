@@ -2,6 +2,9 @@
 // <copyright file="SettingManager.cs" company="ÐóñÁÈÒåõ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The SettingManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -14,8 +17,8 @@ namespace rt.srz.business.manager
   using NHibernate;
 
   using rt.core.business.security.interfaces;
+  using rt.core.model.interfaces;
   using rt.srz.business.manager.cache;
-  using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
 
   using StructureMap;
@@ -70,10 +73,24 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="Setting"/> .
     /// </returns>
-    public Setting GetSetting(string name)
+    public Setting GetCurrentSetting(string name)
     {
       var curUser = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
       return GetBy(x => x.UserId == curUser.Id && x.Name == name).FirstOrDefault();
+    }
+
+    /// <summary>
+    /// The get setting.
+    /// </summary>
+    /// <param name="name">
+    /// The name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Setting"/>.
+    /// </returns>
+    public Setting GetSetting(string name)
+    {
+      return GetBy(x => x.Name == name).FirstOrDefault();
     }
 
     /// <summary>

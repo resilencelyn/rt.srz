@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="UserAction.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserAction.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The UserAction.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The UserAction.
+  ///   The UserAction.
   /// </summary>
-  public partial class UserAction 
+  public partial class UserAction
   {
   }
 }

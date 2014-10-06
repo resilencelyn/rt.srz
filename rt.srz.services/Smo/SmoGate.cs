@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SmoGate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SmoGate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The smo gate.
@@ -21,7 +21,7 @@ namespace rt.srz.services.Smo
   #endregion
 
   /// <summary>
-  /// The smo gate.
+  ///   The smo gate.
   /// </summary>
   [NHibernateWcfContext]
   [ErrorHandlingBehavior]
@@ -32,7 +32,7 @@ namespace rt.srz.services.Smo
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SmoGate"/> class.
+    ///   Initializes a new instance of the <see cref="SmoGate" /> class.
     /// </summary>
     public SmoGate()
     {

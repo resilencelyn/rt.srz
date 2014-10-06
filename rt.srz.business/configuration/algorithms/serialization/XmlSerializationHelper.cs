@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="XmlSerializationHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="XmlSerializationHelper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Сериализатор
@@ -97,6 +97,18 @@ namespace rt.srz.business.configuration.algorithms.serialization
       return serializer.CanDeserialize(stream) ? serializer.Deserialize(stream) : null;
     }
 
+    /// <summary>
+    /// The deserialize.
+    /// </summary>
+    /// <param name="p">
+    /// The p.
+    /// </param>
+    /// <param name="stream">
+    /// The stream.
+    /// </param>
+    /// <returns>
+    /// The <see cref="object"/>.
+    /// </returns>
     public static object Deserialize(object p, XmlReader stream)
     {
       var serializer = GetSerializer(p);
@@ -267,9 +279,9 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// </param>
     /// ///
     public static void SerializeToFile(
-      object person,
-      string fileName,
-      string tableName,
+      object person, 
+      string fileName, 
+      string tableName, 
       XmlWriterSettings settings = null)
     {
       var nt = new NameTable();
@@ -324,8 +336,8 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The <see cref="FileStream"/>.
     /// </returns>
     public static MemoryStream SerializeToMemoryStream(
-      object person,
-      string tableName,
+      object person, 
+      string tableName, 
       XmlWriterSettings settings = null)
     {
       var nt = new NameTable();

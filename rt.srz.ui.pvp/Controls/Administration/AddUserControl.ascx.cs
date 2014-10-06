@@ -17,6 +17,7 @@ using StructureMap;
 namespace rt.srz.ui.pvp.Controls.Administration
 {
   using rt.core.model.core;
+  using rt.core.model.interfaces;
 
   /// <summary>
   /// The add user control.

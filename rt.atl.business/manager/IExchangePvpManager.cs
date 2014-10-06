@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IExchangePvpManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IExchangePvpManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The interface ExchangePvpManager.
@@ -14,9 +14,13 @@ namespace rt.atl.business.manager
   /// </summary>
   public partial interface IExchangePvpManager
   {
+    #region Public Methods and Operators
+
     /// <summary>
-    /// The flag exported prz buff.
+    ///   The flag exported prz buff.
     /// </summary>
     void FlagExportedPrzBuff();
+
+    #endregion
   }
 }

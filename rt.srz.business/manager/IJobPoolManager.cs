@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="IJobPoolManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IJobPoolManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The interface JobPoolManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The interface JobPoolManager.
+  ///   The interface JobPoolManager.
   /// </summary>
   public partial interface IJobPoolManager
   {

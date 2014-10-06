@@ -1,33 +1,40 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="JobBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="JobBase.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The job base.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-using System;
-using NHibernate;
-using NHibernate.Context;
-using NLog;
-using Quartz;
-using StructureMap;
-
-#endregion
 
 namespace rt.core.business.quartz
 {
+  using System;
+
+  using NHibernate;
+  using NHibernate.Context;
+
+  using NLog;
+
+  using Quartz;
+
+  using StructureMap;
+
   /// <summary>
-  /// The job base.
+  ///   The job base.
   /// </summary>
   public abstract class JobBase : IJob, IInterruptableJob
   {
+    #region Static Fields
+
     /// <summary>
     ///   Логгер
     /// </summary>
     protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-    #region IJob Members
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The execute.
@@ -45,11 +52,21 @@ namespace rt.core.business.quartz
       }
       catch (Exception exception)
       {
-        LogManager.GetCurrentClassLogger().FatalException("Не обработаная ошибка запуска или выполнения задачи IJob", exception);
+        LogManager.GetCurrentClassLogger()
+                  .FatalException("Не обработаная ошибка запуска или выполнения задачи IJob", exception);
       }
     }
 
+    /// <summary>
+    ///   Запрос на прерывание работы
+    /// </summary>
+    public virtual void Interrupt()
+    {
+    }
+
     #endregion
+
+    #region Methods
 
     /// <summary>
     /// The begin execute.
@@ -59,24 +76,27 @@ namespace rt.core.business.quartz
     /// </param>
     protected virtual void BeginExecute(IJobExecutionContext context)
     {
-      logger.Info(string.Format("Старт задачи '{0}.{1}'. InstanceID = {2}", context.JobDetail.Key.Group, context.JobDetail.Key.Name, context.JobInstance.GetHashCode()));
+      logger.Info(
+                  "Старт задачи '{0}.{1}'. InstanceID = {2}", 
+                  context.JobDetail.Key.Group, 
+                  context.JobDetail.Key.Name, 
+                  context.JobInstance.GetHashCode());
       foreach (var pair in context.JobDetail.JobDataMap)
       {
-        logger.Info(string.Format("'{0}.{1}'. InstanceID = {2}. {3} = {4}", context.JobDetail.Key.Group, context.JobDetail.Key.Name, context.JobInstance.GetHashCode()), pair.Key, pair.Value);
+        logger.Info(
+                    string.Format(
+                                  "'{0}.{1}'. InstanceID = {2}. {3} = {4}", 
+                                  context.JobDetail.Key.Group, 
+                                  context.JobDetail.Key.Name, 
+                                  context.JobInstance.GetHashCode()), 
+                    pair.Key, 
+                    pair.Value);
       }
 
       // Открываем сессию хибера и биндим ее с 
       var session = ObjectFactory.GetInstance<ISessionFactory>().OpenSession();
       CurrentSessionContext.Bind(session);
     }
-
-    /// <summary>
-    /// The execute impl.
-    /// </summary>
-    /// <param name="context">
-    /// The context.
-    /// </param>
-    protected abstract void ExecuteImpl(IJobExecutionContext context);
 
     /// <summary>
     /// The end execute.
@@ -103,14 +123,21 @@ namespace rt.core.business.quartz
         session.Dispose();
       }
 
-      logger.Info(string.Format("Конец выполнения задачи '{0}.{1}'. InstanceID = {2}", context.JobDetail.Key.Group, context.JobDetail.Key.Name, context.JobInstance.GetHashCode()));
+      logger.Info(
+                  "Конец выполнения задачи '{0}.{1}'. InstanceID = {2}", 
+                  context.JobDetail.Key.Group, 
+                  context.JobDetail.Key.Name, 
+                  context.JobInstance.GetHashCode());
     }
 
     /// <summary>
-    /// Запрос на прерывание работы
+    /// The execute impl.
     /// </summary>
-    public virtual void Interrupt()
-    {
-    }
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    protected abstract void ExecuteImpl(IJobExecutionContext context);
+
+    #endregion
   }
 }

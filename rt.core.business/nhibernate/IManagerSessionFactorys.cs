@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IManagerSessionFactorys.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IManagerSessionFactorys.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ManagerSessionFactorys interface.
@@ -16,14 +16,14 @@ namespace rt.core.business.nhibernate
   #endregion
 
   /// <summary>
-  /// The ManagerSessionFactorys interface.
+  ///   The ManagerSessionFactorys interface.
   /// </summary>
   public interface IManagerSessionFactorys
   {
     #region Public Properties
 
     /// <summary>
-    /// Gets the get current factory.
+    ///   Gets the get current factory.
     /// </summary>
     ISessionFactory GetCurrentFactory { get; }
 

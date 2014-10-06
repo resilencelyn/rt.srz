@@ -1,13 +1,13 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileNameElement.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="PoolNhibernateSection.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   The file name element.
+//   The Pool nhibernate section.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.core.business.nhibernate.target
+namespace rt.core.model.configuration
 {
   #region references
 
@@ -16,21 +16,21 @@ namespace rt.core.business.nhibernate.target
   #endregion
 
   /// <summary>
-  ///   The file name element.
+  ///   The Pool nhibernate section.
   /// </summary>
-  public class FileNameElement : ConfigurationElement
+  public class PoolNhibernateSection : ConfigurationSection
   {
     #region Public Properties
 
     /// <summary>
-    ///   Заголовок
+    ///   Gets the file name configaration.
     /// </summary>
-    [ConfigurationProperty("Name", IsRequired = true)]
-    public string FileNameConfiguration
+    [ConfigurationProperty("FileNameConfigaration")]
+    public FileNameElementColection FileNameConfigaration
     {
       get
       {
-        return this["Name"] as string;
+        return base["FileNameConfigaration"] as FileNameElementColection;
       }
     }
 

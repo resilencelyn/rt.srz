@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckAddressProperty.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckAddressProperty.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The check address property.
@@ -16,7 +16,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step3;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -28,7 +28,14 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   /// </summary>
   public abstract class CheckAddressProperty : Check
   {
+    #region Fields
+
+    /// <summary>
+    /// The delegate field.
+    /// </summary>
     private readonly Func<Statement, object> delegateField;
+
+    #endregion
 
     #region Constructors and Destructors
 
@@ -36,10 +43,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="CheckAddressProperty"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     protected CheckAddressProperty(ISessionFactory sessionFactory, Expression<Func<Statement, object>> expression)
       : base(CheckLevelEnum.Simple, sessionFactory, expression)
@@ -55,7 +62,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="ArgumentNullException">
     /// </exception>
@@ -102,16 +109,15 @@ namespace rt.srz.business.manager.logicalcontrol.simple
             throw new FaultAddressNotComplete();
           }
 
-          //if (!string.IsNullOrEmpty(address.Area) && string.IsNullOrEmpty(address.Town))
-          //{
-          //  throw new FaultAddressNotComplete();
-          //}
-
-          if (string.IsNullOrEmpty(address.City) && string.IsNullOrEmpty(address.Area) && string.IsNullOrEmpty(address.Town))
+          // if (!string.IsNullOrEmpty(address.Area) && string.IsNullOrEmpty(address.Town))
+          // {
+          // throw new FaultAddressNotComplete();
+          // }
+          if (string.IsNullOrEmpty(address.City) && string.IsNullOrEmpty(address.Area)
+              && string.IsNullOrEmpty(address.Town))
           {
             throw new FaultAddressNotComplete();
           }
-
         }
 
         // если заполнен номер корпуса или квартира, но не заполнен номер дома кидаем ошибку

@@ -1,13 +1,13 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConversionHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ConversionHelper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Преобразователь
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.business.configuration.algorithms
+namespace rt.srz.model.algorithms
 {
   #region references
 
@@ -126,10 +126,10 @@ namespace rt.srz.business.configuration.algorithms
     {
       DateTime dt;
       var formats = new[]
-                      {
-                        "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'zzz", "yyyy'-'MM'-'dd'T'HH':'mm':'sszzz", "yyyy'-'MM'-'dd", 
-                        "dd'.'MM'.'yyyy"
-                      };
+                    {
+                      "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'zzz", "yyyy'-'MM'-'dd'T'HH':'mm':'sszzz", "yyyy'-'MM'-'dd", 
+                      "dd'.'MM'.'yyyy"
+                    };
       if (DateTime.TryParseExact(str, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
       {
         return dt;

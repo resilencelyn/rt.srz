@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AuthGate.svc.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="AuthGate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Сервис авторизации
@@ -29,10 +29,14 @@ namespace rt.core.services
   [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
   public class AuthGate : InterceptedBase, IAuthService
   {
+    #region Fields
+
     /// <summary>
-    /// The service.
+    ///   The service.
     /// </summary>
     private readonly IAuthService service = new AuthService();
+
+    #endregion
 
     #region Public Methods and Operators
 
@@ -54,10 +58,10 @@ namespace rt.core.services
     }
 
     /// <summary>
-    /// The get auth response.
+    ///   The get auth response.
     /// </summary>
     /// <returns>
-    /// The <see cref="AuthResponse"/>.
+    ///   The <see cref="AuthResponse" />.
     /// </returns>
     public Token GetAuthToken()
     {

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MedCompany.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="MedCompany.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The packet med company.

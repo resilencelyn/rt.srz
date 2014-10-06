@@ -1,14 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IWriteField.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IWriteField.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The WriteField interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard.stream
 {
@@ -19,6 +16,8 @@ namespace rt.srz.database.business.standard.stream
   /// </summary>
   public interface IWriteField
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// The write.
     /// </summary>
@@ -29,5 +28,7 @@ namespace rt.srz.database.business.standard.stream
     /// The value.
     /// </param>
     void Write(BinaryWriter writer, string value);
+
+    #endregion
   }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultCitizenshipException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultRelevantDocumentUdlException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault snils exception.
@@ -27,7 +27,8 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FaultCitizenshipException" /> class.
+    /// Initializes a new instance of the <see cref="FaultRelevantDocumentUdlException"/> class. 
+    ///   Initializes a new instance of the <see cref="FaultCitizenshipException"/> class.
     /// </summary>
     public FaultRelevantDocumentUdlException()
       : base(new ExceptionInfo(Resource.FaultCitizenshipExceptionCode), Resource.FaultCitizenshipExceptionMessage)
@@ -35,20 +36,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultCitizenshipException"/> class.
-    /// </summary>
-    /// <param name="info">
-    /// The info.
-    /// </param>
-    /// <param name="context">
-    /// The context.
-    /// </param>
-    protected FaultRelevantDocumentUdlException(SerializationInfo info, StreamingContext context)
-      : base(info, context)
-    {
-    }
-
-    /// <summary>
+    /// Initializes a new instance of the <see cref="FaultRelevantDocumentUdlException"/> class. 
     /// Initializes a new instance of the <see cref="FaultCitizenshipException"/> class.
     /// </summary>
     /// <param name="info">
@@ -62,6 +50,21 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-  #endregion
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FaultRelevantDocumentUdlException"/> class. 
+    /// Initializes a new instance of the <see cref="FaultCitizenshipException"/> class.
+    /// </summary>
+    /// <param name="info">
+    /// The info.
+    /// </param>
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    protected FaultRelevantDocumentUdlException(SerializationInfo info, StreamingContext context)
+      : base(info, context)
+    {
+    }
+
+    #endregion
   }
 }

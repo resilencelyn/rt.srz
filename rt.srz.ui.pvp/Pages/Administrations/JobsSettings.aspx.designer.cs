@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rt.srz.ui.pvp.Pages.Administration {
+namespace rt.srz.ui.pvp.Pages.Administrations {
     
     
     public partial class JobsSettings {

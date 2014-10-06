@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.interfaces.service
+namespace rt.srz.model.barcode
 {
   #region
 
-  using rt.srz.model.barcode;
+  
 
   #endregion
 

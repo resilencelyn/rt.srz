@@ -1,7 +1,15 @@
-﻿namespace rt.srz.business.exchange.import.zags
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ZagsImporter.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The zags importer.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.import.zags
 {
   using System;
-  using System.IO;
   using System.Reflection;
   using System.Xml;
   using System.Xml.Schema;
@@ -9,59 +17,106 @@
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.model.HL7.zags;
 
-  public abstract class ZagsImporter<TypeXmlObj> : IZagsImporter where TypeXmlObj: new()
+  /// <summary>
+  /// The zags importer.
+  /// </summary>
+  /// <typeparam name="TypeXmlObj">
+  /// </typeparam>
+  public abstract class ZagsImporter<TypeXmlObj> : IZagsImporter
+    where TypeXmlObj : new()
   {
-    public ZagsImporter()
-    {
+    #region Properties
 
-    }
-
+    /// <summary>
+    /// Gets the xsd resource name.
+    /// </summary>
     protected abstract string XsdResourceName { get; }
 
-    protected abstract Zags_VNov Convert(TypeXmlObj data);
+    #endregion
 
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The get import data.
+    /// </summary>
+    /// <param name="xmlFilePath">
+    /// The xml file path.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Zags_VNov"/>.
+    /// </returns>
     public virtual Zags_VNov GetImportData(string xmlFilePath)
     {
       XmlSchema schema;
-      //зачитываем из ресурсов xsd
+
+      // зачитываем из ресурсов xsd
       var resourceName = string.Format("rt.srz.business.exchange.import.zags.Implementation.xsd.{0}", XsdResourceName);
-      Assembly myAssembly = Assembly.GetExecutingAssembly();
-      using (Stream schemaStream = myAssembly.GetManifestResourceStream(resourceName))
+      var myAssembly = Assembly.GetExecutingAssembly();
+      using (var schemaStream = myAssembly.GetManifestResourceStream(resourceName))
       {
         schema = XmlSchema.Read(schemaStream, null);
       }
 
-      //проверяем документ на соответствие
-      XmlReaderSettings settings = new XmlReaderSettings();
+      // проверяем документ на соответствие
+      var settings = new XmlReaderSettings();
       settings.Schemas.Add(schema);
       settings.ValidationType = ValidationType.Schema;
       settings.ValidationEventHandler += ValidationHandler;
-      XmlReader reader = XmlTextReader.Create(xmlFilePath, settings);
+      var reader = XmlReader.Create(xmlFilePath, settings);
 
-      TypeXmlObj obj = new TypeXmlObj();
+      var obj = new TypeXmlObj();
       obj = (TypeXmlObj)XmlSerializationHelper.Deserialize(obj, reader);
 
       return Convert(obj);
     }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The convert.
+    /// </summary>
+    /// <param name="data">
+    /// The data.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Zags_VNov"/>.
+    /// </returns>
+    protected abstract Zags_VNov Convert(TypeXmlObj data);
+
+    /// <summary>
+    /// The validation handler.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="_args">
+    /// The _args.
+    /// </param>
+    /// <exception cref="InvalidOperationException">
+    /// </exception>
     private static void ValidationHandler(object sender, ValidationEventArgs _args)
     {
       if (_args.Severity == XmlSeverityType.Warning)
+      {
         throw new InvalidOperationException("Предупреждение: " + _args.Message, _args.Exception);
-      else
-        throw new InvalidOperationException("Ошибка: " + _args.Message, _args.Exception);
+      }
+
+      throw new InvalidOperationException("Ошибка: " + _args.Message, _args.Exception);
     }
 
-    //public Zags_VNov GetImportData(string xmlFilePath)
-    //{
-    //  TypeXmlObj result;
-    //  var serializer = XmlSerializationHelper.GetSerializer(typeof(TypeXmlObj));
-    //  using (var fs = new FileStream(xmlFilePath, FileMode.Open, FileAccess.Read))
-    //  {
-    //    result = (TypeXmlObj)serializer.Deserialize(fs);
-    //  }
-    //  return Convert(result);
-    //}
+    #endregion
 
+    // public Zags_VNov GetImportData(string xmlFilePath)
+    // {
+    // TypeXmlObj result;
+    // var serializer = XmlSerializationHelper.GetSerializer(typeof(TypeXmlObj));
+    // using (var fs = new FileStream(xmlFilePath, FileMode.Open, FileAccess.Read))
+    // {
+    // result = (TypeXmlObj)serializer.Deserialize(fs);
+    // }
+    // return Convert(result);
+    // }
   }
 }

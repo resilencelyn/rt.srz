@@ -1,33 +1,56 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NHibernateProxyUtils.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NHibernateProxyUtils.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The n hibernate proxy utils.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-using System;
-using NHibernate;
-using NHibernate.Metadata;
-using NHibernate.Proxy;
-
-#endregion
 
 namespace rt.core.business.nhibernate
 {
+  using System;
+
+  using NHibernate;
+  using NHibernate.Metadata;
+  using NHibernate.Proxy;
+
   /// <summary>
-  /// The n hibernate proxy utils.
+  ///   The n hibernate proxy utils.
   /// </summary>
   public static class NHibernateProxyUtils
   {
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// Gets the underlying class type of a persistent object that may be proxied
+    /// </summary>
+    /// <typeparam name="T">
+    /// Тип
+    /// </typeparam>
+    /// <param name="persistentObject">
+    /// The persistent Object.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Type"/>.
+    /// </returns>
+    public static Type GetUnproxiedType<T>(this T persistentObject)
+    {
+      var proxy = persistentObject as INHibernateProxy;
+      return proxy != null ? proxy.HibernateLazyInitializer.PersistentClass : persistentObject.GetType();
+    }
+
     /// <summary>
     /// Force initialization of a proxy or persistent collection.
     /// </summary>
     /// <typeparam name="T">
-    ///  Тип
+    /// Тип
     /// </typeparam>
     /// <param name="persistentObject">
-    /// a persistable object, proxy, persistent collection or null 
+    /// a persistable object, proxy, persistent collection or null
+    /// </param>
+    /// <param name="sessionFactory">
+    /// The session Factory.
     /// </param>
     /// <exception cref="HibernateException">
     /// if we can't initialize the proxy at this time, eg. the Session was closed
@@ -59,30 +82,12 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// Gets the underlying class type of a persistent object that may be proxied
+    /// Force initialzation of a possibly proxied object tree up to the maxDepth.
+    ///   Once the maxDepth is reached, entity properties will be replaced with
+    ///   placeholder objects having only the identifier property populated.
     /// </summary>
     /// <typeparam name="T">
     /// Тип
-    /// </typeparam>
-    /// <param name="persistentObject">
-    /// The persistent Object.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Type"/>.
-    /// </returns>
-    public static Type GetUnproxiedType<T>(this T persistentObject)
-    {
-      var proxy = persistentObject as INHibernateProxy;
-      return proxy != null ? proxy.HibernateLazyInitializer.PersistentClass : persistentObject.GetType();
-    }
-
-    /// <summary>
-    /// Force initialzation of a possibly proxied object tree up to the maxDepth.
-    ///  Once the maxDepth is reached, entity properties will be replaced with
-    ///  placeholder objects having only the identifier property populated.
-    /// </summary>
-    /// <typeparam name="T">
-    ///  Тип
     /// </typeparam>
     /// <param name="persistentObject">
     /// The persistent Object.
@@ -144,12 +149,16 @@ namespace rt.core.business.nhibernate
       return unproxiedObject;
     }
 
+    #endregion
+
+    #region Methods
+
     /// <summary>
     /// Return an empty placeholder object with the Identifier set.  We can safely access the identifier
     ///   property without the object being initialized.
     /// </summary>
     /// <typeparam name="T">
-    ///  Тип
+    /// Тип
     /// </typeparam>
     /// <param name="persistentObject">
     /// The persistent Object.
@@ -175,5 +184,7 @@ namespace rt.core.business.nhibernate
 
       return placeholderObject;
     }
+
+    #endregion
   }
 }

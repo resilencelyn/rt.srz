@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TFService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TFService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The tf service.
@@ -13,23 +13,16 @@ namespace rt.srz.services.TF
 
   using System;
   using System.Collections.Generic;
-  using System.Linq;
 
-  using NHibernate;
-  using NHibernate.Criterion;
-
-  using rt.core.business.security.interfaces;
   using rt.core.model.dto;
   using rt.srz.business.manager;
-  using rt.srz.business.manager.cache;
-  using rt.srz.model.algorithms;
   using rt.srz.model.dto;
-  using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
-  using rt.srz.model.srz.concepts;
 
   using StructureMap;
+
+  using User = rt.core.model.core.User;
 
   #endregion
 
@@ -72,6 +65,39 @@ namespace rt.srz.services.TF
     }
 
     /// <summary>
+    /// Возвращает сортированный список периодов в которых запускались пакетные операции экспорта в СМО для указаннго
+    ///   отправителя либо получателя
+    /// </summary>
+    /// <param name="senderId">
+    /// The sender Id.
+    /// </param>
+    /// <param name="receiverId">
+    /// The receiver Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    public IList<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId)
+    {
+      return ObjectFactory.GetInstance<IPeriodManager>().GetExportSmoBatchPeriodList(senderId, receiverId);
+    }
+
+    /// <summary>
+    /// Возвращает все глобальные УЭК сертификаты
+    /// </summary>
+    /// <param name="batchId">
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    public IList<SertificateUec> GetGlobalSertificates()
+    {
+      return
+        ObjectFactory.GetInstance<ISertificateUecManager>()
+                     .GetBy(x => x.Smo.Id == null && x.IsActive && x.Workstation.Id == null);
+    }
+
+    /// <summary>
     ///   Возвращает все батчи относящиеся к пфр
     /// </summary>
     /// <returns> The <see cref="IList" /> . </returns>
@@ -95,7 +121,7 @@ namespace rt.srz.services.TF
     /// <param name="batchId">
     /// </param>
     /// <returns>
-    /// The <see cref="PfrStatisticInfo"/> . 
+    /// The <see cref="PfrStatisticInfo"/> .
     /// </returns>
     public PfrStatisticInfo GetPfrStatisticInfoByBatch(Guid batchId)
     {
@@ -108,7 +134,7 @@ namespace rt.srz.services.TF
     /// <param name="periodId">
     /// </param>
     /// <returns>
-    /// The <see cref="PfrStatisticInfo"/> . 
+    /// The <see cref="PfrStatisticInfo"/> .
     /// </returns>
     public PfrStatisticInfo GetPfrStatisticInfoByPeriod(Guid periodId)
     {
@@ -121,7 +147,7 @@ namespace rt.srz.services.TF
     /// <param name="keyTypeId">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchKeyType"/> . 
+    /// The <see cref="SearchKeyType"/> .
     /// </returns>
     public SearchKeyType GetSearchKeyType(Guid keyTypeId)
     {
@@ -143,7 +169,7 @@ namespace rt.srz.services.TF
     /// <param name="id">
     /// </param>
     /// <returns>
-    /// The <see cref="Twin"/> . 
+    /// The <see cref="Twin"/> .
     /// </returns>
     public Twin GetTwin(Guid id)
     {
@@ -165,11 +191,20 @@ namespace rt.srz.services.TF
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<Twin> GetTwins(SearchTwinCriteria criteria)
     {
       return ObjectFactory.GetInstance<ITwinManager>().GetTwins(criteria);
+    }
+
+    /// <summary>
+    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
+    /// </summary>
+    /// <returns> The <see cref="IList" /> . </returns>
+    public IList<User> GetUsersByCurrent()
+    {
+      return ObjectFactory.GetInstance<IOrganisationManager>().GetUsersByCurrent();
     }
 
     /// <summary>
@@ -184,6 +219,16 @@ namespace rt.srz.services.TF
     public void JoinTwins(Guid twinId, Guid mainInsuredPersonId, Guid secondInsuredPersonId)
     {
       ObjectFactory.GetInstance<ITwinManager>().JoinTwins(twinId, mainInsuredPersonId, secondInsuredPersonId);
+    }
+
+    /// <summary>
+    /// Помечает батч как не выгруженный
+    /// </summary>
+    /// <param name="batchId">
+    /// </param>
+    public void MarkBatchAsUnexported(Guid batchId)
+    {
+      ObjectFactory.GetInstance<IBatchManager>().MarkBatchAsUnexported(batchId);
     }
 
     /// <summary>
@@ -202,7 +247,7 @@ namespace rt.srz.services.TF
     /// <param name="keyType">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid SaveSearchKeyType(SearchKeyType keyType)
     {
@@ -210,55 +255,34 @@ namespace rt.srz.services.TF
     }
 
     /// <summary>
-    /// Разделение
-    /// </summary>
-    /// <param name="personId"></param>
-    /// <param name="statementsToSeparate"></param>
-    public void Separate(Guid personId, IList<Statement> statementsToSeparate, bool copyDeadInfo, int status)
-    {
-      ObjectFactory.GetInstance<ITwinManager>().Separate(personId, statementsToSeparate, copyDeadInfo, status);
-    }
-
-    #endregion
-
-    #region Methods
-
-    /// <summary>
     /// Осуществляет поиск пакетных операций экспорта заявлений для СМО
     /// </summary>
-    /// <param name="criteria"></param>
-    /// <returns></returns>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/>.
+    /// </returns>
     public SearchResult<SearchBatchResult> SearchExportSmoBatches(SearchExportSmoBatchCriteria criteria)
     {
       return ObjectFactory.GetInstance<IBatchManager>().SearchExportSmoBatches(criteria);
     }
 
     /// <summary>
-    /// Возвращает сортированный список периодов в которых запускались пакетные операции экспорта в СМО для указаннго отправителя либо получателя
+    /// Разделение
     /// </summary>
-    /// <returns></returns>
-    public IList<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId)
+    /// <param name="personId">
+    /// </param>
+    /// <param name="statementsToSeparate">
+    /// </param>
+    /// <param name="copyDeadInfo">
+    /// The copy Dead Info.
+    /// </param>
+    /// <param name="status">
+    /// The status.
+    /// </param>
+    public void Separate(Guid personId, IList<Statement> statementsToSeparate, bool copyDeadInfo, int status)
     {
-      return ObjectFactory.GetInstance<IPeriodManager>().GetExportSmoBatchPeriodList(senderId, receiverId);
-    }
-
-    /// <summary>
-    /// Помечает батч как не выгруженный
-    /// </summary>
-    /// <param name="batchId"></param>
-    public void MarkBatchAsUnexported(Guid batchId)
-    {
-      ObjectFactory.GetInstance<IBatchManager>().MarkBatchAsUnexported(batchId);
-    }
-
-    /// <summary>
-    ///  Возвращает все глобальные УЭК сертификаты
-    /// </summary>
-    /// <param name="batchId"></param>
-    /// <returns></returns>
-    public IList<SertificateUec> GetGlobalSertificates()
-    { 
-      return ObjectFactory.GetInstance<ISertificateUecManager>().GetBy(x => x.Smo.Id == null && x.IsActive && x.Workstation.Id == null);
+      ObjectFactory.GetInstance<ITwinManager>().Separate(personId, statementsToSeparate, copyDeadInfo, status);
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultChildrenAgeToHaveUdlException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultChildrenAgeToHaveUdlException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault children age to have udl exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault children age to have udl exception.
+  ///   The fault children age to have udl exception.
   /// </summary>
   [Serializable]
   public class FaultChildrenAgeToHaveUdlException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultChildrenAgeToHaveUdlException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultChildrenAgeToHaveUdlException" /> class.
     /// </summary>
     public FaultChildrenAgeToHaveUdlException()
       : base(

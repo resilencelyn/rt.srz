@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InvokeHandler!1.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="InvokeHandler!1.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The invoke handler.

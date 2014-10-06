@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.core.business.manager;
-using rt.core.model.core;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserGroupTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The user group tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.tests
 {
-    public partial class UserGroupTests
-    {
-	}
+  /// <summary>
+  /// The user group tests.
+  /// </summary>
+  public partial class UserGroupTests
+  {
+  }
 }

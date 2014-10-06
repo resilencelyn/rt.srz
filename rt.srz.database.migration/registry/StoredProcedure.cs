@@ -1,27 +1,27 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StoredProcedure.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StoredProcedure.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The stored procedure.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.registry
 {
-
   /// <summary>
-  /// The stored procedure.
+  ///   The stored procedure.
   /// </summary>
-  static internal class StoredProcedure
+  internal static class StoredProcedure
   {
-    public static string CreateStatementWithVersion()
-    {
-      return @"IF  NOT EXISTS (SELECT * FROM sys.types st JOIN sys.schemas ss ON st.schema_id = ss.schema_id WHERE st.name = N'StatementWithVersion' AND ss.name = N'dbo')
-               CREATE TYPE [dbo].[StatementWithVersion] 
-               AS TABLE(
-	              [StatementId] [uniqueidentifier] NOT NULL,
-	              [StatementVersion] [int] NOT NULL
-              )";
-    }
+    #region Public Methods and Operators
 
+    /// <summary>
+    /// The calculate enp numbers.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalculateEnpNumbers()
     {
       return @"
@@ -52,6 +52,12 @@ MERGE NumberPolicyCounter AS Dst
 END";
     }
 
+    /// <summary>
+    /// The calculate kladr level and parrent id.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalculateKladrLevelAndParrentId()
     {
       return @"
@@ -141,6 +147,12 @@ where OCATD is null
 end";
     }
 
+    /// <summary>
+    /// The calculate standard search keys.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalculateStandardSearchKeys()
     {
       return @"
@@ -199,6 +211,12 @@ BEGIN
 END";
     }
 
+    /// <summary>
+    /// The calculate standard search keys exchange.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalculateStandardSearchKeysExchange()
     {
       return @"
@@ -248,6 +266,12 @@ BEGIN
 END";
     }
 
+    /// <summary>
+    /// The calculate user search keys.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalculateUserSearchKeys()
     {
       return @"
@@ -319,6 +343,12 @@ BEGIN
 END";
     }
 
+    /// <summary>
+    /// The calculate user search keys exchange.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CalculateUserSearchKeysExchange()
     {
       return @"
@@ -375,6 +405,12 @@ END
 ";
     }
 
+    /// <summary>
+    /// The create export smo batches.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CreateExportSmoBatches()
     {
       return @"
@@ -475,6 +511,12 @@ END
 ";
     }
 
+    /// <summary>
+    /// The create export smo batches for pdp.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string CreateExportSmoBatchesForPdp()
     {
       return @"
@@ -622,6 +664,29 @@ END
 ";
     }
 
+    /// <summary>
+    /// The create statement with version.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string CreateStatementWithVersion()
+    {
+      return
+        @"IF  NOT EXISTS (SELECT * FROM sys.types st JOIN sys.schemas ss ON st.schema_id = ss.schema_id WHERE st.name = N'StatementWithVersion' AND ss.name = N'dbo')
+               CREATE TYPE [dbo].[StatementWithVersion] 
+               AS TABLE(
+	              [StatementId] [uniqueidentifier] NOT NULL,
+	              [StatementVersion] [int] NOT NULL
+              )";
+    }
+
+    /// <summary>
+    /// The find twins.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string FindTwins()
     {
       return @"
@@ -686,6 +751,12 @@ BEGIN
 END";
     }
 
+    /// <summary>
+    /// The process pfr.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string ProcessPfr()
     {
       return @"
@@ -772,6 +843,12 @@ END
 ";
     }
 
+    /// <summary>
+    /// The process snils pfr.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string ProcessSnilsPfr()
     {
       return @"
@@ -795,6 +872,12 @@ BEGIN
 END";
     }
 
+    /// <summary>
+    /// The process zags.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
     public static string ProcessZags()
     {
       return @"
@@ -840,5 +923,7 @@ BEGIN
 END
 ";
     }
+
+    #endregion
   }
 }

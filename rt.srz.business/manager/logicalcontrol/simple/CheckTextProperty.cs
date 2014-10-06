@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckTextProperty.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckTextProperty.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The check text property.
@@ -17,6 +17,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.srz;
 
@@ -33,11 +34,14 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
+    /// The deleg.
+    /// </summary>
+    private readonly Func<Statement, object> deleg;
+
+    /// <summary>
     ///   The regex.
     /// </summary>
     private readonly Regex regex;
-
-    private readonly Func<Statement, object> deleg;
 
     #endregion
 
@@ -47,16 +51,18 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="CheckTextProperty{TException}"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <param name="pattern">
-    /// The pattern. 
+    /// The pattern.
     /// </param>
     protected CheckTextProperty(
-      ISessionFactory sessionFactory, Expression<Func<Statement, object>> expression, string pattern)
+      ISessionFactory sessionFactory, 
+      Expression<Func<Statement, object>> expression, 
+      string pattern)
       : base(CheckLevelEnum.Simple, sessionFactory, expression)
     {
       Pattern = pattern;
@@ -66,18 +72,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
     #endregion
 
-    #region Protected Properties
-
-    protected Regex Regex
-    {
-      get
-      {
-        return regex;
-      }
-    }
-
-    #endregion
-    
     #region Public Properties
 
     /// <summary>
@@ -87,13 +81,28 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
     #endregion
 
+    #region Properties
+
+    /// <summary>
+    /// Gets the regex.
+    /// </summary>
+    protected Regex Regex
+    {
+      get
+      {
+        return regex;
+      }
+    }
+
+    #endregion
+
     #region Public Methods and Operators
 
     /// <summary>
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {

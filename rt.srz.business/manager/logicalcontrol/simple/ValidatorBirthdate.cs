@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorBirthdate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorBirthdate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator birthdate.
@@ -13,9 +13,9 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
-  using rt.srz.model.logicalcontrol.exceptions;
-  using rt.srz.model.Properties;
   using rt.srz.model.logicalcontrol.exceptions.step2;
+  using rt.srz.model.Properties;
+  using rt.srz.model.srz;
 
   using Resourcessrz = rt.srz.business.Properties.Resource;
 
@@ -32,7 +32,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorBirthdate"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorBirthdate(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.InsuredPersonData.Birthday, Resource.Date)
@@ -44,7 +44,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -53,7 +53,18 @@ namespace rt.srz.business.manager.logicalcontrol.simple
         return Resourcessrz.CaptionValidatorBirthdate;
       }
     }
-    public override void CheckObject(model.srz.Statement statement)
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The check object.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    public override void CheckObject(Statement statement)
     {
       base.CheckObject(statement);
     }

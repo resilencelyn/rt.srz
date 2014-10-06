@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KladrGateInternal.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="KladrGateInternal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The kladr gate.
@@ -41,10 +41,10 @@ namespace rt.srz.services.Kladr
     /// The get first level by tfoms.
     /// </summary>
     /// <param name="tfom">
-    /// The tfom. 
+    /// The tfom.
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/> . 
+    /// The <see cref="Kladr"/> .
     /// </returns>
     public Kladr GetFirstLevelByTfoms(Organisation tfom)
     {
@@ -57,7 +57,7 @@ namespace rt.srz.services.Kladr
     /// <param name="objectId">
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/> . 
+    /// The <see cref="Kladr"/> .
     /// </returns>
     public Kladr GetKLADR(Guid objectId)
     {
@@ -70,12 +70,12 @@ namespace rt.srz.services.Kladr
     /// <param name="parentId">
     /// </param>
     /// <param name="prefix">
-    /// The prefix. 
+    /// The prefix.
     /// </param>
     /// <param name="level">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Kladr> GetKLADRs(Guid? parentId, string prefix, KLADRLevel? level)
     {

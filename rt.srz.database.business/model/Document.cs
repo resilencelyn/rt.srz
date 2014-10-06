@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Document.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Document.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The Document.
@@ -18,19 +18,36 @@ namespace rt.srz.database.business.model
   /// </summary>
   public partial class Document
   {
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The from xml.
+    /// </summary>
+    /// <param name="xml">
+    /// The xml.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Document"/>.
+    /// </returns>
     public static Document FromXML(string xml)
     {
-      XDocument document = XDocument.Parse(xml);
+      var document = XDocument.Parse(xml);
       var doc = from d in document.Descendants("Dual")
-                select new Document
-                {
-                  RowId = new Guid(d.Element("RowId").Value),
-                  DocumentTypeId = d.Element("DocumentTypeId") == null ? (int?)null : int.Parse(d.Element("DocumentTypeId").Value),
-                  Series = d.Element("Series") == null ? null : d.Element("Series").Value,
-                  Number = d.Element("Number") == null ? null : d.Element("Number").Value,
-                };
+                select
+                  new Document
+                  {
+                    RowId = new Guid(d.Element("RowId").Value), 
+                    DocumentTypeId =
+                      d.Element("DocumentTypeId") == null
+                        ? (int?)null
+                        : int.Parse(d.Element("DocumentTypeId").Value), 
+                    Series = d.Element("Series") == null ? null : d.Element("Series").Value, 
+                    Number = d.Element("Number") == null ? null : d.Element("Number").Value, 
+                  };
 
       return doc.FirstOrDefault();
     }
+
+    #endregion
   }
 }

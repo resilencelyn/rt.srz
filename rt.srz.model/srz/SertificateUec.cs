@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="SertificateUec.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SertificateUec.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The SertificateUec.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The SertificateUec.
+  ///   The SertificateUec.
   /// </summary>
-  public partial class SertificateUec 
+  public partial class SertificateUec
   {
   }
 }

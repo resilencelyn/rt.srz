@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Workstation.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Workstation.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Workstation.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The Workstation.
+  ///   The Workstation.
   /// </summary>
-  public partial class Workstation 
+  public partial class Workstation
   {
   }
 }

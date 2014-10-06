@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEnpExistsException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultEnpExistsException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault enp exists exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step1
   #endregion
 
   /// <summary>
-  /// The fault enp exists exception.
+  ///   The fault enp exists exception.
   /// </summary>
   [Serializable]
   public class FaultEnpExistsException : FaultStep1
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step1
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultEnpExistsException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultEnpExistsException" /> class.
     /// </summary>
     public FaultEnpExistsException()
       : base(new ExceptionInfo(Resource.FaultEnpExistsExceptionCode), Resource.FaultEnpExistsExceptionMessage)
@@ -47,6 +47,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step1
       : base(info, context)
     {
     }
+
     #endregion
   }
 }

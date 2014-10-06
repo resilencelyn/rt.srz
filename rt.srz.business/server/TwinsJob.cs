@@ -1,18 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServerJob.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TwinsJob.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The calculating job.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.server
 {
   #region
-
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-
-  using NHibernate;
 
   using Quartz;
 
@@ -28,16 +25,22 @@ namespace rt.srz.business.server
   /// </summary>
   public class TwinsJob : JobBase
   {
+    #region Static Fields
+
     /// <summary>
-    /// The lock object.
+    ///   The lock object.
     /// </summary>
     private static string LockObject = "lock";
+
+    #endregion
+
+    #region Methods
 
     /// <summary>
     /// The execute impl.
     /// </summary>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected override void ExecuteImpl(IJobExecutionContext context)
     {
@@ -48,7 +51,7 @@ namespace rt.srz.business.server
         try
         {
           var executeStoredManager = ObjectFactory.GetInstance<IExecuteStoredManager>();
-          executeStoredManager.FindTwins();  
+          executeStoredManager.FindTwins();
         }
         finally
         {
@@ -56,5 +59,7 @@ namespace rt.srz.business.server
         }
       }
     }
+
+    #endregion
   }
 }

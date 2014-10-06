@@ -1,8 +1,11 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Zags_VNov.cs" type="Zags_VNov" company="SofTrust">
-//     Copyright (c) 2011. All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Zags_VNov.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-----------------------------------------------------------------------
+// <summary>
+//   Пакет от ЗАГС
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.HL7.zags
 {
@@ -11,22 +14,26 @@ namespace rt.srz.model.HL7.zags
   using System.Xml.Serialization;
 
   /// <summary>
-  /// Пакет от ЗАГС
+  ///   Пакет от ЗАГС
   /// </summary>
   [Serializable]
   [XmlRoot("ФайлТФОМС")]
   public class Zags_VNov
   {
+    #region Public Properties
+
     /// <summary>
-    /// Заголовок
+    ///   Сведения о смерти
+    /// </summary>
+    [XmlElement("СВЕДЕНИЯ_О_СМЕРТИ")]
+    public List<DeathInfo> DeathInfo { get; set; }
+
+    /// <summary>
+    ///   Заголовок
     /// </summary>
     [XmlElement("ЗаголовокФайла")]
     public Zglv Zglv { get; set; }
 
-    /// <summary>
-    /// Сведения о смерти
-    /// </summary>
-    [XmlElement("СВЕДЕНИЯ_О_СМЕРТИ")]
-    public List<DeathInfo> DeathInfo { get; set; }
+    #endregion
   }
 }

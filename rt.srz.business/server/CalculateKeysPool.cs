@@ -1,24 +1,30 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CalculatingKeysPool.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CalculateKeysPool.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The task calculating Pool.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.server
 {
   #region
 
-  using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using NHibernate;
+
   using Quartz;
-  using StructureMap;
-  using rt.srz.business.manager;
-  using rt.srz.model.srz;
+
   using rt.core.business.interfaces.quartz;
+  using rt.srz.business.manager;
   using rt.srz.business.quartz;
-  
+  using rt.srz.model.srz;
+
+  using StructureMap;
+
   #endregion
 
   /// <summary>
@@ -26,17 +32,21 @@ namespace rt.srz.business.server
   /// </summary>
   public class CalculateKeysPool
   {
+    #region Constants
+
+    /// <summary>
+    ///   The count in job.
+    /// </summary>
+    public const int CountInJob = 25000;
+
+    #endregion
+
     #region Static Fields
 
     /// <summary>
     ///   The instance.
     /// </summary>
     private static CalculateKeysPool instance;
-
-    /// <summary>
-    /// The count in job.
-    /// </summary>
-    public const int CountInJob = 25000;
 
     #endregion
 
@@ -89,79 +99,23 @@ namespace rt.srz.business.server
     /// </summary>
     public Queue<CalculateKeysJobInfo> Queue { get; private set; }
 
+    #endregion
+
+    #region Public Methods and Operators
+
     /// <summary>
-    /// The re init.
+    ///   The re init.
     /// </summary>
     public static void ReInit()
     {
       instance = null;
     }
 
-    #endregion
-
-    #region Methods
-
     /// <summary>
-    ///   The init.
+    /// Добавляет в очередь расчет пользователького ключа
     /// </summary>
-    /// <returns> The <see cref="CalculateKeysPool" /> . </returns>
-    private static CalculateKeysPool Init()
-    {
-      instance = new CalculateKeysPool();
-      instance.AddJobsForAllKeys();
-      return instance;
-    }
-
-    public void AddJobsForAllKeys()
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      ISearchKeyTypeManager keyManager = ObjectFactory.GetInstance<ISearchKeyTypeManager>();
-
-      var count = session.QueryOver<Statement>().RowCount();
-      var countJob = (count / CountInJob) + 1;
-
-      // задачи для стандартных ключей
-      if (keyManager.GetBy(x => !x.Recalculated && x.IsActive).Any(x => x.Tfoms == null))
-      {
-        for (var i = 0; i < countJob; i++)
-        {
-          var jobInfo = new CalculateKeysJobInfo
-          {
-            IsStandard = true,
-            From = (i * CountInJob) + 1,
-            To = (i + 1) * CountInJob,
-            IsDeleted = false
-          };
-
-          Queue.Enqueue(jobInfo);
-        }
-      }
-
-      // задачи для пользовательских ключей
-      var keyTypes = keyManager.GetBy(x => !x.Recalculated && x.IsActive).Where(x => x.Tfoms != null);
-      countJob = (count / CountInJob) + 1;
-      foreach (var keyType in keyTypes)
-      {
-        for (var i = 0; i < countJob; i++)
-        {
-          var jobInfo = new CalculateKeysJobInfo
-          {
-            IsStandard = false,
-            From = (i * CountInJob) + 1,
-            To = (i + 1) * CountInJob,
-            SearchKeyType = keyType,
-            IsDeleted = false
-          };
-
-          Queue.Enqueue(jobInfo);
-        }
-      }
-    }
-
-    /// <summary>
-    ///Добавляет в очередь расчет пользователького ключа 
-    /// </summary>
-    /// <param name="keyType"></param>
+    /// <param name="keyType">
+    /// </param>
     public void AddJobForUserKey(SearchKeyType keyType)
     {
       // Получаем фабрику
@@ -186,9 +140,12 @@ namespace rt.srz.business.server
       lock (LockObject)
       {
         // Ставим на паузу тригер пересчета ключей
-        TriggerKey key = ObjectFactory.GetInstance<IQuartzInfoProvider>().GetTriggerKey(JobGroupNames.Service, JobNames.CalculatingKeys);
+        var key = ObjectFactory.GetInstance<IQuartzInfoProvider>()
+                               .GetTriggerKey(JobGroupNames.Service, JobNames.CalculatingKeys);
         if (key != null)
+        {
           scheduler.PauseTrigger(key);
+        }
 
         try
         {
@@ -202,7 +159,14 @@ namespace rt.srz.business.server
 
           // останавливаем все работы, выполняемые для указанного ключа
           var executingJobs = scheduler.GetCurrentlyExecutingJobs();
-          foreach (var executionContext in executingJobs.Where(x => x.JobDetail.JobDataMap.Contains(new KeyValuePair<string, object>("Имя ключа", keyType.Code))))
+          foreach (
+            var executionContext in
+              executingJobs.Where(
+                                  x =>
+                                  x.JobDetail.JobDataMap.Contains(
+                                                                  new KeyValuePair<string, object>(
+                                                                    "Имя ключа", 
+                                                                    keyType.Code))))
           {
             var res = scheduler.Interrupt(executionContext.FireInstanceId);
           }
@@ -210,13 +174,13 @@ namespace rt.srz.business.server
           for (var i = 0; i < countJob; i++)
           {
             var jobInfo = new CalculateKeysJobInfo
-            {
-              IsStandard = false,
-              From = (i * CountInJob) + 1,
-              To = (i + 1) * CountInJob,
-              SearchKeyType = keyType,
-              IsDeleted = false
-            };
+                          {
+                            IsStandard = false, 
+                            From = (i * CountInJob) + 1, 
+                            To = (i + 1) * CountInJob, 
+                            SearchKeyType = keyType, 
+                            IsDeleted = false
+                          };
             instance.Queue.Enqueue(jobInfo);
           }
         }
@@ -225,6 +189,70 @@ namespace rt.srz.business.server
           scheduler.ResumeTrigger(key);
         }
       }
+    }
+
+    /// <summary>
+    /// The add jobs for all keys.
+    /// </summary>
+    public void AddJobsForAllKeys()
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var keyManager = ObjectFactory.GetInstance<ISearchKeyTypeManager>();
+
+      var count = session.QueryOver<Statement>().RowCount();
+      var countJob = (count / CountInJob) + 1;
+
+      // задачи для стандартных ключей
+      if (keyManager.GetBy(x => !x.Recalculated && x.IsActive).Any(x => x.Tfoms == null))
+      {
+        for (var i = 0; i < countJob; i++)
+        {
+          var jobInfo = new CalculateKeysJobInfo
+                        {
+                          IsStandard = true, 
+                          From = (i * CountInJob) + 1, 
+                          To = (i + 1) * CountInJob, 
+                          IsDeleted = false
+                        };
+
+          Queue.Enqueue(jobInfo);
+        }
+      }
+
+      // задачи для пользовательских ключей
+      var keyTypes = keyManager.GetBy(x => !x.Recalculated && x.IsActive).Where(x => x.Tfoms != null);
+      countJob = (count / CountInJob) + 1;
+      foreach (var keyType in keyTypes)
+      {
+        for (var i = 0; i < countJob; i++)
+        {
+          var jobInfo = new CalculateKeysJobInfo
+                        {
+                          IsStandard = false, 
+                          From = (i * CountInJob) + 1, 
+                          To = (i + 1) * CountInJob, 
+                          SearchKeyType = keyType, 
+                          IsDeleted = false
+                        };
+
+          Queue.Enqueue(jobInfo);
+        }
+      }
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    ///   The init.
+    /// </summary>
+    /// <returns> The <see cref="CalculateKeysPool" /> . </returns>
+    private static CalculateKeysPool Init()
+    {
+      instance = new CalculateKeysPool();
+      instance.AddJobsForAllKeys();
+      return instance;
     }
 
     #endregion

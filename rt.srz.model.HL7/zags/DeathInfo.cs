@@ -1,8 +1,11 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="DeathInfo.cs" company="SofTrust" author="IKhavkina">
-//     Copyright (c) 2012. All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DeathInfo.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-----------------------------------------------------------------------
+// <summary>
+//   Данные застрахованного лица
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.HL7.zags
 {
@@ -10,75 +13,79 @@ namespace rt.srz.model.HL7.zags
   using System.Xml.Serialization;
 
   /// <summary>
-  /// Данные застрахованного лица  
+  ///   Данные застрахованного лица
   /// </summary>
   [Serializable]
   public class DeathInfo
   {
-    /// <summary>
-    /// Номер в пачке
-    /// </summary>
-    [XmlElement("НомерВпачке")]
-    public string NumInPackage { get; set; }
+    #region Public Properties
 
     /// <summary>
-    /// Орган ЗАГС
-    /// </summary>
-    [XmlElement("ОрганЗАГС")]
-    public ORGZAGS OrgZags { get; set; }
-
-    /// <summary>
-    /// ФИО   
-    /// </summary>
-    [XmlElement("ФИО")]
-    public FIO Fio { get; set; }
-
-    /// <summary>
-    /// Пол
-    /// </summary>
-    [XmlElement("Пол")]
-    public string W { get; set; }
-
-    /// <summary>
-    /// Дата рождения
-    /// </summary>
-    [XmlElement("ДатаРождения")]
-    public string Dr { get; set; }
-
-    /// <summary>
-    /// Место рождения
-    /// </summary>
-    [XmlElement("МестоРождения")]
-    public MR Mr { get; set; }
-
-    /// <summary>
-    /// Дата смерти
+    ///   Дата смерти
     /// </summary>
     [XmlElement("ДатаСмерти")]
     public string DateDeath { get; set; }
 
     /// <summary>
-    /// НомерЗаписиАкта
-    /// </summary>
-    [XmlElement("НомерЗаписиАкта")]
-    public int NumRecord { get; set; }
-
-    /// <summary>
-    /// Дата записи акта
+    ///   Дата записи акта
     /// </summary>
     [XmlElement("ДатаЗаписиАкта")]
     public string DateRecord { get; set; }
 
     /// <summary>
-    /// ДПФС
+    ///   ДПФС
     /// </summary>
     [XmlElement("УдостоверяющийДокумент")]
     public DOC Doc { get; set; }
 
     /// <summary>
-    /// Последний адрес проживания
+    ///   Дата рождения
+    /// </summary>
+    [XmlElement("ДатаРождения")]
+    public string Dr { get; set; }
+
+    /// <summary>
+    ///   ФИО
+    /// </summary>
+    [XmlElement("ФИО")]
+    public FIO Fio { get; set; }
+
+    /// <summary>
+    ///   Последний адрес проживания
     /// </summary>
     [XmlElement("ПоследнееМестоЖительства")]
     public LastAddress LastAddressF { get; set; }
+
+    /// <summary>
+    ///   Место рождения
+    /// </summary>
+    [XmlElement("МестоРождения")]
+    public MR Mr { get; set; }
+
+    /// <summary>
+    ///   Номер в пачке
+    /// </summary>
+    [XmlElement("НомерВпачке")]
+    public string NumInPackage { get; set; }
+
+    /// <summary>
+    ///   НомерЗаписиАкта
+    /// </summary>
+    [XmlElement("НомерЗаписиАкта")]
+    public int NumRecord { get; set; }
+
+    /// <summary>
+    ///   Орган ЗАГС
+    /// </summary>
+    [XmlElement("ОрганЗАГС")]
+    public ORGZAGS OrgZags { get; set; }
+
+    /// <summary>
+    ///   Пол
+    /// </summary>
+    [XmlElement("Пол")]
+    public string W { get; set; }
+
+    #endregion
   }
 }

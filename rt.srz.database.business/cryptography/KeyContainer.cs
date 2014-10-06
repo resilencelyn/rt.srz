@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KeyContainer.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="KeyContainer.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Класс представляет функциональность Infotecs криптопровайдера.
@@ -25,17 +25,17 @@ namespace rt.srz.database.business.cryptography
     #region Constants
 
     /// <summary>
-    /// The pp signature pin.
+    ///   The pp signature pin.
     /// </summary>
     private const int PpSignaturePin = 0x21;
 
     /// <summary>
-    /// The provider name.
+    ///   The provider name.
     /// </summary>
     private const string ProviderName = "Infotecs Cryptographic Service Provider";
 
     /// <summary>
-    /// The provider type.
+    ///   The provider type.
     /// </summary>
     private const int ProviderType = 2;
 
@@ -44,12 +44,12 @@ namespace rt.srz.database.business.cryptography
     #region Fields
 
     /// <summary>
-    /// The csp handler.
+    ///   The csp handler.
     /// </summary>
     private IntPtr cspHandler = IntPtr.Zero;
 
     /// <summary>
-    /// The disposed.
+    ///   The disposed.
     /// </summary>
     private bool disposed;
 
@@ -58,7 +58,7 @@ namespace rt.srz.database.business.cryptography
     #region Constructors and Destructors
 
     /// <summary>
-    /// Prevents a default instance of the <see cref="KeyContainer"/> class from being created. 
+    ///   Prevents a default instance of the <see cref="KeyContainer" /> class from being created.
     ///   Конструктор.
     /// </summary>
     private KeyContainer()
@@ -94,8 +94,8 @@ namespace rt.srz.database.business.cryptography
     /// <summary>
     /// Подсчет хэша.
     /// </summary>
-    /// <param name="data">
-    /// Данные.
+    /// <param name="stream">
+    /// The stream.
     /// </param>
     /// <returns>
     /// Хэш.

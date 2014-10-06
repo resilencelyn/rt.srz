@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAuthService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IAuthService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Сервис авторизации
@@ -40,14 +40,14 @@ namespace rt.core.model.security
     [OperationContract]
     AuthResponse Authenticate(string userName, string password);
 
-    #endregion
-
     /// <summary>
-    /// The get auth response.
+    ///   The get auth response.
     /// </summary>
     /// <returns>
-    /// The <see cref="AuthResponse"/>.
+    ///   The <see cref="AuthResponse" />.
     /// </returns>
     Token GetAuthToken();
+
+    #endregion
   }
 }

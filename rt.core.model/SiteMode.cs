@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SiteMode.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SiteMode.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The site mode.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.model
@@ -16,36 +19,38 @@ namespace rt.core.model
   #endregion
 
   /// <summary>
-  /// The site mode.
+  ///   The site mode.
   /// </summary>
   public static class SiteMode
   {
     #region Public Properties
 
     /// <summary>
-    /// Gets a value indicating whether is online.
-    /// </summary>
-    public static bool IsOnline
-    {
-      get
-      {
-        return string.IsNullOrEmpty(ConfigurationManager.AppSettings["IsOnline"]) || bool.Parse(ConfigurationManager.AppSettings["IsOnline"]);
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether is installed.
+    ///   Gets a value indicating whether is installed.
     /// </summary>
     public static bool BeingInstalled
     {
       get
       {
-        return !string.IsNullOrEmpty(ConfigurationManager.AppSettings["BeingInstalled"]) && bool.Parse(ConfigurationManager.AppSettings["BeingInstalled"]);
+        return !string.IsNullOrEmpty(ConfigurationManager.AppSettings["BeingInstalled"])
+               && bool.Parse(ConfigurationManager.AppSettings["BeingInstalled"]);
       }
     }
 
     /// <summary>
-    /// Gets the on line date time.
+    ///   Gets a value indicating whether is online.
+    /// </summary>
+    public static bool IsOnline
+    {
+      get
+      {
+        return string.IsNullOrEmpty(ConfigurationManager.AppSettings["IsOnline"])
+               || bool.Parse(ConfigurationManager.AppSettings["IsOnline"]);
+      }
+    }
+
+    /// <summary>
+    ///   Gets the on line date time.
     /// </summary>
     public static string OnLineDateTime
     {
@@ -62,7 +67,7 @@ namespace rt.core.model
     #region Public Methods and Operators
 
     /// <summary>
-    /// The complete the installation.
+    ///   The complete the installation.
     /// </summary>
     public static void CompleteTheInstallation()
     {
@@ -71,7 +76,7 @@ namespace rt.core.model
       if (keyValueConfigurationElement != null)
       {
         keyValueConfigurationElement.Value = "false";
-        conf.Save(); 
+        conf.Save();
       }
     }
 
@@ -100,7 +105,7 @@ namespace rt.core.model
     }
 
     /// <summary>
-    /// The set online mode.
+    ///   The set online mode.
     /// </summary>
     public static void SetOnlineMode()
     {

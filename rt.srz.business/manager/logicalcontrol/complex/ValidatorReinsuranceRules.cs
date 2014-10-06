@@ -1,25 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NHibernate;
-using StructureMap;
-using rt.srz.business.Properties;
-using rt.srz.model.srz;
-using rt.srz.model.srz.concepts;
-using rt.srz.model.logicalcontrol.exceptions.step1;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ValidatorReinsuranceRules.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The validator reinsurance rules.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager.logicalcontrol.complex
 {
+  using System.Linq;
+
+  using NHibernate;
+
+  using rt.srz.business.Properties;
+  using rt.srz.model.enumerations;
+  using rt.srz.model.logicalcontrol.exceptions.step1;
+  using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
+
+  using StructureMap;
+
+  /// <summary>
+  /// The validator reinsurance rules.
+  /// </summary>
   public class ValidatorReinsuranceRules : Check
   {
-     #region Constructors and Destructors
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidatorReinsuranceRules"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorReinsuranceRules(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory)
@@ -31,7 +44,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -49,7 +62,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultPersonAlreadyBelongsToSmoException">
     /// </exception>
@@ -62,13 +75,14 @@ namespace rt.srz.business.manager.logicalcontrol.complex
       }
 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var oldStatementList = session.QueryOver<Statement>()
-        .Where(x => x.InsuredPerson.Id == statement.InsuredPerson.Id)
-        .And(x => x.Id != statement.Id)
-        .And(x => x.Status.Id != StatusStatement.Cancelled)
-        .And(x => x.Status.Id != StatusStatement.Declined)
-        .List();
-        
+      var oldStatementList =
+        session.QueryOver<Statement>()
+               .Where(x => x.InsuredPerson.Id == statement.InsuredPerson.Id)
+               .And(x => x.Id != statement.Id)
+               .And(x => x.Status.Id != StatusStatement.Cancelled)
+               .And(x => x.Status.Id != StatusStatement.Declined)
+               .List();
+
       var maxDate = oldStatementList.Max(x => x.DateFiling);
       if (maxDate.HasValue && maxDate.Value.Date >= statement.DateFiling.Value.Date)
       {

@@ -1,36 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.address, rt.srz.model" table="[dbo].[Address]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="IsHomeless" column="[IsHomeless]" />
-		<property name="Postcode" column="[Postcode]" />
-		<property name="Subject" column="[Subject]" />
-		<property name="Area" column="[Area]" />
-		<property name="City" column="[City]" />
-		<property name="Town" column="[Town]" />
-		<property name="Street" column="[Street]" />
-		<property name="House" column="[House]" />
-		<property name="Housing" column="[Housing]" />
-		<property name="Room" column="[Room]" />
-		<property name="DateRegistration" column="[DateRegistration]" />
-		<property name="IsNotStructureAddress" column="[IsNotStructureAddress]" />
-		<property name="Okato" column="[Okato]" />
-		<property name="Unstructured" column="[Unstructured]" />
-		<many-to-one name="Kladr" column="[KladrId]" class="Kladr"  />
-		<bag name="QueryResponses" lazy="true" inverse="true" >
-			<key column="[AddressId]"></key>
-			<one-to-many class="QueryResponse"></one-to-many>
-		</bag>
-		<bag name="Statements1" lazy="true" inverse="true" >
-			<key column="[AddressId]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-		<bag name="Statements2" lazy="true" inverse="true" >
-			<key column="[Address2Id]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.address, rt.srz.model" table="[dbo].[Address]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="IsHomeless" column="[IsHomeless]" />
+    <property name="Postcode" column="[Postcode]" />
+    <property name="Subject" column="[Subject]" />
+    <property name="Area" column="[Area]" />
+    <property name="City" column="[City]" />
+    <property name="Town" column="[Town]" />
+    <property name="Street" column="[Street]" />
+    <property name="House" column="[House]" />
+    <property name="Housing" column="[Housing]" />
+    <property name="Room" column="[Room]" />
+    <property name="DateRegistration" column="[DateRegistration]" />
+    <property name="IsNotStructureAddress" column="[IsNotStructureAddress]" />
+    <property name="Okato" column="[Okato]" />
+    <property name="Unstructured" column="[Unstructured]" />
+    <many-to-one name="Kladr" column="[KladrId]" class="Kladr" />
+    <bag name="QueryResponses" lazy="true" inverse="true">
+      <key column="[AddressId]"></key>
+      <one-to-many class="QueryResponse"></one-to-many>
+    </bag>
+    <bag name="Statements1" lazy="true" inverse="true">
+      <key column="[AddressId]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+    <bag name="Statements2" lazy="true" inverse="true">
+      <key column="[Address2Id]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConversionHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ConversionHelper.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The conversion helper.
@@ -1133,11 +1133,11 @@ namespace rt.srz.model.HL7.commons
         {
           DateTime time;
           if (DateTime.TryParseExact(
-            strValue, 
-            str, 
-            null, 
-            DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, 
-            out time))
+                                     strValue, 
+                                     str, 
+                                     null, 
+                                     DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, 
+                                     out time))
           {
             return time;
           }

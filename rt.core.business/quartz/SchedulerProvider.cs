@@ -1,32 +1,34 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SchedulerProvider.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SchedulerProvider.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The scheduler provider.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
-
-using CrystalQuartz.Core.SchedulerProviders;
-using Quartz;
-using StructureMap;
 
 namespace rt.core.business.quartz
 {
+  using CrystalQuartz.Core.SchedulerProviders;
+
   /// <summary>
-  /// The scheduler provider.
+  ///   The scheduler provider.
   /// </summary>
   public class SchedulerProvider : StdSchedulerProvider
   {
+    #region Properties
+
     /// <summary>
-    /// Gets a value indicating whether is lazy.
+    ///   Gets a value indicating whether is lazy.
     /// </summary>
     protected override bool IsLazy
     {
-      get { return true; }
+      get
+      {
+        return true;
+      }
     }
+
+    #endregion
   }
 }

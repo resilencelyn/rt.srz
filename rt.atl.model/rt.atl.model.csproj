@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,7 +36,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,6 +55,7 @@
       <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -124,12 +125,14 @@
     <Compile Include="atl\Vsend.generated.cs">
       <DependentUpon>Vsend.cs</DependentUpon>
     </Compile>
+    <Compile Include="configuration\ConfigManager.cs" />
     <Compile Include="dto\ErrorSinchronizationInfoResult.cs" />
     <Compile Include="dto\SearchErrorSinchronizationCriteria.cs" />
     <Compile Include="dto\StatisticInitialLoading.cs" />
     <Compile Include="exceptions\Atl2PvpMappingException.cs" />
     <Compile Include="interfaces\Service\IAtlService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SynchronizationSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="job_scheduling_data_2_0.xsd">
@@ -145,6 +148,7 @@
     <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
       <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
       <Name>rt.core.model</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

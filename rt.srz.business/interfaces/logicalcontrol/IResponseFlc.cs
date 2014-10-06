@@ -1,18 +1,14 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IResponseFlc.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IResponseFlc.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   The ResponseFlc interface.
+//   IResponseFlc.cs
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.interfaces.logicalcontrol
 {
-  #region references
-
-  #endregion
-
   /////// <summary>
   ///////   The ResponseFlc interface.
   /////// </summary>

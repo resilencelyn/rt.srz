@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +33,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -98,6 +98,9 @@
     <Compile Include="registry\ServiceClient.cs" />
     <Compile Include="registry\ServiceRegistryBase.cs" />
     <Compile Include="registry\WcfProxy.cs" />
+    <Compile Include="SecurityGate.cs" />
+    <Compile Include="SecurityGateInternal.cs" />
+    <Compile Include="SecurityService.cs" />
     <Compile Include="wcf\ErrorHandlingBahavior.cs" />
     <Compile Include="wcf\ExceptionErrorHandler.cs" />
     <Compile Include="wcf\MessageFaultInspector.cs" />
@@ -111,14 +114,17 @@
     <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
       <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
       <Name>rt.core.business</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
       <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
       <Name>rt.core.model</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterOrganisationSmo.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterOrganisationSmo.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The importer file tfoms organisation.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.smo

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultMedicalInsuranceDateNotEquals30Exception.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultTemporaryCertificateDateIssueBiggerThenNow.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault medical insurance date not equals 30 exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault medical insurance date not equals 30 exception.
+  ///   The fault medical insurance date not equals 30 exception.
   /// </summary>
   [Serializable]
   public class FaultTemporaryCertificateDateIssueBiggerThenNow : FaultStep6
@@ -27,11 +27,11 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultTemporaryCertificateDateIssueBiggerThenNow"/> class.
+    ///   Initializes a new instance of the <see cref="FaultTemporaryCertificateDateIssueBiggerThenNow" /> class.
     /// </summary>
     public FaultTemporaryCertificateDateIssueBiggerThenNow()
       : base(
-        new ExceptionInfo(Resource.FaultTemporaryCertificateDateIssueBiggerThenNowCode),
+        new ExceptionInfo(Resource.FaultTemporaryCertificateDateIssueBiggerThenNowCode), 
         Resource.FaultTemporaryCertificateDateIssueBiggerThenNowMessage)
     {
     }

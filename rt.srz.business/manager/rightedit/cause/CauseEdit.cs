@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CauseEdit.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CauseEdit.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The cause edit.
@@ -47,25 +47,25 @@ namespace rt.srz.business.manager.rightedit.cause
       get
       {
         return new List<Expression<Func<Statement, object>>>
-                 {
-                   x => x.InsuredPersonData.FirstName, 
-                   x => x.InsuredPersonData.LastName, 
-                   x => x.InsuredPersonData.MiddleName, 
-                   x => x.InsuredPersonData.Birthday, 
-                   x => x.InsuredPersonData.IsIncorrectDate, 
-                   x => x.InsuredPersonData.Birthday2, 
-                   x => x.InsuredPersonData.BirthdayType, 
-                   x => x.InsuredPersonData.Gender, 
-                   x => x.InsuredPersonData.Birthplace, 
-                   x => x.InsuredPersonData.OldCountry,
-                   x => x.NumberPolisCertificate, 
-                   x => x.DateIssuePolisCertificate,
-                   x => x.MedicalInsurances[1].Enp,
-                   x => x.MedicalInsurances[1].PolisNumber,
-                   x => x.MedicalInsurances[1].DateFrom,
-                   x => x.MedicalInsurances[1].DateTo,
-                   x => x.MedicalInsurances[1].PolisType
-                 };
+               {
+                 x => x.InsuredPersonData.FirstName, 
+                 x => x.InsuredPersonData.LastName, 
+                 x => x.InsuredPersonData.MiddleName, 
+                 x => x.InsuredPersonData.Birthday, 
+                 x => x.InsuredPersonData.IsIncorrectDate, 
+                 x => x.InsuredPersonData.Birthday2, 
+                 x => x.InsuredPersonData.BirthdayType, 
+                 x => x.InsuredPersonData.Gender, 
+                 x => x.InsuredPersonData.Birthplace, 
+                 x => x.InsuredPersonData.OldCountry, 
+                 x => x.NumberPolisCertificate, 
+                 x => x.DateIssuePolisCertificate, 
+                 x => x.MedicalInsurances[1].Enp, 
+                 x => x.MedicalInsurances[1].PolisNumber, 
+                 x => x.MedicalInsurances[1].DateFrom, 
+                 x => x.MedicalInsurances[1].DateTo, 
+                 x => x.MedicalInsurances[1].PolisType
+               };
       }
     }
 

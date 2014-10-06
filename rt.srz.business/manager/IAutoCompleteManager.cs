@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAutoCompleteManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IAutoCompleteManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The interface AutoCompleteManager.
@@ -15,9 +15,8 @@ namespace rt.srz.business.manager
   using System.Collections.Generic;
 
   using rt.core.model.dto;
-  using rt.srz.model.srz;
   using rt.srz.model.dto;
-  using rt.core.model;
+  using rt.srz.model.srz;
 
   #endregion
 
@@ -27,6 +26,27 @@ namespace rt.srz.business.manager
   public partial interface IAutoCompleteManager
   {
     #region Public Methods and Operators
+
+    /// <summary>
+    /// Проверяет существует ли уже запись в базе с таким же именем, типом, полом
+    /// </summary>
+    /// <param name="firstMiddleName">
+    /// The first Middle Name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/> .
+    /// </returns>
+    bool FirstMiddleNameExists(AutoComplete firstMiddleName);
+
+    /// <summary>
+    /// Получает результат по критерию для имён и отчеств
+    /// </summary>
+    /// <param name="criteria">
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult"/> .
+    /// </returns>
+    SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria);
 
     /// <summary>
     /// Возвращает список варианатов для имени
@@ -49,28 +69,6 @@ namespace rt.srz.business.manager
     /// The <see cref="IList"/>.
     /// </returns>
     IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId);
-
-    /// <summary>
-    /// Получает результат по критерию для имён и отчеств
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> . 
-    /// </returns>
-    SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria);
-
-    /// <summary>
-    /// Проверяет существует ли уже запись в базе с таким же именем, типом, полом
-    /// </summary>
-    /// <param name="firstMiddleName">
-    /// The first Middle Name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/> . 
-    /// </returns>
-    bool FirstMiddleNameExists(AutoComplete firstMiddleName);
-
 
     #endregion
   }

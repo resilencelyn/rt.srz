@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Business.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Business.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The business.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.model
@@ -10,7 +13,7 @@ namespace rt.core.model
   using System.Runtime.Serialization;
 
   /// <summary>
-  /// The business.
+  ///   The business.
   /// </summary>
   [DataContract]
   [Serializable]

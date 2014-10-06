@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatusCheckingTheValidity.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StatusCheckingTheValidity.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The status checking the validity.

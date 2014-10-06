@@ -10,7 +10,7 @@
 
 #endregion
 
-namespace rt.core.business.configuration.target
+namespace rt.core.model.configuration.target
 {
   using System.Configuration;
 

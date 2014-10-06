@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using StructureMap;
-using NHibernate;
-using NHibernate.Criterion;
-using rt.srz.model.srz;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ExportSmoPool.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The export smo pool.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.server
 {
+  using System.Collections.Generic;
+
+  /// <summary>
+  /// The export smo pool.
+  /// </summary>
   public class ExportSmoPool
   {
     #region Constants
 
     /// <summary>
-    /// Максимальное к-во сообщений в одном батче
+    ///   Максимальное к-во сообщений в одном батче
     /// </summary>
     private const int MaxCountMessageInBatch = 5000;
 
@@ -83,10 +88,10 @@ namespace rt.srz.business.server
     #region Methods
 
     /// <summary>
-    /// The init.
+    ///   The init.
     /// </summary>
     /// <returns>
-    /// The <see cref="ExportSmoPool"/>.
+    ///   The <see cref="ExportSmoPool" />.
     /// </returns>
     private static ExportSmoPool Init()
     {

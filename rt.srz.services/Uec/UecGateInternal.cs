@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UecGateInternal.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="UecGateInternal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The uec gate.
@@ -39,16 +39,16 @@ namespace rt.srz.services.Uec
     /// Возвращает ключ сертификата
     /// </summary>
     /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="version">
-    /// Версия сертификата 
+    /// Версия сертификата
     /// </param>
     /// <param name="type">
-    /// Тип сертификата 
+    /// Тип сертификата
     /// </param>
     /// <returns>
-    /// Ключ сертификата 
+    /// Ключ сертификата
     /// </returns>
     public byte[] GetCertificateKey(string workstationName, int version, int type)
     {
@@ -59,19 +59,19 @@ namespace rt.srz.services.Uec
     /// Возвращает ключ сертификата
     /// </summary>
     /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// &gt; Код ПВП 
+    /// &gt; Код ПВП
     /// </param>
     /// <param name="version">
-    /// Версия сертификата 
+    /// Версия сертификата
     /// </param>
     /// <param name="type">
-    /// Тип сертификата 
+    /// Тип сертификата
     /// </param>
     /// <returns>
-    /// Ключ сертификата 
+    /// Ключ сертификата
     /// </returns>
     public byte[] GetCertificateKey(string workstationName, string pdpCode, int version, int type)
     {
@@ -82,10 +82,10 @@ namespace rt.srz.services.Uec
     /// Возвращает текущий тип криптографии
     /// </summary>
     /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <returns>
-    /// Текущий тип криптографии 
+    /// Текущий тип криптографии
     /// </returns>
     public int GetCurrentCryptographyType(string workstationName)
     {
@@ -96,13 +96,13 @@ namespace rt.srz.services.Uec
     /// Возвращает текущий тип криптографии
     /// </summary>
     /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// &gt; Код ПВП 
+    /// &gt; Код ПВП
     /// </param>
     /// <returns>
-    /// Теущий тип криптографии 
+    /// Теущий тип криптографии
     /// </returns>
     public int GetCurrentCryptographyType(string workstationName, string pdpCode)
     {
@@ -113,10 +113,10 @@ namespace rt.srz.services.Uec
     /// Возвращает имя текущего УЭК  ридера
     /// </summary>
     /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <returns>
-    /// Имя текущего ридера 
+    /// Имя текущего ридера
     /// </returns>
     public string GetCurrentReaderName(string worstationName)
     {
@@ -127,13 +127,13 @@ namespace rt.srz.services.Uec
     /// Возвращает имя текущего УЭК  ридера
     /// </summary>
     /// <param name="worstationName">
-    /// The worstation Name. 
+    /// The worstation Name.
     /// </param>
     /// <param name="pdpCode">
-    /// Код ПВП 
+    /// Код ПВП
     /// </param>
     /// <returns>
-    /// Имя текущего ридера 
+    /// Имя текущего ридера
     /// </returns>
     public string GetCurrentReaderName(string worstationName, string pdpCode)
     {
@@ -144,10 +144,10 @@ namespace rt.srz.services.Uec
     /// The get current smc reader name.
     /// </summary>
     /// <param name="worstationName">
-    /// The worstation name. 
+    /// The worstation name.
     /// </param>
     /// <returns>
-    /// The <see cref="string"/> . 
+    /// The <see cref="string"/> .
     /// </returns>
     public string GetCurrentSmcReaderName(string worstationName)
     {
@@ -158,27 +158,13 @@ namespace rt.srz.services.Uec
     /// Возвращает имя текущего Смарт Карт ридера
     /// </summary>
     /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
-    /// </param>
-    /// <returns>
-    /// Имя текущего ридера 
-    /// </returns>
-    public string GetCurrentSmcTokenReaderName(string workstationName)
-    {
-      return InvokeInterceptors(() => Service.GetCurrentSmcTokenReaderName(workstationName));
-    }
-
-    /// <summary>
-    /// Возвращает имя текущего Смарт Карт ридера
-    /// </summary>
-    /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// Код ПВП 
+    /// Код ПВП
     /// </param>
     /// <returns>
-    /// Имя текущего ридера 
+    /// Имя текущего ридера
     /// </returns>
     public string GetCurrentSmcReaderName(string worstationName, string pdpCode)
     {
@@ -188,11 +174,28 @@ namespace rt.srz.services.Uec
     /// <summary>
     /// Возвращает имя текущего Смарт Карт ридера
     /// </summary>
-    /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// <param name="workstationName">
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// Имя текущего ридера 
+    /// Имя текущего ридера
+    /// </returns>
+    public string GetCurrentSmcTokenReaderName(string workstationName)
+    {
+      return InvokeInterceptors(() => Service.GetCurrentSmcTokenReaderName(workstationName));
+    }
+
+    /// <summary>
+    /// Возвращает имя текущего Смарт Карт ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <param name="pdpCode">
+    /// The pdp Code.
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
     /// </returns>
     public string GetCurrentSmcTokenReaderName(string workstationName, string pdpCode)
     {
@@ -203,13 +206,13 @@ namespace rt.srz.services.Uec
     /// Возвращает все ЛПУ для указанного ТФОМС
     /// </summary>
     /// <param name="tfomsCode">
-    /// The tfoms Code. 
+    /// The tfoms Code.
     /// </param>
     /// <param name="workstationName">
-    /// The workstation Name. 
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> . 
+    /// The <see cref="MO[]"/> .
     /// </returns>
     public MO[] GetMO(string tfomsCode, string workstationName)
     {
@@ -220,10 +223,10 @@ namespace rt.srz.services.Uec
     /// The get protocol settings.
     /// </summary>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <returns>
-    /// The <see cref="string"/> . 
+    /// The <see cref="string"/> .
     /// </returns>
     public string GetProtocolSettings(int type)
     {
@@ -234,10 +237,10 @@ namespace rt.srz.services.Uec
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    /// The workstation Name. 
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> . 
+    /// The <see cref="MO[]"/> .
     /// </returns>
     public MO[] GetTFoms(string workstationName)
     {
@@ -248,13 +251,13 @@ namespace rt.srz.services.Uec
     /// Возвращает настройки рабочей станции
     /// </summary>
     /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// Код ПВП 
+    /// Код ПВП
     /// </param>
     /// <returns>
-    /// Настройки 
+    /// Настройки
     /// </returns>
     public WorkstationSettingParameter[] GetWorkstationSettings(string workstationName, string pdpCode)
     {
@@ -265,13 +268,13 @@ namespace rt.srz.services.Uec
     /// Сохраняет имя текущего УЭК ридера
     /// </summary>
     /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// Код ПВП 
+    /// Код ПВП
     /// </param>
     /// <param name="readerName">
-    /// Имя текущего ридера 
+    /// Имя текущего ридера
     /// </param>
     public void SaveCurrentReaderName(string worstationName, string pdpCode, string readerName)
     {
@@ -282,13 +285,13 @@ namespace rt.srz.services.Uec
     /// Сохраняет имя текущего Сарт Карт ридера
     /// </summary>
     /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// Код ПВП 
+    /// Код ПВП
     /// </param>
     /// <param name="readerName">
-    /// Имя текущего ридера 
+    /// Имя текущего ридера
     /// </param>
     public void SaveCurrentSmcReaderName(string worstationName, string pdpCode, string readerName)
     {
@@ -299,16 +302,16 @@ namespace rt.srz.services.Uec
     /// The save smo sertificate key.
     /// </summary>
     /// <param name="smoId">
-    /// The smo id. 
+    /// The smo id.
     /// </param>
     /// <param name="version">
-    /// The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <param name="hexKey">
-    /// The hex key. 
+    /// The hex key.
     /// </param>
     public void SaveSmoSertificateHexKey(Guid smoId, short version, int type, string hexKey)
     {
@@ -319,16 +322,16 @@ namespace rt.srz.services.Uec
     /// The save smo sertificate key.
     /// </summary>
     /// <param name="smoId">
-    /// The smo id. 
+    /// The smo id.
     /// </param>
     /// <param name="version">
-    /// The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <param name="key">
-    /// The key. 
+    /// The key.
     /// </param>
     public void SaveSmoSertificateKey(Guid smoId, short version, int type, byte[] key)
     {
@@ -339,16 +342,16 @@ namespace rt.srz.services.Uec
     /// The save workstation sertificate key.
     /// </summary>
     /// <param name="worksationId">
-    /// The worksation id. 
+    /// The worksation id.
     /// </param>
     /// <param name="version">
-    /// The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <param name="keyHex">
-    /// The key hex. 
+    /// The key hex.
     /// </param>
     public void SaveWorkstationSertificateHexKey(Guid worksationId, short version, int type, string keyHex)
     {
@@ -359,16 +362,16 @@ namespace rt.srz.services.Uec
     /// The save sertificate key.
     /// </summary>
     /// <param name="worksationId">
-    /// The worksation Id. 
+    /// The worksation Id.
     /// </param>
     /// <param name="version">
-    /// The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <param name="key">
-    /// The key. 
+    /// The key.
     /// </param>
     public void SaveWorkstationSertificateKey(Guid worksationId, short version, int type, byte[] key)
     {
@@ -379,13 +382,13 @@ namespace rt.srz.services.Uec
     /// Сохраняет настройки рабочей станции
     /// </summary>
     /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП 
+    /// Имя машины в локальной сети ПВП
     /// </param>
     /// <param name="pdpCode">
-    /// Код ПВП 
+    /// Код ПВП
     /// </param>
     /// <param name="settings">
-    /// The settings. 
+    /// The settings.
     /// </param>
     public void SaveWorkstationSettings(string workstationName, string pdpCode, WorkstationSettingParameter[] settings)
     {

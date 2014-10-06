@@ -1,11 +1,12 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Representative.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Representative.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The Representative.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz
 {
   /// <summary>

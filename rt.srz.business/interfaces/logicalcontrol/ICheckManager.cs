@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ICheckManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ICheckManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The CheckStatementManager interface.
@@ -14,7 +14,7 @@ namespace rt.srz.business.interfaces.logicalcontrol
   using System;
   using System.Linq.Expressions;
 
-  using rt.srz.business.manager.logicalcontrol;
+  using rt.srz.model.enumerations;
   using rt.srz.model.srz;
 
   #endregion

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ContentManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ContentManager.
@@ -15,7 +15,6 @@ namespace rt.srz.business.manager
   using System.Drawing;
   using System.Drawing.Imaging;
   using System.IO;
-  using System.Text;
 
   using NHibernate;
 
@@ -46,7 +45,9 @@ namespace rt.srz.business.manager
     public byte[] Base64ToByte(string str)
     {
       if (str == null)
+      {
         return null;
+      }
 
       return Convert.FromBase64String(str);
     }
@@ -63,45 +64,12 @@ namespace rt.srz.business.manager
     public string ByteToBase64(byte[] content)
     {
       if (content == null)
+      {
         return null;
+      }
 
       return Convert.ToBase64String(content);
     }
-
-    /// <summary>
-    /// Генерация пустой подписи
-    /// </summary>
-    /// <returns></returns>
-    public byte[] CreateEmptySign()
-    {
-      return InternalCreateImage(736, 160);
-    }
-
-    /// <summary>
-    /// Генерация пустого фото
-    /// </summary>
-    /// <returns></returns>
-    public byte[] CreateEmptyPhoto()
-    {
-      return InternalCreateImage(320, 400);
-    }
-
-    private byte[] InternalCreateImage(int width, int height)
-    {
-      using (var result = new Bitmap(width, height, PixelFormat.Format24bppRgb))
-      {
-        using (var stream = new MemoryStream())
-        {
-          using (var g = Graphics.FromImage(result))
-          {
-            g.FillRectangle(Brushes.White, 0, 0, width, height);
-          }
-          result.Save(stream, ImageFormat.Jpeg);
-          return stream.GetBuffer();
-        }
-      }
-    }
-
 
     /// <summary>
     /// Конвертация в тона серого
@@ -126,24 +94,24 @@ namespace rt.srz.business.manager
               var colorMatrix =
                 new ColorMatrix(
                   new[]
-                    {
-                      new[] { .3f, .3f, .3f, 0, 0 }, new[] { .59f, .59f, .59f, 0, 0 }, new[] { .11f, .11f, .11f, 0, 0 }, 
-                      new float[] { 0, 0, 0, 1, 0 }, new float[] { 0, 0, 0, 0, 1 }
-                    });
+                  {
+                    new[] { .3f, .3f, .3f, 0, 0 }, new[] { .59f, .59f, .59f, 0, 0 }, new[] { .11f, .11f, .11f, 0, 0 }, 
+                    new float[] { 0, 0, 0, 1, 0 }, new float[] { 0, 0, 0, 0, 1 }
+                  });
 
               var attributes = new ImageAttributes();
               attributes.SetColorMatrix(colorMatrix);
 
               // draw the original image on the new image using the grayscale color matrix
               g.DrawImage(
-                original,
-                new Rectangle(0, 0, original.Width, original.Height),
-                0,
-                0,
-                original.Width,
-                original.Height,
-                GraphicsUnit.Pixel,
-                attributes);
+                          original, 
+                          new Rectangle(0, 0, original.Width, original.Height), 
+                          0, 
+                          0, 
+                          original.Width, 
+                          original.Height, 
+                          GraphicsUnit.Pixel, 
+                          attributes);
             }
 
             using (var newImageStream = new MemoryStream())
@@ -157,13 +125,35 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
+    /// Генерация пустого фото
+    /// </summary>
+    /// <returns>
+    /// The <see cref="byte[]"/>.
+    /// </returns>
+    public byte[] CreateEmptyPhoto()
+    {
+      return InternalCreateImage(320, 400);
+    }
+
+    /// <summary>
+    /// Генерация пустой подписи
+    /// </summary>
+    /// <returns>
+    /// The <see cref="byte[]"/>.
+    /// </returns>
+    public byte[] CreateEmptySign()
+    {
+      return InternalCreateImage(736, 160);
+    }
+
+    /// <summary>
     /// The get content.
     /// </summary>
     /// <param name="personDataId">
-    ///   The person data id.
+    /// The person data id.
     /// </param>
     /// <param name="contentTypeId">
-    ///   The content type id.
+    /// The content type id.
     /// </param>
     /// <returns>
     /// The <see cref="Content"/>.
@@ -174,10 +164,28 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
+    /// The get content base 64.
+    /// </summary>
+    /// <param name="personDataId">
+    /// The person data id.
+    /// </param>
+    /// <param name="contentTypeId">
+    /// The content type id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public string GetContentBase64(Guid personDataId, int contentTypeId)
+    {
+      var content = GetContent(personDataId, contentTypeId);
+      return content != null ? ByteToBase64(content.ContentInterior) : string.Empty;
+    }
+
+    /// <summary>
     /// The get foto.
     /// </summary>
     /// <param name="personDataId">
-    ///   The person data id.
+    /// The person data id.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -191,7 +199,7 @@ namespace rt.srz.business.manager
     /// The get signature.
     /// </summary>
     /// <param name="personDataId">
-    ///   The person data id.
+    /// The person data id.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -219,13 +227,13 @@ namespace rt.srz.business.manager
     public Content SaveContentRecord(int contentType, byte[] content, string fileName = null)
     {
       var contentRecord = new Content
-                            {
-                              ContentType =
-                                ObjectFactory.GetInstance<IConceptCacheManager>().GetById(contentType),
-                              DocumentContent = content,
-                              FileName = fileName,
-                              ChangeDate = DateTime.Now
-                            };
+                          {
+                            ContentType =
+                              ObjectFactory.GetInstance<IConceptCacheManager>().GetById(contentType), 
+                            DocumentContent = content, 
+                            FileName = fileName, 
+                            ChangeDate = DateTime.Now
+                          };
 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       ITransaction transaction = null;
@@ -249,21 +257,32 @@ namespace rt.srz.business.manager
     #region Methods
 
     /// <summary>
-    /// The get content base 64.
+    /// The internal create image.
     /// </summary>
-    /// <param name="personDataId">
-    ///   The person data id.
+    /// <param name="width">
+    /// The width.
     /// </param>
-    /// <param name="contentTypeId">
-    ///   The content type id.
+    /// <param name="height">
+    /// The height.
     /// </param>
     /// <returns>
-    /// The <see cref="string"/>.
+    /// The <see cref="byte[]"/>.
     /// </returns>
-    public string GetContentBase64(Guid personDataId, int contentTypeId)
+    private byte[] InternalCreateImage(int width, int height)
     {
-      var content = GetContent(personDataId, contentTypeId);
-      return content != null ? ByteToBase64(content.ContentInterior) : string.Empty;
+      using (var result = new Bitmap(width, height, PixelFormat.Format24bppRgb))
+      {
+        using (var stream = new MemoryStream())
+        {
+          using (var g = Graphics.FromImage(result))
+          {
+            g.FillRectangle(Brushes.White, 0, 0, width, height);
+          }
+
+          result.Save(stream, ImageFormat.Jpeg);
+          return stream.GetBuffer();
+        }
+      }
     }
 
     #endregion

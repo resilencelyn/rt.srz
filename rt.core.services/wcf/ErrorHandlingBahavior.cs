@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ErrorHandlingBahavior.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ErrorHandlingBahavior.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The error handling behavior attribute.
@@ -21,7 +21,7 @@ namespace rt.core.services.wcf
   #endregion
 
   /// <summary>
-  /// The error handling behavior attribute.
+  ///   The error handling behavior attribute.
   /// </summary>
   public sealed class ErrorHandlingBehaviorAttribute : Attribute, IServiceBehavior
   {

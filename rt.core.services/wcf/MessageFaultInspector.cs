@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MessageFaultInspector.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="MessageFaultInspector.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The message fault inspector.
@@ -24,14 +24,14 @@ namespace rt.core.services.wcf
   #endregion
 
   /// <summary>
-  /// The message fault inspector.
+  ///   The message fault inspector.
   /// </summary>
   public class MessageFaultInspector : BehaviorExtensionElement, IClientMessageInspector, IEndpointBehavior
   {
     #region Public Properties
 
     /// <summary>
-    /// Gets the behavior type.
+    ///   Gets the behavior type.
     /// </summary>
     public override Type BehaviorType
     {
@@ -148,10 +148,10 @@ namespace rt.core.services.wcf
     #region Methods
 
     /// <summary>
-    /// The create behavior.
+    ///   The create behavior.
     /// </summary>
     /// <returns>
-    /// The <see cref="object"/>.
+    ///   The <see cref="object" />.
     /// </returns>
     protected override object CreateBehavior()
     {

@@ -14,6 +14,8 @@ using RangeNumberData = rt.srz.model.srz.RangeNumber;
 
 namespace rt.srz.ui.pvp.Controls.NSI
 {
+  using rt.core.model.interfaces;
+
   public partial class RangeNumberControl : System.Web.UI.UserControl
   {
     #region Fields

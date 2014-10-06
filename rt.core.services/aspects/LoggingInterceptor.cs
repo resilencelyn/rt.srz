@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LoggingInterceptor.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="LoggingInterceptor.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Аспект для логирования
@@ -50,12 +50,12 @@ namespace rt.core.services.aspects
     /// Результат выполнения
     /// </returns>
     public virtual T InvokeMethod<T>(Func<T> invokeNext, Func<T> metod)
-     {
+    {
       var begin = DateTime.Now;
       var sessionId = Guid.NewGuid().ToString();
       try
       {
-        logger.Info(string.Format("Begin invoke SID: {1}: [{0}]", metod.Method.Name, sessionId));
+        logger.Info("Begin invoke SID: {1}: [{0}]", metod.Method.Name, sessionId);
         if (logger.IsInfoEnabled && metod.Target != null)
         {
           var fieldInfos = metod.Target.GetType().GetFields();
@@ -65,8 +65,8 @@ namespace rt.core.services.aspects
             {
               logger.Info("Передан аргумент SID: " + sessionId + " " + fieldInfo.Name);
               var output = fieldInfo.GetValue(metod.Target);
-              ////logger.Info("SID: " + sessionId + " " + ObjectDumper.WriteToString(output, 2));
 
+              ////logger.Info("SID: " + sessionId + " " + ObjectDumper.WriteToString(output, 2));
               if (output != null)
               {
                 var type = output.GetType();
@@ -78,7 +78,7 @@ namespace rt.core.services.aspects
             }
             catch (Exception ex)
             {
-              //logger.ErrorException("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
+              // logger.ErrorException("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
             }
           }
         }
@@ -92,8 +92,7 @@ namespace rt.core.services.aspects
       }
       finally
       {
-        logger.Info(
-          string.Format("End invoke SID: {2}: [{0}]. Time: {1}", metod.Method.Name, DateTime.Now - begin, sessionId));
+        logger.Info("End invoke SID: {2}: [{0}]. Time: {1}", metod.Method.Name, DateTime.Now - begin, sessionId);
       }
     }
 
@@ -113,7 +112,7 @@ namespace rt.core.services.aspects
       var sessionId = Guid.NewGuid().ToString();
       try
       {
-        logger.Info(string.Format("Begin invoke SID: {1}: [{0}]", metod.Method.Name, sessionId));
+        logger.Info("Begin invoke SID: {1}: [{0}]", metod.Method.Name, sessionId);
 
         if (logger.IsInfoEnabled && metod.Target != null)
         {
@@ -124,8 +123,8 @@ namespace rt.core.services.aspects
             {
               logger.Info("Передан аргумент SID: " + sessionId + " " + fieldInfo.Name);
               var output = fieldInfo.GetValue(metod.Target);
-             //// logger.Info("SID: " + sessionId + " " + ObjectDumper.WriteToString(output, 2));
 
+              //// logger.Info("SID: " + sessionId + " " + ObjectDumper.WriteToString(output, 2));
               if (output != null)
               {
                 var type = output.GetType();
@@ -137,7 +136,7 @@ namespace rt.core.services.aspects
             }
             catch (Exception ex)
             {
-              //logger.ErrorException("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
+              // logger.ErrorException("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
             }
           }
         }
@@ -151,7 +150,7 @@ namespace rt.core.services.aspects
       }
       finally
       {
-        logger.Info(string.Format("End invoke SID: {2}: [{0}]. Time: {1}", metod.Method.Name, DateTime.Now - begin, sessionId));
+        logger.Info("End invoke SID: {2}: [{0}]. Time: {1}", metod.Method.Name, DateTime.Now - begin, sessionId);
       }
     }
 
@@ -183,6 +182,7 @@ namespace rt.core.services.aspects
           try
           {
             logger.Error("Передан аргумент SID: " + sessionId + " " + fieldInfo.Name);
+
             ////logger.Error("SID: " + sessionId + " " + ObjectDumper.WriteToString(fieldInfo.GetValue(target.Target), 2));
             logger.Error("SID: " + sessionId + " " + Dump.ObjectToXml(fieldInfo.GetValue(target.Target)));
           }

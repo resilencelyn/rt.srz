@@ -2,6 +2,9 @@
 // <copyright file="ISettingManager.cs" company="ÐóñÁÈÒåõ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The interface SettingManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -39,7 +42,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="Setting"/> .
     /// </returns>
-    Setting GetSetting(string name);
+    Setting GetCurrentSetting(string name);
 
     /// <summary>
     /// The get setting current user.
@@ -79,5 +82,16 @@ namespace rt.srz.business.manager
     void SetSettingCurrentUser(string nameSetting, string value);
 
     #endregion
+
+    /// <summary>
+    /// The get setting.
+    /// </summary>
+    /// <param name="name">
+    /// The name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Setting"/>.
+    /// </returns>
+    Setting GetSetting(string name);
   }
 }

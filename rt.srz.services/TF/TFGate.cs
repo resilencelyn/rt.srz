@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TFGate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TFGate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The tf gate.
@@ -21,7 +21,7 @@ namespace rt.srz.services.TF
   #endregion
 
   /// <summary>
-  /// The tf gate.
+  ///   The tf gate.
   /// </summary>
   [NHibernateWcfContext]
   [ErrorHandlingBehavior]
@@ -32,7 +32,7 @@ namespace rt.srz.services.TF
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="TFGate"/> class.
+    ///   Initializes a new instance of the <see cref="TFGate" /> class.
     /// </summary>
     public TFGate()
     {

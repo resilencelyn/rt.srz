@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.core.business.manager;
-using rt.core.model.core;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GroupTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The group tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.tests
 {
-    public partial class GroupTests
-    {
-	}
+  /// <summary>
+  /// The group tests.
+  /// </summary>
+  public partial class GroupTests
+  {
+  }
 }

@@ -1,22 +1,25 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultNewEnpBirthdayAndGenderException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultNewEnpBirthdayAndGenderException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
-//   The fault enp birthday and gender exception.
+//   The fault new enp birthday and gender exception.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.logicalcontrol.exceptions.step6
 {
   #region
+
   using System;
   using System.Runtime.Serialization;
+
   using rt.srz.model.Properties;
+
   #endregion
 
   /// <summary>
-  /// The fault new enp birthday and gender exception.
+  ///   The fault new enp birthday and gender exception.
   /// </summary>
   [Serializable]
   public class FaultNewEnpBirthdayAndGenderException : FaultStep6
@@ -24,9 +27,11 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultNewEnpBirthdayAndGenderException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultNewEnpBirthdayAndGenderException" /> class.
     /// </summary>
-    public FaultNewEnpBirthdayAndGenderException() : base(new ExceptionInfo(Resource.FaultEnpBirthdayAndGenderExceptionCode),
+    public FaultNewEnpBirthdayAndGenderException()
+      : base(
+        new ExceptionInfo(Resource.FaultEnpBirthdayAndGenderExceptionCode), 
         Resource.FaultEnpBirthdayAndGenderExceptionMessage)
     {
     }

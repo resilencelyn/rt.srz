@@ -1,11 +1,12 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InsuredPerson.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="InsuredPerson.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The InsuredPerson.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz
 {
   /// <summary>

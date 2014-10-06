@@ -14,7 +14,6 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
   using System.Linq;
   using System.Web.UI.WebControls;
 
-  using rt.srz.business.Properties;
   using rt.srz.model.algorithms;
   using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;

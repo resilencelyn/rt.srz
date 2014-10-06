@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckDateFutureProperty.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckDateFutureProperty.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The check text property.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager.logicalcontrol.simple
@@ -13,6 +16,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
   using rt.srz.model.srz;
 
@@ -23,24 +27,34 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   /// </summary>
   public abstract class CheckDateFutureProperty : Check
   {
+    #region Fields
+
+    /// <summary>
+    /// The deleg.
+    /// </summary>
     private readonly Func<Statement, object> deleg;
+
+    #endregion
 
     #region Constructors and Destructors
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="CheckDateFutureProperty"/> class. 
     /// Initializes a new instance of the <see cref="CheckDateFutureProperty{TException}"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <param name="name">
     /// The name.
     /// </param>
     protected CheckDateFutureProperty(
-      ISessionFactory sessionFactory, Expression<Func<Statement, object>> expression, string name)
+      ISessionFactory sessionFactory, 
+      Expression<Func<Statement, object>> expression, 
+      string name)
       : base(CheckLevelEnum.Simple, sessionFactory, expression)
     {
       Name = name;
@@ -52,7 +66,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Properties
 
     /// <summary>
-    /// Gets or sets the name.
+    ///   Gets or sets the name.
     /// </summary>
     protected string Name { get; set; }
 
@@ -64,7 +78,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {

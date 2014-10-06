@@ -1,62 +1,42 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Zl.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Zl.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Данные застрахованного лица
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-using System.Xml.Serialization;
-
-#endregion
-
 namespace rt.srz.model.HL7.pfr
 {
+  using System;
+  using System.Xml.Serialization;
+
   /// <summary>
   ///   Данные застрахованного лица
   /// </summary>
   [Serializable]
   public class Zl
   {
-    /// <summary>
-    ///   СНИЛС
-    /// </summary>
-    [XmlElement("snils")]
-    public string Snils { get; set; }
+    #region Public Properties
 
     /// <summary>
-    ///   Признак идентификации застрахованного лица в ОПФР
+    ///   Место рождения
     /// </summary>
-    [XmlElement("pi")]
-    public string Pi { get; set; }
+    [XmlElement("address_r")]
+    public string AddressR { get; set; }
 
     /// <summary>
-    ///   Отметка о статусе работающего лица (1 - работающий  гражданин, 2 -неработающий)
+    ///   Адрес регистрации
     /// </summary>
-    [XmlElement("id_zl")]
-    public string IdZl { get; set; }
+    [XmlElement("address_reg")]
+    public string AddressReg { get; set; }
 
     /// <summary>
-    ///   Фамилия
+    ///   Серия документа
     /// </summary>
-    [XmlElement("fam")]
-    public string Fam { get; set; }
-
-    /// <summary>
-    ///   Имя
-    /// </summary>
-    [XmlElement("im")]
-    public string Im { get; set; }
-
-    /// <summary>
-    ///   Отчество
-    /// </summary>
-    [XmlElement("ot")]
-    public string Ot { get; set; }
+    [XmlElement("doc")]
+    public Doc Doc { get; set; }
 
     /// <summary>
     ///   Доставерность даты рождения
@@ -71,16 +51,22 @@ namespace rt.srz.model.HL7.pfr
     public string Dr { get; set; }
 
     /// <summary>
-    ///   Пол
+    ///   Фамилия
     /// </summary>
-    [XmlElement("w")]
-    public string W { get; set; }
+    [XmlElement("fam")]
+    public string Fam { get; set; }
 
     /// <summary>
-    ///   Место рождения
+    ///   Отметка о статусе работающего лица (1 - работающий  гражданин, 2 -неработающий)
     /// </summary>
-    [XmlElement("address_r")]
-    public string AddressR { get; set; }
+    [XmlElement("id_zl")]
+    public string IdZl { get; set; }
+
+    /// <summary>
+    ///   Имя
+    /// </summary>
+    [XmlElement("im")]
+    public string Im { get; set; }
 
     /// <summary>
     ///   Индекс
@@ -89,15 +75,29 @@ namespace rt.srz.model.HL7.pfr
     public string Index { get; set; }
 
     /// <summary>
-    ///   Адрес регистрации
+    ///   Отчество
     /// </summary>
-    [XmlElement("address_reg")]
-    public string AddressReg { get; set; }
+    [XmlElement("ot")]
+    public string Ot { get; set; }
 
     /// <summary>
-    ///   Серия документа
+    ///   Признак идентификации застрахованного лица в ОПФР
     /// </summary>
-    [XmlElement("doc")]
-    public Doc Doc { get; set; }
+    [XmlElement("pi")]
+    public string Pi { get; set; }
+
+    /// <summary>
+    ///   СНИЛС
+    /// </summary>
+    [XmlElement("snils")]
+    public string Snils { get; set; }
+
+    /// <summary>
+    ///   Пол
+    /// </summary>
+    [XmlElement("w")]
+    public string W { get; set; }
+
+    #endregion
   }
 }

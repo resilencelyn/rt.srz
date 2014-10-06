@@ -2,6 +2,9 @@
 // <copyright file="BatchManager.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The BatchManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -65,10 +68,13 @@ namespace rt.srz.business.manager
     /// <summary>
     ///   The get pfr batches by user.
     /// </summary>
-    /// <returns> The <see>
+    /// <returns>
+    ///   The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
-    /// . </returns>
+    ///   .
+    /// </returns>
     public IList<Batch> GetPfrBatchesByUser()
     {
       var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
@@ -76,10 +82,7 @@ namespace rt.srz.business.manager
       {
         return
           ObjectFactory.GetInstance<IBatchManager>()
-                       .GetBy(
-                              x =>
-                              x.Subject.Id == TypeSubject.Pfr
-                              && x.Receiver.Id == currentUser.GetTf().Id);
+                       .GetBy(x => x.Subject.Id == TypeSubject.Pfr && x.Receiver.Id == currentUser.GetTf().Id);
       }
 
       return new List<Batch>();
@@ -89,7 +92,8 @@ namespace rt.srz.business.manager
     ///   Возвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
     /// </summary>
     /// <returns>
-    ///   The <see>
+    ///   The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
     ///   .
@@ -165,7 +169,8 @@ namespace rt.srz.business.manager
     /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see>
+    /// The
+    ///   <see>
     ///     <cref>SearchResult</cref>
     ///   </see>
     ///   .

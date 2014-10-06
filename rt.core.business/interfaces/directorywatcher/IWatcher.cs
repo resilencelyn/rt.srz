@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IWatcher.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IWatcher.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The Watcher interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.interfaces.directorywatcher
@@ -11,6 +14,13 @@ namespace rt.core.business.interfaces.directorywatcher
   /// </summary>
   public interface IWatcher
   {
+    #region Public Properties
+
+    /// <summary>
+    ///   Gets or sets a value indicating whether enable raising events.
+    /// </summary>
+    bool EnableRaisingEvents { get; set; }
+
     /// <summary>
     ///   Gets or sets the filter.
     /// </summary>
@@ -21,9 +31,6 @@ namespace rt.core.business.interfaces.directorywatcher
     /// </summary>
     string Path { get; set; }
 
-    /// <summary>
-    /// Gets or sets a value indicating whether enable raising events.
-    /// </summary>
-    bool EnableRaisingEvents { get; set; }
+    #endregion
   }
 }

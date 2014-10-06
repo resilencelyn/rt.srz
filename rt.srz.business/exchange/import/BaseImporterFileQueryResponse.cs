@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseImporterFileQueryResponse.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="BaseImporterFileQueryResponse.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The base import batch pfr.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import
@@ -34,10 +37,10 @@ namespace rt.srz.business.exchange.import
   /// The base import batch pfr.
   /// </summary>
   /// <typeparam name="TXmlObj">
-  /// Тип xml модели входного файла 
+  /// Тип xml модели входного файла
   /// </typeparam>
   /// <typeparam name="TEnumerableItem">
-  /// Тип элемента массива 
+  /// Тип элемента массива
   /// </typeparam>
   public abstract class BaseImporterFileQueryResponse<TXmlObj, TEnumerableItem> : ImporterFile
   {
@@ -110,13 +113,13 @@ namespace rt.srz.business.exchange.import
     /// Обработка
     /// </summary>
     /// <param name="file">
-    /// Путь к файлу загрузки 
+    /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
     /// The context.
     /// </param>
     /// <returns>
-    /// был ли обработан пакет 
+    /// был ли обработан пакет
     /// </returns>
     public override bool Processing(FileInfo file, IJobExecutionContext context)
     {
@@ -157,7 +160,7 @@ namespace rt.srz.business.exchange.import
     /// The undo batches.
     /// </summary>
     /// <param name="fileName">
-    /// The file name. 
+    /// The file name.
     /// </param>
     public override void UndoBatches(string fileName)
     {
@@ -176,13 +179,13 @@ namespace rt.srz.business.exchange.import
     /// The fill batch from zglv.
     /// </summary>
     /// <param name="batch">
-    /// The batch. 
+    /// The batch.
     /// </param>
     /// <param name="obj">
-    /// The obj. 
+    /// The obj.
     /// </param>
     /// <param name="session">
-    /// The session. 
+    /// The session.
     /// </param>
     protected virtual void FillBatchFromZglv(Batch batch, TXmlObj obj, ISession session)
     {
@@ -192,12 +195,14 @@ namespace rt.srz.business.exchange.import
     /// The get enumerable.
     /// </summary>
     /// <param name="obj">
-    /// The obj. 
+    /// The obj.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///                 <cref>IEnumerable</cref>
-    ///               </see> . 
+    /// The
+    ///   <see>
+    ///     <cref>IEnumerable</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     protected abstract IEnumerable<TEnumerableItem> GetEnumerable(TXmlObj obj);
 
@@ -205,10 +210,10 @@ namespace rt.srz.business.exchange.import
     /// The get object data.
     /// </summary>
     /// <param name="xmlFilePath">
-    /// The xml file path. 
+    /// The xml file path.
     /// </param>
     /// <returns>
-    /// The <see cref="TXmlObj"/> . 
+    /// The <see cref="TXmlObj"/> .
     /// </returns>
     protected virtual TXmlObj GetObjectData(string xmlFilePath)
     {
@@ -226,10 +231,10 @@ namespace rt.srz.business.exchange.import
     /// The get pfr exchange.
     /// </summary>
     /// <param name="item">
-    /// The item. 
+    /// The item.
     /// </param>
     /// <param name="batch">
-    /// The batch. 
+    /// The batch.
     /// </param>
     /// <returns>
     /// The <see cref="QueryResponse"/>.
@@ -240,13 +245,13 @@ namespace rt.srz.business.exchange.import
     /// The internal create batch.
     /// </summary>
     /// <param name="fileName">
-    /// The file name. 
+    /// The file name.
     /// </param>
     /// <param name="session">
-    /// The session. 
+    /// The session.
     /// </param>
     /// <returns>
-    /// The <see cref="Batch"/> . 
+    /// The <see cref="Batch"/> .
     /// </returns>
     protected virtual Batch InternalCreateBatch(string fileName, ISession session)
     {
@@ -293,13 +298,13 @@ namespace rt.srz.business.exchange.import
     /// The internal processing.
     /// </summary>
     /// <param name="batch">
-    /// The batch. 
+    /// The batch.
     /// </param>
     /// <param name="xmlObj">
-    /// The xml obj. 
+    /// The xml obj.
     /// </param>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected virtual void InternalProcessing(Batch batch, TXmlObj xmlObj, IJobExecutionContext context)
     {
@@ -322,6 +327,114 @@ namespace rt.srz.business.exchange.import
       }
 
       context.JobDetail.JobDataMap["progress"] = 80;
+    }
+
+    /// <summary>
+    ///   сколько процентов от общей работы составляет обработка записей с использованием GetQueryResponse
+    /// </summary>
+    /// <returns> The <see cref="int" /> . </returns>
+    protected virtual int PersentageForRecords()
+    {
+      return 80;
+    }
+
+    /// <summary>
+    /// The undo batch.
+    /// </summary>
+    /// <param name="batch">
+    /// The batch.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/> .
+    /// </returns>
+    protected override bool UndoBatch(Guid batch)
+    {
+      try
+      {
+        var session = SessionFactory.GetCurrentSession();
+        session.Flush();
+
+        session.CreateSQLQuery(
+                               @"delete from EmploymentHistory where QueryResponseId in (select qr.RowId from QueryResponse qr inner join Message m on m.RowId = qr.MessageId where BatchId = :BatchId)")
+               .SetParameter("BatchId", batch)
+               .SetTimeout(10800)
+               .UniqueResult();
+
+        session.CreateSQLQuery(
+                               @"delete from SearchKey where QueryResponseId in (select qr.RowId from QueryResponse qr inner join Message m on m.RowId = qr.MessageId where BatchId = :BatchId)")
+               .SetParameter("BatchId", batch)
+               .SetTimeout(10800)
+               .UniqueResult();
+
+        session.CreateSQLQuery(
+                               @"delete from QueryResponse where MessageId in (select RowId from Message where BatchId = :BatchId)")
+               .SetParameter("BatchId", batch)
+               .SetTimeout(10800)
+               .UniqueResult();
+
+        session.CreateSQLQuery(@"delete from Message where BatchId = :BatchId")
+               .SetParameter("BatchId", batch)
+               .SetTimeout(10800)
+               .UniqueResult();
+
+        ObjectFactory.GetInstance<IBatchManager>().Delete(x => x.Id == batch);
+        session.Flush();
+
+        return true;
+      }
+      catch (Exception ex)
+      {
+        LogManager.GetCurrentClassLogger().Error(ex);
+        return false;
+      }
+    }
+
+    /// <summary>
+    /// The create batch.
+    /// </summary>
+    /// <param name="fileName">
+    /// The file name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Batch"/> .
+    /// </returns>
+    private Batch CreateBatch(string fileName)
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var batch = InternalCreateBatch(fileName, session);
+      batch.CodeConfirm = ConceptCacheManager.GetById(CodeConfirm.AA);
+      batch.Type = TypeBatch;
+
+      if (SaveBatchBeforeLoadingXml)
+      {
+        session.Save(batch);
+        var message = new Message { Batch = batch, IsCommit = true, IsError = false, Type = batch.Type };
+        session.Save(message);
+        session.Flush();
+        session.Refresh(batch);
+      }
+
+      return batch;
+    }
+
+    /// <summary>
+    /// The get file version.
+    /// </summary>
+    /// <param name="fileName">
+    /// The file name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="short"/> .
+    /// </returns>
+    private short GetFileVersion(string fileName)
+    {
+      // XXXГГКRSVVNNN.XML, где:
+      // XXX - код базового или объединенного отделения ПФР;
+      // ГГК - две последние цифры года и квартал, за который формируется файл;
+      // RS - идентификатор типа файла, неизменная часть файла;
+      // VV - порядковый номер выгрузки (версии файла);
+      // NNN - номер порции (части) выгружаемых сведений.
+      return short.Parse(fileName.Substring(8, 2));
     }
 
     /// <summary>
@@ -356,106 +469,6 @@ namespace rt.srz.business.exchange.import
       }
 
       statelessSession.Insert(queryResponse);
-    }
-
-    /// <summary>
-    ///   сколько процентов от общей работы составляет обработка записей с использованием GetQueryResponse
-    /// </summary>
-    /// <returns> The <see cref="int" /> . </returns>
-    protected virtual int PersentageForRecords()
-    {
-      return 80;
-    }
-
-    /// <summary>
-    /// The undo batch.
-    /// </summary>
-    /// <param name="batch">
-    /// The batch. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/> . 
-    /// </returns>
-    protected override bool UndoBatch(Guid batch)
-    {
-      try
-      {
-        var session = SessionFactory.GetCurrentSession();
-        session.Flush();
-
-        session.CreateSQLQuery(
-          @"delete from EmploymentHistory where QueryResponseId in (select qr.RowId from QueryResponse qr inner join Message m on m.RowId = qr.MessageId where BatchId = :BatchId)")
-          .SetParameter("BatchId", batch).SetTimeout(10800).UniqueResult();
-
-        session.CreateSQLQuery(
-          @"delete from SearchKey where QueryResponseId in (select qr.RowId from QueryResponse qr inner join Message m on m.RowId = qr.MessageId where BatchId = :BatchId)")
-          .SetParameter("BatchId", batch).SetTimeout(10800).UniqueResult();
-
-        session.CreateSQLQuery(
-          @"delete from QueryResponse where MessageId in (select RowId from Message where BatchId = :BatchId)")
-          .SetParameter("BatchId", batch).SetTimeout(10800).UniqueResult();
-
-        session.CreateSQLQuery(@"delete from Message where BatchId = :BatchId").SetParameter("BatchId", batch)
-          .SetTimeout(10800).UniqueResult();
-
-        ObjectFactory.GetInstance<IBatchManager>().Delete(x => x.Id == batch);
-        session.Flush();
-
-        return true;
-      }
-      catch (Exception ex)
-      {
-        LogManager.GetCurrentClassLogger().Error(ex);
-        return false;
-      }
-    }
-
-    /// <summary>
-    /// The create batch.
-    /// </summary>
-    /// <param name="fileName">
-    /// The file name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="Batch"/> . 
-    /// </returns>
-    private Batch CreateBatch(string fileName)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var batch = InternalCreateBatch(fileName, session);
-      batch.CodeConfirm = ConceptCacheManager.GetById(CodeConfirm.AA);
-      batch.Type = TypeBatch;
-
-      if (SaveBatchBeforeLoadingXml)
-      {
-        session.Save(batch);
-        var message = new Message { Batch = batch, IsCommit = true, IsError = false, Type = batch.Type };
-        session.Save(message);
-        session.Flush();
-        session.Refresh(batch);
-      }
-
-      return batch;
-    }
-
-    /// <summary>
-    /// The get file version.
-    /// </summary>
-    /// <param name="fileName">
-    /// The file name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="short"/> . 
-    /// </returns>
-    private short GetFileVersion(string fileName)
-    {
-      // XXXГГКRSVVNNN.XML, где:
-      // XXX - код базового или объединенного отделения ПФР;
-      // ГГК - две последние цифры года и квартал, за который формируется файл;
-      // RS - идентификатор типа файла, неизменная часть файла;
-      // VV - порядковый номер выгрузки (версии файла);
-      // NNN - номер порции (части) выгружаемых сведений.
-      return short.Parse(fileName.Substring(8, 2));
     }
 
     #endregion

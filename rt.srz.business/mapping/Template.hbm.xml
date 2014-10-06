@@ -1,30 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.Template, rt.srz.model" table="[dbo].[Template]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="Name" column="[Name]" />
-		<property name="PosSmo" column="[pos_smo]" />
-		<property name="PosAddress" column="[pos_address]" />
-		<property name="PosDay1" column="[pos_day1]" />
-		<property name="PosMonth1" column="[pos_month1]" />
-		<property name="PosYear1" column="[pos_year1]" />
-		<property name="PosBirthplace" column="[pos_birthplace]" />
-		<property name="PosMale" column="[pos_male]" />
-		<property name="PosFemale" column="[pos_female]" />
-		<property name="PosDay2" column="[pos_day2]" />
-		<property name="PosMonth2" column="[pos_month2]" />
-		<property name="PosYear2" column="[pos_year2]" />
-		<property name="PosFio" column="[pos_fio]" />
-		<property name="PosLine1" column="[pos_line1]" />
-		<property name="PosLin2" column="[pos_lin2]" />
-		<property name="PosLine3" column="[pos_line3]" />
-		<property name="Default" column="[default]" />
-		<bag name="RangeNumbers" lazy="true" inverse="true" >
-			<key column="[TemplateId]"></key>
-			<one-to-many class="RangeNumber"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.Template, rt.srz.model" table="[dbo].[Template]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Name" column="[Name]" />
+    <property name="PosSmo" column="[pos_smo]" />
+    <property name="PosAddress" column="[pos_address]" />
+    <property name="PosDay1" column="[pos_day1]" />
+    <property name="PosMonth1" column="[pos_month1]" />
+    <property name="PosYear1" column="[pos_year1]" />
+    <property name="PosBirthplace" column="[pos_birthplace]" />
+    <property name="PosMale" column="[pos_male]" />
+    <property name="PosFemale" column="[pos_female]" />
+    <property name="PosDay2" column="[pos_day2]" />
+    <property name="PosMonth2" column="[pos_month2]" />
+    <property name="PosYear2" column="[pos_year2]" />
+    <property name="PosFio" column="[pos_fio]" />
+    <property name="PosLine1" column="[pos_line1]" />
+    <property name="PosLin2" column="[pos_lin2]" />
+    <property name="PosLine3" column="[pos_line3]" />
+    <property name="Default" column="[default]" />
+    <bag name="RangeNumbers" lazy="true" inverse="true">
+      <key column="[TemplateId]"></key>
+      <one-to-many class="RangeNumber"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ChallengePrincipal.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ChallengePrincipal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Принципал
@@ -43,8 +43,8 @@ namespace rt.core.services.challenge
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ChallengePrincipal"/> class. 
-    /// Конструктор
+    /// Initializes a new instance of the <see cref="ChallengePrincipal"/> class.
+    ///   Конструктор
     /// </summary>
     /// <param name="identity">
     /// Удостоверение

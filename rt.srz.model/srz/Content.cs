@@ -1,14 +1,16 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Content.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Content.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The Content.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+
 namespace rt.srz.model.srz
 {
+  using System;
+
   using NHibernate;
 
   using StructureMap;
@@ -18,18 +20,14 @@ namespace rt.srz.model.srz
   /// </summary>
   public partial class Content
   {
-    private byte[] Base64ToByte(string str)
-    {
-      if (str == null)
-      {
-        return null;
-      }
-      return Convert.FromBase64String(str);
-    }
+    #region Public Properties
 
+    /// <summary>
+    /// Gets the content interior.
+    /// </summary>
     public virtual byte[] ContentInterior
     {
-      get 
+      get
       {
         if (DocumentContent == null && !string.IsNullOrEmpty(DocumentContent64))
         {
@@ -41,5 +39,30 @@ namespace rt.srz.model.srz
         return DocumentContent;
       }
     }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The base 64 to byte.
+    /// </summary>
+    /// <param name="str">
+    /// The str.
+    /// </param>
+    /// <returns>
+    /// The <see cref="byte[]"/>.
+    /// </returns>
+    private byte[] Base64ToByte(string str)
+    {
+      if (str == null)
+      {
+        return null;
+      }
+
+      return Convert.FromBase64String(str);
+    }
+
+    #endregion
   }
 }

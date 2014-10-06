@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
-	<class name="rt.atl.model.atl.Przlog, rt.atl.model" table="[dbo].[PRZLOG]" lazy="true">
-		<id name="Id" column="[ID]">
-		 	<generator class="native" />
-		</id>
-		<property name="Filename" column="[FILENAME]" />
-		<property name="Q" column="[Q]" />
-		<property name="Prz" column="[PRZ]" />
-		<property name="Mm" column="[MM]" />
-		<property name="Gg" column="[GG]" />
-		<property name="Zz" column="[ZZ]" />
-		<property name="Dtin" column="[DTIN]" />
-		<property name="Dtout" column="[DTOUT]" />
-		<property name="Reccount" column="[RECCOUNT]" />
-		<property name="Tpfile" column="[TPFILE]" />
-		<property name="Nerr" column="[NERR]" />
-		<property name="Nz" column="[NZ]" />
-		<property name="Errfile" column="[ERRFILE]" />
-		<property name="St" column="[ST]" />
-		<property name="Vers" column="[VERS]" />
-		<bag name="Przbufs" lazy="true" inverse="true" >
-			<key column="[PRZLOGID]"></key>
-			<one-to-many class="Przbuf"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+  <class name="rt.atl.model.atl.Przlog, rt.atl.model" table="[dbo].[PRZLOG]" lazy="true">
+    <id name="Id" column="[ID]">
+      <generator class="native" />
+    </id>
+    <property name="Filename" column="[FILENAME]" />
+    <property name="Q" column="[Q]" />
+    <property name="Prz" column="[PRZ]" />
+    <property name="Mm" column="[MM]" />
+    <property name="Gg" column="[GG]" />
+    <property name="Zz" column="[ZZ]" />
+    <property name="Dtin" column="[DTIN]" />
+    <property name="Dtout" column="[DTOUT]" />
+    <property name="Reccount" column="[RECCOUNT]" />
+    <property name="Tpfile" column="[TPFILE]" />
+    <property name="Nerr" column="[NERR]" />
+    <property name="Nz" column="[NZ]" />
+    <property name="Errfile" column="[ERRFILE]" />
+    <property name="St" column="[ST]" />
+    <property name="Vers" column="[VERS]" />
+    <bag name="Przbufs" lazy="true" inverse="true">
+      <key column="[PRZLOGID]"></key>
+      <one-to-many class="Przbuf"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

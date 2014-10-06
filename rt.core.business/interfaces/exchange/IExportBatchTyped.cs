@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IExportBatchTyped.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IExportBatchTyped.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The ExportBatchTyped interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.interfaces.exchange
@@ -15,6 +18,8 @@ namespace rt.core.business.interfaces.exchange
   /// </summary>
   /// <typeparam name="TSerializeObject">
   /// </typeparam>
+  /// <typeparam name="TNode">
+  /// </typeparam>
   public interface IExportBatchTyped<TSerializeObject, TNode> : IExportBatch
   {
     #region Public Properties
@@ -26,17 +31,27 @@ namespace rt.core.business.interfaces.exchange
 
     #endregion
 
+    #region Public Methods and Operators
+
     /// <summary>
     /// The add node.
     /// </summary>
     /// <param name="node">
-    /// The node. 
+    /// The node.
     /// </param>
     void AddNode(TNode node);
 
     /// <summary>
     /// The bulk create and export.
     /// </summary>
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    /// <param name="batchId">
+    /// The batch Id.
+    /// </param>
     void BulkCreateAndExport(IJobExecutionContext context, Guid batchId);
+
+    #endregion
   }
 }

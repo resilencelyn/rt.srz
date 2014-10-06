@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="TwinsKey.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TwinsKey.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The TwinsKey.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The TwinsKey.
+  ///   The TwinsKey.
   /// </summary>
-  public partial class TwinsKey 
+  public partial class TwinsKey
   {
   }
 }

@@ -1,25 +1,23 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WriteField.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="WriteField.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The write field.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard.stream
 {
+  using System;
   using System.IO;
 
   /// <summary>
-  /// The write field.
+  ///   The write field.
   /// </summary>
   public abstract class WriteField : IWriteField
   {
-    #region IWriteField Members
+    #region Public Methods and Operators
 
     /// <summary>
     /// The write.
@@ -35,11 +33,29 @@ namespace rt.srz.database.business.standard.stream
     #endregion
   }
 
- public class WriteFieldImpl : WriteField
+  /// <summary>
+  /// The write field impl.
+  /// </summary>
+  public class WriteFieldImpl : WriteField
   {
-   public override void Write(BinaryWriter writer, string value)
-   {
-     throw new System.NotImplementedException();
-   }
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The write.
+    /// </summary>
+    /// <param name="writer">
+    /// The writer.
+    /// </param>
+    /// <param name="value">
+    /// The value.
+    /// </param>
+    /// <exception cref="NotImplementedException">
+    /// </exception>
+    public override void Write(BinaryWriter writer, string value)
+    {
+      throw new NotImplementedException();
+    }
+
+    #endregion
   }
 }

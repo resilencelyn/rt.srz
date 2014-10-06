@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="XmlHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="XmlHelper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The xml helper.
@@ -112,7 +112,7 @@ namespace rt.srz.model.HL7.commons
               var num5 = str.SearchQuote(ref none, ++num4);
               content = new XElement(str.Substring(0, index));
               content.Add(
-                new XAttribute(str.Substring(startIndex, num3 - startIndex), str.Substring(num4, num5 - num4)));
+                          new XAttribute(str.Substring(startIndex, num3 - startIndex), str.Substring(num4, num5 - num4)));
             }
             else
             {
@@ -1241,11 +1241,11 @@ namespace rt.srz.model.HL7.commons
       var s = xmlNode.RetrieveAttribute(attributeName, false);
       if ((s != null)
           && !DateTime.TryParseExact(
-            s, 
-            format, 
-            null, 
-            DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, 
-            out value))
+                                     s, 
+                                     format, 
+                                     null, 
+                                     DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, 
+                                     out value))
       {
         ThrowCastException(attributeName, "Дата/Время");
       }

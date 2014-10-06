@@ -1,26 +1,40 @@
-﻿using rt.srz.model.Properties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaultPoliceCertificateFutureDateException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The fault police certificate future date exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.logicalcontrol.exceptions.step6
 {
+  using System;
+  using System.Runtime.Serialization;
+
+  using rt.srz.model.Properties;
+
+  /// <summary>
+  /// The fault police certificate future date exception.
+  /// </summary>
   [Serializable]
   public class FaultPoliceCertificateFutureDateException : FaultIssue
   {
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultDeathException"/> class.
+    /// Initializes a new instance of the <see cref="FaultPoliceCertificateFutureDateException"/> class. 
+    ///   Initializes a new instance of the <see cref="FaultDeathException"/> class.
     /// </summary>
     public FaultPoliceCertificateFutureDateException()
-      : base(new ExceptionInfo(Resource.FaultPoliceCertificateFutureDateExceptionCode), Resource.FaultPoliceCertificateFutureDateExceptionMessage)
+      : base(
+        new ExceptionInfo(Resource.FaultPoliceCertificateFutureDateExceptionCode), 
+        Resource.FaultPoliceCertificateFutureDateExceptionMessage)
     {
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="FaultPoliceCertificateFutureDateException"/> class. 
     /// Initializes a new instance of the <see cref="FaultDeathException"/> class.
     /// </summary>
     /// <param name="info">
@@ -34,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     {
     }
 
-   #endregion
+    #endregion
   }
 }

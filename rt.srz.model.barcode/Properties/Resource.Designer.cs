@@ -128,177 +128,6 @@ namespace rt.srz.model.barcode.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultBirthdateLargerDateFillingExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultBirthdateLargerDateFillingExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата рождения больше даты заявления.
-        /// </summary>
-        public static string FaultBirthdateLargerDateFillingExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultBirthdateLargerDateFillingExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultDateFutureExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultDateFutureExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} больше чем текущая дата.
-        /// </summary>
-        public static string FaultDateFutureExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultDateFutureExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultDateIssueDocumentUdlCode {
-            get {
-                return ResourceManager.GetString("FaultDateIssueDocumentUdlCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не корректно введена дата выдачи документа.
-        /// </summary>
-        public static string FaultDateIssueDocumentUdlMessage {
-            get {
-                return ResourceManager.GetString("FaultDateIssueDocumentUdlMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 109.
-        /// </summary>
-        public static string FaultDateRegistrationCode {
-            get {
-                return ResourceManager.GetString("FaultDateRegistrationCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не заполнена дата регистрации.
-        /// </summary>
-        public static string FaultDateRegistrationMessage {
-            get {
-                return ResourceManager.GetString("FaultDateRegistrationMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultDocumentDateExpEmptyExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultDocumentDateExpEmptyExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не заполнен срок окончания действия документа.
-        /// </summary>
-        public static string FaultDocumentDateExpEmptyExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultDocumentDateExpEmptyExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultDocumentDateIssueFutureExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultDocumentDateIssueFutureExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата выдачи документа больше текущей даты.
-        /// </summary>
-        public static string FaultDocumentDateIssueFutureExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultDocumentDateIssueFutureExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultEnpAbsentPrevPolicyExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultEnpAbsentPrevPolicyExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Если новый полис выдавать не требуется, то ЕНП должен быть введен.
-        /// </summary>
-        public static string FaultEnpAbsentPrevPolicyExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultEnpAbsentPrevPolicyExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 99.
-        /// </summary>
-        public static string FaultGenderConformityMiddleNameExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultGenderConformityMiddleNameExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Введённое Отчество отсутствует в справочнике Отчеств..
-        /// </summary>
-        public static string FaultGenderConformityMiddleNameExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultGenderConformityMiddleNameExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to rt109.
-        /// </summary>
-        public static string FaultPoliceCertificateDateNotNeyPolisExceptionCode {
-            get {
-                return ResourceManager.GetString("FaultPoliceCertificateDateNotNeyPolisExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата выдачи полиса должна быть меньше даты подачи заявления.
-        /// </summary>
-        public static string FaultPoliceCertificateDateNotNeyPolisExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultPoliceCertificateDateNotNeyPolisExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата выдачи полиса больше текущей даты..
-        /// </summary>
-        public static string FaultPoliceCertificateFutureExceptionMessage {
-            get {
-                return ResourceManager.GetString("FaultPoliceCertificateFutureExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;xs:schema attributeFormDefault=&quot;unqualified&quot; elementFormDefault=&quot;qualified&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
         ///  &lt;xs:simpleType name=&quot;barcodeString56&quot;&gt;
@@ -351,7 +180,8 @@ namespace rt.srz.model.barcode.Properties {
         ///        &lt;/xs:simpleType&gt;
         ///        &lt;xs:simpleType name=&quot;barcodeString16&quot;&gt;
         ///        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
-        ///        &lt;xs:maxLength value=&quot;16&quot;/&gt;        /// [rest of string was truncated]&quot;;.
+        ///        &lt;xs:maxLength value=&quot;16&quot;/&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PolicyXSD1 {
             get {
@@ -460,24 +290,6 @@ namespace rt.srz.model.barcode.Properties {
         public static string RegexReplaceSpaces {
             get {
                 return ResourceManager.GetString("RegexReplaceSpaces", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 108.
-        /// </summary>
-        public static string SetParameterSearchExceptionCode {
-            get {
-                return ResourceManager.GetString("SetParameterSearchExceptionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не задан ни один параметр поиска.
-        /// </summary>
-        public static string SetParameterSearchExceptionMessage {
-            get {
-                return ResourceManager.GetString("SetParameterSearchExceptionMessage", resourceCulture);
             }
         }
     }

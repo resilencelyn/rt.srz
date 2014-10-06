@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Vsend.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Vsend.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Vsend.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.atl
 {
   /// <summary>
-  /// The Vsend.
+  ///   The Vsend.
   /// </summary>
-  public partial class Vsend 
+  public partial class Vsend
   {
   }
 }

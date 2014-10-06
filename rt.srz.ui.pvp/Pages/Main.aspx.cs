@@ -7,7 +7,7 @@ using rt.srz.model.interfaces.service;
 using rt.srz.ui.pvp.Controllers;
 using System.Text;
 using rt.srz.model.srz;
-using rt.core.business.nhibernate;
+
 using NHibernate;
 
 namespace rt.srz.ui.pvp.Pages

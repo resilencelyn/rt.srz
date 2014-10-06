@@ -1,14 +1,21 @@
-﻿namespace rt.srz.model.logicalcontrol.exceptions.step2
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaultDateIssueDocumentUdl.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The fault birth certificate exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.model.logicalcontrol.exceptions.step2
 {
   using System;
   using System.Runtime.Serialization;
 
   using rt.srz.model.Properties;
 
-  using Resource = rt.srz.model.barcode.Properties.Resource;
-
   /// <summary>
-  /// The fault birth certificate exception.
+  ///   The fault birth certificate exception.
   /// </summary>
   [Serializable]
   public class FaultDateIssueDocumentUdl : FaultStep2
@@ -16,11 +23,10 @@
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultDateIssueDocumentUdl"/> class.
+    ///   Initializes a new instance of the <see cref="FaultDateIssueDocumentUdl" /> class.
     /// </summary>
     public FaultDateIssueDocumentUdl()
-      : base(
-        new ExceptionInfo(Resource.FaultDateIssueDocumentUdlCode), Resource.FaultDateIssueDocumentUdlMessage)
+      : base(new ExceptionInfo(Resource.FaultDateIssueDocumentUdlCode), Resource.FaultDateIssueDocumentUdlMessage)
     {
     }
 
@@ -37,6 +43,7 @@
       : base(info, context)
     {
     }
+
     #endregion
   }
 }

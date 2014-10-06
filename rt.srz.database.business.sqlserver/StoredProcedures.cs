@@ -2,7 +2,12 @@
 // <copyright file="StoredProcedures.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The stored procedures.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+
 
 using System;
 using System.Collections;
@@ -16,7 +21,7 @@ using rt.srz.database.business;
 using rt.srz.database.business.standard.helpers;
 
 /// <summary>
-/// The stored procedures.
+///   The stored procedures.
 /// </summary>
 public class StoredProcedures
 {
@@ -40,12 +45,12 @@ public class StoredProcedures
   /// <returns>
   /// The <see cref="IEnumerable"/>.
   /// </returns>
-  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash",
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash", 
     TableDefinition = "KeyId uniqueidentifier, DocumentTypeId int, Hash varbinary(max), ErrorSqlString nvarchar(max)")]
   public static IEnumerable CalcStandardSearchKeys(
-    SqlString statementXml,
-    SqlString insuredPersonDataXml,
-    SqlString documentXml,
+    SqlString statementXml, 
+    SqlString insuredPersonDataXml, 
+    SqlString documentXml, 
     SqlString okato)
   {
     IEnumerable result;
@@ -54,9 +59,9 @@ public class StoredProcedures
       // Расчет ключей
       var calculatedHashes = ObjectFactory.GetStandardPseudonymizationManager()
                                           .CalculateHashes(
-                                                           statementXml.Value,
-                                                           insuredPersonDataXml.Value,
-                                                           documentXml.Value,
+                                                           statementXml.Value, 
+                                                           insuredPersonDataXml.Value, 
+                                                           documentXml.Value, 
                                                            okato.Value);
 
       result =
@@ -64,9 +69,9 @@ public class StoredProcedures
                         .Select(
                                 x =>
                                 new StandardKeyHashResult(
-                                  new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)),
-                                  new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)),
-                                  new SqlBinary(x.hash),
+                                  new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)), 
+                                  new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)), 
+                                  new SqlBinary(x.hash), 
                                   new SqlString(string.Empty)))
                         .ToList();
     }
@@ -75,9 +80,9 @@ public class StoredProcedures
       result = new List<StandardKeyHashResult>
                {
                  new StandardKeyHashResult(
-                   new SqlGuid(Guid.Empty),
-                   new SqlInt32(0),
-                   new SqlBinary(new byte[0]),
+                   new SqlGuid(Guid.Empty), 
+                   new SqlInt32(0), 
+                   new SqlBinary(new byte[0]), 
                    new SqlString(ex.ToString()))
                };
     }
@@ -100,11 +105,11 @@ public class StoredProcedures
   /// <returns>
   /// The <see cref="IEnumerable"/>.
   /// </returns>
-  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash",
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillStandardKeyHash", 
     TableDefinition = "KeyId uniqueidentifier, DocumentTypeId int, Hash varbinary(max), ErrorSqlString nvarchar(max)")]
   public static IEnumerable CalcStandardSearchKeysExchange(
-    SqlString exchangeXml,
-    SqlString documentXml,
+    SqlString exchangeXml, 
+    SqlString documentXml, 
     SqlString addressXml)
   {
     IEnumerable result;
@@ -119,9 +124,9 @@ public class StoredProcedures
                         .Select(
                                 x =>
                                 new StandardKeyHashResult(
-                                  new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)),
-                                  new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)),
-                                  new SqlBinary(x.hash),
+                                  new SqlGuid(KeyCode2KeyIdConverter.ConvertKeyCode2KeyId(x.key)), 
+                                  new SqlInt32(KeyCode2KeyIdConverter.ConvertKeyCode2DocumentId(x.key, x.subtype)), 
+                                  new SqlBinary(x.hash), 
                                   new SqlString(string.Empty)))
                         .ToList();
     }
@@ -130,9 +135,9 @@ public class StoredProcedures
       result = new List<StandardKeyHashResult>
                {
                  new StandardKeyHashResult(
-                   new SqlGuid(Guid.Empty),
-                   new SqlInt32(0),
-                   new SqlBinary(new byte[0]),
+                   new SqlGuid(Guid.Empty), 
+                   new SqlInt32(0), 
+                   new SqlBinary(new byte[0]), 
                    new SqlString(ex.ToString()))
                };
     }
@@ -167,15 +172,15 @@ public class StoredProcedures
   /// <returns>
   /// The <see cref="IEnumerable"/>.
   /// </returns>
-  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash",
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash", 
     TableDefinition = "Hash varbinary(max)")]
   public static IEnumerable CalcUserSearchKey(
-    SqlString searchKeyTypeXml,
-    SqlString insuredPersonDataXml,
-    SqlString documentXml,
-    SqlString address1Xml,
-    SqlString address2Xml,
-    SqlString medicalInsuranceXml,
+    SqlString searchKeyTypeXml, 
+    SqlString insuredPersonDataXml, 
+    SqlString documentXml, 
+    SqlString address1Xml, 
+    SqlString address2Xml, 
+    SqlString medicalInsuranceXml, 
     SqlString okato)
   {
     var result = new byte[0];
@@ -184,12 +189,12 @@ public class StoredProcedures
       // Расчет ключа
       result = ObjectFactory.GetPseudonymizationManager()
                             .CalculateUserSearchKey(
-                                                    searchKeyTypeXml.Value,
-                                                    insuredPersonDataXml.Value,
-                                                    documentXml.Value,
-                                                    address1Xml.Value,
-                                                    address2Xml.Value,
-                                                    medicalInsuranceXml.Value,
+                                                    searchKeyTypeXml.Value, 
+                                                    insuredPersonDataXml.Value, 
+                                                    documentXml.Value, 
+                                                    address1Xml.Value, 
+                                                    address2Xml.Value, 
+                                                    medicalInsuranceXml.Value, 
                                                     okato.Value);
     }
     catch (Exception)
@@ -218,12 +223,12 @@ public class StoredProcedures
   /// <returns>
   /// The <see cref="IEnumerable"/>.
   /// </returns>
-  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash",
+  [SqlFunction(DataAccess = DataAccessKind.Read, FillRowMethodName = "FillUserKeyHash", 
     TableDefinition = "Hash varbinary(max)")]
   public static IEnumerable CalcUserSearchKeyExchange(
-    SqlString searchKeyTypeXml,
-    SqlString exchangeXml,
-    SqlString documentXml,
+    SqlString searchKeyTypeXml, 
+    SqlString exchangeXml, 
+    SqlString documentXml, 
     SqlString addressXml)
   {
     var result = new byte[0];
@@ -232,9 +237,9 @@ public class StoredProcedures
       // Расчет ключа
       result = ObjectFactory.GetPseudonymizationManager()
                             .CalculateUserSearchKeyExchange(
-                                                            searchKeyTypeXml.Value,
-                                                            exchangeXml.Value,
-                                                            documentXml.Value,
+                                                            searchKeyTypeXml.Value, 
+                                                            exchangeXml.Value, 
+                                                            documentXml.Value, 
                                                             addressXml.Value);
     }
     catch (Exception e)
@@ -263,7 +268,12 @@ public class StoredProcedures
   /// <param name="errorSqlString">
   /// The error Sql String.
   /// </param>
-  public static void FillStandardKeyHash(object obj, out SqlGuid keyId, out SqlInt32 documentTypeId, out SqlBinary hash, out SqlString errorSqlString)
+  public static void FillStandardKeyHash(
+    object obj, 
+    out SqlGuid keyId, 
+    out SqlInt32 documentTypeId, 
+    out SqlBinary hash, 
+    out SqlString errorSqlString)
   {
     var hashResult = (StandardKeyHashResult)obj;
     keyId = hashResult.KeyId;
@@ -297,24 +307,24 @@ public class StoredProcedures
     #region Fields
 
     /// <summary>
-    /// The document type id.
+    ///   The document type id.
     /// </summary>
     public readonly SqlInt32 DocumentTypeId;
 
     /// <summary>
-    /// The hash.
+    ///   The error sql string.
+    /// </summary>
+    public readonly SqlString ErrorSqlString;
+
+    /// <summary>
+    ///   The hash.
     /// </summary>
     public readonly SqlBinary Hash;
 
     /// <summary>
-    /// The key id.
+    ///   The key id.
     /// </summary>
     public readonly SqlGuid KeyId;
-
-    /// <summary>
-    /// The error sql string.
-    /// </summary>
-    public readonly SqlString ErrorSqlString;
 
     #endregion
 
@@ -354,7 +364,7 @@ public class StoredProcedures
     #region Fields
 
     /// <summary>
-    /// The hash.
+    ///   The hash.
     /// </summary>
     public readonly SqlBinary Hash;
 

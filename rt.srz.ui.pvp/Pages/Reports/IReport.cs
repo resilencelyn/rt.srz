@@ -9,6 +9,8 @@ namespace rt.srz.ui.pvp.Pages.Reports
   using rt.core.model.core;
   using rt.srz.model.srz;
 
+  using User = rt.core.model.core.User;
+
   /// <summary>
   /// The Report interface.
   /// </summary>

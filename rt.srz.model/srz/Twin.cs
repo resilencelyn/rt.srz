@@ -1,26 +1,36 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Twin.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Twin.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
-using System.Linq;
+// <summary>
+//   The Twin.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
+  using System.Linq;
   using System.Xml.Serialization;
 
   /// <summary>
-  /// The Twin.
+  ///   The Twin.
   /// </summary>
   public partial class Twin
   {
+    #region Public Properties
+
     /// <summary>
-    /// Gets the twin key as text.
+    ///   Gets the twin key as text.
     /// </summary>
     [XmlIgnore]
     public virtual string TwinKeyAsText
     {
-      get { return string.Join("; ", TwinsKeys.Select(t => t.KeyType.Name).ToArray()); }
+      get
+      {
+        return string.Join("; ", TwinsKeys.Select(t => t.KeyType.Name).ToArray());
+      }
     }
+
+    #endregion
   }
 }

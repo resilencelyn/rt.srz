@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="IEventChangeManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IEventChangeManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The interface EventChangeManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The interface EventChangeManager.
+  ///   The interface EventChangeManager.
   /// </summary>
-  public partial interface IEventChangeManager
+  public interface IEventChangeManager
   {
   }
 }

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Insurance.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Insurance.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The insurance.

@@ -1,38 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using rt.core.business.interfaces.jobpool;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobPoolTyped.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The job pool typed.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.jobpool
 {
+  using System;
+
+  using rt.core.business.interfaces.jobpool;
+
+  /// <summary>
+  /// The job pool typed.
+  /// </summary>
+  /// <typeparam name="TPoolObject">
+  /// </typeparam>
   public abstract class JobPoolTyped<TPoolObject> : JobPoolBase, IJobPoolTyped<TPoolObject>
   {
+    #region Constructors and Destructors
+
     /// <summary>
-    ///   Gets the lock object.
-    /// </summary>
-    protected object LockObject { get; private set; }
-    
-    /// <summary>
+    /// Initializes a new instance of the <see cref="JobPoolTyped{TPoolObject}"/> class. 
     /// Конструктор
     /// </summary>
-    /// <param name="typePool"></param>
-    protected JobPoolTyped(JobPoolType typePool) : base(typePool)
+    /// <param name="typePool">
+    /// </param>
+    protected JobPoolTyped(JobPoolType typePool)
+      : base(typePool)
     {
       LockObject = typePool.ToString();
     }
 
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    ///   Gets the lock object.
+    /// </summary>
+    protected object LockObject { get; private set; }
+
+    #endregion
+
+    #region Public Methods and Operators
+
     /// <summary>
     /// Выполняет пользовательскую операцию с блокировкой на уровне базы данных
     /// </summary>
-    /// <param name="operationExpression"></param>
+    /// <param name="operationExpression">
+    /// </param>
     public abstract void PerfomOperationWithLock(Action operationExpression);
 
     /// <summary>
-    /// Выполняет операцию на пуле с блокировкой на уровне базы данных 
+    /// Выполняет операцию на пуле с блокировкой на уровне базы данных
     /// </summary>
-    /// <param name="operationExpression"></param>
+    /// <param name="operationExpression">
+    /// </param>
     public abstract void PerfomOperationWithLock(Action<TPoolObject> operationExpression);
+
+    #endregion
   }
 }

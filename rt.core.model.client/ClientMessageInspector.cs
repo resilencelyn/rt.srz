@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ClientMessageInspector.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ClientMessageInspector.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Добавляет кридентиалы для

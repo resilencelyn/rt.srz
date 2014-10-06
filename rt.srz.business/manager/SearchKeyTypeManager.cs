@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SearchKeyTypeManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SearchKeyTypeManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The SearchKeyTypeManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -52,10 +55,10 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// Возвращает описатели всех ключей поиска для ТФОМС текущего пользователя
+    ///   Возвращает описатели всех ключей поиска для ТФОМС текущего пользователя
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="IList" />.
     /// </returns>
     public IList<SearchKeyType> GetSearchKeyTypesByTFoms()
     {
@@ -68,8 +71,11 @@ namespace rt.srz.business.manager
 
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var query =
-        session.QueryOver<SearchKeyType>().Where(x => x.Tfoms.Id == null || x.Tfoms.Id == tfomsId).And(x => x.IsActive)
-               .OrderBy(x => x.Name).Asc;
+        session.QueryOver<SearchKeyType>()
+               .Where(x => x.Tfoms.Id == null || x.Tfoms.Id == tfomsId)
+               .And(x => x.IsActive)
+               .OrderBy(x => x.Name)
+               .Asc;
       return query.List();
     }
 

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExchangePvpManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExchangePvpManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ExchangePvpManager.
@@ -9,21 +9,24 @@
 
 namespace rt.atl.business.manager
 {
-  using StructureMap;
-
   using rt.core.business.nhibernate;
+
+  using StructureMap;
 
   /// <summary>
   ///   The ExchangePvpManager.
   /// </summary>
   public partial class ExchangePvpManager
   {
+    #region Public Methods and Operators
+
     /// <summary>
-    /// The flag exported prz buff.
+    ///   The flag exported prz buff.
     /// </summary>
     public void FlagExportedPrzBuff()
     {
-      var sessionFactorySrz = ObjectFactory.GetInstance<IManagerSessionFactorys>().GetFactoryByName("NHibernateCfgAtl.xml");
+      var sessionFactorySrz =
+        ObjectFactory.GetInstance<IManagerSessionFactorys>().GetFactoryByName("NHibernateCfgAtl.xml");
       using (var session = sessionFactorySrz.OpenSession())
       {
         var queryString = @"
@@ -46,5 +49,7 @@ INSERT INTO [ExchangePvp]
         session.Close();
       }
     }
+
+    #endregion
   }
 }

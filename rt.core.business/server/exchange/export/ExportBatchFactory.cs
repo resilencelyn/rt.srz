@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatchFactory.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatchFactory.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The export batch factory.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.exchange.export
@@ -33,12 +36,14 @@ namespace rt.core.business.server.exchange.export
     /// The get exporter.
     /// </summary>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>IExportBatchTyped</cref>
-    ///     </see> . 
+    /// The
+    ///   <see>
+    ///     <cref>IExportBatchTyped</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public IExportBatchTyped<TSerializeObject, TNode> GetExporter(ExportBatchType type)
     {

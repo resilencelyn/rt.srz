@@ -11,8 +11,10 @@ namespace rt.srz.ui.pvp.Pages.Administrations
   using System.Web.UI;
   using System.Web.UI.WebControls;
 
-  using rt.srz.business.interfaces.logicalcontrol;
+  using rt.core.model;
+  using rt.core.model.interfaces;
   using rt.srz.model.enumerations;
+  using rt.srz.model.interfaces;
   using rt.srz.model.interfaces.service;
 
   using StructureMap;

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LifeService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="LifeService.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The life service.
@@ -587,8 +587,8 @@ namespace rt.srz.model.HL7.commons
             // else
             // {
             // bool forceSeparateThread = true;
-            // RaiseGlobalEventStart(runningEventData, forceSeparateThread);
             {
+              // RaiseGlobalEventStart(runningEventData, forceSeparateThread);
               // }
               // }
 

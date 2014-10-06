@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Zwl.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Zwl.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Перечень ЕНП работающих застрахованных лиц, идентифицированных в РС ЕРЗ

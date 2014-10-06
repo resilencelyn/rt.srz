@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExceptionErrorHandler.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExceptionErrorHandler.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   ExceptionMarshallingErrorHandler implements IErrorHandler to serialize unhandled
@@ -79,10 +79,10 @@ namespace rt.core.services.wcf
       {
         // Generate fault message manually
         var messageFault = MessageFault.CreateFault(
-          new FaultCode("Sender"), 
-          new FaultReason(error.Message), 
-          error, 
-          new NetDataContractSerializer());
+                                                    new FaultCode("Sender"), 
+                                                    new FaultReason(error.Message), 
+                                                    error, 
+                                                    new NetDataContractSerializer());
         fault = Message.CreateMessage(version, messageFault, null);
       }
     }

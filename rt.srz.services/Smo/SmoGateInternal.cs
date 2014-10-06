@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SmoGateInternal.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SmoGateInternal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The smo gate.
@@ -81,10 +81,10 @@ namespace rt.srz.services.Smo
     /// The get childres.
     /// </summary>
     /// <param name="parentId">
-    /// The parent id. 
+    /// The parent id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Organisation> GetChildres(Guid parentId)
     {
@@ -95,10 +95,10 @@ namespace rt.srz.services.Smo
     /// Возвращает пункт выдачи полисов
     /// </summary>
     /// <param name="pdpId">
-    /// The pdp Id. 
+    /// The pdp Id.
     /// </param>
     /// <returns>
-    /// The <see cref="PointDistributionPolicy"/> . 
+    /// The <see cref="PointDistributionPolicy"/> .
     /// </returns>
     public Organisation GetPDP(Guid pdpId)
     {
@@ -109,10 +109,10 @@ namespace rt.srz.services.Smo
     /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
     /// </summary>
     /// <param name="smoId">
-    /// The smo Id. 
+    /// The smo Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Organisation> GetPDPsBySmo(Guid smoId)
     {
@@ -125,7 +125,7 @@ namespace rt.srz.services.Smo
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<Organisation> GetPdps(SearchPdpCriteria criteria)
     {
@@ -138,7 +138,7 @@ namespace rt.srz.services.Smo
     /// <param name="smoId">
     /// </param>
     /// <returns>
-    /// The <see cref="Smo"/> . 
+    /// The <see cref="Smo"/> .
     /// </returns>
     public Organisation GetSmo(Guid smoId)
     {
@@ -149,13 +149,13 @@ namespace rt.srz.services.Smo
     /// Возвращает СМО
     /// </summary>
     /// <param name="okato">
-    /// The okato. 
+    /// The okato.
     /// </param>
     /// <param name="ogrn">
-    /// The ogrn. 
+    /// The ogrn.
     /// </param>
     /// <returns>
-    /// The <see cref="Smo"/> . 
+    /// The <see cref="Smo"/> .
     /// </returns>
     public Organisation GetSmoByOkatoAndOgrn(string okato, string ogrn)
     {
@@ -168,7 +168,7 @@ namespace rt.srz.services.Smo
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria)
     {
@@ -179,10 +179,10 @@ namespace rt.srz.services.Smo
     /// Возвращает список всех зарегестрированных СМО для указанного ТФОМС
     /// </summary>
     /// <param name="tfomId">
-    /// The tfom Id. 
+    /// The tfom Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Organisation> GetSmosByTfom(Guid tfomId)
     {
@@ -195,7 +195,7 @@ namespace rt.srz.services.Smo
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<Organisation> GetSmosExcludeTfom(SearchSmoCriteria criteria)
     {
@@ -206,10 +206,10 @@ namespace rt.srz.services.Smo
     /// The get tfoms.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Tfom"/> . 
+    /// The <see cref="Tfom"/> .
     /// </returns>
     public Organisation GetTfoms(Guid id)
     {
@@ -222,7 +222,7 @@ namespace rt.srz.services.Smo
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<Organisation> GetTfoms(SearchSmoCriteria criteria)
     {
@@ -233,10 +233,10 @@ namespace rt.srz.services.Smo
     /// Возвращает ТФОМС
     /// </summary>
     /// <param name="okato">
-    /// The okato. 
+    /// The okato.
     /// </param>
     /// <returns>
-    /// The <see cref="Organisation"/> . 
+    /// The <see cref="Organisation"/> .
     /// </returns>
     public Organisation GetTfomsByOkato(string okato)
     {
@@ -249,7 +249,7 @@ namespace rt.srz.services.Smo
     /// <param name="workstationId">
     /// </param>
     /// <returns>
-    /// The <see cref="Workstation"/> . 
+    /// The <see cref="Workstation"/> .
     /// </returns>
     public Workstation GetWorkstation(Guid workstationId)
     {
@@ -262,7 +262,7 @@ namespace rt.srz.services.Smo
     /// <param name="pdpId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Workstation> GetWorkstationsByPdp(Guid pdpId)
     {
@@ -270,7 +270,8 @@ namespace rt.srz.services.Smo
     }
 
     /// <summary>
-    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данного мипа но отсутсвуют в списке, будут удалены
+    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данного мипа но
+    ///   отсутсвуют в списке, будут удалены
     /// </summary>
     /// <param name="mipId">
     /// </param>
@@ -287,7 +288,7 @@ namespace rt.srz.services.Smo
     /// <param name="pdp">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid SavePdp(Organisation pdp)
     {
@@ -295,7 +296,8 @@ namespace rt.srz.services.Smo
     }
 
     /// <summary>
-    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в списке, будут удалены
+    /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
+    ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
     /// </param>
@@ -312,7 +314,7 @@ namespace rt.srz.services.Smo
     /// <param name="smo">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid SaveSmo(Organisation smo)
     {
@@ -339,7 +341,7 @@ namespace rt.srz.services.Smo
     /// <param name="code">
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public bool SmoCodeExists(Guid smoId, string code)
     {

@@ -1,14 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.srz.business.manager;
-using rt.srz.model.srz;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SettingTests.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The setting tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.tests
 {
-    public partial class SettingTests
-    {
-	}
+  /// <summary>
+  /// The setting tests.
+  /// </summary>
+  public partial class SettingTests
+  {
+  }
 }

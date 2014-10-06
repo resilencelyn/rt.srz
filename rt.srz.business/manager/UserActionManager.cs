@@ -1,45 +1,66 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="UserActionManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserActionManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
-
-using System;
-using System.Linq;
-using NHibernate;
-using rt.srz.model.interfaces.service;
-using StructureMap;
-using rt.srz.model.srz;
+// <summary>
+//   The UserActionManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
-  using rt.core.model.core;
+  using System;
+  using System.Linq;
+
+  using NHibernate;
+
+  using rt.core.model.interfaces;
+  using rt.srz.model.srz;
+
+  using StructureMap;
 
   /// <summary>
-  /// The UserActionManager.
+  ///   The UserActionManager.
   /// </summary>
   public partial class UserActionManager
   {
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The log access to personal data.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <param name="Event">
+    /// The event.
+    /// </param>
     public void LogAccessToPersonalData(Statement statement, string Event)
     {
-      ISession session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      User user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
 
       try
       {
-        var userAction = new UserAction()
-        {
-          UserId = user.Id,
-          Statement = statement,
-          Event = session.QueryOver<Concept>()
-            .Where(f => f.Name == Event || f.ShortName == Event)
-            .List().Single()
-        };
+        var userAction = new UserAction
+                         {
+                           UserId = user.Id, 
+                           Statement = statement, 
+                           Event =
+                             session.QueryOver<Concept>()
+                                    .Where(f => f.Name == Event || f.ShortName == Event)
+                                    .List()
+                                    .Single()
+                         };
         session.SaveOrUpdate(userAction);
         session.Flush();
         session.Clear();
       }
-      catch (Exception){}
+      catch (Exception)
+      {
+      }
     }
+
+    #endregion
   }
 }

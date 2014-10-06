@@ -10,6 +10,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
   using System.Web.UI;
   using System.Web.UI.WebControls;
 
+  using rt.core.model.interfaces;
   using rt.srz.model.interfaces.service;
   using rt.srz.ui.pvp.Enumerations;
 
@@ -26,6 +27,8 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// The _security service.
     /// </summary>
     private ISecurityService securityService;
+
+    private ITFService tfomsService;
 
     #endregion
 
@@ -44,7 +47,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
         }
       }
 
-      var users = securityService.GetUsersByCurrent();
+      var users = tfomsService.GetUsersByCurrent();
       lstUsers.DataSource = users;
       lstUsers.DataBind();
       if (users != null && (lstUsers.SelectedIndex < 0 && users.Count > 0))
@@ -70,6 +73,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     protected void Page_Init(object sender, EventArgs e)
     {
       securityService = ObjectFactory.GetInstance<ISecurityService>();
+      tfomsService = ObjectFactory.GetInstance<ITFService>();
       searchByNameControl.Clear += SearchByNameControlClear;
       searchByNameControl.Search += SearchByNameControlSearch;
     }

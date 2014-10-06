@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ManagerCacheBaseT.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ManagerCacheBaseT.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   Менеджер для кэшированных данных
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.nhibernate
@@ -26,10 +29,10 @@ namespace rt.core.business.nhibernate
   /// Менеджер для кэшированных данных
   /// </summary>
   /// <typeparam name="TClass">
-  /// тип базового объекта 
+  /// тип базового объекта
   /// </typeparam>
   /// <typeparam name="TKey">
-  /// Тип ключа 
+  /// Тип ключа
   /// </typeparam>
   public class ManagerCacheBaseT<TClass, TKey> : IManagerCacheBaseT<TClass, TKey>
     where TClass : class
@@ -37,7 +40,7 @@ namespace rt.core.business.nhibernate
     #region Static Fields
 
     /// <summary>
-    /// The state.
+    ///   The state.
     /// </summary>
     [ThreadStatic]
     private static StateExtension state;
@@ -69,7 +72,7 @@ namespace rt.core.business.nhibernate
     /// Initializes a new instance of the <see cref="ManagerCacheBaseT{TClass,TKey}"/> class.
     /// </summary>
     /// <param name="repository">
-    /// The repository. 
+    /// The repository.
     /// </param>
     public ManagerCacheBaseT(IManagerBase<TClass, TKey> repository)
     {
@@ -107,7 +110,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// Gets or sets the time query db.
+    ///   Gets or sets the time query db.
     /// </summary>
     protected DateTime TimeQueryDb
     {
@@ -128,7 +131,7 @@ namespace rt.core.business.nhibernate
     protected TimeSpan TimeSpan { get; set; }
 
     /// <summary>
-    /// Gets the state.
+    ///   Gets the state.
     /// </summary>
     private StateExtension State
     {
@@ -174,10 +177,10 @@ namespace rt.core.business.nhibernate
     /// Получение всех по условию
     /// </summary>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <returns>
-    /// список удовлетворяющих условию 
+    /// список удовлетворяющих условию
     /// </returns>
     public virtual IList<TClass> GetBy(Expression<Func<TClass, bool>> expression)
     {
@@ -188,10 +191,10 @@ namespace rt.core.business.nhibernate
     /// The get by id.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="TClass"/> . 
+    /// The <see cref="TClass"/> .
     /// </returns>
     public TClass GetById(TKey id)
     {
@@ -214,10 +217,10 @@ namespace rt.core.business.nhibernate
     /// Получение одного по условию
     /// </summary>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <returns>
-    /// список удовлетворяющих условию 
+    /// список удовлетворяющих условию
     /// </returns>
     public TClass Single(Expression<Func<TClass, bool>> expression)
     {
@@ -228,10 +231,10 @@ namespace rt.core.business.nhibernate
     /// Получение одного по условию
     /// </summary>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     /// <returns>
-    /// список удовлетворяющих условию 
+    /// список удовлетворяющих условию
     /// </returns>
     public TClass SingleOrDefault(Expression<Func<TClass, bool>> expression)
     {
@@ -247,7 +250,7 @@ namespace rt.core.business.nhibernate
     /// <returns>
     /// The <see cref="TClass"/>.
     /// </returns>
-    public TClass Unproxy (TClass proxy)
+    public TClass Unproxy(TClass proxy)
     {
       return GetById((TKey)classMetadata.GetIdentifier(proxy, EntityMode.Poco));
     }
@@ -255,14 +258,14 @@ namespace rt.core.business.nhibernate
     #endregion
 
     /// <summary>
-    /// The state extension.
+    ///   The state extension.
     /// </summary>
     public class StateExtension : IExtension<OperationContext>
     {
-      #region Fields
+      #region Public Properties
 
       /// <summary>
-      /// The cache.
+      ///   The cache.
       /// </summary>
       public IList<TClass> Cache { get; set; }
 

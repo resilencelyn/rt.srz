@@ -16,8 +16,9 @@ namespace rt.srz.ui.pvp.Templates
 
   using rt.core.model;
   using rt.core.model.core;
-  using rt.srz.business.manager;
-  using rt.atl.business.exchange.impl;
+  using rt.core.model.interfaces;
+
+  using User = rt.core.model.core.User;
 
   public partial class AuthentificatedPage : System.Web.UI.MasterPage
   {
@@ -165,9 +166,7 @@ namespace rt.srz.ui.pvp.Templates
     protected void SetSyncTimes()
     { 
       // Вывод времени синхронизации из ПВП в СРЗ
-      var syncTimePvp2Srz = ObjectFactory.GetInstance<ISettingManager>()
-        .GetBy(x => x.Name == typeof(ExporterToSrz).FullName + "_Finish")
-        .FirstOrDefault();
+      var syncTimePvp2Srz = ObjectFactory.GetInstance<IStatementService>().GetSetting("ExporterToSrz_Finish");
       DateTime? dtsyncTimePvp2Srz = null;
       DateTime dttemp;
       if (syncTimePvp2Srz != null && DateTime.TryParse(syncTimePvp2Srz.ValueString, out dttemp))
@@ -186,9 +185,7 @@ namespace rt.srz.ui.pvp.Templates
       }
 
       // Вывод времени синхронизации из СРЗ в ПВР
-      var syncTimeSrz2Pvp = ObjectFactory.GetInstance<ISettingManager>()
-        .GetBy(x => x.Name == typeof(ExporterToPvp).FullName + "_Finish")
-        .FirstOrDefault();
+      var syncTimeSrz2Pvp = ObjectFactory.GetInstance<IStatementService>().GetSetting("ExporterToPvp_Finish");
       DateTime? dtsyncTimeSrz2Pvp = null;
       if (syncTimeSrz2Pvp != null && DateTime.TryParse(syncTimeSrz2Pvp.ValueString, out dttemp))
       {

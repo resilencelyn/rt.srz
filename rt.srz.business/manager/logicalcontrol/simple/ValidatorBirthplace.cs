@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorBirthplace.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorBirthplace.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator birthplace.
@@ -15,9 +15,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
-  using rt.srz.model.logicalcontrol.exceptions;
-  using rt.srz.model.Properties;
   using rt.srz.model.logicalcontrol.exceptions.step2;
+  using rt.srz.model.Properties;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
@@ -36,7 +35,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorBirthplace"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorBirthplace(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.InsuredPersonData.Birthplace, Resource.RegexBirthplace)
@@ -48,7 +47,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -66,7 +65,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="ArgumentNullException">
     /// </exception>

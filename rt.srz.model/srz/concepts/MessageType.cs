@@ -1,8 +1,21 @@
-﻿using rt.srz.model.srz;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MessageType.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   Перечень сообщений изменения данных
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using rt.srz.model.srz;
 
 /// <summary> Перечень сообщений изменения данных </summary>
 public class MessageType : Concept
 {
+  #region Constants
+
   /// <summary> Протокол форматно-логического контроля </summary>
   public const int F = 624;
 
@@ -17,5 +30,6 @@ public class MessageType : Concept
 
   /// <summary> Файлы от ТФОМС с извещениями СМО о прекращении страхования </summary>
   public const int S = 622;
-}
 
+  #endregion
+}

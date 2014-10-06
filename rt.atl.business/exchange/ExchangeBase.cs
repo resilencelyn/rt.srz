@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExchangeBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExchangeBase.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The exprot.
@@ -12,7 +12,9 @@ namespace rt.atl.business.exchange
   #region references
 
   using System.Collections.Generic;
+
   using Quartz;
+
   using rt.atl.business.exchange.interfaces;
 
   #endregion
@@ -74,8 +76,11 @@ namespace rt.atl.business.exchange
     }
 
     /// <summary>
-    ///   The run.
+    /// The run.
     /// </summary>
+    /// <param name="context">
+    /// The context.
+    /// </param>
     public abstract void Run(IJobExecutionContext context);
 
     #endregion

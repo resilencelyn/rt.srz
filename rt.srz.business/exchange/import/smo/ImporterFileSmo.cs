@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterFileSmo.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterFileSmo.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The importer file smo.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.smo
@@ -96,8 +99,8 @@ namespace rt.srz.business.exchange.import.smo
 
       var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
       var subj = !string.IsNullOrEmpty(address.SUBJ)
-        ? kladrManager.GetBy(x => x.Ocatd == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
-        : null;
+                   ? kladrManager.GetBy(x => x.Ocatd == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
+                   : null;
       addr.Subject = subj != null ? string.Format("{0} {1}", subj.Name, subj.Socr) : string.Empty;
       addr.Postcode = address.INDX;
       addr.Okato = address.OKATO;
@@ -146,8 +149,8 @@ namespace rt.srz.business.exchange.import.smo
       var addr = statement.Address2 ?? new address();
       var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
       var subj = !string.IsNullOrEmpty(address.SUBJ)
-        ? kladrManager.GetBy(x => x.Ocatd == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
-        : null;
+                   ? kladrManager.GetBy(x => x.Ocatd == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
+                   : null;
       addr.Postcode = address.INDX;
       addr.Okato = address.OKATO;
       addr.Area = address.RNNAME;
@@ -431,7 +434,7 @@ namespace rt.srz.business.exchange.import.smo
       {
         insuredPersonData.Category =
           conceptManager.GetBy(x => x.Code == person.KATEG && x.Oid.Id == Oid.Категориязастрахованноголица)
-            .FirstOrDefault();
+                        .FirstOrDefault();
       }
 
       // СНИЛС
@@ -510,7 +513,7 @@ namespace rt.srz.business.exchange.import.smo
       {
         representative.RelationType =
           conceptManager.GetBy(x => x.Code == person.PR.RELATION && x.Oid.Id == Oid.Отношениекзастрахованномулицу)
-            .FirstOrDefault();
+                        .FirstOrDefault();
       }
 
       if (person.PR.DOC != null)
@@ -544,18 +547,32 @@ namespace rt.srz.business.exchange.import.smo
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       statement.StatementChangeDates = statementChangeList != null && statementChangeList.Count > 0
-        ? statementChangeList.Select(
-          x =>
-            new StatementChangeDate
-            {
-              Statement = statement, 
-              Field =
-                conceptManager.GetBy(y => y.Code == x.FIELD && y.Oid.Id == Oid.TypeFields)
-                .FirstOrDefault(), 
-              Datum = x.DATA, 
-              Version = int.Parse(x.VERSION)
-            }).ToList()
-        : null;
+                                         ? statementChangeList.Select(
+                                                                      x =>
+                                                                      new StatementChangeDate
+                                                                      {
+                                                                        Statement = statement, 
+                                                                        Field =
+                                                                          conceptManager.GetBy(
+                                                                                               y
+                                                                                               =>
+                                                                                               y
+                                                                                                 .Code
+                                                                                               == x
+                                                                                                    .FIELD
+                                                                                               && y
+                                                                                                    .Oid
+                                                                                                    .Id
+                                                                                               == Oid
+                                                                                                    .TypeFields)
+                                                                                        .FirstOrDefault
+                                                                          (), 
+                                                                        Datum = x.DATA, 
+                                                                        Version =
+                                                                          int.Parse(x.VERSION)
+                                                                      })
+                                                              .ToList()
+                                         : null;
     }
 
     /// <summary>
@@ -597,7 +614,7 @@ namespace rt.srz.business.exchange.import.smo
       {
         statement.CauseFiling =
           conceptManager.GetBy(x => x.Code == vizit.RPOLIS && x.Oid.Id == Oid.ПричинаподачизаявлениянавыборилизаменуСмо)
-            .FirstOrDefault();
+                        .FirstOrDefault();
       }
       else
       {
@@ -605,7 +622,7 @@ namespace rt.srz.business.exchange.import.smo
         {
           statement.CauseFiling =
             conceptManager.GetBy(x => x.Code == vizit.RSMO && x.Oid.Id == Oid.Причинаподачизаявлениянавыдачудубликата)
-              .FirstOrDefault();
+                          .FirstOrDefault();
         }
       }
     }

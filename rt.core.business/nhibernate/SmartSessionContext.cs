@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SmartSessionContext.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SmartSessionContext.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The smart session context.
@@ -23,14 +23,14 @@ namespace rt.core.business.nhibernate
   #endregion
 
   /// <summary>
-  /// The smart session context.
+  ///   The smart session context.
   /// </summary>
   public class SmartSessionContext : MapBasedSessionContext
   {
     #region Constants
 
     /// <summary>
-    /// The session factory map key.
+    ///   The session factory map key.
     /// </summary>
     private const string SessionFactoryMapKey = "NHibernate.Context.WebSessionContext.SessionFactoryMapKey";
 
@@ -39,7 +39,7 @@ namespace rt.core.business.nhibernate
     #region Static Fields
 
     /// <summary>
-    /// The _session.
+    ///   The _session.
     /// </summary>
     [ThreadStatic]
     private static ISession _session;
@@ -64,7 +64,7 @@ namespace rt.core.business.nhibernate
     #region Properties
 
     /// <summary>
-    /// Gets or sets the session.
+    ///   Gets or sets the session.
     /// </summary>
     protected override ISession Session
     {
@@ -92,7 +92,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// Gets the wcf operation state.
+    ///   Gets the wcf operation state.
     /// </summary>
     private static WcfStateExtension WcfOperationState
     {
@@ -115,10 +115,10 @@ namespace rt.core.business.nhibernate
     #region Methods
 
     /// <summary>
-    /// The get map.
+    ///   The get map.
     /// </summary>
     /// <returns>
-    /// The <see cref="IDictionary"/>.
+    ///   The <see cref="IDictionary" />.
     /// </returns>
     protected override IDictionary GetMap()
     {

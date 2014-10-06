@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BHS.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="BHS.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The bhs.
@@ -107,10 +107,6 @@ namespace rt.srz.model.HL7.person.target
 
       return builder.ToString();
     }
-
-    #endregion
-
-    #region Methods
 
     #endregion
   }

@@ -17,14 +17,15 @@ namespace rt.srz.ui.pvp
 
   using NLog;
 
-  using rt.atl.business.exchange.impl;
   using rt.core.model;
   using rt.core.model.core;
-  using rt.srz.business.manager;
+  using rt.core.model.interfaces;
   using rt.srz.model.interfaces.service;
   using rt.srz.ui.pvp.Enumerations;
 
   using StructureMap;
+
+  using User = rt.core.model.core.User;
 
   /// <summary>
   ///   The global.
@@ -68,10 +69,7 @@ namespace rt.srz.ui.pvp
       }
 
       // Получаем время окончания последней синхронизации
-      var syncTimeSrz2Pvp =
-        ObjectFactory.GetInstance<ISettingManager>()
-                     .GetBy(x => x.Name == typeof(ExporterToPvp).FullName)
-                     .FirstOrDefault();
+      var syncTimeSrz2Pvp = ObjectFactory.GetInstance<IStatementService>().GetCurrentSetting("ExporterToPvp_Finish");
 
       DateTime? syncTime = null;
       if (syncTimeSrz2Pvp != null)

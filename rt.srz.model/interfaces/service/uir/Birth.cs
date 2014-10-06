@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Birth.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Birth.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The birth.
@@ -32,6 +32,9 @@ namespace rt.srz.model.interfaces.service.uir
     [XmlElement("BirthDate", typeof(DateTime), DataType = "date", Order = 0)]
     public DateTime BirthDate { get; set; }
 
+    /// <summary>
+    /// Gets or sets the birth place.
+    /// </summary>
     [XmlElement("BirthPlace", typeof(string), Order = 1)]
     public string BirthPlace { get; set; }
 

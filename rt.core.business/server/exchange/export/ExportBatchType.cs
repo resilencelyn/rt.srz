@@ -1,39 +1,42 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatchType.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatchType.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The export batch type.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.exchange.export
 {
   /// <summary>
-  /// The export batch type.
+  ///   The export batch type.
   /// </summary>
   public enum ExportBatchType
   {
     /// <summary>
-    /// The pfr.
+    ///   The pfr.
     /// </summary>
-    Pfr = 1,
+    Pfr = 1, 
 
     /// <summary>
-    /// The SmoRec.
+    ///   The SmoRec.
     /// </summary>
-    SmoRec = 2,
+    SmoRec = 2, 
 
     /// <summary>
-    /// The SmoOp.
+    ///   The SmoOp.
     /// </summary>
-    SmoOp = 3,
+    SmoOp = 3, 
 
     /// <summary>
-    /// The SmoRep.
+    ///   The SmoRep.
     /// </summary>
-    SmoRep = 4,
+    SmoRep = 4, 
 
     /// <summary>
-    /// The SmoFlk.
+    ///   The SmoFlk.
     /// </summary>
-    SmoFlk = 4,
+    SmoFlk = 4, 
   }
 }

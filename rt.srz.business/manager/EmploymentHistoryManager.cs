@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="EmploymentHistoryManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EmploymentHistoryManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The EmploymentHistoryManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The EmploymentHistoryManager.
+  ///   The EmploymentHistoryManager.
   /// </summary>
   public partial class EmploymentHistoryManager
   {

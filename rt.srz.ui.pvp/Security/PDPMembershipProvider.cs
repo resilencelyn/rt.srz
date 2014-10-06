@@ -13,6 +13,7 @@ namespace rt.srz.ui.pvp.Security
   using System.Web.Configuration;
   using System.Web.Security;
 
+  using rt.core.model.interfaces;
   using rt.core.model.security;
   using rt.srz.model.interfaces.service;
 

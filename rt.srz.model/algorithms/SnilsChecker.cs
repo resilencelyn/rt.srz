@@ -1,20 +1,16 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SnilsChecker.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SnilsChecker.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The snils.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-
-#endregion
-
 namespace rt.srz.model.algorithms
 {
+  using System;
+
   using rt.srz.model.HL7.dotNetX;
 
   /// <summary>
@@ -22,10 +18,16 @@ namespace rt.srz.model.algorithms
   /// </summary>
   public static class SnilsChecker
   {
+    #region Static Fields
+
     /// <summary>
     ///   The full length.
     /// </summary>
     public static readonly byte FullLength = 11;
+
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The check identifier.
@@ -70,8 +72,8 @@ namespace rt.srz.model.algorithms
       {
         byte minDigits = 11;
         var buffer = NumbersHelper.SplitNumber(id, minDigits);
-        var num = ((((((((9 * buffer[0]) + (8 * buffer[1])) + (7 * buffer[2])) + (6 * buffer[3])) + (5 * buffer[4])) +
-                     (4 * buffer[5])) + (3 * buffer[6])) + (2 * buffer[7])) + buffer[8];
+        var num = ((((((((9 * buffer[0]) + (8 * buffer[1])) + (7 * buffer[2])) + (6 * buffer[3])) + (5 * buffer[4]))
+                     + (4 * buffer[5])) + (3 * buffer[6])) + (2 * buffer[7])) + buffer[8];
         while (num > 0x65)
         {
           num = num % 0x65;
@@ -105,7 +107,14 @@ namespace rt.srz.model.algorithms
     /// </returns>
     public static string SsToLong(string ss)
     {
-      return !string.IsNullOrEmpty(ss) && ss.Length == 11 ? string.Format("{0}-{1}-{2} {3}", ss.Substring(0, 3), ss.Substring(3, 3), ss.Substring(6, 3), ss.Substring(9, 2)) : string.Empty;
+      return !string.IsNullOrEmpty(ss) && ss.Length == 11
+               ? string.Format(
+                               "{0}-{1}-{2} {3}", 
+                               ss.Substring(0, 3), 
+                               ss.Substring(3, 3), 
+                               ss.Substring(6, 3), 
+                               ss.Substring(9, 2))
+               : string.Empty;
     }
 
     /// <summary>
@@ -121,5 +130,7 @@ namespace rt.srz.model.algorithms
     {
       return ss.Replace(" ", string.Empty).Replace("-", string.Empty).Replace("_", string.Empty);
     }
+
+    #endregion
   }
 }

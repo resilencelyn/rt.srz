@@ -16,6 +16,8 @@ using rt.srz.ui.pvp.Controls.Common;
 
 namespace rt.srz.ui.pvp.Enumerations
 {
+  using rt.core.model;
+  using rt.core.model.interfaces;
   using rt.uec.model.enumerations;
 
   public static class UtilsHelper 

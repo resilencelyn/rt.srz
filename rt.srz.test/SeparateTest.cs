@@ -13,6 +13,8 @@ using rt.srz.model.srz.concepts;
 
 namespace rt.srz.test
 {
+  using rt.core.model.interfaces;
+
   /// <summary>
   /// Тесты по разделению - запускать на базе без заявлений, дубликатов, ключей
   /// </summary>

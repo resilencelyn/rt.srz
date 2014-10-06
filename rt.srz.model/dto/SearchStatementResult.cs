@@ -1,26 +1,22 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SearchStatementResult.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SearchStatementResult.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The search statement result.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using rt.srz.model.srz;
-using rt.srz.model.srz.concepts;
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
-
-#endregion
-
 namespace rt.srz.model.dto
 {
+  using System;
+  using System.Collections.Generic;
   using System.Linq;
+  using System.Runtime.Serialization;
+  using System.Xml.Serialization;
+
+  using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
 
   /// <summary>
   ///   The search statement result.
@@ -29,8 +25,10 @@ namespace rt.srz.model.dto
   [DataContract]
   public class SearchStatementResult
   {
+    #region Constructors and Destructors
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="SearchStatementResult"/> class.
+    ///   Initializes a new instance of the <see cref="SearchStatementResult" /> class.
     /// </summary>
     public SearchStatementResult()
     {
@@ -42,7 +40,10 @@ namespace rt.srz.model.dto
     /// <param name="statement">
     /// The statement.
     /// </param>
-    public SearchStatementResult(Statement statement,  string typeStatement)
+    /// <param name="typeStatement">
+    /// The type Statement.
+    /// </param>
+    public SearchStatementResult(Statement statement, string typeStatement)
     {
       Id = statement.Id;
       IsActive = statement.IsActive;
@@ -75,7 +76,7 @@ namespace rt.srz.model.dto
         DateFiling = statement.DateFiling.Value;
       }
 
-      DateInsuranceEnd = new DateTime(2030, 1,1);
+      DateInsuranceEnd = new DateTime(2030, 1, 1);
       CauseFiling = statement.CauseFiling.Name;
       CauseFilingId = statement.CauseFiling.Id;
       FromCurrentSmo = true;
@@ -135,61 +136,63 @@ namespace rt.srz.model.dto
       IsSinhronized = statement.IsExportPolis;
     }
 
-    /// <summary>
-    ///   Gets or sets the id.
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public Guid Id { get; set; }
+    #endregion
+
+    #region Public Properties
 
     /// <summary>
-    /// Gets or sets a value indicating whether is active.
+    ///   Адрес проживания
     /// </summary>
     [XmlElement]
     [DataMember]
-    public bool IsActive { get; set; }
+    public address AddressLive { get; set; }
 
     /// <summary>
-    ///   Gets or sets the type statement.
+    ///   Адрес проживания строкой
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string TypeStatement { get; set; }
+    public string AddressLiveStr
+    {
+      get
+      {
+        return AddressLive != null ? AddressLive.ToString() : null;
+      }
+    }
 
     /// <summary>
-    ///   Gets or sets the status statement.
+    ///   Адрес регистрации
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string StatusStatement { get; set; }
+    public address AddressRegistration { get; set; }
 
     /// <summary>
-    /// Статус заявления
+    ///   Адрес регистрации строкой
     /// </summary>
     [XmlElement]
     [DataMember]
-    public int Status { get; set; }
+    public string AddressRegistrationStr
+    {
+      get
+      {
+        return AddressRegistration != null ? AddressRegistration.ToString() : null;
+      }
+    }
 
     /// <summary>
-    /// Статус персоны
+    ///   Gets or sets the birthday.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public int PersonStatus { get; set; }
+    public DateTime Birthday { get; set; }
 
     /// <summary>
-    ///   Gets or sets the date filing.
+    ///   Место рождения
     /// </summary>
     [XmlElement]
     [DataMember]
-    public DateTime DateFiling { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the date filing.
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public DateTime DateInsuranceEnd { get; set; }
+    public string Birthplace { get; set; }
 
     /// <summary>
     ///   Gets or sets the cause filing.
@@ -206,39 +209,53 @@ namespace rt.srz.model.dto
     public int CauseFilingId { get; set; }
 
     /// <summary>
-    /// Gets or sets the smo id.
+    ///   Gets or sets the citizenship.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public bool FromCurrentSmo { get; set; }
+    public string Citizenship { get; set; }
 
     /// <summary>
-    /// Gets or sets the smo id.
+    ///   Gets or sets the date filing.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public Guid SmoId { get; set; }
-    
-    /// <summary>
-    ///   Gets or sets the smo.
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public string Smo { get; set; }
+    public DateTime DateFiling { get; set; }
 
     /// <summary>
-    ///   Gets or sets the smo OGRN
+    ///   Gets or sets the date filing.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string SmoOGRN { get; set; }
+    public DateTime DateInsuranceEnd { get; set; }
 
     /// <summary>
-    ///   Gets or sets the tfom OKATO
+    ///   Gets or sets the docume number.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string TfomOKATO { get; set; }
+    public string DocumentNumber { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the document seria.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public string DocumentSeria { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the document type.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public string DocumentType { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the errors.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public IList<string> Errors { get; set; }
 
     /// <summary>
     ///   Gets or sets the first name.
@@ -246,6 +263,41 @@ namespace rt.srz.model.dto
     [XmlElement]
     [DataMember]
     public string FirstName { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the smo id.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public bool FromCurrentSmo { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the gender.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public string Gender { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the id.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public Guid Id { get; set; }
+
+    /// <summary>
+    ///   Gets or sets a value indicating whether is active.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public bool IsActive { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether is sinhronized.
+    /// </summary>
+    [XmlElement]
+    [DataMember]
+    public bool IsSinhronized { get; set; }
 
     /// <summary>
     ///   Gets or sets the last name.
@@ -262,53 +314,46 @@ namespace rt.srz.model.dto
     public string MiddleName { get; set; }
 
     /// <summary>
-    ///   Gets or sets the gender.
+    ///   Gets or sets the number temporary certificate.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string Gender { get; set; }
+    public string NumberTemporaryCertificate { get; set; }
 
     /// <summary>
-    ///   Gets or sets the birthday.
+    ///   Статус персоны
     /// </summary>
     [XmlElement]
     [DataMember]
-    public DateTime Birthday { get; set; }
+    public int PersonStatus { get; set; }
 
     /// <summary>
-    /// Место рождения
+    ///   Номер полиса
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string Birthplace { get; set; }
+    public string PolicyNumber { get; set; }
 
     /// <summary>
-    ///   Gets or sets the citizenship.
+    ///   Gets or sets the smo.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string Citizenship { get; set; }
+    public string Smo { get; set; }
 
     /// <summary>
-    ///   Gets or sets the document type.
+    ///   Gets or sets the smo id.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string DocumentType { get; set; }
+    public Guid SmoId { get; set; }
 
     /// <summary>
-    ///   Gets or sets the document seria.
+    ///   Gets or sets the smo OGRN
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string DocumentSeria { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the docume number.
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public string DocumentNumber { get; set; }
+    public string SmoOGRN { get; set; }
 
     /// <summary>
     ///   Gets or sets the snils.
@@ -318,62 +363,33 @@ namespace rt.srz.model.dto
     public string Snils { get; set; }
 
     /// <summary>
-    ///   Gets or sets the number temporary certificate.
+    ///   Статус заявления
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string NumberTemporaryCertificate { get; set; }
+    public int Status { get; set; }
 
     /// <summary>
-    /// Номер полиса
+    ///   Gets or sets the status statement.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string PolicyNumber { get; set; }
+    public string StatusStatement { get; set; }
 
     /// <summary>
-    /// Адрес проживания
+    ///   Gets or sets the tfom OKATO
     /// </summary>
     [XmlElement]
     [DataMember]
-    public address AddressLive { get; set; }
+    public string TfomOKATO { get; set; }
 
     /// <summary>
-    /// Адрес проживания строкой
+    ///   Gets or sets the type statement.
     /// </summary>
     [XmlElement]
     [DataMember]
-    public string AddressLiveStr 
-    {
-      get { return AddressLive != null ? AddressLive.ToString() : null; }
-    }
+    public string TypeStatement { get; set; }
 
-    /// <summary>
-    /// Адрес регистрации
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public address AddressRegistration { get; set; }
-
-    /// <summary>
-    /// Адрес регистрации строкой
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public string AddressRegistrationStr
-    {
-      get { return AddressRegistration != null ? AddressRegistration.ToString() : null; }
-    }
-
-    /// <summary>
-    ///   Gets or sets the errors.
-    /// </summary>
-    [XmlElement]
-    [DataMember]
-    public IList<string> Errors { get; set; }
-
-    [XmlElement]
-    [DataMember]
-    public bool IsSinhronized { get; set; }
+    #endregion
   }
 }

@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Uechiststatus.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Uechiststatus.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Uechiststatus.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.atl
 {
   /// <summary>
-  /// The Uechiststatus.
+  ///   The Uechiststatus.
   /// </summary>
-  public partial class Uechiststatus 
+  public partial class Uechiststatus
   {
   }
 }

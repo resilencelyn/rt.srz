@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEmailException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultEmailException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault email exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
   #endregion
 
   /// <summary>
-  /// The fault email exception.
+  ///   The fault email exception.
   /// </summary>
   [Serializable]
   public class FaultEmailException : FaultStep3
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultEmailException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultEmailException" /> class.
     /// </summary>
     public FaultEmailException()
       : base(new ExceptionInfo(Resource.FaultEmailExceptionCode), Resource.FaultEmailExceptionMessage)
@@ -49,6 +49,5 @@ namespace rt.srz.model.logicalcontrol.exceptions.step3
     }
 
     #endregion
-
-   }
+  }
 }

@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.exchange.import.smo
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ImporterOrganisationMo.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The importer file tfoms organisation.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.import.smo
 {
   using System;
   using System.Collections.Concurrent;
@@ -82,20 +91,18 @@
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       foreach (var mo in packet.MedCompany)
       {
-        var tf = 
+        var tf =
           session.QueryOver<Organisation>()
                  .Where(x => x.Oid.Id == model.srz.Oid.Tfoms && x.Okato == mo.TfOkato)
                  .Take(1)
                  .List()
                  .SingleOrDefault();
 
-        if (mo.Ogrn.Length > 20
-          || mo.Mcod.Length > 20
-          || mo.NamMop.Length > 500
-          || mo.NamMok.Length > 500)
+        if (mo.Ogrn.Length > 20 || mo.Mcod.Length > 20 || mo.NamMop.Length > 500 || mo.NamMok.Length > 500)
         {
           var i = 0;
         }
+
         var org = new Organisation
                   {
                     IsActive = true, 

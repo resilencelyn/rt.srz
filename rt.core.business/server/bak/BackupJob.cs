@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BackupJob.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="BackupJob.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The backup job.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.bak
@@ -9,7 +12,6 @@ namespace rt.core.business.server.bak
   #region
 
   using System;
-  using System.Globalization;
   using System.IO;
   using System.Threading;
 
@@ -18,16 +20,16 @@ namespace rt.core.business.server.bak
 
   using Quartz;
 
-  using rt.core.business.configuration;
   using rt.core.business.quartz;
   using rt.core.model;
+  using rt.core.model.configuration;
 
   using StructureMap;
 
   #endregion
 
   /// <summary>
-  /// The backup job.
+  ///   The backup job.
   /// </summary>
   public class BackupJob : JobBase
   {
@@ -46,12 +48,10 @@ namespace rt.core.business.server.bak
     /// The execute impl.
     /// </summary>
     /// <param name="context">
-    /// The context. 
+    /// The context.
     /// </param>
     protected override void ExecuteImpl(IJobExecutionContext context)
     {
-
-
       // 4. Если бэкап холодный, нужно (отключить всех пользователей). 
       // 4.1 Переводим ПО в офлайн режим по конфигу (таким образом отключаем создание новых задач и всех пользователей онлайна) 
       // 4.2 Ждем окончания уже запущенных задач кварца 
@@ -99,8 +99,11 @@ namespace rt.core.business.server.bak
           if (dialect is Oracle8iDialect)
           {
             var filePath = Path.Combine(
-              ConfigManager.ExchangeSettings.BackupOutputFolder,
-              string.Format("{0}.{1}.dmp", currentDataBase, DateTime.UtcNow.ToString("yyyy.MM.dd HH.mm")));
+                                        ConfigManager.ExchangeSettings.BackupOutputFolder, 
+                                        string.Format(
+                                                      "{0}.{1}.dmp", 
+                                                      currentDataBase, 
+                                                      DateTime.UtcNow.ToString("yyyy.MM.dd HH.mm")));
 
             // TODO: get from config
             var userName = string.Empty;
@@ -108,14 +111,22 @@ namespace rt.core.business.server.bak
             var listener = string.Empty;
             var backupQuery =
               session.CreateSQLQuery(
-                string.Format(@"exp {0}/{1}@{2} file={3} consistent=y", userName, password, listener, filePath));
+                                     string.Format(
+                                                   @"exp {0}/{1}@{2} file={3} consistent=y", 
+                                                   userName, 
+                                                   password, 
+                                                   listener, 
+                                                   filePath));
             backupQuery.UniqueResult();
           }
           else if (dialect is MsSql2000Dialect)
           {
             var filePath = Path.Combine(
-              ConfigManager.ExchangeSettings.BackupOutputFolder,
-              string.Format("{0}.{1}.bak", currentDataBase, DateTime.UtcNow.ToString("yyyy.MM.dd HH.mm")));
+                                        ConfigManager.ExchangeSettings.BackupOutputFolder, 
+                                        string.Format(
+                                                      "{0}.{1}.bak", 
+                                                      currentDataBase, 
+                                                      DateTime.UtcNow.ToString("yyyy.MM.dd HH.mm")));
             var sql = @"BACKUP DATABASE {0}
           TO DISK = '{1}'
           WITH FORMAT,

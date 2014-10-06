@@ -1,14 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterFileFactory.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterFileFactory.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The watcher.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.business.server.exchange.import
 {
@@ -22,36 +19,47 @@ namespace rt.core.business.server.exchange.import
   /// </summary>
   public class ImporterFileFactory : IImporterFileFactory
   {
+    #region Fields
+
     /// <summary>
     ///   импортеры
     /// </summary>
     private readonly IImporterFile[] importerFiles;
 
+    #endregion
+
+    #region Constructors and Destructors
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="ImporterFileFactory"/> class. 
+    /// Initializes a new instance of the <see cref="ImporterFileFactory"/> class.
     ///   Инициализация нового экземпляра типа <see cref="ImporterFileFactory"/>.
     /// </summary>
     /// <param name="importerFiles">
-    /// The import batches. 
+    /// The import batches.
     /// </param>
     public ImporterFileFactory(IImporterFile[] importerFiles)
     {
       this.importerFiles = importerFiles;
     }
 
+    #endregion
+
+    #region Public Methods and Operators
+
     /// <summary>
     /// Возвращает ExportBatchTyped по указанному типу.
     /// </summary>
     /// <param name="file">
-    /// The file. 
+    /// The file.
     /// </param>
     /// <returns>
-    /// импортер 
+    /// импортер
     /// </returns>
     public IImporterFile GetImporterFile(FileInfo file)
     {
-      
       return importerFiles != null ? importerFiles.FirstOrDefault(x => x.AppliesTo(file)) : null;
     }
+
+    #endregion
   }
 }

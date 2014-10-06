@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISertificateUecManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ISertificateUecManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The interface SertificateUecManager.
@@ -36,38 +36,19 @@ namespace rt.srz.business.manager
     byte[] GetCertificateKey(string workstationName, int version, int type);
 
     /// <summary>
-    /// The save sertificate key.
-    /// </summary>
-    /// <param name="workstationId"></param>
-    /// <param name="version">
-    ///   The version.
-    /// </param>
-    /// <param name="type">
-    ///   The type.
-    /// </param>
-    /// <param name="key">
-    ///   The key.
-    /// </param>
-    void SaveWorkstationSertificateKey(Guid workstationId, short version, int type, byte[] key);
-
-    #endregion
-
-    void SaveWorkstationSertificateKey(Guid workstationId, short version, int type, string hexKey);
-
-    /// <summary>
     /// The save smo sertificate key.
     /// </summary>
     /// <param name="smoId">
-    ///   The smo id. 
+    /// The smo id.
     /// </param>
     /// <param name="version">
-    ///   The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    ///   The type. 
+    /// The type.
     /// </param>
     /// <param name="key">
-    ///   The key. 
+    /// The key.
     /// </param>
     void SaveSmoSertificateKey(Guid smoId, short version, int type, byte[] key);
 
@@ -75,17 +56,52 @@ namespace rt.srz.business.manager
     /// The save smo sertificate key.
     /// </summary>
     /// <param name="smoId">
-    ///   The smo id. 
+    /// The smo id.
     /// </param>
     /// <param name="version">
-    ///   The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    ///   The type. 
+    /// The type.
     /// </param>
     /// <param name="hexKey">
-    ///   The hex key. 
+    /// The hex key.
     /// </param>
     void SaveSmoSertificateKey(Guid smoId, short version, int type, string hexKey);
+
+    /// <summary>
+    /// The save sertificate key.
+    /// </summary>
+    /// <param name="workstationId">
+    /// </param>
+    /// <param name="version">
+    /// The version.
+    /// </param>
+    /// <param name="type">
+    /// The type.
+    /// </param>
+    /// <param name="key">
+    /// The key.
+    /// </param>
+    void SaveWorkstationSertificateKey(Guid workstationId, short version, int type, byte[] key);
+
+    /// <summary>
+    /// The save workstation sertificate key.
+    /// </summary>
+    /// <param name="workstationId">
+    /// The workstation id.
+    /// </param>
+    /// <param name="version">
+    /// The version.
+    /// </param>
+    /// <param name="type">
+    /// The type.
+    /// </param>
+    /// <param name="hexKey">
+    /// The hex key.
+    /// </param>
+    void SaveWorkstationSertificateKey(Guid workstationId, short version, int type, string hexKey);
+
+    #endregion
   }
 }

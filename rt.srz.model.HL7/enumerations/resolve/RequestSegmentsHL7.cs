@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RequestSegmentsHL7.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="RequestSegmentsHL7.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The request segments h l 7.
@@ -9,17 +9,6 @@
 
 namespace rt.srz.model.HL7.enumerations.resolve
 {
-  #region references
-
-  using System.Collections.Generic;
-
-  using rt.srz.model.HL7.person;
-  using rt.srz.model.HL7.person.messages;
-  using rt.srz.model.HL7.person.requests;
-  using rt.srz.model.HL7.person.target;
-
-  #endregion
-
   /// <summary>
   ///   The request segments h l 7.
   /// </summary>
@@ -93,6 +82,8 @@ namespace rt.srz.model.HL7.enumerations.resolve
       return RequestSegmentHL7.Undefined;
     }
 
+    #endregion
+
     ///// <summary>
     ///// The try resolve segment.
     ///// </summary>
@@ -120,39 +111,39 @@ namespace rt.srz.model.HL7.enumerations.resolve
     ///// <returns>
     ///// The <see cref="bool"/>.
     ///// </returns>
-    //public static bool TryResolveSegment(
-    //  BasePersonTemplate person, 
-    //  RequestSegmentHL7 segment, 
-    //  int segmentIndex, 
-    //  out ZPI_ZA7 za7, 
-    //  out ZPI_ZA1 za1, 
-    //  out MSH msh, 
-    //  out Evn evn)
-    //{
-    //  za7 = null;
-    //  za1 = null;
-    //  msh = null;
-    //  evn = null;
-    //  var thl = segment;
-    //  if (thl != RequestSegmentHL7.ZA1)
-    //  {
-    //    if ((thl == RequestSegmentHL7.ZA7) && ((person.Zpi_za7 != null) && (segmentIndex < person.Zpi_za7.Count)))
-    //    {
-    //      msh = person.Zpi_za7[segmentIndex].Msh;
-    //      za7 = person.Zpi_za7[segmentIndex];
-    //      return true;
-    //    }
-    //  }
-    //  else if ((person.Zpi_za1 != null) && (segmentIndex < person.Zpi_za1.Count))
-    //  {
-    //    msh = person.Zpi_za1[segmentIndex].Msh;
-    //    za1 = person.Zpi_za1[segmentIndex];
-    //    evn = person.Zpi_za1[segmentIndex].Evn;
-    //    return true;
-    //  }
+    // public static bool TryResolveSegment(
+    // BasePersonTemplate person, 
+    // RequestSegmentHL7 segment, 
+    // int segmentIndex, 
+    // out ZPI_ZA7 za7, 
+    // out ZPI_ZA1 za1, 
+    // out MSH msh, 
+    // out Evn evn)
+    // {
+    // za7 = null;
+    // za1 = null;
+    // msh = null;
+    // evn = null;
+    // var thl = segment;
+    // if (thl != RequestSegmentHL7.ZA1)
+    // {
+    // if ((thl == RequestSegmentHL7.ZA7) && ((person.Zpi_za7 != null) && (segmentIndex < person.Zpi_za7.Count)))
+    // {
+    // msh = person.Zpi_za7[segmentIndex].Msh;
+    // za7 = person.Zpi_za7[segmentIndex];
+    // return true;
+    // }
+    // }
+    // else if ((person.Zpi_za1 != null) && (segmentIndex < person.Zpi_za1.Count))
+    // {
+    // msh = person.Zpi_za1[segmentIndex].Msh;
+    // za1 = person.Zpi_za1[segmentIndex];
+    // evn = person.Zpi_za1[segmentIndex].Evn;
+    // return true;
+    // }
 
-    //  return false;
-    //}
+    // return false;
+    // }
 
     ///// <summary>
     ///// The try resolve segment.
@@ -190,120 +181,118 @@ namespace rt.srz.model.HL7.enumerations.resolve
     ///// <returns>
     ///// The <see cref="bool"/>.
     ///// </returns>
-    //public static bool TryResolveSegment(
-    //  BasePersonTemplate person, 
-    //  RequestSegmentHL7 segment, 
-    //  int segmentIndex, 
-    //  out MSH msh, 
-    //  out Evn evn, 
-    //  out MessagePid pid, 
-    //  out IList<MessagePid> pidList, 
-    //  out IList<ADT_A01_INSURANCE> insuranceList, 
-    //  out Qpd qpd, 
-    //  out QPD_ZP1 qpdZp1)
-    //{
-    //  msh = null;
-    //  evn = null;
-    //  pid = null;
-    //  pidList = null;
-    //  insuranceList = null;
-    //  qpd = null;
-    //  qpdZp1 = null;
-    //  var thl = segment;
-    //  if (thl <= RequestSegmentHL7.A03)
-    //  {
-    //    switch (thl)
-    //    {
-    //      case RequestSegmentHL7.ZP1:
-    //        if ((person.Qbp_Zp1 == null) || (segmentIndex >= person.Qbp_Zp1.Count))
-    //        {
-    //          goto Label_02B7;
-    //        }
+    // public static bool TryResolveSegment(
+    // BasePersonTemplate person, 
+    // RequestSegmentHL7 segment, 
+    // int segmentIndex, 
+    // out MSH msh, 
+    // out Evn evn, 
+    // out MessagePid pid, 
+    // out IList<MessagePid> pidList, 
+    // out IList<ADT_A01_INSURANCE> insuranceList, 
+    // out Qpd qpd, 
+    // out QPD_ZP1 qpdZp1)
+    // {
+    // msh = null;
+    // evn = null;
+    // pid = null;
+    // pidList = null;
+    // insuranceList = null;
+    // qpd = null;
+    // qpdZp1 = null;
+    // var thl = segment;
+    // if (thl <= RequestSegmentHL7.A03)
+    // {
+    // switch (thl)
+    // {
+    // case RequestSegmentHL7.ZP1:
+    // if ((person.Qbp_Zp1 == null) || (segmentIndex >= person.Qbp_Zp1.Count))
+    // {
+    // goto Label_02B7;
+    // }
 
-    //        msh = person.Qbp_Zp1[segmentIndex].Msh;
-    //        qpdZp1 = person.Qbp_Zp1[segmentIndex].Qpd;
-    //        return true;
+    // msh = person.Qbp_Zp1[segmentIndex].Msh;
+    // qpdZp1 = person.Qbp_Zp1[segmentIndex].Qpd;
+    // return true;
 
-    //      case RequestSegmentHL7.ZP2:
-    //        if ((person.Qbp_Zp2 == null) || (segmentIndex >= person.Qbp_Zp2.Count))
-    //        {
-    //          goto Label_02B7;
-    //        }
+    // case RequestSegmentHL7.ZP2:
+    // if ((person.Qbp_Zp2 == null) || (segmentIndex >= person.Qbp_Zp2.Count))
+    // {
+    // goto Label_02B7;
+    // }
 
-    //        msh = person.Qbp_Zp2[segmentIndex].Msh;
-    //        qpd = person.Qbp_Zp2[segmentIndex].Qpd;
-    //        return true;
+    // msh = person.Qbp_Zp2[segmentIndex].Msh;
+    // qpd = person.Qbp_Zp2[segmentIndex].Qpd;
+    // return true;
 
-    //      case (RequestSegmentHL7)0x67:
-    //      case (RequestSegmentHL7)0xca:
-    //        goto Label_02B7;
+    // case (RequestSegmentHL7)0x67:
+    // case (RequestSegmentHL7)0xca:
+    // goto Label_02B7;
 
-    //      case RequestSegmentHL7.ZP4:
-    //        if ((person.Qbp_Zp4 == null) || (segmentIndex >= person.Qbp_Zp4.Count))
-    //        {
-    //          goto Label_02B7;
-    //        }
+    // case RequestSegmentHL7.ZP4:
+    // if ((person.Qbp_Zp4 == null) || (segmentIndex >= person.Qbp_Zp4.Count))
+    // {
+    // goto Label_02B7;
+    // }
 
-    //        msh = person.Qbp_Zp4[segmentIndex].Msh;
-    //        qpd = person.Qbp_Zp4[segmentIndex].Qpd;
-    //        return true;
+    // msh = person.Qbp_Zp4[segmentIndex].Msh;
+    // qpd = person.Qbp_Zp4[segmentIndex].Qpd;
+    // return true;
 
-    //      case RequestSegmentHL7.A01:
-    //        if ((person.Adt_A01 == null) || (segmentIndex >= person.Adt_A01.Count))
-    //        {
-    //          goto Label_02B7;
-    //        }
+    // case RequestSegmentHL7.A01:
+    // if ((person.Adt_A01 == null) || (segmentIndex >= person.Adt_A01.Count))
+    // {
+    // goto Label_02B7;
+    // }
 
-    //        msh = person.Adt_A01[segmentIndex].Msh;
-    //        evn = person.Adt_A01[segmentIndex].Evn;
-    //        pid = person.Adt_A01[segmentIndex].Pid;
-    //        insuranceList = person.Adt_A01[segmentIndex].InsuranceList;
-    //        return true;
+    // msh = person.Adt_A01[segmentIndex].Msh;
+    // evn = person.Adt_A01[segmentIndex].Evn;
+    // pid = person.Adt_A01[segmentIndex].Pid;
+    // insuranceList = person.Adt_A01[segmentIndex].InsuranceList;
+    // return true;
 
-    //      case RequestSegmentHL7.A03:
-    //        if ((person.Adt_A03 == null) || (segmentIndex >= person.Adt_A03.Count))
-    //        {
-    //          goto Label_02B7;
-    //        }
+    // case RequestSegmentHL7.A03:
+    // if ((person.Adt_A03 == null) || (segmentIndex >= person.Adt_A03.Count))
+    // {
+    // goto Label_02B7;
+    // }
 
-    //        msh = person.Adt_A03[segmentIndex].Msh;
-    //        evn = person.Adt_A03[segmentIndex].Evn;
-    //        pid = person.Adt_A03[segmentIndex].Pid;
-    //        return true;
-    //    }
-    //  }
-    //  else
-    //  {
-    //    switch (thl)
-    //    {
-    //      case RequestSegmentHL7.A24:
-    //        if ((person.Adt_A24 != null) && (segmentIndex < person.Adt_A24.Count))
-    //        {
-    //          msh = person.Adt_A24[segmentIndex].Msh;
-    //          evn = person.Adt_A24[segmentIndex].Evn;
-    //          pidList = person.Adt_A24[segmentIndex].PidList;
-    //          return true;
-    //        }
+    // msh = person.Adt_A03[segmentIndex].Msh;
+    // evn = person.Adt_A03[segmentIndex].Evn;
+    // pid = person.Adt_A03[segmentIndex].Pid;
+    // return true;
+    // }
+    // }
+    // else
+    // {
+    // switch (thl)
+    // {
+    // case RequestSegmentHL7.A24:
+    // if ((person.Adt_A24 != null) && (segmentIndex < person.Adt_A24.Count))
+    // {
+    // msh = person.Adt_A24[segmentIndex].Msh;
+    // evn = person.Adt_A24[segmentIndex].Evn;
+    // pidList = person.Adt_A24[segmentIndex].PidList;
+    // return true;
+    // }
 
-    //        break;
+    // break;
 
-    //      case RequestSegmentHL7.A37:
-    //        if ((person.Adt_A37 != null) && (segmentIndex < person.Adt_A37.Count))
-    //        {
-    //          msh = person.Adt_A37[segmentIndex].Msh;
-    //          evn = person.Adt_A37[segmentIndex].Evn;
-    //          pidList = person.Adt_A37[segmentIndex].PidList;
-    //          return true;
-    //        }
+    // case RequestSegmentHL7.A37:
+    // if ((person.Adt_A37 != null) && (segmentIndex < person.Adt_A37.Count))
+    // {
+    // msh = person.Adt_A37[segmentIndex].Msh;
+    // evn = person.Adt_A37[segmentIndex].Evn;
+    // pidList = person.Adt_A37[segmentIndex].PidList;
+    // return true;
+    // }
 
-    //        break;
-    //    }
-    //  }
+    // break;
+    // }
+    // }
 
-    //  Label_02B7:
-    //  return false;
-    //}
-
-    #endregion
+    // Label_02B7:
+    // return false;
+    // }
   }
 }

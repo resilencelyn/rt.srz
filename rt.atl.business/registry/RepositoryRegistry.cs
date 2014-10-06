@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RepositoryRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="RepositoryRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   регистр SM - инициализация всех репозиториев кроме dirty
@@ -34,24 +34,24 @@ namespace rt.atl.business.registry
     public RepositoryRegistry()
     {
       Scan(
-        s =>
-          {
-            s.TheCallingAssembly();
-            s.IgnoreStructureMapAttributes();
+           s =>
+           {
+             s.TheCallingAssembly();
+             s.IgnoreStructureMapAttributes();
 
-            ////s.ExcludeNamespace("");
-            s.IncludeNamespace("rt.atl.business.manager");
-            s.WithDefaultConventions().OnAddedPluginTypes(t => t.Singleton());
-          });
+             ////s.ExcludeNamespace("");
+             s.IncludeNamespace("rt.atl.business.manager");
+             s.WithDefaultConventions().OnAddedPluginTypes(t => t.Singleton());
+           });
 
       ForSingletonOf<IExchangeFactory>().Use<ExchangeFactory>();
 
       Scan(
-        s =>
-          {
-            s.TheCallingAssembly();
-            s.AddAllTypesOf<IExchange>();
-          });
+           s =>
+           {
+             s.TheCallingAssembly();
+             s.AddAllTypesOf<IExchange>();
+           });
     }
 
     #endregion

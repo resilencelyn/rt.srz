@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NsiService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NsiService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The nsi service.
@@ -13,11 +13,8 @@ namespace rt.srz.services.NSI
 
   using System;
   using System.Collections.Generic;
-  using System.Linq;
-  using System.Linq.Expressions;
 
   using NHibernate;
-  using NHibernate.Criterion;
 
   using rt.core.model.dto;
   using rt.srz.business.manager;
@@ -43,12 +40,45 @@ namespace rt.srz.services.NSI
     /// <param name="autoComplete">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid AddOrUpdateFirstMiddleName(AutoComplete autoComplete)
     {
       ObjectFactory.GetInstance<IAutoCompleteManager>().SaveOrUpdate(autoComplete);
       return autoComplete.Id;
+    }
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="range">
+    /// </param>
+    public void AddOrUpdateRangeNumber(RangeNumber range)
+    {
+      ObjectFactory.GetInstance<IRangeNumberManager>().AddOrUpdateRangeNumber(range);
+    }
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="template">
+    /// </param>
+    public void AddOrUpdateTemplate(Template template)
+    {
+      ObjectFactory.GetInstance<ITemplateManager>().AddOrUpdateTemplate(template);
+    }
+
+    /// <summary>
+    /// Создание копии шаблона печати
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template CreateCopyOfTemplateVs(Guid id)
+    {
+      return ObjectFactory.GetInstance<ITemplateManager>().CreateCopyOfTemplateVs(id);
     }
 
     /// <summary>
@@ -63,13 +93,36 @@ namespace rt.srz.services.NSI
     }
 
     /// <summary>
+    /// Удаление диапозона
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    public void DeleteRangeNumber(Guid id)
+    {
+      // сейчас функционал не используется, но если понадобится то надо удалять ещё и все дочерние интервалы (та же таблица RangeNumber)
+      ObjectFactory.GetInstance<IRangeNumberManager>().Delete(x => x.Id == id);
+      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+    }
+
+    /// <summary>
+    /// Удаление шаблона печати вс
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    public void DeleteTemplateVs(Guid id)
+    {
+      ObjectFactory.GetInstance<ITemplateManager>().Delete(x => x.Id == id);
+      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+    }
+
+    /// <summary>
     /// Проверяет существует ли уже запись в базе с таким же именем, типом, полом
     /// </summary>
     /// <param name="firstMiddleName">
-    /// The first Middle Name. 
+    /// The first Middle Name.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public bool FirstMiddleNameExists(AutoComplete firstMiddleName)
     {
@@ -80,10 +133,10 @@ namespace rt.srz.services.NSI
     /// The get concept.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Concept"/> . 
+    /// The <see cref="Concept"/> .
     /// </returns>
     public Concept GetConcept(int id)
     {
@@ -96,7 +149,7 @@ namespace rt.srz.services.NSI
     /// <param name="oidId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Concept> GetConceptsByOid(string oidId)
     {
@@ -109,7 +162,7 @@ namespace rt.srz.services.NSI
     /// <param name="id">
     /// </param>
     /// <returns>
-    /// The <see cref="AutoComplete"/> . 
+    /// The <see cref="AutoComplete"/> .
     /// </returns>
     public AutoComplete GetFirstMiddleName(Guid id)
     {
@@ -122,7 +175,7 @@ namespace rt.srz.services.NSI
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria)
     {
@@ -138,120 +191,81 @@ namespace rt.srz.services.NSI
       return ObjectFactory.GetInstance<IOidManager>().GetAll(int.MaxValue);
     }
 
-    #region Range Number
-
-    /// <summary>
-    /// Зачитывает все записи
-    /// </summary>
-    /// <returns></returns>
-    public IList<RangeNumber> GetRangeNumbers()
-    {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().GetRangeNumbers();
-    }
-
-    /// <summary>
-    /// Удаление диапозона
-    /// </summary>
-    /// <param name="id"></param>
-    public void DeleteRangeNumber(Guid id)
-    {
-      //сейчас функционал не используется, но если понадобится то надо удалять ещё и все дочерние интервалы (та же таблица RangeNumber)
-      ObjectFactory.GetInstance<IRangeNumberManager>().Delete(x => x.Id == id);
-      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-    }
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="range"></param>
-    public void AddOrUpdateRangeNumber(RangeNumber range)
-    {
-      ObjectFactory.GetInstance<IRangeNumberManager>().AddOrUpdateRangeNumber(range);
-    }
-
     /// <summary>
     /// Возвращет объект по ид
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="RangeNumber"/>.
+    /// </returns>
     public RangeNumber GetRangeNumber(Guid id)
     {
       return ObjectFactory.GetInstance<IRangeNumberManager>().GetById(id);
     }
 
     /// <summary>
-    /// Пересекается ли указанная запись с другими по диапозону. Только для диапазонов с парент ид = null, 
-    /// т.е. это проверка пересечений главных диапазонов из шапки страницы
+    /// Зачитывает все записи
     /// </summary>
-    /// <param name="range"></param>
-    /// <returns></returns>
-    public bool IntersectWithOther(RangeNumber range)
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    public IList<RangeNumber> GetRangeNumbers()
     {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().IntersectWithOther(range);
-    }
-
-    /// <summary>
-    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
-    /// </summary>
-    /// <param name="statement"></param>
-    /// <returns></returns>
-    public Template GetTemplateVsByStatement(Statement statement)
-    {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().GetTemplateVsByStatement(statement);
+      return ObjectFactory.GetInstance<IRangeNumberManager>().GetRangeNumbers();
     }
 
     /// <summary>
     /// Шаблон по ид
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
     public Template GetTemplate(Guid id)
     {
       return ObjectFactory.GetInstance<ITemplateManager>().GetById(id);
     }
 
     /// <summary>
-    /// Добавление или обновление записи
+    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
     /// </summary>
-    /// <param name="template"></param>
-    public void AddOrUpdateTemplate(Template template)
+    /// <param name="statement">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template GetTemplateVsByStatement(Statement statement)
     {
-      ObjectFactory.GetInstance<ITemplateManager>().AddOrUpdateTemplate(template);
+      return ObjectFactory.GetInstance<IRangeNumberManager>().GetTemplateVsByStatement(statement);
     }
 
     /// <summary>
     /// Все шаблоны печати вс
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
     public IList<Template> GetTemplates()
     {
       return ObjectFactory.GetInstance<ITemplateManager>().GetAll(int.MaxValue);
     }
 
     /// <summary>
-    /// Удаление шаблона печати вс
+    /// Пересекается ли указанная запись с другими по диапозону. Только для диапазонов с парент ид = null,
+    ///   т.е. это проверка пересечений главных диапазонов из шапки страницы
     /// </summary>
-    /// <param name="id"></param>
-    public void DeleteTemplateVs(Guid id)
+    /// <param name="range">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IntersectWithOther(RangeNumber range)
     {
-      ObjectFactory.GetInstance<ITemplateManager>().Delete(x => x.Id == id);
-      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-    }
-
-    /// <summary>
-    /// Создание копии шаблона печати
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public Template CreateCopyOfTemplateVs(Guid id)
-    {
-      return ObjectFactory.GetInstance<ITemplateManager>().CreateCopyOfTemplateVs(id);
+      return ObjectFactory.GetInstance<IRangeNumberManager>().IntersectWithOther(range);
     }
 
     #endregion
-    
-
-    #endregion
-
   }
 }

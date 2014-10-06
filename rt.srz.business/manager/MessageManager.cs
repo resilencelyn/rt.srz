@@ -1,13 +1,16 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="MessageManager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MessageManager.cs" company="ĞóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The MessageManager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
 {
   /// <summary>
-  /// The MessageManager.
+  ///   The MessageManager.
   /// </summary>
   public partial class MessageManager
   {

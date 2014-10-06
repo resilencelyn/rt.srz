@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ErrorsHL7.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ErrorsHL7.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The errors h l 7.
@@ -9,12 +9,6 @@
 
 namespace rt.srz.model.HL7.enumerations.resolve
 {
-  #region references
-
-  
-
-  #endregion
-
   /// <summary>
   ///   The errors h l 7.
   /// </summary>

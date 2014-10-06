@@ -1,19 +1,19 @@
-﻿using DevExpress.Web.ASPxEditors;
-using DevExpress.Web.ASPxGridView;
-using Quartz;
-using rt.srz.ui.pvp.Enumerations;
-using StructureMap;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-
-namespace rt.srz.ui.pvp.Pages.Administration
+﻿namespace rt.srz.ui.pvp.Pages.Administrations
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Web.UI.HtmlControls;
+  using System.Web.UI.WebControls;
+
+  using DevExpress.Web.ASPxGridView;
+
+  using Quartz;
+
+  using rt.srz.ui.pvp.Enumerations;
+
+  using StructureMap;
+
   public partial class JobsProgress : System.Web.UI.Page
   {
     private void LoadControlsData()

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckDocumentProperty.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckDocumentProperty.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The check document property.
@@ -18,7 +18,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
   using rt.srz.model.regex;
   using rt.srz.model.srz;
@@ -31,7 +31,14 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   /// </summary>
   public abstract class CheckDocumentProperty : Check
   {
+    #region Fields
+
+    /// <summary>
+    /// The deleg.
+    /// </summary>
     private readonly Func<Statement, object> deleg;
+
+    #endregion
 
     #region Constructors and Destructors
 
@@ -39,10 +46,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="CheckDocumentProperty"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     protected CheckDocumentProperty(ISessionFactory sessionFactory, Expression<Func<Statement, object>> expression)
       : base(CheckLevelEnum.Simple, sessionFactory, expression)
@@ -58,7 +65,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {
@@ -98,7 +105,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
         }
 
         // Пропускаем проверки если причина - "Заявление на выбор или замену СМО не подавалось"
-        if ((statement.CauseFiling == null) || (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization))
+        if ((statement.CauseFiling == null)
+            || (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization))
         {
           if (string.IsNullOrEmpty(document.IssuingAuthority))
           {
@@ -121,7 +129,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
           throw new FaultDocumentDateIssueFutureException();
         }
 
-        if (DocumentType.IsDocExp(document.DocumentType.Id) && statement.DateFiling.HasValue && document.DateExp.HasValue && document.DateExp.Value < statement.DateFiling.Value)
+        if (DocumentType.IsDocExp(document.DocumentType.Id) && statement.DateFiling.HasValue
+            && document.DateExp.HasValue && document.DateExp.Value < statement.DateFiling.Value)
         {
           throw new FaultDocumentExpiriedException();
         }
@@ -140,13 +149,13 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Проверяет строку по шаблону
     /// </summary>
     /// <param name="pattern">
-    /// Шаблон 
+    /// Шаблон
     /// </param>
     /// <param name="value">
-    /// Строка для проверки 
+    /// Строка для проверки
     /// </param>
     /// <returns>
-    /// true - если значение соответствует шаблону, иначе false 
+    /// true - если значение соответствует шаблону, иначе false
     /// </returns>
     private bool CheckByPattern(string pattern, string value)
     {
@@ -184,7 +193,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       sb.Append("$");
       var reges = new Regex(sb.ToString(), RegexOptions.Singleline);
       if (value == null)
+      {
         value = string.Empty;
+      }
+
       return reges.IsMatch(value);
     }
 

@@ -1,14 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PriorityQueue.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="PriorityQueue.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The priority queue.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.business.server.directorywatcher.processing.target
 {
@@ -23,6 +20,8 @@ namespace rt.core.business.server.directorywatcher.processing.target
   /// </typeparam>
   public class PriorityQueue<T>
   {
+    #region Fields
+
     /// <summary>
     ///   The storage.
     /// </summary>
@@ -33,10 +32,17 @@ namespace rt.core.business.server.directorywatcher.processing.target
     /// </summary>
     private int totalSize;
 
+    #endregion
+
+    #region Constructors and Destructors
+
     /// <summary>
-    ///   Initializes a new instance of the <see>
-    ///                                       <cref>PriorityQueue</cref>
-    ///                                     </see>  class.
+    /// Initializes a new instance of the <see cref="PriorityQueue{T}"/> class. 
+    ///   Initializes a new instance of the
+    ///   <see>
+    ///     <cref>PriorityQueue</cref>
+    ///   </see>
+    ///   class.
     /// </summary>
     public PriorityQueue()
     {
@@ -44,8 +50,12 @@ namespace rt.core.business.server.directorywatcher.processing.target
       totalSize = 0;
     }
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
-    /// Gets the count.
+    ///   Gets the count.
     /// </summary>
     public int Count
     {
@@ -55,14 +65,9 @@ namespace rt.core.business.server.directorywatcher.processing.target
       }
     }
 
-    /// <summary>
-    ///   The is empty.
-    /// </summary>
-    /// <returns> The <see cref="bool" /> . </returns>
-    public bool IsEmpty()
-    {
-      return totalSize == 0;
-    }
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     ///   The dequeue.
@@ -82,22 +87,13 @@ namespace rt.core.business.server.directorywatcher.processing.target
     // same as above, except for peek.
 
     /// <summary>
-    ///   The peek.
-    /// </summary>
-    /// <returns> The <see cref="object" /> . </returns>
-    public object Peek()
-    {
-      return storage.Values.Where(q => q.Count > 0).Select(q => q.Peek()).FirstOrDefault();
-    }
-
-    /// <summary>
     /// The dequeue.
     /// </summary>
     /// <param name="prio">
-    /// The prio. 
+    /// The prio.
     /// </param>
     /// <returns>
-    /// The <see cref="object"/> . 
+    /// The <see cref="object"/> .
     /// </returns>
     public T Dequeue(int prio)
     {
@@ -109,10 +105,10 @@ namespace rt.core.business.server.directorywatcher.processing.target
     /// The enqueue.
     /// </summary>
     /// <param name="item">
-    /// The item. 
+    /// The item.
     /// </param>
     /// <param name="prio">
-    /// The prio. 
+    /// The prio.
     /// </param>
     public void Enqueue(T item, int prio)
     {
@@ -127,5 +123,25 @@ namespace rt.core.business.server.directorywatcher.processing.target
         totalSize++;
       }
     }
+
+    /// <summary>
+    ///   The is empty.
+    /// </summary>
+    /// <returns> The <see cref="bool" /> . </returns>
+    public bool IsEmpty()
+    {
+      return totalSize == 0;
+    }
+
+    /// <summary>
+    ///   The peek.
+    /// </summary>
+    /// <returns> The <see cref="object" /> . </returns>
+    public object Peek()
+    {
+      return storage.Values.Where(q => q.Count > 0).Select(q => q.Peek()).FirstOrDefault();
+    }
+
+    #endregion
   }
 }

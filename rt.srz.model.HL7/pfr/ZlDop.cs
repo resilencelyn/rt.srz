@@ -1,38 +1,30 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ZlDop.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ZlDop.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Данные застрахованного лица
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-using System.Xml.Serialization;
-
-#endregion
-
 namespace rt.srz.model.HL7.pfr
 {
+  using System;
+  using System.Xml.Serialization;
+
   /// <summary>
   ///   Данные застрахованного лица
   /// </summary>
   [Serializable]
   public class ZlDop
   {
-    /// <summary>
-    ///   Порядковый номер записи
-    /// </summary>
-    [XmlAttribute("nomer_z")]
-    public string NomerZ { get; set; }
+    #region Public Properties
 
     /// <summary>
-    ///   СНИЛС
+    ///   Дата рождения
     /// </summary>
-    [XmlAttribute("snils")]
-    public string Snils { get; set; }
+    [XmlAttribute("dr")]
+    public string Dr { get; set; }
 
     /// <summary>
     ///   Фамилия
@@ -47,21 +39,29 @@ namespace rt.srz.model.HL7.pfr
     public string Im { get; set; }
 
     /// <summary>
+    ///   Порядковый номер записи
+    /// </summary>
+    [XmlAttribute("nomer_z")]
+    public string NomerZ { get; set; }
+
+    /// <summary>
     ///   Отчество
     /// </summary>
     [XmlAttribute("ot")]
     public string Ot { get; set; }
 
     /// <summary>
-    ///   Дата рождения
+    ///   СНИЛС
     /// </summary>
-    [XmlAttribute("dr")]
-    public string Dr { get; set; }
+    [XmlAttribute("snils")]
+    public string Snils { get; set; }
 
     /// <summary>
     ///   Пол
     /// </summary>
     [XmlAttribute("w")]
     public string W { get; set; }
+
+    #endregion
   }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorPolisCertificate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorPolisCertificate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The polis certificate check.
@@ -13,10 +13,11 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using System;
   using System.Linq;
+
   using NHibernate;
-  using rt.srz.model.logicalcontrol.exceptions;
-  using rt.srz.model.Properties;
+
   using rt.srz.model.logicalcontrol.exceptions.step6;
+  using rt.srz.model.Properties;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
@@ -35,7 +36,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorPolisCertificate"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorPolisCertificate(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.MedicalInsurances[1].PolisNumber, Resource.RegexOnlyNumber)
@@ -47,7 +48,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -65,7 +66,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {
@@ -123,7 +124,9 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
         // Проверяем формат
         if (!Regex.IsMatch(policy.PolisNumber))
+        {
           throw new FaultPolisCertificateFormatException();
+        }
       }
       catch (NullReferenceException)
       {

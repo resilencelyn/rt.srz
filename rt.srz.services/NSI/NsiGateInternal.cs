@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NsiGateInternal.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NsiGateInternal.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The nsi gate.
@@ -44,11 +44,44 @@ namespace rt.srz.services.NSI
     /// <param name="autoComplete">
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid AddOrUpdateFirstMiddleName(AutoComplete autoComplete)
     {
       return InvokeInterceptors(() => _service.AddOrUpdateFirstMiddleName(autoComplete));
+    }
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="range">
+    /// </param>
+    public void AddOrUpdateRangeNumber(RangeNumber range)
+    {
+      InvokeInterceptors(() => _service.AddOrUpdateRangeNumber(range));
+    }
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="template">
+    /// </param>
+    public void AddOrUpdateTemplate(Template template)
+    {
+      InvokeInterceptors(() => _service.AddOrUpdateTemplate(template));
+    }
+
+    /// <summary>
+    /// Создание копии шаблона печати
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template CreateCopyOfTemplateVs(Guid id)
+    {
+      return InvokeInterceptors(() => _service.CreateCopyOfTemplateVs(id));
     }
 
     /// <summary>
@@ -62,13 +95,33 @@ namespace rt.srz.services.NSI
     }
 
     /// <summary>
+    /// Удаление диапозона
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    public void DeleteRangeNumber(Guid id)
+    {
+      InvokeInterceptors(() => _service.DeleteRangeNumber(id));
+    }
+
+    /// <summary>
+    /// Удаление шаблона печати вс
+    /// </summary>
+    /// <param name="id">
+    /// </param>
+    public void DeleteTemplateVs(Guid id)
+    {
+      InvokeInterceptors(() => _service.DeleteTemplateVs(id));
+    }
+
+    /// <summary>
     /// Проверяет существует ли уже запись в базе с таким же именем, типом, полом
     /// </summary>
     /// <param name="firstMiddleName">
-    /// The first Middle Name. 
+    /// The first Middle Name.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public bool FirstMiddleNameExists(AutoComplete firstMiddleName)
     {
@@ -79,10 +132,10 @@ namespace rt.srz.services.NSI
     /// The get concept.
     /// </summary>
     /// <param name="id">
-    /// The id. 
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Concept"/> . 
+    /// The <see cref="Concept"/> .
     /// </returns>
     public Concept GetConcept(int id)
     {
@@ -95,7 +148,7 @@ namespace rt.srz.services.NSI
     /// <param name="oidId">
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="IList"/> .
     /// </returns>
     public IList<Concept> GetConceptsByOid(string oidId)
     {
@@ -108,7 +161,7 @@ namespace rt.srz.services.NSI
     /// <param name="id">
     /// </param>
     /// <returns>
-    /// The <see cref="AutoComplete"/> . 
+    /// The <see cref="AutoComplete"/> .
     /// </returns>
     public AutoComplete GetFirstMiddleName(Guid id)
     {
@@ -121,7 +174,7 @@ namespace rt.srz.services.NSI
     /// <param name="criteria">
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> . 
+    /// The <see cref="SearchResult"/> .
     /// </returns>
     public SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria)
     {
@@ -137,116 +190,79 @@ namespace rt.srz.services.NSI
       return InvokeInterceptors(() => _service.GetOids());
     }
 
-    #region Range Number
-
-    /// <summary>
-    /// Зачитывает все записи
-    /// </summary>
-    /// <returns></returns>
-    public IList<RangeNumber> GetRangeNumbers()
-    {
-      return InvokeInterceptors(() => _service.GetRangeNumbers());
-    }
-
-    /// <summary>
-    /// Удаление диапозона
-    /// </summary>
-    /// <param name="id"></param>
-    public void DeleteRangeNumber(Guid id)
-    {
-      InvokeInterceptors(() => _service.DeleteRangeNumber(id));
-    }
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="range"></param>
-    public void AddOrUpdateRangeNumber(RangeNumber range)
-    {
-      InvokeInterceptors(() => _service.AddOrUpdateRangeNumber(range));
-    }
-
     /// <summary>
     /// Возвращет объект по ид
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="RangeNumber"/>.
+    /// </returns>
     public RangeNumber GetRangeNumber(Guid id)
     {
       return InvokeInterceptors(() => _service.GetRangeNumber(id));
     }
 
     /// <summary>
-    /// Пересекается ли указанная запись с другими по диапозону
+    /// Зачитывает все записи
     /// </summary>
-    /// <param name="range"></param>
-    /// <returns></returns>
-    public bool IntersectWithOther(RangeNumber range)
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    public IList<RangeNumber> GetRangeNumbers()
     {
-      return InvokeInterceptors(() => _service.IntersectWithOther(range));
-    }
-
-    /// <summary>
-    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
-    /// </summary>
-    /// <param name="statement"></param>
-    /// <returns></returns>
-    public Template GetTemplateVsByStatement(Statement statement)
-    {
-
-      return InvokeInterceptors(() => _service.GetTemplateVsByStatement(statement));
+      return InvokeInterceptors(() => _service.GetRangeNumbers());
     }
 
     /// <summary>
     /// Шаблон по ид
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
     public Template GetTemplate(Guid id)
     {
       return InvokeInterceptors(() => _service.GetTemplate(id));
     }
 
     /// <summary>
-    /// Добавление или обновление записи
+    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
     /// </summary>
-    /// <param name="template"></param>
-    public void AddOrUpdateTemplate(Template template)
+    /// <param name="statement">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template GetTemplateVsByStatement(Statement statement)
     {
-      InvokeInterceptors(() => _service.AddOrUpdateTemplate(template));
+      return InvokeInterceptors(() => _service.GetTemplateVsByStatement(statement));
     }
 
     /// <summary>
     /// Все шаблоны печати вс
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
     public IList<Template> GetTemplates()
     {
       return InvokeInterceptors(() => _service.GetTemplates());
     }
 
     /// <summary>
-    /// Удаление шаблона печати вс
+    /// Пересекается ли указанная запись с другими по диапозону
     /// </summary>
-    /// <param name="id"></param>
-    public void DeleteTemplateVs(Guid id)
+    /// <param name="range">
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IntersectWithOther(RangeNumber range)
     {
-      InvokeInterceptors(() => _service.DeleteTemplateVs(id));
+      return InvokeInterceptors(() => _service.IntersectWithOther(range));
     }
-
-    /// <summary>
-    /// Создание копии шаблона печати
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public Template CreateCopyOfTemplateVs(Guid id)
-    {
-      return InvokeInterceptors(() => _service.CreateCopyOfTemplateVs(id));
-    }
-
-    #endregion
-
-
 
     #endregion
   }

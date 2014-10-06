@@ -2,7 +2,12 @@
 // <copyright file="GlobalAssemblyInfo.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   GlobalAssemblyInfo.cs
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+
 
 using System.Reflection;
 

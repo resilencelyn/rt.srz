@@ -1,10 +1,13 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IBatch.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IBatch.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The Batch interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.core.business.interfaces.exchange
+namespace rt.core.model.interfaces
 {
   #region
 
@@ -13,24 +16,24 @@ namespace rt.core.business.interfaces.exchange
   #endregion
 
   /// <summary>
-  /// The Batch interface.
+  ///   The Batch interface.
   /// </summary>
   public interface IBatch
   {
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets the file name.
+    ///   Gets or sets the file name.
     /// </summary>
     string FileName { get; set; }
 
     /// <summary>
-    /// Gets or sets the id.
+    ///   Gets or sets the id.
     /// </summary>
     Guid Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the number.
+    ///   Gets or sets the number.
     /// </summary>
     short Number { get; set; }
 

@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Assumptions.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Assumptions.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The assumptions.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard
 {
@@ -24,24 +18,30 @@ namespace rt.srz.database.business.standard
   using rt.srz.database.business.standard.helpers;
 
   /// <summary>
-  /// The assumptions.
+  ///   The assumptions.
   /// </summary>
   public sealed class Assumptions
   {
+    #region Fields
+
     /// <summary>
-    /// The date time formats.
+    ///   The date time formats.
     /// </summary>
     private readonly List<string> dateTimeFormats = new List<string>(); // !! всегда содержит минимум один формат
 
     /// <summary>
-    /// The date time max.
+    ///   The date time max.
     /// </summary>
     private DateTime dateTimeMax;
 
     /// <summary>
-    /// The date time min.
+    ///   The date time min.
     /// </summary>
     private DateTime dateTimeMin;
+
+    #endregion
+
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Assumptions"/> class.
@@ -53,8 +53,12 @@ namespace rt.srz.database.business.standard
     {
       ClearAssumptions();
       if (rootRulesLoader != null)
-        LoadAssumptions(rootRulesLoader, clearExistingRules: false);
+      {
+        LoadAssumptions(rootRulesLoader, false);
+      }
     }
+
+    #endregion
 
     // имя текущего приложения
     // public static string CurrentApplicationName = RetrieveApplicationName();
@@ -76,79 +80,35 @@ namespace rt.srz.database.business.standard
     // {
     // get { return dateTimeFormats; }
     // }
+    #region Public Properties
 
     /// <summary>
-    /// Допустимый минимум даты/времени
-    /// </summary>
-    public DateTime DateTimeMin
-    {
-      get { return dateTimeMin; }
-    }
-
-    /// <summary>
-    /// допустимый максимум даты/времени
+    ///   допустимый максимум даты/времени
     /// </summary>
     public DateTime DateTimeMax
     {
-      get { return dateTimeMax; }
-    }
-
-
-    /// <summary>
-    /// загрузить данные из xml-конфигурации
-    /// </summary>
-    /// <param name="rootRulesLoader">
-    /// The root rules loader.
-    /// </param>
-    /// <param name="clearExistingRules">
-    /// The clear existing rules.
-    /// </param>
-    public void LoadAssumptions(XElement rootRulesLoader, bool clearExistingRules = true)
-    {
-      if (clearExistingRules)
-        ClearAssumptions();
-
-      if (rootRulesLoader != null)
+      get
       {
-        foreach (var xmlGlobals in rootRulesLoader.XPathSelectElements("/Ограничения"))
-        {
-          // сперва читаем основной формат даты/времени
-          var attr = xmlGlobals.RetrieveAttribute("ФорматДатыВремени", trimToNull: true);
-          if (attr != null)
-            dateTimeFormats[0] = attr;
-
-          // теперь читаем все альтернативы
-          foreach (var xmlRule in xmlGlobals.XPathSelectElements("Или"))
-          {
-            attr = xmlRule.RetrieveAttribute("ФорматДатыВремени", trimToNull: true);
-            if (attr != null)
-              AddDateTimeFormat(attr);
-          }
-
-          // читаем ограничения даты/времени
-          ReadDateTimeRule(xmlGlobals, "МинимумДатыВремени", ref dateTimeMin);
-          ReadDateTimeRule(xmlGlobals, "МаксимумДатыВремени", ref dateTimeMax);
-        }
+        return dateTimeMax;
       }
     }
 
-    // --------------------------------------------------------
-    // очистить все данные
-
     /// <summary>
-    /// The clear assumptions.
+    ///   Допустимый минимум даты/времени
     /// </summary>
-    public void ClearAssumptions()
+    public DateTime DateTimeMin
     {
-      dateTimeFormats.Clear();
-      dateTimeFormats.Add(helpers.ConversionHelper.DateTimeFormat);
-
-      dateTimeMin = DateTime.MinValue;
-      dateTimeMax = DateTime.MaxValue;
+      get
+      {
+        return dateTimeMin;
+      }
     }
+
+    #endregion
 
     // --------------------------------------------------------
     // добавить еще один формат даты/времени
+    #region Public Methods and Operators
 
     /// <summary>
     /// The add date time format.
@@ -164,7 +124,9 @@ namespace rt.srz.database.business.standard
       foreach (var f in dateTimeFormats)
       {
         if (string.CompareOrdinal(f, format) == 0)
+        {
           return false;
+        }
       }
 
       dateTimeFormats.Add(format);
@@ -188,6 +150,62 @@ namespace rt.srz.database.business.standard
       return date >= DateTimeMin && date <= DateTimeMax;
     }
 
+    /// <summary>
+    ///   The clear assumptions.
+    /// </summary>
+    public void ClearAssumptions()
+    {
+      dateTimeFormats.Clear();
+      dateTimeFormats.Add(ConversionHelper.DateTimeFormat);
+
+      dateTimeMin = DateTime.MinValue;
+      dateTimeMax = DateTime.MaxValue;
+    }
+
+    /// <summary>
+    /// загрузить данные из xml-конфигурации
+    /// </summary>
+    /// <param name="rootRulesLoader">
+    /// The root rules loader.
+    /// </param>
+    /// <param name="clearExistingRules">
+    /// The clear existing rules.
+    /// </param>
+    public void LoadAssumptions(XElement rootRulesLoader, bool clearExistingRules = true)
+    {
+      if (clearExistingRules)
+      {
+        ClearAssumptions();
+      }
+
+      if (rootRulesLoader != null)
+      {
+        foreach (var xmlGlobals in rootRulesLoader.XPathSelectElements("/Ограничения"))
+        {
+          // сперва читаем основной формат даты/времени
+          var attr = xmlGlobals.RetrieveAttribute("ФорматДатыВремени", true);
+          if (attr != null)
+          {
+            dateTimeFormats[0] = attr;
+          }
+
+          // теперь читаем все альтернативы
+          foreach (var xmlRule in xmlGlobals.XPathSelectElements("Или"))
+          {
+            attr = xmlRule.RetrieveAttribute("ФорматДатыВремени", true);
+            if (attr != null)
+            {
+              AddDateTimeFormat(attr);
+            }
+          }
+
+          // читаем ограничения даты/времени
+          ReadDateTimeRule(xmlGlobals, "МинимумДатыВремени", ref dateTimeMin);
+          ReadDateTimeRule(xmlGlobals, "МаксимумДатыВремени", ref dateTimeMax);
+        }
+      }
+    }
+
     // --------------------------------------------------------
     // преобразовать строку в дату/время
 
@@ -202,7 +220,7 @@ namespace rt.srz.database.business.standard
     /// </returns>
     public DateTime StringAsDateTime(string s)
     {
-      return StringAsDateTime(s, formatRule: "ДатаПреобразование", constraintsRule: "ДатаДопустима");
+      return StringAsDateTime(s, "ДатаПреобразование", "ДатаДопустима");
     }
 
     // --------------------------------------------------------
@@ -238,6 +256,8 @@ namespace rt.srz.database.business.standard
       return result;
     }
 
+    #endregion
+
     // --------------------------------------------------------
     // преобразовать дату/время в строку
 
@@ -267,6 +287,7 @@ namespace rt.srz.database.business.standard
     // }
 
     // --------------------------------------------------------
+    #region Methods
 
     /// <summary>
     /// The parse date time.
@@ -287,12 +308,16 @@ namespace rt.srz.database.business.standard
     {
       if (string.IsNullOrEmpty(format))
       {
-        result = helpers.ConversionHelper.DateTimeZero;
+        result = ConversionHelper.DateTimeZero;
         return false;
       }
 
-      return DateTime.TryParseExact(text, format, /*IFormatProvider*/ null,
-                                    DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out result);
+      return DateTime.TryParseExact(
+                                    text, 
+                                    format, 
+                                    /*IFormatProvider*/ null, 
+                                    DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, 
+                                    out result);
     }
 
     // --------------------------------------------------------
@@ -315,7 +340,9 @@ namespace rt.srz.database.business.standard
       do
       {
         if (ParseDateTime(text, dateTimeFormats[i], out result))
+        {
           return true;
+        }
       }
       while (++i < dateTimeFormats.Count);
 
@@ -338,15 +365,20 @@ namespace rt.srz.database.business.standard
     /// </param>
     private void ReadDateTimeRule(XElement xmlRules, string attribute, ref DateTime dateTimeRule)
     {
-      attribute = xmlRules.RetrieveAttribute(attribute, trimToNull: true);
+      attribute = xmlRules.RetrieveAttribute(attribute, true);
       if (attribute != null)
       {
         DateTime rule;
         if (!ParseDateTime(attribute, out rule))
+        {
           XmlHelper.ThrowCastException(attribute, "Дата/Время");
+        }
+
         dateTimeRule = rule;
       }
     }
+
+    #endregion
 
     // --------------------------------------------------------
   }

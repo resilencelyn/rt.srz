@@ -1,8 +1,11 @@
-//------------------------------------------------------------------------------
-// <copyright file="CSSqlClassFile.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="KeyCode2KeyIdConverter.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//------------------------------------------------------------------------------
+// <summary>
+//   Конвертер кода стандартного ключа в id
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.business.standard.helpers
 {
@@ -10,22 +13,29 @@ namespace rt.srz.database.business.standard.helpers
   using System.Collections.Generic;
 
   /// <summary>
-  /// Конвертер кода стандартного ключа в id
+  ///   Конвертер кода стандартного ключа в id
   /// </summary>
   public static class KeyCode2KeyIdConverter
   {
-    /// <summary>
-    /// Пары тип ключа - Id ключа
-    /// </summary>
-    private static readonly IDictionary<string, Guid> key2IdDictionary = new Dictionary<string, Guid>();
+    #region Static Fields
 
     /// <summary>
-    /// Пары тип документа - Id документа
+    ///   Пары тип документа - Id документа
     /// </summary>
     private static readonly IDictionary<string, int> document2IdDictionary = new Dictionary<string, int>();
 
     /// <summary>
-    /// Конструктор
+    ///   Пары тип ключа - Id ключа
+    /// </summary>
+    private static readonly IDictionary<string, Guid> key2IdDictionary = new Dictionary<string, Guid>();
+
+    #endregion
+
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes static members of the <see cref="KeyCode2KeyIdConverter"/> class. 
+    ///   Конструктор
     /// </summary>
     static KeyCode2KeyIdConverter()
     {
@@ -41,7 +51,7 @@ namespace rt.srz.database.business.standard.helpers
       key2IdDictionary.Add("H16", new Guid("CC18C59C-7267-4452-8C76-5015CA387CC8"));
       key2IdDictionary.Add("H17", new Guid("20D7B3DA-A750-4B36-8F0E-8F51A594754A"));
       key2IdDictionary.Add("H18", new Guid("4AC3FDFB-B11D-4306-9856-F56489895867"));
-      
+
       key2IdDictionary.Add("P01", new Guid("678A0ECB-9931-4BCE-87B2-E56F99046463"));
       key2IdDictionary.Add("P02", new Guid("29DE0771-F5DC-4D96-8B09-4FC5C7EE21B7"));
       key2IdDictionary.Add("P03", new Guid("642A6E90-D4DE-4513-A242-640486B61431"));
@@ -55,15 +65,15 @@ namespace rt.srz.database.business.standard.helpers
       key2IdDictionary.Add("P17", new Guid("033CB982-A22A-4A93-808A-4623E150FCA3"));
       key2IdDictionary.Add("P18", new Guid("D150DF2F-42A6-4D26-81BC-58F5B7DA41AD"));
 
-      document2IdDictionary.Add("1",  1);
-      document2IdDictionary.Add("2",  2);
-      document2IdDictionary.Add("3",  3);
-      document2IdDictionary.Add("4",  4);
-      document2IdDictionary.Add("5",  5);
-      document2IdDictionary.Add("6",  6);
-      document2IdDictionary.Add("7",  7);
-      document2IdDictionary.Add("8",  8);
-      document2IdDictionary.Add("9",  9);
+      document2IdDictionary.Add("1", 1);
+      document2IdDictionary.Add("2", 2);
+      document2IdDictionary.Add("3", 3);
+      document2IdDictionary.Add("4", 4);
+      document2IdDictionary.Add("5", 5);
+      document2IdDictionary.Add("6", 6);
+      document2IdDictionary.Add("7", 7);
+      document2IdDictionary.Add("8", 8);
+      document2IdDictionary.Add("9", 9);
       document2IdDictionary.Add("10", 10);
       document2IdDictionary.Add("11", 11);
       document2IdDictionary.Add("12", 12);
@@ -79,7 +89,7 @@ namespace rt.srz.database.business.standard.helpers
       document2IdDictionary.Add("23", 394);
       document2IdDictionary.Add("24", 629);
       document2IdDictionary.Add("25", 630);
-      
+
       // Временное свидетельство
       document2IdDictionary.Add("В", 439);
 
@@ -97,7 +107,7 @@ namespace rt.srz.database.business.standard.helpers
 
       // СНИЛС
       document2IdDictionary.Add("PEN", 639);
-      
+
       // ЕНП
       document2IdDictionary.Add("NI", 640);
 
@@ -105,33 +115,51 @@ namespace rt.srz.database.business.standard.helpers
       document2IdDictionary.Add("CZ", 641);
     }
 
-    /// <summary>
-    /// Преобразует код стандартного ключа в id
-    /// </summary>
-    /// <param name="keyCode"></param>
-    /// <returns></returns>
-    public static Guid ConvertKeyCode2KeyId(string keyCode)
-    {
-      string[] splittedKeyCode = keyCode.Split('.');
-      if (splittedKeyCode.Length == 2)
-        return key2IdDictionary[splittedKeyCode[0]];
+    #endregion
 
-      return key2IdDictionary[keyCode];
-    }
-
+    #region Public Methods and Operators
 
     /// <summary>
     /// Преобразует код стандартного ключа нового образца в идентификатор документа
     /// </summary>
-    /// <param name="keyCode"></param>
-    /// <returns></returns>
+    /// <param name="keyCode">
+    /// </param>
+    /// <param name="subType">
+    /// The sub Type.
+    /// </param>
+    /// <returns>
+    /// The <see cref="int"/>.
+    /// </returns>
     public static int ConvertKeyCode2DocumentId(string keyCode, int subType)
     {
-      string[] splittedKeyCode = keyCode.Split('.');
+      var splittedKeyCode = keyCode.Split('.');
       if (splittedKeyCode.Length == 2)
+      {
         return document2IdDictionary[splittedKeyCode[1]];
+      }
 
       return subType;
     }
+
+    /// <summary>
+    /// Преобразует код стандартного ключа в id
+    /// </summary>
+    /// <param name="keyCode">
+    /// </param>
+    /// <returns>
+    /// The <see cref="Guid"/>.
+    /// </returns>
+    public static Guid ConvertKeyCode2KeyId(string keyCode)
+    {
+      var splittedKeyCode = keyCode.Split('.');
+      if (splittedKeyCode.Length == 2)
+      {
+        return key2IdDictionary[splittedKeyCode[0]];
+      }
+
+      return key2IdDictionary[keyCode];
+    }
+
+    #endregion
   }
 }

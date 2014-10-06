@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TStringHelper.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="TStringHelper.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The t string helper.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard.helpers
 {
@@ -20,12 +14,10 @@ namespace rt.srz.database.business.standard.helpers
   using rt.srz.database.business.standard.enums;
 
   /// <summary>
-  /// The t string helper.
+  ///   The t string helper.
   /// </summary>
   public static class TStringHelper
   {
-    #region ReadonlyString
-
     /*
         // строка только для чтения
         public struct ReadonlyString
@@ -100,11 +92,96 @@ namespace rt.srz.database.business.standard.helpers
             //StringBuilder _stringBuilder;
         }
         */
-    #endregion
-
-    #region IsNullOrEmpty
 
     // IsNullOrEmpty: универсальная перегрузка (для str, StringBuilder...)
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The compact string.
+    /// </summary>
+    /// <param name="str">
+    /// The string.
+    /// </param>
+    /// <param name="Space">
+    /// The space.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string CompactString(string str, char Space)
+    {
+      if (!IsNullOrEmpty(str))
+      {
+        StringBuilder result = null;
+        int start = 0, space = -1, len = str.Length;
+        for (var i = 0; i < len; ++i)
+        {
+          if (char.IsWhiteSpace(str, i))
+          {
+            if (space < 0)
+            {
+              space = i;
+            }
+          }
+          else
+          {
+            if (space >= 0)
+            {
+              // оптимизация: если пробел только один и он равен заданному Space-символу, ничего делать не надо
+              if (i - space == 1 && str[space] == Space)
+              {
+                space = -1;
+                continue;
+              }
+
+              if (result == null)
+              {
+                result = new StringBuilder();
+              }
+
+              result.Append(str.Substring(start, space - start));
+              if (Space != '\0')
+              {
+                result.Append(Space);
+              }
+
+              start = i;
+              space = -1;
+            }
+          }
+        }
+
+        // если что-то заменяли, возвращаем полученную строку
+        if (result != null)
+        {
+          if (start < len)
+          {
+            result.Append(str.Substring(start));
+          }
+
+          return result.ToString();
+        }
+      }
+
+      return str;
+    }
+
+    // упрощенный вызов CompactString()
+    // !! Space == ' '
+    /// <summary>
+    /// The compact string.
+    /// </summary>
+    /// <param name="str">
+    /// The string.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string CompactString(string str)
+    {
+      return CompactString(str, /*Space*/ ' ');
+    }
+
     /// <summary>
     /// The is null or empty.
     /// </summary>
@@ -153,9 +230,6 @@ namespace rt.srz.database.business.standard.helpers
     // }
     // return true;
     // }
-    #endregion
-
-    #region string of bytes
 
     // преобразовать строку в массив байт
     // !! если строка пуста, возвр. null
@@ -324,9 +398,6 @@ namespace rt.srz.database.business.standard.helpers
     // {
     // return StringFromBytes(Bytes, /*Offset*/ 0);
     // }
-    #endregion
-
-    #region strings concatenation
 
     // сложить несколько строк, выставляя разделители между ними
     // !! последний параметр всегда считается разделителем
@@ -467,9 +538,6 @@ namespace rt.srz.database.business.standard.helpers
     // {
     // return CombineStrings(Builder, str, /*Delimiter*/ " ");
     // }
-    #endregion
-
-    #region str <-> StringBuilder
 
     // преобразовать str в StringBuilder
     // !! если на входе null, возвращает также null
@@ -488,9 +556,6 @@ namespace rt.srz.database.business.standard.helpers
     // return null;
     // return sb.ToString();
     // }
-    #endregion
-
-    #region empty strings
 
     // привести строку к заданному виду, если она ПУСТАЯ
     // !! непустые строки возвращаются как-есть, с наложением условия bTrimFirst
@@ -512,7 +577,10 @@ namespace rt.srz.database.business.standard.helpers
     public static string StringShrink(string str, TEmptyStringTypes EmptyType, bool bTrimFirst)
     {
       if (bTrimFirst && str != null)
+      {
         str = str.Trim();
+      }
+
       if (string.IsNullOrEmpty(str))
       {
         switch (EmptyType)
@@ -527,6 +595,23 @@ namespace rt.srz.database.business.standard.helpers
       }
 
       return str;
+    }
+
+    /// <summary>
+    /// The string to empty.
+    /// </summary>
+    /// <param name="String">
+    /// The string.
+    /// </param>
+    /// <param name="bTrimFirst">
+    /// The b trim first.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public static string StringToEmpty(string String, bool bTrimFirst)
+    {
+      return StringShrink(String, TEmptyStringTypes.Empty, bTrimFirst);
     }
 
     // упрощенная версия StringShrink()
@@ -571,195 +656,10 @@ namespace rt.srz.database.business.standard.helpers
       return StringToNull(String, /*bTrimFirst*/ false);
     }
 
-    // возвратить string.Empty, если на входе пустая строка (в т.ч. null)
-    // !! непустые строки возвращаются как-есть, с наложением условия bTrimFirst
-    /// <summary>
-    /// The string to empty.
-    /// </summary>
-    /// <param name="String">
-    /// The string.
-    /// </param>
-    /// <param name="bTrimFirst">
-    /// The b trim first.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    public static string StringToEmpty(string String, bool bTrimFirst)
-    {
-      return StringShrink(String, TEmptyStringTypes.Empty, bTrimFirst);
-    }
-
-    // упрощенная версия StringToEmpty()
-    // !! bTrimFirst == false
-    // public static string StringToEmpty(string str)
-    // {
-    // return StringToEmpty(str, /*bTrimFirst*/ false);
-    // }
-
-    // преобразование строки к формату XML
-    // public static string ConvertToXmlString(string str, bool bDoubleApostrophe)
-    // {
-    // return str.Replace("&", "&amp;").Replace("'", (bDoubleApostrophe) ? "&apos;&apos;" : "&apos;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;");
-    // }
-
-    // упрощенная версия ConvertToXmlString()
-    // !! bDoubleApostrophe == false
-    // public static string ConvertToXmlString(string str)
-    // {
-    // return ConvertToXmlString(str, /*bDoubleApostrophe*/ false);
-    // }
     #endregion
-
-    #region empty strings для StringBuilder
-
-    // привести строку к заданному виду, если она ПУСТАЯ
-    // !! непустые строки возвращаются как-есть, с наложением условия bTrimFirst
-    // public static string StringShrink(StringBuilder str, TEmptyStringTypes EmptyType, bool bTrimFirst)
-    // {
-    // return StringShrink(StringBuilderToString(str), EmptyType, bTrimFirst);
-    // }
-
-    // упрощенная версия StringShrink()
-    // !! bTrimFirst == false
-    // public static string StringShrink(StringBuilder str, TEmptyStringTypes EmptyType)
-    // {
-    // return StringShrink(str, EmptyType, /*bTrimFirst*/ false);
-    // }
-
-    // привести строку к null, если она пустая
-    // !! непустые строки возвращаются как-есть, с наложением условия bTrimFirst
-    // public static string StringToNull(StringBuilder str, bool bTrimFirst)
-    // {
-    // return StringShrink(str, TEmptyStringTypes.Null, bTrimFirst);
-    // }
-
-    // упрощенная версия StringToNull()
-    // !! bTrimFirst == false
-    // public static string StringToNull(StringBuilder str)
-    // {
-    // return StringToNull(str, /*bTrimFirst*/ false);
-    // }
 
     // возвратить string.Empty, если на входе пустая строка (в т.ч. null)
     // !! непустые строки возвращаются как-есть, с наложением условия bTrimFirst
-    // public static string StringToEmpty(StringBuilder str, bool bTrimFirst)
-    // {
-    // return StringShrink(str, TEmptyStringTypes.Empty, bTrimFirst);
-    // }
-
-    // упрощенная версия StringToEmpty()
-    // !! bTrimFirst == false
-    // public static string StringToEmpty(StringBuilder str)
-    // {
-    // return StringToEmpty(str, /*bTrimFirst*/ false);
-    // }
-    #endregion
-
-    #region string shrink
-
-    // обрезать строку ТОЛЬКО в том случае, если ее длина превышает заданную
-    // public static string ShrinkToLength(string str, int MaxLength)
-    // {
-    // if (!IsNullOrEmpty(str))
-    // {
-    // if (str.Length > MaxLength)
-    // return str.Substring(0, (MaxLength > 0) ? MaxLength : 0);
-    // }
-    // return str;
-    // }
-
-    // версия ShrinkToLength() для StringBuilder
-    // public static StringBuilder ShrinkToLength(StringBuilder str, int MaxLength)
-    // {
-    // if (!IsNullOrEmpty(str))
-    // {
-    // if (str.Length > MaxLength)
-    // str.Length = (MaxLength > 0) ? MaxLength : 0;
-    // }
-    // return str;
-    // }
-
-    // уплотнить строку, заменяя все множественные пробелы/табуляции/и т.п. на заданный символ
-    // !! можно задать Space = '\0', чтобы схлопнуть "в ноль"
-    /// <summary>
-    /// The compact string.
-    /// </summary>
-    /// <param name="str">
-    /// The string.
-    /// </param>
-    /// <param name="Space">
-    /// The space.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    public static string CompactString(string str, char Space)
-    {
-      if (!IsNullOrEmpty(str))
-      {
-        StringBuilder result = null;
-        int start = 0, space = -1, len = str.Length;
-        for (var i = 0; i < len; ++i)
-        {
-          if (char.IsWhiteSpace(str, i))
-          {
-            if (space < 0)
-              space = i;
-          }
-          else
-          {
-            if (space >= 0)
-            {
-              // оптимизация: если пробел только один и он равен заданному Space-символу, ничего делать не надо
-              if (i - space == 1 && str[space] == Space)
-              {
-                space = -1;
-                continue;
-              }
-
-              if (result == null)
-                result = new StringBuilder();
-              result.Append(str.Substring(start, space - start));
-              if (Space != '\0')
-                result.Append(Space);
-              start = i;
-              space = -1;
-            }
-          }
-        }
-
-// если что-то заменяли, возвращаем полученную строку
-        if (result != null)
-        {
-          if (start < len)
-            result.Append(str.Substring(start));
-          return result.ToString();
-        }
-      }
-
-      return str;
-    }
-
-    // упрощенный вызов CompactString()
-    // !! Space == ' '
-    /// <summary>
-    /// The compact string.
-    /// </summary>
-    /// <param name="str">
-    /// The string.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    public static string CompactString(string str)
-    {
-      return CompactString(str, /*Space*/ ' ');
-    }
-
-    #endregion
-
-    #region replace
 
     // найти все символы searchFor и заменить на replaceTo
     // public static string ReplaceAny(string s, char replaceTo, params char[] searchFor)
@@ -839,6 +739,5 @@ namespace rt.srz.database.business.standard.helpers
     // }
     // return s;
     // }
-    #endregion
   }
 }

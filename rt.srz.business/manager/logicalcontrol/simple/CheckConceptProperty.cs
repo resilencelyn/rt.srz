@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CheckConceptProperty.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="CheckConceptProperty.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The check concept property.
@@ -16,6 +16,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.srz;
 
@@ -29,7 +30,14 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   public abstract class CheckConceptProperty<TException> : Check
     where TException : LogicalControlException, new()
   {
+    #region Fields
+
+    /// <summary>
+    /// The deleg.
+    /// </summary>
     private readonly Func<Statement, object> deleg;
+
+    #endregion
 
     #region Constructors and Destructors
 
@@ -37,10 +45,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="CheckConceptProperty{TException}"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     /// <param name="expression">
-    /// The expression. 
+    /// The expression.
     /// </param>
     protected CheckConceptProperty(ISessionFactory sessionFactory, Expression<Func<Statement, object>> expression)
       : base(CheckLevelEnum.Simple, sessionFactory, expression)
@@ -56,7 +64,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="ArgumentNullException">
     /// </exception>

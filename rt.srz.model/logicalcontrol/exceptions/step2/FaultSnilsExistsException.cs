@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultSnilsExistsException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultSnilsExistsException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault snils exists exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
   #endregion
 
   /// <summary>
-  /// The fault snils exists exception.
+  ///   The fault snils exists exception.
   /// </summary>
   [Serializable]
   public class FaultSnilsExistsException : FaultStep2
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultSnilsExistsException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultSnilsExistsException" /> class.
     /// </summary>
     public FaultSnilsExistsException()
       : base(new ExceptionInfo(Resource.FaultSnilsExistsExceptionCode), Resource.FaultSnilsExistsExceptionMessage)

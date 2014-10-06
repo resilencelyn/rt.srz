@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AuthClient.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="AuthClient.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The auth client.
@@ -42,10 +42,10 @@ namespace rt.srz.services.client
     }
 
     /// <summary>
-    /// The get auth response.
+    ///   The get auth response.
     /// </summary>
     /// <returns>
-    /// The <see cref="AuthResponse"/>.
+    ///   The <see cref="AuthResponse" />.
     /// </returns>
     public Token GetAuthToken()
     {

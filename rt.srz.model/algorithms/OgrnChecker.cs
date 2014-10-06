@@ -1,29 +1,31 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OgrnChecker.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="OgrnChecker.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The ogrn.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-using System;
-
-#endregion
-
 namespace rt.srz.model.algorithms
 {
+  using System;
+
   /// <summary>
   ///   The ogrn.
   /// </summary>
   public static class OgrnChecker
   {
+    #region Static Fields
+
     /// <summary>
     ///   The full length.
     /// </summary>
     public static readonly byte FullLength = 13;
+
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The check identifier.
@@ -56,14 +58,16 @@ namespace rt.srz.model.algorithms
     [CLSCompliant(false)]
     public static bool CheckIdentifier(ulong id)
     {
-      var num = id/10L;
-      var num2 = num%11L;
+      var num = id / 10L;
+      var num2 = num % 11L;
       if (num2 > 9L)
       {
-        num2 = num2%10L;
+        num2 = num2 % 10L;
       }
 
-      return num2 == (id - (num*10L));
+      return num2 == (id - (num * 10L));
     }
+
+    #endregion
   }
 }

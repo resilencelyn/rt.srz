@@ -149,20 +149,6 @@
       <HintPath>..\ThirdParty\DevExpress\DevExpress.XtraReports.v12.1.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ECM7.Migrator, Version=2.8.0.0, Culture=neutral, PublicKeyToken=46e9efbd947bd0df, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.dll</HintPath>
-    </Reference>
-    <Reference Include="ECM7.Migrator.Framework, Version=2.8.0.0, Culture=neutral, PublicKeyToken=46e9efbd947bd0df, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="ECM7.Migrator.Providers.Oracle">
-      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Providers.Oracle.dll</HintPath>
-    </Reference>
-    <Reference Include="ECM7.Migrator.Providers.SqlServer">
-      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Providers.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -177,10 +163,6 @@
     <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -200,17 +182,13 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Login.aspx" />
@@ -1261,14 +1239,6 @@
       <Project>{dad3549e-fc6d-4420-b391-ce923a3cad30}</Project>
       <Name>CrystalQuartz.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
-      <Project>{7a4b9d23-8317-45ca-add2-467458dfd464}</Project>
-      <Name>rt.atl.business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
-      <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
-      <Name>rt.core.business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
@@ -1276,22 +1246,6 @@
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
       <Name>rt.core.services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.database.business.sqlserver\rt.srz.database.business.sqlserver.sqlproj">
-      <Project>{254bff12-7ed6-4e3e-b916-c535c52606ff}</Project>
-      <Name>rt.srz.database.business.sqlserver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.database.migration\rt.srz.database.migration.csproj">
-      <Project>{8632aea6-8a98-4d6f-aab5-1112a1e72309}</Project>
-      <Name>rt.srz.database.migration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
-      <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
-      <Name>rt.srz.model.HL7</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
-      <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>
-      <Name>rt.srz.business</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.services\rt.srz.services.csproj">
       <Project>{7A023AF8-4ABA-4C32-902A-929F308C5813}</Project>
@@ -1365,8 +1319,7 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy /Y $(ProjectDir)..\bin\* $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

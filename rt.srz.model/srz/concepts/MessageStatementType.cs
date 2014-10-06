@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MessageStatementType.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The message statement type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz.concepts
 {
+  /// <summary>
+  /// The message statement type.
+  /// </summary>
   public class MessageStatementType
   {
+    #region Constants
+
     /// <summary> Основное заявление </summary>
     public const int MainStatement = 635;
 
@@ -15,5 +24,7 @@ namespace rt.srz.model.srz.concepts
 
     /// <summary> Вторичное заявление</summary>
     public const int SecondaryStatement = 637;
+
+    #endregion
   }
 }

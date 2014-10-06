@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorPolisCertificateDateIssue.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorPolisCertificateDateIssue.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator polis certificate date issue.
@@ -13,8 +13,11 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using System;
   using System.Linq;
+
   using NHibernate;
+
   using rt.srz.business.Properties;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step6;
   using rt.srz.model.logicalcontrol.exceptions.step6.issue;
   using rt.srz.model.srz;
@@ -33,7 +36,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorPolisCertificateDateIssue"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorPolisCertificateDateIssue(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Simple, sessionFactory, x => x.MedicalInsurances[1].DateFrom)
@@ -63,7 +66,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// The check.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     public override void CheckObject(Statement statement)
     {
@@ -85,23 +88,29 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
           var policy = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id != PolisType.В);
           if (policy == null)
+          {
             throw new FaultPolisCertificateEmptyException();
-          
+          }
+
           var temp = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id == PolisType.В);
           if (temp == null)
+          {
             throw new FaultTemporaryCertificateEmptyException();
-          
+          }
+
           // Если на Шаг 1 УСТАНОВЛЕН флажок "Требуется выдача нового полиса", 
           // то дата заявление <=  дата выдачи ВС <= дата выдачи полиса 
 
           // проверяем чтобы дата выдачи полиса была меньше даты подачи заявления
-          if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization && statement.DateFiling != null && policy.DateFrom.Date < statement.DateFiling.Value.Date)
+          if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization
+              && statement.DateFiling != null && policy.DateFrom.Date < statement.DateFiling.Value.Date)
           {
             throw new FaultPoliceCertificateDateException();
           }
 
           // проверяем чтобы дата выдачи полиса была меньше даты выдачи временного свидетельства
-          if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization && policy.DateFrom.Date < temp.DateFrom.Date)
+          if (statement.CauseFiling != null && statement.CauseFiling.Id != CauseReinsurance.Initialization
+              && policy.DateFrom.Date < temp.DateFrom.Date)
           {
             throw new FaultPoliceCertificateDateException();
           }
@@ -113,7 +122,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
           {
             throw new FaultPolisCertificateEmptyException();
           }
-          
+
           // проверяем чтобы дата выдачи полиса была больше даты подачи заявления
           if (statement.DateFiling != null && policy.DateFrom.Date > statement.DateFiling.Value.Date)
           {
@@ -123,8 +132,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
         var pol = statement.MedicalInsurances.FirstOrDefault(x => x.PolisType.Id != PolisType.В);
         if (pol == null)
+        {
           throw new FaultPolisCertificateEmptyException();
-        
+        }
+
         // проверяем чтобы дата выдачи полиса была не в будущем времени
         if (pol.DateFrom.Date > DateTime.Now.Date)
         {

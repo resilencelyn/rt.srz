@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HashContext.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="HashContext.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Контекст хэша.
@@ -24,12 +24,12 @@ namespace rt.srz.database.business.cryptography
     #region Fields
 
     /// <summary>
-    /// The disposed.
+    ///   The disposed.
     /// </summary>
     private bool disposed;
 
     /// <summary>
-    /// The handler.
+    ///   The handler.
     /// </summary>
     private IntPtr handler = IntPtr.Zero;
 
@@ -38,8 +38,8 @@ namespace rt.srz.database.business.cryptography
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="HashContext"/> class. 
-    /// Создаёт экземпляр HashContext.
+    /// Initializes a new instance of the <see cref="HashContext"/> class.
+    ///   Создаёт экземпляр HashContext.
     /// </summary>
     /// <param name="hashContext">
     /// Дескриптор контекста.

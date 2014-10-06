@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HL7Writer.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="HL7Writer.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The h l 7 writer.
@@ -142,6 +142,30 @@ namespace rt.srz.business.configuration.algorithms.serialization
     #endregion
 
     #region Public Methods and Operators
+
+    /// <summary>
+    /// The h l 7 node from string.
+    /// </summary>
+    /// <param name="node">
+    /// The node.
+    /// </param>
+    /// <returns>
+    /// The <see cref="HL7Node"/>.
+    /// </returns>
+    public static HL7Node HL7NodeFromString(string node)
+    {
+      if (string.Compare(node, "BHS", StringComparison.Ordinal) == 0)
+      {
+        return HL7Node.Header;
+      }
+
+      if (string.Compare(node, "BTS", StringComparison.Ordinal) == 0)
+      {
+        return HL7Node.Trailer;
+      }
+
+      return HL7Node.Message;
+    }
 
     /// <summary>
     /// The write h l 7.
@@ -403,13 +427,13 @@ namespace rt.srz.business.configuration.algorithms.serialization
 
         outputStream = new FileStreamFoms(TargetFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
         var settings = new XmlWriterSettings
-                         {
-                           Encoding = Encoding.Default, 
-                           Indent = false, 
-                           NewLineHandling = NewLineHandling.Replace, 
-                           NewLineChars = string.Empty, 
-                           OmitXmlDeclaration = false
-                         };
+                       {
+                         Encoding = Encoding.Default, 
+                         Indent = false, 
+                         NewLineHandling = NewLineHandling.Replace, 
+                         NewLineChars = string.Empty, 
+                         OmitXmlDeclaration = false
+                       };
         writer = XmlWriter.Create(outputStream, settings);
         writer.WriteStartElement(reader.Prefix, reader.LocalName, reader.NamespaceURI);
         if (reader.MoveToFirstAttribute())
@@ -512,21 +536,6 @@ namespace rt.srz.business.configuration.algorithms.serialization
       }
 
       return HL7Node.Root;
-    }
-
-    public static HL7Node HL7NodeFromString(string node)
-    {
-      if (string.Compare(node, "BHS", StringComparison.Ordinal) == 0)
-      {
-        return HL7Node.Header;
-      }
-
-      if (string.Compare(node, "BTS", StringComparison.Ordinal) == 0)
-      {
-        return HL7Node.Trailer;
-      }
-
-      return HL7Node.Message;
     }
 
     #endregion

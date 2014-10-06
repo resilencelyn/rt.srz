@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StandardPseudonymizationManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StandardPseudonymizationManager.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The pseudonymization service.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.business.standard
@@ -10,7 +13,6 @@ namespace rt.srz.database.business.standard
   using System.Collections.Generic;
   using System.IO;
   using System.Linq;
-  using System.Security.Cryptography;
   using System.Text;
   using System.Text.RegularExpressions;
   using System.Xml;
@@ -23,8 +25,6 @@ namespace rt.srz.database.business.standard
   using rt.srz.database.business.standard.keyscompiler;
   using rt.srz.database.business.standard.keyscompiler.Fields;
   using rt.srz.database.business.standard.stream;
-
-  using HashAlgorithm = rt.srz.database.business.cryptography.HashAlgorithm;
 
   // --------------------------------------------------------
 

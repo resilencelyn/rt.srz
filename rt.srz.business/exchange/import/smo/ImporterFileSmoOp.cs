@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.exchange.import.smo
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ImporterFileSmoOp.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The importer file smo op.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.exchange.import.smo
 {
   using System;
   using System.IO;
@@ -22,23 +31,32 @@
 
   using StructureMap;
 
+  /// <summary>
+  /// The importer file smo op.
+  /// </summary>
   public class ImporterFileSmoOp : ImporterFileSmo<OPListType, OPType>
   {
-    #region Constructor
-    public ImporterFileSmoOp() : base(TypeSubject.Tfoms)
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ImporterFileSmoOp"/> class.
+    /// </summary>
+    public ImporterFileSmoOp()
+      : base(TypeSubject.Tfoms)
     {
-    
     }
+
     #endregion
-    
-    #region Public Methods
+
+    #region Public Methods and Operators
+
     /// <summary>
     /// Применим ли импортер для данного типа сообщений?
     /// </summary>
     /// <param name="file">
     /// </param>
     /// <returns>
-    /// true, если применим, иначе false 
+    /// true, если применим, иначе false
     /// </returns>
     public override bool AppliesTo(FileInfo file)
     {
@@ -49,12 +67,12 @@
     /// Обработка
     /// </summary>
     /// <param name="file">
-    /// Путь к файлу загрузки 
+    /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
     /// </param>
     /// <returns>
-    /// был ли обработан пакет 
+    /// был ли обработан пакет
     /// </returns>
     public override bool Processing(FileInfo file, IJobExecutionContext context)
     {
@@ -80,13 +98,16 @@
       }
 
       // Вычисляем код ПВП
-      string pdpCode = string.Empty;
-      string[] splittedFileName = batch.FileName.Split(new char[] { '_' });
+      var pdpCode = string.Empty;
+      var splittedFileName = batch.FileName.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
+      {
         pdpCode = splittedFileName[1];
+      }
 
       // Создаем экспортер для файлов ответа и стартуем батч
-      var repExp = ObjectFactory.GetInstance<IExportBatchFactory<REPListType, REPType>>().GetExporter(ExportBatchType.SmoRep);
+      var repExp =
+        ObjectFactory.GetInstance<IExportBatchFactory<REPListType, REPType>>().GetExporter(ExportBatchType.SmoRep);
       repExp.FileName = batch.FileName.Replace("i", "p"); // Меняем префикс в имени файла ответа
       repExp.Number = batch.Number;
       repExp.PeriodId = batch.Period.Id;
@@ -95,7 +116,8 @@
       repExp.BeginBatch();
 
       // Создаем экспортер для файлов ответа c протоколом ФЛК и стартуем батч
-      var flkRepExp = ObjectFactory.GetInstance<IExportBatchFactory<PFLKType, PRType>>().GetExporter(ExportBatchType.SmoFlk);
+      var flkRepExp =
+        ObjectFactory.GetInstance<IExportBatchFactory<PFLKType, PRType>>().GetExporter(ExportBatchType.SmoFlk);
       flkRepExp.FileName = batch.FileName.Replace("i", "f"); // Меняем префикс в имени файла ответа
       flkRepExp.Number = batch.Number;
       flkRepExp.PeriodId = batch.Period.Id;
@@ -104,7 +126,7 @@
       flkRepExp.BeginBatch();
 
       // Проход по записям, маппинг и сохранение заявления
-      bool goodAnswer = true;
+      var goodAnswer = true;
       foreach (var op in opList.OP)
       {
         Statement statement = null;
@@ -136,8 +158,9 @@
 
           goodAnswer = true;
         }
-        catch (LogicalControlException ex) // ошибка ФЛК
+        catch (LogicalControlException ex)
         {
+          // ошибка ФЛК
           logger.InfoException(ex.Message, ex);
           logger.Info(op);
           logger.Info(statement);
@@ -146,7 +169,7 @@
           // Пишем ошибки ФЛК в ответ
           foreach (var err in ex.LogicalControlExceptions)
           {
-            //Пишем ошибки ФЛК в ответ
+            // Пишем ошибки ФЛК в ответ
             var flkAnswer = new PRType();
             flkAnswer.N_REC = op.N_REC;
             flkAnswer.OSHIB = err.Info.Code;
@@ -178,14 +201,20 @@
 
       return true;
     }
+
     #endregion
 
-    #region Protected Methods
+    #region Methods
+
     /// <summary>
     /// Создание батча
     /// </summary>
-    /// <param name="serObject"></param>
-    /// <returns></returns>
+    /// <param name="opList">
+    /// The op List.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Batch"/>.
+    /// </returns>
     protected override Batch CreateBatch(OPListType opList)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
@@ -199,40 +228,47 @@
       // Парсим имя файла для получения периода и номера
       DateTime? period = null;
       short number = -1;
-      string[] splittedFileName = opList.FILENAME.Split(new char[] { '_' });
+      var splittedFileName = opList.FILENAME.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
       {
-        int month = -1;
-        string strMonth = splittedFileName[2].Substring(0, 2);
+        var month = -1;
+        var strMonth = splittedFileName[2].Substring(0, 2);
         int.TryParse(strMonth, out month);
 
-        int year = -1;
-        string strYear = splittedFileName[2].Substring(2, 2);
+        var year = -1;
+        var strYear = splittedFileName[2].Substring(2, 2);
         int.TryParse(strYear, out year);
         year += 2000;
 
         if (month != -1 && year != -1)
+        {
           period = new DateTime(year, month, 1);
+        }
 
-        string strNumber = splittedFileName[2].Substring(4, splittedFileName[2].Length - 4);
+        var strNumber = splittedFileName[2].Substring(4, splittedFileName[2].Length - 4);
         short.TryParse(strNumber, out number);
       }
 
       // Период
       if (period.HasValue)
+      {
         batch.Period = ObjectFactory.GetInstance<IPeriodManager>().GetPeriodByMonth(period.Value);
+      }
 
       // Номер
       if (number != -1)
+      {
         batch.Number = number;
+      }
 
       // Код
       batch.CodeConfirm = conceptManager.GetById(CodeConfirm.AA);
 
       // Получаем СМО
-      var smo = ObjectFactory.GetInstance<IOrganisationCacheManager>()
-        .GetBy(x => x.Code == opList.SMOCOD && x.Oid.Id == Oid.Smo)
-        .FirstOrDefault();
+      var smo =
+        ObjectFactory.GetInstance<IOrganisationCacheManager>()
+                     .GetBy(x => x.Code == opList.SMOCOD && x.Oid.Id == Oid.Smo)
+                     .FirstOrDefault();
 
       if (smo != null)
       {
@@ -246,12 +282,16 @@
 
       return batch;
     }
-    
+
     /// <summary>
     /// Маппинг записи из загруженного файла в заявление
     /// </summary>
-    /// <param name="rec"></param>
-    /// <returns></returns>
+    /// <param name="op">
+    /// The op.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Statement"/>.
+    /// </returns>
     protected override Statement MapStatement(OPType op)
     {
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
@@ -259,19 +299,21 @@
 
       // Получаем Statement
       var statement = statementManager.GetById(op.ID) ?? new Statement();
-      
+
       // Id
       statement.Id = op.ID;
 
       // Версия
-      int version = -1;
+      var version = -1;
       if (!string.IsNullOrEmpty(op.VERSION) && int.TryParse(op.VERSION, out version))
+      {
         statement.Version = version;
+      }
 
       // Требуется выдача новго полиса
       statement.AbsentPrevPolicy = op.NEED_NEW_POLICY;
 
-      //recType.IsActive = (statement.Version == statement.VersionExport && statement.IsActive) ? "1" : "0"; //TODO
+      // recType.IsActive = (statement.Version == statement.VersionExport && statement.IsActive) ? "1" : "0"; //TODO
 
       // Данные об обращении в СМО
       FillVizit(op.VIZIT, statement);
@@ -311,6 +353,7 @@
 
       return statement;
     }
+
     #endregion
   }
 }

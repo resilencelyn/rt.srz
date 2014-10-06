@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultTemporaryCertificateNumberInRangeException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultTemporaryCertificateNumberInRangeException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault temporary certificate number in range exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault temporary certificate number in range exception.
+  ///   The fault temporary certificate number in range exception.
   /// </summary>
   [Serializable]
   public class FaultTemporaryCertificateNumberInRangeException : FaultStep6
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultTemporaryCertificateNumberInRangeException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultTemporaryCertificateNumberInRangeException" /> class.
     /// </summary>
     public FaultTemporaryCertificateNumberInRangeException()
       : base(

@@ -1,9 +1,18 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaultDocumentDateExpEmptyException.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The fault snils exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.logicalcontrol.exceptions.step2
 {
   using System;
   using System.Runtime.Serialization;
 
-  using Resource = rt.srz.model.barcode.Properties.Resource;
+  using rt.srz.model.Properties;
 
   /// <summary>
   ///   The fault snils exception.
@@ -37,6 +46,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step2
     {
     }
 
-   #endregion
+    #endregion
   }
 }

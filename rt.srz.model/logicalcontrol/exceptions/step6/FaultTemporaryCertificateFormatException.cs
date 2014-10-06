@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultTemporaryCertificateFormatException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultTemporaryCertificateFormatException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault temporary certificate format exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault temporary certificate format exception.
+  ///   The fault temporary certificate format exception.
   /// </summary>
   [Serializable]
   public class FaultTemporaryCertificateFormatException : FaultStep6
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultTemporaryCertificateFormatException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultTemporaryCertificateFormatException" /> class.
     /// </summary>
     public FaultTemporaryCertificateFormatException()
       : base(

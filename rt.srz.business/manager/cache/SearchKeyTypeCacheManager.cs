@@ -1,4 +1,13 @@
-﻿namespace rt.srz.business.manager.cache
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SearchKeyTypeCacheManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The concept cache manager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.business.manager.cache
 {
   using System;
 
@@ -18,7 +27,8 @@
     /// <param name="repository">
     /// The repository.
     /// </param>
-    public SearchKeyTypeCacheManager(ISearchKeyTypeManager repository) : base(repository)
+    public SearchKeyTypeCacheManager(ISearchKeyTypeManager repository)
+      : base(repository)
     {
       TimeSpan = new TimeSpan(0, 0, 30, 0);
       Cache = Repository.GetAll(int.MaxValue);

@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatchSrz.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatchSrz.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The export batch typed with begin batch impl.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.export
@@ -32,13 +35,13 @@ namespace rt.srz.business.exchange.export
     /// Initializes a new instance of the <see cref="ExportBatchSrz{TSerializeObject,TNode}"/> class.
     /// </summary>
     /// <param name="type">
-    /// The type. 
+    /// The type.
     /// </param>
     /// <param name="typeSubjectId">
-    /// The type Subject Id. 
+    /// The type Subject Id.
     /// </param>
     /// <param name="typeFileId">
-    /// The type File Id. 
+    /// The type File Id.
     /// </param>
     protected ExportBatchSrz(ExportBatchType type, int typeSubjectId, int typeFileId)
       : base(type)
@@ -52,7 +55,7 @@ namespace rt.srz.business.exchange.export
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets the out directory.
+    ///   Gets or sets the out directory.
     /// </summary>
     public override string OutDirectory
     {

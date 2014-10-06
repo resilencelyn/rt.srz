@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NHibernateSession.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NHibernateSession.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The n hibernate session.
@@ -21,34 +21,34 @@ namespace rt.core.business.nhibernate
   #endregion
 
   /// <summary>
-  /// The n hibernate session.
+  ///   The n hibernate session.
   /// </summary>
   public class NHibernateSession : INHibernateSession
   {
     #region Fields
 
     /// <summary>
-    /// The i session.
+    ///   The i session.
     /// </summary>
     protected ISession iSession = null;
 
     /// <summary>
-    /// The transaction.
+    ///   The transaction.
     /// </summary>
     protected ITransaction transaction = null;
 
     /// <summary>
-    /// The _auto close session.
+    ///   The _auto close session.
     /// </summary>
     private bool _autoCloseSession = true;
 
     /// <summary>
-    /// The _is disposed.
+    ///   The _is disposed.
     /// </summary>
     private bool _isDisposed;
 
     /// <summary>
-    /// The _ref count.
+    ///   The _ref count.
     /// </summary>
     private int _refCount;
 
@@ -57,7 +57,7 @@ namespace rt.core.business.nhibernate
     #region Constructors and Destructors
 
     /// <summary>
-    /// Finalizes an instance of the <see cref="NHibernateSession"/> class. 
+    ///   Finalizes an instance of the <see cref="NHibernateSession" /> class.
     /// </summary>
     ~NHibernateSession()
     {
@@ -69,7 +69,7 @@ namespace rt.core.business.nhibernate
     #region Public Properties
 
     /// <summary>
-    /// Gets or sets a value indicating whether auto close session.
+    ///   Gets or sets a value indicating whether auto close session.
     /// </summary>
     public bool AutoCloseSession
     {
@@ -89,7 +89,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// Gets a value indicating whether has open transaction.
+    ///   Gets a value indicating whether has open transaction.
     /// </summary>
     public bool HasOpenTransaction
     {
@@ -100,7 +100,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// Gets a value indicating whether is open.
+    ///   Gets a value indicating whether is open.
     /// </summary>
     public bool IsOpen
     {
@@ -115,7 +115,7 @@ namespace rt.core.business.nhibernate
     #region Public Methods and Operators
 
     /// <summary>
-    /// The begin transaction.
+    ///   The begin transaction.
     /// </summary>
     public void BeginTransaction()
     {
@@ -123,7 +123,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The close.
+    ///   The close.
     /// </summary>
     public void Close()
     {
@@ -147,7 +147,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The commit changes.
+    ///   The commit changes.
     /// </summary>
     public void CommitChanges()
     {
@@ -162,7 +162,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The commit transaction.
+    ///   The commit transaction.
     /// </summary>
     public void CommitTransaction()
     {
@@ -185,7 +185,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The decrement ref count.
+    ///   The decrement ref count.
     /// </summary>
     public void DecrementRefCount()
     {
@@ -197,7 +197,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The dispose.
+    ///   The dispose.
     /// </summary>
     public void Dispose()
     {
@@ -205,14 +205,14 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The get i session.
+    ///   The get i session.
     /// </summary>
     /// <returns>
-    /// The <see cref="ISession"/>.
+    ///   The <see cref="ISession" />.
     /// </returns>
     public ISession GetISession()
     {
-      var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();  
+      var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
       iSession = sessionFactory.GetCurrentSession();
       if (iSession.IsOpen)
       {
@@ -223,9 +223,20 @@ namespace rt.core.business.nhibernate
       return iSession;
     }
 
+    /// <summary>
+    ///   The increment ref count.
+    /// </summary>
+    public void IncrementRefCount()
+    {
+      _refCount++;
+    }
+
+    /// <summary>
+    /// The reopen session.
+    /// </summary>
     public void ReopenSession()
     {
-      var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();  
+      var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
       iSession.Close();
       CurrentSessionContext.Unbind(sessionFactory);
       iSession.Dispose();
@@ -236,15 +247,7 @@ namespace rt.core.business.nhibernate
     }
 
     /// <summary>
-    /// The increment ref count.
-    /// </summary>
-    public void IncrementRefCount()
-    {
-      _refCount++;
-    }
-
-    /// <summary>
-    /// The rollback transaction.
+    ///   The rollback transaction.
     /// </summary>
     public void RollbackTransaction()
     {

@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IIntercepted.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IIntercepted.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Интерфейс объекта, который позволяет делать перехват вызовов

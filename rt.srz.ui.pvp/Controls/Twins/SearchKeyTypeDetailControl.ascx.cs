@@ -14,7 +14,6 @@ namespace rt.srz.ui.pvp.Controls.Twins
   using System.Web.UI;
   using System.Web.UI.WebControls;
 
-  using rt.srz.business.server;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;

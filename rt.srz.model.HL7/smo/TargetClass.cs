@@ -1,10 +1,18 @@
-﻿namespace rt.srz.model.HL7.smo
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TargetClass.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The address type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace rt.srz.model.HL7.smo
 {
   #region references
 
   using System;
   using System.Collections.Generic;
-  using System.ComponentModel;
   using System.Globalization;
   using System.Runtime.Serialization;
   using System.Xml.Serialization;
@@ -150,81 +158,11 @@
     #region Public Properties
 
     /// <summary>
-    ///   Gets or sets the fam.
+    /// Gets or sets the birt h_ oksm.
     /// </summary>
-    [XmlElement(Order = 1)]
-    [DataMember(Order = 1)]
-    public string FAM { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the im.
-    /// </summary>
-    [XmlElement(Order = 2)]
-    [DataMember(Order = 2)]
-    public string IM { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the ot.
-    /// </summary>
-    [XmlElement(Order = 3)]
-    [DataMember(Order = 3)]
-    public string OT { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the w.
-    /// </summary>
-    [XmlElement(Order = 4)]
-    [DataMember(Order = 4)]
-    public string W { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the dr.
-    /// </summary>
-    [XmlElement(Order = 5)]
-    [DataMember(Order = 5)]
-    public string DR { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the addres g.
-    /// </summary>
-    [DataMember(Name = "DOST", Order = 7)]
-    [XmlElement("DOST", Order = 7)]
-    public List<string> DOST { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the c_ oksm.
-    /// </summary>
-    [XmlElement(Order = 9)]
-    [DataMember(Order = 9)]
-    public string C_OKSM { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the snils.
-    /// </summary>
-    [XmlElement(Order = 10)]
-    [DataMember(Order =10)]
-    public string SS { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the phone.
-    /// </summary>
-    [XmlElement(Order = 12)]
-    [DataMember(Order = 12)]
-    public string PHONE { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the email.
-    /// </summary>
-    [XmlElement(Order = 14)]
-    [DataMember(Order = 14)]
-    public string EMAIL { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the fiopr.
-    /// </summary>
-    [XmlElement(Order = 15)]
-    [DataMember(Order = 15)]
-    public string FIOPR { get; set; }
+    [XmlElement(Order = 8)]
+    [DataMember(Order = 8)]
+    public string BIRTH_OKSM { get; set; }
 
     /// <summary>
     ///   Gets or sets the contact.
@@ -234,11 +172,88 @@
     public string CONTACT { get; set; }
 
     /// <summary>
+    ///   Gets or sets the c_ oksm.
+    /// </summary>
+    [XmlElement(Order = 9)]
+    [DataMember(Order = 9)]
+    public string C_OKSM { get; set; }
+
+    /// <summary>
     ///   Gets or sets the ddeath.
     /// </summary>
     [XmlElement(Order = 17)]
     [DataMember(Order = 17)]
     public string DDEATH { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the addres g.
+    /// </summary>
+    [DataMember(Name = "DOST", Order = 7)]
+    [XmlElement("DOST", Order = 7)]
+    public List<string> DOST { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the dr.
+    /// </summary>
+    [XmlElement(Order = 5)]
+    [DataMember(Order = 5)]
+    public string DR { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the email.
+    /// </summary>
+    [XmlElement(Order = 14)]
+    [DataMember(Order = 14)]
+    public string EMAIL { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the fam.
+    /// </summary>
+    [XmlElement(Order = 1)]
+    [DataMember(Order = 1)]
+    public string FAM { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the fiopr.
+    /// </summary>
+    [XmlElement(Order = 15)]
+    [DataMember(Order = 15)]
+    public string FIOPR { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the im.
+    /// </summary>
+    [XmlElement(Order = 2)]
+    [DataMember(Order = 2)]
+    public string IM { get; set; }
+
+    /// <summary>
+    /// Gets or sets the kateg.
+    /// </summary>
+    [XmlElement(Order = 11)]
+    [DataMember(Order = 11)]
+    public string KATEG { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the mr.
+    /// </summary>
+    [XmlElement(Order = 6)]
+    [DataMember(Order = 6)]
+    public string MR { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the ot.
+    /// </summary>
+    [XmlElement(Order = 3)]
+    [DataMember(Order = 3)]
+    public string OT { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the phone.
+    /// </summary>
+    [XmlElement(Order = 12)]
+    [DataMember(Order = 12)]
+    public string PHONE { get; set; }
 
     /// <summary>
     ///   Gets or sets the phon e_ work.
@@ -254,20 +269,19 @@
     [DataMember(Order = 18)]
     public AssigneeType PR { get; set; }
 
-    [XmlElement(Order = 11)]
-    [DataMember(Order = 11)]
-    public string KATEG { get; set; }
-
-    [XmlElement(Order = 8)]
-    [DataMember(Order = 8)]
-    public string BIRTH_OKSM { get; set; }
+    /// <summary>
+    ///   Gets or sets the snils.
+    /// </summary>
+    [XmlElement(Order = 10)]
+    [DataMember(Order = 10)]
+    public string SS { get; set; }
 
     /// <summary>
-    ///   Gets or sets the mr.
+    ///   Gets or sets the w.
     /// </summary>
-    [XmlElement(Order = 6)]
-    [DataMember(Order = 6)]
-    public string MR { get; set; }
+    [XmlElement(Order = 4)]
+    [DataMember(Order = 4)]
+    public string W { get; set; }
 
     #endregion
   }
@@ -369,6 +383,13 @@
     #region Public Properties
 
     /// <summary>
+    /// Gets or sets the doccat.
+    /// </summary>
+    [XmlElement(Order = 8)]
+    [DataMember(Order = 8)]
+    public string DOCCAT { get; set; }
+
+    /// <summary>
     ///   Gets or sets the docdate.
     /// </summary>
     [XmlElement(Order = 5)]
@@ -409,10 +430,6 @@
     [XmlElement(Order = 7)]
     [DataMember(Order = 7)]
     public string NAME_VP { get; set; }
-
-    [XmlElement(Order = 8)]
-    [DataMember(Order = 8)]
-    public string DOCCAT { get; set; }
 
     #endregion
   }
@@ -746,32 +763,36 @@
   }
 
   /// <summary>
-  /// The statement change.
+  ///   The statement change.
   /// </summary>
   [Serializable]
   [DataContract]
   public class StatementChange
   {
-    /// <summary>
-    /// Gets or sets the version.
-    /// </summary>
-    [XmlElement(Order = 1)]
-    [DataMember(Order = 1)]
-    public string VERSION { get; set; }
+    #region Public Properties
 
     /// <summary>
-    /// Gets or sets the field.
+    ///   Gets or sets the data.
+    /// </summary>
+    [XmlElement(Order = 3)]
+    [DataMember(Order = 3)]
+    public string DATA { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the field.
     /// </summary>
     [XmlElement(Order = 2)]
     [DataMember(Order = 2)]
     public string FIELD { get; set; }
 
     /// <summary>
-    /// Gets or sets the data.
+    ///   Gets or sets the version.
     /// </summary>
-    [XmlElement(Order = 3)]
-    [DataMember(Order = 3)]
-    public string DATA { get; set; }
+    [XmlElement(Order = 1)]
+    [DataMember(Order = 1)]
+    public string VERSION { get; set; }
+
+    #endregion
   }
 
   /// <summary>
@@ -785,25 +806,25 @@
     ///   The item 1.
     /// </summary>
     [XmlEnum("1")]
-    Item1,
+    Item1, 
 
     /// <summary>
     ///   The item 2.
     /// </summary>
     [XmlEnum("2")]
-    Item2,
+    Item2, 
 
     /// <summary>
     ///   The item 3.
     /// </summary>
     [XmlEnum("3")]
-    Item3,
+    Item3, 
 
     /// <summary>
     ///   The item 4.
     /// </summary>
     [XmlEnum("4")]
-    Item4,
+    Item4, 
   }
 
   /// <summary>
@@ -817,61 +838,61 @@
     ///   The item 1.
     /// </summary>
     [XmlEnum("1")]
-    Item1 = 1,
+    Item1 = 1, 
 
     /// <summary>
     ///   The item 3.
     /// </summary>
     [XmlEnum("3")]
-    Item3 = 3,
+    Item3 = 3, 
 
     /// <summary>
     ///   The item 4.
     /// </summary>
     [XmlEnum("4")]
-    Item4 = 4,
+    Item4 = 4, 
 
     /// <summary>
     ///   The item 5.
     /// </summary>
     [XmlEnum("5")]
-    Item5 = 5,
+    Item5 = 5, 
 
     /// <summary>
     ///   The item 6.
     /// </summary>
     [XmlEnum("6")]
-    Item6 = 6,
+    Item6 = 6, 
 
     /// <summary>
     ///   The item 7.
     /// </summary>
     [XmlEnum("7")]
-    Item7 = 7,
+    Item7 = 7, 
 
     /// <summary>
     ///   The item 8.
     /// </summary>
     [XmlEnum("8")]
-    Item8 = 8,
+    Item8 = 8, 
 
     /// <summary>
     ///   The item 11.
     /// </summary>
     [XmlEnum("11")]
-    Item11 = 11,
+    Item11 = 11, 
 
     /// <summary>
     ///   The item 12.
     /// </summary>
     [XmlEnum("12")]
-    Item12 = 12,
+    Item12 = 12, 
 
     /// <summary>
     ///   The item 13.
     /// </summary>
     [XmlEnum("13")]
-    Item13 = 13,
+    Item13 = 13, 
   }
 
   /// <summary>
@@ -885,13 +906,13 @@
     ///   The item 0.
     /// </summary>
     [XmlEnum("0")]
-    Item0,
+    Item0, 
 
     /// <summary>
     ///   The item 1.
     /// </summary>
     [XmlEnum("1")]
-    Item1,
+    Item1, 
   }
 
   /// <summary>
@@ -904,32 +925,32 @@
     /// <summary>
     ///   The u.
     /// </summary>
-    U,
+    U, 
 
     /// <summary>
     ///   The с.
     /// </summary>
-    С,
+    С, 
 
     /// <summary>
     ///   The в.
     /// </summary>
-    В,
+    В, 
 
     /// <summary>
     ///   The п.
     /// </summary>
-    П,
+    П, 
 
     /// <summary>
     ///   The э.
     /// </summary>
-    Э,
+    Э, 
 
     /// <summary>
     ///   The к.
     /// </summary>
-    К,
+    К, 
   }
 
   /// <summary>
@@ -942,34 +963,26 @@
     /// <summary>
     ///   The item 1.
     /// </summary>
-    
-    
     [XmlEnum("1")]
-    Item1,
+    Item1, 
 
     /// <summary>
     ///   The item 2.
     /// </summary>
-    
-    
     [XmlEnum("2")]
-    Item2,
+    Item2, 
 
     /// <summary>
     ///   The item 3.
     /// </summary>
-    
-    
     [XmlEnum("3")]
-    Item3,
+    Item3, 
 
     /// <summary>
     ///   The item 4.
     /// </summary>
-    
-    
     [XmlEnum("4")]
-    Item4,
+    Item4, 
   }
 
   /// <summary>
@@ -983,23 +996,19 @@
     ///   The authentically.
     /// </summary>
     [XmlEnum("1")]
-    Authentically = 1,
+    Authentically = 1, 
 
     /// <summary>
     ///   The ym.
     /// </summary>
-    
-    
     [XmlEnum("2")]
-    YM,
+    YM, 
 
     /// <summary>
     ///   The y.
     /// </summary>
-    
-    
     [XmlEnum("3")]
-    Y,
+    Y, 
   }
 
   /// <summary>
@@ -1013,149 +1022,115 @@
     ///   The item 0.
     /// </summary>
     [XmlEnum("0")]
-    Item0 = 0,
+    Item0 = 0, 
 
     /// <summary>
     ///   The item 1.
     /// </summary>
     [XmlEnum("1")]
-    Item1 = 1,
+    Item1 = 1, 
 
     /// <summary>
     ///   The item 2.
     /// </summary>
-    
-    
     [XmlEnum("2")]
-    Item2,
+    Item2, 
 
     /// <summary>
     ///   The item 3.
     /// </summary>
-    
-    
     [XmlEnum("3")]
-    Item3,
+    Item3, 
 
     /// <summary>
     ///   The item 4.
     /// </summary>
-    
-    
     [XmlEnum("4")]
-    Item4,
+    Item4, 
 
     /// <summary>
     ///   The item 5.
     /// </summary>
-    
-    
     [XmlEnum("5")]
-    Item5,
+    Item5, 
 
     /// <summary>
     ///   The item 6.
     /// </summary>
-    
-    
     [XmlEnum("6")]
-    Item6,
+    Item6, 
 
     /// <summary>
     ///   The item 7.
     /// </summary>
-    
-    
     [XmlEnum("7")]
-    Item7,
+    Item7, 
 
     /// <summary>
     ///   The item 8.
     /// </summary>
-    
-    
     [XmlEnum("8")]
-    Item8,
+    Item8, 
 
     /// <summary>
     ///   The item 9.
     /// </summary>
-    
-    
     [XmlEnum("9")]
-    Item9,
+    Item9, 
 
     /// <summary>
     ///   The item 10.
     /// </summary>
-    
-    
     [XmlEnum("10")]
-    Item10,
+    Item10, 
 
     /// <summary>
     ///   The item 11.
     /// </summary>
-    
-    
     [XmlEnum("11")]
-    Item11,
+    Item11, 
 
     /// <summary>
     ///   The item 12.
     /// </summary>
-    
-    
     [XmlEnum("12")]
-    Item12,
+    Item12, 
 
     /// <summary>
     ///   The item 13.
     /// </summary>
-    
-    
     [XmlEnum("13")]
-    Item13,
+    Item13, 
 
     /// <summary>
     ///   The item 14.
     /// </summary>
-    
-    
     [XmlEnum("14")]
-    Item14,
+    Item14, 
 
     /// <summary>
     ///   The item 15.
     /// </summary>
-    
-    
     [XmlEnum("15")]
-    Item15,
+    Item15, 
 
     /// <summary>
     ///   The item 16.
     /// </summary>
-    
-    
     [XmlEnum("16")]
-    Item16,
+    Item16, 
 
     /// <summary>
     ///   The item 17.
     /// </summary>
-    
-    
     [XmlEnum("17")]
-    Item17,
+    Item17, 
 
     /// <summary>
     ///   The item 18.
     /// </summary>
-    
-    
     [XmlEnum("18")]
-    Item18,
+    Item18, 
   }
 
   /// <summary>
@@ -1169,37 +1144,37 @@
     ///   The item 1.
     /// </summary>
     [XmlEnum("1")]
-    Item1,
+    Item1, 
 
     /// <summary>
     ///   The item 2.
     /// </summary>
     [XmlEnum("2")]
-    Item2,
+    Item2, 
 
     /// <summary>
     ///   The item 3.
     /// </summary>
     [XmlEnum("3")]
-    Item3,
+    Item3, 
 
     /// <summary>
     ///   The item 4.
     /// </summary>
     [XmlEnum("4")]
-    Item4,
+    Item4, 
 
     /// <summary>
     ///   The item 5.
     /// </summary>
     [XmlEnum("5")]
-    Item5,
+    Item5, 
 
     /// <summary>
     ///   The item 6.
     /// </summary>
     [XmlEnum("6")]
-    Item6,
+    Item6, 
   }
 
   /// <summary>
@@ -1212,17 +1187,17 @@
     /// <summary>
     ///   The п.
     /// </summary>
-    П,
+    П, 
 
     /// <summary>
     ///   The э.
     /// </summary>
-    Э,
+    Э, 
 
     /// <summary>
     ///   The к.
     /// </summary>
-    К,
+    К, 
   }
 
   /// <summary>
@@ -1235,22 +1210,22 @@
     /// <summary>
     ///   The г.
     /// </summary>
-    г,
+    г, 
 
     /// <summary>
     ///   The о.
     /// </summary>
-    о,
+    о, 
 
     /// <summary>
     ///   The р.
     /// </summary>
-    р,
+    р, 
 
     /// <summary>
     ///   The и.
     /// </summary>
-    и,
+    и, 
   }
 
   /// <summary>
@@ -1264,19 +1239,19 @@
     ///   The active.
     /// </summary>
     [XmlEnum("0")]
-    Active = 1,
+    Active = 1, 
 
     /// <summary>
     ///   The history.
     /// </summary>
     [XmlEnum("1")]
-    History = 0,
+    History = 0, 
 
     /// <summary>
     ///   The buffer.
     /// </summary>
     [XmlEnum("2")]
-    Buffer = 2,
+    Buffer = 2, 
   }
 
   /// <summary>
@@ -1290,15 +1265,13 @@
     ///   The m.
     /// </summary>
     [XmlEnum("1")]
-    M = 1,
+    M = 1, 
 
     /// <summary>
     ///   The j.
     /// </summary>
-    
-    
     [XmlEnum("2")]
-    J = 2,
+    J = 2, 
   }
 
   /// <summary>
@@ -1312,53 +1285,49 @@
     ///   The u.
     /// </summary>
     [XmlEnum("0")]
-    U = 0,
+    U = 0, 
 
     /// <summary>
     ///   The p 01.
     /// </summary>
     [XmlEnum("1")]
-    P01 = 1,
+    P01 = 1, 
 
     /// <summary>
     ///   The p 02.
     /// </summary>
     [XmlEnum("2")]
-    P02 = 2,
+    P02 = 2, 
 
     /// <summary>
     ///   The p 04.
     /// </summary>
     [XmlEnum("4")]
-    P04 = 4,
+    P04 = 4, 
 
     /// <summary>
     ///   The p 06_ b c_ p.
     /// </summary>
     [XmlEnum("6")]
-    P06_BC_P = 6,
+    P06_BC_P = 6, 
 
     /// <summary>
     ///   The p 03.
     /// </summary>
     [XmlEnum("7")]
-    P03 = 7,
+    P03 = 7, 
 
     /// <summary>
     ///   The p 06.
     /// </summary>
-    
-    
     [XmlEnum("8")]
-    P06 = 8,
+    P06 = 8, 
 
     /// <summary>
     ///   The p 09.
     /// </summary>
-    
-    
     [XmlEnum("9")]
-    P09 = 9,
+    P09 = 9, 
   }
 
   /// <summary>
@@ -1371,16 +1340,16 @@
     /// <summary>
     ///   The aa.
     /// </summary>
-    AA,
+    AA, 
 
     /// <summary>
     ///   The ae.
     /// </summary>
-    AE,
+    AE, 
 
     /// <summary>
     ///   The ar.
     /// </summary>
-    AR,
+    AR, 
   }
 }

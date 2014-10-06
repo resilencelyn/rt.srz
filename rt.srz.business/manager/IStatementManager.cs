@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IStatementManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IStatementManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The interface StatementManager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -9,10 +12,10 @@ namespace rt.srz.business.manager
   #region
 
   using System;
+  using System.Collections.Generic;
 
   using rt.srz.model.dto;
   using rt.srz.model.srz;
-  using System.Collections.Generic;
 
   #endregion
 
@@ -27,18 +30,25 @@ namespace rt.srz.business.manager
     /// The apply active.
     /// </summary>
     /// <param name="person">
-    /// The person. 
+    /// The person.
     /// </param>
     void ApplyActive(InsuredPerson person);
+
+    /// <summary>
+    /// Редактирование заявления
+    /// </summary>
+    /// <param name="statementId">
+    /// </param>
+    void CanceledStatement(Guid statementId);
 
     /// <summary>
     /// The create from example.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="Statement"/> . 
+    /// The <see cref="Statement"/> .
     /// </returns>
     Statement CreateFromExample(Statement statement);
 
@@ -52,6 +62,29 @@ namespace rt.srz.business.manager
     /// The <see cref="Statement"/>.
     /// </returns>
     Statement GetActiveByInsuredPersonId(Guid insuredPersonId);
+
+    /// <summary>
+    /// Получает ошибки существующие в заявлениях за указанный период
+    /// </summary>
+    /// <param name="startDate">
+    /// </param>
+    /// <param name="endDate">
+    /// </param>
+    /// <returns>
+    /// The <see cref="IList"/>.
+    /// </returns>
+    IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
+
+    /// <summary>
+    /// The get search statement result.
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchStatementResult"/>.
+    /// </returns>
+    SearchStatementResult GetSearchStatementResult(Guid id);
 
     /// <summary>
     /// Импорт заявления из внешнего источника(Атлантика, XML)
@@ -68,47 +101,31 @@ namespace rt.srz.business.manager
     Statement ImportStatementFromExternalSource(Statement statement, string srzOperationName);
 
     /// <summary>
-    /// Редактирование заявления
-    /// </summary>
-    /// <param name="statementId"> </param>
-    void CanceledStatement(Guid statementId);
-
-    /// <summary>
     /// Сохраняет заявление
     /// </summary>
     /// <param name="statement">
-    ///   The statement. 
+    /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="Statement"/> . 
+    /// The <see cref="Statement"/> .
     /// </returns>
     Statement SaveStatement(Statement statement);
+
+    /// <summary>
+    /// Трим полей заявления
+    /// </summary>
+    /// <param name="statement">
+    /// </param>
+    void TrimStatementData(Statement statement);
 
     /// <summary>
     /// The unbind statement.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     void UnBindStatement(Statement statement);
 
-    /// <summary>
-    /// Получает ошибки существующие в заявлениях за указанный период
-    /// </summary>
-    /// <param name="startDate"></param>
-    /// <param name="endDate"></param>
-    /// <returns></returns>
-    IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
-
     #endregion
-
-    SearchStatementResult GetSearchStatementResult(Guid id);
-
-    /// <summary>
-    /// Трим полей заявления
-    /// </summary>
-    /// <param name="statement"></param>
-    void TrimStatementData(Statement statement);
-
   }
 }

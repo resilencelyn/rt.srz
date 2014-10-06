@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KladrGate.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="KladrGate.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The kladr gate.
@@ -32,7 +32,7 @@ namespace rt.srz.services.Kladr
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="KladrGate"/> class.
+    ///   Initializes a new instance of the <see cref="KladrGate" /> class.
     /// </summary>
     public KladrGate()
     {

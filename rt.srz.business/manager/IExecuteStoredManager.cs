@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IExecuteStoredManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IExecuteStoredManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The ExecuteStoredManager interface.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -20,80 +23,96 @@ namespace rt.srz.business.manager
     #region Public Methods and Operators
 
     /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="beginRecordNumber"></param>
-    /// <param name="endRecordNumber"></param>
-    void CalculateStandardSearchKeys(int beginRecordNumber, int endRecordNumber);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="batchId"></param>
-    /// <param name="beginRecordNumber"></param>
-    /// <param name="endRecordNumber"></param>
-    void CalculateStandardSearchKeysExchange(Guid batchId, int beginRecordNumber, int endRecordNumber);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="searchKeyTypeId"></param>
-    /// <param name="beginRecordNumber"></param>
-    /// <param name="endRecordNumber"></param>
-    void CalculateUserSearchKeys(Guid searchKeyTypeId, int beginRecordNumber, int endRecordNumber);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="searchKeyTypeId"></param>
-    /// <param name="batchId"></param>
-    /// <param name="beginRecordNumber"></param>
-    /// <param name="endRecordNumber"></param>
-    void CalculateUserSearchKeysExchange(Guid searchKeyTypeId, Guid batchId, int beginRecordNumber, int endRecordNumber);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="searchKeyTypeId"></param>
-    /// <param name="statementId"></param>
-    void CalculateUserSearchKeyForStatement(Guid searchKeyTypeId, Guid statementId);
-
-    /// <summary>
-    /// The find twins.
-    /// </summary>
-    void FindTwins();
-
-    /// <summary>
-    /// The process snils pfr.
-    /// </summary>
-    /// <param name="messageId"> </param>
-    /// <param name="periodId"> </param>
-    void ProcessSnilsPfr(Guid messageId, Guid periodId);
-
-    /// <summary>
-    /// Проставляет статус работающего
-    /// </summary>
-    /// <param name="messageId"> </param>
-    /// <param name="periodId"> </param>
-    void ProcessPfr(Guid messageId, Guid periodId);
-
-    /// <summary>
-    /// Проставляет инфу о смерти и статус что умерший
-    /// </summary>
-    /// <param name="batchId"></param>
-    void ProcessZags(Guid batchId);
-
-    /// <summary>
-    /// Вычисляет иерархию в КЛАДР
+    ///   Вычисляет иерархию в КЛАДР
     /// </summary>
     void CalculateKladrLevelAndParrentId();
 
     /// <summary>
+    /// </summary>
+    /// <param name="beginRecordNumber">
+    /// </param>
+    /// <param name="endRecordNumber">
+    /// </param>
+    void CalculateStandardSearchKeys(int beginRecordNumber, int endRecordNumber);
+
+    /// <summary>
+    /// </summary>
+    /// <param name="batchId">
+    /// </param>
+    /// <param name="beginRecordNumber">
+    /// </param>
+    /// <param name="endRecordNumber">
+    /// </param>
+    void CalculateStandardSearchKeysExchange(Guid batchId, int beginRecordNumber, int endRecordNumber);
+
+    /// <summary>
+    /// </summary>
+    /// <param name="searchKeyTypeId">
+    /// </param>
+    /// <param name="statementId">
+    /// </param>
+    void CalculateUserSearchKeyForStatement(Guid searchKeyTypeId, Guid statementId);
+
+    /// <summary>
+    /// </summary>
+    /// <param name="searchKeyTypeId">
+    /// </param>
+    /// <param name="beginRecordNumber">
+    /// </param>
+    /// <param name="endRecordNumber">
+    /// </param>
+    void CalculateUserSearchKeys(Guid searchKeyTypeId, int beginRecordNumber, int endRecordNumber);
+
+    /// <summary>
+    /// </summary>
+    /// <param name="searchKeyTypeId">
+    /// </param>
+    /// <param name="batchId">
+    /// </param>
+    /// <param name="beginRecordNumber">
+    /// </param>
+    /// <param name="endRecordNumber">
+    /// </param>
+    void CalculateUserSearchKeysExchange(Guid searchKeyTypeId, Guid batchId, int beginRecordNumber, int endRecordNumber);
+
+    /// <summary>
     /// Создает в базе батчи и сообщения для отправки в СМО
     /// </summary>
-    /// <param name="periodId"></param>
-    /// <param name="maxMessageCountInBatch"></param>
+    /// <param name="periodId">
+    /// </param>
+    /// <param name="maxMessageCountInBatch">
+    /// </param>
     void CreateExportSmoBatches(Guid periodId, int maxMessageCountInBatch);
+
+    /// <summary>
+    ///   The find twins.
+    /// </summary>
+    void FindTwins();
+
+    /// <summary>
+    /// Проставляет статус работающего
+    /// </summary>
+    /// <param name="messageId">
+    /// </param>
+    /// <param name="periodId">
+    /// </param>
+    void ProcessPfr(Guid messageId, Guid periodId);
+
+    /// <summary>
+    /// The process snils pfr.
+    /// </summary>
+    /// <param name="messageId">
+    /// </param>
+    /// <param name="periodId">
+    /// </param>
+    void ProcessSnilsPfr(Guid messageId, Guid periodId);
+
+    /// <summary>
+    /// Проставляет инфу о смерти и статус что умерший
+    /// </summary>
+    /// <param name="batchId">
+    /// </param>
+    void ProcessZags(Guid batchId);
 
     #endregion
   }

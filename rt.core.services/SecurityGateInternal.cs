@@ -1,47 +1,40 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SecurityService.cs" company="Rintech">
+// <copyright file="SecurityGateInternal.cs" company="Rintech">
 //   Copyright (c) 2013. All rights reserved.
 // </copyright>
 // <summary>
-//   The security service.
+//   The security gate.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.services.Security
+namespace rt.core.services
 {
   #region
 
   using System;
   using System.Collections.Generic;
-  using System.Linq;
 
-  using NHibernate;
-  using NHibernate.Criterion;
-
-  using rt.core.business.manager;
-  using rt.core.business.security.interfaces;
+  using rt.core.model;
   using rt.core.model.core;
-  using rt.srz.business.manager;
-  using rt.srz.model.enumerations;
-  using rt.srz.model.interfaces.service;
-  using rt.srz.model.srz;
-
-  using StructureMap;
-
-  using IPermissionManager = rt.core.business.manager.IPermissionManager;
-  using IPermissionRoleManager = rt.core.business.manager.IPermissionRoleManager;
-  using IRoleManager = rt.core.business.manager.IRoleManager;
-  using IUserGroupManager = rt.core.business.manager.IUserGroupManager;
-  using IUserGroupRoleManager = rt.core.business.manager.IUserGroupRoleManager;
-  using IUserManager = rt.core.business.manager.IUserManager;
+  using rt.core.model.interfaces;
+  using rt.core.services.aspects;
 
   #endregion
 
   /// <summary>
-  ///   The security service.
+  ///   The security gate.
   /// </summary>
-  public class SecurityService : ISecurityService
+  public class SecurityGateInternal : InterceptedBase, ISecurityService
   {
+    #region Fields
+
+    /// <summary>
+    ///   The service.
+    /// </summary>
+    private readonly ISecurityService Service = new SecurityService();
+
+    #endregion
+
     #region Public Methods and Operators
 
     /// <summary>
@@ -54,7 +47,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Guid AddGroup(string name)
     {
-      return ObjectFactory.GetInstance<IGroupManager>().AddGroup(name);
+      return InvokeInterceptors(() => Service.AddGroup(name));
     }
 
     /// <summary>
@@ -69,7 +62,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Guid AddPermission(int code, string name)
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().AddPermission(code, name);
+      return InvokeInterceptors(() => Service.AddPermission(code, name));
     }
 
     /// <summary>
@@ -83,7 +76,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Guid AddRole(string name)
     {
-      return ObjectFactory.GetInstance<IRoleManager>().AddRole(name);
+      return InvokeInterceptors(() => Service.AddRole(name));
     }
 
     /// <summary>
@@ -96,7 +89,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public User AddUser(User user)
     {
-      return ObjectFactory.GetInstance<ISecurityProvider>().AddUser(user);
+      return InvokeInterceptors(() => Service.AddUser(user));
     }
 
     /// <summary>
@@ -112,7 +105,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignGroupsToUser(Guid userId, List<Guid> assignGroups, List<Guid> detachGroups)
     {
-      ObjectFactory.GetInstance<IUserGroupManager>().AssignGroupsToUser(userId, assignGroups, detachGroups);
+      InvokeInterceptors(() => Service.AssignGroupsToUser(userId, assignGroups, detachGroups));
     }
 
     /// <summary>
@@ -124,7 +117,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignPdpToUser(Guid userId, Guid? pdpId)
     {
-      ObjectFactory.GetInstance<IUserManager>().AssignPdpToUser(userId, pdpId);
+      InvokeInterceptors(() => Service.AssignPdpToUser(userId, pdpId));
     }
 
     /// <summary>
@@ -140,7 +133,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignPermissionsToRole(Guid roleId, List<Guid> assignPermissions, List<Guid> detachPermissions)
     {
-      ObjectFactory.GetInstance<IPermissionRoleManager>().AssignPermissionsToRole(roleId, assignPermissions, detachPermissions);
+      InvokeInterceptors(() => Service.AssignPermissionsToRole(roleId, assignPermissions, detachPermissions));
     }
 
     /// <summary>
@@ -154,7 +147,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignRolesToGroup(Guid groupId, List<Guid> assignRoles, List<Guid> detachRoles)
     {
-      ObjectFactory.GetInstance<IUserGroupRoleManager>().AssignRolesToGroup(groupId, assignRoles, detachRoles);
+      InvokeInterceptors(() => Service.AssignRolesToGroup(groupId, assignRoles, detachRoles));
     }
 
     /// <summary>
@@ -170,7 +163,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignRolesToPermission(Guid permissionId, List<Guid> assignRoles, List<Guid> detachRoles)
     {
-      ObjectFactory.GetInstance<IPermissionRoleManager>().AssignRolesToPermission(permissionId, assignRoles, detachRoles);
+      InvokeInterceptors(() => Service.AssignRolesToPermission(permissionId, assignRoles, detachRoles));
     }
 
     /// <summary>
@@ -184,7 +177,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignRolesToUser(Guid userId, List<Guid> assignRoles, List<Guid> detachRoles)
     {
-      ObjectFactory.GetInstance<IUserGroupRoleManager>().AssignRolesToUser(userId, assignRoles, detachRoles);
+      InvokeInterceptors(() => Service.AssignRolesToUser(userId, assignRoles, detachRoles));
     }
 
     /// <summary>
@@ -198,7 +191,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void AssignUsersToGroup(Guid groupId, List<Guid> assignUsers, List<Guid> detachUsers)
     {
-      ObjectFactory.GetInstance<IUserGroupManager>().AssignUsersToGroup(groupId, assignUsers, detachUsers);
+      InvokeInterceptors(() => Service.AssignUsersToGroup(groupId, assignUsers, detachUsers));
     }
 
     /// <summary>
@@ -208,7 +201,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void DeleteGroup(Guid groupId)
     {
-      ObjectFactory.GetInstance<IGroupManager>().DeleteGroup(groupId);
+      InvokeInterceptors(() => Service.DeleteGroup(groupId));
     }
 
     /// <summary>
@@ -218,7 +211,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void DeletePermission(Guid id)
     {
-      ObjectFactory.GetInstance<IPermissionManager>().DeletePermission(id);
+      InvokeInterceptors(() => Service.DeletePermission(id));
     }
 
     /// <summary>
@@ -228,7 +221,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void DeleteRole(Guid id)
     {
-      ObjectFactory.GetInstance<IRoleManager>().DeleteRole(id);
+      InvokeInterceptors(() => Service.DeleteRole(id));
     }
 
     /// <summary>
@@ -238,7 +231,7 @@ namespace rt.srz.services.Security
     /// </param>
     public void DeleteUser(Guid userId)
     {
-      ObjectFactory.GetInstance<IUserManager>().DeleteUser(userId);
+      InvokeInterceptors(() => Service.DeleteUser(userId));
     }
 
     /// <summary>
@@ -253,16 +246,16 @@ namespace rt.srz.services.Security
     /// </returns>
     public bool ExistsPermissionCode(Guid permissionId, int code)
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().ExistsPermissionCode(permissionId, code);
+      return InvokeInterceptors(() => Service.ExistsPermissionCode(permissionId, code));
     }
 
     /// <summary>
-    ///   Возвращает текущего пользователя
+    ///   The get current user.
     /// </summary>
     /// <returns> The <see cref="User" /> . </returns>
     public User GetCurrentUser()
     {
-      return ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      return InvokeInterceptors(() => Service.GetCurrentUser());
     }
 
     /// <summary>
@@ -275,7 +268,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Group GetGroup(Guid groupId)
     {
-      return ObjectFactory.GetInstance<IGroupManager>().GetById(groupId);
+      return InvokeInterceptors(() => Service.GetGroup(groupId));
     }
 
     /// <summary>
@@ -284,7 +277,7 @@ namespace rt.srz.services.Security
     /// <returns> The <see cref="IList" /> . </returns>
     public IList<Group> GetGroups()
     {
-      return ObjectFactory.GetInstance<IGroupManager>().GetAll();
+      return InvokeInterceptors(() => Service.GetGroups());
     }
 
     /// <summary>
@@ -297,7 +290,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Group> GetGroupsByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IGroupManager>().GetGroupsByNameContains(contains);
+      return InvokeInterceptors(() => Service.GetGroupsByNameContains(contains));
     }
 
     /// <summary>
@@ -310,7 +303,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Group> GetGroupsByUser(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserGroupManager>().GetGroupsByUser(userId);
+      return InvokeInterceptors(() => Service.GetGroupsByUser(userId));
     }
 
     /// <summary>
@@ -325,7 +318,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public bool GetIsUserAllowPermission(Guid userId, int permissionCode)
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetIsUserAllowPermission(userId, permissionCode);
+      return InvokeInterceptors(() => Service.GetIsUserAllowPermission(userId, permissionCode));
     }
 
     /// <summary>
@@ -335,48 +328,7 @@ namespace rt.srz.services.Security
     /// <returns></returns>
     public bool GetIsCurrentUserAllowPermission(PermissionCode permissionCode)
     {
-      User currentUser = GetCurrentUser();
-      return ObjectFactory.GetInstance<IUserManager>().GetIsUserAllowPermission(currentUser.Id, (int)permissionCode);
-    }
-
-    /// <summary>
-    /// Является ли текущий пользователь админом территориального фонда
-    /// </summary>
-    /// <returns></returns>
-    public bool IsCurrentUserAdminTF()
-    {
-      return IsUserAdminTF(GetCurrentUser().Id);
-    }
-
-    /// <summary>
-    /// Является ли текущий пользователь админом СМО
-    /// </summary>
-    /// <returns></returns>
-    public bool IsCurrentUserAdminSmo()
-    {
-      return IsUserAdminSmo(GetCurrentUser().Id);
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом территориального фонда
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    public bool IsUserAdminTF(Guid userId)
-    {
-      return ObjectFactory.GetInstance<IOrganisationManager>().IsUserAdminTF(userId);
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом СМО
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    public bool IsUserAdminSmo(Guid userId)
-    {
-      return ObjectFactory.GetInstance<IOrganisationManager>().IsUserAdminSmo(userId);
+      return InvokeInterceptors(() => Service.GetIsCurrentUserAllowPermission(permissionCode));
     }
 
     /// <summary>
@@ -389,7 +341,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Permission GetPermission(Guid permissionId)
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().GetById(permissionId);
+      return InvokeInterceptors(() => Service.GetPermission(permissionId));
     }
 
     /// <summary>
@@ -399,7 +351,7 @@ namespace rt.srz.services.Security
     /// <returns> The <see cref="IList" /> . </returns>
     public IList<Permission> GetPermissions()
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().GetAll();
+      return InvokeInterceptors(() => Service.GetPermissions());
     }
 
     /// <summary>
@@ -412,7 +364,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Permission> GetPermissionsByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().GetPermissionsByNameContains(contains);
+      return InvokeInterceptors(() => Service.GetPermissionsByNameContains(contains));
     }
 
     /// <summary>
@@ -425,7 +377,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Role GetRole(Guid roleId)
     {
-      return ObjectFactory.GetInstance<IRoleManager>().GetById(roleId);
+      return InvokeInterceptors(() => Service.GetRole(roleId));
     }
 
     /// <summary>
@@ -438,7 +390,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Permission> GetRolePermissions(Guid roleId)
     {
-      return ObjectFactory.GetInstance<IPermissionRoleManager>().GetRolePermissions(roleId);
+      return InvokeInterceptors(() => Service.GetRolePermissions(roleId));
     }
 
     /// <summary>
@@ -447,7 +399,7 @@ namespace rt.srz.services.Security
     /// <returns> The <see cref="IList" /> . </returns>
     public IList<Role> GetRoles()
     {
-      return ObjectFactory.GetInstance<IRoleManager>().GetAll();
+      return InvokeInterceptors(() => Service.GetRoles());
     }
 
     /// <summary>
@@ -460,7 +412,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Role> GetRolesByGroup(Guid groupId)
     {
-      return ObjectFactory.GetInstance<IUserGroupRoleManager>().GetRolesByGroup(groupId);
+      return InvokeInterceptors(() => Service.GetRolesByGroup(groupId));
     }
 
     /// <summary>
@@ -473,7 +425,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Role> GetRolesByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IRoleManager>().GetRolesByNameContains(contains);
+      return InvokeInterceptors(() => Service.GetRolesByNameContains(contains));
     }
 
     /// <summary>
@@ -486,7 +438,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Role> GetRolesByPermission(Guid permissionId)
     {
-      return ObjectFactory.GetInstance<IPermissionRoleManager>().GetRolesByPermission(permissionId);
+      return InvokeInterceptors(() => Service.GetRolesByPermission(permissionId));
     }
 
     /// <summary>
@@ -499,35 +451,20 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<Role> GetRolesByUser(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserGroupRoleManager>().GetRolesByUser(userId);
-    }
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/> . 
-    /// </returns>
-    public Setting GetSetting(string name)
-    {
-      return ObjectFactory.GetInstance<ISettingManager>().GetSetting(name);
+      return InvokeInterceptors(() => Service.GetRolesByUser(userId));
     }
 
     /// <summary>
     /// Возвращает пользователя
     /// </summary>
     /// <param name="userId">
-    /// The user Id. 
     /// </param>
     /// <returns>
     /// The <see cref="User"/> . 
     /// </returns>
     public User GetUser(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetById(userId);
+      return InvokeInterceptors(() => Service.GetUser(userId));
     }
 
     /// <summary>
@@ -540,7 +477,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public User GetUserByName(string name)
     {
-      return ObjectFactory.GetInstance<ISecurityProvider>().GetUserByName(name);
+      return InvokeInterceptors(() => Service.GetUserByName(name));
     }
 
     /// <summary>
@@ -553,7 +490,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public string GetUserNameByEmail(string email)
     {
-      return ObjectFactory.GetInstance<ISecurityProvider>().GetUserNameByEmail(email);
+      return InvokeInterceptors(() => Service.GetUserNameByEmail(email));
     }
 
     /// <summary>
@@ -562,19 +499,8 @@ namespace rt.srz.services.Security
     /// <returns> The <see cref="IList" /> . </returns>
     public IList<User> GetUsers()
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetUsers();
+      return InvokeInterceptors(() => Service.GetUsers());
     }
-
-    /// <summary>
-    ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<User> GetUsersByCurrent()
-    {
-      return ObjectFactory.GetInstance<IOrganisationManager>().GetUsersByCurrent();
-    }
-
-   
 
     /// <summary>
     /// Получает список всех пользователей группы
@@ -586,7 +512,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<User> GetUsersByGroup(Guid groupId)
     {
-      return ObjectFactory.GetInstance<IUserGroupManager>().GetUsersByGroup(groupId);
+      return InvokeInterceptors(() => Service.GetUsersByGroup(groupId));
     }
 
     /// <summary>
@@ -599,7 +525,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public IList<User> GetUsersByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetUsersByNameContains(contains);
+      return InvokeInterceptors(() => Service.GetUsersByNameContains(contains));
     }
 
     /// <summary>
@@ -612,7 +538,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public bool IsUserHasAdminPermissions(User user)
     {
-      return ObjectFactory.GetInstance<IUserManager>().IsUserHasAdminPermissions(user);
+      return InvokeInterceptors(() => Service.IsUserHasAdminPermissions(user));
     }
 
     /// <summary>
@@ -625,8 +551,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Guid SaveGroup(Group @group)
     {
-      ObjectFactory.GetInstance<IGroupManager>().SaveOrUpdate(group);
-      return group.Id;
+      return InvokeInterceptors(() => Service.SaveGroup(@group));
     }
 
     /// <summary>
@@ -639,8 +564,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public Guid SavePermission(Permission permission)
     {
-      ObjectFactory.GetInstance<IPermissionManager>().SaveOrUpdate(permission);
-      return permission.Id;
+      return InvokeInterceptors(() => Service.SavePermission(permission));
     }
 
     /// <summary>
@@ -653,12 +577,11 @@ namespace rt.srz.services.Security
     /// </returns>
     public Guid SaveRole(Role role)
     {
-      ObjectFactory.GetInstance<IRoleManager>().SaveOrUpdate(role);
-      return role.Id;
+      return InvokeInterceptors(() => Service.SaveRole(role));
     }
 
     /// <summary>
-    /// Сохраняет или добавляет пользователя
+    /// Добавляет или сохраняет пользователя
     /// </summary>
     /// <param name="user">
     /// </param>
@@ -667,7 +590,7 @@ namespace rt.srz.services.Security
     /// </returns>
     public User SaveUser(User user)
     {
-      return ObjectFactory.GetInstance<ISecurityProvider>().SaveUser(user);
+      return InvokeInterceptors(() => Service.SaveUser(user));
     }
 
     /// <summary>
@@ -682,8 +605,49 @@ namespace rt.srz.services.Security
     /// </returns>
     public User UpdatePassword(string name, string newPassword)
     {
-      return ObjectFactory.GetInstance<ISecurityProvider>().UpdatePassword(name, newPassword);
+      return InvokeInterceptors(() => Service.UpdatePassword(name, newPassword));
     }
+
+    /// <summary>
+    /// Является ли текущий пользователь админом территориального фонда
+    /// </summary>
+    /// <returns></returns>
+    public bool IsCurrentUserAdminTF()
+    {
+      return InvokeInterceptors(() => Service.IsCurrentUserAdminTF());
+    }
+
+    /// <summary>
+    /// Является ли текущий пользователь админом СМО
+    /// </summary>
+    /// <returns></returns>
+    public bool IsCurrentUserAdminSmo()
+    {
+      return InvokeInterceptors(() => Service.IsCurrentUserAdminSmo());
+    }
+
+    /// <summary>
+    /// Является ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns></returns>
+    public bool IsUserAdminTF(Guid userId)
+    {
+      return InvokeInterceptors(() => Service.IsUserAdminTF(userId));
+    }
+
+    /// <summary>
+    /// Является ли пользователь админом СМО
+    /// </summary>
+    /// <param name="userId">
+    /// </param>
+    /// <returns></returns>
+    public bool IsUserAdminSmo(Guid userId)
+    {
+      return InvokeInterceptors(() => Service.IsUserAdminSmo(userId));
+    }
+
 
     #endregion
   }

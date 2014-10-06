@@ -1,16 +1,25 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DocumentType.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="DocumentType.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Документ УДЛ
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace rt.srz.model.srz.concepts
 {
   /// <summary> Документ УДЛ </summary>
   public class DocumentType : Concept
   {
+    #region Constants
+
+    /// <summary> Свидетельство о рождении Российский Федерации </summary>
+    public const int BirthCertificateRf = 3;
+
+    /// <summary> Свидетельство о регистрации по месту жительства  </summary>
+    public const int CertificationRegistration = 429;
+
     /// <summary> Паспорт гражданина СССР </summary>
     public const int DocumentType1 = 1;
 
@@ -25,9 +34,6 @@ namespace rt.srz.model.srz.concepts
 
     /// <summary> Временное удостоверение личности гражданина Российской Федерации </summary>
     public const int DocumentType13 = 13;
-
-    /// <summary> Паспорт гражданина Российской Федерации </summary>
-    public const int PassportRf = 14;
 
     /// <summary> Заграничный паспорт гражданина Российской Федерации </summary>
     public const int DocumentType15 = 15;
@@ -44,8 +50,26 @@ namespace rt.srz.model.srz.concepts
     /// <summary> Загранпаспорт гражданина СССР </summary>
     public const int DocumentType2 = 2;
 
-    /// <summary> Свидетельство о рождении Российский Федерации </summary>
-    public const int BirthCertificateRf = 3;
+    /// <summary>
+    ///   Копия жалобы на решение о лишении статуса беженца в Федеральную миграционную службу с отметкой о её приёме к
+    ///   рассмотрению
+    /// </summary>
+    public const int DocumentType20 = 391;
+
+    /// <summary> Документ иностранного гражданина </summary>
+    public const int DocumentType21 = 392;
+
+    /// <summary> Документ лица без гражданства </summary>
+    public const int DocumentType22 = 393;
+
+    /// <summary> Разрешение на временное проживание  </summary>
+    public const int DocumentType23 = 394;
+
+    /// <summary> Свидетельство о рождении, выданное не в Российской Федерации </summary>
+    public const int DocumentType24 = 629;
+
+    /// <summary> Свидетельство о предоставлении временного убежища на территории Российской Федерации </summary>
+    public const int DocumentType25 = 630;
 
     /// <summary> Удостоверение личности офицера </summary>
     public const int DocumentType4 = 4;
@@ -65,27 +89,22 @@ namespace rt.srz.model.srz.concepts
     /// <summary> Иностранный паспорт </summary>
     public const int DocumentType9 = 9;
 
-    /// <summary> Копия жалобы на решение о лишении статуса беженца в Федеральную миграционную службу с отметкой о её приёме к рассмотрению </summary>
-    public const int DocumentType20 = 391;
+    /// <summary> Паспорт гражданина Российской Федерации </summary>
+    public const int PassportRf = 14;
 
-    /// <summary> Документ иностранного гражданина </summary>
-    public const int DocumentType21 = 392;
+    #endregion
 
-    /// <summary> Документ лица без гражданства </summary>
-    public const int DocumentType22 = 393;
+    #region Public Methods and Operators
 
-    /// <summary> Разрешение на временное проживание  </summary>
-    public const int DocumentType23 = 394;
-
-    /// <summary> Свидетельство о регистрации по месту жительства  </summary>
-    public const int CertificationRegistration = 429;
-
-    /// <summary> Свидетельство о рождении, выданное не в Российской Федерации </summary>
-    public const int DocumentType24 = 629;
-
-    /// <summary> Свидетельство о предоставлении временного убежища на территории Российской Федерации </summary>
-    public const int DocumentType25 = 630;
-
+    /// <summary>
+    /// The is doc exp.
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
     public static bool IsDocExp(int id)
     {
       if (id == DocumentType10)
@@ -120,5 +139,7 @@ namespace rt.srz.model.srz.concepts
 
       return false;
     }
+
+    #endregion
   }
 }

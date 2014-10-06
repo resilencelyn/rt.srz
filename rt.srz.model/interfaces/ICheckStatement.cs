@@ -1,20 +1,20 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ICheckStatement.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ICheckStatement.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The CheckObject interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.business.interfaces.logicalcontrol
+namespace rt.srz.model.interfaces
 {
   #region references
 
   using System;
   using System.Linq.Expressions;
 
-  using rt.srz.business.manager.logicalcontrol;
+  using rt.srz.model.enumerations;
   using rt.srz.model.srz;
 
   #endregion
@@ -25,6 +25,26 @@ namespace rt.srz.business.interfaces.logicalcontrol
   public interface ICheckStatement
   {
     #region Public Properties
+
+    /// <summary>
+    ///   Можно ли включать\отключать свойство
+    /// </summary>
+    bool AllowChange { get; }
+
+    /// <summary>
+    ///   Название для отображения проверки
+    /// </summary>
+    string Caption { get; }
+
+    /// <summary>
+    ///   Проверять или нет свойство
+    /// </summary>
+    bool CheckRequired { get; }
+
+    /// <summary>
+    ///   для грида чтобы исползовать в кастве ключа
+    /// </summary>
+    string ClassName { get; }
 
     /// <summary>
     ///   Gets the expression.
@@ -42,34 +62,15 @@ namespace rt.srz.business.interfaces.logicalcontrol
     string LevelDescription { get; }
 
     /// <summary>
-    /// Название для отображения проверки 
-    /// </summary>
-    string Caption { get; }
-
-    /// <summary>
-    /// Проверять или нет свойство
-    /// </summary>
-    bool CheckRequired { get; }
-
-    /// <summary>
-    /// Можно ли включать\отключать свойство
-    /// </summary>
-    bool AllowChange { get; }
-
-    /// <summary>
-    /// Видимость проверки в списке на странице ( не учитывается если есть права на отображение пункта меню установка - в этом случае отображаются все)
-    /// </summary>
-    bool Visible { get; }
-
-    /// <summary>
-    /// для грида чтобы исползовать в кастве ключа
-    /// </summary>
-    string ClassName { get; }
-
-    /// <summary>
-    /// Номер записи
+    ///   Номер записи
     /// </summary>
     int RecordNumber { get; set; }
+
+    /// <summary>
+    ///   Видимость проверки в списке на странице ( не учитывается если есть права на отображение пункта меню установка - в
+    ///   этом случае отображаются все)
+    /// </summary>
+    bool Visible { get; }
 
     #endregion
 

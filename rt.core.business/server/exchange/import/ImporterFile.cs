@@ -1,7 +1,10 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImporterFile.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ImporterFile.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   Универсальный загрузчик пакетов
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.exchange.import
@@ -43,11 +46,11 @@ namespace rt.core.business.server.exchange.import
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ImporterFile"/> class. 
+    /// Initializes a new instance of the <see cref="ImporterFile"/> class.
     ///   Конструктор
     /// </summary>
     /// <param name="subject">
-    /// The subject. 
+    /// The subject.
     /// </param>
     protected ImporterFile(int subject)
     {
@@ -65,7 +68,7 @@ namespace rt.core.business.server.exchange.import
     /// <param name="file">
     /// </param>
     /// <returns>
-    /// true, если применим, иначе false 
+    /// true, если применим, иначе false
     /// </returns>
     public abstract bool AppliesTo(FileInfo file);
 
@@ -91,12 +94,12 @@ namespace rt.core.business.server.exchange.import
     /// Обработка
     /// </summary>
     /// <param name="file">
-    /// Путь к файлу загрузки 
+    /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
     /// </param>
     /// <returns>
-    /// был ли обработан пакет 
+    /// был ли обработан пакет
     /// </returns>
     public abstract bool Processing(FileInfo file, IJobExecutionContext context);
 

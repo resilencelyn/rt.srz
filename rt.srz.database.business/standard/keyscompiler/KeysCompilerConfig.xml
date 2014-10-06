@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <configuration>
   <keys>
-    <key name="H11{Doc}" type="111" value="FamilyName + FirstName + MiddleName + BirthPlace + RealIdentifier"/>
-    <key name="H12{Doc}"  type="121" value="FamilyName + FirstName + MiddleName + BirthDate + RealIdentifier"/>
-    <key name="H14{Pol}"  type="141" value="FamilyName + FirstName + MiddleName + BirthDate + PolicyNumber"/>
-    <key name="H15.PEN"  type="151" value="FirstName + MiddleName + BirthPlace + SNILS"/>
-    <key name="H16.PEN"  type="161" value="FirstName + MiddleName + BirthDate + SNILS"/>
-    <key name="H17"  type="171" subtype="0" value="FamilyName + FirstName + MiddleName + BirthPlace"/>
-    <key name="H18"  type="181" subtype="0" value="FamilyName + FirstName + MiddleName + BirthDate"/>
-    <oldkey name="H01"  type="51"/>
-    <oldkey name="H02"  type="11"/>
-    <oldkey name="H03"  type="21"/>
-    <oldkey name="H04"  type="31"/>
-    <oldkey name="H05"  type="41"/>
+    <key name="H11{Doc}" type="111" value="FamilyName + FirstName + MiddleName + BirthPlace + RealIdentifier" />
+    <key name="H12{Doc}" type="121" value="FamilyName + FirstName + MiddleName + BirthDate + RealIdentifier" />
+    <key name="H14{Pol}" type="141" value="FamilyName + FirstName + MiddleName + BirthDate + PolicyNumber" />
+    <key name="H15.PEN" type="151" value="FirstName + MiddleName + BirthPlace + SNILS" />
+    <key name="H16.PEN" type="161" value="FirstName + MiddleName + BirthDate + SNILS" />
+    <key name="H17" type="171" subtype="0" value="FamilyName + FirstName + MiddleName + BirthPlace" />
+    <key name="H18" type="181" subtype="0" value="FamilyName + FirstName + MiddleName + BirthDate" />
+    <oldkey name="H01" type="51" />
+    <oldkey name="H02" type="11" />
+    <oldkey name="H03" type="21" />
+    <oldkey name="H04" type="31" />
+    <oldkey name="H05" type="41" />
   </keys>
   <subtypes>
-    <subtype name="NI"  value="19"/>
-    <subtype name="PEN"  value="20"/>
-    <subtype name="CZ"  value="25"/>
-    <subtype name="С"  value="101"/>
-    <subtype name="В"  value="105"/>
-    <subtype name="П"  value="111"/>
-    <subtype name="Э"  value="112"/>
-    <subtype name="К"  value="113"/>
+    <subtype name="NI" value="19" />
+    <subtype name="PEN" value="20" />
+    <subtype name="CZ" value="25" />
+    <subtype name="С" value="101" />
+    <subtype name="В" value="105" />
+    <subtype name="П" value="111" />
+    <subtype name="Э" value="112" />
+    <subtype name="К" value="113" />
   </subtypes>
 </configuration>

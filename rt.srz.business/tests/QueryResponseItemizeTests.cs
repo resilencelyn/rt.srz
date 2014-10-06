@@ -1,14 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.srz.business.manager;
-using rt.srz.model.srz;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="QueryResponseItemizeTests.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The query response itemize tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.tests
 {
-    public partial class QueryResponseItemizeTests
-    {
-	}
+  /// <summary>
+  /// The query response itemize tests.
+  /// </summary>
+  public partial class QueryResponseItemizeTests
+  {
+  }
 }

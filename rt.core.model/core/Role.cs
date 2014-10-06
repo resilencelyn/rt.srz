@@ -1,15 +1,18 @@
-﻿//-------------------------------------------------------------------------------------
-// <copyright file="Role.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Role.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Role.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.model.core
 {
   /// <summary>
-  /// The Role.
+  ///   The Role.
   /// </summary>
-  public partial class Role 
+  public partial class Role
   {
   }
 }

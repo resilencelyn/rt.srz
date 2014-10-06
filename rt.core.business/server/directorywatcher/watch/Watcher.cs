@@ -1,14 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Watcher.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="Watcher.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The watcher.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.core.business.server.directorywatcher.watch
 {
@@ -22,8 +19,10 @@ namespace rt.core.business.server.directorywatcher.watch
   /// </summary>
   public class Watcher : FileSystemWatcher, IWatcher
   {
+    #region Constructors and Destructors
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="Watcher"/> class. 
+    /// Initializes a new instance of the <see cref="Watcher"/> class.
     ///   Инициализация нового экземпляра типа <see cref="Watcher"/>.
     /// </summary>
     /// <param name="path">
@@ -43,18 +42,22 @@ namespace rt.core.business.server.directorywatcher.watch
 
       Created += WatcherCreated;
       Changed += WatcherCreated;
-      NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-         | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+      NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName
+                     | NotifyFilters.DirectoryName;
     }
+
+    #endregion
+
+    #region Methods
 
     /// <summary>
     /// The watcher created.
     /// </summary>
     /// <param name="sender">
-    /// The sender. 
+    /// The sender.
     /// </param>
     /// <param name="e">
-    /// The e. 
+    /// The e.
     /// </param>
     private void WatcherCreated(object sender, FileSystemEventArgs e)
     {
@@ -70,5 +73,7 @@ namespace rt.core.business.server.directorywatcher.watch
         ProcessingPool.Instance.QueueFiles.Enqueue(e.FullPath);
       }
     }
+
+    #endregion
   }
 }

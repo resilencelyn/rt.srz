@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Template.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Template.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Template.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The Template.
+  ///   The Template.
   /// </summary>
-  public partial class Template 
+  public partial class Template
   {
   }
 }

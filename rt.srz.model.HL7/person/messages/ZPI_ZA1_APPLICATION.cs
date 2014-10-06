@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ZPI_ZA1_APPLICATION.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ZPI_ZA1_APPLICATION.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The zp i_ z a 1_ application.

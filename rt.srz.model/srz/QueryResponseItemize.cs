@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="QueryResponseItemize.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="QueryResponseItemize.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The QueryResponseItemize.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
   /// <summary>
-  /// The QueryResponseItemize.
+  ///   The QueryResponseItemize.
   /// </summary>
-  public partial class QueryResponseItemize 
+  public partial class QueryResponseItemize
   {
   }
 }

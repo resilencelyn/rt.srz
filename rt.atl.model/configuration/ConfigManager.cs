@@ -1,16 +1,13 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ConfigManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The core config manager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-#region
-
-
-
-#endregion
-
-namespace rt.atl.business.configuration
+namespace rt.atl.model.configuration
 {
   using System.Configuration;
 
@@ -19,13 +16,19 @@ namespace rt.atl.business.configuration
   /// </summary>
   public static class ConfigManager
   {
+    #region Static Fields
+
     /// <summary>
-    /// The synchronization settings.
+    ///   The synchronization settings.
     /// </summary>
     private static SynchronizationSettings synchronizationSettings;
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
-    /// Gets the synchronization settings.
+    ///   Gets the synchronization settings.
     /// </summary>
     public static SynchronizationSettings SynchronizationSettings
     {
@@ -36,5 +39,7 @@ namespace rt.atl.business.configuration
                    (SynchronizationSettings)ConfigurationManager.GetSection("synchronizationSettings"));
       }
     }
+
+    #endregion
   }
 }

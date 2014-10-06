@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
-	<class name="rt.atl.model.atl.Poli, rt.atl.model" table="[dbo].[POLIS]" lazy="true">
-		<id name="Id" column="[ID]">
-		 	<generator class="native" />
-		</id>
-		<property name="Dedit" column="[DEDIT]" />
-		<property name="Q" column="[Q]" />
-		<property name="Prz" column="[PRZ]" />
-		<property name="Dbeg" column="[DBEG]" />
-		<property name="Dend" column="[DEND]" />
-		<property name="Poltp" column="[POLTP]" />
-		<property name="Okato" column="[OKATO]" />
-		<property name="Spol" column="[SPOL]" />
-		<property name="Npol" column="[NPOL]" />
-		<property name="Qogrn" column="[QOGRN]" />
-		<property name="Dstop" column="[DSTOP]" />
-		<property name="St" column="[ST]" />
-		<property name="Del" column="[DEL]" />
-		<property name="Rstop" column="[RSTOP]" />
-		<property name="Nvs" column="[NVS]" />
-		<property name="Dvs" column="[DVS]" />
-		<property name="Et" column="[ET]" />
-		<property name="Dz" column="[DZ]" />
-		<property name="Dp" column="[DP]" />
-		<property name="Dh" column="[DH]" />
-		<property name="Err" column="[ERR]" />
-		<property name="Polvid" column="[POLVID]" />
-		<property name="Oldpid" column="[OLDPID]" />
-		<property name="Sout" column="[SOUT]" />
-		<property name="M2id" column="[M2ID]" />
-		<property name="DstopCs" column="[DSTOP_CS]" />
-	  <many-to-one name="P" column="[PID]" class="person" />
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+  <class name="rt.atl.model.atl.Poli, rt.atl.model" table="[dbo].[POLIS]" lazy="true">
+    <id name="Id" column="[ID]">
+      <generator class="native" />
+    </id>
+    <property name="Dedit" column="[DEDIT]" />
+    <property name="Q" column="[Q]" />
+    <property name="Prz" column="[PRZ]" />
+    <property name="Dbeg" column="[DBEG]" />
+    <property name="Dend" column="[DEND]" />
+    <property name="Poltp" column="[POLTP]" />
+    <property name="Okato" column="[OKATO]" />
+    <property name="Spol" column="[SPOL]" />
+    <property name="Npol" column="[NPOL]" />
+    <property name="Qogrn" column="[QOGRN]" />
+    <property name="Dstop" column="[DSTOP]" />
+    <property name="St" column="[ST]" />
+    <property name="Del" column="[DEL]" />
+    <property name="Rstop" column="[RSTOP]" />
+    <property name="Nvs" column="[NVS]" />
+    <property name="Dvs" column="[DVS]" />
+    <property name="Et" column="[ET]" />
+    <property name="Dz" column="[DZ]" />
+    <property name="Dp" column="[DP]" />
+    <property name="Dh" column="[DH]" />
+    <property name="Err" column="[ERR]" />
+    <property name="Polvid" column="[POLVID]" />
+    <property name="Oldpid" column="[OLDPID]" />
+    <property name="Sout" column="[SOUT]" />
+    <property name="M2id" column="[M2ID]" />
+    <property name="DstopCs" column="[DSTOP_CS]" />
+    <many-to-one name="P" column="[PID]" class="person" />
+  </class>
+</hibernate-mapping>

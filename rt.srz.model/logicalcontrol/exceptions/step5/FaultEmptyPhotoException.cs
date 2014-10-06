@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEmptyPhotoException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultEmptyPhotoException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault empty photo exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
   #endregion
 
   /// <summary>
-  /// The fault empty photo exception.
+  ///   The fault empty photo exception.
   /// </summary>
   [Serializable]
   public class FaultEmptyPhotoException : FaultStep5
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultEmptyPhotoException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultEmptyPhotoException" /> class.
     /// </summary>
     public FaultEmptyPhotoException()
       : base(new ExceptionInfo(Resource.FaultEmptyPhotoExceptionCode), Resource.FaultEmptyPhotoExceptionMessage)
@@ -48,6 +48,6 @@ namespace rt.srz.model.logicalcontrol.exceptions.step5
     {
     }
 
-   #endregion
+    #endregion
   }
 }

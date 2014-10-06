@@ -1,14 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SecurityProvider.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SecurityProvider.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Репозиторий Пользователь
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.ServiceModel;
-using System.Text;
 
 namespace rt.core.business.security.repository
 {
@@ -19,18 +16,20 @@ namespace rt.core.business.security.repository
   using System.Linq;
   using System.Security.Authentication;
   using System.Security.Cryptography;
+  using System.ServiceModel;
+  using System.Text;
   using System.Web;
+
   using NHibernate;
   using NHibernate.Context;
   using NHibernate.Linq;
 
+  using rt.core.business.security.interfaces;
   using rt.core.model.client;
   using rt.core.model.core;
   using rt.core.model.security;
 
   using StructureMap;
-  using interfaces;
-
 
   #endregion
 
@@ -39,23 +38,60 @@ namespace rt.core.business.security.repository
   /// </summary>
   public class SecurityProvider : ISecurityProvider
   {
+    #region Static Fields
+
+    /// <summary>
+    /// The user.
+    /// </summary>
+    private static User user;
+
+    #endregion
+
+    #region Fields
+
     /// <summary>
     ///   Алгоритм
     /// </summary>
     private readonly RSACryptoServiceProvider alg;
 
-    private static User user;
+    #endregion
 
-    #region Public Methods and Operators
+    #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SecurityProvider"/> class.
+    ///   Initializes a new instance of the <see cref="SecurityProvider" /> class.
     /// </summary>
     public SecurityProvider()
     {
       alg = new RSACryptoServiceProvider();
       alg.FromXmlString(
-        "<RSAKeyValue><Modulus>mjjXXni9qZbQBI8BxDuSVyF8xfWui7EE0az5yZ5OLJH+ZOCaqODhwxmACT6GihIq4Z0hrm7j8qH5wW9PK+aMEelFCQ1Sdxuh9Gwj2xraWTCTxj9RV4e1zXwR7t1ijBRCGN7HmRGijnFwOijiP0+RxVzXZE68JREhKrxT7JfTWEk=</Modulus><Exponent>AQAB</Exponent><P>zjmhDQz01Oj/90bG+gsCj9rsQQoN6/7GL7+bT3V6cwKoN72WRZl7/65tq1gV9Xvpvmamvt+T2UOYQC2Y5urxLQ==</P><Q>v3IDKWN9Xmd+dkqKS/QC6m0abjlfbDVRqNvoj6koxeGaY2BoRTGpdb4AiZoR03cvS82+RibMm7MQ+BZhkL8dDQ==</Q><DP>m8CIs0uaygbj84VgGE8iczWcA48tbpSwaDWlfkCy55QVKmwkx5IhRb0elS9k/k/E/QmYXEaN6qSTo70MYzMETQ==</DP><DQ>H+/wMRZk0rvnL+qteZBCcEM1NpAhqBaZAdd1y4mHwMMrE0sA+hIX2AmTY2Eteh6W6ElxZZiRZ6QOv6RUMGaBfQ==</DQ><InverseQ>V1AlCokYF8SU2tCODVQ+lTAcmjFTVX5IkldOfd84pDQQEJ7udoeixQLdW3l5mzMwhquhEU4Wlp3CwEDstNspwQ==</InverseQ><D>frVW1aqUAYMEM8qfI+/h4y6DSk35c5IkKHVa4Pjst5fXkGAtEbV6J4aK+I1jkossqiMkqiE3rYDBJ9lhDeukhkgL9prKJkgNrclT8mRtMxEimSgtFoyjoG3F/FAd0XJyXXlIHsrMrtfn8qjgSSP0uBZJD0ArVHcOQU0UoNUlt1E=</D></RSAKeyValue>");
+                        "<RSAKeyValue><Modulus>mjjXXni9qZbQBI8BxDuSVyF8xfWui7EE0az5yZ5OLJH+ZOCaqODhwxmACT6GihIq4Z0hrm7j8qH5wW9PK+aMEelFCQ1Sdxuh9Gwj2xraWTCTxj9RV4e1zXwR7t1ijBRCGN7HmRGijnFwOijiP0+RxVzXZE68JREhKrxT7JfTWEk=</Modulus><Exponent>AQAB</Exponent><P>zjmhDQz01Oj/90bG+gsCj9rsQQoN6/7GL7+bT3V6cwKoN72WRZl7/65tq1gV9Xvpvmamvt+T2UOYQC2Y5urxLQ==</P><Q>v3IDKWN9Xmd+dkqKS/QC6m0abjlfbDVRqNvoj6koxeGaY2BoRTGpdb4AiZoR03cvS82+RibMm7MQ+BZhkL8dDQ==</Q><DP>m8CIs0uaygbj84VgGE8iczWcA48tbpSwaDWlfkCy55QVKmwkx5IhRb0elS9k/k/E/QmYXEaN6qSTo70MYzMETQ==</DP><DQ>H+/wMRZk0rvnL+qteZBCcEM1NpAhqBaZAdd1y4mHwMMrE0sA+hIX2AmTY2Eteh6W6ElxZZiRZ6QOv6RUMGaBfQ==</DQ><InverseQ>V1AlCokYF8SU2tCODVQ+lTAcmjFTVX5IkldOfd84pDQQEJ7udoeixQLdW3l5mzMwhquhEU4Wlp3CwEDstNspwQ==</InverseQ><D>frVW1aqUAYMEM8qfI+/h4y6DSk35c5IkKHVa4Pjst5fXkGAtEbV6J4aK+I1jkossqiMkqiE3rYDBJ9lhDeukhkgL9prKJkgNrclT8mRtMxEimSgtFoyjoG3F/FAd0XJyXXlIHsrMrtfn8qjgSSP0uBZJD0ArVHcOQU0UoNUlt1E=</D></RSAKeyValue>");
+    }
+
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// Добавляет пользователя
+    /// </summary>
+    /// <param name="user">
+    /// </param>
+    /// <returns>
+    /// User
+    /// </returns>
+    public User AddUser(User user)
+    {
+      var hash = new PasswordHash(user.Password);
+      user.Password = Convert.ToBase64String(hash.Hash);
+      user.Salt = Convert.ToBase64String(hash.Salt);
+      user.CreationDate = DateTime.Now;
+      user.LastLoginDate = DateTime.Now;
+      user.IsApproved = true;
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      session.SaveOrUpdate(user);
+      session.Flush();
+      return user;
     }
 
     /// <summary>
@@ -97,11 +133,34 @@ namespace rt.core.business.security.repository
       ////{
       ////  throw new AuthenticationException("Организация пользователя была удалена.");
       ////}
-
       user.LastLoginDate = DateTime.Now;
       session.Update(user);
       session.Flush();
       return user;
+    }
+
+    /// <summary>
+    /// The get auth response.
+    /// </summary>
+    /// <param name="user">
+    /// The user.
+    /// </param>
+    /// <returns>
+    /// The <see cref="AuthResponse"/>.
+    /// </returns>
+    public AuthResponse GetAuthToken(User user)
+    {
+      var response = new AuthResponse { IsAuthenticated = true, FriendlyName = user.Login };
+      var token = user.Login;
+      var array = Encoding.GetEncoding(1251).GetBytes(token);
+      response.AuthToken = new Token
+                           {
+                             Id = Guid.NewGuid(), 
+                             Signature = Convert.ToBase64String(alg.Encrypt(array, false)), 
+                             ExpTime = new DateTime(2200, 1, 1)
+                           };
+
+      return response;
     }
 
     /// <summary>
@@ -126,22 +185,15 @@ namespace rt.core.business.security.repository
         else
         {
           var userByName = GetUserByName(HttpContext.Current.User.Identity.Name);
-          context = new Hashtable
-                        {
-                          {
-                            "Current",
-                            userByName
-                          }
-                        };
+          context = new Hashtable { { "Current", userByName } };
           ReflectiveHttpContext.HttpContextCurrentItems["User"] = context;
           return userByName;
         }
 
-        //if (userInSession != null && userInSession.Login == HttpContext.Current.User.Identity.Name)
-        //{
-        //  return userInSession;
-        //}
-
+        // if (userInSession != null && userInSession.Login == HttpContext.Current.User.Identity.Name)
+        // {
+        // return userInSession;
+        // }
         return GetUserByName(HttpContext.Current.User.Identity.Name);
       }
 
@@ -155,14 +207,38 @@ namespace rt.core.business.security.repository
       {
         var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
         var session = sessionFactory.GetCurrentSession();
-        user = session
-          .QueryOver<User>()
-          .Where(x => x.Id == new Guid("01000000-0000-0000-0000-000000000000"))
-          .List()
-          .FirstOrDefault();
+        user =
+          session.QueryOver<User>()
+                 .Where(x => x.Id == new Guid("01000000-0000-0000-0000-000000000000"))
+                 .List()
+                 .FirstOrDefault();
       }
 
       return user;
+    }
+
+    /// <summary>
+    /// The get date from token.
+    /// </summary>
+    /// <param name="token">
+    /// The token.
+    /// </param>
+    /// <returns>
+    /// The <see cref="User"/>.
+    /// </returns>
+    public User GetDateFromToken(Token token)
+    {
+      if (token != null)
+      {
+        var data = Convert.FromBase64String(token.Signature);
+        var decoded = alg.Decrypt(data, false);
+        var login = Encoding.GetEncoding(1251).GetString(decoded);
+        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+        var user = session.QueryOver<User>().Where(x => x.Login == login).Take(1).SingleOrDefault();
+        return user;
+      }
+
+      return null;
     }
 
     /// <summary>
@@ -177,7 +253,7 @@ namespace rt.core.business.security.repository
     public User GetUserByName(string name)
     {
       return (from user in ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Query<User>()
-              where user.Login == name && user.IsApproved == true
+              where user.Login == name && user.IsApproved
               select user).FirstOrDefault();
     }
 
@@ -193,7 +269,7 @@ namespace rt.core.business.security.repository
     public string GetUserNameByEmail(string email)
     {
       return (from user in ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Query<User>()
-              where user.Email == email && user.IsApproved == true
+              where user.Email == email && user.IsApproved
               select user.Login).FirstOrDefault();
     }
 
@@ -229,27 +305,6 @@ namespace rt.core.business.security.repository
     }
 
     /// <summary>
-    /// Добавляет пользователя
-    /// </summary>
-    /// <param name="user"> </param>
-    /// <returns>
-    /// User
-    /// </returns>
-    public User AddUser(User user)
-    {
-      var hash = new PasswordHash(user.Password);
-      user.Password = Convert.ToBase64String(hash.Hash);
-      user.Salt = Convert.ToBase64String(hash.Salt);
-      user.CreationDate = DateTime.Now;
-      user.LastLoginDate = DateTime.Now;
-      user.IsApproved = true;
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      session.SaveOrUpdate(user);
-      session.Flush();
-      return user;
-    }
-
-    /// <summary>
     /// Сохраняет или добавляет пользователя
     /// </summary>
     /// <param name="user">
@@ -264,54 +319,6 @@ namespace rt.core.business.security.repository
       session.SaveOrUpdate(user);
       session.Flush();
       return user;
-    }
-
-    /// <summary>
-    /// The get auth response.
-    /// </summary>
-    /// <param name="user">
-    /// The user.
-    /// </param>
-    /// <returns>
-    /// The <see cref="AuthResponse"/>.
-    /// </returns>
-    public AuthResponse GetAuthToken(User user)
-    {
-      var response = new AuthResponse { IsAuthenticated = true, FriendlyName = user.Login };
-      string token = user.Login;
-      var array = Encoding.GetEncoding(1251).GetBytes(token);
-      response.AuthToken = new Token
-                             {
-                               Id = Guid.NewGuid(),
-                               Signature = Convert.ToBase64String(alg.Encrypt(array, false)),
-                               ExpTime = new DateTime(2200, 1, 1)
-                             };
-
-      return response;
-    }
-
-    /// <summary>
-    /// The get date from token.
-    /// </summary>
-    /// <param name="token">
-    /// The token.
-    /// </param>
-    /// <returns>
-    /// The <see cref="User"/>.
-    /// </returns>
-    public User GetDateFromToken(Token token)
-    {
-      if (token != null)
-      {
-        var data = Convert.FromBase64String(token.Signature);
-        var decoded = alg.Decrypt(data, false);
-        var login = Encoding.GetEncoding(1251).GetString(decoded);
-        var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-        var user = session.QueryOver<User>().Where(x => x.Login == login).Take(1).SingleOrDefault();
-        return user;
-      }
-
-      return null;
     }
 
     /// <summary>
@@ -344,8 +351,6 @@ namespace rt.core.business.security.repository
 
     #endregion
 
-    #region Methods
-
     /////// <summary>
     /////// Проверка количества фейлов
     /////// </summary>
@@ -362,6 +367,7 @@ namespace rt.core.business.security.repository
     ////  ////  user.LockedDate = DateTime.Now;
     ////  ////}
     ////}
+    #region Methods
 
     /// <summary>
     /// Проверка пароля на срок годности

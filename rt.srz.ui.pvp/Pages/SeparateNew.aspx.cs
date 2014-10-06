@@ -13,6 +13,8 @@ using System.Web.UI.WebControls;
 
 namespace rt.srz.ui.pvp.Pages
 {
+  using rt.core.model.interfaces;
+
   public partial class SeparateNew : System.Web.UI.Page
   {
     #region Fields

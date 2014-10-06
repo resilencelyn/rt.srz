@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IMedicalInsuranceManager.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="INumberPolicyCounterManager.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The INumberPolicyCounterManager interface.
@@ -12,7 +12,6 @@ namespace rt.srz.business.manager
   #region references
 
   using System;
-  using rt.srz.model.srz;
 
   #endregion
 
@@ -21,6 +20,8 @@ namespace rt.srz.business.manager
   /// </summary>
   public partial interface INumberPolicyCounterManager
   {
+    #region Public Methods and Operators
+
     /// <summary>
     /// The get next enp number facets.
     /// </summary>
@@ -45,5 +46,7 @@ namespace rt.srz.business.manager
     /// The number policy.
     /// </param>
     void RecalculateNumberPolicyCounter(string numberPolicy);
+
+    #endregion
   }
 }

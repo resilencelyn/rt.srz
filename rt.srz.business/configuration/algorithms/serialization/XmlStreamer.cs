@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="XmlStreamer.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="XmlStreamer.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The xml streamer.
@@ -435,10 +435,10 @@ namespace rt.srz.business.configuration.algorithms.serialization
       {
         var fomsLogPrefix = HL7Helper.FomsLogPrefix;
         FomsLogger.WriteLog(
-          LogType.Local, 
-          "Сериализация пакета HL7. " + person.BeginPacket.RetrieveShortInfo(), 
-          fomsLogPrefix, 
-          LogErrorType.None);
+                            LogType.Local, 
+                            "Сериализация пакета HL7. " + person.BeginPacket.RetrieveShortInfo(), 
+                            fomsLogPrefix, 
+                            LogErrorType.None);
         FileSystemPhysical.RemoveFile(filePath);
         using (var writer = new HL7Writer(filePath, person, XmlNamespaceResolver))
         {
@@ -605,9 +605,12 @@ namespace rt.srz.business.configuration.algorithms.serialization
         {
           var fomsLogPrefix = HL7Helper.FomsLogPrefix;
           FomsLogger.WriteError(
-            LogType.Local, 
-            string.Format("Под контрольную сумму выделено {0} байт; ожидается {1} байт.", num2, bytes.LongLength), 
-            fomsLogPrefix);
+                                LogType.Local, 
+                                string.Format(
+                                              "Под контрольную сумму выделено {0} байт; ожидается {1} байт.", 
+                                              num2, 
+                                              bytes.LongLength), 
+                                fomsLogPrefix);
           return false;
         }
 
@@ -630,11 +633,11 @@ namespace rt.srz.business.configuration.algorithms.serialization
     internal static string DoScanApplicationName(Stream stream)
     {
       return DoScanTaggedText(
-        stream, 
-        HL7Helper.NodeTag1251_ApplicationName_begin, 
-        HL7Helper.NodeTag1251_ApplicationName_end, 
-        HL7Helper.NodeTag1251_HD_begin, 
-        HL7Helper.NodeTag1251_HD_end);
+                              stream, 
+                              HL7Helper.NodeTag1251_ApplicationName_begin, 
+                              HL7Helper.NodeTag1251_ApplicationName_end, 
+                              HL7Helper.NodeTag1251_HD_begin, 
+                              HL7Helper.NodeTag1251_HD_end);
     }
 
     /// <summary>
@@ -649,9 +652,9 @@ namespace rt.srz.business.configuration.algorithms.serialization
     internal static string DoScanIdentifier(Stream stream)
     {
       return DoScanTaggedText(
-        stream, 
-        HL7Helper.NodeTag1251_BatchIdentifier_begin, 
-        HL7Helper.NodeTag1251_BatchIdentifier_end);
+                              stream, 
+                              HL7Helper.NodeTag1251_BatchIdentifier_begin, 
+                              HL7Helper.NodeTag1251_BatchIdentifier_end);
     }
 
     /// <summary>
@@ -666,11 +669,11 @@ namespace rt.srz.business.configuration.algorithms.serialization
     internal static string DoScanOrganizationName(Stream stream)
     {
       return DoScanTaggedText(
-        stream, 
-        HL7Helper.NodeTag1251_OrganizationName_begin, 
-        HL7Helper.NodeTag1251_OrganizationName_end, 
-        HL7Helper.NodeTag1251_HD_begin, 
-        HL7Helper.NodeTag1251_HD_end);
+                              stream, 
+                              HL7Helper.NodeTag1251_OrganizationName_begin, 
+                              HL7Helper.NodeTag1251_OrganizationName_end, 
+                              HL7Helper.NodeTag1251_HD_begin, 
+                              HL7Helper.NodeTag1251_HD_end);
     }
 
     /// <summary>

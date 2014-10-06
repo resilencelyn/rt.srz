@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KladrImportFabric.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="KladrImportFabric.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The base import batch pfr.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.exchange.import.kladr
@@ -30,7 +33,8 @@ namespace rt.srz.business.exchange.import.kladr
     #region Constructors and Destructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="BaseImporterFileQueryResponse{TXmlObj,TEnumerableItem}" /> class.
+    /// Initializes a new instance of the <see cref="KladrImportFabric"/> class. 
+    ///   Initializes a new instance of the <see cref="BaseImporterFileQueryResponse{TXmlObj,TEnumerableItem}"/> class.
     /// </summary>
     public KladrImportFabric()
       : base(TypeSubject.Kladr)

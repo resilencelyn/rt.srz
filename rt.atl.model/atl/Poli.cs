@@ -1,15 +1,18 @@
-//-------------------------------------------------------------------------------------
-// <copyright file="Poli.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Poli.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The Poli.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.model.atl
 {
   /// <summary>
-  /// The Poli.
+  ///   The Poli.
   /// </summary>
-  public partial class Poli 
+  public partial class Poli
   {
   }
 }

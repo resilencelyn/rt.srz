@@ -1,15 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobNames.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The job names.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.quartz
 {
-    public class JobNames
-    {
-      /// <summary>
-      /// Константа
-      /// </summary>
-      public const string CalculatingKeys = "Пересчет ключей поиска";
-    }
+  /// <summary>
+  /// The job names.
+  /// </summary>
+  public class JobNames
+  {
+    #region Constants
+
+    /// <summary>
+    ///   Константа
+    /// </summary>
+    public const string CalculatingKeys = "Пересчет ключей поиска";
+
+    #endregion
+  }
 }

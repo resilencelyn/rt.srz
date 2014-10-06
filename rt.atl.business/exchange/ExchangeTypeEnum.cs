@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExchangeTypeEnum.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExchangeTypeEnum.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The exporterType enum.
@@ -27,15 +27,14 @@ namespace rt.atl.business.exchange
     /// <summary>
     ///   The export to pvp.
     /// </summary>
-    ExportToPvp = 3,
+    ExportToPvp = 3, 
 
     /// <summary>
     ///   The first loading to pvp
     /// </summary>
-    FirstLoadingToPvp = 4,
+    FirstLoadingToPvp = 4, 
 
     /// <summary>
-    /// 
     /// </summary>
     ExportToPvpUec = 5
   }

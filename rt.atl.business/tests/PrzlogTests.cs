@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PrzlogTests.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="PrzlogTests.cs" company="ÐóñÁÈÒåõ">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The przlog tests.
@@ -10,7 +10,7 @@
 namespace rt.atl.business.tests
 {
   /// <summary>
-  /// The przlog tests.
+  ///   The przlog tests.
   /// </summary>
   public partial class PrzlogTests
   {

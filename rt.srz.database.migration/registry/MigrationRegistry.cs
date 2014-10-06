@@ -1,16 +1,23 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MigrationRegistry.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="MigrationRegistry.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The core registry.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.database.registry
 {
   using System.Configuration;
   using System.Data.SqlClient;
-  using System.IO;
-  using System.Reflection;
-  using rt.core.business.configuration;
+
+  using ECM7.Migrator;
+
+  using NLog;
+
+  using rt.core.model.configuration;
+
   using StructureMap.Configuration.DSL;
 
   /// <summary>
@@ -28,11 +35,11 @@ namespace rt.srz.database.registry
       var providerTypeName = ConfigManager.MigratorConfiguration.ProviderName;
       var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
       var executingAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-      var migrator = new ECM7.Migrator.Migrator(providerTypeName, connectionString, executingAssembly, int.MaxValue);
+      var migrator = new Migrator(providerTypeName, connectionString, executingAssembly, int.MaxValue);
 
-      var migrationVersion = ConfigManager.MigratorConfiguration.MigrationVersion;  
+      var migrationVersion = ConfigManager.MigratorConfiguration.MigrationVersion;
       migrator.Migrate(migrationVersion);
-      var currentClassLogger = NLog.LogManager.GetCurrentClassLogger();
+      var currentClassLogger = LogManager.GetCurrentClassLogger();
 
       // Апдэйтим все хранимки и функции
       using (var connection = new SqlConnection(connectionString))
@@ -106,7 +113,7 @@ namespace rt.srz.database.registry
         currentClassLogger.Info("DeleteStoredProcedure srz_ProcessZags ...");
 
         // Настраиваем БД для загрузки CLR сборок
-        sqlCommand.CommandText = rt.srz.database.registry.Assembly.AdjustDatabase(sqlCommand.Connection.Database);
+        sqlCommand.CommandText = Assembly.AdjustDatabase(sqlCommand.Connection.Database);
         sqlCommand.ExecuteNonQuery();
         currentClassLogger.Info("DeleteStoredProcedure AdjustDatabase ...");
 
@@ -123,7 +130,7 @@ namespace rt.srz.database.registry
         currentClassLogger.Info("Delete  rt.srz.database.business.sqlserver...");
         DeleteAssembly(sqlCommand, "rt.srz.database.business");
         currentClassLogger.Info("Delete rt.srz.database.business...");
-        
+
         // Деплоим rt.srz.database.business
         sqlCommand.CommandText = Assembly.DeployDatabaseAssembly("rt.srz.database.business");
         sqlCommand.ExecuteNonQuery();
@@ -152,40 +159,56 @@ namespace rt.srz.database.registry
       }
     }
 
+    #endregion
+
+    #region Methods
+
     /// <summary>
-    ///  Удаляет хранимку из БД
+    /// Удаляет CLR сборку из БД
     /// </summary>
-    /// <param name="command"></param>
-    /// <param name="name"></param>
-    private void DeleteStoredProcedure(SqlCommand command, string name)
+    /// <param name="command">
+    /// </param>
+    /// <param name="name">
+    /// </param>
+    private void DeleteAssembly(SqlCommand command, string name)
     {
       command.CommandText =
-        string.Format(@"IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[{0}]') AND type in (N'P', N'PC')) DROP PROCEDURE [dbo].[{0}]", name);
+        string.Format(
+                      @"IF EXISTS (SELECT * FROM sys.assemblies asms WHERE asms.name = N'{0}' and is_user_defined = 1) DROP ASSEMBLY [{0}]", 
+                      name);
       command.ExecuteNonQuery();
     }
 
     /// <summary>
     /// Удаляем функцию из БД
     /// </summary>
-    /// <param name="command"></param>
-    /// <param name="name"></param>
+    /// <param name="command">
+    /// </param>
+    /// <param name="name">
+    /// </param>
     private void DeleteFunction(SqlCommand command, string name)
-    { 
+    {
       command.CommandText =
-        string.Format(@"IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[{0}]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT')) DROP FUNCTION [dbo].[{0}]", name);
+        string.Format(
+                      @"IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[{0}]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT')) DROP FUNCTION [dbo].[{0}]", 
+                      name);
       command.ExecuteNonQuery();
     }
 
     /// <summary>
-    /// Удаляет CLR сборку из БД
+    /// Удаляет хранимку из БД
     /// </summary>
-    /// <param name="command"></param>
-    /// <param name="name"></param>
-    private void DeleteAssembly(SqlCommand command, string name)
+    /// <param name="command">
+    /// </param>
+    /// <param name="name">
+    /// </param>
+    private void DeleteStoredProcedure(SqlCommand command, string name)
     {
       command.CommandText =
-        string.Format(@"IF EXISTS (SELECT * FROM sys.assemblies asms WHERE asms.name = N'{0}' and is_user_defined = 1) DROP ASSEMBLY [{0}]", name);
-      command.ExecuteNonQuery();    
+        string.Format(
+                      @"IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[{0}]') AND type in (N'P', N'PC')) DROP PROCEDURE [dbo].[{0}]", 
+                      name);
+      command.ExecuteNonQuery();
     }
 
     #endregion

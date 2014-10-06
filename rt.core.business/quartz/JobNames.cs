@@ -1,25 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobNames.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The job names.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.quartz
 {
-    public class JobNames
-    {
-        /// <summary>
-        /// Константа
-        /// </summary>
-        public const string InitializationOfListeners = "Инициализация прослушивателей файловой системы";
+  /// <summary>
+  /// The job names.
+  /// </summary>
+  public class JobNames
+  {
+    #region Constants
 
-        /// <summary>
-        /// Константа
-        /// </summary>
-        public const string PacketLoading = "Загрузка пакетов";
+    /// <summary>
+    ///   Константа
+    /// </summary>
+    public const string BackupDatabase = "Бэкап базы данных";
 
-        /// <summary>
-        /// Константа
-        /// </summary>
-        public const string BackupDatabase = "Бэкап базы данных";
-    }
+    /// <summary>
+    ///   Константа
+    /// </summary>
+    public const string InitializationOfListeners = "Инициализация прослушивателей файловой системы";
+
+    /// <summary>
+    ///   Константа
+    /// </summary>
+    public const string PacketLoading = "Загрузка пакетов";
+
+    #endregion
+  }
 }

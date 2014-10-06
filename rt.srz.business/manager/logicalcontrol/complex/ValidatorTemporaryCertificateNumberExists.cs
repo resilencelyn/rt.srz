@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorTemporaryCertificateNumberExists.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorTemporaryCertificateNumberExists.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator temporary certificate number exists.
@@ -14,13 +14,12 @@ namespace rt.srz.business.manager.logicalcontrol.complex
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step6;
   using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
 
   using StructureMap;
-
-  using rt.srz.model.srz.concepts;
 
   #endregion
 
@@ -35,7 +34,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// Initializes a new instance of the <see cref="ValidatorTemporaryCertificateNumberExists"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorTemporaryCertificateNumberExists(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory)
@@ -47,7 +46,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -65,7 +64,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultTemporaryCertificateNumberExists">
     /// </exception>
@@ -83,13 +82,13 @@ namespace rt.srz.business.manager.logicalcontrol.complex
       MedicalInsurance m = null;
       var count =
         session.QueryOver<Statement>()
-        .JoinAlias(x => x.MedicalInsurances, () => m)
-        .Where(x => m.PolisType.Id == PolisType.В)
-        .And(x => m.PolisNumber == number)
-        .And(x => x.Id != statement.Id)
-        .And(x => x.Status.Id != StatusStatement.Cancelled)
-        .And(x => x.Status.Id != StatusStatement.Declined)
-        .RowCount();
+               .JoinAlias(x => x.MedicalInsurances, () => m)
+               .Where(x => m.PolisType.Id == PolisType.В)
+               .And(x => m.PolisNumber == number)
+               .And(x => x.Id != statement.Id)
+               .And(x => x.Status.Id != StatusStatement.Cancelled)
+               .And(x => x.Status.Id != StatusStatement.Declined)
+               .RowCount();
 
       if (count > 0)
       {

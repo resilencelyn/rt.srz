@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportBatchTyped.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ExportBatchTyped.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   Экспортер пакета
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.business.server.exchange.export
@@ -22,12 +25,16 @@ namespace rt.core.business.server.exchange.export
   /// <typeparam name="TSerializeObject">
   /// Тип сериализуемого объекта
   /// </typeparam>
-  /// <typeparam name="TNode">Тип ноды</typeparam>
-  public abstract class ExportBatchTyped<TSerializeObject, TNode> : ExportBatch, IExportBatchTyped<TSerializeObject, TNode>
+  /// <typeparam name="TNode">
+  /// Тип ноды
+  /// </typeparam>
+  public abstract class ExportBatchTyped<TSerializeObject, TNode> : ExportBatch, 
+                                                                    IExportBatchTyped<TSerializeObject, TNode>
   {
     #region Constructors and Destructors
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ExportBatchTyped{TSerializeObject,TNode}"/> class. 
     /// Initializes a new instance of the <see cref="ExportBatchTyped{TSerializeObject}"/> class.
     /// </summary>
     /// <param name="type">
@@ -49,24 +56,36 @@ namespace rt.core.business.server.exchange.export
 
     #endregion
 
+    #region Public Methods and Operators
+
     /// <summary>
     /// The add node.
     /// </summary>
     /// <param name="node">
-    /// The node. 
+    /// The node.
     /// </param>
     public virtual void AddNode(TNode node)
     {
-      //Начинаем новый батч, в случае если к-во обработанных записей превысило допустимое значение
+      // Начинаем новый батч, в случае если к-во обработанных записей превысило допустимое значение
       if (Count >= MaxCountMessageInBatchSession)
+      {
         BeginBatch();
+      }
     }
 
     /// <summary>
     /// The bulk create and export.
     /// </summary>
+    /// <param name="context">
+    /// The context.
+    /// </param>
+    /// <param name="batchId">
+    /// The batch Id.
+    /// </param>
     public virtual void BulkCreateAndExport(IJobExecutionContext context, Guid batchId)
     {
     }
+
+    #endregion
   }
 }

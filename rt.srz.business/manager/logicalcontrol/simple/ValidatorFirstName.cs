@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorFirstName.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorFirstName.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator first name.
@@ -13,9 +13,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
-  using rt.srz.model.logicalcontrol.exceptions;
-  using rt.srz.model.Properties;
   using rt.srz.model.logicalcontrol.exceptions.step2;
+  using rt.srz.model.Properties;
 
   using Resourcessrz = rt.srz.business.Properties.Resource;
 
@@ -32,7 +31,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorFirstName"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorFirstName(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.InsuredPersonData.FirstName, Resource.RegexFio)
@@ -44,7 +43,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {

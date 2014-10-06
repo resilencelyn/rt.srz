@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="REC.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="REC.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The rec type.
@@ -78,6 +78,13 @@ namespace rt.srz.model.HL7.smo
     public string IsActive { get; set; }
 
     /// <summary>
+    ///   Gets or sets the statement change.
+    /// </summary>
+    [XmlElement("NEED_NEW_POLICY", Order = 18)]
+    [DataMember(Name = "NEED_NEW_POLICY", Order = 18)]
+    public bool NeedNewPolicy { get; set; }
+
+    /// <summary>
     ///   Gets or sets the person.
     /// </summary>
     [XmlElement("PERSON", Order = 9)]
@@ -92,6 +99,13 @@ namespace rt.srz.model.HL7.smo
     public List<PersonBType> PersonB { get; set; }
 
     /// <summary>
+    ///   Gets or sets the statement change.
+    /// </summary>
+    [XmlElement("CHANGES", Order = 17)]
+    [DataMember(Name = "CHANGES", Order = 17)]
+    public List<StatementChange> StatementChange { get; set; }
+
+    /// <summary>
     ///   Gets or sets the state begin date.
     /// </summary>
     [XmlElement("VERSION", Order = 4)]
@@ -104,20 +118,6 @@ namespace rt.srz.model.HL7.smo
     [XmlElement("VIZIT", Order = 13)]
     [DataMember(Name = "VIZIT", Order = 13)]
     public VizitType Vizit { get; set; }
-
-    /// <summary>
-    /// Gets or sets the statement change.
-    /// </summary>
-    [XmlElement("CHANGES", Order = 17)]
-    [DataMember(Name = "CHANGES", Order = 17)]
-    public List<StatementChange> StatementChange { get; set; }
-
-    /// <summary>
-    /// Gets or sets the statement change.
-    /// </summary>
-    [XmlElement("NEED_NEW_POLICY", Order = 18)]
-    [DataMember(Name = "NEED_NEW_POLICY", Order = 18)]
-    public bool NeedNewPolicy { get; set; }
 
     #endregion
   }

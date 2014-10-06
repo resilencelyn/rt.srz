@@ -1,13 +1,13 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileNameElementColection.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FileNameElementColection.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The file name element colection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.core.business.nhibernate.target
+namespace rt.core.model.configuration
 {
   #region references
 

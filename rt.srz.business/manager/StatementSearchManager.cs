@@ -2,6 +2,9 @@
 // <copyright file="StatementSearchManager.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
+// <summary>
+//   The statement search manager.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager
@@ -57,9 +60,9 @@ namespace rt.srz.business.manager
     ///   The ddocument.
     /// </param>
     protected delegate void AddCriteriaDelegate(
-      SearchStatementCriteria criteria,
-      QueryOver<Statement, Statement> deatachQuery,
-      InsuredPersonDatum dpersonDatum,
+      SearchStatementCriteria criteria, 
+      QueryOver<Statement, Statement> deatachQuery, 
+      InsuredPersonDatum dpersonDatum, 
       Document ddocument);
 
     #endregion
@@ -99,7 +102,7 @@ namespace rt.srz.business.manager
                                      {
                                        Status =
                                          ObjectFactory.GetInstance<IConceptCacheManager>()
-                                                      .GetById(StatusPerson.Active),
+                                                      .GetById(StatusPerson.Active), 
                                      };
 
       if (!string.IsNullOrEmpty(statement.NumberPolicy))
@@ -113,8 +116,8 @@ namespace rt.srz.business.manager
         {
           insuredPersonByStatement.MainPolisNumber =
             numberPolicyCounterManager.GetNextEnpNumber(
-                                                        statement.PointDistributionPolicy.Parent.Parent.Id,
-                                                        insuredPersonDatum.Gender.Id,
+                                                        statement.PointDistributionPolicy.Parent.Parent.Id, 
+                                                        insuredPersonDatum.Gender.Id, 
                                                         insuredPersonDatum.Birthday.Value);
         }
       }
@@ -132,7 +135,8 @@ namespace rt.srz.business.manager
     /// The keys.
     /// </param>
     /// <returns>
-    /// The <see>
+    /// The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
     ///   .
@@ -234,11 +238,11 @@ namespace rt.srz.business.manager
     /// The empty Criteria.
     /// </param>
     private void AddCriteriaData(
-      SearchStatementCriteria criteria,
-      QueryOver<Statement, Statement> deatachQuery,
-      InsuredPersonDatum dpersonDatum,
-      Document ddocument,
-      MedicalInsurance dmedicalInsurance,
+      SearchStatementCriteria criteria, 
+      QueryOver<Statement, Statement> deatachQuery, 
+      InsuredPersonDatum dpersonDatum, 
+      Document ddocument, 
+      MedicalInsurance dmedicalInsurance, 
       bool emptyCriteria)
     {
       // Номер ВС
@@ -359,11 +363,11 @@ namespace rt.srz.business.manager
     /// The empty Criteria.
     /// </param>
     private void AddCriteriaKeys(
-      SearchStatementCriteria criteria,
-      QueryOver<Statement, Statement> deatachQuery,
-      InsuredPersonDatum dpersonDatum,
-      Document ddocument,
-      MedicalInsurance dmedicalInsurance,
+      SearchStatementCriteria criteria, 
+      QueryOver<Statement, Statement> deatachQuery, 
+      InsuredPersonDatum dpersonDatum, 
+      Document ddocument, 
+      MedicalInsurance dmedicalInsurance, 
       bool emptyCriteria)
     {
       ////// Статус заявления
@@ -394,23 +398,23 @@ namespace rt.srz.business.manager
                         InsuredPersonData =
                           new InsuredPersonDatum
                           {
-                            Birthday = criteria.BirthDate,
-                            Birthplace = criteria.BirthPlace,
-                            FirstName = criteria.FirstName,
-                            LastName = criteria.LastName,
-                            MiddleName = criteria.MiddleName,
-                            Snils = criteria.SNILS,
+                            Birthday = criteria.BirthDate, 
+                            Birthplace = criteria.BirthPlace, 
+                            FirstName = criteria.FirstName, 
+                            LastName = criteria.LastName, 
+                            MiddleName = criteria.MiddleName, 
+                            Snils = criteria.SNILS, 
                             NotCheckSnils = criteria.NotCheckSnils
-                          },
+                          }, 
                         DocumentUdl =
                           new Document
                           {
-                            Series = criteria.DocumentSeries,
-                            Number = criteria.DocumentNumber,
+                            Series = criteria.DocumentSeries, 
+                            Number = criteria.DocumentNumber, 
                             DocumentType =
                               ObjectFactory.GetInstance<IConceptCacheManager>()
                                            .GetById(criteria.DocumentTypeId)
-                          },
+                          }, 
                       };
 
       var searchKeyManager = ObjectFactory.GetInstance<ISearchKeyManager>();
@@ -463,15 +467,15 @@ namespace rt.srz.business.manager
     /// The <see cref="IQueryOver"/>.
     /// </returns>
     private IQueryOver<Statement, Statement> AddOrder(
-      SearchStatementCriteria criteria,
-      Statement statement,
-      Concept cause,
-      Organisation smo,
-      InsuredPersonDatum personDatum,
-      Concept gender,
-      Concept citizenship,
-      Concept documentType,
-      Document document,
+      SearchStatementCriteria criteria, 
+      Statement statement, 
+      Concept cause, 
+      Organisation smo, 
+      InsuredPersonDatum personDatum, 
+      Concept gender, 
+      Concept citizenship, 
+      Concept documentType, 
+      Document document, 
       IQueryOver<Statement, Statement> query)
     {
       // Сортировка
@@ -518,9 +522,9 @@ namespace rt.srz.business.manager
             expression = () => personDatum.Snils;
             break;
 
-          ////case "NumberTemporaryCertificate":
-          ////  expression = () => statement.NumberTemporaryCertificate;
-          ////  break;
+            ////case "NumberTemporaryCertificate":
+            ////  expression = () => statement.NumberTemporaryCertificate;
+            ////  break;
         }
 
         query = criteria.SortDirection == SortDirection.Ascending
@@ -549,7 +553,7 @@ namespace rt.srz.business.manager
     ///   .
     /// </returns>
     private SearchResult<SearchStatementResult> Search(
-      SearchStatementCriteria criteria,
+      SearchStatementCriteria criteria, 
       Action<SearchStatementCriteria, QueryOver<Statement, Statement>, InsuredPersonDatum, Document, MedicalInsurance, bool> addCriteriaDelegate)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();

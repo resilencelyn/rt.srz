@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StringConverterBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="StringConverterBase.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The string converter base.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard
 {
@@ -22,31 +16,36 @@ namespace rt.srz.database.business.standard
   // --------------------------------------------------------
 
   /// <summary>
-  /// The string converter base.
+  ///   The string converter base.
   /// </summary>
   public abstract class StringConverterBase
   {
     // если список не пуст, работает только для заданных полей
+    #region Fields
+
     /// <summary>
-    /// The allowed fields.
+    ///   The allowed fields.
     /// </summary>
     public readonly PolicySearchFields AllowedFields;
 
     /// <summary>
-    /// The flagged only.
+    ///   The flagged only.
     /// </summary>
     public readonly bool FlaggedOnly; // работать только в режиме flagged
 
     /// <summary>
-    /// The string matcher.
+    ///   The string matcher.
     /// </summary>
     public readonly StringMatchingBase StringMatcher;
+
+    #endregion
 
     // --------------------------------------------------------
 
     // конвертировать строку
 
     // --------------------------------------------------------
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StringConverterBase"/> class.
@@ -60,13 +59,19 @@ namespace rt.srz.database.business.standard
     /// <param name="FieldNameResolver">
     /// The field name resolver.
     /// </param>
-    protected StringConverterBase(StringMatchingBase StringMatcher, bool FlaggedOnly = false, 
-                                  PolicySearchFieldNameResolver FieldNameResolver = null)
+    protected StringConverterBase(
+      StringMatchingBase StringMatcher, 
+      bool FlaggedOnly = false, 
+      PolicySearchFieldNameResolver FieldNameResolver = null)
     {
       this.StringMatcher = StringMatcher;
       this.FlaggedOnly = FlaggedOnly;
       AllowedFields = new PolicySearchFields(FieldNameResolver);
     }
+
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// The convert.
@@ -86,20 +91,26 @@ namespace rt.srz.database.business.standard
     public string Convert(string s, FieldTypes field = FieldTypes.Undefined, bool flagged = false)
     {
       if (string.IsNullOrEmpty(s) || StringMatcher == null)
+      {
         return s;
+      }
 
       // режим flagged
       if (FlaggedOnly)
       {
         if (!flagged)
+        {
           return s;
+        }
       }
 
       // режим для конкретных полей
       if (field != FieldTypes.Undefined)
       {
         if (!AllowedFields.EmptyOrContainsField(field))
+        {
           return s;
+        }
       }
 
       // проходим по заданной строке посимвольно и на все найденные совпадения вызываем преобразователь
@@ -113,25 +124,31 @@ namespace rt.srz.database.business.standard
           do
           {
             if (StringMatcher.CheckCharMatch(result[i]))
+            {
               break;
+            }
           }
- while (++i < len);
+          while (++i < len);
         }
         else
         {
           do
           {
             if (StringMatcher.CheckCharMatch(s[i]))
+            {
               break;
+            }
           }
- while (++i < len);
+          while (++i < len);
         }
 
         // если найдено совпадение, тогда индекс будет меньше длины строки
         if (i < len)
         {
           if (result == null)
+          {
             result = new StringBuilder(s);
+          }
 
           var matchLength = StringMatcher.RetrieveMatchLength();
           var matchStart = i - matchLength + 1;
@@ -146,8 +163,12 @@ namespace rt.srz.database.business.standard
       return (result != null) ? result.ToString() : s;
     }
 
+    #endregion
+
     // отработать совпадение
     // <returns>возвращает следующую позицию после изменения (если не было изменений, то это matchStart + matchLength)</returns>
+    #region Methods
+
     /// <summary>
     /// The process match.
     /// </summary>
@@ -164,20 +185,28 @@ namespace rt.srz.database.business.standard
     /// The <see cref="int"/>.
     /// </returns>
     protected abstract int ProcessMatch(StringBuilder s, int matchStart, int matchLength);
+
+    #endregion
   }
 
   // --------------------------------------------------------
 
   /// <summary>
-  /// The string matching base.
+  ///   The string matching base.
   /// </summary>
   public abstract class StringMatchingBase
   {
     // !! никогда не пуст, но может равняться null
+    #region Fields
+
     /// <summary>
-    /// The matcher.
+    ///   The matcher.
     /// </summary>
     public readonly string matcher;
+
+    #endregion
+
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StringMatchingBase"/> class.
@@ -190,15 +219,10 @@ namespace rt.srz.database.business.standard
       this.matcher = TStringHelper.StringToNull(matcher);
     }
 
-    // --------------------------------------------------------
+    #endregion
 
-    /// <summary>
-    /// The clear search.
-    /// </summary>
-    public virtual void ClearSearch()
-    {
-      // ...пусто
-    }
+    // --------------------------------------------------------
+    #region Public Methods and Operators
 
     /// <summary>
     /// The check char match.
@@ -212,12 +236,22 @@ namespace rt.srz.database.business.standard
     public abstract bool CheckCharMatch(char currChar);
 
     /// <summary>
-    /// The retrieve match length.
+    ///   The clear search.
+    /// </summary>
+    public virtual void ClearSearch()
+    {
+      // ...пусто
+    }
+
+    /// <summary>
+    ///   The retrieve match length.
     /// </summary>
     /// <returns>
-    /// The <see cref="int"/>.
+    ///   The <see cref="int" />.
     /// </returns>
     public abstract int RetrieveMatchLength();
+
+    #endregion
 
     // --------------------------------------------------------
   }

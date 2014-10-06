@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorTemporaryCertificateNumberInRange.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorTemporaryCertificateNumberInRange.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator temporary certificate number in range.
@@ -14,7 +14,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step6;
   using rt.srz.model.srz;
 
@@ -33,7 +33,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// Initializes a new instance of the <see cref="ValidatorTemporaryCertificateNumberInRange"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorTemporaryCertificateNumberInRange(ISessionFactory sessionFactory)
       : base(CheckLevelEnum.Complex, sessionFactory)
@@ -45,7 +45,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -63,7 +63,7 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// The check object.
     /// </summary>
     /// <param name="statement">
-    /// The statement. 
+    /// The statement.
     /// </param>
     /// <exception cref="FaultTemporaryCertificateNumberInRangeException">
     /// </exception>
@@ -84,11 +84,11 @@ namespace rt.srz.business.manager.logicalcontrol.complex
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var range =
         session.QueryOver<RangeNumber>()
-        .Where(x => x.Smo.Id == smoId)
-        .And(x => x.RangelFrom <= tempNum)
-        .And(x => tempNum <= x.RangelTo)
-        .Take(1)
-        .RowCount();
+               .Where(x => x.Smo.Id == smoId)
+               .And(x => x.RangelFrom <= tempNum)
+               .And(x => tempNum <= x.RangelTo)
+               .Take(1)
+               .RowCount();
 
       if (range == 0)
       {

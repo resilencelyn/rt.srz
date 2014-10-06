@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OP.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="OP.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The op type.
@@ -13,7 +13,6 @@ namespace rt.srz.model.HL7.smo
 
   using System;
   using System.Collections.Generic;
-  using System.ComponentModel;
   using System.IO;
   using System.Runtime.Serialization;
   using System.Text;
@@ -82,6 +81,13 @@ namespace rt.srz.model.HL7.smo
     public string ISACTIVE { get; set; }
 
     /// <summary>
+    ///   Gets or sets the statement change.
+    /// </summary>
+    [XmlElement("NEED_NEW_POLICY", Order = 16)]
+    [DataMember(Name = "NEED_NEW_POLICY", Order = 16)]
+    public bool NEED_NEW_POLICY { get; set; }
+
+    /// <summary>
     ///   Gets or sets the id.
     /// </summary>
     [XmlElement("N_REC", Order = 1)]
@@ -117,11 +123,11 @@ namespace rt.srz.model.HL7.smo
     public List<PersonBType> PERSONB { get; set; }
 
     /// <summary>
-    ///   Gets or sets the state begin date.
+    ///   Gets or sets the statement change.
     /// </summary>
-    [XmlElement("VERSION", Order = 4)]
-    [DataMember(Name = "VERSION", Order = 4)]
-    public string VERSION { get; set; }
+    [XmlElement("CHANGES", Order = 15)]
+    [DataMember(Name = "CHANGES", Order = 15)]
+    public List<StatementChange> STATEMENT_CHANGE { get; set; }
 
     /// <summary>
     ///   Gets or sets the person b.
@@ -129,6 +135,13 @@ namespace rt.srz.model.HL7.smo
     [XmlElement("TIP_OP", Order = 5)]
     [DataMember(Name = "TIP_OP", Order = 5)]
     public string TIP_OP { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the state begin date.
+    /// </summary>
+    [XmlElement("VERSION", Order = 4)]
+    [DataMember(Name = "VERSION", Order = 4)]
+    public string VERSION { get; set; }
 
     /// <summary>
     ///   Gets or sets the vizit.
@@ -139,20 +152,6 @@ namespace rt.srz.model.HL7.smo
     [XmlElement("VIZIT", Order = 10)]
     [DataMember(Name = "VIZIT", Order = 10)]
     public VizitType VIZIT { get; set; }
-
-     /// <summary>
-    /// Gets or sets the statement change.
-    /// </summary>
-    [XmlElement("CHANGES", Order = 15)]
-    [DataMember(Name = "CHANGES", Order = 15)]
-    public List<StatementChange> STATEMENT_CHANGE { get; set; }
-
-    /// <summary>
-    /// Gets or sets the statement change.
-    /// </summary>
-    [XmlElement("NEED_NEW_POLICY", Order = 16)]
-    [DataMember(Name = "NEED_NEW_POLICY", Order = 16)]
-    public bool NEED_NEW_POLICY { get; set; }
 
     #endregion
 

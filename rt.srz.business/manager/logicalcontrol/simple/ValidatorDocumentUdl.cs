@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorDocumentUdl.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="ValidatorDocumentUdl.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The validator document udl.
@@ -15,6 +15,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using rt.srz.business.Properties;
   using rt.srz.model.logicalcontrol.exceptions.step2;
+  using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   #endregion
@@ -30,7 +31,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// Initializes a new instance of the <see cref="ValidatorDocumentUdl"/> class.
     /// </summary>
     /// <param name="sessionFactory">
-    /// The session factory. 
+    /// The session factory.
     /// </param>
     public ValidatorDocumentUdl(ISessionFactory sessionFactory)
       : base(sessionFactory, x => x.DocumentUdl)
@@ -42,7 +43,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -52,7 +53,19 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       }
     }
 
-    public override void CheckObject(model.srz.Statement statement)
+    #endregion
+
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// The check object.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <exception cref="FaultDocumentDateExpEmptyException">
+    /// </exception>
+    public override void CheckObject(Statement statement)
     {
       base.CheckObject(statement);
 

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPseudonymizationServiceCallException.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="FaultPseudonymizationServiceCallException.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The fault pseudonymization service call exception.
@@ -19,7 +19,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
   #endregion
 
   /// <summary>
-  /// The fault pseudonymization service call exception.
+  ///   The fault pseudonymization service call exception.
   /// </summary>
   [Serializable]
   public class FaultPseudonymizationServiceCallException : FaultStep6
@@ -27,7 +27,7 @@ namespace rt.srz.model.logicalcontrol.exceptions.step6
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FaultPseudonymizationServiceCallException"/> class.
+    ///   Initializes a new instance of the <see cref="FaultPseudonymizationServiceCallException" /> class.
     /// </summary>
     public FaultPseudonymizationServiceCallException()
       : base(

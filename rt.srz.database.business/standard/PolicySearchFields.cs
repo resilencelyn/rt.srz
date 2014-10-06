@@ -1,17 +1,11 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PolicySearchFields.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="PolicySearchFields.cs" company="–усЅ»“ех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   The policy search fields.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-#region
-
-
-
-#endregion
 
 namespace rt.srz.database.business.standard
 {
@@ -20,26 +14,29 @@ namespace rt.srz.database.business.standard
 
   // [CLSCompliant(false)]
   /// <summary>
-  /// The policy search fields.
+  ///   The policy search fields.
   /// </summary>
   public sealed class PolicySearchFields
   {
     // --------------------------------------------------------
+    #region Fields
 
     /// <summary>
-    /// The field name resolver.
+    ///   The field name resolver.
     /// </summary>
     public readonly PolicySearchFieldNameResolver FieldNameResolver; // !! может быть null
 
     /// <summary>
-    /// The field names.
+    ///   The field names.
     /// </summary>
     private HashSet<string> fieldNames;
 
     /// <summary>
-    /// The fields.
+    ///   The fields.
     /// </summary>
     private HashSet<FieldTypes> fields;
+
+    #endregion
 
     // --------------------------------------------------------
     // public statics
@@ -97,6 +94,7 @@ namespace rt.srz.database.business.standard
 
     // --------------------------------------------------------
     // publics
+    #region Constructors and Destructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PolicySearchFields"/> class.
@@ -109,7 +107,10 @@ namespace rt.srz.database.business.standard
       this.FieldNameResolver = FieldNameResolver;
     }
 
+    #endregion
+
     // --------------------------------------------------------
+    #region Public Methods and Operators
 
     /// <summary>
     /// The add field.
@@ -123,16 +124,24 @@ namespace rt.srz.database.business.standard
     public bool AddField(string fieldName)
     {
       if (string.IsNullOrEmpty(fieldName))
+      {
         return false;
+      }
+
       if (FieldNameResolver != null)
       {
         var field = FieldNameResolver(fieldName);
         if (field != FieldTypes.Undefined)
+        {
           return AddField(field);
+        }
       }
 
       if (fieldNames == null)
+      {
         fieldNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+      }
+
       return fieldNames.Add(fieldName);
     }
 
@@ -152,7 +161,10 @@ namespace rt.srz.database.business.standard
       if (field != FieldTypes.Undefined)
       {
         if (fields == null)
+        {
           fields = new HashSet<FieldTypes>();
+        }
+
         if (fields.Add(field))
         {
           switch (field)
@@ -197,7 +209,9 @@ namespace rt.srz.database.business.standard
         if (fields != null)
         {
           foreach (var field in fields)
+          {
             AddField(field.Trim());
+          }
         }
       }
     }
@@ -338,23 +352,33 @@ namespace rt.srz.database.business.standard
     {
       CheckWhetherResolved();
       if (fields != null && fields.Count > 0)
+      {
         return fields.Contains(field);
+      }
+
       return true;
     }
 
+    #endregion
+
     // --------------------------------------------------------
     // privates
+    #region Methods
 
     /// <summary>
-    /// The check whether resolved.
+    ///   The check whether resolved.
     /// </summary>
     /// <exception cref="InvalidOperationException">
     /// </exception>
     private void CheckWhetherResolved()
     {
       if (fieldNames != null && fieldNames.Count > 0)
+      {
         throw new InvalidOperationException("имена полей не разрешены в их идексы");
+      }
     }
+
+    #endregion
 
     // --------------------------------------------------------
   }

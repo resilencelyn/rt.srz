@@ -1,19 +1,18 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InterceptedBase.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="InterceptedBase.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
 //   Базовый класс, реализующий механизм вызова перехватчиков
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace rt.core.services.aspects
 {
   #region references
 
   using System;
+  using System.Collections.Generic;
   using System.Xml.Serialization;
 
   #endregion
@@ -23,19 +22,32 @@ namespace rt.core.services.aspects
   /// </summary>
   public abstract class InterceptedBase : IIntercepted
   {
+    #region Fields
+
     /// <summary>
     ///   Интерцепторы
     /// </summary>
     private readonly List<IMethodInterceptor> interceptors = new List<IMethodInterceptor> { new LoggingInterceptor() };
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
-    /// Gets the interceptors.
+    ///   Gets the interceptors.
     /// </summary>
     [XmlIgnore]
     public List<IMethodInterceptor> Interceptors
     {
-      get { return interceptors; }
+      get
+      {
+        return interceptors;
+      }
     }
+
+    #endregion
+
+    #region Public Methods and Operators
 
     /// <summary>
     /// Вызов аспектов
@@ -64,6 +76,10 @@ namespace rt.core.services.aspects
       return methodInterceptor.InvokeMethod(() => InvokeInterceptors(targetMethod, index), targetMethod);
     }
 
+    #endregion
+
+    #region Methods
+
     /// <summary>
     /// Вызов аспектов
     /// </summary>
@@ -85,5 +101,7 @@ namespace rt.core.services.aspects
       var index = interceptorIndex + 1;
       methodInterceptor.InvokeMethod(() => InvokeInterceptors(targetMethod, index), targetMethod);
     }
+
+    #endregion
   }
 }

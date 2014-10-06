@@ -1,21 +1,45 @@
-﻿using NHibernate;
-using rt.srz.business.Properties;
-using rt.srz.model.logicalcontrol.exceptions;
-using rt.srz.model.srz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ValidatorStatementFieldLength.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The validator statement field length.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.manager.logicalcontrol.simple
 {
+  using NHibernate;
+
+  using rt.srz.business.Properties;
+  using rt.srz.model.enumerations;
+  using rt.srz.model.logicalcontrol.exceptions;
+  using rt.srz.model.srz;
+
+  /// <summary>
+  /// The validator statement field length.
+  /// </summary>
   public class ValidatorStatementFieldLength : Check
   {
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ValidatorStatementFieldLength"/> class.
+    /// </summary>
+    /// <param name="sessionFactory">
+    /// The session factory.
+    /// </param>
+    public ValidatorStatementFieldLength(ISessionFactory sessionFactory)
+      : base(CheckLevelEnum.Simple, sessionFactory)
+    {
+    }
+
+    #endregion
 
     #region Public Properties
 
     /// <summary>
-    /// Gets the caption.
+    ///   Gets the caption.
     /// </summary>
     public override string Caption
     {
@@ -27,10 +51,14 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
     #endregion
 
-    public ValidatorStatementFieldLength(ISessionFactory sessionFactory) : base (CheckLevelEnum.Simple, sessionFactory)
-    {
-    }
+    #region Public Methods and Operators
 
+    /// <summary>
+    /// The check object.
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
     public override void CheckObject(Statement statement)
     {
       Validate(statement.NumberPolicy, 35, "Номер ранее выданного полиса");
@@ -88,12 +116,43 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       Validate(statement.Address2, "адреса проживания");
     }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// The get display field name.
+    /// </summary>
+    /// <param name="displayFieldName">
+    /// The display field name.
+    /// </param>
+    /// <param name="suffix">
+    /// The suffix.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    private string GetDisplayFieldName(string displayFieldName, string suffix)
+    {
+      return string.Format("{0} {1}", displayFieldName, suffix);
+    }
+
+    /// <summary>
+    /// The validate.
+    /// </summary>
+    /// <param name="address">
+    /// The address.
+    /// </param>
+    /// <param name="suffix">
+    /// The suffix.
+    /// </param>
     private void Validate(address address, string suffix)
     {
       if (address == null)
       {
         return;
       }
+
       Validate(address.Postcode, 10, GetDisplayFieldName("Индекс", suffix));
       Validate(address.House, 20, GetDisplayFieldName("Дом", suffix));
       Validate(address.Housing, 20, GetDisplayFieldName("Корпус", suffix));
@@ -106,22 +165,33 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       Validate(address.Street, 50, GetDisplayFieldName("Улица", suffix));
     }
 
-    private string GetDisplayFieldName(string displayFieldName, string suffix)
-    {
-      return string.Format("{0} {1}", displayFieldName, suffix);
-    }
-
+    /// <summary>
+    /// The validate.
+    /// </summary>
+    /// <param name="fieldValue">
+    /// The field value.
+    /// </param>
+    /// <param name="fieldLengthInDatabase">
+    /// The field length in database.
+    /// </param>
+    /// <param name="displayFieldName">
+    /// The display field name.
+    /// </param>
+    /// <exception cref="FieldLengthException">
+    /// </exception>
     private void Validate(string fieldValue, int fieldLengthInDatabase, string displayFieldName)
     {
       if (string.IsNullOrEmpty(fieldValue))
       {
         return;
       }
+
       if (fieldValue.Length > fieldLengthInDatabase)
       {
         throw new FieldLengthException(displayFieldName);
       }
     }
 
+    #endregion
   }
 }

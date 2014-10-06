@@ -1,15 +1,18 @@
-﻿//-------------------------------------------------------------------------------------
-// <copyright file="UserGroupRole.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserGroupRole.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------
+// <summary>
+//   The UserGroupRole.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.model.core
 {
   /// <summary>
-  /// The UserGroupRole.
+  ///   The UserGroupRole.
   /// </summary>
-  public partial class UserGroupRole 
+  public partial class UserGroupRole
   {
   }
 }

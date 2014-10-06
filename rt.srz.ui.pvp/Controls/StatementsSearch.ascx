@@ -2,7 +2,6 @@
 <%@ Import Namespace="rt.srz.model.dto" %>
 <%@ Import Namespace="rt.srz.model.srz.concepts" %>
 <%@ Import Namespace="rt.core.services" %>
-<%@ Import Namespace="rt.srz.services.Security" %>
 
 <%@ Register Src="CustomPager/Pager.ascx" TagPrefix="uc" TagName="Pager" %>
 <%@ Register Src="DocumentUDLUserControl.ascx" TagPrefix="uc" TagName="DocumentUDL" %>
@@ -270,7 +269,7 @@
   $(document).ready(function () {
     SetDesignerSettingsDatesAndErrors();
     limitKeyPressForLFM();
-    window.barcodeReader.Start('<%= SecurityService.GetSetting("COMPort") != null ? SecurityService.GetSetting("COMPort").ValueString : string.Empty %>');
+    window.barcodeReader.Start('<%= StatementService.GetCurrentSetting("COMPort") != null ? StatementService.GetCurrentSetting("COMPort").ValueString : string.Empty %>');
   });
 
   //Закрытия окна для ввода пина по ESC

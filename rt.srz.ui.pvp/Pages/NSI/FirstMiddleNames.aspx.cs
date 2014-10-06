@@ -15,6 +15,8 @@ using SortDirection = rt.core.model.dto.enumerations.SortDirection;
 
 namespace rt.srz.ui.pvp.Pages.NSI
 {
+  using rt.core.model.interfaces;
+
   public partial class FirstMiddleNames : System.Web.UI.Page
   {
     private INsiService _service;
