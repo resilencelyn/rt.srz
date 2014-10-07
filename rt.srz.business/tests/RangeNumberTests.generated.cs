@@ -30,49 +30,50 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IRangeNumberManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.RangeNumber CreateNewRangeNumber()
+		public static RangeNumber CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.RangeNumber entity = new rt.srz.model.srz.RangeNumber();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.RangelFrom = 23;
-			entity.RangelTo = 78;
-			entity.ChangeDate = System.DateTime.Now;
+      entity.RangelFrom = 1;
+      entity.RangelTo = 87;
+      entity.ChangeDate = System.DateTime.Now;
 			
 			using(rt.srz.business.manager.IRangeNumberManager rangeNumberMemberManager = ObjectFactory.GetInstance<IRangeNumberManager>())
 				{
-				    var all = rangeNumberMemberManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Parent = all[0];
-					}
+           entity.Parent = null;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
 				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Smo = all[0];
-					}
+            Organisation entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = OrganisationTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Smo = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.ITemplateManager templateManager = ObjectFactory.GetInstance<ITemplateManager>())
 				{
-				    var all = templateManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Template = all[0];
-					}
+           entity.Template = null;
 				}	
 			
 			return entity;
@@ -90,7 +91,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.RangeNumber entity = CreateNewRangeNumber();
+				rt.srz.model.srz.RangeNumber entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -106,7 +107,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.RangeNumber entityA = CreateNewRangeNumber();
+                rt.srz.model.srz.RangeNumber entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.RangeNumber entityB = manager.GetById(entityA.Id);
@@ -123,14 +124,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.RangeNumber entityC = CreateNewRangeNumber();
+				rt.srz.model.srz.RangeNumber entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.RangeNumber entityA = GetFirstRangeNumber();
 				
-				entityA.RangelFrom = 21;
+				entityA.RangelFrom = 86;
 				
 				manager.Update(entityA);
 
@@ -148,7 +149,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.RangeNumber entityC = CreateNewRangeNumber();
+			    rt.srz.model.srz.RangeNumber entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

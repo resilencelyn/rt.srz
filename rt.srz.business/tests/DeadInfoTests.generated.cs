@@ -30,23 +30,22 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IDeadInfoManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.DeadInfo CreateNewDeadInfo()
+		public static DeadInfo CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.DeadInfo entity = new rt.srz.model.srz.DeadInfo();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.DateDead = System.DateTime.Now;
-			entity.ActRecordDate = System.DateTime.Now;
-			entity.ActRecordNumber = 34;
+      entity.DateDead = System.DateTime.Now;
+      entity.ActRecordDate = System.DateTime.Now;
+      entity.ActRecordNumber = 57;
 			
 			return entity;
 		}
@@ -63,7 +62,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.DeadInfo entity = CreateNewDeadInfo();
+				rt.srz.model.srz.DeadInfo entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -79,7 +78,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.DeadInfo entityA = CreateNewDeadInfo();
+                rt.srz.model.srz.DeadInfo entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.DeadInfo entityB = manager.GetById(entityA.Id);
@@ -96,7 +95,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.DeadInfo entityC = CreateNewDeadInfo();
+				rt.srz.model.srz.DeadInfo entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -121,7 +120,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.DeadInfo entityC = CreateNewDeadInfo();
+			    rt.srz.model.srz.DeadInfo entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

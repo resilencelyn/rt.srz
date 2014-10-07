@@ -19,6 +19,7 @@ namespace rt.srz.business.manager
 		IList<UserAction> GetByEventId(System.Int32 concept);
 		IList<UserAction> GetByStatementId(System.Guid statement);
 		IList<UserAction> GetByUserId(System.Guid userId);
+    
     }
 
     partial class UserActionManager : ManagerBase<rt.srz.model.srz.UserAction, int>, IUserActionManager

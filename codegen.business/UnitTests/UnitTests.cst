@@ -52,14 +52,13 @@ namespace <%= UnitTestNamespace %>
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected <%= ManagerNamespace %>.I<%= GetClassName(SourceTable) %>Manager manager;
         
         protected ISession session { get; set; }
 		
-		protected <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> CreateNew<%= GetClassName(SourceTable) %>()
+		public static <%= GetClassName(SourceTable) %> CreateNew (int depth = 0)
 		{
 			<%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entity = new <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %>();
 			
@@ -69,19 +68,38 @@ namespace <%= UnitTestNamespace %>
 			<% } %>
 			
 			<% // Primitives %>
-			<% foreach(EntityMember em in entityManager.Members) { %>
-			entity.<%= em.PropertyName %> = <%= GetUnitTestInitialization(em.Column) %>;
-			<% } %>
+			<% foreach(EntityMember em in entityManager.Members) { if (em.SetNull) {%>
+      <% if (em.PropertyName != "UserId") {%>
+			entity.<%= em.PropertyName %> = null;
+      <% } else {%>
+      entity.<%= em.PropertyName %> = new Guid("01000000-0000-0000-0000-000000000000");
+      <% } } else {%>
+      entity.<%= em.PropertyName %> = <%= GetUnitTestInitialization(em.Column) %>;
+      <% } } %>
 			<% // Many-To-One %>
 			<% foreach(EntityAssociation association in entityManager.ManyToOne) { %>
 			
 			using(<%= ManagerNamespace %>.I<%= association.ClassName %>Manager <%= association.VariableName %>Manager = ObjectFactory.GetInstance<I<%= association.ClassName %>Manager>())
 				{
+           <% if (!association.Column.AllowDBNull) { %> 
 				    var all = <%= association.VariableName %>Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.<%= association.ColumnName.Replace("ID", "").Replace("Id", "").Replace("_", "") %> = all[0];
-					}
+            <%= association.ClassName %> entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = <%= association.ClassName %>Tests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.<%= association.ColumnName.Replace("ID", "").Replace("Id", "").Replace("_", "") %> = entityRef ;
+           <% } else { %>
+           entity.<%= association.ColumnName.Replace("ID", "").Replace("Id", "").Replace("_", "") %> = null;
+           <% } %>
 				}	
 			<% } %>
 			
@@ -100,7 +118,7 @@ namespace <%= UnitTestNamespace %>
         {
             try
             {
-				<%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entity = CreateNew<%= GetClassName(SourceTable) %>();
+				<%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -116,7 +134,7 @@ namespace <%= UnitTestNamespace %>
         {
             try
             {
-                <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityA = CreateNew<%= GetClassName(SourceTable) %>();
+                <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityA = CreateNew();
 				manager.Save(entityA);
 
                 <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityB = manager.GetById(entityA.Id);
@@ -134,7 +152,7 @@ namespace <%= UnitTestNamespace %>
         {
             try
             {
-				<%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityC = CreateNew<%= GetClassName(SourceTable) %>();
+				<%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -162,7 +180,7 @@ namespace <%= UnitTestNamespace %>
         {
             try
             {
-			    <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityC = CreateNew<%= GetClassName(SourceTable) %>();
+			    <%= BusinessNamespace %>.<%= GetClassName(SourceTable) %> entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -201,14 +219,16 @@ public static string GetUnitTestInitialization(ColumnSchema column)
     string result;
 
     if (column.SystemType.Equals(typeof(String)))
-    {
-        StringBuilder sb = new StringBuilder();
-
-        int size = (column.Size > 0 && column.Size < 100) ? random.Next(1, column.Size) : 10;
-
-        sb.Append("\"");
-        for (int x = 0; x < size; x++)
+    {   
+        if (column.Name.ToLower() != "code")
         {
+          StringBuilder sb = new StringBuilder();
+
+          int size = (column.Size > 0 && column.Size < 100) ? random.Next(1, column.Size) : 10;
+
+          sb.Append("\"");
+          for (int x = 0; x < size; x++)
+          {
             switch (x % 5)
             {
                 case 0:
@@ -227,10 +247,13 @@ public static string GetUnitTestInitialization(ColumnSchema column)
                     sb.Append(" ");
                     break;
             }
-        }
-        sb.Append("\"");
+          }
+          sb.Append("\"");
 
-        result = sb.ToString();
+          result = sb.ToString();
+        }
+        else
+           result = "\"123\"";
     }
     else if (column.SystemType.Equals(typeof(DateTime)))
         result = "System.DateTime.Now";

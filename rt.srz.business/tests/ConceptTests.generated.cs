@@ -30,36 +30,31 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IConceptManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Concept CreateNewConcept()
+		public static Concept CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Concept entity = new rt.srz.model.srz.Concept();
 			
 			
-			entity.Code = "Test Test ";
-			entity.Name = "Test Test ";
-			entity.Description = "Test Test ";
-			entity.ShortName = "Test Test ";
-			entity.RelatedCode = "Test Test ";
-			entity.RelatedOid = "Test Test ";
-			entity.RelatedType = "Test Test ";
-			entity.DateFrom = System.DateTime.Now;
-			entity.DateTo = System.DateTime.Now;
-			entity.Relevance = 86;
+      entity.Code = "Test Test ";
+      entity.Name = "Test Test ";
+      entity.Description = "Test Test ";
+      entity.ShortName = "Test Test ";
+      entity.RelatedCode = "Test Test ";
+      entity.RelatedOid = "Test Test ";
+      entity.RelatedType = "Test Test ";
+      entity.DateFrom = System.DateTime.Now;
+      entity.DateTo = System.DateTime.Now;
+      entity.Relevance = 54;
 			
 			using(rt.srz.business.manager.IOidManager oidManager = ObjectFactory.GetInstance<IOidManager>())
 				{
-				    var all = oidManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Oid = all[0];
-					}
+           entity.Oid = null;
 				}	
 			
 			return entity;
@@ -77,7 +72,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Concept entity = CreateNewConcept();
+				rt.srz.model.srz.Concept entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -93,7 +88,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Concept entityA = CreateNewConcept();
+                rt.srz.model.srz.Concept entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Concept entityB = manager.GetById(entityA.Id);
@@ -110,7 +105,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Concept entityC = CreateNewConcept();
+				rt.srz.model.srz.Concept entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -135,7 +130,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Concept entityC = CreateNewConcept();
+			    rt.srz.model.srz.Concept entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -30,52 +30,81 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IIn1Manager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.In1 CreateNewIn1()
+		public static In1 CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.In1 entity = new rt.srz.model.srz.In1();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Number = default(Int16);
-			entity.PolisSeria = "Test Tes";
-			entity.PolisNumber = "Test Test Test Test Test Test Tes";
-			entity.DateFrom = System.DateTime.Now;
-			entity.DateTo = System.DateTime.Now;
-			entity.DateStop = System.DateTime.Now;
+      entity.Number = default(Int16);
+      entity.PolisSeria = "Test Test Test Test Te";
+      entity.PolisNumber = "Test Tes";
+      entity.DateFrom = System.DateTime.Now;
+      entity.DateTo = System.DateTime.Now;
+      entity.DateStop = System.DateTime.Now;
 			
 			using(rt.srz.business.manager.IQueryResponseManager queryResponseManager = ObjectFactory.GetInstance<IQueryResponseManager>())
 				{
 				    var all = queryResponseManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.QueryResponse = all[0];
-					}
+            QueryResponse entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = QueryResponseTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.QueryResponse = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.PolisType = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.PolisType = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
 				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Smo = all[0];
-					}
+            Organisation entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = OrganisationTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Smo = entityRef ;
 				}	
 			
 			return entity;
@@ -93,7 +122,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.In1 entity = CreateNewIn1();
+				rt.srz.model.srz.In1 entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -109,7 +138,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.In1 entityA = CreateNewIn1();
+                rt.srz.model.srz.In1 entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.In1 entityB = manager.GetById(entityA.Id);
@@ -126,7 +155,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.In1 entityC = CreateNewIn1();
+				rt.srz.model.srz.In1 entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -151,7 +180,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.In1 entityC = CreateNewIn1();
+			    rt.srz.model.srz.In1 entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class VsendTests : UnitTestbase
     {
         [SetUp]
@@ -31,20 +30,19 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IVsendManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Vsend CreateNewVsend()
+		public static Vsend CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Vsend entity = new rt.atl.model.atl.Vsend();
 			
 			
-			entity.Db = System.DateTime.Now;
-			entity.De = System.DateTime.Now;
+      entity.Db = System.DateTime.Now;
+      entity.De = System.DateTime.Now;
 			
 			return entity;
 		}
@@ -61,7 +59,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Vsend entity = CreateNewVsend();
+				rt.atl.model.atl.Vsend entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -77,7 +75,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Vsend entityA = CreateNewVsend();
+                rt.atl.model.atl.Vsend entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Vsend entityB = manager.GetById(entityA.Id);
@@ -94,7 +92,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Vsend entityC = CreateNewVsend();
+				rt.atl.model.atl.Vsend entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -119,7 +117,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Vsend entityC = CreateNewVsend();
+			    rt.atl.model.atl.Vsend entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

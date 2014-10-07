@@ -30,41 +30,46 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IContentManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Content CreateNewContent()
+		public static Content CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Content entity = new rt.srz.model.srz.Content();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.DocumentContent = new System.Byte[]{};
-			entity.ChangeDate = System.DateTime.Now;
-			entity.FileName = "Test Test Test ";
-			entity.DocumentContent64 = "Test Te";
+      entity.DocumentContent = new System.Byte[]{};
+      entity.ChangeDate = System.DateTime.Now;
+      entity.FileName = "Test Test Te";
+      entity.DocumentContent64 = "Test Test";
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.ContentType = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.ContentType = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonDatumManager insuredPersonDatumManager = ObjectFactory.GetInstance<IInsuredPersonDatumManager>())
 				{
-				    var all = insuredPersonDatumManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPersonData = all[0];
-					}
+           entity.InsuredPersonData = null;
 				}	
 			
 			return entity;
@@ -82,7 +87,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Content entity = CreateNewContent();
+				rt.srz.model.srz.Content entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -98,7 +103,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Content entityA = CreateNewContent();
+                rt.srz.model.srz.Content entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Content entityB = manager.GetById(entityA.Id);
@@ -115,7 +120,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Content entityC = CreateNewContent();
+				rt.srz.model.srz.Content entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -140,7 +145,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Content entityC = CreateNewContent();
+			    rt.srz.model.srz.Content entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

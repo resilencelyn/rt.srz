@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class ImTests : UnitTestbase
     {
         [SetUp]
@@ -31,20 +30,19 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IImManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Im CreateNewIm()
+		public static Im CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Im entity = new rt.atl.model.atl.Im();
 			
 			
-			entity.Caption = "Test Test Tes";
-			entity.W = 71;
+      entity.Caption = "Test Test Test Test Test Test Tes";
+      entity.W = 81;
 			
 			return entity;
 		}
@@ -61,7 +59,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Im entity = CreateNewIm();
+				rt.atl.model.atl.Im entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -77,7 +75,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Im entityA = CreateNewIm();
+                rt.atl.model.atl.Im entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Im entityB = manager.GetById(entityA.Id);
@@ -94,14 +92,14 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Im entityC = CreateNewIm();
+				rt.atl.model.atl.Im entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.atl.model.atl.Im entityA = GetFirstIm();
 				
-				entityA.Caption = "Test ";
+				entityA.Caption = "Test Test Test";
 				
 				manager.Update(entityA);
 
@@ -119,7 +117,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Im entityC = CreateNewIm();
+			    rt.atl.model.atl.Im entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

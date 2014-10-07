@@ -30,33 +30,42 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IWorkstationManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Workstation CreateNewWorkstation()
+		public static Workstation CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Workstation entity = new rt.srz.model.srz.Workstation();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test Test Test Test Test Test ";
-			entity.UecReaderName = "Test Test ";
-			entity.UecCerticateType = default(Byte);
-			entity.SmardCardReaderName = "Test Test ";
-			entity.SmardCardTokenReaderName = "Test Test ";
+      entity.Name = "Test Test Test Test Test Test Test Test Test Test";
+      entity.UecReaderName = "Test Test ";
+      entity.UecCerticateType = default(Byte);
+      entity.SmardCardReaderName = "Test Test ";
+      entity.SmardCardTokenReaderName = "Test Test ";
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
 				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.PointDistributionPolicy = all[0];
-					}
+            Organisation entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = OrganisationTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.PointDistributionPolicy = entityRef ;
 				}	
 			
 			return entity;
@@ -74,7 +83,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Workstation entity = CreateNewWorkstation();
+				rt.srz.model.srz.Workstation entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -90,7 +99,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Workstation entityA = CreateNewWorkstation();
+                rt.srz.model.srz.Workstation entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Workstation entityB = manager.GetById(entityA.Id);
@@ -107,14 +116,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Workstation entityC = CreateNewWorkstation();
+				rt.srz.model.srz.Workstation entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.Workstation entityA = GetFirstWorkstation();
 				
-				entityA.Name = "Test ";
+				entityA.Name = "Test Test Test Test Test Test Test Test Test";
 				
 				manager.Update(entityA);
 
@@ -132,7 +141,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Workstation entityC = CreateNewWorkstation();
+			    rt.srz.model.srz.Workstation entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

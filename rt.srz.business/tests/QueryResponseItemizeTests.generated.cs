@@ -30,14 +30,13 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IQueryResponseItemizeManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.QueryResponseItemize CreateNewQueryResponseItemize()
+		public static QueryResponseItemize CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.QueryResponseItemize entity = new rt.srz.model.srz.QueryResponseItemize();
 			
@@ -48,19 +47,39 @@ namespace rt.srz.business.tests
 			using(rt.srz.business.manager.IQueryResponseManager queryResponseManager = ObjectFactory.GetInstance<IQueryResponseManager>())
 				{
 				    var all = queryResponseManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.QueryResponse = all[0];
-					}
+            QueryResponse entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = QueryResponseTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.QueryResponse = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.ISearchKeyTypeManager searchKeyTypeManager = ObjectFactory.GetInstance<ISearchKeyTypeManager>())
 				{
 				    var all = searchKeyTypeManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.KeyType = all[0];
-					}
+            SearchKeyType entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = SearchKeyTypeTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.KeyType = entityRef ;
 				}	
 			
 			return entity;
@@ -78,7 +97,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.QueryResponseItemize entity = CreateNewQueryResponseItemize();
+				rt.srz.model.srz.QueryResponseItemize entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -94,7 +113,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.QueryResponseItemize entityA = CreateNewQueryResponseItemize();
+                rt.srz.model.srz.QueryResponseItemize entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.QueryResponseItemize entityB = manager.GetById(entityA.Id);
@@ -111,7 +130,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.QueryResponseItemize entityC = CreateNewQueryResponseItemize();
+			    rt.srz.model.srz.QueryResponseItemize entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

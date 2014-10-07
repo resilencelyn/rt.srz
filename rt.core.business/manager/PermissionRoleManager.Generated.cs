@@ -18,6 +18,7 @@ namespace rt.core.business.manager
 		// Get Methods
 		IList<PermissionRole> GetByPermissionId(System.Guid permission);
 		IList<PermissionRole> GetByRoleId(System.Guid role);
+    
     }
 
     partial class PermissionRoleManager : ManagerBase<rt.core.model.core.PermissionRole, System.Guid>, IPermissionRoleManager

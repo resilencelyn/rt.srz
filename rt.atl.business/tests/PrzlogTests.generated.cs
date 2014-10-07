@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class PrzlogTests : UnitTestbase
     {
         [SetUp]
@@ -31,33 +30,32 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IPrzlogManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Przlog CreateNewPrzlog()
+		public static Przlog CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Przlog entity = new rt.atl.model.atl.Przlog();
 			
 			
-			entity.Filename = "Test Test ";
-			entity.Q = "Tes";
-			entity.Prz = "Tes";
-			entity.Mm = 74;
-			entity.Gg = 79;
-			entity.Zz = 28;
-			entity.Dtin = System.DateTime.Now;
-			entity.Dtout = System.DateTime.Now;
-			entity.Reccount = 57;
-			entity.Tpfile = "Test Te";
-			entity.Nerr = 22;
-			entity.Nz = 29;
-			entity.Errfile = "Test Test ";
-			entity.St = 55;
-			entity.Vers = "T";
+      entity.Filename = "Test Test Test Test Te";
+      entity.Q = "Tes";
+      entity.Prz = "Test T";
+      entity.Mm = 45;
+      entity.Gg = 40;
+      entity.Zz = 73;
+      entity.Dtin = System.DateTime.Now;
+      entity.Dtout = System.DateTime.Now;
+      entity.Reccount = 27;
+      entity.Tpfile = "Test T";
+      entity.Nerr = 29;
+      entity.Nz = 77;
+      entity.Errfile = "Test Test ";
+      entity.St = 86;
+      entity.Vers = "Te";
 			
 			return entity;
 		}
@@ -74,7 +72,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Przlog entity = CreateNewPrzlog();
+				rt.atl.model.atl.Przlog entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -90,7 +88,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Przlog entityA = CreateNewPrzlog();
+                rt.atl.model.atl.Przlog entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Przlog entityB = manager.GetById(entityA.Id);
@@ -107,14 +105,14 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Przlog entityC = CreateNewPrzlog();
+				rt.atl.model.atl.Przlog entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.atl.model.atl.Przlog entityA = GetFirstPrzlog();
 				
-				entityA.Filename = "Test Test Test Test Te";
+				entityA.Filename = "Test Test Test Test Test Test Test Test Test T";
 				
 				manager.Update(entityA);
 
@@ -132,7 +130,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Przlog entityC = CreateNewPrzlog();
+			    rt.atl.model.atl.Przlog entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

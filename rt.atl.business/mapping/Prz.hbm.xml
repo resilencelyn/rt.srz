@@ -1,24 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
-  <class name="rt.atl.model.atl.Prz, rt.atl.model" table="[dbo].[PRZ]" lazy="true">
-    <id name="Id" column="[ID]">
-      <generator class="native" />
-    </id>
-    <property name="Dedit" column="[DEDIT]" />
-    <property name="Caption" column="[CAPTION]" />
-    <property name="Code" column="[CODE]" />
-    <property name="Fullname" column="[FULLNAME]" />
-    <property name="Ogrn" column="[OGRN]" />
-    <property name="Bossname" column="[BOSSNAME]" />
-    <property name="Buhname" column="[BUHNAME]" />
-    <property name="Email" column="[EMAIL]" />
-    <property name="Tel1" column="[TEL1]" />
-    <property name="Tel2" column="[TEL2]" />
-    <property name="Addr" column="[ADDR]" />
-    <property name="Okato" column="[OKATO]" />
-    <property name="Extcode" column="[EXTCODE]" />
-    <property name="Main" column="[MAIN]" />
-    <many-to-one name="SMO" column="[SMO]" class="Smo" property-ref="Code" />
-  </class>
+	<class name="rt.atl.model.atl.Prz, rt.atl.model" table="[dbo].[PRZ]" lazy="true">
+		<id name="Id" column="[ID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Dedit" column="[DEDIT]" />
+		<property name="Caption" column="[CAPTION]" />
+		<property name="Code" column="[CODE]" />
+		<property name="Fullname" column="[FULLNAME]" />
+		<property name="Ogrn" column="[OGRN]" />
+		<property name="Bossname" column="[BOSSNAME]" />
+		<property name="Buhname" column="[BUHNAME]" />
+		<property name="Email" column="[EMAIL]" />
+		<property name="Tel1" column="[TEL1]" />
+		<property name="Tel2" column="[TEL2]" />
+		<property name="Addr" column="[ADDR]" />
+		<property name="Okato" column="[OKATO]" />
+		<property name="Extcode" column="[EXTCODE]" />
+		<property name="Main" column="[MAIN]" />
+		<many-to-one name="SMO" column="[SMO]" class="Smo"  property-ref="Code"  />
+	</class>
 </hibernate-mapping>
+

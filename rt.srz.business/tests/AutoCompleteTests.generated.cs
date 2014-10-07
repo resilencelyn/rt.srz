@@ -30,39 +30,44 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IAutoCompleteManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.AutoComplete CreateNewAutoComplete()
+		public static AutoComplete CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.AutoComplete entity = new rt.srz.model.srz.AutoComplete();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test ";
-			entity.Relevance = 21;
+      entity.Name = "Test Test ";
+      entity.Relevance = 10;
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Gender = all[0];
-					}
+           entity.Gender = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept2Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = concept2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Type = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Type = entityRef ;
 				}	
 			
 			return entity;
@@ -80,7 +85,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.AutoComplete entity = CreateNewAutoComplete();
+				rt.srz.model.srz.AutoComplete entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -96,7 +101,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.AutoComplete entityA = CreateNewAutoComplete();
+                rt.srz.model.srz.AutoComplete entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.AutoComplete entityB = manager.GetById(entityA.Id);
@@ -113,7 +118,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.AutoComplete entityC = CreateNewAutoComplete();
+				rt.srz.model.srz.AutoComplete entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -138,7 +143,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.AutoComplete entityC = CreateNewAutoComplete();
+			    rt.srz.model.srz.AutoComplete entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

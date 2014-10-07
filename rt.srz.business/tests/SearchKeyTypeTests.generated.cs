@@ -30,72 +30,77 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ISearchKeyTypeManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.SearchKeyType CreateNewSearchKeyType()
+		public static SearchKeyType CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.SearchKeyType entity = new rt.srz.model.srz.SearchKeyType();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Code = "Test Test Test Test Test Tes";
-			entity.Name = "Test Test Test Test Test Test";
-			entity.IsActive = true;
-			entity.FirstName = true;
-			entity.LastName = true;
-			entity.MiddleName = true;
-			entity.Birthday = true;
-			entity.Birthplace = true;
-			entity.Snils = true;
-			entity.DocumentType = true;
-			entity.DocumentSeries = true;
-			entity.DocumentNumber = true;
-			entity.Okato = true;
-			entity.PolisType = true;
-			entity.PolisSeria = true;
-			entity.PolisNumber = true;
-			entity.FirstNameLength = default(Int16);
-			entity.LastNameLength = default(Int16);
-			entity.MiddleNameLength = default(Int16);
-			entity.BirthdayLength = default(Int16);
-			entity.AddressStreet = true;
-			entity.AddressStreetLength = default(Int16);
-			entity.AddressHouse = true;
-			entity.AddressRoom = true;
-			entity.AddressStreet2 = true;
-			entity.AddressStreetLength2 = default(Int16);
-			entity.AddressHouse2 = true;
-			entity.AddressRoom2 = true;
-			entity.DeleteTwinChar = true;
-			entity.IdenticalLetters = "Test Test ";
-			entity.Recalculated = true;
-			entity.Enp = true;
-			entity.MainEnp = true;
-			entity.Weight = 12;
-			entity.Insertion = true;
+      entity.Code = "Test Test Test Test Test Test Test Test Te";
+      entity.Name = "Test Test Test Test Test";
+      entity.IsActive = true;
+      entity.FirstName = true;
+      entity.LastName = true;
+      entity.MiddleName = true;
+      entity.Birthday = true;
+      entity.Birthplace = true;
+      entity.Snils = true;
+      entity.DocumentType = true;
+      entity.DocumentSeries = true;
+      entity.DocumentNumber = true;
+      entity.Okato = true;
+      entity.PolisType = true;
+      entity.PolisSeria = true;
+      entity.PolisNumber = true;
+      entity.FirstNameLength = default(Int16);
+      entity.LastNameLength = default(Int16);
+      entity.MiddleNameLength = default(Int16);
+      entity.BirthdayLength = default(Int16);
+      entity.AddressStreet = true;
+      entity.AddressStreetLength = default(Int16);
+      entity.AddressHouse = true;
+      entity.AddressRoom = true;
+      entity.AddressStreet2 = true;
+      entity.AddressStreetLength2 = default(Int16);
+      entity.AddressHouse2 = true;
+      entity.AddressRoom2 = true;
+      entity.DeleteTwinChar = true;
+      entity.IdenticalLetters = "Test Test ";
+      entity.Recalculated = true;
+      entity.Enp = true;
+      entity.MainEnp = true;
+      entity.Weight = 14;
+      entity.Insertion = true;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.OperationKey = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.OperationKey = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
-				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Tfoms = all[0];
-					}
+           entity.Tfoms = null;
 				}	
 			
 			return entity;
@@ -113,7 +118,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.SearchKeyType entity = CreateNewSearchKeyType();
+				rt.srz.model.srz.SearchKeyType entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -129,7 +134,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.SearchKeyType entityA = CreateNewSearchKeyType();
+                rt.srz.model.srz.SearchKeyType entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.SearchKeyType entityB = manager.GetById(entityA.Id);
@@ -146,14 +151,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.SearchKeyType entityC = CreateNewSearchKeyType();
+				rt.srz.model.srz.SearchKeyType entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.SearchKeyType entityA = GetFirstSearchKeyType();
 				
-				entityA.Code = "Test Test Tes";
+				entityA.Code = "Test Test Test Test Test Test Test Te";
 				
 				manager.Update(entityA);
 
@@ -171,7 +176,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.SearchKeyType entityC = CreateNewSearchKeyType();
+			    rt.srz.model.srz.SearchKeyType entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

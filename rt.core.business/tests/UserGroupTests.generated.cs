@@ -37,31 +37,23 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.UserGroup CreateNewUserGroup()
+		public static UserGroup CreateNew (int depth = 0)
 		{
 			rt.core.model.core.UserGroup entity = new rt.core.model.core.UserGroup();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FakeField = 19;
+      entity.FakeField = 7;
 			
 			using(rt.core.business.manager.IGroupManager groupManager = ObjectFactory.GetInstance<IGroupManager>())
 				{
-				    var all = groupManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Group = all[0];
-					}
+           entity.Group = null;
 				}	
 			
 			using(rt.core.business.manager.IUserManager userManager = ObjectFactory.GetInstance<IUserManager>())
 				{
-				    var all = userManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.User = all[0];
-					}
+           entity.User = null;
 				}	
 			
 			return entity;
@@ -79,7 +71,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.UserGroup entity = CreateNewUserGroup();
+				rt.core.model.core.UserGroup entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -95,7 +87,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.UserGroup entityA = CreateNewUserGroup();
+                rt.core.model.core.UserGroup entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.UserGroup entityB = manager.GetById(entityA.Id);
@@ -112,14 +104,14 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.UserGroup entityC = CreateNewUserGroup();
+				rt.core.model.core.UserGroup entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.core.model.core.UserGroup entityA = GetFirstUserGroup();
 				
-				entityA.FakeField = 2;
+				entityA.FakeField = 4;
 				
 				manager.Update(entityA);
 
@@ -137,7 +129,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.UserGroup entityC = CreateNewUserGroup();
+			    rt.core.model.core.UserGroup entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

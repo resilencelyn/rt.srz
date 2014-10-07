@@ -30,47 +30,62 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IMessageStatementManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.MessageStatement CreateNewMessageStatement()
+		public static MessageStatement CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.MessageStatement entity = new rt.srz.model.srz.MessageStatement();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Version = 73;
+      entity.Version = 51;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Type = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Type = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IMessageManager messageManager = ObjectFactory.GetInstance<IMessageManager>())
 				{
-				    var all = messageManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Message = all[0];
-					}
+           entity.Message = null;
 				}	
 			
 			using(rt.srz.business.manager.IStatementManager statementManager = ObjectFactory.GetInstance<IStatementManager>())
 				{
 				    var all = statementManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Statement = all[0];
-					}
+            Statement entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = StatementTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Statement = entityRef ;
 				}	
 			
 			return entity;
@@ -88,7 +103,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.MessageStatement entity = CreateNewMessageStatement();
+				rt.srz.model.srz.MessageStatement entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -104,7 +119,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.MessageStatement entityA = CreateNewMessageStatement();
+                rt.srz.model.srz.MessageStatement entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.MessageStatement entityB = manager.GetById(entityA.Id);
@@ -121,14 +136,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.MessageStatement entityC = CreateNewMessageStatement();
+				rt.srz.model.srz.MessageStatement entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.MessageStatement entityA = GetFirstMessageStatement();
 				
-				entityA.Version = 39;
+				entityA.Version = 79;
 				
 				manager.Update(entityA);
 
@@ -146,7 +161,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.MessageStatement entityC = CreateNewMessageStatement();
+			    rt.srz.model.srz.MessageStatement entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

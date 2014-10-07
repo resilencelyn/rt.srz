@@ -30,23 +30,22 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IContactInfoManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.ContactInfo CreateNewContactInfo()
+		public static ContactInfo CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.ContactInfo entity = new rt.srz.model.srz.ContactInfo();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.HomePhone = "Test Test Test Test Test Test Test Test T";
-			entity.WorkPhone = "Test Test Test Test Test Tes";
-			entity.Email = "Test Test Test Test Test";
+      entity.HomePhone = "Tes";
+      entity.WorkPhone = "Test Test Test Test Test Test Test Test Test Te";
+      entity.Email = "Test Test Test Test T";
 			
 			return entity;
 		}
@@ -63,7 +62,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.ContactInfo entity = CreateNewContactInfo();
+				rt.srz.model.srz.ContactInfo entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -79,7 +78,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.ContactInfo entityA = CreateNewContactInfo();
+                rt.srz.model.srz.ContactInfo entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.ContactInfo entityB = manager.GetById(entityA.Id);
@@ -96,14 +95,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.ContactInfo entityC = CreateNewContactInfo();
+				rt.srz.model.srz.ContactInfo entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.ContactInfo entityA = GetFirstContactInfo();
 				
-				entityA.HomePhone = "Test Test Test Test Test Test Test";
+				entityA.HomePhone = "Test Test Test ";
 				
 				manager.Update(entityA);
 
@@ -121,7 +120,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.ContactInfo entityC = CreateNewContactInfo();
+			    rt.srz.model.srz.ContactInfo entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

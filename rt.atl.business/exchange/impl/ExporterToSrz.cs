@@ -308,7 +308,7 @@ namespace rt.atl.business.exchange.impl
             }
 
             // Создаем ссвязку в базе данных СРЗ
-            sessionAtl.Save(new ExchangePvp { PrzBuff = przBuff, StatementId = st.Id, });
+            sessionAtl.Save(new ExchangePvp { PrzBuff = przBuff, StatementId = st.Id.ToString("D"), });
           }
         }
 
@@ -328,7 +328,7 @@ namespace rt.atl.business.exchange.impl
             }
             else
             {
-              sessionAtl.Save(new ExchangePvp { PrzBuff = przBuffPolis, StatementId = st.Id, });
+              sessionAtl.Save(new ExchangePvp { PrzBuff = przBuffPolis, StatementId = st.Id.ToString("D"), });
             }
           }
         }

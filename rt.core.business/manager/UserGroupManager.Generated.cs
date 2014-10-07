@@ -18,6 +18,7 @@ namespace rt.core.business.manager
 		// Get Methods
 		IList<UserGroup> GetByGroupId(System.Guid group);
 		IList<UserGroup> GetByUserId(System.Guid user);
+    
     }
 
     partial class UserGroupManager : ManagerBase<rt.core.model.core.UserGroup, System.Guid>, IUserGroupManager

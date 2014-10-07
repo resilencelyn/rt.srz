@@ -126,8 +126,10 @@
     </Compile>
     <Compile Include="manager\IOkatoManager.cs" />
     <Compile Include="manager\IOtManager.cs" />
+    <Compile Include="manager\IPoliManager.cs" />
     <Compile Include="manager\IUechiststatusManager.cs" />
     <Compile Include="manager\IUecManager.cs" />
+    <Compile Include="manager\IVsendManager.cs" />
     <Compile Include="manager\OkatoManager.cs" />
     <Compile Include="manager\OkatoManager.Generated.cs">
       <DependentUpon>OkatoManager.cs</DependentUpon>
@@ -224,6 +226,10 @@
     <Compile Include="tests\OtTests.cs" />
     <Compile Include="tests\OtTests.generated.cs">
       <DependentUpon>OtTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests\personTests.cs" />
+    <Compile Include="tests\personTests.generated.cs">
+      <DependentUpon>personTests.cs</DependentUpon>
     </Compile>
     <Compile Include="tests\PoliTests.cs" />
     <Compile Include="tests\PoliTests.generated.cs">
@@ -375,6 +381,7 @@
     <EmbeddedResource Include="mapping\Uec.hbm.xml" />
     <EmbeddedResource Include="mapping\Uechiststatus.hbm.xml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

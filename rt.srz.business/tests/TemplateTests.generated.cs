@@ -30,37 +30,36 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ITemplateManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Template CreateNewTemplate()
+		public static Template CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Template entity = new rt.srz.model.srz.Template();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test ";
-			entity.PosSmo = "T";
-			entity.PosAddress = "Test Tes";
-			entity.PosDay1 = "Test Te";
-			entity.PosMonth1 = "Test Tes";
-			entity.PosYear1 = "Test Test";
-			entity.PosBirthplace = "Test Te";
-			entity.PosMale = "Test Tes";
-			entity.PosFemale = "Test Test ";
-			entity.PosDay2 = "Test T";
-			entity.PosMonth2 = "Test ";
-			entity.PosYear2 = "Test Test ";
-			entity.PosFio = "Test Test Tes";
-			entity.PosLine1 = "Test Te";
-			entity.PosLin2 = "Test Test T";
-			entity.PosLine3 = "Test Test ";
-			entity.Default = true;
+      entity.Name = "Test Test ";
+      entity.PosSmo = "Test T";
+      entity.PosAddress = "Test T";
+      entity.PosDay1 = "Te";
+      entity.PosMonth1 = "Test T";
+      entity.PosYear1 = "Te";
+      entity.PosBirthplace = "Test Test ";
+      entity.PosMale = "Test Tes";
+      entity.PosFemale = "Test T";
+      entity.PosDay2 = "Test T";
+      entity.PosMonth2 = "Test T";
+      entity.PosYear2 = "Test T";
+      entity.PosFio = "T";
+      entity.PosLine1 = "Test Te";
+      entity.PosLin2 = "Test Test T";
+      entity.PosLine3 = "Test Tes";
+      entity.Default = true;
 			
 			return entity;
 		}
@@ -77,7 +76,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Template entity = CreateNewTemplate();
+				rt.srz.model.srz.Template entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -93,7 +92,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Template entityA = CreateNewTemplate();
+                rt.srz.model.srz.Template entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Template entityB = manager.GetById(entityA.Id);
@@ -110,7 +109,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Template entityC = CreateNewTemplate();
+				rt.srz.model.srz.Template entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -135,7 +134,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Template entityC = CreateNewTemplate();
+			    rt.srz.model.srz.Template entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

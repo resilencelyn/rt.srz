@@ -30,88 +30,59 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IQueryResponseManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.QueryResponse CreateNewQueryResponse()
+		public static QueryResponse CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.QueryResponse entity = new rt.srz.model.srz.QueryResponse();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Number = default(Int16);
-			entity.PolisNumber = "Test Test T";
-			entity.MainPolisNumber = "Test T";
-			entity.Snils = "Test Tes";
-			entity.IsActive = true;
-			entity.Employment = true;
+      entity.Number = default(Int16);
+      entity.PolisNumber = "Test Tes";
+      entity.MainPolisNumber = "Test T";
+      entity.Snils = "Tes";
+      entity.IsActive = true;
+      entity.Employment = true;
 			
 			using(rt.srz.business.manager.IaddressManager addressManager = ObjectFactory.GetInstance<IaddressManager>())
 				{
-				    var all = addressManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Address = all[0];
-					}
+           entity.Address = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Feature = all[0];
-					}
+           entity.Feature = null;
 				}	
 			
 			using(rt.srz.business.manager.IDeadInfoManager deadInfoManager = ObjectFactory.GetInstance<IDeadInfoManager>())
 				{
-				    var all = deadInfoManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DeadInfo = all[0];
-					}
+           entity.DeadInfo = null;
 				}	
 			
 			using(rt.srz.business.manager.IDocumentManager documentManager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
-				    var all = documentManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DocumentUdl = all[0];
-					}
+           entity.DocumentUdl = null;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonDatumManager insuredPersonDatumManager = ObjectFactory.GetInstance<IInsuredPersonDatumManager>())
 				{
-				    var all = insuredPersonDatumManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPersonData = all[0];
-					}
+           entity.InsuredPersonData = null;
 				}	
 			
 			using(rt.srz.business.manager.IMessageManager messageManager = ObjectFactory.GetInstance<IMessageManager>())
 				{
-				    var all = messageManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Message = all[0];
-					}
+           entity.Message = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept2Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.TrustLevel = all[0];
-					}
+           entity.TrustLevel = null;
 				}	
 			
 			return entity;
@@ -129,7 +100,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.QueryResponse entity = CreateNewQueryResponse();
+				rt.srz.model.srz.QueryResponse entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -145,7 +116,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.QueryResponse entityA = CreateNewQueryResponse();
+                rt.srz.model.srz.QueryResponse entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.QueryResponse entityB = manager.GetById(entityA.Id);
@@ -162,7 +133,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.QueryResponse entityC = CreateNewQueryResponse();
+				rt.srz.model.srz.QueryResponse entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -187,7 +158,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.QueryResponse entityC = CreateNewQueryResponse();
+			    rt.srz.model.srz.QueryResponse entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

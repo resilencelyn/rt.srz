@@ -287,7 +287,7 @@ namespace rt.srz.barcode.reader
         {
           OnErrorOccurred(new ErrorEventArgs(exc));
         }
-        catch (InvalidOperationException exc)
+        catch (InvalidOperationException)
         {
         }
         catch (IOException)

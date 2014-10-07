@@ -37,15 +37,15 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.Permission CreateNewPermission()
+		public static Permission CreateNew (int depth = 0)
 		{
 			rt.core.model.core.Permission entity = new rt.core.model.core.Permission();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test ";
-			entity.Code = 51;
+      entity.Name = "Test Test ";
+      entity.Code = 73;
 			
 			return entity;
 		}
@@ -62,7 +62,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.Permission entity = CreateNewPermission();
+				rt.core.model.core.Permission entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -78,7 +78,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.Permission entityA = CreateNewPermission();
+                rt.core.model.core.Permission entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.Permission entityB = manager.GetById(entityA.Id);
@@ -95,7 +95,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.Permission entityC = CreateNewPermission();
+				rt.core.model.core.Permission entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -120,7 +120,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.Permission entityC = CreateNewPermission();
+			    rt.core.model.core.Permission entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

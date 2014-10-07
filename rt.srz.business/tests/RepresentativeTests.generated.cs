@@ -30,42 +30,33 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IRepresentativeManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Representative CreateNewRepresentative()
+		public static Representative CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Representative entity = new rt.srz.model.srz.Representative();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FirstName = "Test Test Test Test Test Tes";
-			entity.LastName = "Test Test Test Test Tes";
-			entity.MiddleName = "Test Test Test Test Test Test ";
-			entity.HomePhone = "Test Test Test Test Test Test Test Tes";
-			entity.WorkPhone = "Test Test Te";
+      entity.FirstName = "Test Test Test Test Test Test Test Test Test Te";
+      entity.LastName = "Test Test Test Test Test Test Tes";
+      entity.MiddleName = "Test Test Test Test Test Test Test ";
+      entity.HomePhone = "Test Test Test Test Test T";
+      entity.WorkPhone = "Test Test Test Test Test Test Test Te";
 			
 			using(rt.srz.business.manager.IDocumentManager documentManager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
-				    var all = documentManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Document = all[0];
-					}
+           entity.Document = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.RelationType = all[0];
-					}
+           entity.RelationType = null;
 				}	
 			
 			return entity;
@@ -83,7 +74,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Representative entity = CreateNewRepresentative();
+				rt.srz.model.srz.Representative entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -99,7 +90,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Representative entityA = CreateNewRepresentative();
+                rt.srz.model.srz.Representative entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Representative entityB = manager.GetById(entityA.Id);
@@ -116,14 +107,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Representative entityC = CreateNewRepresentative();
+				rt.srz.model.srz.Representative entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.Representative entityA = GetFirstRepresentative();
 				
-				entityA.FirstName = "Test Test Test Test Test Test Test T";
+				entityA.FirstName = "Test Test Tes";
 				
 				manager.Update(entityA);
 
@@ -141,7 +132,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Representative entityC = CreateNewRepresentative();
+			    rt.srz.model.srz.Representative entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

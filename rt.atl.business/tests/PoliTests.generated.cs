@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class PoliTests : UnitTestbase
     {
         [SetUp]
@@ -31,53 +30,48 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IPoliManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Poli CreateNewPoli()
+		public static Poli CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Poli entity = new rt.atl.model.atl.Poli();
 			
 			
-			entity.Dedit = System.DateTime.Now;
-			entity.Q = "Test";
-			entity.Prz = "T";
-			entity.Dbeg = System.DateTime.Now;
-			entity.Dend = System.DateTime.Now;
-			entity.Poltp = 67;
-			entity.Okato = "Test Test";
-			entity.Spol = "Test T";
-			entity.Npol = "Test Tes";
-			entity.Qogrn = "Test Te";
-			entity.Dstop = System.DateTime.Now;
-			entity.St = 4;
-			entity.Del = true;
-			entity.Rstop = 1;
-			entity.Nvs = "Test T";
-			entity.Dvs = System.DateTime.Now;
-			entity.Et = System.DateTime.Now;
-			entity.Dz = System.DateTime.Now;
-			entity.Dp = System.DateTime.Now;
-			entity.Dh = System.DateTime.Now;
-			entity.Err = "Test Test ";
-			entity.Polvid = 9;
-			entity.Oldpid = 63;
-			entity.Sout = System.DateTime.Now;
-			entity.M2id = 47;
-			entity.DstopCs = System.DateTime.Now;
-			entity.Polis = 59;
+      entity.Dedit = System.DateTime.Now;
+      entity.Q = "Te";
+      entity.Prz = "Test T";
+      entity.Dbeg = System.DateTime.Now;
+      entity.Dend = System.DateTime.Now;
+      entity.Poltp = 71;
+      entity.Okato = "Test Test ";
+      entity.Spol = "Test ";
+      entity.Npol = "Test";
+      entity.Qogrn = "Test Test Te";
+      entity.Dstop = System.DateTime.Now;
+      entity.St = 2;
+      entity.Del = true;
+      entity.Rstop = 2;
+      entity.Nvs = "Tes";
+      entity.Dvs = System.DateTime.Now;
+      entity.Et = System.DateTime.Now;
+      entity.Dz = System.DateTime.Now;
+      entity.Dp = System.DateTime.Now;
+      entity.Dh = System.DateTime.Now;
+      entity.Err = "Test Test ";
+      entity.Polvid = 85;
+      entity.Oldpid = 45;
+      entity.Sout = System.DateTime.Now;
+      entity.M2id = 33;
+      entity.DstopCs = System.DateTime.Now;
+      entity.Unload = System.DateTime.Now;
 			
 			using(rt.atl.business.manager.IpersonManager personManager = ObjectFactory.GetInstance<IpersonManager>())
 				{
-				    var all = personManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.P = all[0];
-					}
+           entity.P = null;
 				}	
 			
 			return entity;
@@ -95,7 +89,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Poli entity = CreateNewPoli();
+				rt.atl.model.atl.Poli entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -111,7 +105,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Poli entityA = CreateNewPoli();
+                rt.atl.model.atl.Poli entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Poli entityB = manager.GetById(entityA.Id);
@@ -128,7 +122,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Poli entityC = CreateNewPoli();
+				rt.atl.model.atl.Poli entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -153,7 +147,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Poli entityC = CreateNewPoli();
+			    rt.atl.model.atl.Poli entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

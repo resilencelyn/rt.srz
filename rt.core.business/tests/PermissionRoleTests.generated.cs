@@ -37,31 +37,23 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.PermissionRole CreateNewPermissionRole()
+		public static PermissionRole CreateNew (int depth = 0)
 		{
 			rt.core.model.core.PermissionRole entity = new rt.core.model.core.PermissionRole();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FakeField = 33;
+      entity.FakeField = 88;
 			
 			using(rt.core.business.manager.IPermissionManager permissionManager = ObjectFactory.GetInstance<IPermissionManager>())
 				{
-				    var all = permissionManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Permission = all[0];
-					}
+           entity.Permission = null;
 				}	
 			
 			using(rt.core.business.manager.IRoleManager roleManager = ObjectFactory.GetInstance<IRoleManager>())
 				{
-				    var all = roleManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Role = all[0];
-					}
+           entity.Role = null;
 				}	
 			
 			return entity;
@@ -79,7 +71,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.PermissionRole entity = CreateNewPermissionRole();
+				rt.core.model.core.PermissionRole entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -95,7 +87,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.PermissionRole entityA = CreateNewPermissionRole();
+                rt.core.model.core.PermissionRole entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.PermissionRole entityB = manager.GetById(entityA.Id);
@@ -112,14 +104,14 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.PermissionRole entityC = CreateNewPermissionRole();
+				rt.core.model.core.PermissionRole entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.core.model.core.PermissionRole entityA = GetFirstPermissionRole();
 				
-				entityA.FakeField = 21;
+				entityA.FakeField = 86;
 				
 				manager.Update(entityA);
 
@@ -137,7 +129,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.PermissionRole entityC = CreateNewPermissionRole();
+			    rt.core.model.core.PermissionRole entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

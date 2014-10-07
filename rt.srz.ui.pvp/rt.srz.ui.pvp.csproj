@@ -281,11 +281,7 @@
     <Content Include="Configuration\AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configuration\StructureMap.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configuration\HibernateConfiguration.config" />
-    <Content Include="Configuration\NLog.config" />
     <Content Include="Configuration\ExchangeSettings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -302,6 +298,8 @@
     <Content Include="Configuration\MigrationConfiguration.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configuration\NLog.config" />
+    <Content Include="Configuration\StructureMap.config" />
     <None Include="Properties\PublishProfiles\demo.pubxml" />
     <Content Include="Pages\IssueOfPolicy.aspx" />
     <Content Include="Pages\NSI\TemplatesVs.aspx" />

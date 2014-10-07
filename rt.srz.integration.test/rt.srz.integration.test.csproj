@@ -82,12 +82,23 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="atl\AtlTest.cs" />
-    <Compile Include="atl\ExporterToAtlTests.cs" />
     <Compile Include="GoodStatement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SituationFactory.cs" />
     <Compile Include="TestSituation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NHibernateCfgAtl.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
@@ -102,13 +113,13 @@
       <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
       <Name>rt.core.business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
-      <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
-      <Name>rt.core.model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1b981163-21ac-4f46-8927-cf2641f54fa5}</Project>
+      <Name>rt.core.model</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
@@ -118,41 +129,35 @@
       <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>
       <Name>rt.srz.business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.business.sqlserver\rt.srz.database.business.sqlserver.sqlproj">
+      <Project>{254bff12-7ed6-4e3e-b916-c535c52606ff}</Project>
+      <Name>rt.srz.database.business.sqlserver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.barcode\rt.srz.model.barcode.csproj">
+      <Project>{9c095cf4-79d1-4b22-b793-ea85ce6ce595}</Project>
+      <Name>rt.srz.model.barcode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{b91bb517-e433-4091-9c96-3386ca975c5a}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
       <Project>{f247928d-ea65-4d69-bd03-b1e506b09986}</Project>
       <Name>rt.srz.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.services.client\rt.srz.services.client.csproj">
+      <Project>{ef604446-6168-4686-9d43-f3b887d0c513}</Project>
+      <Name>rt.srz.services.client</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.services\rt.srz.services.csproj">
       <Project>{7a023af8-4aba-4c32-902a-929f308c5813}</Project>
       <Name>rt.srz.services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\rt.uec.model\rt.uec.model.csproj">
+      <Project>{aad11904-afd7-4d6a-be28-a7589e9177b8}</Project>
+      <Name>rt.uec.model</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Configuration\AppSettings.config" />
-    <None Include="Configuration\BackupSettings.config" />
-    <None Include="Configuration\ConnectionStrings.config" />
-    <None Include="Configuration\ExchangeSettings.config" />
-    <None Include="Configuration\HibernateConfiguration.config" />
-    <None Include="Configuration\NLog.config" />
-    <None Include="Configuration\ProtocolSettingsSection.config" />
-    <None Include="Configuration\QuartzJobs.config" />
-    <None Include="Configuration\QuartzSettings.config" />
-    <None Include="Configuration\SpecialCalendarDaySection.config" />
-    <None Include="Configuration\StructureMap.config" />
-    <None Include="Configuration\SynchronizationSettings.config" />
-    <None Include="job_scheduling_data_2_0.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="rt.srz.key" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="NHibernateCfgAtl.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -30,21 +30,20 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.INumberPolicyCounterManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.NumberPolicyCounter CreateNewNumberPolicyCounter()
+		public static NumberPolicyCounter CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.NumberPolicyCounter entity = new rt.srz.model.srz.NumberPolicyCounter();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = "Tes";
+			entity.Id = "Te";
 			
-			entity.CurrentNumber = 90;
+      entity.CurrentNumber = 2;
 			
 			return entity;
 		}
@@ -61,7 +60,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.NumberPolicyCounter entity = CreateNewNumberPolicyCounter();
+				rt.srz.model.srz.NumberPolicyCounter entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -77,7 +76,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.NumberPolicyCounter entityA = CreateNewNumberPolicyCounter();
+                rt.srz.model.srz.NumberPolicyCounter entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.NumberPolicyCounter entityB = manager.GetById(entityA.Id);
@@ -94,14 +93,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.NumberPolicyCounter entityC = CreateNewNumberPolicyCounter();
+				rt.srz.model.srz.NumberPolicyCounter entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.NumberPolicyCounter entityA = GetFirstNumberPolicyCounter();
 				
-				entityA.CurrentNumber = 15;
+				entityA.CurrentNumber = 84;
 				
 				manager.Update(entityA);
 
@@ -119,7 +118,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.NumberPolicyCounter entityC = CreateNewNumberPolicyCounter();
+			    rt.srz.model.srz.NumberPolicyCounter entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

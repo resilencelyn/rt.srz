@@ -30,38 +30,43 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IInsuredPersonManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.InsuredPerson CreateNewInsuredPerson()
+		public static InsuredPerson CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.InsuredPerson entity = new rt.srz.model.srz.InsuredPerson();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.MainPolisNumber = "Test Test Tes";
+      entity.MainPolisNumber = "Test T";
 			
 			using(rt.srz.business.manager.IDeadInfoManager deadInfoManager = ObjectFactory.GetInstance<IDeadInfoManager>())
 				{
-				    var all = deadInfoManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DeadInfo = all[0];
-					}
+           entity.DeadInfo = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Status = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Status = entityRef ;
 				}	
 			
 			return entity;
@@ -79,7 +84,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.InsuredPerson entity = CreateNewInsuredPerson();
+				rt.srz.model.srz.InsuredPerson entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -95,7 +100,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.InsuredPerson entityA = CreateNewInsuredPerson();
+                rt.srz.model.srz.InsuredPerson entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.InsuredPerson entityB = manager.GetById(entityA.Id);
@@ -112,14 +117,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.InsuredPerson entityC = CreateNewInsuredPerson();
+				rt.srz.model.srz.InsuredPerson entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.InsuredPerson entityA = GetFirstInsuredPerson();
 				
-				entityA.MainPolisNumber = "Tes";
+				entityA.MainPolisNumber = "Test Test Test";
 				
 				manager.Update(entityA);
 
@@ -137,7 +142,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.InsuredPerson entityC = CreateNewInsuredPerson();
+			    rt.srz.model.srz.InsuredPerson entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

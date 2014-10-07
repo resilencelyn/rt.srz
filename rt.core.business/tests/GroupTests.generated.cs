@@ -37,14 +37,14 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.Group CreateNewGroup()
+		public static Group CreateNew (int depth = 0)
 		{
 			rt.core.model.core.Group entity = new rt.core.model.core.Group();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test Test Test Test Test Test Test Test ";
+      entity.Name = "Test Test Test";
 			
 			return entity;
 		}
@@ -61,7 +61,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.Group entity = CreateNewGroup();
+				rt.core.model.core.Group entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -77,7 +77,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.Group entityA = CreateNewGroup();
+                rt.core.model.core.Group entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.Group entityB = manager.GetById(entityA.Id);
@@ -94,14 +94,14 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.Group entityC = CreateNewGroup();
+				rt.core.model.core.Group entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.core.model.core.Group entityA = GetFirstGroup();
 				
-				entityA.Name = "Test Test Te";
+				entityA.Name = "Test Test Test Test Test";
 				
 				manager.Update(entityA);
 
@@ -119,7 +119,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.Group entityC = CreateNewGroup();
+			    rt.core.model.core.Group entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

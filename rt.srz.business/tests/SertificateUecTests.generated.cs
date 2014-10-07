@@ -30,50 +30,51 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ISertificateUecManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.SertificateUec CreateNewSertificateUec()
+		public static SertificateUec CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.SertificateUec entity = new rt.srz.model.srz.SertificateUec();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Key = new System.Byte[]{};
-			entity.Version = default(Int16);
-			entity.IsActive = true;
-			entity.InstallDate = System.DateTime.Now;
+      entity.Key = new System.Byte[]{};
+      entity.Version = default(Int16);
+      entity.IsActive = true;
+      entity.InstallDate = System.DateTime.Now;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Type = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Type = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
-				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Smo = all[0];
-					}
+           entity.Smo = null;
 				}	
 			
 			using(rt.srz.business.manager.IWorkstationManager workstationManager = ObjectFactory.GetInstance<IWorkstationManager>())
 				{
-				    var all = workstationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Workstation = all[0];
-					}
+           entity.Workstation = null;
 				}	
 			
 			return entity;
@@ -91,7 +92,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.SertificateUec entity = CreateNewSertificateUec();
+				rt.srz.model.srz.SertificateUec entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -107,7 +108,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.SertificateUec entityA = CreateNewSertificateUec();
+                rt.srz.model.srz.SertificateUec entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.SertificateUec entityB = manager.GetById(entityA.Id);
@@ -124,7 +125,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.SertificateUec entityC = CreateNewSertificateUec();
+				rt.srz.model.srz.SertificateUec entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -149,7 +150,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.SertificateUec entityC = CreateNewSertificateUec();
+			    rt.srz.model.srz.SertificateUec entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

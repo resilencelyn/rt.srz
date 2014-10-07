@@ -16,6 +16,7 @@ namespace rt.core.business.manager
     public partial interface IGroupManager : IManagerBase<rt.core.model.core.Group, System.Guid>
     {
 		// Get Methods
+    
     }
 
     partial class GroupManager : ManagerBase<rt.core.model.core.Group, System.Guid>, IGroupManager

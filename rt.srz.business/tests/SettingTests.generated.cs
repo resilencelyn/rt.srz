@@ -30,40 +30,31 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ISettingManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Setting CreateNewSetting()
+		public static Setting CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Setting entity = new rt.srz.model.srz.Setting();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test ";
-			entity.ValueString = "Test Test ";
-			entity.UserId = System.Guid.NewGuid();
+      entity.Name = "Test Test ";
+      entity.ValueString = "Test Test ";
+      entity.UserId = new Guid("01000000-0000-0000-0000-000000000000");
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
-				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Organisation = all[0];
-					}
+           entity.Organisation = null;
 				}	
 			
 			using(rt.srz.business.manager.IWorkstationManager workstationManager = ObjectFactory.GetInstance<IWorkstationManager>())
 				{
-				    var all = workstationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Workstation = all[0];
-					}
+           entity.Workstation = null;
 				}	
 			
 			return entity;
@@ -81,7 +72,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Setting entity = CreateNewSetting();
+				rt.srz.model.srz.Setting entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -97,7 +88,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Setting entityA = CreateNewSetting();
+                rt.srz.model.srz.Setting entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Setting entityB = manager.GetById(entityA.Id);
@@ -114,7 +105,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Setting entityC = CreateNewSetting();
+				rt.srz.model.srz.Setting entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -139,7 +130,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Setting entityC = CreateNewSetting();
+			    rt.srz.model.srz.Setting entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

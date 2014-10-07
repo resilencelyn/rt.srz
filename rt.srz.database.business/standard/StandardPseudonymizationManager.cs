@@ -472,7 +472,7 @@ namespace rt.srz.database.business.standard
       {
         ValidateFields(variations, initials, documents);
       }
-      catch (DocumentPatternException ex)
+      catch (DocumentPatternException)
       {
         badDocument = true;
       }
@@ -545,7 +545,7 @@ namespace rt.srz.database.business.standard
       {
         ValidateFields(variations, initials, documents);
       }
-      catch (DocumentPatternException ex)
+      catch (DocumentPatternException)
       {
         badDocument = true;
       }

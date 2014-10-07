@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class OkatoTests : UnitTestbase
     {
         [SetUp]
@@ -31,24 +30,22 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IOkatoManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Okato CreateNewOkato()
+		public static Okato CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Okato entity = new rt.atl.model.atl.Okato();
 			
 			
-			entity.Dedit = System.DateTime.Now;
-			entity.Caption = "Test Test ";
-			entity.Code = "T";
-			entity.Parentid = 78;
-			entity.Centrum = "Test Test";
-			entity.Okatoid = 61;
+      entity.Dedit = System.DateTime.Now;
+      entity.Caption = "Test Test ";
+      entity.Code = "123";
+      entity.Parentid = 54;
+      entity.Centrum = "Test Test Test Test Test Test Test Test Test Test Test Test Test T";
 			
 			return entity;
 		}
@@ -65,7 +62,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Okato entity = CreateNewOkato();
+				rt.atl.model.atl.Okato entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -81,7 +78,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Okato entityA = CreateNewOkato();
+                rt.atl.model.atl.Okato entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Okato entityB = manager.GetById(entityA.Id);
@@ -98,7 +95,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Okato entityC = CreateNewOkato();
+				rt.atl.model.atl.Okato entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -123,7 +120,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Okato entityC = CreateNewOkato();
+			    rt.atl.model.atl.Okato entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

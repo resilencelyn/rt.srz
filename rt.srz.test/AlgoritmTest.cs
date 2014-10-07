@@ -78,15 +78,6 @@ namespace rt.srz.test
       Assert.AreEqual(true, r);
     }
 
-    /// <summary>
-    ///   The check snils.
-    /// </summary>
-    [Test]
-    public void TestParsePolis()
-    {
-      
-    }
-
     #endregion
   }
 }

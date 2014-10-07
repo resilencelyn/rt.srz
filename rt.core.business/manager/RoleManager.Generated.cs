@@ -16,6 +16,7 @@ namespace rt.core.business.manager
     public partial interface IRoleManager : IManagerBase<rt.core.model.core.Role, System.Guid>
     {
 		// Get Methods
+    
     }
 
     partial class RoleManager : ManagerBase<rt.core.model.core.Role, System.Guid>, IRoleManager

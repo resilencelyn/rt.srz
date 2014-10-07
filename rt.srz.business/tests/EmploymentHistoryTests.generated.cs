@@ -30,56 +30,39 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IEmploymentHistoryManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.EmploymentHistory CreateNewEmploymentHistory()
+		public static EmploymentHistory CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.EmploymentHistory entity = new rt.srz.model.srz.EmploymentHistory();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Employment = true;
+      entity.Employment = true;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.SourceType = all[0];
-					}
+           entity.SourceType = null;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonManager insuredPersonManager = ObjectFactory.GetInstance<IInsuredPersonManager>())
 				{
-				    var all = insuredPersonManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPerson = all[0];
-					}
+           entity.InsuredPerson = null;
 				}	
 			
 			using(rt.srz.business.manager.IPeriodManager periodManager = ObjectFactory.GetInstance<IPeriodManager>())
 				{
-				    var all = periodManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Period = all[0];
-					}
+           entity.Period = null;
 				}	
 			
 			using(rt.srz.business.manager.IQueryResponseManager queryResponseManager = ObjectFactory.GetInstance<IQueryResponseManager>())
 				{
-				    var all = queryResponseManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.QueryResponse = all[0];
-					}
+           entity.QueryResponse = null;
 				}	
 			
 			return entity;
@@ -97,7 +80,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.EmploymentHistory entity = CreateNewEmploymentHistory();
+				rt.srz.model.srz.EmploymentHistory entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -113,7 +96,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.EmploymentHistory entityA = CreateNewEmploymentHistory();
+                rt.srz.model.srz.EmploymentHistory entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.EmploymentHistory entityB = manager.GetById(entityA.Id);
@@ -130,7 +113,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.EmploymentHistory entityC = CreateNewEmploymentHistory();
+				rt.srz.model.srz.EmploymentHistory entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -155,7 +138,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.EmploymentHistory entityC = CreateNewEmploymentHistory();
+			    rt.srz.model.srz.EmploymentHistory entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

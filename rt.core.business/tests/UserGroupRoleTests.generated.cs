@@ -37,7 +37,7 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.UserGroupRole CreateNewUserGroupRole()
+		public static UserGroupRole CreateNew (int depth = 0)
 		{
 			rt.core.model.core.UserGroupRole entity = new rt.core.model.core.UserGroupRole();
 			
@@ -47,29 +47,17 @@ namespace rt.core.business.tests
 			
 			using(rt.core.business.manager.IGroupManager groupManager = ObjectFactory.GetInstance<IGroupManager>())
 				{
-				    var all = groupManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Group = all[0];
-					}
+           entity.Group = null;
 				}	
 			
 			using(rt.core.business.manager.IRoleManager roleManager = ObjectFactory.GetInstance<IRoleManager>())
 				{
-				    var all = roleManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Role = all[0];
-					}
+           entity.Role = null;
 				}	
 			
 			using(rt.core.business.manager.IUserManager userManager = ObjectFactory.GetInstance<IUserManager>())
 				{
-				    var all = userManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.User = all[0];
-					}
+           entity.User = null;
 				}	
 			
 			return entity;
@@ -87,7 +75,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.UserGroupRole entity = CreateNewUserGroupRole();
+				rt.core.model.core.UserGroupRole entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -103,7 +91,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.UserGroupRole entityA = CreateNewUserGroupRole();
+                rt.core.model.core.UserGroupRole entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.UserGroupRole entityB = manager.GetById(entityA.Id);
@@ -120,7 +108,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.UserGroupRole entityC = CreateNewUserGroupRole();
+			    rt.core.model.core.UserGroupRole entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -37,15 +37,15 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.Role CreateNewRole()
+		public static Role CreateNew (int depth = 0)
 		{
 			rt.core.model.core.Role entity = new rt.core.model.core.Role();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Name = "Test Test Test Test Test Test T";
-			entity.Code = 69;
+      entity.Name = "Test Test Test Test Test Test Test Test Test Tes";
+      entity.Code = 90;
 			
 			return entity;
 		}
@@ -62,7 +62,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.Role entity = CreateNewRole();
+				rt.core.model.core.Role entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -78,7 +78,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.Role entityA = CreateNewRole();
+                rt.core.model.core.Role entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.Role entityB = manager.GetById(entityA.Id);
@@ -95,14 +95,14 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.Role entityC = CreateNewRole();
+				rt.core.model.core.Role entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.core.model.core.Role entityA = GetFirstRole();
 				
-				entityA.Name = "Test Test Test Test Test Test Test Test Test ";
+				entityA.Name = "Test Test Test Test Test Test Test Test ";
 				
 				manager.Update(entityA);
 
@@ -120,7 +120,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.Role entityC = CreateNewRole();
+			    rt.core.model.core.Role entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

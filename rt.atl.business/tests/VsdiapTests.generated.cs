@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class VsdiapTests : UnitTestbase
     {
         [SetUp]
@@ -31,29 +30,24 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IVsdiapManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Vsdiap CreateNewVsdiap()
+		public static Vsdiap CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Vsdiap entity = new rt.atl.model.atl.Vsdiap();
 			
 			
-			entity.Dedit = System.DateTime.Now;
-			entity.Lo = 61;
-			entity.Hi = 22;
+      entity.Dedit = System.DateTime.Now;
+      entity.Lo = 44;
+      entity.Hi = 92;
 			
 			using(rt.atl.business.manager.ISmoManager smoManager = ObjectFactory.GetInstance<ISmoManager>())
 				{
-				    var all = smoManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.SMO = all[0];
-					}
+           entity.SMO = null;
 				}	
 			
 			return entity;
@@ -71,7 +65,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Vsdiap entity = CreateNewVsdiap();
+				rt.atl.model.atl.Vsdiap entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -87,7 +81,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Vsdiap entityA = CreateNewVsdiap();
+                rt.atl.model.atl.Vsdiap entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Vsdiap entityB = manager.GetById(entityA.Id);
@@ -104,7 +98,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Vsdiap entityC = CreateNewVsdiap();
+				rt.atl.model.atl.Vsdiap entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -129,7 +123,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Vsdiap entityC = CreateNewVsdiap();
+			    rt.atl.model.atl.Vsdiap entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -30,39 +30,34 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IKladrManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Kladr CreateNewKladr()
+		public static Kladr CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Kladr entity = new rt.srz.model.srz.Kladr();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Version = default(Int16);
-			entity.Name = "Test Test ";
-			entity.Socr = "Test";
-			entity.Code = "Test Test Test ";
-			entity.Index = 31;
-			entity.Gninmb = "Te";
-			entity.Uno = "Tes";
-			entity.Ocatd = "Test Te";
-			entity.Status = 88;
-			entity.FullAddress = "Test Test ";
-			entity.Level = 13;
+      entity.Version = default(Int16);
+      entity.Name = "Test Test ";
+      entity.Socr = "Test Test Test Te";
+      entity.Code = "Test Test T";
+      entity.Index = 97;
+      entity.Gninmb = "Tes";
+      entity.Uno = "Te";
+      entity.Ocatd = "Test Test Test T";
+      entity.Status = 7;
+      entity.FullAddress = "Test Test ";
+      entity.Level = 70;
 			
 			using(rt.srz.business.manager.IKladrManager kladrMemberManager = ObjectFactory.GetInstance<IKladrManager>())
 				{
-				    var all = kladrMemberManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.KLADRPARENT = all[0];
-					}
+           entity.KLADRPARENT = null;
 				}	
 			
 			return entity;
@@ -80,7 +75,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Kladr entity = CreateNewKladr();
+				rt.srz.model.srz.Kladr entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -96,7 +91,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Kladr entityA = CreateNewKladr();
+                rt.srz.model.srz.Kladr entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Kladr entityB = manager.GetById(entityA.Id);
@@ -113,7 +108,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Kladr entityC = CreateNewKladr();
+				rt.srz.model.srz.Kladr entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -138,7 +133,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Kladr entityC = CreateNewKladr();
+			    rt.srz.model.srz.Kladr entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

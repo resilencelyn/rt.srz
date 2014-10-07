@@ -30,31 +30,26 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IOidManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Oid CreateNewOid()
+		public static Oid CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Oid entity = new rt.srz.model.srz.Oid();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = "Test Test Test Test Test Test Test Test ";
+			entity.Id = "Test Test Test Test Test Test Test";
 			
-			entity.FullName = "Test Test ";
-			entity.ShortName = "Test Test ";
-			entity.LatinName = "Test Test ";
+      entity.FullName = "Test Test ";
+      entity.ShortName = "Test Test ";
+      entity.LatinName = "Test Test ";
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Default = all[0];
-					}
+           entity.Default = null;
 				}	
 			
 			return entity;
@@ -72,7 +67,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Oid entity = CreateNewOid();
+				rt.srz.model.srz.Oid entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -88,7 +83,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Oid entityA = CreateNewOid();
+                rt.srz.model.srz.Oid entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Oid entityB = manager.GetById(entityA.Id);
@@ -105,7 +100,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Oid entityC = CreateNewOid();
+				rt.srz.model.srz.Oid entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -130,7 +125,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Oid entityC = CreateNewOid();
+			    rt.srz.model.srz.Oid entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
 Name: ManagerObject.cst
 Author: Tom DuPont
 Description: Generates a Manager Object for NHibernate.
@@ -49,6 +49,7 @@ namespace <%= ManagerNamespace %>
 		<% } else { %>
 		IList<<%= GetClassName(SourceTable) %>> <%= GetMethodDeclaration(entityManager, sc) %>;
 		<% } } } %>
+    
     }
 
     partial class <%= GetClassName(SourceTable) %>Manager : ManagerBase<<%= BusinessNamespace %>.<%= GetClassName(SourceTable) %>, <%= SystemCSharp[GetBusinessBaseIdType(SourceTable).ToString()] %>>, I<%= GetClassName(SourceTable) %>Manager

@@ -37,22 +37,22 @@ namespace rt.core.business.tests
         
         protected ISession session { get; set; }
 		
-		protected rt.core.model.core.User CreateNewUser()
+		public static User CreateNew (int depth = 0)
 		{
 			rt.core.model.core.User entity = new rt.core.model.core.User();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Login = "Test Test Test Te";
-			entity.Password = "Test Test Test Test Test Test Test Test Test Test";
-			entity.Email = "Te";
-			entity.Salt = "Test Test T";
-			entity.CreationDate = System.DateTime.Now;
-			entity.LastLoginDate = System.DateTime.Now;
-			entity.IsApproved = true;
-			entity.Fio = "Test Test ";
-			entity.PointDistributionPolicyId = System.Guid.NewGuid();
+      entity.Login = "Test Test Test Test Test Test Test Test Test";
+      entity.Password = "Test Test Test Test Test Test";
+      entity.Email = "Test Test Test Test";
+      entity.Salt = "Test Test Test Test Test Test Test Test Test Te";
+      entity.CreationDate = System.DateTime.Now;
+      entity.LastLoginDate = System.DateTime.Now;
+      entity.IsApproved = true;
+      entity.Fio = "Test Test ";
+			entity.PointDistributionPolicyId = null;
 			
 			return entity;
 		}
@@ -69,7 +69,7 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.User entity = CreateNewUser();
+				rt.core.model.core.User entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -85,7 +85,7 @@ namespace rt.core.business.tests
         {
             try
             {
-                rt.core.model.core.User entityA = CreateNewUser();
+                rt.core.model.core.User entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.core.model.core.User entityB = manager.GetById(entityA.Id);
@@ -102,14 +102,14 @@ namespace rt.core.business.tests
         {
             try
             {
-				rt.core.model.core.User entityC = CreateNewUser();
+				rt.core.model.core.User entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.core.model.core.User entityA = GetFirstUser();
 				
-				entityA.Login = "Tes";
+				entityA.Login = "Test Test Test Test ";
 				
 				manager.Update(entityA);
 
@@ -127,7 +127,7 @@ namespace rt.core.business.tests
         {
             try
             {
-			    rt.core.model.core.User entityC = CreateNewUser();
+			    rt.core.model.core.User entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

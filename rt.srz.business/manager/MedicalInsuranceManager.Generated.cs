@@ -26,6 +26,7 @@ namespace rt.srz.business.manager
 		IList<MedicalInsurance> GetByEnp(System.String enp);
 		IList<MedicalInsurance> GetByPolisNumber(System.String polisNumber);
 		IList<MedicalInsurance> GetByPolisSeriaPolisNumber(System.String polisSeria, System.String polisNumber);
+    
     }
 
     partial class MedicalInsuranceManager : ManagerBase<rt.srz.model.srz.MedicalInsurance, System.Guid>, IMedicalInsuranceManager

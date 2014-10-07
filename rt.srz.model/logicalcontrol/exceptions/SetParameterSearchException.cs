@@ -46,16 +46,6 @@ namespace rt.srz.model.logicalcontrol.exceptions
 
     #endregion
 
-    #region Public Properties
-
-    /// <summary>
-    ///   Gets or sets the info.
-    /// </summary>
-    [DataMember]
-    public ExceptionInfo Info { get; set; }
-
-    #endregion
-
     #region Methods
 
     /// <summary>

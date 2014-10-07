@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class SmoTests : UnitTestbase
     {
         [SetUp]
@@ -31,35 +30,35 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.ISmoManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Smo CreateNewSmo()
+		public static Smo CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Smo entity = new rt.atl.model.atl.Smo();
 			
 			
-			entity.Dedit = System.DateTime.Now;
-			entity.Caption = "Test Test ";
-			entity.Code = "T";
-			entity.Fullname = "Test Test ";
-			entity.Ogrn = "Test Test";
-			entity.Bossname = "Test Te";
-			entity.Buhname = "Test Test Test Test";
-			entity.Email = "Te";
-			entity.Tel1 = "Test Test ";
-			entity.Tel2 = "Test Test ";
-			entity.Addr = "Test Test ";
-			entity.Okato = "Test";
-			entity.Extcode = "Test Test";
-			entity.De = System.DateTime.Now;
-			entity.Db = System.DateTime.Now;
+      entity.Dedit = System.DateTime.Now;
+      entity.Caption = "Test Test ";
+      entity.Code = "123";
+      entity.Fullname = "Test Test ";
+      entity.Ogrn = "Test ";
+      entity.Bossname = "Tes";
+      entity.Buhname = "Tes";
+      entity.Email = "Test Test Test Test Test Test Test Test Tes";
+      entity.Tel1 = "Test Test ";
+      entity.Tel2 = "Test Test ";
+      entity.Addr = "Test Test ";
+      entity.Okato = "T";
+      entity.Extcode = "T";
+      entity.De = System.DateTime.Now;
+      entity.Db = System.DateTime.Now;
+      entity.Prid = 16;
 			
-      return entity;
+			return entity;
 		}
 		protected rt.atl.model.atl.Smo GetFirstSmo()
         {
@@ -74,7 +73,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Smo entity = CreateNewSmo();
+				rt.atl.model.atl.Smo entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -90,7 +89,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Smo entityA = CreateNewSmo();
+                rt.atl.model.atl.Smo entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Smo entityB = manager.GetById(entityA.Id);
@@ -107,7 +106,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Smo entityC = CreateNewSmo();
+				rt.atl.model.atl.Smo entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -132,7 +131,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Smo entityC = CreateNewSmo();
+			    rt.atl.model.atl.Smo entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

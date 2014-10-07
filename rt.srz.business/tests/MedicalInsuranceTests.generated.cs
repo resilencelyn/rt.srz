@@ -30,64 +30,89 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IMedicalInsuranceManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.MedicalInsurance CreateNewMedicalInsurance()
+		public static MedicalInsurance CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.MedicalInsurance entity = new rt.srz.model.srz.MedicalInsurance();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.PolisSeria = "Test Test Test T";
-			entity.PolisNumber = "Test Tes";
-			entity.DateFrom = System.DateTime.Now;
-			entity.DateTo = System.DateTime.Now;
-			entity.IsActive = true;
-			entity.DateStop = System.DateTime.Now;
-			entity.Enp = "T";
-			entity.StateDateFrom = System.DateTime.Now;
-			entity.StateDateTo = System.DateTime.Now;
+      entity.PolisSeria = "Test Test Test Test Test Test Test";
+      entity.PolisNumber = "Test Test Test Test Test Test Test Test Test ";
+      entity.DateFrom = System.DateTime.Now;
+      entity.DateTo = System.DateTime.Now;
+      entity.IsActive = true;
+      entity.DateStop = System.DateTime.Now;
+      entity.Enp = "Test Test";
+      entity.StateDateFrom = System.DateTime.Now;
+      entity.StateDateTo = System.DateTime.Now;
 			
 			using(rt.srz.business.manager.IInsuredPersonManager insuredPersonManager = ObjectFactory.GetInstance<IInsuredPersonManager>())
 				{
-				    var all = insuredPersonManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPerson = all[0];
-					}
+           entity.InsuredPerson = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.PolisType = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.PolisType = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
 				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Smo = all[0];
-					}
+            Organisation entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = OrganisationTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Smo = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IStatementManager statementManager = ObjectFactory.GetInstance<IStatementManager>())
 				{
 				    var all = statementManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Statement = all[0];
-					}
+            Statement entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = StatementTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Statement = entityRef ;
 				}	
 			
 			return entity;
@@ -105,7 +130,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.MedicalInsurance entity = CreateNewMedicalInsurance();
+				rt.srz.model.srz.MedicalInsurance entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -121,7 +146,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.MedicalInsurance entityA = CreateNewMedicalInsurance();
+                rt.srz.model.srz.MedicalInsurance entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.MedicalInsurance entityB = manager.GetById(entityA.Id);
@@ -138,14 +163,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.MedicalInsurance entityC = CreateNewMedicalInsurance();
+				rt.srz.model.srz.MedicalInsurance entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.MedicalInsurance entityA = GetFirstMedicalInsurance();
 				
-				entityA.PolisSeria = "Test Test Test Test Te";
+				entityA.PolisSeria = "Test Test Test Test Test Test Test Test Test Tes";
 				
 				manager.Update(entityA);
 
@@ -163,7 +188,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.MedicalInsurance entityC = CreateNewMedicalInsurance();
+			    rt.srz.model.srz.MedicalInsurance entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

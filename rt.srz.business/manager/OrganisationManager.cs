@@ -520,7 +520,6 @@ namespace rt.srz.business.manager
         User user = null;
         Organisation foms = null;
         Organisation smo = null;
-        Organisation pdp = null;
         var pvpUser = GetById(currentUser.PointDistributionPolicyId.Value);
         var curFomsId = pvpUser.Parent.Parent.Id;
 

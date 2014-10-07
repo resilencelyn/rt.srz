@@ -30,34 +30,29 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IDocumentManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Document CreateNewDocument()
+		public static Document CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Document entity = new rt.srz.model.srz.Document();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.Series = "Test ";
-			entity.Number = "Te";
-			entity.IssuingAuthority = "Test Test ";
-			entity.DateIssue = System.DateTime.Now;
-			entity.DateExp = System.DateTime.Now;
-			entity.IsBad = true;
+      entity.Series = "Test Test ";
+      entity.Number = "Test Test T";
+      entity.IssuingAuthority = "Test Test ";
+      entity.DateIssue = System.DateTime.Now;
+      entity.DateExp = System.DateTime.Now;
+      entity.IsBad = true;
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DocumentType = all[0];
-					}
+           entity.DocumentType = null;
 				}	
 			
 			return entity;
@@ -75,7 +70,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Document entity = CreateNewDocument();
+				rt.srz.model.srz.Document entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -91,7 +86,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Document entityA = CreateNewDocument();
+                rt.srz.model.srz.Document entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Document entityB = manager.GetById(entityA.Id);
@@ -108,14 +103,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Document entityC = CreateNewDocument();
+				rt.srz.model.srz.Document entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.Document entityA = GetFirstDocument();
 				
-				entityA.Series = "T";
+				entityA.Series = "Test Test Tes";
 				
 				manager.Update(entityA);
 
@@ -133,7 +128,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Document entityC = CreateNewDocument();
+			    rt.srz.model.srz.Document entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

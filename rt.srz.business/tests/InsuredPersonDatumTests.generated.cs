@@ -30,71 +30,54 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IInsuredPersonDatumManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.InsuredPersonDatum CreateNewInsuredPersonDatum()
+		public static InsuredPersonDatum CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.InsuredPersonDatum entity = new rt.srz.model.srz.InsuredPersonDatum();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FirstName = "Test ";
-			entity.LastName = "Test Test Test Test Test Test Test Test Test";
-			entity.MiddleName = "Test Test Test Test Tes";
-			entity.Birthday = System.DateTime.Now;
-			entity.Birthday2 = "Test T";
-			entity.BirthdayType = 67;
-			entity.IsIncorrectDate = true;
-			entity.IsNotGuru = true;
-			entity.Snils = "Test Te";
-			entity.Birthplace = "Test Test ";
-			entity.IsNotCitizenship = true;
-			entity.IsRefugee = true;
-			entity.IsBadSnils = true;
-			entity.NhFirstName = 49;
-			entity.NhLastName = 62;
-			entity.NhMiddleName = 50;
+      entity.FirstName = "Test Test T";
+      entity.LastName = "Test Test Test Test Test Test Test Test Te";
+      entity.MiddleName = "Test Test Test Test Test Test Test Te";
+      entity.Birthday = System.DateTime.Now;
+      entity.Birthday2 = "Test Tes";
+      entity.BirthdayType = 94;
+      entity.IsIncorrectDate = true;
+      entity.IsNotGuru = true;
+      entity.Snils = "Test T";
+      entity.Birthplace = "Test Test ";
+      entity.IsNotCitizenship = true;
+      entity.IsRefugee = true;
+      entity.IsBadSnils = true;
+      entity.NhFirstName = 59;
+      entity.NhLastName = 5;
+      entity.NhMiddleName = 73;
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Citizenship = all[0];
-					}
+           entity.Citizenship = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept2Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Gender = all[0];
-					}
+           entity.Gender = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept3Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept3Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Category = all[0];
-					}
+           entity.Category = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept4Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept4Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.OldCountry = all[0];
-					}
+           entity.OldCountry = null;
 				}	
 			
 			return entity;
@@ -112,7 +95,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.InsuredPersonDatum entity = CreateNewInsuredPersonDatum();
+				rt.srz.model.srz.InsuredPersonDatum entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -128,7 +111,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.InsuredPersonDatum entityA = CreateNewInsuredPersonDatum();
+                rt.srz.model.srz.InsuredPersonDatum entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.InsuredPersonDatum entityB = manager.GetById(entityA.Id);
@@ -145,14 +128,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.InsuredPersonDatum entityC = CreateNewInsuredPersonDatum();
+				rt.srz.model.srz.InsuredPersonDatum entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.InsuredPersonDatum entityA = GetFirstInsuredPersonDatum();
 				
-				entityA.FirstName = "Test Test Test Test Test Test Test Test Test Te";
+				entityA.FirstName = "Test Test Test Test Test Test Test Test T";
 				
 				manager.Update(entityA);
 
@@ -170,7 +153,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.InsuredPersonDatum entityC = CreateNewInsuredPersonDatum();
+			    rt.srz.model.srz.InsuredPersonDatum entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

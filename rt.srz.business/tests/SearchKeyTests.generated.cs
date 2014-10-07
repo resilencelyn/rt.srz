@@ -30,65 +30,44 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ISearchKeyManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.SearchKey CreateNewSearchKey()
+		public static SearchKey CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.SearchKey entity = new rt.srz.model.srz.SearchKey();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.KeyValue = new System.Byte[]{};
+      entity.KeyValue = new System.Byte[]{};
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DocumentUdlType = all[0];
-					}
+           entity.DocumentUdlType = null;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonManager insuredPersonManager = ObjectFactory.GetInstance<IInsuredPersonManager>())
 				{
-				    var all = insuredPersonManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPerson = all[0];
-					}
+           entity.InsuredPerson = null;
 				}	
 			
 			using(rt.srz.business.manager.IQueryResponseManager queryResponseManager = ObjectFactory.GetInstance<IQueryResponseManager>())
 				{
-				    var all = queryResponseManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.QueryResponse = all[0];
-					}
+           entity.QueryResponse = null;
 				}	
 			
 			using(rt.srz.business.manager.ISearchKeyTypeManager searchKeyTypeManager = ObjectFactory.GetInstance<ISearchKeyTypeManager>())
 				{
-				    var all = searchKeyTypeManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.KeyType = all[0];
-					}
+           entity.KeyType = null;
 				}	
 			
 			using(rt.srz.business.manager.IStatementManager statementManager = ObjectFactory.GetInstance<IStatementManager>())
 				{
-				    var all = statementManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Statement = all[0];
-					}
+           entity.Statement = null;
 				}	
 			
 			return entity;
@@ -106,7 +85,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.SearchKey entity = CreateNewSearchKey();
+				rt.srz.model.srz.SearchKey entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -122,7 +101,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.SearchKey entityA = CreateNewSearchKey();
+                rt.srz.model.srz.SearchKey entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.SearchKey entityB = manager.GetById(entityA.Id);
@@ -139,7 +118,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.SearchKey entityC = CreateNewSearchKey();
+				rt.srz.model.srz.SearchKey entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -164,7 +143,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.SearchKey entityC = CreateNewSearchKey();
+			    rt.srz.model.srz.SearchKey entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

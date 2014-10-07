@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class TestprocTests : UnitTestbase
     {
         [SetUp]
@@ -31,27 +30,26 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.ITestprocManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Testproc CreateNewTestproc()
+		public static Testproc CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Testproc entity = new rt.atl.model.atl.Testproc();
 			
 			
-			entity.Dedit = System.DateTime.Now;
-			entity.Caption = "Test Test ";
-			entity.Code = "T";
-			entity.Strong = true;
-			entity.Act = true;
-			entity.Srv = true;
-			entity.Procname = "Test Tes";
-			entity.Nosrop = true;
-			entity.Flds = "Test Test Test Test Test T";
+      entity.Dedit = System.DateTime.Now;
+      entity.Caption = "Test Test ";
+      entity.Code = "123";
+      entity.Strong = true;
+      entity.Act = true;
+      entity.Srv = true;
+      entity.Procname = "Test Test Te";
+      entity.Nosrop = true;
+      entity.Flds = "T";
 			
 			return entity;
 		}
@@ -68,7 +66,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Testproc entity = CreateNewTestproc();
+				rt.atl.model.atl.Testproc entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -84,7 +82,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Testproc entityA = CreateNewTestproc();
+                rt.atl.model.atl.Testproc entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Testproc entityB = manager.GetById(entityA.Id);
@@ -101,7 +99,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Testproc entityC = CreateNewTestproc();
+				rt.atl.model.atl.Testproc entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -126,7 +124,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Testproc entityC = CreateNewTestproc();
+			    rt.atl.model.atl.Testproc entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

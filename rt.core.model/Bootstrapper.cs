@@ -53,7 +53,7 @@ namespace rt.core.model
       }
       else
       {
-        Restart();
+        Reset();
       }
 
       LogAssemblies();
@@ -62,7 +62,7 @@ namespace rt.core.model
     /// <summary>
     ///   Перезапуск
     /// </summary>
-    public static void Restart()
+    public static void Reset()
     {
       if (hasStarted)
       {
@@ -73,6 +73,14 @@ namespace rt.core.model
         Bootstrap();
         hasStarted = true;
       }
+    }
+
+    /// <summary>
+    /// The restart.
+    /// </summary>
+    public static void Restart()
+    {
+      ObjectFactory.Initialize(x => { x.PullConfigurationFromAppConfig = true; });
     }
 
     /// <summary>

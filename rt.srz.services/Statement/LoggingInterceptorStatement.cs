@@ -43,7 +43,7 @@ namespace rt.srz.services.Statement
     {
       if (ex is LogicalControlException)
       {
-        logger.InfoException(ex.Message, ex);
+        logger.Info(ex.Message, ex);
       }
       else
       {
@@ -67,7 +67,7 @@ namespace rt.srz.services.Statement
     {
       if (ex is LogicalControlException)
       {
-        logger.InfoException(ex.Message, ex);
+        logger.Info(ex.Message, ex);
       }
       else
       {

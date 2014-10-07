@@ -30,22 +30,21 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IJobPoolManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.JobPool CreateNewJobPool()
+		public static JobPool CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.JobPool entity = new rt.srz.model.srz.JobPool();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = 71;
+			entity.Id = 14;
 			
-			entity.Content = new System.Byte[]{};
-			entity.Versions = 20;
+      entity.Content = new System.Byte[]{};
+      entity.Versions = 71;
 			
 			return entity;
 		}
@@ -62,7 +61,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.JobPool entity = CreateNewJobPool();
+				rt.srz.model.srz.JobPool entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -78,7 +77,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.JobPool entityA = CreateNewJobPool();
+                rt.srz.model.srz.JobPool entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.JobPool entityB = manager.GetById(entityA.Id);
@@ -95,7 +94,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.JobPool entityC = CreateNewJobPool();
+				rt.srz.model.srz.JobPool entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -120,7 +119,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.JobPool entityC = CreateNewJobPool();
+			    rt.srz.model.srz.JobPool entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

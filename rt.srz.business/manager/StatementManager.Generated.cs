@@ -35,6 +35,7 @@ namespace rt.srz.business.manager
 		IList<Statement> GetByDateFiling(System.DateTime dateFiling);
 		IList<Statement> GetByIsActive(System.Boolean isActive);
 		IList<Statement> GetByNumberPolicy(System.String numberPolicy);
+    
     }
 
     partial class StatementManager : ManagerBase<rt.srz.model.srz.Statement, System.Guid>, IStatementManager

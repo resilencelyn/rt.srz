@@ -511,7 +511,6 @@
     <Compile Include="tests\KladrTests.generated.cs">
       <DependentUpon>KladrTests.cs</DependentUpon>
     </Compile>
-    <Compile Include="tests\logicalcontrol\LogicalControlTests.cs" />
     <Compile Include="tests\MedicalInsuranceTests.cs" />
     <Compile Include="tests\MedicalInsuranceTests.generated.cs">
       <DependentUpon>MedicalInsuranceTests.cs</DependentUpon>

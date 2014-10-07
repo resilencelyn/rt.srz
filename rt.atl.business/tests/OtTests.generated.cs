@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class OtTests : UnitTestbase
     {
         [SetUp]
@@ -31,20 +30,19 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IOtManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Ot CreateNewOt()
+		public static Ot CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Ot entity = new rt.atl.model.atl.Ot();
 			
 			
-			entity.Caption = "Test Test Tes";
-			entity.W = 59;
+      entity.Caption = "Test Test Test Test";
+      entity.W = 6;
 			
 			return entity;
 		}
@@ -61,7 +59,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Ot entity = CreateNewOt();
+				rt.atl.model.atl.Ot entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -77,7 +75,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Ot entityA = CreateNewOt();
+                rt.atl.model.atl.Ot entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Ot entityB = manager.GetById(entityA.Id);
@@ -94,14 +92,14 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Ot entityC = CreateNewOt();
+				rt.atl.model.atl.Ot entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.atl.model.atl.Ot entityA = GetFirstOt();
 				
-				entityA.Caption = "Test Test Test Test Test Test";
+				entityA.Caption = "Tes";
 				
 				manager.Update(entityA);
 
@@ -119,7 +117,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Ot entityC = CreateNewOt();
+			    rt.atl.model.atl.Ot entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

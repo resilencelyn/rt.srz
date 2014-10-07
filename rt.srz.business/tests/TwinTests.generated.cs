@@ -30,14 +30,13 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ITwinManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Twin CreateNewTwin()
+		public static Twin CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Twin entity = new rt.srz.model.srz.Twin();
 			
@@ -47,29 +46,17 @@ namespace rt.srz.business.tests
 			
 			using(rt.srz.business.manager.IInsuredPersonManager insuredPerson1Manager = ObjectFactory.GetInstance<IInsuredPersonManager>())
 				{
-				    var all = insuredPerson1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.FirstInsuredPerson = all[0];
-					}
+           entity.FirstInsuredPerson = null;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonManager insuredPerson2Manager = ObjectFactory.GetInstance<IInsuredPersonManager>())
 				{
-				    var all = insuredPerson2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.SecondInsuredPerson = all[0];
-					}
+           entity.SecondInsuredPerson = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager conceptManager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = conceptManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.TwinType = all[0];
-					}
+           entity.TwinType = null;
 				}	
 			
 			return entity;
@@ -87,7 +74,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Twin entity = CreateNewTwin();
+				rt.srz.model.srz.Twin entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -103,7 +90,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Twin entityA = CreateNewTwin();
+                rt.srz.model.srz.Twin entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Twin entityB = manager.GetById(entityA.Id);
@@ -120,7 +107,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Twin entityC = CreateNewTwin();
+			    rt.srz.model.srz.Twin entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

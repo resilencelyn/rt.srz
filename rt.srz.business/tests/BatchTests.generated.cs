@@ -30,75 +30,78 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IBatchManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Batch CreateNewBatch()
+		public static Batch CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Batch entity = new rt.srz.model.srz.Batch();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.FileName = "T";
-			entity.Number = default(Int16);
+      entity.FileName = "Test Test Test Test Test Test Te";
+      entity.Number = default(Int16);
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.CodeConfirm = all[0];
-					}
+           entity.CodeConfirm = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept2Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = concept2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Subject = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Subject = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept3Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = concept3Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Type = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Type = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IPeriodManager periodManager = ObjectFactory.GetInstance<IPeriodManager>())
 				{
-				    var all = periodManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Period = all[0];
-					}
+           entity.Period = null;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisation1Manager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
-				    var all = organisation1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Receiver = all[0];
-					}
+           entity.Receiver = null;
 				}	
 			
 			using(rt.srz.business.manager.IOrganisationManager organisation2Manager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
-				    var all = organisation2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Sender = all[0];
-					}
+           entity.Sender = null;
 				}	
 			
 			return entity;
@@ -116,7 +119,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Batch entity = CreateNewBatch();
+				rt.srz.model.srz.Batch entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -132,7 +135,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Batch entityA = CreateNewBatch();
+                rt.srz.model.srz.Batch entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Batch entityB = manager.GetById(entityA.Id);
@@ -149,14 +152,14 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Batch entityC = CreateNewBatch();
+				rt.srz.model.srz.Batch entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.srz.model.srz.Batch entityA = GetFirstBatch();
 				
-				entityA.FileName = "Test Test Test Test Test Test Test Test Test";
+				entityA.FileName = "Test Test Test Test Test ";
 				
 				manager.Update(entityA);
 
@@ -174,7 +177,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Batch entityC = CreateNewBatch();
+			    rt.srz.model.srz.Batch entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -30,168 +30,121 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IStatementManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.Statement CreateNewStatement()
+		public static Statement CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.Statement entity = new rt.srz.model.srz.Statement();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.DateFiling = System.DateTime.Now;
-			entity.HasPetition = true;
-			entity.NumberPolicy = "Test Test Test";
-			entity.AbsentPrevPolicy = true;
-			entity.IsActive = true;
-			entity.PolicyIsIssued = true;
-			entity.PrzBuffId = 94;
-			entity.PidId = 1;
-			entity.PolisId = 89;
-			entity.IsExportTemp = true;
-			entity.IsExportPolis = true;
-			entity.PrzBuffPolisId = 42;
-			entity.Version = 31;
-			entity.UserId = System.Guid.NewGuid();
+      entity.DateFiling = System.DateTime.Now;
+      entity.HasPetition = true;
+      entity.NumberPolicy = "Test Test Test Test Test T";
+      entity.AbsentPrevPolicy = true;
+      entity.IsActive = true;
+      entity.PolicyIsIssued = true;
+      entity.PrzBuffId = 46;
+      entity.PidId = 10;
+      entity.PolisId = 77;
+      entity.IsExportTemp = true;
+      entity.IsExportPolis = true;
+      entity.PrzBuffPolisId = 57;
+      entity.Version = 28;
+      entity.UserId = new Guid("01000000-0000-0000-0000-000000000000");
 			
 			using(rt.srz.business.manager.IOrganisationManager organisationManager = ObjectFactory.GetInstance<IOrganisationManager>())
 				{
-				    var all = organisationManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.PointDistributionPolicy = all[0];
-					}
+           entity.PointDistributionPolicy = null;
 				}	
 			
 			using(rt.srz.business.manager.IStatementManager statementMemberManager = ObjectFactory.GetInstance<IStatementManager>())
 				{
-				    var all = statementMemberManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.PreviousStatement = all[0];
-					}
+           entity.PreviousStatement = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept1Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
 				    var all = concept1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Status = all[0];
-					}
+            Concept entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = ConceptTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.Status = entityRef ;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonDatumManager insuredPersonDatumManager = ObjectFactory.GetInstance<IInsuredPersonDatumManager>())
 				{
-				    var all = insuredPersonDatumManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPersonData = all[0];
-					}
+           entity.InsuredPersonData = null;
 				}	
 			
 			using(rt.srz.business.manager.IInsuredPersonManager insuredPersonManager = ObjectFactory.GetInstance<IInsuredPersonManager>())
 				{
-				    var all = insuredPersonManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.InsuredPerson = all[0];
-					}
+           entity.InsuredPerson = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept2Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.CauseFiling = all[0];
-					}
+           entity.CauseFiling = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept3Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept3Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.ModeFiling = all[0];
-					}
+           entity.ModeFiling = null;
 				}	
 			
 			using(rt.srz.business.manager.IConceptManager concept4Manager = ObjectFactory.GetInstance<IConceptManager>())
 				{
-				    var all = concept4Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.FormManufacturing = all[0];
-					}
+           entity.FormManufacturing = null;
 				}	
 			
 			using(rt.srz.business.manager.IDocumentManager document1Manager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
-				    var all = document1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DocumentUdl = all[0];
-					}
+           entity.DocumentUdl = null;
 				}	
 			
 			using(rt.srz.business.manager.IContactInfoManager contactInfoManager = ObjectFactory.GetInstance<IContactInfoManager>())
 				{
-				    var all = contactInfoManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.ContactInfo = all[0];
-					}
+           entity.ContactInfo = null;
 				}	
 			
 			using(rt.srz.business.manager.IRepresentativeManager representativeManager = ObjectFactory.GetInstance<IRepresentativeManager>())
 				{
-				    var all = representativeManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Representative = all[0];
-					}
+           entity.Representative = null;
 				}	
 			
 			using(rt.srz.business.manager.IDocumentManager document2Manager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
-				    var all = document2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.ResidencyDocument = all[0];
-					}
+           entity.ResidencyDocument = null;
 				}	
 			
 			using(rt.srz.business.manager.IaddressManager address1Manager = ObjectFactory.GetInstance<IaddressManager>())
 				{
-				    var all = address1Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Address = all[0];
-					}
+           entity.Address = null;
 				}	
 			
 			using(rt.srz.business.manager.IDocumentManager document3Manager = ObjectFactory.GetInstance<IDocumentManager>())
 				{
-				    var all = document3Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.DocumentRegistration = all[0];
-					}
+           entity.DocumentRegistration = null;
 				}	
 			
 			using(rt.srz.business.manager.IaddressManager address2Manager = ObjectFactory.GetInstance<IaddressManager>())
 				{
-				    var all = address2Manager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Address2 = all[0];
-					}
+           entity.Address2 = null;
 				}	
 			
 			return entity;
@@ -209,7 +162,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Statement entity = CreateNewStatement();
+				rt.srz.model.srz.Statement entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -225,7 +178,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.Statement entityA = CreateNewStatement();
+                rt.srz.model.srz.Statement entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.Statement entityB = manager.GetById(entityA.Id);
@@ -242,7 +195,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.Statement entityC = CreateNewStatement();
+				rt.srz.model.srz.Statement entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -267,7 +220,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.Statement entityC = CreateNewStatement();
+			    rt.srz.model.srz.Statement entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

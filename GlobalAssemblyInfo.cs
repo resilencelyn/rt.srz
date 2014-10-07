@@ -16,3 +16,5 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © ФОМС 2012")]
 [assembly: AssemblyTrademark("СРЗ")]
 [assembly: AssemblyCulture("")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

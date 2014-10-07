@@ -76,7 +76,7 @@ namespace rt.core.services.aspects
                 }
               }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               // logger.Error("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
             }
@@ -134,7 +134,7 @@ namespace rt.core.services.aspects
                 }
               }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               // logger.Error("Не удалось получить значение поля. SID: " + sessionId + fieldInfo.Name, ex);
             }

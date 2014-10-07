@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class ExchangePvpTests : UnitTestbase
     {
         [SetUp]
@@ -31,29 +30,38 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IExchangePvpManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.ExchangePvp CreateNewExchangePvp()
+		public static ExchangePvp CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.ExchangePvp entity = new rt.atl.model.atl.ExchangePvp();
 			
 			
-			entity.StatementId = System.Guid.NewGuid();
-			entity.IsExport = true;
-			entity.Error = "Test Test ";
+      entity.StatementId = "Test Test T";
+      entity.IsExport = true;
+      entity.Error = "Test Test ";
 			
 			using(rt.atl.business.manager.IPrzbufManager przbufManager = ObjectFactory.GetInstance<IPrzbufManager>())
 				{
 				    var all = przbufManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.PrzBuff = all[0];
-					}
+            Przbuf entityRef = null;
+					  if (all.Count > 0)
+					  {
+              entityRef = all[0];
+					  }
+          
+					 if (entityRef == null && depth < 3)
+           {
+             depth++;
+             entityRef = PrzbufTests.CreateNew(depth);
+             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(entityRef);
+           }
+           
+					 entity.PrzBuff = entityRef ;
 				}	
 			
 			return entity;
@@ -71,7 +79,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.ExchangePvp entity = CreateNewExchangePvp();
+				rt.atl.model.atl.ExchangePvp entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -87,7 +95,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.ExchangePvp entityA = CreateNewExchangePvp();
+                rt.atl.model.atl.ExchangePvp entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.ExchangePvp entityB = manager.GetById(entityA.Id);
@@ -104,14 +112,14 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.ExchangePvp entityC = CreateNewExchangePvp();
+				rt.atl.model.atl.ExchangePvp entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
 			
                 rt.atl.model.atl.ExchangePvp entityA = GetFirstExchangePvp();
 				
-				entityA.StatementId = System.Guid.NewGuid();
+				entityA.StatementId = "Test Test Test T";
 				
 				manager.Update(entityA);
 
@@ -129,7 +137,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.ExchangePvp entityC = CreateNewExchangePvp();
+			    rt.atl.model.atl.ExchangePvp entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

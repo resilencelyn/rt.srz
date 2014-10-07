@@ -23,6 +23,7 @@ namespace rt.srz.business.manager
 		IList<QueryResponse> GetByInsuredPersonDataId(System.Guid insuredPersonDatum);
 		IList<QueryResponse> GetByMessageId(System.Guid message);
 		IList<QueryResponse> GetByTrustLevelId(System.Int32 concept2);
+    
     }
 
     partial class QueryResponseManager : ManagerBase<rt.srz.model.srz.QueryResponse, System.Guid>, IQueryResponseManager

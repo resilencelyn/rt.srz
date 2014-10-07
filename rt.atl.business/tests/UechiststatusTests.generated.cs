@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class UechiststatusTests : UnitTestbase
     {
         [SetUp]
@@ -31,29 +30,24 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IUechiststatusManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Uechiststatus CreateNewUechiststatus()
+		public static Uechiststatus CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Uechiststatus entity = new rt.atl.model.atl.Uechiststatus();
 			
 			
-			entity.Dt = System.DateTime.Now;
-			entity.Uecstatus = "Te";
-			entity.Ufile = 12;
+      entity.Dt = System.DateTime.Now;
+			entity.Uecstatus = null;
+			entity.Ufile = null;
 			
 			using(rt.atl.business.manager.IUecManager uecManager = ObjectFactory.GetInstance<IUecManager>())
 				{
-				    var all = uecManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.UEC = all[0];
-					}
+           entity.UEC = null;
 				}	
 			
 			return entity;
@@ -71,7 +65,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Uechiststatus entity = CreateNewUechiststatus();
+				rt.atl.model.atl.Uechiststatus entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -87,7 +81,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Uechiststatus entityA = CreateNewUechiststatus();
+                rt.atl.model.atl.Uechiststatus entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Uechiststatus entityB = manager.GetById(entityA.Id);
@@ -104,7 +98,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Uechiststatus entityC = CreateNewUechiststatus();
+				rt.atl.model.atl.Uechiststatus entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -129,7 +123,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Uechiststatus entityC = CreateNewUechiststatus();
+			    rt.atl.model.atl.Uechiststatus entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using NHibernate;
@@ -7,14 +7,13 @@ using NUnit.Framework;
 using StructureMap;
 using rt.core.business.nhibernate;
 using rt.core.business.registry;
+using rt.core.model;
 using rt.atl.business.manager;
 using rt.atl.model.atl;
 
 namespace rt.atl.business.tests
 {
-  using rt.core.model;
-
-  [TestFixture]
+	[TestFixture]
     public partial class PrzTests : UnitTestbase
     {
         [SetUp]
@@ -31,40 +30,35 @@ namespace rt.atl.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.atl.business.manager.IPrzManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.atl.model.atl.Prz CreateNewPrz()
+		public static Prz CreateNew (int depth = 0)
 		{
 			rt.atl.model.atl.Prz entity = new rt.atl.model.atl.Prz();
 			
 			
-			entity.Dedit = System.DateTime.Now;
-			entity.Caption = "Test Test Test Test Test Test Test Test Test Tes";
-			entity.Code = "Test Te";
-			entity.Fullname = "Test Test ";
-			entity.Ogrn = "Test ";
-			entity.Bossname = "Test Test Test Test Test Test Test ";
-			entity.Buhname = "Test Test Test Test Test";
-			entity.Email = "Test Test Test Test Test Test Test T";
-			entity.Tel1 = "Test Test ";
-			entity.Tel2 = "Test Test ";
-			entity.Addr = "Test Test ";
-			entity.Okato = "T";
-			entity.Extcode = "Test Te";
-			entity.Main = true;
+      entity.Dedit = System.DateTime.Now;
+      entity.Caption = "Test Test Test Test Test Test Test Test Test Te";
+      entity.Code = "123";
+      entity.Fullname = "Test Test ";
+      entity.Ogrn = "Test Test ";
+      entity.Bossname = "Test Test Tes";
+      entity.Buhname = "Test Test Test Test Test ";
+      entity.Email = "Test Test Test Test Test Test Test Tes";
+      entity.Tel1 = "Test Test ";
+      entity.Tel2 = "Test Test ";
+      entity.Addr = "Test Test ";
+      entity.Okato = "Test ";
+      entity.Extcode = "Test ";
+      entity.Main = true;
 			
 			using(rt.atl.business.manager.ISmoManager smoManager = ObjectFactory.GetInstance<ISmoManager>())
 				{
-				    var all = smoManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.SMO = all[0];
-					}
+           entity.SMO = null;
 				}	
 			
 			return entity;
@@ -82,7 +76,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Prz entity = CreateNewPrz();
+				rt.atl.model.atl.Prz entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -98,7 +92,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-                rt.atl.model.atl.Prz entityA = CreateNewPrz();
+                rt.atl.model.atl.Prz entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.atl.model.atl.Prz entityB = manager.GetById(entityA.Id);
@@ -115,7 +109,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-				rt.atl.model.atl.Prz entityC = CreateNewPrz();
+				rt.atl.model.atl.Prz entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -140,7 +134,7 @@ namespace rt.atl.business.tests
         {
             try
             {
-			    rt.atl.model.atl.Prz entityC = CreateNewPrz();
+			    rt.atl.model.atl.Prz entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

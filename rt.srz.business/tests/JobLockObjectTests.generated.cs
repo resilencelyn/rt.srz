@@ -30,21 +30,20 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IJobLockObjectManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.JobLockObject CreateNewJobLockObject()
+		public static JobLockObject CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.JobLockObject entity = new rt.srz.model.srz.JobLockObject();
 			
 			// You may need to maually enter this key if there is a constraint violation.
-			entity.Id = 74;
+			entity.Id = 82;
 			
-			entity.Versions = 93;
+      entity.Versions = 12;
 			
 			return entity;
 		}
@@ -61,7 +60,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.JobLockObject entity = CreateNewJobLockObject();
+				rt.srz.model.srz.JobLockObject entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -77,7 +76,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.JobLockObject entityA = CreateNewJobLockObject();
+                rt.srz.model.srz.JobLockObject entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.JobLockObject entityB = manager.GetById(entityA.Id);
@@ -94,7 +93,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.JobLockObject entityC = CreateNewJobLockObject();
+				rt.srz.model.srz.JobLockObject entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -118,7 +117,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.JobLockObject entityC = CreateNewJobLockObject();
+			    rt.srz.model.srz.JobLockObject entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

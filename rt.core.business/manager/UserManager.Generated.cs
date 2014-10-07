@@ -17,6 +17,7 @@ namespace rt.core.business.manager
     {
 		// Get Methods
 		IList<User> GetByPointDistributionPolicyId(System.Guid pointDistributionPolicyId);
+    
     }
 
     partial class UserManager : ManagerBase<rt.core.model.core.User, System.Guid>, IUserManager

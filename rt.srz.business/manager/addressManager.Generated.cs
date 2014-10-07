@@ -17,6 +17,7 @@ namespace rt.srz.business.manager
     {
 		// Get Methods
 		IList<address> GetByKladrId(System.Guid kladr);
+    
     }
 
     partial class addressManager : ManagerBase<rt.srz.model.srz.address, System.Guid>, IaddressManager

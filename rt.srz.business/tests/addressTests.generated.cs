@@ -30,42 +30,37 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.IaddressManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.address CreateNewaddress()
+		public static address CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.address entity = new rt.srz.model.srz.address();
 			
 			// You may need to maually enter this key if there is a constraint violation.
 			entity.Id = System.Guid.NewGuid();
 			
-			entity.IsHomeless = true;
-			entity.Postcode = "Test Test";
-			entity.Subject = "Test Test Test Test Test Test Test Test Test Te";
-			entity.Area = "Test Test Test Test";
-			entity.City = "Test Te";
-			entity.Town = "Test Tes";
-			entity.Street = "Test Test Test Test Test ";
-			entity.House = "Tes";
-			entity.Housing = "Test Test T";
-			entity.Room = default(Int16);
-			entity.DateRegistration = System.DateTime.Now;
-			entity.IsNotStructureAddress = true;
-			entity.Okato = "Te";
-			entity.Unstructured = "Test Test ";
+      entity.IsHomeless = true;
+      entity.Postcode = "Test ";
+      entity.Subject = "Test Test Test Test Test Test Test Test Test Test";
+      entity.Area = "Test Test Test Test ";
+      entity.City = "Test Test Test Test Test Test Test ";
+      entity.Town = "Test Test Test Test";
+      entity.Street = "Test Test Test Test Test Test Test Test Test";
+      entity.House = "Test Test T";
+      entity.Housing = "Test Test Test T";
+      entity.Room = default(Int16);
+      entity.DateRegistration = System.DateTime.Now;
+      entity.IsNotStructureAddress = true;
+      entity.Okato = "Tes";
+      entity.Unstructured = "Test Test ";
 			
 			using(rt.srz.business.manager.IKladrManager kladrManager = ObjectFactory.GetInstance<IKladrManager>())
 				{
-				    var all = kladrManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Kladr = all[0];
-					}
+           entity.Kladr = null;
 				}	
 			
 			return entity;
@@ -83,7 +78,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.address entity = CreateNewaddress();
+				rt.srz.model.srz.address entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -99,7 +94,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.address entityA = CreateNewaddress();
+                rt.srz.model.srz.address entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.address entityB = manager.GetById(entityA.Id);
@@ -116,7 +111,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.address entityC = CreateNewaddress();
+				rt.srz.model.srz.address entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();
@@ -141,7 +136,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.address entityC = CreateNewaddress();
+			    rt.srz.model.srz.address entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

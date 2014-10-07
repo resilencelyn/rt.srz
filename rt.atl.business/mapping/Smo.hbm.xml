@@ -1,29 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
-  <class name="rt.atl.model.atl.Smo, rt.atl.model" table="[dbo].[SMO]" lazy="true">
-    <id name="Id" column="[ID]">
-      <generator class="native" />
-    </id>
-    <property name="Dedit" column="[DEDIT]" />
-    <property name="Caption" column="[CAPTION]" />
-    <property name="Code" column="[CODE]" />
-    <property name="Fullname" column="[FULLNAME]" />
-    <property name="Ogrn" column="[OGRN]" />
-    <property name="Bossname" column="[BOSSNAME]" />
-    <property name="Buhname" column="[BUHNAME]" />
-    <property name="Email" column="[EMAIL]" />
-    <property name="Tel1" column="[TEL1]" />
-    <property name="Tel2" column="[TEL2]" />
-    <property name="Addr" column="[ADDR]" />
-    <property name="Okato" column="[OKATO]" />
-    <property name="Extcode" column="[EXTCODE]" />
-    <property name="De" column="[DE]" />
-    <property name="Db" column="[DB]" />
-
-    <bag name="Vsdiaps" lazy="true" inverse="true">
-      <key column="[SMOID]"></key>
-      <one-to-many class="Vsdiap"></one-to-many>
-    </bag>
-  </class>
+	<class name="rt.atl.model.atl.Smo, rt.atl.model" table="[dbo].[SMO]" lazy="true">
+		<id name="Id" column="[ID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Dedit" column="[DEDIT]" />
+		<property name="Caption" column="[CAPTION]" />
+		<property name="Code" column="[CODE]" />
+		<property name="Fullname" column="[FULLNAME]" />
+		<property name="Ogrn" column="[OGRN]" />
+		<property name="Bossname" column="[BOSSNAME]" />
+		<property name="Buhname" column="[BUHNAME]" />
+		<property name="Email" column="[EMAIL]" />
+		<property name="Tel1" column="[TEL1]" />
+		<property name="Tel2" column="[TEL2]" />
+		<property name="Addr" column="[ADDR]" />
+		<property name="Okato" column="[OKATO]" />
+		<property name="Extcode" column="[EXTCODE]" />
+		<property name="De" column="[DE]" />
+		<property name="Db" column="[DB]" />
+		<property name="Prid" column="[PRID]" />
+		<bag name="Przs" lazy="true" inverse="true" >
+			<key column="[SMO]"></key>
+			<one-to-many class="Prz"></one-to-many>
+		</bag>
+		<bag name="Vsdiaps" lazy="true" inverse="true" >
+			<key column="[SMOID]"></key>
+			<one-to-many class="Vsdiap"></one-to-many>
+		</bag>
+	</class>
 </hibernate-mapping>
+

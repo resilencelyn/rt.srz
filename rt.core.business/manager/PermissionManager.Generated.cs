@@ -16,6 +16,7 @@ namespace rt.core.business.manager
     public partial interface IPermissionManager : IManagerBase<rt.core.model.core.Permission, System.Guid>
     {
 		// Get Methods
+    
     }
 
     partial class PermissionManager : ManagerBase<rt.core.model.core.Permission, System.Guid>, IPermissionManager

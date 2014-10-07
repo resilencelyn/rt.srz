@@ -30,14 +30,13 @@ namespace rt.srz.business.tests
         public void TearDown()
         {
             manager.Session.RollbackTransaction();
-            manager.Dispose();
         }
         
         protected rt.srz.business.manager.ITwinsKeyManager manager;
         
         protected ISession session { get; set; }
 		
-		protected rt.srz.model.srz.TwinsKey CreateNewTwinsKey()
+		public static TwinsKey CreateNew (int depth = 0)
 		{
 			rt.srz.model.srz.TwinsKey entity = new rt.srz.model.srz.TwinsKey();
 			
@@ -47,20 +46,12 @@ namespace rt.srz.business.tests
 			
 			using(rt.srz.business.manager.ISearchKeyTypeManager searchKeyTypeManager = ObjectFactory.GetInstance<ISearchKeyTypeManager>())
 				{
-				    var all = searchKeyTypeManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.KeyType = all[0];
-					}
+           entity.KeyType = null;
 				}	
 			
 			using(rt.srz.business.manager.ITwinManager twinManager = ObjectFactory.GetInstance<ITwinManager>())
 				{
-				    var all = twinManager.GetAll(1);
-					if (all.Count > 0)
-					{
-						entity.Twin = all[0];
-					}
+           entity.Twin = null;
 				}	
 			
 			return entity;
@@ -78,7 +69,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-				rt.srz.model.srz.TwinsKey entity = CreateNewTwinsKey();
+				rt.srz.model.srz.TwinsKey entity = CreateNew();
 				
                 object result = manager.Save(entity);
 
@@ -94,7 +85,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-                rt.srz.model.srz.TwinsKey entityA = CreateNewTwinsKey();
+                rt.srz.model.srz.TwinsKey entityA = CreateNew();
 				manager.Save(entityA);
 
                 rt.srz.model.srz.TwinsKey entityB = manager.GetById(entityA.Id);
@@ -111,7 +102,7 @@ namespace rt.srz.business.tests
         {
             try
             {
-			    rt.srz.model.srz.TwinsKey entityC = CreateNewTwinsKey();
+			    rt.srz.model.srz.TwinsKey entityC = CreateNew();
 				manager.Save(entityC);
 				manager.Session.GetISession().Flush();
 				manager.Session.GetISession().Clear();

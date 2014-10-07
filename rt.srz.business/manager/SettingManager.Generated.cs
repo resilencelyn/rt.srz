@@ -19,6 +19,7 @@ namespace rt.srz.business.manager
 		IList<Setting> GetByOrganisationId(System.Guid organisation);
 		IList<Setting> GetByUserId(System.Guid userId);
 		IList<Setting> GetByWorkstationId(System.Guid workstation);
+    
     }
 
     partial class SettingManager : ManagerBase<rt.srz.model.srz.Setting, System.Guid>, ISettingManager
