@@ -94,6 +94,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="rt.srz.key" />
+    <None Include="Test.csp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NHibernateCfgAtl.xml">

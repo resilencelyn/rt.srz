@@ -4,7 +4,7 @@
     <add key="ConnectionString1" value="Data Source=developer-09;Initial Catalog=atl_srz_empty;Integrated security=true" />
   </variables>
   <propertySets>
-    <propertySet name="NHibernateMaster" template="..\codegen.business\NHibernateMaster.cst">
+    <propertySet name="NHibernateMaster" template="..\generator\codegen.business\NHibernateMaster.cst">
       <property name="VersionColumn">^$</property>
       <property name="NHibernateVersion">v2_1</property>
       <property name="VsVersion">VS_2008</property>

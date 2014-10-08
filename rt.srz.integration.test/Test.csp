@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
+  <propertySets>
+    <propertySet name="TestGenerator" template="..\generator\TestGenerator\TestGenerator.cst">
+      <property name="AssemblyToLoad">F:\work\project\rt.srz\bin\rt.srz.model.dll</property>
+    </propertySet>
+  </propertySets>
+</codeSmith>

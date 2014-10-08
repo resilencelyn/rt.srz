@@ -1,0 +1,74 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" Description="Builds a class for each class in the assembly, and a test stub for every method." %>
+<%@ Import NameSpace="System.Reflection" %>
+
+<%@ Assembly Name="AssemblyHelper" %>
+<%@ Import NameSpace="AssemblyHelper" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+<%@ Assembly Name="System.Design" %>
+
+
+<script runat="template">
+
+private Assembly assembly;
+private string classname;
+
+//[Editor(typeof(AssemblyHelper.AssemblyFilePicker), typeof(System.Drawing.Design.UITypeEditor))]
+//public Assembly AssemblyToLoad
+//{
+//	get{return assembly;}
+//	set{assembly = value;}
+//}
+
+
+private string m_SourceAssembly = @"F:\work\project\rt.srz\bin\rt.srz.model.dll";
+[Editor(typeof(FileNameEditor), 
+	typeof (System.Drawing.Design.UITypeEditor)), 
+	Category("Assembly"), 
+	Description("Path to the assembly containing the source files"),
+	FileDialogAttribute(FileDialogType.Open, Title="Select the assembly", Filter ="Assemblies (*.EXE;*.DLL)|*.EXE;*.DLL|All Files (*.*)|*.*")
+]
+public string AssemblyToLoad
+{
+	get {return m_SourceAssembly;}
+	set {m_SourceAssembly = value; }
+}
+</script>
+
+using System;
+using NUnit.Framework;
+
+<%
+  
+  var assembly = Assembly.LoadFrom(AssemblyToLoad); 
+	foreach(Type T in assembly.GetTypes())
+	{
+		if(T.IsClass)
+		{
+			%>
+			
+			[TestFixture]
+			public class <%=T.Name%>Tests
+			{
+			<%
+					MethodInfo[] methods = T.GetMethods ( BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static  );
+					foreach(MethodInfo M in methods)
+					{
+						%>
+						
+						[Test]
+						public void <%=M.Name%>Test
+						{
+							//TODO Write this test
+						
+						}						
+						<%
+					}
+		
+			%>}<%
+		}
+	}
+%>
+
+
+
