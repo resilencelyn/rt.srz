@@ -35,7 +35,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
     /// <summary>
     /// The _service.
     /// </summary>
-    private ITFService _service;
+    private ITfomsService _service;
 
     /// <summary>
     /// The _statement service.
@@ -245,7 +245,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<ITFService>();
+      _service = ObjectFactory.GetInstance<ITfomsService>();
       _statementService = ObjectFactory.GetInstance<IStatementService>();
     }
 

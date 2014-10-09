@@ -37,7 +37,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
     /// <summary>
     /// The tf service.
     /// </summary>
-    private ITFService tfService;
+    private ITfomsService tfomsService;
 
     #endregion
 
@@ -54,7 +54,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      tfService = ObjectFactory.GetInstance<ITFService>();
+      tfomsService = ObjectFactory.GetInstance<ITfomsService>();
       statementService = ObjectFactory.GetInstance<IStatementService>();
     }
 
@@ -88,7 +88,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
 
         if (Request.QueryString["SearchKeyTypeId"] != null)
         {
-          var keyType = tfService.GetSearchKeyType(Guid.Parse(Request.QueryString["SearchKeyTypeId"]));
+          var keyType = tfomsService.GetSearchKeyType(Guid.Parse(Request.QueryString["SearchKeyTypeId"]));
           if (keyType != null)
           {
             MoveDataFromObject2GUI(keyType); // заполняем форму данными редактируемого объекта
@@ -134,14 +134,14 @@ namespace rt.srz.ui.pvp.Controls.Twins
       var keyType = new SearchKeyType();
       if (Request.QueryString["SearchKeyTypeId"] != null)
       {
-        keyType = tfService.GetSearchKeyType(Guid.Parse(Request.QueryString["SearchKeyTypeId"]));
+        keyType = tfomsService.GetSearchKeyType(Guid.Parse(Request.QueryString["SearchKeyTypeId"]));
       }
 
       // заполняем объекта данными из формы
       MoveDataFromGUI2Object(keyType);
 
       // сохраняем объект в БД
-      tfService.SaveSearchKeyType(keyType);
+      tfomsService.SaveSearchKeyType(keyType);
 
       // переход на родительскую страницу
       Response.Redirect("~/Pages/Twins/SearchKeyTypes.aspx");

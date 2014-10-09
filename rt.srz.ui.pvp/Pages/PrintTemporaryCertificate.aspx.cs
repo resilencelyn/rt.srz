@@ -14,13 +14,13 @@ namespace rt.srz.ui.pvp.Pages
   public partial class PrintTemporaryCertificate : System.Web.UI.Page
   {
     private IStatementService _service;
-    private INsiService _nsi;
+    private IRegulatoryService regulatory;
     private Statement _statement;
 
     protected void Page_Init(object sender, EventArgs e)
     {
       _service = ObjectFactory.GetInstance<IStatementService>();
-      _nsi = ObjectFactory.GetInstance<INsiService>();      
+      regulatory = ObjectFactory.GetInstance<IRegulatoryService>();      
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace rt.srz.ui.pvp.Pages
     private void FillReportData(TemporaryCertificateReport report)
     {
       //уже проверяли найден ли шаблон, поэтому этот шаблон передаём через сессию
-      Template template = (Template)Session[SessionConsts.CTemplateVsForPrint];//_nsi.GetTemplateVsByStatement(_statement);
+      Template template = (Template)Session[SessionConsts.CTemplateVsForPrint];//regulatory.GetTemplateByStatement(_statement);
       report.FillReportData(_statement, template);
     }
 

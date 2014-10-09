@@ -64,17 +64,21 @@ namespace rt.srz.model.srz
       [DataMember(Order =  7)]
 		  public virtual Concept Type { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Error> Errors { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponse> QueryResponses { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Message> Messages { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<MessageStatement> MessageStatements { get; set;}
-		
+      
    }
 }

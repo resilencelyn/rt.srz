@@ -281,7 +281,6 @@ namespace rt.atl.business.exchange.impl
       {
         var sessionPvp = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
         var securityService = ObjectFactory.GetInstance<ISecurityService>();
-        var user = securityService.GetCurrentUser();
         var smoSrzList = sessionSrz.QueryOver<Smo>().List();
         var smoPvpList = sessionPvp.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Smo).List();
         var list = smoPvpList;

@@ -95,17 +95,21 @@ namespace rt.srz.model.srz
       [DataMember(Order =  14)]
 		  public virtual Concept TrustLevel { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<EmploymentHistory> EmploymentHistories { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<In1> In1s { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponseItemize> QueryResponseItemizes { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<SearchKey> SearchKeys { get; set;}
-		
+      
    }
 }

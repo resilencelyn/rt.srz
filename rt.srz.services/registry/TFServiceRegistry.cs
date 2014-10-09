@@ -13,14 +13,14 @@ namespace rt.srz.services.registry
 
   using rt.core.services.registry;
   using rt.srz.model.interfaces.service;
-  using rt.srz.services.TF;
+  using rt.srz.services.Tfoms;
 
   #endregion
 
   /// <summary>
   ///   The tf service registry.
   /// </summary>
-  public class TFServiceRegistry : ServiceRegistryBase<ITFService, TFService, TFGate>
+  public class TFServiceRegistry : ServiceRegistryBase<ITfomsService, TfomsService, TfomsGate>
   {
   }
 }

@@ -213,8 +213,8 @@ namespace rt.srz.ui.pvp.Pages.Reports
         lbYear1.Text = GetYear(date);
 
         var dateIssue = statement.DateIssueTemporaryCertificate.Value;
-        var endDate = statementService.CalculateEnPeriodWorkingDay(dateIssue, 30);
-        statementService.CalculateEnPeriodWorkingDay(dateIssue, 30);
+        var endDate = statementService.CalculateEndPeriodWorkingDay(dateIssue, 30);
+        statementService.CalculateEndPeriodWorkingDay(dateIssue, 30);
         date = endDate.ToString("dd.MM.yyyy");
 
         lbDay2.Text = GetDay(date);

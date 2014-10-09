@@ -124,10 +124,20 @@ namespace rt.core.business.nhibernate
         var propertyName = classMetadata.PropertyNames[i];
         var propertyInfo = persistentType.GetProperty(propertyName);
 
-        // Unproxy of collections is not currently supported.  We set the collection property to null.
+        // Unproxy of collections is supported. Iterate over the collection and unproxy in turn.
+        object propertyValue;
         if (propertyType.IsCollectionType)
         {
-          propertyInfo.SetValue(unproxiedObject, null, null);
+          propertyValue = propertyInfo.GetValue(unproxiedObject, null);
+          var collection = propertyValue as System.Collections.ICollection;
+          if (collection != null)
+          {
+            foreach (var item in collection)
+            {
+              item.Unproxy(sessionFactory);
+            }
+          }
+
           continue;
         }
 
@@ -136,7 +146,7 @@ namespace rt.core.business.nhibernate
           continue;
         }
 
-        var propertyValue = propertyInfo.GetValue(unproxiedObject, null);
+        propertyValue = propertyInfo.GetValue(unproxiedObject, null);
 
         if (propertyValue == null)
         {

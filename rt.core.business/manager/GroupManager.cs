@@ -27,22 +27,6 @@ namespace rt.core.business.manager
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавление группы
-    /// </summary>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    public Guid AddGroup(string name)
-    {
-      var group = new Group();
-      group.Name = name;
-      SaveOrUpdate(group);
-      return group.Id;
-    }
-
-    /// <summary>
     /// Удаление группы
     /// </summary>
     /// <param name="groupId">

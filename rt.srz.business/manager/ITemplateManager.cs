@@ -35,7 +35,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="Template"/>.
     /// </returns>
-    Template CreateCopyOfTemplateVs(Guid id);
+    Template CreateCopyOfTemplate(Guid id);
 
     #endregion
   }

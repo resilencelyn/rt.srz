@@ -2,9 +2,6 @@
 // <copyright file="NHibernateProxyInterceptorServer.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   Аспект для логирования
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.services.aspects
@@ -28,6 +25,30 @@ namespace rt.core.services.aspects
   /// </summary>
   public class NHibernateProxyInterceptorServer : IMethodInterceptor
   {
+    #region Fields
+
+    /// <summary>
+    /// The max depth.
+    /// </summary>
+    private readonly int maxDepth;
+
+    #endregion
+
+    #region Constructors and Destructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NHibernateProxyInterceptorServer"/> class.
+    /// </summary>
+    /// <param name="maxDepth">
+    /// The max depth.
+    /// </param>
+    public NHibernateProxyInterceptorServer(int maxDepth = 1)
+    {
+      this.maxDepth = maxDepth;
+    }
+
+    #endregion
+
     #region Public Methods and Operators
 
     /// <summary>
@@ -51,7 +72,9 @@ namespace rt.core.services.aspects
       var result = invokeNext();
 
       // Возвращаемый объект, но если он Business то делаем ему Unproxy
-      return result is Business ? result.UnproxyObjectTree(ObjectFactory.GetInstance<ISessionFactory>(), 1) : result;
+      return result is Business
+               ? result.UnproxyObjectTree(ObjectFactory.GetInstance<ISessionFactory>(), maxDepth)
+               : result;
     }
 
     /// <summary>

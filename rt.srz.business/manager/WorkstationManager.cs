@@ -213,7 +213,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public string GetCurrentReaderName(string worstationName)
     {
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       var workstation =
         GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
           .FirstOrDefault();
@@ -260,7 +260,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public string GetCurrentSmcReaderName(string worstationName)
     {
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       var workstation =
         GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
           .FirstOrDefault();
@@ -307,7 +307,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public string GetCurrentSmcTokenReaderName(string worstationName)
     {
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       var workstation =
         GetBy(x => x.Name == worstationName && x.PointDistributionPolicy.Id == user.PointDistributionPolicyId)
           .FirstOrDefault();

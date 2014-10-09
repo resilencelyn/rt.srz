@@ -12,6 +12,7 @@ namespace rt.srz.services.Uec
   #region
 
   using System;
+  using System.Collections.Generic;
 
   using rt.core.services.aspects;
   using rt.uec.model.dto;
@@ -237,7 +238,7 @@ namespace rt.srz.services.Uec
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    /// The workstation Name.
+    ///   The workstation Name.
     /// </param>
     /// <returns>
     /// The <see cref="MO[]"/> .

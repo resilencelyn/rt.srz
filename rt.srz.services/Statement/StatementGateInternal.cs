@@ -41,24 +41,13 @@ namespace rt.srz.services.Statement
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавляет в базу настройку о том что можно включать отключать проверку данного валидатора
-    /// </summary>
-    /// <param name="className">
-    /// тип валидатора
-    /// </param>
-    public void AddAllowChangeSetting(string className)
-    {
-      InvokeInterceptors(() => Service.AddAllowChangeSetting(className));
-    }
-
-    /// <summary>
     /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
     /// </summary>
     /// <param name="className">
     /// </param>
-    public void AddSetting(string className)
+    public void SaveCheckSetting(string className)
     {
-      InvokeInterceptors(() => Service.AddSetting(className));
+      InvokeInterceptors(() => Service.SaveCheckSetting(className));
     }
 
     /// <summary>
@@ -73,9 +62,9 @@ namespace rt.srz.services.Statement
     /// <returns>
     /// The <see cref="DateTime"/>.
     /// </returns>
-    public DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count)
+    public DateTime CalculateEndPeriodWorkingDay(DateTime dateFrom, int count)
     {
-      return InvokeInterceptors(() => Service.CalculateEnPeriodWorkingDay(dateFrom, count));
+      return InvokeInterceptors(() => Service.CalculateEndPeriodWorkingDay(dateFrom, count));
     }
 
     /// <summary>
@@ -188,35 +177,22 @@ namespace rt.srz.services.Statement
     /// <returns>
     /// The <see cref="IList"/> .
     /// </returns>
-    public IList<Statement> GetAllByInsuredId(Guid insuredId)
+    public List<Statement> GetAllByInsuredId(Guid insuredId)
     {
       return InvokeInterceptors(() => Service.GetAllByInsuredId(insuredId));
-    }
-
-    /// <summary>
-    /// Возвращает объект AutoComplete
-    /// </summary>
-    /// <param name="Id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="AutoComplete"/> .
-    /// </returns>
-    public AutoComplete GetAutoComplete(Guid Id)
-    {
-      return InvokeInterceptors(() => Service.GetAutoComplete(Id));
     }
 
     /// <summary>
     /// The get category by citizenship.
     /// </summary>
     /// <param name="citizenshipId">
-    /// The citizenship id.
+    ///   The citizenship id.
     /// </param>
     /// <param name="isnotCitizenship">
-    /// The isnot citizenship.
+    ///   The isnot citizenship.
     /// </param>
     /// <param name="isrefugee">
-    /// The isrefugee.
+    ///   The isrefugee.
     /// </param>
     /// <param name="age">
     /// </param>
@@ -227,11 +203,7 @@ namespace rt.srz.services.Statement
     ///   </see>
     ///   .
     /// </returns>
-    public IList<Concept> GetCategoryByCitizenship(
-      int citizenshipId, 
-      bool isnotCitizenship, 
-      bool isrefugee, 
-      TimeSpan age)
+    public List<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age)
     {
       return InvokeInterceptors(() => Service.GetCategoryByCitizenship(citizenshipId, isnotCitizenship, isrefugee, age));
     }

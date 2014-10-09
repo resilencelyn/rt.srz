@@ -97,14 +97,17 @@ namespace rt.srz.model.srz
       [DataMember(Order =  16)]
 		  public virtual Kladr Kladr { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponse> QueryResponses { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements1 { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements2 { get; set;}
-		
+      
    }
 }

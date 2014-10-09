@@ -28,6 +28,8 @@ namespace rt.srz.services.Statement
     /// <summary>
     /// The on error.
     /// </summary>
+    /// <typeparam name="T">
+    /// </typeparam>
     /// <param name="target">
     /// The target.
     /// </param>
@@ -37,8 +39,6 @@ namespace rt.srz.services.Statement
     /// <param name="ex">
     /// The ex.
     /// </param>
-    /// <typeparam name="T">
-    /// </typeparam>
     protected override void OnError<T>(Func<T> target, string sessionId, Exception ex)
     {
       if (ex is LogicalControlException)

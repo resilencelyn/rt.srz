@@ -14,7 +14,7 @@ namespace rt.srz.ui.pvp.Pages.NSI
 {
   public partial class FirstMiddleName : System.Web.UI.Page
   {
-    private INsiService _service;
+    private IRegulatoryService _service;
     private AutoComplete _name;
 
     private BaseAddCancelPage MasterPage
@@ -26,7 +26,7 @@ namespace rt.srz.ui.pvp.Pages.NSI
     {
       MasterPage.Save += MasterPage_Save;
       MasterPage.Cancel += MasterPage_Cancel;
-      _service = ObjectFactory.GetInstance<INsiService>();
+      _service = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace rt.srz.ui.pvp.Pages.NSI
       }
       else
       {
-        _name = _service.GetFirstMiddleName(Guid.Parse(Request.QueryString["Id"]));
+        _name = _service.GetAutoComplete(Guid.Parse(Request.QueryString["Id"]));
       }
 
       if (!IsPostBack)
@@ -86,7 +86,7 @@ namespace rt.srz.ui.pvp.Pages.NSI
     private Guid SaveChanges()
     {
       SetObjValues(_name);
-      return _service.AddOrUpdateFirstMiddleName(_name);
+      return _service.SaveAutoComplete(_name);
     }
 
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)

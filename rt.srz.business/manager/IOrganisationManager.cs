@@ -29,63 +29,50 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Удаление пдп (пометка неактивен)
     /// </summary>
-    /// <param name="pdp">
+    /// <param name="organisation">
     /// </param>
-    void DeleteOrganisation(Organisation pdp);
+    void DeleteOrganisation(Organisation organisation);
 
     /// <summary>
-    /// Удаление pdp (set пометка IsActive=false)
+    /// Удаление organisation (set пометка IsActive=false)
     /// </summary>
     /// <param name="organisationId">
     /// </param>
     void DeleteOrganisation(Guid organisationId);
 
     /// <summary>
-    /// Удаление смо (set пометка IsActive=false)
-    /// </summary>
-    /// <param name="smoId">
-    /// </param>
-    void DeleteSmo(Guid smoId);
-
-    /// <summary>
     ///   Возвращает список всех зарегестрированных ТФОМС
     /// </summary>
     /// <returns> The <see cref="IList{T}" /> . </returns>
-    IList<Organisation> GetAllTfoms();
+    IList<Organisation> GetTfoms();
 
     /// <summary>
     /// The get childres.
     /// </summary>
     /// <param name="parentId">
-    /// The parent id.
+    /// The parent Id.
+    /// </param>
+    /// <param name="oid">
+    /// The oid.
     /// </param>
     /// <returns>
-    /// The <see cref="List"/> .
+    /// The <see cref="IList{Organisation}"/>.
     /// </returns>
-    IList<Organisation> GetChildrens(Guid parentId);
+    IList<Organisation> GetChildrens(Guid parentId, string oid = "");
 
     /// <summary>
     /// Возвращает все МО для указанного ТФОМС
     /// </summary>
     /// <param name="tfomsCode">
+    /// The tfoms Code.
     /// </param>
     /// <param name="workstationName">
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> .
+    /// The <see cref="List{MO}"/>.
     /// </returns>
-    MO[] GetMO(string tfomsCode, string workstationName);
-
-    /// <summary>
-    /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
-    /// </summary>
-    /// <param name="smoId">
-    /// The smo Id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    IList<Organisation> GetPDPsBySmo(Guid smoId);
+    List<MO> GetMo(string tfomsCode, string workstationName);
 
     /// <summary>
     /// The get parent.
@@ -97,27 +84,6 @@ namespace rt.srz.business.manager
     /// The <see cref="Organisation"/> .
     /// </returns>
     Organisation GetParent(Organisation org);
-
-    /// <summary>
-    /// Возвращает список всех зарегестрированных пуктов выдачи полисов для указанной СМО
-    /// </summary>
-    /// <param name="smoId">
-    /// The smo Id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList{T}"/> .
-    /// </returns>
-    IList<Organisation> GetPdPsBySmo(Guid smoId);
-
-    /// <summary>
-    /// Получает список всех пунктов выдачи
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> .
-    /// </returns>
-    SearchResult<Organisation> GetPdps(SearchPdpCriteria criteria);
 
     /// <summary>
     /// Возвращает смо
@@ -141,39 +107,18 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="SearchResult"/> .
     /// </returns>
-    SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria);
-
-    /// <summary>
-    /// Возвращает список всех зарегестрированных СМО для указанного ТФОМС
-    /// </summary>
-    /// <param name="tfomId">
-    /// The tfom Id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList{T}"/> .
-    /// </returns>
-    IList<Organisation> GetSmosByTfom(Guid tfomId);
-
-    /// <summary>
-    /// Получает список всех организаций
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> .
-    /// </returns>
-    SearchResult<Organisation> GetSmosExcludeTfom(SearchSmoCriteria criteria);
+    SearchResult<Organisation> GetSmosByCriteria(SearchSmoCriteria criteria);
 
     /// <summary>
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    /// The workstation Name.
+    ///   The workstation Name.
     /// </param>
     /// <returns>
     /// The <see cref="MO[]"/> .
     /// </returns>
-    MO[] GetTFoms(string workstationName);
+    List<MO> GetTFoms(string workstationName);
 
     /// <summary>
     /// The get tfom by opfr code.
@@ -220,16 +165,6 @@ namespace rt.srz.business.manager
     ///   The <see cref="bool" />.
     /// </returns>
     bool OffHours();
-
-    /// <summary>
-    /// Сохраняет указанный список мед организаций в базу. Все элементы которые присутствуют в базе для данной смо(мипа) но
-    ///   отсутсвуют в списке, будут удалены
-    /// </summary>
-    /// <param name="mipId">
-    /// </param>
-    /// <param name="mos">
-    /// </param>
-    void SaveMos(Guid mipId, List<Organisation> mos);
 
     /// <summary>
     /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в

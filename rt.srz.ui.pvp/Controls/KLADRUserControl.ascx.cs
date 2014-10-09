@@ -65,6 +65,11 @@ namespace rt.srz.ui.pvp.Controls
     /// </summary>
     private ISecurityService securityService;
 
+    /// <summary>
+    /// The organisation service.
+    /// </summary>
+    private IRegulatoryService regulatoryService;
+
     #endregion
 
     #region Public Properties
@@ -444,7 +449,7 @@ namespace rt.srz.ui.pvp.Controls
       if (currentUser.HasTf())
       {
         var tfom = currentUser.GetTf();
-        var kladr = kladrService.GetFirstLevelByTfoms(tfom);
+        var kladr = regulatoryService.GetFirstLevelByTfoms(tfom);
         if (kladr != null)
         {
           // Установка региона по умолчанию
@@ -481,6 +486,7 @@ namespace rt.srz.ui.pvp.Controls
     {
       kladrService = ObjectFactory.GetInstance<IKladrService>();
       securityService = ObjectFactory.GetInstance<ISecurityService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
 
       if (!IsPostBack)
       {
@@ -683,7 +689,7 @@ namespace rt.srz.ui.pvp.Controls
 
         // Спец. Случай для Москвы и Питера
         // загружаем их же в поле "Населенный пункт"
-        var obj = kladrService.GetKLADR(new Guid(ddlSubject.SelectedValue));
+        var obj = kladrService.GetKladr(new Guid(ddlSubject.SelectedValue));
         if (obj != null && !string.IsNullOrEmpty(obj.Ocatd))
         {
           if (obj.Ocatd == MoscowOkato || obj.Ocatd == StPetersburgOkato)
@@ -809,7 +815,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Area);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlSubject.SelectedValue), null, KladrLevel.Area);
       if (addressObjects.Count == 0)
       {
         lblArea.Visible = false;
@@ -833,7 +839,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.City);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlSubject.SelectedValue), null, KladrLevel.City);
       if (addressObjects.Count == 0)
       {
         lblCity.Visible = false;
@@ -857,7 +863,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.City);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlArea.SelectedValue), null, KladrLevel.City);
       if (addressObjects.Count == 0)
       {
         lblCity.Visible = false;
@@ -881,7 +887,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.Street);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlArea.SelectedValue), null, KladrLevel.Street);
       if (addressObjects.Count == 0)
       {
         ddlStreet.Visible = false;
@@ -906,7 +912,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlCity.SelectedValue), null, KLADRLevel.Street);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlCity.SelectedValue), null, KladrLevel.Street);
       if (addressObjects.Count == 0)
       {
         ddlStreet.Visible = false;
@@ -932,7 +938,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Street);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlSubject.SelectedValue), null, KladrLevel.Street);
       if (addressObjects.Count == 0)
       {
         ddlStreet.Visible = false;
@@ -957,7 +963,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlTown.SelectedValue), null, KLADRLevel.Street);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlTown.SelectedValue), null, KladrLevel.Street);
       if (addressObjects.Count == 0)
       {
         ddlStreet.Visible = false;
@@ -977,7 +983,7 @@ namespace rt.srz.ui.pvp.Controls
     /// </summary>
     private void LoadSubjects()
     {
-      var addressObjects = kladrService.GetKLADRs(null, null, KLADRLevel.Subject);
+      var addressObjects = kladrService.GetKladrs(null, null, KladrLevel.Subject);
       foreach (var addressObject in addressObjects)
       {
         ddlSubject.Items.Add(new ListItem(addressObject.Name + " " + addressObject.Socr, addressObject.Id.ToString()));
@@ -994,7 +1000,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlArea.SelectedValue), null, KLADRLevel.Town);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlArea.SelectedValue), null, KladrLevel.Town);
       if (addressObjects.Count == 0)
       {
         ddlTown.Visible = false;
@@ -1021,7 +1027,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlCity.SelectedValue), null, KLADRLevel.Town);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlCity.SelectedValue), null, KladrLevel.Town);
       if (addressObjects.Count == 0)
       {
         ddlTown.Visible = false;
@@ -1048,7 +1054,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      var addressObjects = kladrService.GetKLADRs(new Guid(ddlSubject.SelectedValue), null, KLADRLevel.Town);
+      var addressObjects = kladrService.GetKladrs(new Guid(ddlSubject.SelectedValue), null, KladrLevel.Town);
       if (addressObjects.Count == 0)
       {
         ddlTown.Visible = false;
@@ -1100,7 +1106,7 @@ namespace rt.srz.ui.pvp.Controls
     private void SetPostcode()
     {
       tbPostcode.Text = string.Empty;
-      var kladr = kladrService.GetKLADR(SelectedKLADRId);
+      var kladr = kladrService.GetKladr(SelectedKLADRId);
       if (kladr != null && kladr.Index != null)
       {
         tbPostcode.Text = kladr.Index.ToString();

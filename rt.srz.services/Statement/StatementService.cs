@@ -41,28 +41,7 @@ namespace rt.srz.services.Statement
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавляет в базу настройку о том что можно включать отключать проверку данного валидатора
-    /// </summary>
-    /// <param name="className">
-    /// тип валидатора
-    /// </param>
-    public void AddAllowChangeSetting(string className)
-    {
-      ObjectFactory.GetInstance<ISettingManager>().AddAllowChangeSetting(className);
-    }
-
-    /// <summary>
-    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    public void AddSetting(string className)
-    {
-      ObjectFactory.GetInstance<ISettingManager>().AddSetting(className);
-    }
-
-    /// <summary>
-    /// The calculate en period working day.
+    /// Вычисляет дату окончания 30 рабочих дней
     /// </summary>
     /// <param name="dateFrom">
     /// The date from.
@@ -73,9 +52,9 @@ namespace rt.srz.services.Statement
     /// <returns>
     /// The <see cref="DateTime"/>.
     /// </returns>
-    public DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count)
+    public DateTime CalculateEndPeriodWorkingDay(DateTime dateFrom, int count)
     {
-      return ObjectFactory.GetInstance<IMedicalInsuranceManager>().CalculateEnPeriodWorkingDay(dateFrom, count);
+      return ObjectFactory.GetInstance<IMedicalInsuranceManager>().CalculateEndPeriodWorkingDay(dateFrom, count);
     }
 
     /// <summary>
@@ -90,7 +69,7 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// The check property statement.
+    /// Проверка конкретного свойства заявления
     /// </summary>
     /// <param name="statement">
     /// The statement.
@@ -100,12 +79,11 @@ namespace rt.srz.services.Statement
     /// </param>
     public void CheckPropertyStatement(Statement statement, ExpressionNode expression)
     {
-      ObjectFactory.GetInstance<ICheckManager>()
-                   .CheckProperty(statement, (Expression<Func<Statement, object>>)expression.ToExpression());
+      ObjectFactory.GetInstance<ICheckManager>().CheckProperty(statement, (Expression<Func<Statement, object>>)expression.ToExpression());
     }
 
     /// <summary>
-    /// The check statement simple.
+    /// Проверка заявления, используя 
     /// </summary>
     /// <param name="statement">
     /// The statement.
@@ -133,7 +111,10 @@ namespace rt.srz.services.Statement
     /// The image.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/> .
+    /// The <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public byte[] ConvertToGrayScale(byte[] image)
     {
@@ -143,7 +124,11 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   Генерация пустого фото
     /// </summary>
-    /// <returns> The <see cref="byte[]" /> . </returns>
+    /// <returns> The <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    /// . 
+    /// </returns>
     public byte[] CreateEmptyPhoto()
     {
       return ObjectFactory.GetInstance<IContentManager>().CreateEmptyPhoto();
@@ -152,7 +137,10 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   Генерация пустой подписи
     /// </summary>
-    /// <returns> The <see cref="byte[]" /> . </returns>
+    /// <returns> The <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    /// . </returns>
     public byte[] CreateEmptySign()
     {
       return ObjectFactory.GetInstance<IContentManager>().CreateEmptySign();
@@ -187,12 +175,12 @@ namespace rt.srz.services.Statement
     /// Получает все заявления для указанной персоны
     /// </summary>
     /// <param name="insuredId">
-    /// The insured Id.
+    ///   The insured Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Statement}"/> .
     /// </returns>
-    public IList<Statement> GetAllByInsuredId(Guid insuredId)
+    public List<Statement> GetAllByInsuredId(Guid insuredId)
     {
       return
         ObjectFactory.GetInstance<IStatementManager>()
@@ -200,19 +188,6 @@ namespace rt.srz.services.Statement
                      .OrderBy(s => s.IsActive)
                      .ThenBy(s => s.DateFiling)
                      .ToList();
-    }
-
-    /// <summary>
-    /// Возвращает объект AutoComplete
-    /// </summary>
-    /// <param name="Id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="AutoComplete"/> .
-    /// </returns>
-    public AutoComplete GetAutoComplete(Guid Id)
-    {
-      return ObjectFactory.GetInstance<IAutoCompleteManager>().GetById(Id);
     }
 
     /// <summary>
@@ -228,22 +203,15 @@ namespace rt.srz.services.Statement
     /// The isrefugee.
     /// </param>
     /// <param name="age">
+    /// The age.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetCategoryByCitizenship(
-      int citizenshipId, 
-      bool isnotCitizenship, 
-      bool isrefugee, 
-      TimeSpan age)
+    public List<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age)
     {
-      return ObjectFactory.GetInstance<IOidManager>()
-                          .GetCategoryByCitizenship(citizenshipId, isnotCitizenship, isrefugee, age);
+      var oidManager = ObjectFactory.GetInstance<IOidManager>();
+      return oidManager.GetCategoryByCitizenship(citizenshipId, isnotCitizenship, isrefugee, age).ToList();
     }
 
     /// <summary>

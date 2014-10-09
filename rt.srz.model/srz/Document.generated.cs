@@ -65,20 +65,25 @@ namespace rt.srz.model.srz
       [DataMember(Order =  8)]
 		  public virtual Concept DocumentType { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponse> QueryResponses { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Representative> Representatives { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements1 { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements2 { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements3 { get; set;}
-		
+      
    }
 }

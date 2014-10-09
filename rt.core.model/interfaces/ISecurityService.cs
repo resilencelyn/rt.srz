@@ -28,45 +28,10 @@ namespace rt.core.model.interfaces
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавление группы
-    /// </summary>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    [OperationContract]
-    Guid AddGroup(string name);
-
-    /// <summary>
-    /// Добавление разрешения
-    /// </summary>
-    /// <param name="code">
-    /// </param>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    [OperationContract]
-    Guid AddPermission(int code, string name);
-
-    /// <summary>
-    /// Добавление роли
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    [OperationContract]
-    Guid AddRole(string name);
-
-    /// <summary>
     /// Добавляет пользователя
     /// </summary>
     /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
     /// User
@@ -78,6 +43,7 @@ namespace rt.core.model.interfaces
     /// Добавление пользователя в группы, удаление из групп
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="assignGroups">
     /// Группы в которые добавляется пользователь
@@ -92,8 +58,10 @@ namespace rt.core.model.interfaces
     /// Назначение пункта выдачи пользователю
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="pdpId">
+    /// The pdp Id.
     /// </param>
     [OperationContract]
     void AssignPdpToUser(Guid userId, Guid? pdpId);
@@ -102,6 +70,7 @@ namespace rt.core.model.interfaces
     /// Изменение (назначение, отсоединение) разрешений для роли
     /// </summary>
     /// <param name="roleId">
+    /// The role Id.
     /// </param>
     /// <param name="assignPermissions">
     /// назначаемые разрешения
@@ -116,10 +85,13 @@ namespace rt.core.model.interfaces
     /// Назначение пользователю ролей
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     /// <param name="assignRoles">
+    /// The assign Roles.
     /// </param>
     /// <param name="detachRoles">
+    /// The detach Roles.
     /// </param>
     [OperationContract]
     void AssignRolesToGroup(Guid groupId, List<Guid> assignRoles, List<Guid> detachRoles);
@@ -128,6 +100,7 @@ namespace rt.core.model.interfaces
     /// Назначение, отсоединение ролей для разрешения
     /// </summary>
     /// <param name="permissionId">
+    /// The permission Id.
     /// </param>
     /// <param name="assignRoles">
     /// назначаемые роли
@@ -142,10 +115,13 @@ namespace rt.core.model.interfaces
     /// Назначение пользователю ролей
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="assignRoles">
+    /// The assign Roles.
     /// </param>
     /// <param name="detachRoles">
+    /// The detach Roles.
     /// </param>
     [OperationContract]
     void AssignRolesToUser(Guid userId, List<Guid> assignRoles, List<Guid> detachRoles);
@@ -154,10 +130,13 @@ namespace rt.core.model.interfaces
     /// Добавление пользователей в группу, удаление пользователей из группы
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     /// <param name="assignUsers">
+    /// The assign Users.
     /// </param>
     /// <param name="detachUsers">
+    /// The detach Users.
     /// </param>
     [OperationContract]
     void AssignUsersToGroup(Guid groupId, List<Guid> assignUsers, List<Guid> detachUsers);
@@ -166,6 +145,7 @@ namespace rt.core.model.interfaces
     /// Удаление группы
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     [OperationContract]
     void DeleteGroup(Guid groupId);
@@ -174,6 +154,7 @@ namespace rt.core.model.interfaces
     /// Удаление разрешения
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     [OperationContract]
     void DeletePermission(Guid id);
@@ -182,6 +163,7 @@ namespace rt.core.model.interfaces
     /// Удаление роли
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     [OperationContract]
     void DeleteRole(Guid id);
@@ -190,6 +172,7 @@ namespace rt.core.model.interfaces
     /// Удаление пользователя
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     [OperationContract]
     void DeleteUser(Guid userId);
@@ -198,8 +181,10 @@ namespace rt.core.model.interfaces
     /// Проверяет есть ли в базе разрешение с указанным ид и кодом
     /// </summary>
     /// <param name="permissionId">
+    /// The permission Id.
     /// </param>
     /// <param name="code">
+    /// The code.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -218,6 +203,7 @@ namespace rt.core.model.interfaces
     /// Получает группу по идентификатору
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     /// <returns>
     /// The <see cref="Group"/> .
@@ -228,36 +214,39 @@ namespace rt.core.model.interfaces
     /// <summary>
     ///   Список всех групп
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="List{Group}" /> . </returns>
     [OperationContract]
-    IList<Group> GetGroups();
+    List<Group> GetGroups();
 
     /// <summary>
     /// Получает список групп названия которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Group}"/> .
     /// </returns>
     [OperationContract]
-    IList<Group> GetGroupsByNameContains(string contains);
+    List<Group> GetGroupsByNameContains(string contains);
 
     /// <summary>
     /// Получает список всех групп, куда входит данный пользователь
     /// </summary>
     /// <param name="userId">
+    ///   The user Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Group}"/> .
     /// </returns>
     [OperationContract]
-    IList<Group> GetGroupsByUser(Guid userId);
+    List<Group> GetGroupsByUser(Guid userId);
 
     /// <summary>
     /// Разрешено ли текущему пользователю разрешение
     /// </summary>
     /// <param name="permissionCode">
+    /// The permission Code.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
@@ -269,8 +258,10 @@ namespace rt.core.model.interfaces
     /// Разрешено ли пользователю разрешение с указанным кодом
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="permissionCode">
+    /// The permission Code.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -282,6 +273,7 @@ namespace rt.core.model.interfaces
     /// Получает разрешение по идентификатору
     /// </summary>
     /// <param name="permissionId">
+    /// The permission Id.
     /// </param>
     /// <returns>
     /// The <see cref="Permission"/> .
@@ -292,26 +284,27 @@ namespace rt.core.model.interfaces
     /// <summary>
     ///   Получает список всех разрешений
     /// </summary>
-    /// <param name="roleId"> </param>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="List{Permission}" /> . </returns>
     [OperationContract]
-    IList<Permission> GetPermissions();
+    List<Permission> GetPermissions();
 
     /// <summary>
     /// Получает список разрешений названия которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Permission}"/> .
     /// </returns>
     [OperationContract]
-    IList<Permission> GetPermissionsByNameContains(string contains);
+    List<Permission> GetPermissionsByNameContains(string contains);
 
     /// <summary>
     /// Получает роль по идентификатору
     /// </summary>
     /// <param name="roleId">
+    /// The role Id.
     /// </param>
     /// <returns>
     /// The <see cref="Role"/> .
@@ -323,68 +316,74 @@ namespace rt.core.model.interfaces
     /// Получает список разрешений для роли
     /// </summary>
     /// <param name="roleId">
+    ///   The role Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Permission}"/> .
     /// </returns>
     [OperationContract]
-    IList<Permission> GetRolePermissions(Guid roleId);
+    List<Permission> GetRolePermissions(Guid roleId);
 
     /// <summary>
-    ///   Получает список всех ролей
+    ///   Получает список ролей
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="List{Role}" /> . </returns>
     [OperationContract]
-    IList<Role> GetRoles();
+    List<Role> GetRoles();
 
     /// <summary>
     /// Получает список ролей для группы
     /// </summary>
     /// <param name="groupId">
+    ///   The group Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Role}"/> .
     /// </returns>
     [OperationContract]
-    IList<Role> GetRolesByGroup(Guid groupId);
+    List<Role> GetRolesByGroup(Guid groupId);
 
     /// <summary>
     /// Получает список ролей названия которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Role}"/> .
     /// </returns>
     [OperationContract]
-    IList<Role> GetRolesByNameContains(string contains);
+    List<Role> GetRolesByNameContains(string contains);
 
     /// <summary>
     /// Получает список всех ролей, для которых назначено разрешение
     /// </summary>
     /// <param name="permissionId">
+    ///   The permission Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Role}"/> .
     /// </returns>
     [OperationContract]
-    IList<Role> GetRolesByPermission(Guid permissionId);
+    List<Role> GetRolesByPermission(Guid permissionId);
 
     /// <summary>
     /// Получает список ролей для пользователя
     /// </summary>
     /// <param name="userId">
+    ///   The user Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Role}"/> .
     /// </returns>
     [OperationContract]
-    IList<Role> GetRolesByUser(Guid userId);
+    List<Role> GetRolesByUser(Guid userId);
 
     /// <summary>
     /// Возвращает пользователя
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <returns>
     /// The <see cref="User"/> .
@@ -396,6 +395,7 @@ namespace rt.core.model.interfaces
     /// Возвращает пользователя по имени
     /// </summary>
     /// <param name="name">
+    /// The name.
     /// </param>
     /// <returns>
     /// User
@@ -407,6 +407,7 @@ namespace rt.core.model.interfaces
     /// Возвращает имя пользователя по email
     /// </summary>
     /// <param name="email">
+    /// The email.
     /// </param>
     /// <returns>
     /// UserName
@@ -417,54 +418,39 @@ namespace rt.core.model.interfaces
     /// <summary>
     ///   Список всех пользователей
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="List{User}" /> . </returns>
     [OperationContract]
-    IList<User> GetUsers();
+    List<User> GetUsers();
 
     /// <summary>
     /// Получает список всех пользователей группы
     /// </summary>
     /// <param name="groupId">
+    ///   The group Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{User}"/> .
     /// </returns>
     [OperationContract]
-    IList<User> GetUsersByGroup(Guid groupId);
+    List<User> GetUsersByGroup(Guid groupId);
 
     /// <summary>
     /// Получает список пользователей логины которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{User}"/> .
     /// </returns>
     [OperationContract]
-    IList<User> GetUsersByNameContains(string contains);
-
-    /// <summary>
-    /// Является ли текущий пользователь админом СМО
-    /// </summary>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    [OperationContract]
-    bool IsCurrentUserAdminSmo();
-
-    /// <summary>
-    /// Является ли текущий пользователь админом территориального фонда
-    /// </summary>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    [OperationContract]
-    bool IsCurrentUserAdminTF();
+    List<User> GetUsersByNameContains(string contains);
 
     /// <summary>
     /// Является ли пользователь админом СМО
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
@@ -476,6 +462,7 @@ namespace rt.core.model.interfaces
     /// Является ли пользователь админом территориального фонда
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
@@ -487,6 +474,7 @@ namespace rt.core.model.interfaces
     /// Имеет ли пользователь роль администратора или входит в группы любая из которых имеет роль администратора
     /// </summary>
     /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -498,17 +486,19 @@ namespace rt.core.model.interfaces
     /// Сохранение или добавление группы
     /// </summary>
     /// <param name="group">
+    /// The group.
     /// </param>
     /// <returns>
     /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
-    Guid SaveGroup(Group @group);
+    Guid SaveGroup(Group group);
 
     /// <summary>
     /// Добавляет или сохраняет разрешение
     /// </summary>
     /// <param name="permission">
+    /// The permission.
     /// </param>
     /// <returns>
     /// The <see cref="Guid"/> .
@@ -520,6 +510,7 @@ namespace rt.core.model.interfaces
     /// Добавляет или сохраняет роль
     /// </summary>
     /// <param name="role">
+    /// The role.
     /// </param>
     /// <returns>
     /// The <see cref="Guid"/> .
@@ -528,7 +519,7 @@ namespace rt.core.model.interfaces
     Guid SaveRole(Role role);
 
     /// <summary>
-    /// The save user.
+    /// Сохраняет или добавляет пользователя
     /// </summary>
     /// <param name="user">
     /// The user.
@@ -536,14 +527,17 @@ namespace rt.core.model.interfaces
     /// <returns>
     /// The <see cref="User"/> .
     /// </returns>
+    [OperationContract]
     User SaveUser(User user);
 
     /// <summary>
     /// Обновляет пароль пользователя
     /// </summary>
     /// <param name="name">
+    /// The name.
     /// </param>
     /// <param name="newPassword">
+    /// The new Password.
     /// </param>
     /// <returns>
     /// User

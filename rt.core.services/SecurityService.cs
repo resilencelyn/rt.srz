@@ -1,10 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SecurityService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="SecurityService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The security service.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.core.services
@@ -13,6 +10,7 @@ namespace rt.core.services
 
   using System;
   using System.Collections.Generic;
+  using System.Linq;
 
   using rt.core.business.manager;
   using rt.core.business.security.interfaces;
@@ -32,54 +30,13 @@ namespace rt.core.services
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавление группы
-    /// </summary>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> . 
-    /// </returns>
-    public Guid AddGroup(string name)
-    {
-      return ObjectFactory.GetInstance<IGroupManager>().AddGroup(name);
-    }
-
-    /// <summary>
-    /// Добавление разрешения
-    /// </summary>
-    /// <param name="code">
-    /// </param>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> . 
-    /// </returns>
-    public Guid AddPermission(int code, string name)
-    {
-      return ObjectFactory.GetInstance<IPermissionManager>().AddPermission(code, name);
-    }
-
-    /// <summary>
-    /// Добавление роли
-    /// </summary>
-    /// <param name="name">
-    /// The name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> . 
-    /// </returns>
-    public Guid AddRole(string name)
-    {
-      return ObjectFactory.GetInstance<IRoleManager>().AddRole(name);
-    }
-
-    /// <summary>
     /// Добавляет пользователя
     /// </summary>
     /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
-    /// User 
+    /// User
     /// </returns>
     public User AddUser(User user)
     {
@@ -90,12 +47,13 @@ namespace rt.core.services
     /// Добавление пользователя в группы, удаление из групп
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="assignGroups">
-    /// Группы в которые добавляется пользователь 
+    /// Группы в которые добавляется пользователь
     /// </param>
     /// <param name="detachGroups">
-    /// Группы из которых исключается пользователь 
+    /// Группы из которых исключается пользователь
     /// </param>
     public void AssignGroupsToUser(Guid userId, List<Guid> assignGroups, List<Guid> detachGroups)
     {
@@ -106,8 +64,10 @@ namespace rt.core.services
     /// Назначение пункта выдачи пользователю
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="pdpId">
+    /// The pdp Id.
     /// </param>
     public void AssignPdpToUser(Guid userId, Guid? pdpId)
     {
@@ -118,26 +78,31 @@ namespace rt.core.services
     /// Изменение (назначение, отсоединение) разрешений для роли
     /// </summary>
     /// <param name="roleId">
+    /// The role Id.
     /// </param>
     /// <param name="assignPermissions">
-    /// назначаемые разрешения 
+    /// назначаемые разрешения
     /// </param>
     /// <param name="detachPermissions">
-    /// отсоединяемые разрешения 
+    /// отсоединяемые разрешения
     /// </param>
     public void AssignPermissionsToRole(Guid roleId, List<Guid> assignPermissions, List<Guid> detachPermissions)
     {
-      ObjectFactory.GetInstance<IPermissionRoleManager>().AssignPermissionsToRole(roleId, assignPermissions, detachPermissions);
+      ObjectFactory.GetInstance<IPermissionRoleManager>()
+                   .AssignPermissionsToRole(roleId, assignPermissions, detachPermissions);
     }
 
     /// <summary>
     /// Назначение пользователю ролей
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     /// <param name="assignRoles">
+    /// The assign Roles.
     /// </param>
     /// <param name="detachRoles">
+    /// The detach Roles.
     /// </param>
     public void AssignRolesToGroup(Guid groupId, List<Guid> assignRoles, List<Guid> detachRoles)
     {
@@ -148,26 +113,31 @@ namespace rt.core.services
     /// Назначение, отсоединение ролей для разрешения
     /// </summary>
     /// <param name="permissionId">
+    /// The permission Id.
     /// </param>
     /// <param name="assignRoles">
-    /// назначаемые роли 
+    /// назначаемые роли
     /// </param>
     /// <param name="detachRoles">
-    /// отсоединяемые роли 
+    /// отсоединяемые роли
     /// </param>
     public void AssignRolesToPermission(Guid permissionId, List<Guid> assignRoles, List<Guid> detachRoles)
     {
-      ObjectFactory.GetInstance<IPermissionRoleManager>().AssignRolesToPermission(permissionId, assignRoles, detachRoles);
+      ObjectFactory.GetInstance<IPermissionRoleManager>()
+                   .AssignRolesToPermission(permissionId, assignRoles, detachRoles);
     }
 
     /// <summary>
     /// Назначение пользователю ролей
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="assignRoles">
+    /// The assign Roles.
     /// </param>
     /// <param name="detachRoles">
+    /// The detach Roles.
     /// </param>
     public void AssignRolesToUser(Guid userId, List<Guid> assignRoles, List<Guid> detachRoles)
     {
@@ -178,10 +148,13 @@ namespace rt.core.services
     /// Добавление пользователей в группу, удаление пользователей из группы
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     /// <param name="assignUsers">
+    /// The assign Users.
     /// </param>
     /// <param name="detachUsers">
+    /// The detach Users.
     /// </param>
     public void AssignUsersToGroup(Guid groupId, List<Guid> assignUsers, List<Guid> detachUsers)
     {
@@ -192,6 +165,7 @@ namespace rt.core.services
     /// Удаление группы
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     public void DeleteGroup(Guid groupId)
     {
@@ -202,6 +176,7 @@ namespace rt.core.services
     /// Удаление разрешения
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     public void DeletePermission(Guid id)
     {
@@ -212,6 +187,7 @@ namespace rt.core.services
     /// Удаление роли
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     public void DeleteRole(Guid id)
     {
@@ -222,6 +198,7 @@ namespace rt.core.services
     /// Удаление пользователя
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     public void DeleteUser(Guid userId)
     {
@@ -232,11 +209,13 @@ namespace rt.core.services
     /// Проверяет есть ли в базе разрешение с указанным ид и кодом
     /// </summary>
     /// <param name="permissionId">
+    /// The permission Id.
     /// </param>
     /// <param name="code">
+    /// The code.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public bool ExistsPermissionCode(Guid permissionId, int code)
     {
@@ -256,9 +235,10 @@ namespace rt.core.services
     /// Получает группу по идентификатору
     /// </summary>
     /// <param name="groupId">
+    /// The group Id.
     /// </param>
     /// <returns>
-    /// The <see cref="Group"/> . 
+    /// The <see cref="Group"/> .
     /// </returns>
     public Group GetGroup(Guid groupId)
     {
@@ -268,47 +248,66 @@ namespace rt.core.services
     /// <summary>
     ///   Список всех групп
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Group> GetGroups()
+    /// <returns> The <see cref="List{Group}" /> . </returns>
+    public List<Group> GetGroups()
     {
-      return ObjectFactory.GetInstance<IGroupManager>().GetAll();
+      return ObjectFactory.GetInstance<IGroupManager>().GetAll().ToList();
     }
 
     /// <summary>
     /// Получает список групп названия которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Group}"/> .
     /// </returns>
-    public IList<Group> GetGroupsByNameContains(string contains)
+    public List<Group> GetGroupsByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IGroupManager>().GetGroupsByNameContains(contains);
+      return ObjectFactory.GetInstance<IGroupManager>().GetGroupsByNameContains(contains).ToList();
     }
 
     /// <summary>
     /// Получает список всех групп, куда входит данный пользователь
     /// </summary>
     /// <param name="userId">
+    ///   The user Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Group}"/> .
     /// </returns>
-    public IList<Group> GetGroupsByUser(Guid userId)
+    public List<Group> GetGroupsByUser(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserGroupManager>().GetGroupsByUser(userId);
+      return ObjectFactory.GetInstance<IUserGroupManager>().GetGroupsByUser(userId).ToList();
+    }
+
+    /// <summary>
+    /// Разрешено ли текущему пользователю разрешение
+    /// </summary>
+    /// <param name="permissionCode">
+    /// The permission Code.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool GetIsCurrentUserAllowPermission(PermissionCode permissionCode)
+    {
+      var currentUser = GetCurrentUser();
+      return ObjectFactory.GetInstance<IUserManager>().GetIsUserAllowPermission(currentUser.Id, (int)permissionCode);
     }
 
     /// <summary>
     /// Разрешено ли пользователю разрешение с указанным кодом
     /// </summary>
     /// <param name="userId">
+    /// The user Id.
     /// </param>
     /// <param name="permissionCode">
+    /// The permission Code.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public bool GetIsUserAllowPermission(Guid userId, int permissionCode)
     {
@@ -316,63 +315,13 @@ namespace rt.core.services
     }
 
     /// <summary>
-    /// Разрешено ли текущему пользователю разрешение
-    /// </summary>
-    /// <param name="permissionCode"></param>
-    /// <returns></returns>
-    public bool GetIsCurrentUserAllowPermission(PermissionCode permissionCode)
-    {
-      User currentUser = GetCurrentUser();
-      return ObjectFactory.GetInstance<IUserManager>().GetIsUserAllowPermission(currentUser.Id, (int)permissionCode);
-    }
-
-    /// <summary>
-    /// Является ли текущий пользователь админом территориального фонда
-    /// </summary>
-    /// <returns></returns>
-    public bool IsCurrentUserAdminTF()
-    {
-      return IsUserAdminTF(GetCurrentUser().Id);
-    }
-
-    /// <summary>
-    /// Является ли текущий пользователь админом СМО
-    /// </summary>
-    /// <returns></returns>
-    public bool IsCurrentUserAdminSmo()
-    {
-      return IsUserAdminSmo(GetCurrentUser().Id);
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом территориального фонда
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    public bool IsUserAdminTF(Guid userId)
-    {
-      return ObjectFactory.GetInstance<IUserManager>().IsUserAdminTf(userId);
-    }
-
-    /// <summary>
-    /// Является ли пользователь админом СМО
-    /// </summary>
-    /// <param name="userId">
-    /// </param>
-    /// <returns></returns>
-    public bool IsUserAdminSmo(Guid userId)
-    {
-      return ObjectFactory.GetInstance<IUserManager>().IsUserAdminSmo(userId);
-    }
-
-    /// <summary>
     /// Получает разрешение по идентификатору
     /// </summary>
     /// <param name="permissionId">
+    /// The permission Id.
     /// </param>
     /// <returns>
-    /// The <see cref="Permission"/> . 
+    /// The <see cref="Permission"/> .
     /// </returns>
     public Permission GetPermission(Guid permissionId)
     {
@@ -382,33 +331,34 @@ namespace rt.core.services
     /// <summary>
     ///   Получает список всех разрешений
     /// </summary>
-    /// <param name="roleId"> </param>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Permission> GetPermissions()
+    /// <returns> The <see cref="List{Permission}" /> . </returns>
+    public List<Permission> GetPermissions()
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().GetAll();
+      return ObjectFactory.GetInstance<IPermissionManager>().GetAll().ToList();
     }
 
     /// <summary>
     /// Получает список разрешений названия которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Permission}"/> .
     /// </returns>
-    public IList<Permission> GetPermissionsByNameContains(string contains)
+    public List<Permission> GetPermissionsByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IPermissionManager>().GetPermissionsByNameContains(contains);
+      return ObjectFactory.GetInstance<IPermissionManager>().GetPermissionsByNameContains(contains).ToList();
     }
 
     /// <summary>
     /// Получает роль по идентификатору
     /// </summary>
     /// <param name="roleId">
+    /// The role Id.
     /// </param>
     /// <returns>
-    /// The <see cref="Role"/> . 
+    /// The <see cref="Role"/> .
     /// </returns>
     public Role GetRole(Guid roleId)
     {
@@ -419,84 +369,89 @@ namespace rt.core.services
     /// Получает список разрешений для роли
     /// </summary>
     /// <param name="roleId">
+    ///   The role Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Permission}"/> .
     /// </returns>
-    public IList<Permission> GetRolePermissions(Guid roleId)
+    public List<Permission> GetRolePermissions(Guid roleId)
     {
-      return ObjectFactory.GetInstance<IPermissionRoleManager>().GetRolePermissions(roleId);
+      return ObjectFactory.GetInstance<IPermissionRoleManager>().GetRolePermissions(roleId).ToList();
     }
 
     /// <summary>
     ///   Получает список ролей
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Role> GetRoles()
+    /// <returns> The <see cref="List{Role}" /> . </returns>
+    public List<Role> GetRoles()
     {
-      return ObjectFactory.GetInstance<IRoleManager>().GetAll();
+      return ObjectFactory.GetInstance<IRoleManager>().GetAll().ToList();
     }
 
     /// <summary>
     /// Получает список ролей для группы
     /// </summary>
     /// <param name="groupId">
+    ///   The group Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Role}"/> .
     /// </returns>
-    public IList<Role> GetRolesByGroup(Guid groupId)
+    public List<Role> GetRolesByGroup(Guid groupId)
     {
-      return ObjectFactory.GetInstance<IUserGroupRoleManager>().GetRolesByGroup(groupId);
+      return ObjectFactory.GetInstance<IUserGroupRoleManager>().GetRolesByGroup(groupId).ToList();
     }
 
     /// <summary>
     /// Получает список ролей названия которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Role}"/> .
     /// </returns>
-    public IList<Role> GetRolesByNameContains(string contains)
+    public List<Role> GetRolesByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IRoleManager>().GetRolesByNameContains(contains);
+      return ObjectFactory.GetInstance<IRoleManager>().GetRolesByNameContains(contains).ToList();
     }
 
     /// <summary>
     /// Получает список всех ролей, для которых назначено разрешение
     /// </summary>
     /// <param name="permissionId">
+    ///   The permission Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Role}"/> .
     /// </returns>
-    public IList<Role> GetRolesByPermission(Guid permissionId)
+    public List<Role> GetRolesByPermission(Guid permissionId)
     {
-      return ObjectFactory.GetInstance<IPermissionRoleManager>().GetRolesByPermission(permissionId);
+      return ObjectFactory.GetInstance<IPermissionRoleManager>().GetRolesByPermission(permissionId).ToList();
     }
 
     /// <summary>
     /// Получает список ролей для пользователя
     /// </summary>
     /// <param name="userId">
+    ///   The user Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{Role}"/> .
     /// </returns>
-    public IList<Role> GetRolesByUser(Guid userId)
+    public List<Role> GetRolesByUser(Guid userId)
     {
-      return ObjectFactory.GetInstance<IUserGroupRoleManager>().GetRolesByUser(userId);
+      return ObjectFactory.GetInstance<IUserGroupRoleManager>().GetRolesByUser(userId).ToList();
     }
 
     /// <summary>
     /// Возвращает пользователя
     /// </summary>
     /// <param name="userId">
-    /// The user Id. 
+    /// The user Id.
     /// </param>
     /// <returns>
-    /// The <see cref="User"/> . 
+    /// The <see cref="User"/> .
     /// </returns>
     public User GetUser(Guid userId)
     {
@@ -507,9 +462,10 @@ namespace rt.core.services
     /// Возвращает пользователя по имени
     /// </summary>
     /// <param name="name">
+    /// The name.
     /// </param>
     /// <returns>
-    /// User 
+    /// User
     /// </returns>
     public User GetUserByName(string name)
     {
@@ -520,9 +476,10 @@ namespace rt.core.services
     /// Возвращает имя пользователя по email
     /// </summary>
     /// <param name="email">
+    /// The email.
     /// </param>
     /// <returns>
-    /// UserName 
+    /// UserName
     /// </returns>
     public string GetUserNameByEmail(string email)
     {
@@ -532,45 +489,76 @@ namespace rt.core.services
     /// <summary>
     ///   Список всех пользователей
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<User> GetUsers()
+    /// <returns> The <see cref="List{User}" /> . </returns>
+    public List<User> GetUsers()
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetUsers();
+      return ObjectFactory.GetInstance<IUserManager>().GetUsers().ToList();
     }
 
     /// <summary>
     /// Получает список всех пользователей группы
     /// </summary>
     /// <param name="groupId">
+    ///   The group Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{User}"/> .
     /// </returns>
-    public IList<User> GetUsersByGroup(Guid groupId)
+    public List<User> GetUsersByGroup(Guid groupId)
     {
-      return ObjectFactory.GetInstance<IUserGroupManager>().GetUsersByGroup(groupId);
+      return ObjectFactory.GetInstance<IUserGroupManager>().GetUsersByGroup(groupId).ToList();
     }
 
     /// <summary>
     /// Получает список пользователей логины которых начинаются с указанного значения
     /// </summary>
     /// <param name="contains">
+    ///   The contains.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> . 
+    /// The <see cref="List{User}"/> .
     /// </returns>
-    public IList<User> GetUsersByNameContains(string contains)
+    public List<User> GetUsersByNameContains(string contains)
     {
-      return ObjectFactory.GetInstance<IUserManager>().GetUsersByNameContains(contains);
+      return ObjectFactory.GetInstance<IUserManager>().GetUsersByNameContains(contains).ToList();
+    }
+
+    /// <summary>
+    /// Является ли пользователь админом СМО
+    /// </summary>
+    /// <param name="userId">
+    /// The user Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IsUserAdminSmo(Guid userId)
+    {
+      return ObjectFactory.GetInstance<IUserManager>().IsUserAdminSmo(userId);
+    }
+
+    /// <summary>
+    /// Является ли пользователь админом территориального фонда
+    /// </summary>
+    /// <param name="userId">
+    /// The user Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IsUserAdminTF(Guid userId)
+    {
+      return ObjectFactory.GetInstance<IUserManager>().IsUserAdminTf(userId);
     }
 
     /// <summary>
     /// Имеет ли пользователь роль администратора или входит в группы любая из которых имеет роль администратора
     /// </summary>
     /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
-    /// The <see cref="bool"/> . 
+    /// The <see cref="bool"/> .
     /// </returns>
     public bool IsUserHasAdminPermissions(User user)
     {
@@ -581,11 +569,12 @@ namespace rt.core.services
     /// Сохранение или добавление группы
     /// </summary>
     /// <param name="group">
+    /// The group.
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
-    public Guid SaveGroup(Group @group)
+    public Guid SaveGroup(Group group)
     {
       ObjectFactory.GetInstance<IGroupManager>().SaveOrUpdate(group);
       return group.Id;
@@ -595,9 +584,10 @@ namespace rt.core.services
     /// Добавляет или сохраняет разрешение
     /// </summary>
     /// <param name="permission">
+    /// The permission.
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid SavePermission(Permission permission)
     {
@@ -609,9 +599,10 @@ namespace rt.core.services
     /// Добавляет или сохраняет роль
     /// </summary>
     /// <param name="role">
+    /// The role.
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> . 
+    /// The <see cref="Guid"/> .
     /// </returns>
     public Guid SaveRole(Role role)
     {
@@ -623,9 +614,10 @@ namespace rt.core.services
     /// Сохраняет или добавляет пользователя
     /// </summary>
     /// <param name="user">
+    /// The user.
     /// </param>
     /// <returns>
-    /// The <see cref="User"/> . 
+    /// The <see cref="User"/> .
     /// </returns>
     public User SaveUser(User user)
     {
@@ -636,11 +628,13 @@ namespace rt.core.services
     /// Обновляет пароль пользователя
     /// </summary>
     /// <param name="name">
+    /// The name.
     /// </param>
     /// <param name="newPassword">
+    /// The new Password.
     /// </param>
     /// <returns>
-    /// User 
+    /// User
     /// </returns>
     public User UpdatePassword(string name, string newPassword)
     {

@@ -258,7 +258,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
                           ? dateTime
                           : new DateTime(1900, 1, 1);
 
-        temp.DateTo = statementService.CalculateEnPeriodWorkingDay(temp.DateFrom, 30);
+        temp.DateTo = statementService.CalculateEndPeriodWorkingDay(temp.DateFrom, 30);
         temp.DateStop = PolisEndDate != new DateTime(2200, 1, 1) ? (DateTime?)PolisEndDate : null;
       }
 

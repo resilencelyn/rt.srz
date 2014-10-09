@@ -42,7 +42,7 @@ namespace rt.core.services.registry
     /// </summary>
     protected ServiceClient()
     {
-      Interceptors.Add(new NHibernateProxyInterceptorClient());
+      Interceptors.Add(new NHibernateProxyInterceptorClient(0));
     }
 
     #endregion

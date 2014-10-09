@@ -66,8 +66,9 @@ namespace rt.srz.model.srz
       [DataMember(Order =  8)]
 		  public virtual Concept RelationType { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements { get; set;}
-		
+      
    }
 }

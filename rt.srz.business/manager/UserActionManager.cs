@@ -14,6 +14,7 @@ namespace rt.srz.business.manager
 
   using NHibernate;
 
+  using rt.core.business.security.interfaces;
   using rt.core.model.interfaces;
   using rt.srz.model.srz;
 
@@ -38,7 +39,7 @@ namespace rt.srz.business.manager
     public void LogAccessToPersonalData(Statement statement, string Event)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
 
       try
       {

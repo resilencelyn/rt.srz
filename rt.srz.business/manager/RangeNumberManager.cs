@@ -85,11 +85,12 @@ namespace rt.srz.business.manager
     /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <returns>
     /// The <see cref="Template"/>.
     /// </returns>
-    public Template GetTemplateVsByStatement(Statement statement)
+    public Template GetTemplateByStatement(Statement statement)
     {
       var num = int.Parse(statement.NumberTemporaryCertificate);
 
@@ -97,7 +98,8 @@ namespace rt.srz.business.manager
       var mainRange =
         GetBy(
               x =>
-              x.Smo == statement.PointDistributionPolicy.Parent && x.RangelFrom <= num && num <= x.RangelTo
+              x.Smo == statement.PointDistributionPolicy.Parent 
+              && x.RangelFrom <= num && num <= x.RangelTo
               && x.Parent == null).FirstOrDefault();
       if (mainRange != null)
       {

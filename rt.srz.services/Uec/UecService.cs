@@ -229,16 +229,18 @@ namespace rt.srz.services.Uec
     /// <summary>
     /// Возвращает все МО для указанного ТФОМС
     /// </summary>
-    /// <param name="tfomsCode">
+    ///  /// <param name="tfomsCode">
+    /// The tfoms Code.
     /// </param>
     /// <param name="workstationName">
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> .
+    /// The <see cref="List{MO}"/>.
     /// </returns>
     public MO[] GetMO(string tfomsCode, string workstationName)
     {
-      return ObjectFactory.GetInstance<IOrganisationManager>().GetMO(workstationName, workstationName);
+      return ObjectFactory.GetInstance<IOrganisationManager>().GetMo(workstationName, workstationName).ToArray();
     }
 
     /// <summary>
@@ -260,14 +262,14 @@ namespace rt.srz.services.Uec
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    /// The workstation Name.
+    ///   The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> .
+    /// The <see cref="List{MO}"/> .
     /// </returns>
     public MO[] GetTFoms(string workstationName)
     {
-      return ObjectFactory.GetInstance<IOrganisationManager>().GetTFoms(workstationName);
+      return ObjectFactory.GetInstance<IOrganisationManager>().GetTFoms(workstationName).ToArray();
     }
 
     /// <summary>

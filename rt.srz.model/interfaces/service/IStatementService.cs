@@ -31,22 +31,7 @@ namespace rt.srz.model.interfaces.service
   {
     #region Public Methods and Operators
 
-    /// <summary>
-    /// Добавляет в базу настройку о том что можно включать отключать проверку данного валидатора
-    /// </summary>
-    /// <param name="className">
-    /// тип валидатора
-    /// </param>
-    [OperationContract]
-    void AddAllowChangeSetting(string className);
 
-    /// <summary>
-    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    [OperationContract]
-    void AddSetting(string className);
 
     /// <summary>
     /// The calculate en period working day.
@@ -60,7 +45,7 @@ namespace rt.srz.model.interfaces.service
     /// <returns>
     /// The <see cref="DateTime"/>.
     /// </returns>
-    DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count);
+    DateTime CalculateEndPeriodWorkingDay(DateTime dateFrom, int count);
 
     /// <summary>
     /// The remove statement.
@@ -150,30 +135,19 @@ namespace rt.srz.model.interfaces.service
     /// The <see cref="IList"/> .
     /// </returns>
     [OperationContract]
-    IList<Statement> GetAllByInsuredId(Guid insuredId);
-
-    /// <summary>
-    /// Возвращает объект AutoComplete
-    /// </summary>
-    /// <param name="Id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="AutoComplete"/> .
-    /// </returns>
-    [OperationContract]
-    AutoComplete GetAutoComplete(Guid Id);
+    List<Statement> GetAllByInsuredId(Guid insuredId);
 
     /// <summary>
     /// The get category by citizenship.
     /// </summary>
     /// <param name="citizenshipId">
-    /// The citizenship id.
+    ///   The citizenship id.
     /// </param>
     /// <param name="isnotCitizenship">
-    /// The isnot citizenship.
+    ///   The isnot citizenship.
     /// </param>
     /// <param name="isrefugee">
-    /// The isrefugee.
+    ///   The isrefugee.
     /// </param>
     /// <param name="age">
     /// </param>
@@ -185,7 +159,7 @@ namespace rt.srz.model.interfaces.service
     ///   .
     /// </returns>
     [OperationContract]
-    IList<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age);
+    List<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age);
 
     /// <summary>
     /// The get concept.

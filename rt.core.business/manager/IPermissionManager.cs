@@ -22,18 +22,6 @@ namespace rt.core.business.manager
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавление разрешения
-    /// </summary>
-    /// <param name="code">
-    /// </param>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    Guid AddPermission(int code, string name);
-
-    /// <summary>
     /// Удаление разрешения
     /// </summary>
     /// <param name="id">

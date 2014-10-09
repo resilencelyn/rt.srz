@@ -39,7 +39,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// <summary>
     /// The _smo service.
     /// </summary>
-    private ISmoService _smoService;
+    private IRegulatoryService regulatoryService;
 
     /// <summary>
     /// The statement service.
@@ -57,7 +57,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _smoService = ObjectFactory.GetInstance<ISmoService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       statementService = ObjectFactory.GetInstance<IStatementService>();
     }
 
@@ -102,7 +102,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
       }
       else
       {
-        _smo = _smoService.GetSmo(Guid.Parse(Request.QueryString["SmoId"]));
+        _smo = regulatoryService.GetOrganisation(Guid.Parse(Request.QueryString["SmoId"]));
       }
 
       if (Request.QueryString["type"] != null && Request.QueryString["type"] == "mo")
@@ -124,7 +124,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
       if (!IsPostBack)
       {
-        ddlFoms.DataSource = _smoService.GetAllTfoms();
+        ddlFoms.DataSource = regulatoryService.GetTfoms();
         ddlFoms.DataBind();
         SetTitle();
         AssignControlValuesFromSmo();
@@ -197,7 +197,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     {
       _smo.FullName = tbFullName.Text;
       _smo.ShortName = tbShortName.Text;
-      _smo.Parent = _smoService.GetTfoms(Guid.Parse(ddlFoms.SelectedValue));
+      _smo.Parent = regulatoryService.GetOrganisation(Guid.Parse(ddlFoms.SelectedValue));
       _smo.Code = tbCode.Text;
       _smo.Inn = tbInn.Text;
       _smo.Ogrn = tbOgrn.Text;
@@ -250,7 +250,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
       {
         var sert = new SertificateUec();
         sert.Key = (byte[])Session[sessionValueName];
-        sert.Type = statementService.GetConcept((int)certificateType);
+        sert.Type = regulatoryService.GetConcept((int)certificateType);
         sert.IsActive = true;
         sert.Version = 1;
         if (s.SertificateUecs == null)
@@ -273,7 +273,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     {
       AssignSmoValuesFromControls();
       ClearSessionValues();
-      return _smoService.SaveSmo(_smo);
+      return regulatoryService.SaveSmo(_smo);
     }
 
     /// <summary>
@@ -298,7 +298,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     protected void vCode_ServerValidate(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = !_smoService.SmoCodeExists(_smo.Id, args.Value);
+      args.IsValid = !regulatoryService.SmoCodeExists(_smo.Id, args.Value);
     }
 
     #region Upload sertificates

@@ -38,48 +38,6 @@ namespace rt.core.services
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавление группы
-    /// </summary>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> . 
-    /// </returns>
-    public Guid AddGroup(string name)
-    {
-      return InvokeInterceptors(() => Service.AddGroup(name));
-    }
-
-    /// <summary>
-    /// Добавление разрешения
-    /// </summary>
-    /// <param name="code">
-    /// </param>
-    /// <param name="name">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> . 
-    /// </returns>
-    public Guid AddPermission(int code, string name)
-    {
-      return InvokeInterceptors(() => Service.AddPermission(code, name));
-    }
-
-    /// <summary>
-    /// Добавление роли
-    /// </summary>
-    /// <param name="name">
-    /// The name. 
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> . 
-    /// </returns>
-    public Guid AddRole(string name)
-    {
-      return InvokeInterceptors(() => Service.AddRole(name));
-    }
-
-    /// <summary>
     /// Добавляет пользователя
     /// </summary>
     /// <param name="user">
@@ -275,7 +233,7 @@ namespace rt.core.services
     ///   Список всех групп
     /// </summary>
     /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Group> GetGroups()
+    public List<Group> GetGroups()
     {
       return InvokeInterceptors(() => Service.GetGroups());
     }
@@ -288,7 +246,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Group> GetGroupsByNameContains(string contains)
+    public List<Group> GetGroupsByNameContains(string contains)
     {
       return InvokeInterceptors(() => Service.GetGroupsByNameContains(contains));
     }
@@ -301,7 +259,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Group> GetGroupsByUser(Guid userId)
+    public List<Group> GetGroupsByUser(Guid userId)
     {
       return InvokeInterceptors(() => Service.GetGroupsByUser(userId));
     }
@@ -349,7 +307,7 @@ namespace rt.core.services
     /// </summary>
     /// <param name="roleId"> </param>
     /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Permission> GetPermissions()
+    public List<Permission> GetPermissions()
     {
       return InvokeInterceptors(() => Service.GetPermissions());
     }
@@ -362,7 +320,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Permission> GetPermissionsByNameContains(string contains)
+    public List<Permission> GetPermissionsByNameContains(string contains)
     {
       return InvokeInterceptors(() => Service.GetPermissionsByNameContains(contains));
     }
@@ -388,7 +346,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Permission> GetRolePermissions(Guid roleId)
+    public List<Permission> GetRolePermissions(Guid roleId)
     {
       return InvokeInterceptors(() => Service.GetRolePermissions(roleId));
     }
@@ -397,7 +355,7 @@ namespace rt.core.services
     ///   Получает список ролей
     /// </summary>
     /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Role> GetRoles()
+    public List<Role> GetRoles()
     {
       return InvokeInterceptors(() => Service.GetRoles());
     }
@@ -410,7 +368,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Role> GetRolesByGroup(Guid groupId)
+    public List<Role> GetRolesByGroup(Guid groupId)
     {
       return InvokeInterceptors(() => Service.GetRolesByGroup(groupId));
     }
@@ -423,7 +381,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Role> GetRolesByNameContains(string contains)
+    public List<Role> GetRolesByNameContains(string contains)
     {
       return InvokeInterceptors(() => Service.GetRolesByNameContains(contains));
     }
@@ -436,7 +394,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Role> GetRolesByPermission(Guid permissionId)
+    public List<Role> GetRolesByPermission(Guid permissionId)
     {
       return InvokeInterceptors(() => Service.GetRolesByPermission(permissionId));
     }
@@ -449,7 +407,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<Role> GetRolesByUser(Guid userId)
+    public List<Role> GetRolesByUser(Guid userId)
     {
       return InvokeInterceptors(() => Service.GetRolesByUser(userId));
     }
@@ -497,7 +455,7 @@ namespace rt.core.services
     ///   Список всех пользователей
     /// </summary>
     /// <returns> The <see cref="IList" /> . </returns>
-    public IList<User> GetUsers()
+    public List<User> GetUsers()
     {
       return InvokeInterceptors(() => Service.GetUsers());
     }
@@ -510,7 +468,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<User> GetUsersByGroup(Guid groupId)
+    public List<User> GetUsersByGroup(Guid groupId)
     {
       return InvokeInterceptors(() => Service.GetUsersByGroup(groupId));
     }
@@ -523,7 +481,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="IList"/> . 
     /// </returns>
-    public IList<User> GetUsersByNameContains(string contains)
+    public List<User> GetUsersByNameContains(string contains)
     {
       return InvokeInterceptors(() => Service.GetUsersByNameContains(contains));
     }
@@ -606,24 +564,6 @@ namespace rt.core.services
     public User UpdatePassword(string name, string newPassword)
     {
       return InvokeInterceptors(() => Service.UpdatePassword(name, newPassword));
-    }
-
-    /// <summary>
-    /// Является ли текущий пользователь админом территориального фонда
-    /// </summary>
-    /// <returns></returns>
-    public bool IsCurrentUserAdminTF()
-    {
-      return InvokeInterceptors(() => Service.IsCurrentUserAdminTF());
-    }
-
-    /// <summary>
-    /// Является ли текущий пользователь админом СМО
-    /// </summary>
-    /// <returns></returns>
-    public bool IsCurrentUserAdminSmo()
-    {
-      return InvokeInterceptors(() => Service.IsCurrentUserAdminSmo());
     }
 
     /// <summary>

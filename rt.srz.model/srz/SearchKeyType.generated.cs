@@ -186,14 +186,17 @@ namespace rt.srz.model.srz
       [DataMember(Order =  38)]
 		  public virtual Organisation Tfoms { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponseItemize> QueryResponseItemizes { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<SearchKey> SearchKeys { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<TwinsKey> TwinsKeys { get; set;}
-		
+      
    }
 }

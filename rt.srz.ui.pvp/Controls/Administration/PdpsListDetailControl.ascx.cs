@@ -17,7 +17,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
   public partial class PdpsListDetailControl : System.Web.UI.UserControl
   {
-    private ISmoService _smoService;
+    private IRegulatoryService regulatoryService;
     private Guid _smoId;
 
     private PdpGridRow SelectedPdp
@@ -31,7 +31,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _smoService = ObjectFactory.GetInstance<ISmoService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     protected void Page_Load(object sender, EventArgs e)

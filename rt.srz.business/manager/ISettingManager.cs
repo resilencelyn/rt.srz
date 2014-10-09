@@ -31,7 +31,7 @@ namespace rt.srz.business.manager
     /// </summary>
     /// <param name="className">
     /// </param>
-    void AddSetting(string className);
+    void SaveCheckSetting(string className);
 
     /// <summary>
     /// The get setting.

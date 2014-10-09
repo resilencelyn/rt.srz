@@ -28,7 +28,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </summary>
     private ISecurityService securityService;
 
-    private ITFService tfomsService;
+    private ITfomsService tfomsService;
 
     #endregion
 
@@ -73,7 +73,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     protected void Page_Init(object sender, EventArgs e)
     {
       securityService = ObjectFactory.GetInstance<ISecurityService>();
-      tfomsService = ObjectFactory.GetInstance<ITFService>();
+      tfomsService = ObjectFactory.GetInstance<ITfomsService>();
       searchByNameControl.Clear += SearchByNameControlClear;
       searchByNameControl.Search += SearchByNameControlSearch;
     }

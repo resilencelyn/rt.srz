@@ -175,8 +175,8 @@ namespace rt.srz.ui.pvp.Pages
     [WebMethod]
     public static string GetGenderByAutoCompleteId(Guid autoCompleteId)
     {
-      var _statementService = ObjectFactory.GetInstance<IStatementService>();
-      var ac = _statementService.GetAutoComplete(autoCompleteId);
+      var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
+      var ac = regulatoryService.GetAutoComplete(autoCompleteId);
       if (ac != null)
       {
         return ac.Gender.Id.ToString(CultureInfo.InvariantCulture);
@@ -244,7 +244,7 @@ namespace rt.srz.ui.pvp.Pages
     public static string GetPostcodeByKLADRId(Guid kladrId)
     {
       var kladrService = ObjectFactory.GetInstance<IKladrService>();
-      var kladr = kladrService.GetKLADR(kladrId);
+      var kladr = kladrService.GetKladr(kladrId);
       if (kladr != null && kladr.Index != null)
       {
         return kladr.Index.ToString();
@@ -290,8 +290,8 @@ namespace rt.srz.ui.pvp.Pages
     [WebMethod]
     public static string GetRepresentativeGenderByAutoCompleteId(Guid autoCompleteId)
     {
-      var _statementService = ObjectFactory.GetInstance<IStatementService>();
-      var ac = _statementService.GetAutoComplete(autoCompleteId);
+      var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
+      var ac = regulatoryService.GetAutoComplete(autoCompleteId);
       if (ac != null)
       {
         switch (ac.Gender.Id)

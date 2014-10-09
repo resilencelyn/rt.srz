@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IKLADRService.cs" company="РусБИТех">
+// <copyright file="IKladrService.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -29,43 +29,34 @@ namespace rt.srz.model.interfaces.service
     #region Public Methods and Operators
 
     /// <summary>
-    /// The get first level by tfoms.
-    /// </summary>
-    /// <param name="tfom">
-    /// The tfom.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/> .
-    /// </returns>
-    [OperationContract]
-    Kladr GetFirstLevelByTfoms(Organisation tfom);
-
-    /// <summary>
     /// Возвращает адресный объект
     /// </summary>
     /// <param name="objectId">
+    /// The object Id.
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/> .
+    /// The <see cref="Kladr"/>.
     /// </returns>
     [OperationContract]
-    Kladr GetKLADR(Guid objectId);
+    Kladr GetKladr(Guid objectId);
 
     /// <summary>
     /// Возвращает список адресных объектов для указанного уровня
     /// </summary>
     /// <param name="parentId">
+    /// The parent Id.
     /// </param>
     /// <param name="prefix">
     /// The prefix.
     /// </param>
     /// <param name="level">
+    /// The level.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Kladr}"/> .
     /// </returns>
     [OperationContract]
-    IList<Kladr> GetKLADRs(Guid? parentId, string prefix, KLADRLevel? level);
+    List<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level);
 
     #endregion
   }

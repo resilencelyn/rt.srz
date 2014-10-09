@@ -25,8 +25,8 @@ namespace rt.core.services
   ///   Сервис авторизации
   /// </summary>
   [ErrorHandlingBehavior]
-  [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
   [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+  [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single, Namespace = "http://auth.ffoms.ru")]
   public class AuthGate : InterceptedBase, IAuthService
   {
     #region Fields

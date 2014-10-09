@@ -40,7 +40,7 @@ namespace rt.srz.ui.pvp.Pages.Twins
     /// <summary>
     /// The _service.
     /// </summary>
-    private ITFService service;
+    private ITfomsService service;
 
     #endregion
 
@@ -57,7 +57,7 @@ namespace rt.srz.ui.pvp.Pages.Twins
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      service = ObjectFactory.GetInstance<ITFService>();
+      service = ObjectFactory.GetInstance<ITfomsService>();
       securityService = ObjectFactory.GetInstance<ISecurityService>();
     }
 

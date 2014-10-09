@@ -51,12 +51,10 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Создание копии шаблона печати
     /// </summary>
-    /// <param name="id">
-    /// </param>
     /// <returns>
     /// The <see cref="Template"/>.
     /// </returns>
-    public Template CreateCopyOfTemplateVs(Guid id)
+    public Template CreateCopyOfTemplate(Guid id)
     {
       var fromTemplate = GetById(id);
       var result = CloneUtility.DeepClone(fromTemplate);

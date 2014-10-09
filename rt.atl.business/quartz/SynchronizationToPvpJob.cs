@@ -20,7 +20,7 @@ namespace rt.atl.business.quartz
   using Quartz;
 
   using rt.atl.model.configuration;
-  using rt.atl.model.interfaces.Service;
+  using rt.atl.model.interfaces.service;
   using rt.core.business.quartz;
   using rt.core.model;
   using rt.srz.business.manager;

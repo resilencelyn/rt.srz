@@ -30,13 +30,13 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Проверяет существует ли уже запись в базе с таким же именем, типом, полом
     /// </summary>
-    /// <param name="firstMiddleName">
+    /// <param name="autoComplete">
     /// The first Middle Name.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
     /// </returns>
-    bool FirstMiddleNameExists(AutoComplete firstMiddleName);
+    bool AutoCompleteExists(AutoComplete autoComplete);
 
     /// <summary>
     /// Получает результат по критерию для имён и отчеств
@@ -46,7 +46,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="SearchResult"/> .
     /// </returns>
-    SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria);
+    SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria);
 
     /// <summary>
     /// Возвращает список варианатов для имени

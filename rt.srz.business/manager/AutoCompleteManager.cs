@@ -38,21 +38,15 @@ namespace rt.srz.business.manager
     /// <summary>
     /// ѕровер€ет существует ли уже запись в базе с таким же именем, типом, полом
     /// </summary>
-    /// <param name="firstMiddleName">
+    /// <param name="autoComplete">
     /// The first Middle Name.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
     /// </returns>
-    public bool FirstMiddleNameExists(AutoComplete firstMiddleName)
+    public bool AutoCompleteExists(AutoComplete autoComplete)
     {
-      return
-        ObjectFactory.GetInstance<IAutoCompleteManager>()
-                     .GetBy(
-                            x =>
-                            x.Id != firstMiddleName.Id && x.Name == firstMiddleName.Name
-                            && x.Gender == firstMiddleName.Gender && x.Type == firstMiddleName.Type)
-                     .Count() > 0;
+      return GetBy(x => x.Id != autoComplete.Id && x.Name == autoComplete.Name && x.Gender == autoComplete.Gender && x.Type == autoComplete.Type).Any();
     }
 
     /// <summary>
@@ -63,7 +57,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="SearchResult"/> .
     /// </returns>
-    public SearchResult<AutoComplete> GetFirstMiddleNames(SearchAutoCompleteCriteria criteria)
+    public SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       AutoComplete ac = null;
@@ -161,10 +155,10 @@ namespace rt.srz.business.manager
     /// The <see cref="IQueryOver"/> .
     /// </returns>
     private IQueryOver<AutoComplete, AutoComplete> AddOrder(
-      SearchAutoCompleteCriteria criteria, 
-      AutoComplete ac, 
-      Concept gender, 
-      Concept type, 
+      SearchAutoCompleteCriteria criteria,
+      AutoComplete ac,
+      Concept gender,
+      Concept type,
       IQueryOver<AutoComplete, AutoComplete> query)
     {
       // —ортировка

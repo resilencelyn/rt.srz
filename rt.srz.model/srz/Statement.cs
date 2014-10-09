@@ -28,6 +28,7 @@ namespace rt.srz.model.srz
     ///   Адрес проживания
     /// </summary>
     [XmlIgnore]
+    [IgnoreDataMember]
     public virtual string AddressLiveStr
     {
       get
@@ -40,6 +41,7 @@ namespace rt.srz.model.srz
     ///   Адрес регистрации
     /// </summary>
     [XmlIgnore]
+    [IgnoreDataMember]
     public virtual string AddressRegistrationStr
     {
       get
@@ -51,8 +53,8 @@ namespace rt.srz.model.srz
     /// <summary>
     /// Gets the date issue polis certificate.
     /// </summary>
-    [XmlElement(Order = 55)]
-    [DataMember(Order = 55)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual DateTime? DateIssuePolisCertificate
     {
       get
@@ -72,8 +74,8 @@ namespace rt.srz.model.srz
     /// <summary>
     /// Gets the date issue temporary certificate.
     /// </summary>
-    [XmlElement(Order = 53)]
-    [DataMember(Order = 53)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual DateTime? DateIssueTemporaryCertificate
     {
       get
@@ -100,8 +102,8 @@ namespace rt.srz.model.srz
     /// <summary>
     /// Gets the number polis certificate.
     /// </summary>
-    [XmlElement(Order = 54)]
-    [DataMember(Order = 54)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual string NumberPolisCertificate
     {
       get
@@ -121,8 +123,8 @@ namespace rt.srz.model.srz
     /// <summary>
     /// Gets the number temporary certificate.
     /// </summary>
-    [XmlElement(Order = 52)]
-    [DataMember(Order = 52)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual string NumberTemporaryCertificate
     {
       get
@@ -142,8 +144,8 @@ namespace rt.srz.model.srz
     /// <summary>
     /// Gets the polis medical insurance.
     /// </summary>
-    [XmlElement(Order = 57)]
-    [DataMember(Order = 57)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual MedicalInsurance PolisMedicalInsurance
     {
       get
@@ -158,19 +160,21 @@ namespace rt.srz.model.srz
     ///   Gets or sets the prz buff.
     /// </summary>
     [XmlIgnore]
+    [IgnoreDataMember]
     public virtual object PrzBuff { get; set; }
 
     /// <summary>
     ///   Gets or sets the prz buff.
     /// </summary>
     [XmlIgnore]
+    [IgnoreDataMember]
     public virtual object PrzBuffPolis { get; set; }
 
     /// <summary>
     /// Gets the temp medical insurance.
     /// </summary>
-    [XmlElement(Order = 56)]
-    [DataMember(Order = 56)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual MedicalInsurance TempMedicalInsurance
     {
       get
@@ -184,8 +188,8 @@ namespace rt.srz.model.srz
     /// <summary>
     ///   Gets the type statement id.
     /// </summary>
-    [XmlElement(Order = 51)]
-    [DataMember(Order = 51)]
+    [XmlIgnore]
+    [IgnoreDataMember]
     public virtual int TypeStatementId
     {
       get

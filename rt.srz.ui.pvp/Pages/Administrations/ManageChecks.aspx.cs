@@ -237,7 +237,7 @@ namespace rt.srz.ui.pvp.Pages.Administrations
       if (!cbox.Checked)
       {
         // add to settings data row
-        service.AddSetting(className.Value);
+        service.SaveCheckSetting(className.Value);
       }
       else
       {

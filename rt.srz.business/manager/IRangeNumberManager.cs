@@ -43,7 +43,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="Template"/>.
     /// </returns>
-    Template GetTemplateVsByStatement(Statement statement);
+    Template GetTemplateByStatement(Statement statement);
 
     /// <summary>
     /// ѕересекаетс€ ли указанна€ запись с другими по диапозону. “олько дл€ диапазонов с парент ид = null,

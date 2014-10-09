@@ -36,6 +36,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </summary>
     private IStatementService statementService;
 
+    private IRegulatoryService regulatoryService;
+
     #endregion
 
     #region Public Methods and Operators
@@ -129,14 +131,14 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var causeFilling = int.Parse(ddlCauseFiling.SelectedValue);
       if (causeFilling >= 0)
       {
-        statement.CauseFiling = statementService.GetConcept(causeFilling);
+        statement.CauseFiling = regulatoryService.GetConcept(causeFilling);
       }
 
       // Способ подачи
       var modeFilling = int.Parse(ddlModeFiling.SelectedValue);
       if (modeFilling >= 0)
       {
-        statement.ModeFiling = statementService.GetConcept(modeFilling);
+        statement.ModeFiling = regulatoryService.GetConcept(modeFilling);
       }
 
       // Наличие ходатайства о регистрации в качестве застрахованного лица
@@ -146,7 +148,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var formManufacturing = int.Parse(hfPolicyType.Value);
       if (formManufacturing >= 0)
       {
-        statement.FormManufacturing = statementService.GetConcept(formManufacturing);
+        statement.FormManufacturing = regulatoryService.GetConcept(formManufacturing);
       }
 
       // Отсутствует ранее выданный полис
@@ -279,6 +281,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     protected void Page_Init(object sender, EventArgs e)
     {
       statementService = ObjectFactory.GetInstance<IStatementService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       if (!IsPostBack)
       {
         FillModeFiling();

@@ -61,11 +61,13 @@ namespace rt.srz.model.srz
       [DataMember(Order =  7)]
 		  public virtual Organisation PointDistributionPolicy { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<SertificateUec> SertificateUecs { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Setting> Settings { get; set;}
-		
+      
    }
 }

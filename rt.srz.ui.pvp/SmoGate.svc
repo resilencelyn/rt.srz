@@ -1,1 +1,0 @@
-<%@ ServiceHost Language="C#" Debug="true" Service="rt.srz.services.Smo.SmoGate" %>

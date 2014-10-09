@@ -36,7 +36,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// <summary>
     /// The _smo service.
     /// </summary>
-    private ISmoService smoService;
+    private IRegulatoryService organisationService;
 
     /// <summary>
     /// The _user id.
@@ -56,7 +56,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     public void AssignDataSourcesForAdminMode(User currentUser)
     {
       // все территориальные фонды
-      var foms = smoService.GetAllTfoms();
+      var foms = organisationService.GetTfoms();
       dlTFoms.DataSource = foms;
       dlTFoms.DataBind();
 
@@ -64,7 +64,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
       if (user != null && user.PointDistributionPolicyId != null)
       {
         // страховые медицинские организации принадлежащие территорильному фонду пользователя
-        dlSmo.DataSource = smoService.GetSmosByTfom(user.GetTf().Id);
+        dlSmo.DataSource = organisationService.GetChildres(user.GetTf().Id, Oid.Smo);
         dlSmo.DataBind();
 
         // пункты выдачи страховой медицинской организации пользователя
@@ -78,7 +78,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
           var fomId = currentUser.PointDistributionPolicyId != null ? currentUser.GetTf().Id : foms.First().Id;
 
           // все страховые медицинские организации по первому территориальномну фонду в выпадающем списке или по фонду текущего пользователя
-          var smos = smoService.GetSmosByTfom(fomId);
+          var smos = organisationService.GetChildres(fomId, Oid.Smo);
           dlSmo.DataSource = smos;
           dlSmo.DataBind();
           if (smos.Count > 0)
@@ -101,14 +101,14 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     public void AssignDataSourcesForOwnRegion(User currentUser)
     {
-      var smo = smoService.GetSmo(currentUser.GetSmo().Id);
+      var smo = organisationService.GetOrganisation(currentUser.GetSmo().Id);
 
       // территориальный фонд страховой медицинской организации текущего пользователя
       dlTFoms.DataSource = new List<Organisation> { smo.Parent };
       dlTFoms.DataBind();
 
       // страховые мед организации принадлежащие фонду текущего пользователя
-      var smos = smoService.GetSmosByTfom(smo.Parent.Id);
+      var smos = organisationService.GetChildres(smo.Parent.Id, Oid.Smo);
       dlSmo.DataSource = smos;
       dlSmo.DataBind();
 
@@ -140,7 +140,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     public void AssignDataSourcesForOwnSmo(User currentUser)
     {
-      var smo = smoService.GetSmo(currentUser.GetSmo().Id);
+      var smo = organisationService.GetOrganisation(currentUser.GetSmo().Id);
 
       // страховая медицинская огранизация текущего пользователя
       dlSmo.DataSource = new List<Organisation> { smo };
@@ -193,7 +193,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     protected void Page_Init(object sender, EventArgs e)
     {
       securityService = ObjectFactory.GetInstance<ISecurityService>();
-      smoService = ObjectFactory.GetInstance<ISmoService>();
+      organisationService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     /// <summary>
@@ -316,7 +316,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
         return;
       }
 
-      dlSmo.DataSource = smoService.GetSmosByTfom(Guid.Parse(dlTFoms.SelectedValue));
+      dlSmo.DataSource = organisationService.GetChildres(Guid.Parse(dlTFoms.SelectedValue), Oid.Smo);
       dlSmo.DataBind();
       DlSmoSelectedIndexChanged(null, null);
     }
@@ -346,7 +346,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </returns>
     private IList<Organisation> GetPdPsBySmo(Guid smoId)
     {
-      var result = smoService.GetPDPsBySmo(smoId);
+      var result = organisationService.GetChildres(smoId).Where(x => x.Oid.Id == Oid.Pvp).ToList();
       var pdp = new Organisation { ShortName = "Не выбран", Id = Guid.Empty };
       result.Insert(0, pdp);
       return result;

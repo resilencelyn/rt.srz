@@ -780,7 +780,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var selectedKladrid = control.SelectedKLADRId;
       if (selectedKladrid != Guid.Empty)
       {
-        var kladr = kladrService.GetKLADR(selectedKladrid);
+        var kladr = kladrService.GetKladr(selectedKladrid);
 
         // ОКАТО выбранного уровня
         address.Okato = kladr.Ocatd;
@@ -841,7 +841,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var selectedKladrid = control.SelectedKLADRId;
       if (selectedKladrid != Guid.Empty)
       {
-        var kladr = kladrService.GetKLADR(selectedKladrid);
+        var kladr = kladrService.GetKladr(selectedKladrid);
 
         // ОКАТО выбранного уровня
         address.Okato = kladr.Ocatd;
@@ -856,31 +856,31 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
           var strTemp = kladr.Name + " " + kladr.Socr;
           switch (kladr.Level)
           {
-            case (int)KLADRLevel.Subject:
+            case (int)KladrLevel.Subject:
               {
                 address.Subject = strTemp;
               }
 
               break;
-            case (int)KLADRLevel.Area:
+            case (int)KladrLevel.Area:
               {
                 address.Area = strTemp;
               }
 
               break;
-            case (int)KLADRLevel.City:
+            case (int)KladrLevel.City:
               {
                 address.City = strTemp;
               }
 
               break;
-            case (int)KLADRLevel.Town:
+            case (int)KladrLevel.Town:
               {
                 address.Town = strTemp;
               }
 
               break;
-            case (int)KLADRLevel.Street:
+            case (int)KladrLevel.Street:
               {
                 address.Street = strTemp;
               }
@@ -888,7 +888,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
               break;
           }
 
-          kladr = kladrService.GetKLADR(selectedKladrid);
+          kladr = kladrService.GetKladr(selectedKladrid);
         }
         while (selectedKladrid != Guid.Empty);
       }

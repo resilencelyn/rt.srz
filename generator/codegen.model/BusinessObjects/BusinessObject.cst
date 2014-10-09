@@ -11,7 +11,7 @@ Description: Generates a Business Object for NHibernate.
 <%@ Property Name="BaseNamespace" Type="System.String" Default="NHibernate.Generated.Base" Optional="False" Category="2. Namespaces" Description="The Namespace where the Base classes (BusinessBase & ManagerBase) are located." %>
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Assembly Name="System.Data" %>
-<%@ Assembly Name="NHibernateHelper" Path="..\..\ThirdParty" %>
+<%@ Assembly Name="NHibernateHelper" Path="..\..\..\ThirdParty" %>
 <%@ Import Namespace="SchemaExplorer" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="System.Text" %>
@@ -100,9 +100,10 @@ namespace <%= BusinessNamespace %>
 		<% } %>
 		<% // One-To-Many & Many-To-Many %>
 		<% foreach(EntityAssociation association in entityManager.ToManyUnion) { %>
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<<%= association.ClassName %>> <%= association.PropertyName %> { get; set;}
-		
+      
 		<% } %>
    }
 }

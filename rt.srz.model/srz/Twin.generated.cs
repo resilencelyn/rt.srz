@@ -51,8 +51,9 @@ namespace rt.srz.model.srz
       [DataMember(Order =  4)]
 		  public virtual Concept TwinType { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<TwinsKey> TwinsKeys { get; set;}
-		
+      
    }
 }

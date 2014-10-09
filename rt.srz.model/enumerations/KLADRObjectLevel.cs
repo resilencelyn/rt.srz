@@ -12,7 +12,7 @@ namespace rt.srz.model.enumerations
   /// <summary>
   ///   Cодержит номер уровня классификации адресных объектов.
   /// </summary>
-  public enum KLADRLevel
+  public enum KladrLevel
   {
     /// <summary>
     ///   The subject.

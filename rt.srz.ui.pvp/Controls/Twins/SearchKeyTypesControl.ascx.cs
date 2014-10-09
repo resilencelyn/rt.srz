@@ -20,13 +20,13 @@ namespace rt.srz.ui.pvp.Controls.Twins
     #endregion
 
     #region Fields
-    private ITFService tfService = null;
+    private ITfomsService tfomsService = null;
     #endregion
 
     #region Events
     protected void Page_Init(object sender, EventArgs e)
     {
-      tfService = ObjectFactory.GetInstance<ITFService>();
+      tfomsService = ObjectFactory.GetInstance<ITfomsService>();
     }
     
     protected void Page_Load(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
 
     private void LoadData()
     {
-      grid.DataSource = tfService.GetSearchKeyTypesByTFoms();
+      grid.DataSource = tfomsService.GetSearchKeyTypesByTFoms();
       grid.DataBind();
     }
 
@@ -86,7 +86,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
         case "Delete":
           if (grid.SelectedDataKey == null)
             return;
-          tfService.DeleteSearchKeyType((Guid)grid.SelectedDataKey.Value);
+          tfomsService.DeleteSearchKeyType((Guid)grid.SelectedDataKey.Value);
           grid.DeleteRow(grid.SelectedIndex);
           grid.SelectedIndex = -1;
           LoadData();

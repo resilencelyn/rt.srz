@@ -38,48 +38,37 @@ namespace rt.srz.services.Kladr
     #region Public Methods and Operators
 
     /// <summary>
-    /// The get first level by tfoms.
-    /// </summary>
-    /// <param name="tfom">
-    /// The tfom.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/> .
-    /// </returns>
-    public Kladr GetFirstLevelByTfoms(Organisation tfom)
-    {
-      return InvokeInterceptors(() => Service.GetFirstLevelByTfoms(tfom));
-    }
-
-    /// <summary>
     /// Возвращает адресный объект
     /// </summary>
     /// <param name="objectId">
+    /// The object Id.
     /// </param>
     /// <returns>
     /// The <see cref="Kladr"/> .
     /// </returns>
-    public Kladr GetKLADR(Guid objectId)
+    public Kladr GetKladr(Guid objectId)
     {
-      return InvokeInterceptors(() => Service.GetKLADR(objectId));
+      return InvokeInterceptors(() => Service.GetKladr(objectId));
     }
 
     /// <summary>
     /// Возвращает список адресных объектов для указанного уровня
     /// </summary>
     /// <param name="parentId">
+    /// The parent Id.
     /// </param>
     /// <param name="prefix">
     /// The prefix.
     /// </param>
     /// <param name="level">
+    /// The level.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Kladr}"/>.
     /// </returns>
-    public IList<Kladr> GetKLADRs(Guid? parentId, string prefix, KLADRLevel? level)
+    public List<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level)
     {
-      return InvokeInterceptors(() => Service.GetKLADRs(parentId, prefix, level));
+      return InvokeInterceptors(() => Service.GetKladrs(parentId, prefix, level));
     }
 
     #endregion

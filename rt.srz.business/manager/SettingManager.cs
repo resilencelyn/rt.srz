@@ -54,7 +54,7 @@ namespace rt.srz.business.manager
     /// <param name="className">
     /// The class Name.
     /// </param>
-    public void AddSetting(string className)
+    public void SaveCheckSetting(string className)
     {
       var setting = new Setting { Name = className, ValueString = "0" };
       var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
@@ -75,7 +75,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public Setting GetCurrentSetting(string name)
     {
-      var curUser = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var curUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       return GetBy(x => x.UserId == curUser.Id && x.Name == name).FirstOrDefault();
     }
 
@@ -104,7 +104,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public string GetSettingCurrentUser(string nameSetting)
     {
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
 
       var sett =
         ObjectFactory.GetInstance<ISettingManager>()
@@ -153,7 +153,7 @@ namespace rt.srz.business.manager
     /// </param>
     public void SetSettingCurrentUser(string nameSetting, string value)
     {
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
 
       var sett =
         ObjectFactory.GetInstance<ISettingManager>()

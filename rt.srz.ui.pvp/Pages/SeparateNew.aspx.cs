@@ -19,7 +19,7 @@ namespace rt.srz.ui.pvp.Pages
   {
     #region Fields
 
-    private ITFService _service;
+    private ITfomsService _service;
     private IStatementService _statementService;
     private ISecurityService _security;
 
@@ -63,7 +63,7 @@ namespace rt.srz.ui.pvp.Pages
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<ITFService>();
+      _service = ObjectFactory.GetInstance<ITfomsService>();
       _statementService = ObjectFactory.GetInstance<IStatementService>();
       _security = ObjectFactory.GetInstance<ISecurityService>();
     }

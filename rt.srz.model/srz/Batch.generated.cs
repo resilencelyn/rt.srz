@@ -74,8 +74,9 @@ namespace rt.srz.model.srz
       [DataMember(Order =  9)]
 		  public virtual Organisation Sender { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Message> Messages { get; set;}
-		
+      
    }
 }

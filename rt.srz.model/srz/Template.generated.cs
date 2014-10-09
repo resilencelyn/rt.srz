@@ -104,8 +104,9 @@ namespace rt.srz.model.srz
       [DataMember(Order =  18)]
       public virtual bool? Default { get; set;}
         
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<RangeNumber> RangeNumbers { get; set;}
-		
+      
    }
 }

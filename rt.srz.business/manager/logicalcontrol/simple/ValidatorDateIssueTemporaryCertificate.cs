@@ -88,7 +88,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
       }
 
       ////if (statement.MedicalInsurances.Where(x => x.PolisType.Id == PolisType.В)
-      ////  .Any(medicalInsurance => medicalInsurance.DateTo.Date != DateTymeHelper.CalculateEnPeriodWorkingDay(medicalInsurance.DateFrom, 30).Date))
+      ////  .Any(medicalInsurance => medicalInsurance.DateTo.Date != DateTymeHelper.CalculateEndPeriodWorkingDay(medicalInsurance.DateFrom, 30).Date))
       ////{
       ////  throw new FaultMedicalInsuranceDateNotEquals30Exception();
       ////}

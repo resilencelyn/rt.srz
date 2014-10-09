@@ -14,6 +14,7 @@ namespace rt.srz.business.manager
 
   using NHibernate;
 
+  using rt.core.business.security.interfaces;
   using rt.core.model.interfaces;
   using rt.srz.business.manager.cache;
   using rt.srz.model.srz;
@@ -44,7 +45,7 @@ namespace rt.srz.business.manager
     /// </returns>
     public byte[] GetCertificateKey(string workstationName, int version, int type)
     {
-      var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
       var workstationManager = ObjectFactory.GetInstance<IWorkstationManager>();
       var sertificateUecManager = ObjectFactory.GetInstance<ISertificateUecManager>();
       var organisationManager = ObjectFactory.GetInstance<IOrganisationManager>();

@@ -49,7 +49,7 @@ namespace rt.srz.ui.pvp.Controls
     /// </summary>
     private IStatementService _statementService;
 
-    private INsiService _nsiService;
+    private IRegulatoryService regulatoryService;
 
     /// <summary>
     ///   Gets a value indicating whether is step 4 blocked.
@@ -145,7 +145,7 @@ namespace rt.srz.ui.pvp.Controls
     protected void Page_Init(object sender, EventArgs e)
     {
       _statementService = ObjectFactory.GetInstance<IStatementService>();
-      _nsiService = ObjectFactory.GetInstance<INsiService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     /// <summary>
@@ -582,7 +582,7 @@ namespace rt.srz.ui.pvp.Controls
         return;
       }
 
-      Template template = _nsiService.GetTemplateVsByStatement(CurrentStatement);
+      Template template = regulatoryService.GetTemplateByStatement(CurrentStatement);
       Session[SessionConsts.CTemplateVsForPrint] = template;
       Session[SessionConsts.COperation] = StatementSearchMenuItem.Edit;
       Session[SessionConsts.CGuidStatementId] = CurrentStatement.Id;

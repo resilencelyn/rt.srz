@@ -20,7 +20,7 @@ namespace rt.core.model.security
   /// <summary>
   ///   Сервис авторизации
   /// </summary>
-  [ServiceContract]
+  [ServiceContract(Namespace = "http://auth.ffoms.ru", ConfigurationName = "rt.core.model.security.IAuthService")]
   public interface IAuthService
   {
     #region Public Methods and Operators

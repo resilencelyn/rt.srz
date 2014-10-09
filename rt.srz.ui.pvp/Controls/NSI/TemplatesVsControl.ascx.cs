@@ -13,11 +13,11 @@ namespace rt.srz.ui.pvp.Controls.NSI
 {
   public partial class TemplatesVsControl : System.Web.UI.UserControl
   {
-    private INsiService _service;
+    private IRegulatoryService _service;
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<INsiService>();
+      _service = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace rt.srz.ui.pvp.Controls.NSI
           Response.Redirect("~/Pages/NSI/TemplateVs.aspx");
           break;
         case "Copy":
-          Template newTemplate = _service.CreateCopyOfTemplateVs((Guid)grid.SelectedDataKey.Value);
+          Template newTemplate = _service.CreateCopyOfTemplate((Guid)grid.SelectedDataKey.Value);
           RefreshData();
           grid.SelectedIndex = -1;
           SetButtonsEnable(grid.SelectedDataKey != null);

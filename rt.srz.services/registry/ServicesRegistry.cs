@@ -11,16 +11,15 @@ namespace rt.srz.services.registry
 {
   #region
 
-  using rt.atl.model.interfaces.Service;
+  using rt.atl.model.interfaces.service;
   using rt.core.model.interfaces;
   using rt.core.services;
   using rt.srz.model.interfaces.service;
   using rt.srz.services.Atlantiko;
   using rt.srz.services.Kladr;
-  using rt.srz.services.NSI;
-  using rt.srz.services.Smo;
+  using rt.srz.services.Nsi;
   using rt.srz.services.Statement;
-  using rt.srz.services.TF;
+  using rt.srz.services.Tfoms;
   using rt.srz.services.Uec;
   using rt.srz.services.Uir;
   using rt.uec.model.Interfaces;
@@ -43,13 +42,12 @@ namespace rt.srz.services.registry
     {
       ForSingletonOf<IKladrService>().Use<KladrGateInternal>();
       ForSingletonOf<IStatementService>().Use<StatementGateInternal>();
-      ForSingletonOf<INsiService>().Use<NsiGateInternal>();
+      ForSingletonOf<IRegulatoryService>().Use<RegulatoryGateInternal>();
       ForSingletonOf<ISecurityService>().Use<SecurityGateInternal>();
-      ForSingletonOf<ISmoService>().Use<SmoGateInternal>();
-      ForSingletonOf<ITFService>().Use<TFGateInternal>();
+      ForSingletonOf<ITfomsService>().Use<TfomsGateInternal>();
       ForSingletonOf<IUecService>().Use<UecGateInternal>();
       ForSingletonOf<IUirService>().Use<UirGateInternal>();
-      ForSingletonOf<IAtlService>().Use<AtlGate>();
+      ForSingletonOf<IAtlService>().Use<AtlGateInternal>();
     }
 
     #endregion

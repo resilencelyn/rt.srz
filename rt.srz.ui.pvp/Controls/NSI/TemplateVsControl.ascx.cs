@@ -12,12 +12,12 @@ namespace rt.srz.ui.pvp.Controls.NSI
 {
   public partial class TemplateVsControl : System.Web.UI.UserControl
   {
-    private INsiService _service;
+    private IRegulatoryService _service;
     private Template _template;
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<INsiService>();
+      _service = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace rt.srz.ui.pvp.Controls.NSI
     public void SaveChanges()
     {
       SetObjValues(_template);
-      _service.AddOrUpdateTemplate(_template);
+      _service.SaveTemplate(_template);
     }
   }
 }

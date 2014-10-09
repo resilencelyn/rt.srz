@@ -45,11 +45,13 @@ namespace rt.srz.model.srz
       [DataMember(Order =  3)]
 		  public virtual Concept Code { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Batch> Batches { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<EmploymentHistory> EmploymentHistories { get; set;}
-		
+      
    }
 }

@@ -38,30 +38,9 @@ namespace rt.srz.business.manager
     Kladr GetFirstLevelByTfoms(Organisation tfom);
 
     /// <summary>
-    /// Возвращает адресный объект
-    /// </summary>
-    /// <param name="objectID">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/>.
-    /// </returns>
-    Kladr GetKLADR(Guid objectID);
-
-    /// <summary>
-    /// Возвращает адресный объект
-    /// </summary>
-    /// <param name="code">
-    /// The code.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/>.
-    /// </returns>
-    Kladr GetKLADRByCode(string code);
-
-    /// <summary>
     /// Возвращает список адресных объектов для указанного уровня
     /// </summary>
-    /// <param name="parentID">
+    /// <param name="parentId">
     /// </param>
     /// <param name="prefix">
     /// The prefix.
@@ -71,7 +50,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="IList{T}"/>.
     /// </returns>
-    IList<Kladr> GetKLADRs(Guid? parentID, string prefix, KLADRLevel? level);
+    IList<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level);
 
     #endregion
   }

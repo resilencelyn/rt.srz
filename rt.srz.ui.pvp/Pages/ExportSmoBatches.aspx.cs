@@ -35,7 +35,7 @@ namespace rt.srz.ui.pvp.Pages
     /// <summary>
     ///   Сервис ТФ
     /// </summary>
-    private readonly ITFService tfomsService = ObjectFactory.GetInstance<ITFService>();
+    private readonly ITfomsService tfomsService = ObjectFactory.GetInstance<ITfomsService>();
 
     /// <summary>
     ///   Пэйджер

@@ -31,7 +31,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// <summary>
     /// The _smo service.
     /// </summary>
-    private ISmoService _smoService;
+    private IRegulatoryService regulatoryService;
 
     /// <summary>
     /// The bind parent list.
@@ -50,7 +50,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _smoService = ObjectFactory.GetInstance<ISmoService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     /// <summary>
@@ -176,7 +176,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
       if (pvpList.Count > 0)
       {
-        _smoService.SavePdps(smoId, pvpList);
+        regulatoryService.SavePdps(smoId, pvpList);
       }
     }
 
@@ -208,7 +208,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
       }
       else if (!row.IsNew)
       {
-        var list = _smoService.GetWorkstationsByPdp(row.Id);
+        var list = regulatoryService.GetWorkstationsByPvp(row.Id);
         IList<WorkstationGridRow> rows;
         if (list != null)
         {
@@ -457,7 +457,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     public void LoadPdps(Guid smoId, GridView gridView)
     {
-      var list = _smoService.GetPDPsBySmo(smoId);
+      var list = regulatoryService.GetChildres(smoId).Where(x => x.Oid.Id == Oid.Pvp).ToList();
       IList<PdpGridRow> rows;
       if (list != null)
       {

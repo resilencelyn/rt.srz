@@ -13,6 +13,7 @@ namespace rt.srz.services.Kladr
 
   using System;
   using System.Collections.Generic;
+  using System.Linq;
   using System.ServiceModel;
 
   using rt.core.services.nhibernate;
@@ -37,48 +38,37 @@ namespace rt.srz.services.Kladr
     #region Public Methods and Operators
 
     /// <summary>
-    /// The get first level by tfoms.
-    /// </summary>
-    /// <param name="tfom">
-    /// The tfom.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/> .
-    /// </returns>
-    public Kladr GetFirstLevelByTfoms(Organisation tfom)
-    {
-      return ObjectFactory.GetInstance<IKladrManager>().GetFirstLevelByTfoms(tfom);
-    }
-
-    /// <summary>
     /// Возвращает адресный объект
     /// </summary>
     /// <param name="objectId">
+    /// The object Id.
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/> .
+    /// The <see cref="Kladr"/>.
     /// </returns>
-    public Kladr GetKLADR(Guid objectId)
+    public Kladr GetKladr(Guid objectId)
     {
-      return ObjectFactory.GetInstance<IKladrManager>().GetKLADR(objectId);
+      return ObjectFactory.GetInstance<IKladrManager>().GetById(objectId);
     }
 
     /// <summary>
     /// Возвращает список адресных объектов для указанного уровня
     /// </summary>
     /// <param name="parentId">
+    /// The parent Id.
     /// </param>
     /// <param name="prefix">
     /// The prefix.
     /// </param>
     /// <param name="level">
+    /// The level.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="IList{Kladr}"/>.
     /// </returns>
-    public IList<Kladr> GetKLADRs(Guid? parentId, string prefix, KLADRLevel? level)
+    public List<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level)
     {
-      return ObjectFactory.GetInstance<IKladrManager>().GetKLADRs(parentId, prefix, level);
+      return ObjectFactory.GetInstance<IKladrManager>().GetKladrs(parentId, prefix, level).ToList();
     }
 
     #endregion

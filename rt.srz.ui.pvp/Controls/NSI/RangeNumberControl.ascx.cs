@@ -20,8 +20,8 @@ namespace rt.srz.ui.pvp.Controls.NSI
   {
     #region Fields
 
-    private INsiService _service;
-    private ISmoService _smoService;
+    private IRegulatoryService _service;
+    private IRegulatoryService regulatoryService;
     private ISecurityService _sec;
 
     #endregion
@@ -40,8 +40,8 @@ namespace rt.srz.ui.pvp.Controls.NSI
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<INsiService>();
-      _smoService = ObjectFactory.GetInstance<ISmoService>();
+      _service = ObjectFactory.GetInstance<IRegulatoryService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       _sec = ObjectFactory.GetInstance<ISecurityService>();
     }
 
@@ -55,7 +55,7 @@ namespace rt.srz.ui.pvp.Controls.NSI
         criteria.Take = int.MaxValue;
         criteria.Oid = Oid.Smo;
 
-        dlSmo.DataSource = _smoService.GetSmos(criteria).Rows; //_smoService.GetSmosByTfom(fomId);
+        dlSmo.DataSource = regulatoryService.GetSmos(criteria).Rows; //regulatoryService.GetSmosByTfom(fomId);
         dlSmo.DataBind();
 
         if (Request.QueryString["Id"] == null)
@@ -231,7 +231,7 @@ namespace rt.srz.ui.pvp.Controls.NSI
     {
       obj.RangelFrom = int.Parse(tbFrom.Text);
       obj.RangelTo = int.Parse(tbTo.Text);
-      obj.Smo = _smoService.GetSmo(Guid.Parse(dlSmo.SelectedValue));
+      obj.Smo = regulatoryService.GetOrganisation(Guid.Parse(dlSmo.SelectedValue));
     }
 
     public void SaveChanges()
@@ -239,7 +239,7 @@ namespace rt.srz.ui.pvp.Controls.NSI
       SaveGridDataToObject();
       var range = CurrentRange;
       SetObjValues(range);
-      _service.AddOrUpdateRangeNumber(range);
+      _service.SaveRangeNumber(range);
     }
 
     private void SetButtonsEnable(bool value)

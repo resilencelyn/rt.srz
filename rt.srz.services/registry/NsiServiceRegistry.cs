@@ -13,14 +13,14 @@ namespace rt.srz.services.registry
 
   using rt.core.services.registry;
   using rt.srz.model.interfaces.service;
-  using rt.srz.services.NSI;
+  using rt.srz.services.Nsi;
 
   #endregion
 
   /// <summary>
   ///   The nsi service registry.
   /// </summary>
-  internal class NsiServiceRegistry : ServiceRegistryBase<INsiService, NsiService, NsiGate>
+  internal class NsiServiceRegistry : ServiceRegistryBase<IRegulatoryService, RegulatoryService, RegulatoryGate>
   {
   }
 }

@@ -12,11 +12,11 @@ namespace rt.srz.ui.pvp.Pages
 {
   public partial class Concepts : System.Web.UI.Page
   {
-    private INsiService _service;
+    private IRegulatoryService _service;
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<INsiService>();
+      _service = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     protected void Page_Load(object sender, EventArgs e)

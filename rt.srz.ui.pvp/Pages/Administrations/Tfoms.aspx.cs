@@ -12,18 +12,18 @@ namespace rt.srz.ui.pvp.Pages.Administrations
 {
   public partial class Tfoms : System.Web.UI.Page
   {
-    private ISmoService _service;
+    private IRegulatoryService regulatoryService;
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<ISmoService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
       if (!IsPostBack)
       {
-        grid.DataSource = _service.GetAllTfoms().OrderBy(x => x.Code);
+        grid.DataSource = regulatoryService.GetTfoms().OrderBy(x => x.Code);
         grid.DataBind();
       }
     }
@@ -36,7 +36,7 @@ namespace rt.srz.ui.pvp.Pages.Administrations
       HiddenField hIsOnline = (HiddenField)row.FindControl("hIsOnline");
       bool newIsOnline = !bool.Parse(hIsOnline.Value);
       hIsOnline.Value = newIsOnline.ToString();
-      _service.SetTfomIsOnline(Guid.Parse(Id.Value), newIsOnline);
+      regulatoryService.SetTfomIsOnline(Guid.Parse(Id.Value), newIsOnline);
       if (newIsOnline)
       {
         btn.Text = UtilsHelper.c_TurnOff;

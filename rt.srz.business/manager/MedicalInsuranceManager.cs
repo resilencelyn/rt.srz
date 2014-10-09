@@ -47,7 +47,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="DateTime"/>.
     /// </returns>
-    public DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count)
+    public DateTime CalculateEndPeriodWorkingDay(DateTime dateFrom, int count)
     {
       try
       {

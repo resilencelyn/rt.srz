@@ -85,11 +85,13 @@ namespace rt.srz.model.srz
       [DataMember(Order =  13)]
 		  public virtual Kladr KLADRPARENT { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<address> AddressMember { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Kladr> Kladrs { get; set;}
-		
+      
    }
 }

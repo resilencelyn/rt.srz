@@ -13,11 +13,11 @@ namespace rt.srz.ui.pvp.Pages
   public partial class SeparateOptions : System.Web.UI.Page
   {
     private IStatementService _statementService;
-    private ITFService _service;
+    private ITfomsService _service;
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<ITFService>();
+      _service = ObjectFactory.GetInstance<ITfomsService>();
       _statementService = ObjectFactory.GetInstance<IStatementService>();
     }
 

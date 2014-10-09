@@ -25,7 +25,7 @@ namespace rt.srz.ui.pvp.Pages.Administrations
         Session[SessionConsts.COko1GostContent] = null;
         Session[SessionConsts.COko1RsaContent] = null;
 
-        var tfService = ObjectFactory.GetInstance<ITFService>();
+        var tfService = ObjectFactory.GetInstance<ITfomsService>();
         var sertificates = tfService.GetGlobalSertificates();
         uUC1GOST.LoadedEarlierText = UtilsHelper.GetLoadedSertificateText(TypeSertificate.UC1GOST, sertificates);
         uUC1RSA.LoadedEarlierText = UtilsHelper.GetLoadedSertificateText(TypeSertificate.UC1RSA, sertificates);

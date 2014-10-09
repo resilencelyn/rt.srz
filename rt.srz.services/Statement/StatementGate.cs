@@ -36,7 +36,9 @@ namespace rt.srz.services.Statement
     /// </summary>
     public StatementGate()
     {
-      Interceptors.Add(new NHibernateProxyInterceptorServer());
+      Interceptors.Clear();
+      Interceptors.Add(new LoggingInterceptorStatement());
+      Interceptors.Add(new NHibernateProxyInterceptorServer(3));
     }
 
     #endregion

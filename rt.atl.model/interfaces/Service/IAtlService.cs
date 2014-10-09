@@ -24,15 +24,11 @@
 // </summary>
 
 // --------------------------------------------------------------------------------------------------------------------
-namespace rt.atl.model.interfaces.Service
+namespace rt.atl.model.interfaces.service
 {
-  using System.Collections.Generic;
   using System.ServiceModel;
 
   using Quartz;
-
-  using rt.atl.model.dto;
-  using rt.core.model.dto;
 
   /// <summary>
   ///   The AtlGate interface.
@@ -41,33 +37,6 @@ namespace rt.atl.model.interfaces.Service
   public interface IAtlService
   {
     #region Public Methods and Operators
-
-    /// <summary>
-    ///   The flag exported prz buff.
-    /// </summary>
-    [OperationContract]
-    void FlagExportedPrzBuff();
-
-    /// <summary>
-    /// Получает список ошибок синхронизации
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/>.
-    /// </returns>
-    [OperationContract]
-    SearchResult<ErrorSinchronizationInfoResult> GetErrorSinchronizationInfoList(
-      SearchErrorSinchronizationCriteria criteria);
-
-    /// <summary>
-    /// Статистика первичной загрузки
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    [OperationContract]
-    IList<StatisticInitialLoading> GetStatisticInitialLoading();
 
     /// <summary>
     /// The run export to pvp.

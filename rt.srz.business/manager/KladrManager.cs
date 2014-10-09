@@ -48,53 +48,26 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// Возвращает адресный объект
-    /// </summary>
-    /// <param name="objectID">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/>.
-    /// </returns>
-    public Kladr GetKLADR(Guid objectID)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      return (from kladr in session.Query<Kladr>() where kladr.Id == objectID select kladr).FirstOrDefault();
-    }
-
-    /// <summary>
-    /// Возвращает адресный объект
-    /// </summary>
-    /// <param name="code">
-    /// The code.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/>.
-    /// </returns>
-    public Kladr GetKLADRByCode(string code)
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      return (from kladr in session.Query<Kladr>() where kladr.Code == code select kladr).FirstOrDefault();
-    }
-
-    /// <summary>
     /// Возвращает список адресных объектов для указанного уровня
     /// </summary>
-    /// <param name="parentID">
+    /// <param name="parentId">
+    /// The parent Id.
     /// </param>
     /// <param name="prefix">
     /// The prefix.
     /// </param>
     /// <param name="level">
+    /// The level.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/>.
+    /// The <see cref="IList{Kladr}"/>.
     /// </returns>
-    public IList<Kladr> GetKLADRs(Guid? parentID, string prefix, KLADRLevel? level)
+    public IList<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var query =
         session.QueryOver<Kladr>()
-               .Where(x => x.KLADRPARENT.Id == parentID)
+               .Where(x => x.KLADRPARENT.Id == parentId)
                .WhereRestrictionOn(x => x.Code)
                .IsLike("%00");
       if (level.HasValue)

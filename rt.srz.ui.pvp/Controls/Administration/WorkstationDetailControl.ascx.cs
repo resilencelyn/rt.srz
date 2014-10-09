@@ -33,7 +33,8 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// <summary>
     /// The statement service.
     /// </summary>
-    private IStatementService statementService;
+    private IRegulatoryService regulatoryService;
+
 
     /// <summary>
     /// The bind parent list.
@@ -52,7 +53,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      statementService = ObjectFactory.GetInstance<IStatementService>();
+      regulatoryService = ObjectFactory.GetInstance<IStatementService>();
     }
 
     /// <summary>
@@ -418,7 +419,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
       {
         var sert = new SertificateUec();
         sert.Key = (byte[])Session[sessionValueName];
-        sert.Type = statementService.GetConcept((int)certificateType);
+        sert.Type = regulatoryService.GetConcept((int)certificateType);
         sert.IsActive = true;
         sert.Version = 1;
         w.SertificateUecs.Add(sert);

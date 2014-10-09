@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="GoodStatement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SinhronisationHostTest.cs" />
     <Compile Include="SituationFactory.cs" />
     <Compile Include="TestSituation.cs" />
   </ItemGroup>

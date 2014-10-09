@@ -149,6 +149,14 @@
       <HintPath>..\ThirdParty\DevExpress\DevExpress.XtraReports.v12.1.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ECM7.Migrator.Providers.Oracle, Version=2.8.0.0, Culture=neutral, PublicKeyToken=46e9efbd947bd0df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Providers.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="ECM7.Migrator.Providers.SqlServer, Version=2.8.0.0, Culture=neutral, PublicKeyToken=46e9efbd947bd0df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\ECM7.Migrator.Providers.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -163,6 +171,10 @@
     <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ECM7Migrator.2.8.0.0\tools\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -217,7 +229,6 @@
     <Content Include="Controls\Common\ConfirmControl.ascx" />
     <Content Include="Controls\Common\SearchByDatesControl.ascx" />
     <Content Include="Controls\DateBox.js" />
-    <Content Include="Controls\Installation.ascx" />
     <Content Include="Controls\DocumentUDLUserControl.ascx" />
     <Content Include="Controls\IssueOfPolicy.ascx" />
     <Content Include="Controls\NSI\PositionControl.ascx" />
@@ -240,7 +251,7 @@
     <Content Include="Controls\StatementSelectionWizardSteps\Step2.ascx" />
     <Content Include="Controls\Twins\SeparateGridControl.ascx" />
     <Content Include="Controls\Twins\TwinPersonControl.ascx" />
-    <Content Include="NsiGate.svc" />
+    <Content Include="RegulatoryGate.svc" />
     <Content Include="HttpHandlers\GetPhotoHandler.ashx" />
     <Content Include="HttpHandlers\UploadPhotoHandler.ashx" />
     <Content Include="KladrGate.svc" />
@@ -254,7 +265,6 @@
     <Content Include="Pages\Administrations\AdministrationUsers.aspx" />
     <Content Include="Pages\Administrations\AssignPdp.aspx" />
     <Content Include="Pages\Administrations\AssignUecCertificates.aspx" />
-    <Content Include="Pages\Administrations\ErrorSynchronizationView.aspx" />
     <Content Include="Pages\Administrations\Group.aspx" />
     <Content Include="Pages\Administrations\GroupEx.aspx" />
     <Content Include="Pages\Administrations\JobsProgress.aspx" />
@@ -306,7 +316,6 @@
     <Content Include="Pages\NSI\TemplateVs.aspx" />
     <Content Include="Pages\Administrations\JobsSettings.aspx" />
     <Content Include="Pages\SMCWrite.aspx" />
-    <Content Include="Pages\StatisticInitialLoading.aspx" />
     <Content Include="Resources\controls\ArrowHeadSmall.png" />
     <Content Include="Resources\Logo\logo.jpg" />
     <Content Include="Resources\Logo\rintech_160_63.jpg" />
@@ -345,7 +354,6 @@
     <Content Include="Pages\Administrations\AssignRolesForPermission.aspx" />
     <Content Include="Pages\SeparateNew.aspx" />
     <Content Include="Pages\ExportSmoBatches.aspx" />
-    <Content Include="Pages\Installation.aspx" />
     <Content Include="Pages\PrintTemporaryCertificate.aspx" />
     <Content Include="Pages\NSI\Concepts.aspx" />
     <Content Include="Pages\InsuranceHistory.aspx" />
@@ -392,7 +400,6 @@
     <Content Include="Scripts\webcam.js" />
     <Content Include="Scripts\webcam.swf" />
     <Content Include="SecurityGate.svc" />
-    <Content Include="SmoGate.svc" />
     <Content Include="StatementGate.svc" />
     <Content Include="Styles\Administration.css" />
     <Content Include="Styles\Twins.css" />
@@ -401,7 +408,7 @@
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Styles\Wizard.css" />
-    <Content Include="TFGate.svc" />
+    <Content Include="TfomsGate.svc" />
     <Content Include="UecGate.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -590,13 +597,6 @@
       <DependentUpon>SearchByDatesControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\DateBox.cs" />
-    <Compile Include="Controls\Installation.ascx.cs">
-      <DependentUpon>Installation.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\Installation.ascx.designer.cs">
-      <DependentUpon>Installation.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CustomPager\Delegate.cs" />
     <Compile Include="Controls\CustomPager\IntegrationPager.cs" />
     <Compile Include="Controls\DocumentUDLUserControl.ascx.cs">
@@ -843,13 +843,6 @@
     <Compile Include="Pages\Administrations\AssignUecCertificates.aspx.designer.cs">
       <DependentUpon>AssignUecCertificates.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Administrations\ErrorSynchronizationView.aspx.cs">
-      <DependentUpon>ErrorSynchronizationView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Administrations\ErrorSynchronizationView.aspx.designer.cs">
-      <DependentUpon>ErrorSynchronizationView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Administrations\JobsProgress.aspx.cs">
       <DependentUpon>JobsProgress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1053,13 +1046,6 @@
     <Compile Include="Pages\SMCWrite.aspx.designer.cs">
       <DependentUpon>SMCWrite.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StatisticInitialLoading.aspx.cs">
-      <DependentUpon>StatisticInitialLoading.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\StatisticInitialLoading.aspx.designer.cs">
-      <DependentUpon>StatisticInitialLoading.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\SeparateNew.aspx.cs">
       <DependentUpon>SeparateNew.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1073,13 +1059,6 @@
     </Compile>
     <Compile Include="Pages\ExportSmoBatches.aspx.designer.cs">
       <DependentUpon>ExportSmoBatches.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Installation.aspx.cs">
-      <DependentUpon>Installation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Installation.aspx.designer.cs">
-      <DependentUpon>Installation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Reports\TemporaryCertificateReport.cs">
       <SubType>Component</SubType>
@@ -1237,6 +1216,14 @@
       <Project>{dad3549e-fc6d-4420-b391-ce923a3cad30}</Project>
       <Name>CrystalQuartz.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\rt.atl.business\rt.atl.business.csproj">
+      <Project>{7a4b9d23-8317-45ca-add2-467458dfd464}</Project>
+      <Name>rt.atl.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{cb9ce33b-78b5-4b97-8b05-5d63320a1e39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\rt.core.model.client\rt.core.model.client.csproj">
       <Project>{80b4ee32-6e5b-44cc-af7a-ee3dc3f56858}</Project>
       <Name>rt.core.model.client</Name>
@@ -1244,6 +1231,34 @@
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
       <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
+      <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>
+      <Name>rt.srz.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.business.sqlserver\rt.srz.database.business.sqlserver.sqlproj">
+      <Project>{254bff12-7ed6-4e3e-b916-c535c52606ff}</Project>
+      <Name>rt.srz.database.business.sqlserver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.business\rt.srz.database.business.csproj">
+      <Project>{eb35411e-647a-4ee1-be16-10b7a9f1631c}</Project>
+      <Name>rt.srz.database.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.database.migration\rt.srz.database.migration.csproj">
+      <Project>{8632aea6-8a98-4d6f-aab5-1112a1e72309}</Project>
+      <Name>rt.srz.database.migration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.barcode\rt.srz.model.barcode.csproj">
+      <Project>{9c095cf4-79d1-4b22-b793-ea85ce6ce595}</Project>
+      <Name>rt.srz.model.barcode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+      <Project>{b91bb517-e433-4091-9c96-3386ca975c5a}</Project>
+      <Name>rt.srz.model.HL7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.services.client\rt.srz.services.client.csproj">
+      <Project>{ef604446-6168-4686-9d43-f3b887d0c513}</Project>
+      <Name>rt.srz.services.client</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.services\rt.srz.services.csproj">
       <Project>{7A023AF8-4ABA-4C32-902A-929F308C5813}</Project>
@@ -1317,7 +1332,8 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(ProjectDir)..\bin\* $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -27,24 +27,6 @@ namespace rt.core.business.manager
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавление роли
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    public Guid AddRole(string name)
-    {
-      var role = new Role();
-      role.Code = 0;
-      role.Name = name;
-      SaveOrUpdate(role);
-      return role.Id;
-    }
-
-    /// <summary>
     /// Удаление роли
     /// </summary>
     /// <param name="id">

@@ -48,8 +48,9 @@ namespace rt.srz.model.srz
       [DataMember(Order =  4)]
       public virtual string Email { get; set;}
         
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements { get; set;}
-		
+      
    }
 }

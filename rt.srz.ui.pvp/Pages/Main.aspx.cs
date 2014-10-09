@@ -30,10 +30,18 @@ namespace rt.srz.ui.pvp.Pages
       /// <summary>
       /// Обслуживает Intellisense для ввода отчества
       /// </summary>
-      /// <param name="prefixText"></param>
-      /// <param name="count"></param>
-      /// <param name="contextKey"></param>
-      /// <returns></returns>
+      /// <param name="prefixText">
+      /// The prefix Text.
+      /// </param>
+      /// <param name="count">
+      /// The count.
+      /// </param>
+      /// <param name="contextKey">
+      /// The context Key.
+      /// </param>
+      /// <returns>
+      /// The <see cref="List"/>.
+      /// </returns>
       [System.Web.Services.WebMethod]
       public static List<string> GetMiddleNameAutoComplete(string prefixText, int count, string contextKey)
       {
@@ -43,16 +51,25 @@ namespace rt.srz.ui.pvp.Pages
       /// <summary>
       /// Возвращает название ТФОМС по ОГРН
       /// </summary>
-      /// <param name="ogrn"></param>
-      /// <returns></returns>
+      /// <param name="okato">
+      /// The okato.
+      /// </param>
+      /// <param name="ogrn">
+      /// The ogrn.
+      /// </param>
+      /// <returns>
+      /// The <see cref="string"/>.
+      /// </returns>
       [System.Web.Services.WebMethod]
       public static string GetTfomsAndSmoNames(string okato, string ogrn)
       {
-        var smoService = ObjectFactory.GetInstance<ISmoService>();
-        var tfoms = smoService.GetTfomsByOkato(okato);
-        var smo = smoService.GetSmoByOkatoAndOgrn(okato, ogrn);
+        var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
+        var tfoms = regulatoryService.GetTfomsByOkato(okato);
+        var smo = regulatoryService.GetSmoByOkatoAndOgrn(okato, ogrn);
         if (tfoms != null && smo != null)
+        {
           return string.Format("{0};{1}", tfoms.ShortName, smo.ShortName);
+        }
         
         return string.Empty;
       }

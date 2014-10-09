@@ -16,11 +16,6 @@ namespace rt.atl.business.manager
   {
     #region Public Methods and Operators
 
-    /// <summary>
-    ///   The flag exported prz buff.
-    /// </summary>
-    void FlagExportedPrzBuff();
-
     #endregion
   }
 }

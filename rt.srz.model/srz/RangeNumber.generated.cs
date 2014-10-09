@@ -63,8 +63,9 @@ namespace rt.srz.model.srz
       [DataMember(Order =  7)]
 		  public virtual Template Template { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<RangeNumber> RangeNumbers { get; set;}
-		
+      
    }
 }

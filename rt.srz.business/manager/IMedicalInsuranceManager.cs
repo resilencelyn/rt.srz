@@ -37,7 +37,7 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="DateTime"/>.
     /// </returns>
-    DateTime CalculateEnPeriodWorkingDay(DateTime dateFrom, int count);
+    DateTime CalculateEndPeriodWorkingDay(DateTime dateFrom, int count);
 
     /// <summary>
     /// The reflection medical insured 2.

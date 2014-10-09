@@ -109,11 +109,10 @@
     <Compile Include="interfaces\service\uir\UIRRequest2.cs" />
     <Compile Include="interfaces\service\uir\UIRResponse.cs" />
     <Compile Include="interfaces\service\uir\UIRResponseUIRQueryResponse.cs" />
-    <Compile Include="interfaces\service\IKLADRService.cs" />
-    <Compile Include="interfaces\service\INsiService.cs" />
-    <Compile Include="interfaces\service\ISmoService.cs" />
+    <Compile Include="interfaces\service\IKladrService.cs" />
+    <Compile Include="interfaces\service\IRegulatoryService.cs" />
     <Compile Include="interfaces\service\IStatementService.cs" />
-    <Compile Include="interfaces\service\ITFService.cs" />
+    <Compile Include="interfaces\service\ITfomsService.cs" />
     <Compile Include="interfaces\service\IUirService.cs" />
     <Compile Include="logicalcontrol\ExceptionInfo.cs" />
     <Compile Include="logicalcontrol\exceptions\FieldLengthException.cs" />
@@ -404,7 +403,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="NHibernate.csp">
       <SubType>Designer</SubType>
     </None>

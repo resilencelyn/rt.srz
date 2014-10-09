@@ -53,11 +53,13 @@ namespace rt.srz.model.srz
       [DataMember(Order =  5)]
 		  public virtual Concept Default { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Organisation> Organisations { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Concept> Concepts { get; set;}
-		
+      
    }
 }

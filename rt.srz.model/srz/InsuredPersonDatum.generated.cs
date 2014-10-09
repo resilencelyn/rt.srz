@@ -120,14 +120,17 @@ namespace rt.srz.model.srz
       [DataMember(Order =  21)]
 		  public virtual Concept OldCountry { get; set;}
 			
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Content> Contents { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponse> QueryResponses { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<Statement> Statements { get; set;}
-		
+      
    }
 }

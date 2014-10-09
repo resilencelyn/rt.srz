@@ -25,9 +25,14 @@ namespace rt.srz.ui.pvp.Controls
     #region Fields
 
     /// <summary>
-    ///   The _kladr service.
+    ///   The kladr service.
     /// </summary>
     private IKladrService kladrService;
+
+    /// <summary>
+    /// The organisation service.
+    /// </summary>
+    private IRegulatoryService regulatoryService;
 
     /// <summary>
     ///   The _security service.
@@ -66,7 +71,7 @@ namespace rt.srz.ui.pvp.Controls
 
           var valueBuilder = new StringBuilder();
           var hierarchyBuilder = new StringBuilder();
-          var kladr = service.GetKLADR(value);
+          var kladr = service.GetKladr(value);
           do
           {
             valueBuilder.Insert(0, string.Format("," + kladr.Name + " " + kladr.Socr + "."));
@@ -131,7 +136,7 @@ namespace rt.srz.ui.pvp.Controls
       if (currentUser.HasTf())
       {
         var tfom = currentUser.GetTf();
-        var kladr = kladrService.GetFirstLevelByTfoms(tfom);
+        var kladr = regulatoryService.GetFirstLevelByTfoms(tfom);
         if (kladr != null)
         {
           // Установка региона по умолчанию
@@ -171,6 +176,7 @@ namespace rt.srz.ui.pvp.Controls
     {
       kladrService = ObjectFactory.GetInstance<IKladrService>();
       securityService = ObjectFactory.GetInstance<ISecurityService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       if (!IsPostBack)
       {
         SetDefaultSubject();
@@ -211,7 +217,7 @@ namespace rt.srz.ui.pvp.Controls
     private void SetPostcode()
     {
       tbPostcode.Text = string.Empty;
-      var kladr = kladrService.GetKLADR(SelectedKLADRId);
+      var kladr = kladrService.GetKladr(SelectedKLADRId);
       if (kladr != null && kladr.Index != null)
       {
         tbPostcode.Text = kladr.Index.ToString();

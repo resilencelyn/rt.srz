@@ -25,6 +25,19 @@ namespace rt.core.services.aspects
   /// </summary>
   public class NHibernateProxyInterceptorClient : IMethodInterceptor
   {
+    private readonly int maxDepth;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NHibernateProxyInterceptorClient"/> class.
+    /// </summary>
+    /// <param name="maxDepth">
+    /// The max depth.
+    /// </param>
+    public NHibernateProxyInterceptorClient(int maxDepth = 1)
+    {
+      this.maxDepth = maxDepth;
+    }
+
     #region Public Methods and Operators
 
     /// <summary>
@@ -55,7 +68,7 @@ namespace rt.core.services.aspects
           var parameter in
             fieldInfos.Select(fieldInfo => fieldInfo.GetValue(metod.Target)).OfType<Business>().Where(session.Contains))
         {
-          parameter.UnproxyObjectTree(sessionFactory, 1);
+          parameter.UnproxyObjectTree(sessionFactory, maxDepth);
 
           ////session.Evict(parameter);
         }

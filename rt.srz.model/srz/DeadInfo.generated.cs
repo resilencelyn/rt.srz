@@ -48,11 +48,13 @@ namespace rt.srz.model.srz
       [DataMember(Order =  4)]
       public virtual int? ActRecordNumber { get; set;}
         
-      [XmlIgnore] 
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<InsuredPerson> InsuredPeople { get; set;}
-		
-      [XmlIgnore] 
+      
+      [XmlIgnore]
+      [IgnoreDataMember]
       public virtual IList<QueryResponse> QueryResponses { get; set;}
-		
+      
    }
 }

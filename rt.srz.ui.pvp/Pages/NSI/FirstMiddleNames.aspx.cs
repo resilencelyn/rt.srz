@@ -19,13 +19,13 @@ namespace rt.srz.ui.pvp.Pages.NSI
 
   public partial class FirstMiddleNames : System.Web.UI.Page
   {
-    private INsiService _service;
+    private IRegulatoryService _service;
     private ISecurityService _sec;
     private IntegrationPager<SearchAutoCompleteCriteria, AutoComplete> _intergPager;
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _service = ObjectFactory.GetInstance<INsiService>();
+      _service = ObjectFactory.GetInstance<IRegulatoryService>();
       _sec = ObjectFactory.GetInstance<ISecurityService>();
       searchByNameControl.Clear += searchByNameControl_Clear;
       searchByNameControl.Search += searchByNameControl_Search;
@@ -56,7 +56,7 @@ namespace rt.srz.ui.pvp.Pages.NSI
     protected void Page_Load(object sender, EventArgs e)
     {
       _intergPager = new IntegrationPager<SearchAutoCompleteCriteria, AutoComplete>(
-          grid, custPager, ViewState, (criteria) => _service.GetFirstMiddleNames(criteria));
+          grid, custPager, ViewState, (criteria) => _service.GetAutoCompleteByCriteria(criteria));
       _intergPager.AfterRefreshData += () =>
         {
           SetButtonsEnable(grid.SelectedDataKey != null);
@@ -100,7 +100,7 @@ namespace rt.srz.ui.pvp.Pages.NSI
           {
             return;
           }
-          _service.DeleteFirstMiddleName((Guid)grid.SelectedDataKey.Value);
+          _service.DeleteAutoComplete((Guid)grid.SelectedDataKey.Value);
           grid.SelectedIndex = -1;
           _intergPager.RefreshData(_intergPager.CurrentCriteria);
           contentUpdatePanel.Update();

@@ -1,10 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IUecService.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="IUecService.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The UecService interface.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.uec.model.Interfaces
@@ -14,6 +11,7 @@ namespace rt.uec.model.Interfaces
   using System;
   using System.Runtime.InteropServices;
   using System.ServiceModel;
+
   using rt.uec.model.dto;
 
   #endregion
@@ -27,96 +25,6 @@ namespace rt.uec.model.Interfaces
   public interface IUecService
   {
     #region Public Methods and Operators
-
-    /// <summary>
-    /// Возвращает имя текущего УЭК  ридера
-    /// </summary>
-    /// <param name="workstationName">
-    /// Имя машины в локальной сети ПВП
-    /// </param>
-    /// <returns>
-    /// Имя текущего ридера
-    /// </returns>
-    [OperationContract]
-    string GetCurrentReaderName(string workstationName);
-
-    /// <summary>
-    /// Возвращает имя текущего УЭК  ридера
-    /// </summary>
-    /// <param name="workstationName">Имя машины в локальной сети ПВП</param>
-    /// <param name="pdpCode">Код ПВП</param>
-    /// <returns>Имя текущего ридера</returns>
-    [OperationContract(Name="GetCurrentReaderNameWithPdpCode")]
-    string GetCurrentReaderName(string worstationName, string pdpCode);
-
-    /// <summary>
-    /// Сохраняет имя текущего УЭК ридера
-    /// </summary>
-    /// <param name="worstationName">Имя машины в локальной сети ПВП</param>
-    /// <param name="pdpCode">Код ПВП</param>
-    /// <param name="readerName">Имя текущего ридера</param>
-    [OperationContract]
-    void SaveCurrentReaderName(string worstationName, string pdpCode, string readerName);
-
-    /// <summary>
-    /// Возвращает имя текущего Смарт Карт ридера
-    /// </summary>
-    /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
-    /// </param>
-    /// <returns>
-    /// Имя текущего ридера 
-    /// </returns>
-    [OperationContract]
-    string GetCurrentSmcReaderName(string workstationName);
-
-    /// <summary>
-    /// Возвращает имя текущего Смарт Карт ридера
-    /// </summary>
-    /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
-    /// </param>
-    /// <returns>
-    /// Имя текущего ридера 
-    /// </returns>
-    [OperationContract]
-    string GetCurrentSmcTokenReaderName(string workstationName);
-
-    /// <summary>
-    /// Возвращает имя текущего Смарт Карт ридера
-    /// </summary>
-    /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
-    /// </param>
-    /// <param name="pdpCode">
-    /// Код ПВП
-    /// </param>
-    /// <returns>
-    /// Имя текущего ридера 
-    /// </returns>
-    [OperationContract(Name = "GetCurrentSmcReaderNameWithPdpCode")]
-    string GetCurrentSmcReaderName(string workstationName, string pdpCode);
-
-    /// <summary>
-    /// Возвращает имя текущего Смарт Карт ридера
-    /// </summary>
-    /// <param name="worstationName">
-    /// Имя машины в локальной сети ПВП 
-    /// </param>
-    /// <returns>
-    /// Имя текущего ридера 
-    /// </returns>
-    [OperationContract(Name = "GetCurrentTokenSmcReaderNameWithPdpCode")]
-    string GetCurrentSmcTokenReaderName(string workstationName, string pdpCode);
-
-    /// <summary>
-    /// Сохраняет имя текущего Сарт Карт ридера
-    /// </summary>
-    /// <param name="worstationName">Имя машины в локальной сети ПВП</param>
-    /// <param name="pdpCode">Код ПВП</param>
-    /// <param name="readerName">Имя текущего ридера</param>
-    [OperationContract]
-    void SaveCurrentSmcReaderName(string workstationName, string pdpCode, string readerName);
 
     /// <summary>
     /// Возвращает ключ сертификата
@@ -139,11 +47,21 @@ namespace rt.uec.model.Interfaces
     /// <summary>
     /// Возвращает ключ сертификата
     /// </summary>
-    /// <param name="workstationName">Имя машины в локальной сети ПВП</param>
-    /// <param name="pdpCode">>Код ПВП</param>
-    /// <param name="version">Версия сертификата</param>
-    /// <param name="type">Тип сертификата</param>
-    /// <returns>Ключ сертификата</returns>
+    /// <param name="workstationName">
+    /// Имя машины в локальной сети ПВП
+    /// </param>
+    /// <param name="pdpCode">
+    /// &gt;Код ПВП
+    /// </param>
+    /// <param name="version">
+    /// Версия сертификата
+    /// </param>
+    /// <param name="type">
+    /// Тип сертификата
+    /// </param>
+    /// <returns>
+    /// Ключ сертификата
+    /// </returns>
     [OperationContract(Name = "GetCertificateKeyWithPpdCode")]
     byte[] GetCertificateKey(string workstationName, string pdpCode, int version, int type);
 
@@ -165,8 +83,9 @@ namespace rt.uec.model.Interfaces
     /// <param name="workstationName">
     /// Имя машины в локальной сети ПВП
     /// </param>
-    /// <param name="pdpCode">>
-    /// Код ПВП
+    /// <param name="pdpCode">
+    /// &gt;
+    ///   Код ПВП
     /// </param>
     /// <returns>
     /// Теущий тип криптографии
@@ -175,9 +94,106 @@ namespace rt.uec.model.Interfaces
     int GetCurrentCryptographyType(string workstationName, string pdpCode);
 
     /// <summary>
+    /// Возвращает имя текущего УЭК  ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// Имя машины в локальной сети ПВП
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
+    /// </returns>
+    [OperationContract]
+    string GetCurrentReaderName(string workstationName);
+
+    /// <summary>
+    /// Возвращает имя текущего УЭК  ридера
+    /// </summary>
+    /// <param name="worstationName">
+    /// The worstation Name.
+    /// </param>
+    /// <param name="pdpCode">
+    /// Код ПВП
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
+    /// </returns>
+    [OperationContract(Name = "GetCurrentReaderNameWithPdpCode")]
+    string GetCurrentReaderName(string worstationName, string pdpCode);
+
+    /// <summary>
+    /// Возвращает имя текущего Смарт Карт ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
+    /// </returns>
+    [OperationContract]
+    string GetCurrentSmcReaderName(string workstationName);
+
+    /// <summary>
+    /// Возвращает имя текущего Смарт Карт ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <param name="pdpCode">
+    /// Код ПВП
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
+    /// </returns>
+    [OperationContract(Name = "GetCurrentSmcReaderNameWithPdpCode")]
+    string GetCurrentSmcReaderName(string workstationName, string pdpCode);
+
+    /// <summary>
+    /// Возвращает имя текущего Смарт Карт ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
+    /// </returns>
+    [OperationContract]
+    string GetCurrentSmcTokenReaderName(string workstationName);
+
+    /// <summary>
+    /// Возвращает имя текущего Смарт Карт ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <param name="pdpCode">
+    /// The pdp Code.
+    /// </param>
+    /// <returns>
+    /// Имя текущего ридера
+    /// </returns>
+    [OperationContract(Name = "GetCurrentTokenSmcReaderNameWithPdpCode")]
+    string GetCurrentSmcTokenReaderName(string workstationName, string pdpCode);
+
+    /// <summary>
+    /// Возвращает все МО для указанного ТФОМС
+    /// </summary>
+    /// <param name="tfomsCode">
+    /// The tfoms Code.
+    /// </param>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <returns>
+    /// The <see cref="MO[]"/>.
+    /// </returns>
+    [OperationContract]
+    MO[] GetMO(string tfomsCode, string workstationName);
+
+    /// <summary>
     /// Возвращает настройки протоколирования
     /// </summary>
     /// <param name="type">
+    /// The type.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -186,103 +202,148 @@ namespace rt.uec.model.Interfaces
     string GetProtocolSettings(int type);
 
     /// <summary>
-    /// Сохраняет ключ сертификата
+    /// Возвращает все ТФОМС
     /// </summary>
-    /// <param name="worksationId"></param>
-    /// <param name="version">
+    /// <param name="workstationName">
+    /// The workstation Name.
     /// </param>
-    /// <param name="type">
-    /// </param>
-    /// <param name="key">
-    /// </param>
+    /// <returns>
+    /// The <see cref="MO[]"/>.
+    /// </returns>
     [OperationContract]
-    void SaveWorkstationSertificateKey(Guid worksationId, short version, int type, byte[] key);
+    MO[] GetTFoms(string workstationName);
 
     /// <summary>
-    /// The save sertificate key.
+    /// Возвращает настройки рабочей станции
     /// </summary>
-    /// <param name="worksationId"></param>
-    /// <param name="version">
-    ///   The version.
+    /// <param name="workstationName">
+    /// Имя машины в локальной сети ПВП
     /// </param>
-    /// <param name="type">
-    ///   The type.
+    /// <param name="pdpCode">
+    /// Код ПВП
     /// </param>
-    /// <param name="keyHex">
-    ///   The key hex.
+    /// <returns>
+    /// Настройки
+    /// </returns>
+    [OperationContract]
+    WorkstationSettingParameter[] GetWorkstationSettings(string workstationName, string pdpCode);
+
+    /// <summary>
+    /// Сохраняет имя текущего УЭК ридера
+    /// </summary>
+    /// <param name="worstationName">
+    /// Имя машины в локальной сети ПВП
+    /// </param>
+    /// <param name="pdpCode">
+    /// Код ПВП
+    /// </param>
+    /// <param name="readerName">
+    /// Имя текущего ридера
     /// </param>
     [OperationContract]
-    void SaveWorkstationSertificateHexKey(Guid worksationId, short version, int type, string keyHex);
+    void SaveCurrentReaderName(string worstationName, string pdpCode, string readerName);
+
+    /// <summary>
+    /// Сохраняет имя текущего Сарт Карт ридера
+    /// </summary>
+    /// <param name="workstationName">
+    /// The workstation Name.
+    /// </param>
+    /// <param name="pdpCode">
+    /// Код ПВП
+    /// </param>
+    /// <param name="readerName">
+    /// Имя текущего ридера
+    /// </param>
+    [OperationContract]
+    void SaveCurrentSmcReaderName(string workstationName, string pdpCode, string readerName);
 
     /// <summary>
     /// The save smo sertificate key.
     /// </summary>
     /// <param name="smoId">
-    ///   The smo id. 
+    /// The smo id.
     /// </param>
     /// <param name="version">
-    ///   The version. 
+    /// The version.
     /// </param>
     /// <param name="type">
-    ///   The type. 
-    /// </param>
-    /// <param name="key">
-    ///   The key. 
-    /// </param>
-    [OperationContract]
-    void SaveSmoSertificateKey(Guid smoId, short version, int type, byte[] key);
-
-    /// <summary>
-    /// The save smo sertificate key.
-    /// </summary>
-    /// <param name="smoId">
-    ///   The smo id. 
-    /// </param>
-    /// <param name="version">
-    ///   The version. 
-    /// </param>
-    /// <param name="type">
-    ///   The type. 
+    /// The type.
     /// </param>
     /// <param name="hexKey">
-    ///   The hex key. 
+    /// The hex key.
     /// </param>
     [OperationContract]
     void SaveSmoSertificateHexKey(Guid smoId, short version, int type, string hexKey);
 
     /// <summary>
-    /// Возвращает настройки рабочей станции
+    /// The save smo sertificate key.
     /// </summary>
-    /// <param name="workstationName">Имя машины в локальной сети ПВП</param>
-    /// <param name="pdpCode">Код ПВП</param>
-    /// <returns>Настройки</returns>
+    /// <param name="smoId">
+    /// The smo id.
+    /// </param>
+    /// <param name="version">
+    /// The version.
+    /// </param>
+    /// <param name="type">
+    /// The type.
+    /// </param>
+    /// <param name="key">
+    /// The key.
+    /// </param>
     [OperationContract]
-    WorkstationSettingParameter[] GetWorkstationSettings(string workstationName, string pdpCode);
+    void SaveSmoSertificateKey(Guid smoId, short version, int type, byte[] key);
+
+    /// <summary>
+    /// The save sertificate key.
+    /// </summary>
+    /// <param name="worksationId">
+    /// The worksation Id.
+    /// </param>
+    /// <param name="version">
+    /// The version.
+    /// </param>
+    /// <param name="type">
+    /// The type.
+    /// </param>
+    /// <param name="keyHex">
+    /// The key hex.
+    /// </param>
+    [OperationContract]
+    void SaveWorkstationSertificateHexKey(Guid worksationId, short version, int type, string keyHex);
+
+    /// <summary>
+    /// Сохраняет ключ сертификата
+    /// </summary>
+    /// <param name="worksationId">
+    /// The worksation Id.
+    /// </param>
+    /// <param name="version">
+    /// The version.
+    /// </param>
+    /// <param name="type">
+    /// The type.
+    /// </param>
+    /// <param name="key">
+    /// The key.
+    /// </param>
+    [OperationContract]
+    void SaveWorkstationSertificateKey(Guid worksationId, short version, int type, byte[] key);
 
     /// <summary>
     /// Сохраняет настройки рабочей станции
     /// </summary>
-    /// <param name="workstationName">Имя машины в локальной сети ПВП</param>
-    /// <param name="pdpCode">Код ПВП</param>
-    /// <param name="?">Настройки</param>
+    /// <param name="workstationName">
+    /// Имя машины в локальной сети ПВП
+    /// </param>
+    /// <param name="pdpCode">
+    /// Код ПВП
+    /// </param>
+    /// <param name="settings">
+    /// The settings.
+    /// </param>
     [OperationContract]
     void SaveWorkstationSettings(string workstationName, string pdpCode, WorkstationSettingParameter[] settings);
-
-    /// <summary>
-    /// Возвращает все ТФОМС
-    /// </summary>
-    /// <returns></returns>
-    [OperationContract]
-    MO[] GetTFoms(string workstationName);
-    
-    /// <summary>
-    /// Возвращает все МО для указанного ТФОМС
-    /// </summary>
-    /// <param name="tfomsCode"></param>
-    /// <param name="workstationName"></param>
-    /// <returns></returns>
-    [OperationContract]
-    MO[] GetMO(string tfomsCode, string workstationName);
 
     #endregion
   }

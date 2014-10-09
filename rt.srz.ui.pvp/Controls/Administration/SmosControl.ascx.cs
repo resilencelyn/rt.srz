@@ -20,7 +20,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
   public partial class SmosControl : System.Web.UI.UserControl
   {
-    private ISmoService _smoService;
+    private IRegulatoryService regulatoryService;
     private ISecurityService _securityService;
     private IntegrationPager<SearchSmoCriteria, Organisation> _intergPager;
 
@@ -29,7 +29,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _smoService = ObjectFactory.GetInstance<ISmoService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       _securityService = ObjectFactory.GetInstance<ISecurityService>();
       searchByNameControl.Clear += searchByNameControl_Clear;
       searchByNameControl.Search += searchByNameControl_Search;
@@ -72,7 +72,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
       }
 
       _intergPager = new IntegrationPager<SearchSmoCriteria, Organisation>(
-          smosGridView, custPager, ViewState, (criteria) => { criteria.Oid = _oid; return _smoService.GetSmos(criteria); });
+          smosGridView, custPager, ViewState, (criteria) => { criteria.Oid = _oid; return regulatoryService.GetSmos(criteria); });
       _intergPager.AfterRefreshData += () =>
         {
           menu1.Enabled = _securityService.GetIsUserAllowPermission(_securityService.GetCurrentUser().Id, PermissionCode.EditSmos.GetHashCode());
@@ -117,7 +117,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
         //  {
         //    return;
         //  }
-        //  _smoService.DeleteSmo((Guid)smosGridView.SelectedDataKey.Value);
+        //  regulatoryService.DeleteSmo((Guid)smosGridView.SelectedDataKey.Value);
         //  smosGridView.DeleteRow(smosGridView.SelectedIndex);
         //  smosGridView.SelectedIndex = -1;
         //  _intergPager.RefreshData(_intergPager.CurrentCriteria);

@@ -38,7 +38,7 @@ namespace rt.srz.ui.pvp.Controllers
 
         if (string.IsNullOrEmpty(contextKey)) //Регионы
         {
-          var completeList = _kladrService.GetKLADRs(null, pr, KLADRLevel.Subject)
+          var completeList = _kladrService.GetKladrs(null, pr, KladrLevel.Subject)
                                           .Select(
                                             x =>
                                             AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(
@@ -51,7 +51,7 @@ namespace rt.srz.ui.pvp.Controllers
         var parentKladrID = new Guid(contextKey);
         if (parentKladrID != Guid.Empty)
         {
-          var completeList = _kladrService.GetKLADRs(parentKladrID, pr, null)
+          var completeList = _kladrService.GetKladrs(parentKladrID, pr, null)
                                           .Select(
                                             x =>
                                             AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(

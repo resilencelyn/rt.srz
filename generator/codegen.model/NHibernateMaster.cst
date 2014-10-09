@@ -27,7 +27,7 @@ Description: Generates a complete set of Maps, Business Objects, Manager Objects
 <%@ Assembly Name="Microsoft.Build.Engine" %>
 <%@ Assembly Name="Microsoft.Build.Utilities" %>
 <%@ Assembly Name="CodeSmith.CustomProperties" %>
-<%@ Assembly Name="NHibernateHelper" Path="..\ThirdParty" %>
+<%@ Assembly Name="NHibernateHelper" Path="..\..\ThirdParty" %>
 
 <%@ Import Namespace="SchemaExplorer" %>
 <%@ Import Namespace="System.Data" %>
