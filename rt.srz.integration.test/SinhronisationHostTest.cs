@@ -84,9 +84,9 @@ namespace rt.srz.integration.test
     {
       try
       {
-        var statement = session.QueryOver<Statement>().Take(1).List().SingleOrDefault();
+        ////var statement = session.QueryOver<Statement>().Take(1).List().SingleOrDefault();
 
-        statementService.SaveStatement(statement);
+        ////statementService.SaveStatement(statement);
       }
       catch (Exception ex)
       {
