@@ -15,28 +15,28 @@ namespace rt.srz.ui.pvp.Controls.CustomPager {
         /// <summary>
         /// ddlPageNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.DropDownList ddlPageNumber;
         
         /// <summary>
         /// lblShowRecords control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lblShowRecords;
         
         /// <summary>
         /// ddlPageSize control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
     }
 }

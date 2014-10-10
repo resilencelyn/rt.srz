@@ -32,6 +32,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </summary>
     private IStatementService statementService;
 
+    private IRegulatoryService regulatoryService;
+
     #endregion
 
     #region Properties
@@ -244,7 +246,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         }
 
         temp.IsActive = true;
-        temp.PolisType = ObjectFactory.GetInstance<IStatementService>().GetConcept(PolisType.В);
+        temp.PolisType = regulatoryService.GetConcept(PolisType.В);
         temp.PolisSeria = string.Empty;
         temp.PolisNumber = tbTemporaryCertificateNumber.Text;
         temp.Statement = statement;
@@ -275,7 +277,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
         polis.IsActive = true;
         var policyType = int.Parse(ddlPolicyType.SelectedValue);
-        polis.PolisType = ObjectFactory.GetInstance<IStatementService>().GetConcept(policyType);
+        polis.PolisType = regulatoryService.GetConcept(policyType);
         polis.PolisSeria = string.Empty;
         polis.PolisNumber = tbPolicyNumber.Text;
         polis.Enp = tbEnpNumber.Text;
@@ -412,6 +414,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     protected void Page_Init(object sender, EventArgs e)
     {
       statementService = ObjectFactory.GetInstance<IStatementService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       ddlPolicyType.Items.AddRange(
                                    statementService.GetFormManufacturingByCauseFilling(-1)
                                                    .Select(

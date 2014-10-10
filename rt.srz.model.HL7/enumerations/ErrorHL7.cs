@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ErrorHL7.cs" company="РусБИТех">
+// <copyright file="ErrorHl7.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations
+namespace rt.srz.model.Hl7.enumerations
 {
   /// <summary>
   ///   The error h l 7.
   /// </summary>
-  public enum ErrorHL7
+  public enum ErrorHl7
   {
     /// <summary>
     ///   The none.

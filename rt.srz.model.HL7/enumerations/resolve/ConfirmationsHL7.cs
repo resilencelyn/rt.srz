@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfirmationsHL7.cs" company="РусБИТех">
+// <copyright file="ConfirmationsHl7.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations.resolve
+namespace rt.srz.model.Hl7.enumerations.resolve
 {
   /// <summary>
   ///   The confirmations h l 7.
   /// </summary>
-  public static class ConfirmationsHL7
+  public static class ConfirmationsHl7
   {
     #region Public Methods and Operators
 
@@ -25,29 +25,29 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    public static string ConfirmAsString(ConfirmationHL7 type)
+    public static string ConfirmAsString(ConfirmationHl7 type)
     {
       switch (type)
       {
-        case ConfirmationHL7.None:
+        case ConfirmationHl7.None:
           return string.Empty;
 
-        case ConfirmationHL7.CommitAccept:
+        case ConfirmationHl7.CommitAccept:
           return "CA";
 
-        case ConfirmationHL7.CommitError:
+        case ConfirmationHl7.CommitError:
           return "CE";
 
-        case ConfirmationHL7.CommitReject:
+        case ConfirmationHl7.CommitReject:
           return "CR";
 
-        case ConfirmationHL7.ApplicationAccept:
+        case ConfirmationHl7.ApplicationAccept:
           return "AA";
 
-        case ConfirmationHL7.ApplicationError:
+        case ConfirmationHl7.ApplicationError:
           return "AE";
 
-        case ConfirmationHL7.ApplicationReject:
+        case ConfirmationHl7.ApplicationReject:
           return "AR";
       }
 

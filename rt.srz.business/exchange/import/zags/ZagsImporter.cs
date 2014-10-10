@@ -15,20 +15,21 @@ namespace rt.srz.business.exchange.import.zags
   using System.Xml.Schema;
 
   using rt.srz.business.configuration.algorithms.serialization;
-  using rt.srz.model.HL7.zags;
+  using rt.srz.model.Hl7.zags;
 
   /// <summary>
   /// The zags importer.
   /// </summary>
-  /// <typeparam name="TypeXmlObj">
+  /// <typeparam name="TTypeXmlObj">
+  /// Тип пакета
   /// </typeparam>
-  public abstract class ZagsImporter<TypeXmlObj> : IZagsImporter
-    where TypeXmlObj : new()
+  public abstract class ZagsImporter<TTypeXmlObj> : IZagsImporter
+    where TTypeXmlObj : new()
   {
     #region Properties
 
     /// <summary>
-    /// Gets the xsd resource name.
+    ///   Gets the xsd resource name.
     /// </summary>
     protected abstract string XsdResourceName { get; }
 
@@ -64,8 +65,8 @@ namespace rt.srz.business.exchange.import.zags
       settings.ValidationEventHandler += ValidationHandler;
       var reader = XmlReader.Create(xmlFilePath, settings);
 
-      var obj = new TypeXmlObj();
-      obj = (TypeXmlObj)XmlSerializationHelper.Deserialize(obj, reader);
+      var obj = new TTypeXmlObj();
+      obj = (TTypeXmlObj)XmlSerializationHelper.Deserialize(obj, reader);
 
       return Convert(obj);
     }
@@ -83,7 +84,7 @@ namespace rt.srz.business.exchange.import.zags
     /// <returns>
     /// The <see cref="Zags_VNov"/>.
     /// </returns>
-    protected abstract Zags_VNov Convert(TypeXmlObj data);
+    protected abstract Zags_VNov Convert(TTypeXmlObj data);
 
     /// <summary>
     /// The validation handler.
@@ -91,19 +92,17 @@ namespace rt.srz.business.exchange.import.zags
     /// <param name="sender">
     /// The sender.
     /// </param>
-    /// <param name="_args">
-    /// The _args.
+    /// <param name="args">
+    /// The args.
     /// </param>
-    /// <exception cref="InvalidOperationException">
-    /// </exception>
-    private static void ValidationHandler(object sender, ValidationEventArgs _args)
+    private static void ValidationHandler(object sender, ValidationEventArgs args)
     {
-      if (_args.Severity == XmlSeverityType.Warning)
+      if (args.Severity == XmlSeverityType.Warning)
       {
-        throw new InvalidOperationException("Предупреждение: " + _args.Message, _args.Exception);
+        throw new InvalidOperationException("Предупреждение: " + args.Message, args.Exception);
       }
 
-      throw new InvalidOperationException("Ошибка: " + _args.Message, _args.Exception);
+      throw new InvalidOperationException("Ошибка: " + args.Message, args.Exception);
     }
 
     #endregion

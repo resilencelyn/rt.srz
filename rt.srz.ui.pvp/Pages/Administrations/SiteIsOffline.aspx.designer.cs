@@ -15,46 +15,46 @@ namespace rt.srz.ui.pvp.Pages.Administrations {
         /// <summary>
         /// ScriptManager control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
         
         /// <summary>
         /// Timer1 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.Timer Timer1;
         
         /// <summary>
         /// UpdatePanel control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.UpdatePanel UpdatePanel;
         
         /// <summary>
         /// Image1 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
         /// lb control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lb;
     }
 }

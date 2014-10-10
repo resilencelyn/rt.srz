@@ -13,6 +13,7 @@ namespace rt.srz.services.Statement
 
   using System;
   using System.Collections.Generic;
+  using System.Linq;
 
   using rt.core.model.dto;
   using rt.core.services.aspects;
@@ -34,24 +35,14 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   The service.
     /// </summary>
-    private readonly IStatementService Service = new StatementService();
+    protected readonly IStatementService Service = new StatementService();
 
     #endregion
 
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    public void SaveCheckSetting(string className)
-    {
-      InvokeInterceptors(() => Service.SaveCheckSetting(className));
-    }
-
-    /// <summary>
-    /// The calculate en period working day.
+    /// Вычисляет дату окончания 30 рабочих дней
     /// </summary>
     /// <param name="dateFrom">
     /// The date from.
@@ -71,6 +62,7 @@ namespace rt.srz.services.Statement
     /// The remove statement.
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     public void CanceledStatement(Guid statementId)
     {
@@ -78,7 +70,7 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// The check property statement.
+    /// Проверка конкретного свойства заявления
     /// </summary>
     /// <param name="statement">
     /// The statement.
@@ -92,7 +84,7 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// The check statement simple.
+    /// Проверка заявления, используя
     /// </summary>
     /// <param name="statement">
     /// The statement.
@@ -120,7 +112,11 @@ namespace rt.srz.services.Statement
     /// The image.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/> .
+    /// The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public byte[] ConvertToGrayScale(byte[] image)
     {
@@ -130,7 +126,13 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   Генерация пустого фото
     /// </summary>
-    /// <returns> The <see cref="byte[]" /> . </returns>
+    /// <returns>
+    ///   The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
     public byte[] CreateEmptyPhoto()
     {
       return InvokeInterceptors(() => Service.CreateEmptyPhoto());
@@ -139,7 +141,13 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   Генерация пустой подписи
     /// </summary>
-    /// <returns> The <see cref="byte[]" /> . </returns>
+    /// <returns>
+    ///   The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
     public byte[] CreateEmptySign()
     {
       return InvokeInterceptors(() => Service.CreateEmptySign());
@@ -163,6 +171,7 @@ namespace rt.srz.services.Statement
     /// Удаление инфы о смерти
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     public void DeleteDeathInfo(Guid statementId)
     {
@@ -173,9 +182,10 @@ namespace rt.srz.services.Statement
     /// Получает все заявления для указанной персоны
     /// </summary>
     /// <param name="insuredId">
+    /// The insured Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Statement}"/> .
     /// </returns>
     public List<Statement> GetAllByInsuredId(Guid insuredId)
     {
@@ -186,40 +196,27 @@ namespace rt.srz.services.Statement
     /// The get category by citizenship.
     /// </summary>
     /// <param name="citizenshipId">
-    ///   The citizenship id.
+    /// The citizenship id.
     /// </param>
     /// <param name="isnotCitizenship">
-    ///   The isnot citizenship.
+    /// The isnot citizenship.
     /// </param>
     /// <param name="isrefugee">
-    ///   The isrefugee.
+    /// The isrefugee.
     /// </param>
     /// <param name="age">
+    /// The age.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public List<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age)
+    public List<Concept> GetCategoryByCitizenship(
+      int citizenshipId, 
+      bool isnotCitizenship, 
+      bool isrefugee, 
+      TimeSpan age)
     {
       return InvokeInterceptors(() => Service.GetCategoryByCitizenship(citizenshipId, isnotCitizenship, isrefugee, age));
-    }
-
-    /// <summary>
-    /// The get concept.
-    /// </summary>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Concept"/> .
-    /// </returns>
-    public Concept GetConcept(int id)
-    {
-      return InvokeInterceptors(() => Service.GetConcept(id));
     }
 
     /// <summary>
@@ -237,21 +234,22 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// The get document residency type by category.
+    /// Ворзвращает типы документов разрешающих проживание в РФ предназначениые для заполнения в зависимости от категории
+    ///   гражданина
     /// </summary>
     /// <param name="categoryId">
     /// The category id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetDocumentResidencyTypeByCategory(int categoryId)
+    public List<Concept> GetDocumentResidencyTypeByCategory(int categoryId)
     {
       return InvokeInterceptors(() => Service.GetDocumentResidencyTypeByCategory(categoryId));
     }
 
     /// <summary>
-    /// The get document type by category.
+    /// Ворзвращает типы документов УДЛ предназначениые для заполнения в зависимости от категории гражданина и пола
     /// </summary>
     /// <param name="categoryId">
     /// The category id.
@@ -260,20 +258,20 @@ namespace rt.srz.services.Statement
     /// The age.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/> .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age)
+    public List<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age)
     {
       return InvokeInterceptors(() => Service.GetDocumentTypeByCategory(categoryId, age));
     }
 
     /// <summary>
-    ///   The get document type for registration document
+    ///   Ворзвращает типы документов регистрации предназначениые для заполнения в зависимости от категории гражданина и пола
     /// </summary>
-    /// <param name="categoryId"> The category id. </param>
-    /// <param name="age"> The age. </param>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Concept> GetDocumentTypeForRegistrationDocument()
+    /// <returns>
+    ///   The <see cref="List{Concept}" />.
+    /// </returns>
+    public List<Concept> GetDocumentTypeForRegistrationDocument()
     {
       return InvokeInterceptors(() => Service.GetDocumentTypeForRegistrationDocument());
     }
@@ -281,10 +279,8 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   The get document type for representative
     /// </summary>
-    /// <param name="categoryId"> The category id. </param>
-    /// <param name="age"> The age. </param>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Concept> GetDocumentTypeForRepresentative()
+    /// <returns> The <see cref="List{Concept}" /> . </returns>
+    public List<Concept> GetDocumentTypeForRepresentative()
     {
       return InvokeInterceptors(() => Service.GetDocumentTypeForRepresentative());
     }
@@ -293,93 +289,41 @@ namespace rt.srz.services.Statement
     /// Получает ошибки существующие в заявлениях за указанный период
     /// </summary>
     /// <param name="startDate">
+    /// The start Date.
     /// </param>
     /// <param name="endDate">
+    /// The end Date.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="List{String}"/>.
     /// </returns>
-    public IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate)
+    public List<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate)
     {
       return InvokeInterceptors(() => Service.GetErrorsByPeriod(startDate, endDate));
     }
 
     /// <summary>
-    /// Возвращает список варианатов для имени
-    /// </summary>
-    /// <param name="prefix">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<AutoComplete> GetFirstNameAutoComplete(string prefix)
-    {
-      return InvokeInterceptors(() => Service.GetFirstNameAutoComplete(prefix));
-    }
-
-    /// <summary>
-    /// The get form manufacturing by cause filling.
+    /// Возвращает список типов полиса в зависимости от причины обращения
     /// </summary>
     /// <param name="causeFilling">
-    /// The cause filling.
+    /// The cause Filling.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Concept}"/> .
     /// </returns>
-    public IList<Concept> GetFormManufacturingByCauseFilling(int causeFilling)
+    public List<Concept> GetFormManufacturingByCauseFilling(int causeFilling)
     {
-      return InvokeInterceptors(() => Service.GetFormManufacturingByCauseFilling(causeFilling));
-    }
-
-    /// <summary>
-    /// Возвращает список вариантов для отчества
-    /// </summary>
-    /// <param name="prefix">
-    /// </param>
-    /// <param name="nameId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId)
-    {
-      return InvokeInterceptors(() => Service.GetMiddleNameAutoComplete(prefix, nameId));
-    }
-
-    /// <summary>
-    /// Возвращает список нормативно справочных данных
-    /// </summary>
-    /// <param name="oid">
-    /// The oid.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<Concept> GetNsiRecords(string oid)
-    {
-      return InvokeInterceptors(() => Service.GetNsiRecords(oid));
-    }
-
-    /// <summary>
-    /// The get nsi records.
-    /// </summary>
-    /// <param name="oid">
-    /// The oid.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<Concept> GetNsiRecords(IEnumerable<string> oid)
-    {
-      return InvokeInterceptors(() => Service.GetNsiRecords(oid));
+      return InvokeInterceptors(() => Service.GetFormManufacturingByCauseFilling(causeFilling)).ToList();
     }
 
     /// <summary>
     /// Получает данные по номеру и серии документа
     /// </summary>
     /// <param name="number">
+    /// The number.
     /// </param>
     /// <param name="series">
+    /// The series.
     /// </param>
     /// <returns>
     /// The <see cref="Representative"/> .
@@ -401,20 +345,6 @@ namespace rt.srz.services.Statement
     public SearchStatementResult GetSearchStatementResult(Guid id)
     {
       return InvokeInterceptors(() => Service.GetSearchStatementResult(id));
-    }
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/> .
-    /// </returns>
-    public Setting GetCurrentSetting(string name)
-    {
-      return InvokeInterceptors(() => Service.GetCurrentSetting(name));
     }
 
     /// <summary>
@@ -449,6 +379,7 @@ namespace rt.srz.services.Statement
     /// Возвращает ранее сохраненное завяление
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -462,6 +393,7 @@ namespace rt.srz.services.Statement
     /// Получает заявление по InsuredPersonId с IsActive = 1
     /// </summary>
     /// <param name="insuredPersonId">
+    /// The insured Person Id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -478,9 +410,9 @@ namespace rt.srz.services.Statement
     /// The form manufacturing.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetTypePolisByFormManufacturing(int formManufacturing)
+    public List<Concept> GetTypePolisByFormManufacturing(int formManufacturing)
     {
       return InvokeInterceptors(() => Service.GetTypePolisByFormManufacturing(formManufacturing));
     }
@@ -489,6 +421,7 @@ namespace rt.srz.services.Statement
     /// Входит ли указанная персона в объединение как главное или как второе лицо
     /// </summary>
     /// <param name="personId">
+    /// The person Id.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -516,27 +449,6 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// Удаляет из базы настройку о том что можно включать отключать проверку данного валидатора
-    /// </summary>
-    /// <param name="className">
-    /// тип валидатора
-    /// </param>
-    public void RemoveAllowChangeSetting(string className)
-    {
-      InvokeInterceptors(() => Service.RemoveAllowChangeSetting(className));
-    }
-
-    /// <summary>
-    /// Удаляет настройку из базы которую надо стало проверять
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    public void RemoveSetting(string className)
-    {
-      InvokeInterceptors(() => Service.RemoveSetting(className));
-    }
-
-    /// <summary>
     /// The save content record.
     /// </summary>
     /// <param name="typeContent">
@@ -560,6 +472,7 @@ namespace rt.srz.services.Statement
     /// Сохраняет заявление
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -571,16 +484,14 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// The search.
+    /// Осуществляет поиск заявлений по заданному критерию
     /// </summary>
     /// <param name="criteria">
     /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="SearchResult{SearchStatementResult}"/>.
     /// </returns>
-    /// <exception cref="NotImplementedException">
-    /// </exception>
     public SearchResult<SearchStatementResult> Search(SearchStatementCriteria criteria)
     {
       return InvokeInterceptors(() => Service.Search(criteria));
@@ -604,6 +515,7 @@ namespace rt.srz.services.Statement
     /// Трим полей заявления
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     public void TrimStatementData(Statement statement)
     {
@@ -628,11 +540,13 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// Проверяет проверку и получает информацию об ошибке (текст ошибки из исключения)
+    /// Проверяет проверку и возвращает информацию об ошибке (текст ошибки из исключения)
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <param name="expression">
+    /// The expression.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -640,17 +554,6 @@ namespace rt.srz.services.Statement
     public string TryCheckProperty1(Statement statement, ExpressionNode expression)
     {
       return InvokeInterceptors(() => Service.TryCheckProperty1(statement, expression));
-    }
-
-    /// <summary>
-    /// The un bind statement.
-    /// </summary>
-    /// <param name="statement">
-    /// The statement.
-    /// </param>
-    public void UnBindStatement(Statement statement)
-    {
-      InvokeInterceptors(() => Service.UnBindStatement(statement));
     }
 
     #endregion

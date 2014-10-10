@@ -7,7 +7,7 @@
     <ProjectGuid>{B91BB517-E433-4091-9C96-3386CA975C5A}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <AssemblyName>rt.srz.model.HL7</AssemblyName>
+    <AssemblyName>rt.srz.model.hl7</AssemblyName>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -45,7 +45,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>rt.srz.model.HL7</RootNamespace>
+    <RootNamespace>rt.srz.model.hl7</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

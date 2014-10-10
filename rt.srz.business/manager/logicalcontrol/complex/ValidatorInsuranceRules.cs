@@ -66,8 +66,6 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultPersonAlreadyBelongsToSmoException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       // Пропускаем проверку если причина - "Заявление на выбор или замену СМО не подавалось"

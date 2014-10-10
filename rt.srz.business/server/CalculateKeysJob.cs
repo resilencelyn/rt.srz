@@ -102,8 +102,8 @@ namespace rt.srz.business.server
           catch (Exception exception)
           {
             logger.Fatal(
-                                  "Произошла ошибка удаления ключей поиска перед их пересчетом. Вычисление ключей не возможно!", 
-                                  exception);
+                         "Произошла ошибка удаления ключей поиска перед их пересчетом. Вычисление ключей не возможно!", 
+                         exception);
             CalculateKeysPool.Instance.Queue.Clear();
             return;
           }
@@ -184,8 +184,8 @@ namespace rt.srz.business.server
                                              if (interruptEvent.WaitOne(0))
                                              {
                                                logger.Fatal(
-                                                                     "Получен запрос на прерывание процедуры расчета ключей.", 
-                                                                     exception);
+                                                            "Получен запрос на прерывание процедуры расчета ключей.", 
+                                                            exception);
                                                lock (CalculateKeysPool.LockObject)
                                                {
                                                  CalculateKeysPool.Instance.ExecutingList.Remove(jobInfo);
@@ -197,8 +197,8 @@ namespace rt.srz.business.server
                                            if (!jobInfo.IsError)
                                            {
                                              logger.Fatal(
-                                                                   "Произошла ошибка вызова процедуры расчета ключей. Задача будет помещена в очередь еще один раз.", 
-                                                                   exception);
+                                                          "Произошла ошибка вызова процедуры расчета ключей. Задача будет помещена в очередь еще один раз.", 
+                                                          exception);
                                              lock (CalculateKeysPool.LockObject)
                                              {
                                                jobInfo.IsError = true;
@@ -209,8 +209,8 @@ namespace rt.srz.business.server
                                            }
 
                                            logger.Fatal(
-                                                                 "Произошла ошибка вызова процедуры расчета ключей. Расчет ключа данного типа прекращен. Все ключи данного типа будут удалены из базы данных.", 
-                                                                 exception);
+                                                        "Произошла ошибка вызова процедуры расчета ключей. Расчет ключа данного типа прекращен. Все ключи данного типа будут удалены из базы данных.", 
+                                                        exception);
                                            lock (CalculateKeysPool.LockObject)
                                            {
                                              jobInfo.IsError = true;

@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.ContactInfo, rt.srz.model" table="[dbo].[ContactInfo]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="HomePhone" column="[HomePhone]" />
-		<property name="WorkPhone" column="[WorkPhone]" />
-		<property name="Email" column="[Email]" />
-		<bag name="Statements" lazy="true" inverse="true" >
-			<key column="[ContactInfoId]"></key>
-			<one-to-many class="Statement"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.ContactInfo, rt.srz.model" table="[dbo].[ContactInfo]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="HomePhone" column="[HomePhone]" />
+    <property name="WorkPhone" column="[WorkPhone]" />
+    <property name="Email" column="[Email]" />
+    <bag name="Statements" lazy="true" inverse="true">
+      <key column="[ContactInfoId]"></key>
+      <one-to-many class="Statement"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

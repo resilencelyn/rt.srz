@@ -15,235 +15,235 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps {
         /// <summary>
         /// cvSteps control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         public global::System.Web.UI.WebControls.CustomValidator cvSteps;
         
         /// <summary>
         /// lbTemporaryCertificate control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbTemporaryCertificate;
         
         /// <summary>
         /// lblTemporaryCertificateNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lblTemporaryCertificateNumber;
         
         /// <summary>
         /// tbTemporaryCertificateNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbTemporaryCertificateNumber;
         
         /// <summary>
         /// cvTemporaryCertificateNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvTemporaryCertificateNumber;
         
         /// <summary>
         /// lblTemporaryCertificateDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lblTemporaryCertificateDateIssue;
         
         /// <summary>
         /// tbTemporaryCertificateDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.DateBox tbTemporaryCertificateDateIssue;
         
         /// <summary>
         /// rfvTemporaryCertificateDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTemporaryCertificateDateIssue;
         
         /// <summary>
         /// cvTemporaryCertificateDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvTemporaryCertificateDateIssue;
         
         /// <summary>
         /// Label1 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// hfRequestedPolicyType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.HiddenField hfRequestedPolicyType;
         
         /// <summary>
         /// chbPolicyIsIssued control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbPolicyIsIssued;
         
         /// <summary>
         /// lbPolicyType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbPolicyType;
         
         /// <summary>
         /// ddlPolicyType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.DropDownList ddlPolicyType;
         
         /// <summary>
         /// cvPolicyType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvPolicyType;
         
         /// <summary>
         /// lbEnpNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbEnpNumber;
         
         /// <summary>
         /// tbEnpNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbEnpNumber;
         
         /// <summary>
         /// cvEnpNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvEnpNumber;
         
         /// <summary>
         /// lbPolicyNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbPolicyNumber;
         
         /// <summary>
         /// tbPolicyNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbPolicyNumber;
         
         /// <summary>
         /// cvPolicyNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvPolicyNumber;
         
         /// <summary>
         /// lbPolicyDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbPolicyDateIssue;
         
         /// <summary>
         /// tbPolicyDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.DateBox tbPolicyDateIssue;
         
         /// <summary>
         /// cvPolicyDateIssue control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvPolicyDateIssue;
         
         /// <summary>
         /// lbPolicyDateEnd control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbPolicyDateEnd;
         
         /// <summary>
         /// tbPolicyDateEnd control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.DateBox tbPolicyDateEnd;
     }
 }

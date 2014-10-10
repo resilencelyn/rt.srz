@@ -57,7 +57,7 @@
       <div style="float: left">
         <div class="controlPart">
           <div>
-            <asp:Button ID="btnSeparate" runat="server" Text="Разделить" OnClick="Separate_Click" Enabled="false" CssClass="buttons" />
+            <asp:Button ID="btnSeparate" runat="server" Text="Разделить" OnClick="SeparateClick" Enabled="false" CssClass="buttons" />
           </div>
         </div>
       </div>

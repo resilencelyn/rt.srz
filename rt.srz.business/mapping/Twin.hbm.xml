@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.Twin, rt.srz.model" table="[dbo].[Twins]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<many-to-one name="FirstInsuredPerson" column="[FirstInsuredPersonId]" class="InsuredPerson"  />
-		<many-to-one name="SecondInsuredPerson" column="[SecondInsuredPersonId]" class="InsuredPerson"  />
-		<many-to-one name="TwinType" column="[TwinTypeId]" class="Concept"  />
-		<bag name="TwinsKeys" lazy="true" inverse="true" >
-			<key column="[TwinId]"></key>
-			<one-to-many class="TwinsKey"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.Twin, rt.srz.model" table="[dbo].[Twins]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <many-to-one name="FirstInsuredPerson" column="[FirstInsuredPersonId]" class="InsuredPerson" />
+    <many-to-one name="SecondInsuredPerson" column="[SecondInsuredPersonId]" class="InsuredPerson" />
+    <many-to-one name="TwinType" column="[TwinTypeId]" class="Concept" />
+    <bag name="TwinsKeys" lazy="true" inverse="true">
+      <key column="[TwinId]"></key>
+      <one-to-many class="TwinsKey"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

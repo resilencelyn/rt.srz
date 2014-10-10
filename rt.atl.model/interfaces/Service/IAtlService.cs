@@ -7,24 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-
-
-// --------------------------------------------------------------------------------------------------------------------
-
-// <copyright file="IAtlService.cs" company="Rintech">
-
-// Copyright (c) 2013. All rights reserved.
-
-// </copyright>
-
-// <summary>
-
-// The AtlGate interface.
-
-// </summary>
-
-// --------------------------------------------------------------------------------------------------------------------
-namespace rt.atl.model.interfaces.service
+namespace rt.atl.model.interfaces.Service
 {
   using System.ServiceModel;
 

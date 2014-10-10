@@ -14,7 +14,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using NHibernate;
 
   using rt.srz.business.Properties;
-  using rt.srz.model.logicalcontrol.exceptions.step6;
+  using rt.srz.model.logicalcontrol.exceptions.step6.issue;
   using rt.srz.model.srz;
 
   #endregion

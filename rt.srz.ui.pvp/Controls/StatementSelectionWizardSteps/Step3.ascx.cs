@@ -131,7 +131,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       //{
       //  Document document;
       //  if (statement.DocumentRegistration != null && statement.DocumentUdl != null
-      //      && statement.DocumentRegistration.Id != statement.DocumentUdl.Id)
+      //      && statement.DocumentRegistration.id != statement.DocumentUdl.id)
       //  {
       //    document = statement.DocumentRegistration;
       //  }
@@ -256,7 +256,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
       //// Проверка на совпадение документов
       //chBCopyFromUDL.Checked = statement.DocumentUdl == null || statement.DocumentRegistration == null
-      //                         || statement.DocumentUdl.Id == statement.DocumentRegistration.Id;
+      //                         || statement.DocumentUdl.id == statement.DocumentRegistration.id;
 
       //if (statement.DocumentRegistration != null)
       //{
@@ -269,11 +269,11 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       //        {
       //          new ListItem
       //            {
-      //               Text = documentType.Name, Value = documentType.Id.ToString(CultureInfo.InvariantCulture) 
+      //               Text = documentType.Name, Value = documentType.id.ToString(CultureInfo.InvariantCulture) 
       //            } 
       //        },
-      //      documentType.Id.ToString(CultureInfo.InvariantCulture));
-      //    documentRegistration.DocumentType = statement.DocumentRegistration.DocumentType.Id;
+      //      documentType.id.ToString(CultureInfo.InvariantCulture));
+      //    documentRegistration.DocumentType = statement.DocumentRegistration.DocumentType.id;
       //  }
 
       //  // Серия
@@ -449,7 +449,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
         //documentRegistration.FillDocumentTypeDdl(
         //  _statementService.GetDocumentTypeForRegistrationDocument().Select(
-        //    x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray(),
+        //    x => new ListItem(x.Name, x.id.ToString(CultureInfo.InvariantCulture))).ToArray(),
         //  null);
 
         // Сокрытие адреса проживания
@@ -729,12 +729,12 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       //documentRegistration.FillDocumentTypeDdl(
       //    _statementService.GetNsiRecords(Oid.ДокументУдл).Select(
-      //      x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray(), null);
+      //      x => new ListItem(x.Name, x.id.ToString(CultureInfo.InvariantCulture))).ToArray(), null);
 
       //if (chBCopyFromUDL.Checked)
       //{
       //  // Перенос данных со второго шага
-      //  documentRegistration.DocumentType = CurrentStatement.DocumentUdl.DocumentType.Id; //DocumentUdlType;
+      //  documentRegistration.DocumentType = CurrentStatement.DocumentUdl.DocumentType.id; //DocumentUdlType;
       //  documentRegistration.DocumentSeries = CurrentStatement.DocumentUdl.Series;//DocumentUdlSeries;
       //  documentRegistration.DocumentNumber = CurrentStatement.DocumentUdl.Number;//DocumentUdlNumber;
       //  documentRegistration.DocumentIssuingAuthority = CurrentStatement.DocumentUdl.IssuingAuthority;//DocumentUdlIssuingAuthority;

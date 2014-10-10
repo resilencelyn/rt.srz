@@ -66,12 +66,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultBirthCertificateException">
-    /// </exception>
-    /// <exception cref="FaultIssueDate20Exception">
-    /// </exception>
-    /// <exception cref="FaultIssueDate45Exception">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       // Пропускаем проверку если причина - "Заявление на выбор или замену СМО не подавалось"

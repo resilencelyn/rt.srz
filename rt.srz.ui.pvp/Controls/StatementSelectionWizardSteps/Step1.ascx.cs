@@ -97,7 +97,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       ddlCauseFiling.Items.Clear();
       ddlCauseFiling.Items.Add(new ListItem("Выберите причину", "-1"));
       ddlCauseFiling.Items
-        .AddRange(statementService.GetNsiRecords(new[] { Oid.ПричинаподачизаявлениянавыборилизаменуСмо, Oid.Причинаподачизаявлениянавыдачудубликата })
+        .AddRange(regulatoryService.GetNsiRecords(new[] { Oid.ПричинаподачизаявлениянавыборилизаменуСмо, Oid.Причинаподачизаявлениянавыдачудубликата })
         .Where(x => x.Id != CauseReinsurance.Initialization)
         .Where(x => x.Id != CauseReneval.GettingTheFirst)
         .Where(expression.Compile())
@@ -370,7 +370,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </summary>
     private void AddInitializationCauseFiling()
     {
-      ddlCauseFiling.Items.Add(statementService.GetNsiRecords(new[] { Oid.ПричинаподачизаявлениянавыборилизаменуСмо, Oid.Причинаподачизаявлениянавыдачудубликата })
+      ddlCauseFiling.Items.Add(regulatoryService.GetNsiRecords(new[] { Oid.ПричинаподачизаявлениянавыборилизаменуСмо, Oid.Причинаподачизаявлениянавыдачудубликата })
                                                .Where(x => x.Id == CauseReinsurance.Initialization)
                                                .Select(x => new ListItem(x.Description, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray().First());
     }
@@ -381,7 +381,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private void FillModeFiling()
     {
       ddlModeFiling.Items.AddRange(
-        statementService.GetNsiRecords(Oid.Способподачизаявления).Select(
+        regulatoryService.GetNsiRecords(Oid.Способподачизаявления).Select(
           x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
     }
 

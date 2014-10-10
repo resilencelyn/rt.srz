@@ -9,10 +9,10 @@
 
 namespace rt.srz.business.exchange.import.zags
 {
-  using rt.srz.model.HL7.zags;
+  using rt.srz.model.Hl7.zags;
 
   /// <summary>
-  /// The ZagsImporter interface.
+  ///   The ZagsImporter interface.
   /// </summary>
   public interface IZagsImporter
   {

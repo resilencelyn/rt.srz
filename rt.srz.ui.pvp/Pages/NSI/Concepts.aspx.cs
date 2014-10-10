@@ -1,15 +1,13 @@
-﻿using rt.srz.model.interfaces.service;
-using rt.srz.ui.pvp.Enumerations;
-using StructureMap;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-namespace rt.srz.ui.pvp.Pages
+﻿namespace rt.srz.ui.pvp.Pages.NSI
 {
+  using System;
+  using System.Web.UI;
+
+  using rt.srz.model.interfaces.service;
+  using rt.srz.ui.pvp.Enumerations;
+
+  using StructureMap;
+
   public partial class Concepts : System.Web.UI.Page
   {
     private IRegulatoryService _service;

@@ -12,7 +12,7 @@
   </div>
   <div class="admValueControl">
     <div class="admControlPadding">
-      <asp:DropDownList ID="dlTFoms" runat="server" DataTextField="ShortName" DataValueField="Id" AutoPostBack="True" OnSelectedIndexChanged="DlTFomsSelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
+      <asp:DropDownList ID="dlTFoms" runat="server" DataTextField="ShortName" DataValueField="id" AutoPostBack="True" OnSelectedIndexChanged="DlTFomsSelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
   </div>
   <div class="admValueControl">
     <div class="admControlPadding">
-      <asp:DropDownList ID="dlSmo" runat="server" DataTextField="ShortName" DataValueField="Id" AutoPostBack="True" OnSelectedIndexChanged="DlSmoSelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
+      <asp:DropDownList ID="dlSmo" runat="server" DataTextField="ShortName" DataValueField="id" AutoPostBack="True" OnSelectedIndexChanged="DlSmoSelectedIndexChanged" CssClass="dropDowns" Width="100%"/>
     </div>
   </div>
 </div>
@@ -38,7 +38,7 @@
   </div>
   <div class="admValueControl">
     <div class="admControlPadding">
-      <asp:DropDownList ID="dlPdp" runat="server" DataTextField="ShortName" DataValueField="Id" CssClass="dropDowns" Width="100%"/>
+      <asp:DropDownList ID="dlPdp" runat="server" DataTextField="ShortName" DataValueField="id" CssClass="dropDowns" Width="100%"/>
     </div>
   </div>
   <div class="errorMessage">

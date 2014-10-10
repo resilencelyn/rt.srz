@@ -66,8 +66,6 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultThereAreUnclosedStatementsException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();

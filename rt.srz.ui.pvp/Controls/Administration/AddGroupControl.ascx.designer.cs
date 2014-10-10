@@ -15,37 +15,37 @@ namespace rt.srz.ui.pvp.Controls.Administration {
         /// <summary>
         /// lbTitle control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbTitle;
         
         /// <summary>
         /// lbName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
         /// tbName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbName;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
     }
 }

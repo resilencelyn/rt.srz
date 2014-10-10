@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.card.za2
+namespace rt.srz.model.Hl7.card.za2
 {
   #region references
 
   using System;
 
-  using rt.srz.model.HL7.card.target;
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.card.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 

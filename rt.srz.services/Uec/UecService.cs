@@ -229,7 +229,8 @@ namespace rt.srz.services.Uec
     /// <summary>
     /// Возвращает все МО для указанного ТФОМС
     /// </summary>
-    ///  /// <param name="tfomsCode">
+    /// ///
+    /// <param name="tfomsCode">
     /// The tfoms Code.
     /// </param>
     /// <param name="workstationName">
@@ -262,7 +263,7 @@ namespace rt.srz.services.Uec
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    ///   The workstation Name.
+    /// The workstation Name.
     /// </param>
     /// <returns>
     /// The <see cref="List{MO}"/> .

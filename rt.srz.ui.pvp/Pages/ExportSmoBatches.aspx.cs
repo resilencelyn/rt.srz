@@ -85,7 +85,7 @@ namespace rt.srz.ui.pvp.Pages
         if (!currentUser.IsAdmin)
         {
           // Определяем является ли текущий пользователь администратором ТФОМС
-          if (securityService.IsUserAdminTF(currentUser.Id))
+          if (securityService.IsUserAdminTfoms(currentUser.Id))
           {
             searchCriteria.SenderId = currentUser.GetTf().Id;
           }

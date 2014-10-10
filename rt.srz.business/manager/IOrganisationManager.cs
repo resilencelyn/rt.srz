@@ -30,6 +30,7 @@ namespace rt.srz.business.manager
     /// Удаление пдп (пометка неактивен)
     /// </summary>
     /// <param name="organisation">
+    /// The organisation.
     /// </param>
     void DeleteOrganisation(Organisation organisation);
 
@@ -37,14 +38,9 @@ namespace rt.srz.business.manager
     /// Удаление organisation (set пометка IsActive=false)
     /// </summary>
     /// <param name="organisationId">
+    /// The organisation Id.
     /// </param>
     void DeleteOrganisation(Guid organisationId);
-
-    /// <summary>
-    ///   Возвращает список всех зарегестрированных ТФОМС
-    /// </summary>
-    /// <returns> The <see cref="IList{T}" /> . </returns>
-    IList<Organisation> GetTfoms();
 
     /// <summary>
     /// The get childres.
@@ -103,9 +99,10 @@ namespace rt.srz.business.manager
     /// Получает список всех организаций
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Organisation}"/> .
     /// </returns>
     SearchResult<Organisation> GetSmosByCriteria(SearchSmoCriteria criteria);
 
@@ -113,10 +110,14 @@ namespace rt.srz.business.manager
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    ///   The workstation Name.
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> .
+    /// The
+    ///   <see>
+    ///     <cref>MO[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     List<MO> GetTFoms(string workstationName);
 
@@ -132,12 +133,19 @@ namespace rt.srz.business.manager
     Organisation GetTfomByOpfrCode(string opfrCode);
 
     /// <summary>
+    ///   Возвращает список всех зарегестрированных ТФОМС
+    /// </summary>
+    /// <returns> The <see cref="IList{T}" /> . </returns>
+    IList<Organisation> GetTfoms();
+
+    /// <summary>
     /// Получает список всех организаций для мипа
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Organisation}"/> .
     /// </returns>
     SearchResult<Organisation> GetTfoms(SearchSmoCriteria criteria);
 
@@ -155,7 +163,7 @@ namespace rt.srz.business.manager
     /// <summary>
     ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="IList{User}" /> . </returns>
     IList<User> GetUsersByCurrent();
 
     /// <summary>
@@ -171,8 +179,10 @@ namespace rt.srz.business.manager
     ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
+    /// The smo Id.
     /// </param>
     /// <param name="pdps">
+    /// The pdps.
     /// </param>
     void SavePdps(Guid smoId, List<Organisation> pdps);
 
@@ -180,6 +190,7 @@ namespace rt.srz.business.manager
     /// Сохранение смо
     /// </summary>
     /// <param name="smo">
+    /// The smo.
     /// </param>
     /// <returns>
     /// The <see cref="Guid"/>.
@@ -190,8 +201,10 @@ namespace rt.srz.business.manager
     /// Устанавливает признак IsOnline
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <param name="isOnline">
+    /// The is Online.
     /// </param>
     void SetTfomIsOnline(Guid id, bool isOnline);
 
@@ -199,8 +212,10 @@ namespace rt.srz.business.manager
     /// Существует ли смо с указанным кодом отличная от указанной
     /// </summary>
     /// <param name="smoId">
+    /// The smo Id.
     /// </param>
     /// <param name="code">
+    /// The code.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .

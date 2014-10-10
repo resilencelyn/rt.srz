@@ -15,550 +15,550 @@ namespace rt.srz.ui.pvp.Controls.Twins {
         /// <summary>
         /// lbTitle control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbTitle;
         
         /// <summary>
         /// lbKeyCode control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbKeyCode;
         
         /// <summary>
         /// tbKeyCode control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbKeyCode;
         
         /// <summary>
         /// rfKeyCode control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfKeyCode;
         
         /// <summary>
         /// lbKeyName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbKeyName;
         
         /// <summary>
         /// tbKeyName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbKeyName;
         
         /// <summary>
         /// rfKeyName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfKeyName;
         
         /// <summary>
         /// lbOperationKey control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbOperationKey;
         
         /// <summary>
         /// ddlOperationKey control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.DropDownList ddlOperationKey;
         
         /// <summary>
         /// Label1 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// chbInsertion control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbInsertion;
         
         /// <summary>
         /// lbUseLastName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseLastName;
         
         /// <summary>
         /// chbUseLastName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseLastName;
         
         /// <summary>
         /// lbLastNameLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbLastNameLength;
         
         /// <summary>
         /// tbLastNameLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbLastNameLength;
         
         /// <summary>
         /// lbUseFirstName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseFirstName;
         
         /// <summary>
         /// chbUseFirstName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseFirstName;
         
         /// <summary>
         /// lbFirstNameLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbFirstNameLength;
         
         /// <summary>
         /// tbFirstNameLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbFirstNameLength;
         
         /// <summary>
         /// lbUseMiddleName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseMiddleName;
         
         /// <summary>
         /// chbUseMiddleName control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseMiddleName;
         
         /// <summary>
         /// lbMiddleNameLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbMiddleNameLength;
         
         /// <summary>
         /// tbMiddleNameLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbMiddleNameLength;
         
         /// <summary>
         /// lbUseBirthDate control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseBirthDate;
         
         /// <summary>
         /// chbUseBirthDate control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseBirthDate;
         
         /// <summary>
         /// lbBirtdateLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbBirtdateLength;
         
         /// <summary>
         /// ddlBirtdateLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.DropDownList ddlBirtdateLength;
         
         /// <summary>
         /// lbUseBirthPlace control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseBirthPlace;
         
         /// <summary>
         /// chbUseBirthPlace control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseBirthPlace;
         
         /// <summary>
         /// lbUseSnils control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseSnils;
         
         /// <summary>
         /// chbUseSnils control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseSnils;
         
         /// <summary>
         /// lbUseUDLType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseUDLType;
         
         /// <summary>
         /// chbUseUDLType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseUDLType;
         
         /// <summary>
         /// lbUseUDLSeries control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseUDLSeries;
         
         /// <summary>
         /// chbUseUDLSeries control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseUDLSeries;
         
         /// <summary>
         /// lbUseUDLNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseUDLNumber;
         
         /// <summary>
         /// chbUseUDLNumber control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseUDLNumber;
         
         /// <summary>
         /// lbUseOkato control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseOkato;
         
         /// <summary>
         /// chbUseOkato control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseOkato;
         
         /// <summary>
         /// lbUseRegistrationStreet control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseRegistrationStreet;
         
         /// <summary>
         /// chbUseRegistrationStreet control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseRegistrationStreet;
         
         /// <summary>
         /// lbRegistrationStreetLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbRegistrationStreetLength;
         
         /// <summary>
         /// tbRegistrationStreetLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbRegistrationStreetLength;
         
         /// <summary>
         /// lbUseRegistrationHouse control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseRegistrationHouse;
         
         /// <summary>
         /// chbUseRegistrationHouse control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseRegistrationHouse;
         
         /// <summary>
         /// lbUseRegistrationRoom control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseRegistrationRoom;
         
         /// <summary>
         /// chbUseRegistrationRoom control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseRegistrationRoom;
         
         /// <summary>
         /// lbUseResidenceStreet control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseResidenceStreet;
         
         /// <summary>
         /// chbUseResidenceStreet control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseResidenceStreet;
         
         /// <summary>
         /// lbResidenceStreetLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbResidenceStreetLength;
         
         /// <summary>
         /// tbResidenceStreetLength control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbResidenceStreetLength;
         
         /// <summary>
         /// lbUseResidenceHouse control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseResidenceHouse;
         
         /// <summary>
         /// chbUseResidenceHouse control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseResidenceHouse;
         
         /// <summary>
         /// lbUseResidenceRoom control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbUseResidenceRoom;
         
         /// <summary>
         /// chbUseResidenceRoom control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbUseResidenceRoom;
         
         /// <summary>
         /// lbDeleteTwinChar control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbDeleteTwinChar;
         
         /// <summary>
         /// chbDeleteTwinChar control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbDeleteTwinChar;
         
         /// <summary>
         /// lbTwinChars control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbTwinChars;
         
         /// <summary>
         /// tbTwinChars control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.TextBox tbTwinChars;
         
         /// <summary>
         /// btnSave control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
         /// btnCancel control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

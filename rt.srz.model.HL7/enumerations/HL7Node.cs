@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HL7Node.cs" company="РусБИТех">
+// <copyright file="Hl7Node.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations
+namespace rt.srz.model.Hl7.enumerations
 {
   /// <summary>
   /// The h l 7 node.
   /// </summary>
-  public enum HL7Node
+  public enum Hl7Node
   {
     /// <summary>
     ///   The root.

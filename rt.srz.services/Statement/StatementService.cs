@@ -19,7 +19,6 @@ namespace rt.srz.services.Statement
   using rt.core.model.dto;
   using rt.srz.business.interfaces.logicalcontrol;
   using rt.srz.business.manager;
-  using rt.srz.business.manager.cache;
   using rt.srz.business.manager.rightedit;
   using rt.srz.model.dto;
   using rt.srz.model.enumerations;
@@ -79,11 +78,12 @@ namespace rt.srz.services.Statement
     /// </param>
     public void CheckPropertyStatement(Statement statement, ExpressionNode expression)
     {
-      ObjectFactory.GetInstance<ICheckManager>().CheckProperty(statement, (Expression<Func<Statement, object>>)expression.ToExpression());
+      ObjectFactory.GetInstance<ICheckManager>()
+                   .CheckProperty(statement, (Expression<Func<Statement, object>>)expression.ToExpression());
     }
 
     /// <summary>
-    /// Проверка заявления, используя 
+    /// Проверка заявления, используя
     /// </summary>
     /// <param name="statement">
     /// The statement.
@@ -111,7 +111,8 @@ namespace rt.srz.services.Statement
     /// The image.
     /// </param>
     /// <returns>
-    /// The <see>
+    /// The
+    ///   <see>
     ///     <cref>byte[]</cref>
     ///   </see>
     ///   .
@@ -124,10 +125,12 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   Генерация пустого фото
     /// </summary>
-    /// <returns> The <see>
+    /// <returns>
+    ///   The
+    ///   <see>
     ///     <cref>byte[]</cref>
     ///   </see>
-    /// . 
+    ///   .
     /// </returns>
     public byte[] CreateEmptyPhoto()
     {
@@ -137,10 +140,13 @@ namespace rt.srz.services.Statement
     /// <summary>
     ///   Генерация пустой подписи
     /// </summary>
-    /// <returns> The <see>
+    /// <returns>
+    ///   The
+    ///   <see>
     ///     <cref>byte[]</cref>
     ///   </see>
-    /// . </returns>
+    ///   .
+    /// </returns>
     public byte[] CreateEmptySign()
     {
       return ObjectFactory.GetInstance<IContentManager>().CreateEmptySign();
@@ -175,7 +181,7 @@ namespace rt.srz.services.Statement
     /// Получает все заявления для указанной персоны
     /// </summary>
     /// <param name="insuredId">
-    ///   The insured Id.
+    /// The insured Id.
     /// </param>
     /// <returns>
     /// The <see cref="List{Statement}"/> .
@@ -208,24 +214,14 @@ namespace rt.srz.services.Statement
     /// <returns>
     /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public List<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age)
+    public List<Concept> GetCategoryByCitizenship(
+      int citizenshipId, 
+      bool isnotCitizenship, 
+      bool isrefugee, 
+      TimeSpan age)
     {
       var oidManager = ObjectFactory.GetInstance<IOidManager>();
       return oidManager.GetCategoryByCitizenship(citizenshipId, isnotCitizenship, isrefugee, age).ToList();
-    }
-
-    /// <summary>
-    /// The get concept.
-    /// </summary>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Concept"/> .
-    /// </returns>
-    public Concept GetConcept(int id)
-    {
-      return id < 0 ? null : ObjectFactory.GetInstance<IConceptCacheManager>().Single(x => x.Id == id);
     }
 
     /// <summary>
@@ -243,25 +239,22 @@ namespace rt.srz.services.Statement
     }
 
     /// <summary>
-    /// The get document residency type by category.
+    /// Ворзвращает типы документов разрешающих проживание в РФ предназначениые для заполнения в зависимости от категории
+    ///   гражданина
     /// </summary>
     /// <param name="categoryId">
     /// The category id.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetDocumentResidencyTypeByCategory(int categoryId)
+    public List<Concept> GetDocumentResidencyTypeByCategory(int categoryId)
     {
-      return ObjectFactory.GetInstance<IOidManager>().GetDocumentResidencyTypeByCategory(categoryId);
+      return ObjectFactory.GetInstance<IOidManager>().GetDocumentResidencyTypeByCategory(categoryId).ToList();
     }
 
     /// <summary>
-    /// The get document type by category.
+    /// Ворзвращает типы документов УДЛ предназначениые для заполнения в зависимости от категории гражданина и пола
     /// </summary>
     /// <param name="categoryId">
     /// The category id.
@@ -270,41 +263,31 @@ namespace rt.srz.services.Statement
     /// The age.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age)
+    public List<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age)
     {
-      return ObjectFactory.GetInstance<IOidManager>().GetDocumentUdlTypeByCategory(categoryId, age);
+      return ObjectFactory.GetInstance<IOidManager>().GetDocumentUdlTypeByCategory(categoryId, age).ToList();
     }
 
     /// <summary>
-    ///   The get document type for registration document
+    ///   Ворзвращает типы документов регистрации предназначениые для заполнения в зависимости от категории гражданина и пола
     /// </summary>
     /// <returns>
-    ///   The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    ///   The <see cref="List{Concept}" />.
     /// </returns>
-    public IList<Concept> GetDocumentTypeForRegistrationDocument()
+    public List<Concept> GetDocumentTypeForRegistrationDocument()
     {
-      return ObjectFactory.GetInstance<IOidManager>().GetDocumentTypeForRegistrationDocument();
+      return ObjectFactory.GetInstance<IOidManager>().GetDocumentTypeForRegistrationDocument().ToList();
     }
 
     /// <summary>
     ///   The get document type for representative
     /// </summary>
-    /// <param name="categoryId"> The category id. </param>
-    /// <param name="age"> The age. </param>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Concept> GetDocumentTypeForRepresentative()
+    /// <returns> The <see cref="List{Concept}" /> . </returns>
+    public List<Concept> GetDocumentTypeForRepresentative()
     {
-      return ObjectFactory.GetInstance<IOidManager>().GetDocumentTypeForRepresentative();
+      return ObjectFactory.GetInstance<IOidManager>().GetDocumentTypeForRepresentative().ToList();
     }
 
     /// <summary>
@@ -317,28 +300,11 @@ namespace rt.srz.services.Statement
     /// The end Date.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="List{String}"/>.
     /// </returns>
-    public IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate)
+    public List<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate)
     {
-      return ObjectFactory.GetInstance<IStatementManager>().GetErrorsByPeriod(startDate, endDate);
-    }
-
-    /// <summary>
-    /// Возвращает список варианатов для имени
-    /// </summary>
-    /// <param name="prefix">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<AutoComplete> GetFirstNameAutoComplete(string prefix)
-    {
-      return ObjectFactory.GetInstance<IAutoCompleteManager>().GetFirstNameAutoComplete(prefix);
+      return ObjectFactory.GetInstance<IStatementManager>().GetErrorsByPeriod(startDate, endDate).ToList();
     }
 
     /// <summary>
@@ -348,62 +314,21 @@ namespace rt.srz.services.Statement
     /// The cause Filling.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Concept}"/> .
     /// </returns>
-    public IList<Concept> GetFormManufacturingByCauseFilling(int causeFilling)
+    public List<Concept> GetFormManufacturingByCauseFilling(int causeFilling)
     {
-      return ObjectFactory.GetInstance<IOidManager>().GetFormManufacturingByCauseFilling(causeFilling);
-    }
-
-    /// <summary>
-    /// Возвращает список вариантов для отчества
-    /// </summary>
-    /// <param name="prefix">
-    /// </param>
-    /// <param name="nameId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId)
-    {
-      return ObjectFactory.GetInstance<IAutoCompleteManager>().GetMiddleNameAutoComplete(prefix, nameId);
-    }
-
-    /// <summary>
-    /// Возвращает список нормативно справочных данных
-    /// </summary>
-    /// <param name="oid">
-    /// The oid.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<Concept> GetNsiRecords(string oid)
-    {
-      return ObjectFactory.GetInstance<IOidManager>().GetNsiRecords(oid);
-    }
-
-    /// <summary>
-    /// Возвращает список нормативно справочных данных
-    /// </summary>
-    /// <param name="oid">
-    /// The oid.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    public IList<Concept> GetNsiRecords(IEnumerable<string> oid)
-    {
-      return ObjectFactory.GetInstance<IOidManager>().GetNsiRecords(oid);
+      return ObjectFactory.GetInstance<IOidManager>().GetFormManufacturingByCauseFilling(causeFilling).ToList();
     }
 
     /// <summary>
     /// Получает данные по номеру и серии документа
     /// </summary>
     /// <param name="number">
+    /// The number.
     /// </param>
     /// <param name="series">
+    /// The series.
     /// </param>
     /// <returns>
     /// The <see cref="Representative"/> .
@@ -425,20 +350,6 @@ namespace rt.srz.services.Statement
     public SearchStatementResult GetSearchStatementResult(Guid id)
     {
       return ObjectFactory.GetInstance<IStatementManager>().GetSearchStatementResult(id);
-    }
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/> .
-    /// </returns>
-    public Setting GetCurrentSetting(string name)
-    {
-      return ObjectFactory.GetInstance<ISettingManager>().GetCurrentSetting(name);
     }
 
     /// <summary>
@@ -473,6 +384,7 @@ namespace rt.srz.services.Statement
     /// Возвращает ранее сохраненное завяление
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -486,6 +398,7 @@ namespace rt.srz.services.Statement
     /// Получает заявление по InsuredPersonId с IsActive = 1
     /// </summary>
     /// <param name="insuredPersonId">
+    /// The insured Person Id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -502,17 +415,18 @@ namespace rt.srz.services.Statement
     /// The form manufacturing.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    public IList<Concept> GetTypePolisByFormManufacturing(int formManufacturing)
+    public List<Concept> GetTypePolisByFormManufacturing(int formManufacturing)
     {
-      return ObjectFactory.GetInstance<IOidManager>().GetTypePolisByFormManufacturing(formManufacturing);
+      return ObjectFactory.GetInstance<IOidManager>().GetTypePolisByFormManufacturing(formManufacturing).ToList();
     }
 
     /// <summary>
     /// Входит ли указанная персона в объединение как главное или как второе лицо
     /// </summary>
     /// <param name="personId">
+    /// The person Id.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -536,29 +450,10 @@ namespace rt.srz.services.Statement
     /// </returns>
     public bool IsRightToEdit(IEnumerable<Concept> propertys, ExpressionNode expression)
     {
-      return ObjectFactory.GetInstance<IStatementRightToEditManager>()
-                          .IsRightToEdit(propertys, (Expression<Func<Statement, object>>)expression.ToExpression());
-    }
-
-    /// <summary>
-    /// Удаляет из базы настройку о том что можно включать отключать проверку данного валидатора
-    /// </summary>
-    /// <param name="className">
-    /// тип валидатора
-    /// </param>
-    public void RemoveAllowChangeSetting(string className)
-    {
-      ObjectFactory.GetInstance<ISettingManager>().RemoveAllowChangeSetting(className);
-    }
-
-    /// <summary>
-    /// Удаляет настройку из базы которую надо стало проверять
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    public void RemoveSetting(string className)
-    {
-      ObjectFactory.GetInstance<ISettingManager>().RemoveSetting(className);
+      var statementRightToEditManager = ObjectFactory.GetInstance<IStatementRightToEditManager>();
+      return statementRightToEditManager.IsRightToEdit(
+                                                       propertys, 
+                                                       (Expression<Func<Statement, object>>)expression.ToExpression());
     }
 
     /// <summary>
@@ -602,11 +497,7 @@ namespace rt.srz.services.Statement
     /// The criteria.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="SearchResult{SearchStatementResult}"/>.
     /// </returns>
     public SearchResult<SearchStatementResult> Search(SearchStatementCriteria criteria)
     {
@@ -631,6 +522,7 @@ namespace rt.srz.services.Statement
     /// Трим полей заявления
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     public void TrimStatementData(Statement statement)
     {
@@ -687,17 +579,6 @@ namespace rt.srz.services.Statement
       {
         return e.Message;
       }
-    }
-
-    /// <summary>
-    /// The un bind statement.
-    /// </summary>
-    /// <param name="statement">
-    /// The statement.
-    /// </param>
-    public void UnBindStatement(Statement statement)
-    {
-      ObjectFactory.GetInstance<IStatementManager>().UnBindStatement(statement);
     }
 
     #endregion

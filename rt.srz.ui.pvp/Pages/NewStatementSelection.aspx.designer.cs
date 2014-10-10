@@ -15,19 +15,19 @@ namespace rt.srz.ui.pvp.Pages {
         /// <summary>
         /// ScriptManager элемент управления.
         /// </summary>
-        /// <remarks>
+        
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
+        
         protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
         
         /// <summary>
         /// StatementSelectionWizard элемент управления.
         /// </summary>
-        /// <remarks>
+        
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.StatementSelectionWizardControl StatementSelectionWizard;
     }
 }

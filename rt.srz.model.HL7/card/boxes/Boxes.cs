@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.card.boxes
+namespace rt.srz.model.Hl7.card.boxes
 {
   #region references
 
@@ -21,7 +21,7 @@ namespace rt.srz.model.HL7.card.boxes
   ///   Класс подтвержедение подписи в изготовление полисов
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "BOXES", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "BOXES", Namespace = "urn:Hl7-org:v2xml")]
   public class Boxes
   {
     #region Public Properties

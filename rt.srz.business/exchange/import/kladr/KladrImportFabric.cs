@@ -33,8 +33,8 @@ namespace rt.srz.business.exchange.import.kladr
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="KladrImportFabric"/> class. 
-    ///   Initializes a new instance of the <see cref="BaseImporterFileQueryResponse{TXmlObj,TEnumerableItem}"/> class.
+    ///   Initializes a new instance of the <see cref="KladrImportFabric" /> class.
+    ///   Initializes a new instance of the <see cref="BaseImporterFileQueryResponse{TXmlObj,TEnumerableItem}" /> class.
     /// </summary>
     public KladrImportFabric()
       : base(TypeSubject.Kladr)

@@ -106,7 +106,7 @@ namespace rt.srz.business.manager
     /// The category id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     public IList<Concept> GetDocumentResidencyTypeByCategory(int categoryId)
     {
@@ -135,14 +135,8 @@ namespace rt.srz.business.manager
     /// <summary>
     ///   The get document type for registration document
     /// </summary>
-    /// <param name="categoryId">
-    ///   The category id.
-    /// </param>
-    /// <param name="age">
-    ///   The age.
-    /// </param>
     /// <returns>
-    ///   The <see cref="IList" />.
+    ///   The <see cref="IList{Concept}" />.
     /// </returns>
     public IList<Concept> GetDocumentTypeForRegistrationDocument()
     {
@@ -153,14 +147,8 @@ namespace rt.srz.business.manager
     /// <summary>
     ///   The get document type for representative
     /// </summary>
-    /// <param name="categoryId">
-    ///   The category id.
-    /// </param>
-    /// <param name="age">
-    ///   The age.
-    /// </param>
     /// <returns>
-    ///   The <see cref="IList" />.
+    ///   The <see cref="IList{Concept}" />.
     /// </returns>
     public IList<Concept> GetDocumentTypeForRepresentative()
     {
@@ -186,7 +174,7 @@ namespace rt.srz.business.manager
     /// The age.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     public IList<Concept> GetDocumentUdlTypeByCategory(int categoryId, TimeSpan age)
     {
@@ -268,7 +256,7 @@ namespace rt.srz.business.manager
     /// The cause Filling.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     public IList<Concept> GetFormManufacturingByCauseFilling(int causeFilling)
     {
@@ -333,7 +321,7 @@ namespace rt.srz.business.manager
     /// The form manufacturing.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     public IList<Concept> GetTypePolisByFormManufacturing(int formManufacturing)
     {

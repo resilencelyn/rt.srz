@@ -21,7 +21,7 @@ namespace rt.srz.services.Uir
   using StructureMap;
 
   /// <summary>
-  /// The uir service.
+  ///   The uir service.
   /// </summary>
   [NHibernateWcfContext]
   [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
@@ -31,6 +31,7 @@ namespace rt.srz.services.Uir
     #region Public Methods and Operators
 
     /// <summary>
+    /// The get med ins state.
     /// </summary>
     /// <param name="request">
     /// The request.
@@ -44,6 +45,7 @@ namespace rt.srz.services.Uir
     }
 
     /// <summary>
+    /// The get med ins state 2.
     /// </summary>
     /// <param name="request">
     /// The request.

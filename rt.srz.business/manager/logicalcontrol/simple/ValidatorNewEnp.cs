@@ -20,7 +20,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using rt.srz.model.algorithms;
   using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step1;
-  using rt.srz.model.logicalcontrol.exceptions.step6;
+  using rt.srz.model.logicalcontrol.exceptions.step6.issue;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 

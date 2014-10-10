@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations.resolve
+namespace rt.srz.model.Hl7.enumerations.resolve
 {
   #region references
 
   using System;
 
-  using rt.srz.model.HL7.dotNetX;
+  using rt.srz.model.Hl7.dotNetX;
 
   #endregion
 

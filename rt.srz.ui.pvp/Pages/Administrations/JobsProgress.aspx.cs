@@ -11,6 +11,7 @@
   using Quartz;
 
   using rt.srz.ui.pvp.Enumerations;
+  using rt.srz.ui.pvp.GridViewHelper;
 
   using StructureMap;
 

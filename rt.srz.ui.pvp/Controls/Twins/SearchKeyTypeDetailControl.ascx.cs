@@ -35,6 +35,11 @@ namespace rt.srz.ui.pvp.Controls.Twins
     private IStatementService statementService;
 
     /// <summary>
+    /// The regulatory service.
+    /// </summary>
+    private IRegulatoryService regulatoryService;
+    
+    /// <summary>
     /// The tf service.
     /// </summary>
     private ITfomsService tfomsService;
@@ -55,6 +60,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
     protected void Page_Init(object sender, EventArgs e)
     {
       tfomsService = ObjectFactory.GetInstance<ITfomsService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       statementService = ObjectFactory.GetInstance<IStatementService>();
     }
 
@@ -83,7 +89,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
 
         // заполняем combo "Тип операции"
         ddlOperationKey.Items.AddRange(
-          statementService.GetNsiRecords(Oid.OperationKey).Where(x => x.Id != OperationKey.CentralSegmentKey).Select(
+          regulatoryService.GetNsiRecords(Oid.OperationKey).Where(x => x.Id != OperationKey.CentralSegmentKey).Select(
             x => new ListItem(x.Description, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
 
         if (Request.QueryString["SearchKeyTypeId"] != null)
@@ -165,7 +171,7 @@ namespace rt.srz.ui.pvp.Controls.Twins
       var operationKey = int.Parse(ddlOperationKey.SelectedValue);
       if (operationKey >= 0)
       {
-        searchKeyType.OperationKey = statementService.GetConcept(operationKey);
+        searchKeyType.OperationKey = regulatoryService.GetConcept(operationKey);
       }
 
       // Фамилия

@@ -379,7 +379,7 @@ namespace rt.atl.business.exchange.impl
         foreach (var rangeNumberPvp in rangeNumbersPvpList)
         {
           Smo smo = null;
-          var vsDiapSrz =
+          var vsdiapSrz =
             sessionSrz.QueryOver<Vsdiap>()
                       .JoinAlias(x => x.SMO, () => smo)
                       .Where(
@@ -390,15 +390,15 @@ namespace rt.atl.business.exchange.impl
                       .FirstOrDefault();
 
           // создаем новую запись
-          if (vsDiapSrz == null)
+          if (vsdiapSrz == null)
           {
-            vsDiapSrz = new Vsdiap();
-            vsDiapSrz.Dedit = DateTime.Now;
-            vsDiapSrz.SMO =
+            vsdiapSrz = new Vsdiap();
+            vsdiapSrz.Dedit = DateTime.Now;
+            vsdiapSrz.SMO =
               sessionSrz.QueryOver<Smo>().Where(x => x.Code == rangeNumberPvp.Smo.Code).List().FirstOrDefault();
-            vsDiapSrz.Lo = rangeNumberPvp.RangelFrom;
-            vsDiapSrz.Hi = rangeNumberPvp.RangelTo;
-            sessionSrz.Save(vsDiapSrz);
+            vsdiapSrz.Lo = rangeNumberPvp.RangelFrom;
+            vsdiapSrz.Hi = rangeNumberPvp.RangelTo;
+            sessionSrz.Save(vsdiapSrz);
           }
         }
 

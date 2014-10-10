@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons.Enumerations
+namespace rt.srz.model.Hl7.commons.Enumerations
 {
   /// <summary>
   ///   The cast type.

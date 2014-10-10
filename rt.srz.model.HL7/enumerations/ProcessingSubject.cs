@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations
+namespace rt.srz.model.Hl7.enumerations
 {
   /// <summary>
   ///   The processing subject.

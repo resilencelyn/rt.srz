@@ -29,6 +29,7 @@ namespace rt.srz.business.manager
     /// Добавление или обновление записи
     /// </summary>
     /// <param name="template">
+    /// The template.
     /// </param>
     public void AddOrUpdateTemplate(Template template)
     {
@@ -51,6 +52,9 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Создание копии шаблона печати
     /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
     /// <returns>
     /// The <see cref="Template"/>.
     /// </returns>

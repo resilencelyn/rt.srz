@@ -20,12 +20,12 @@ namespace rt.srz.business.configuration.algorithms.serialization
   using System.Xml;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7;
-  using rt.srz.model.HL7.algorithms.DamienG;
-  using rt.srz.model.HL7.commons;
-  using rt.srz.model.HL7.commons.Enumerations;
-  using rt.srz.model.HL7.dotNetX;
-  using rt.srz.model.HL7.person;
+  using rt.srz.model.Hl7;
+  using rt.srz.model.Hl7.algorithms.DamienG;
+  using rt.srz.model.Hl7.commons;
+  using rt.srz.model.Hl7.commons.Enumerations;
+  using rt.srz.model.Hl7.dotNetX;
+  using rt.srz.model.Hl7.person;
 
   #endregion
 
@@ -116,9 +116,9 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The <see cref="bool"/>.
     /// </returns>
     public static bool CalculateAndCheckHash(
-      Stream stream, 
-      out string savedHash, 
-      out string expectedHash, 
+      Stream stream,
+      out string savedHash,
+      out string expectedHash,
       bool resetPosition = true)
     {
       expectedHash = savedHash = null;
@@ -215,6 +215,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The file path.
     /// </param>
     /// <typeparam name="T">
+    /// Тип пакета
     /// </typeparam>
     /// <returns>
     /// The <see cref="T"/>.
@@ -246,9 +247,10 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The file path.
     /// </param>
     /// <typeparam name="T">
+    /// Тип пакета
     /// </typeparam>
     /// <returns>
-    /// The <see cref="List"/>.
+    /// The <see cref="List{T}"/>.
     /// </returns>
     public static List<T> DeserializeList<T>(string filePath)
     {
@@ -273,7 +275,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
       {
         using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
         {
-          if (CalculateAndCheckHash(stream, true))
+          if (CalculateAndCheckHash(stream))
           {
             stream.Position = 0L;
             var serializer = new XmlSerializer(type);
@@ -320,10 +322,10 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <param name="filePath">
     /// The file path.
     /// </param>
-    /// <param name="XmlNamespaceResolver">
+    /// <param name="xmlNamespaceResolver">
     /// The xml namespace resolver.
     /// </param>
-    public static void Serialize(object obj, string filePath, IXmlNamespaceResolver XmlNamespaceResolver)
+    public static void Serialize(object obj, string filePath, IXmlNamespaceResolver xmlNamespaceResolver)
     {
       try
       {
@@ -334,7 +336,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
           {
             using (var writer = new XmlTextWriter(stream, Encoding.Default))
             {
-              // XmlHelper.SerializeObject(writer, obj, XmlNamespaceResolver);
+              //// XmlHelper.SerializeObject(writer, obj, xmlNamespaceResolver);
             }
           }
         }
@@ -354,14 +356,15 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <param name="filePath">
     /// The file path.
     /// </param>
-    /// <param name="XmlNamespaceResolver">
+    /// <param name="xmlNamespaceResolver">
     /// The xml namespace resolver.
     /// </param>
     /// <typeparam name="T">
+    /// Тип пакета
     /// </typeparam>
-    public static void SerializeList<T>(IList<T> list, string filePath, IXmlNamespaceResolver XmlNamespaceResolver)
+    public static void SerializeList<T>(IList<T> list, string filePath, IXmlNamespaceResolver xmlNamespaceResolver)
     {
-      Serialize(list, filePath, XmlNamespaceResolver);
+      Serialize(list, filePath, xmlNamespaceResolver);
     }
 
     /// <summary>
@@ -373,15 +376,13 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <param name="filePath">
     /// The file path.
     /// </param>
-    /// <param name="XmlNamespaceResolver">
+    /// <param name="xmlNamespaceResolver">
     /// The xml namespace resolver.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    /// <exception cref="InvalidOperationException">
-    /// </exception>
-    public static bool SerializeWithHash(object person, string filePath, IXmlNamespaceResolver XmlNamespaceResolver)
+    public static bool SerializeWithHash(object person, string filePath, IXmlNamespaceResolver xmlNamespaceResolver)
     {
       try
       {
@@ -390,7 +391,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
         {
           using (var writer = new XmlTextWriter(stream, Encoding.Default))
           {
-            // XmlHelper.SerializeObject(writer, person, XmlNamespaceResolver);
+            // XmlHelper.SerializeObject(writer, person, xmlNamespaceResolver);
             if (!CalculateAndSaveHash(stream, true))
             {
               throw new InvalidOperationException(string.Format("Не удалось прописать контрольную сумму: ", filePath));
@@ -419,28 +420,28 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <param name="filePath">
     /// The file path.
     /// </param>
-    /// <param name="XmlNamespaceResolver">
+    /// <param name="xmlNamespaceResolver">
     /// The xml namespace resolver.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
     public static bool SerializeWithHash(
-      BasePersonTemplate person, 
-      IEnumerable messages, 
-      string filePath, 
-      IXmlNamespaceResolver XmlNamespaceResolver)
+      BasePersonTemplate person,
+      IEnumerable messages,
+      string filePath,
+      IXmlNamespaceResolver xmlNamespaceResolver)
     {
       try
       {
-        var fomsLogPrefix = HL7Helper.FomsLogPrefix;
+        var fomsLogPrefix = Hl7Helper.FomsLogPrefix;
         FomsLogger.WriteLog(
-                            LogType.Local, 
-                            "Сериализация пакета HL7. " + person.BeginPacket.RetrieveShortInfo(), 
-                            fomsLogPrefix, 
+                            LogType.Local,
+                            "Сериализация пакета Hl7. " + person.BeginPacket.RetrieveShortInfo(),
+                            fomsLogPrefix,
                             LogErrorType.None);
         FileSystemPhysical.RemoveFile(filePath);
-        using (var writer = new HL7Writer(filePath, person, XmlNamespaceResolver))
+        using (var writer = new Hl7Writer(filePath, person, xmlNamespaceResolver))
         {
           writer.WriteMessages(messages);
           writer.FinalizeWrite();
@@ -467,19 +468,19 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <param name="filePath">
     /// The file path.
     /// </param>
-    /// <param name="XmlNamespaceResolver">
+    /// <param name="xmlNamespaceResolver">
     /// The xml namespace resolver.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
     public static bool SerializeWithHash(
-      BasePersonTemplate person, 
-      object message, 
-      string filePath, 
-      IXmlNamespaceResolver XmlNamespaceResolver)
+      BasePersonTemplate person,
+      object message,
+      string filePath,
+      IXmlNamespaceResolver xmlNamespaceResolver)
     {
-      return SerializeWithHash(person, new[] { message }, filePath, XmlNamespaceResolver);
+      return SerializeWithHash(person, new[] { message }, filePath, xmlNamespaceResolver);
     }
 
     #endregion
@@ -545,7 +546,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
       {
         var builder = new StringBuilder();
         var textStorage = builder;
-        if (DoLocateSequence(stream, HL7Helper.NodeTag1251_BatchChecksum_end, null, textStorage))
+        if (DoLocateSequence(stream, Hl7Helper.NodeTag1251_BatchChecksum_end, null, textStorage))
         {
           savedHash = builder.ToString();
           return string.Compare(expectedHash, savedHash, StringComparison.OrdinalIgnoreCase) == 0;
@@ -595,21 +596,18 @@ namespace rt.srz.business.configuration.algorithms.serialization
       if (stream.CanSeek)
       {
         var position = stream.Position;
-        if (!DoLocateSequence(stream, HL7Helper.NodeTag1251_BatchChecksum_end, null, null))
+        if (!DoLocateSequence(stream, Hl7Helper.NodeTag1251_BatchChecksum_end, null, null))
         {
           return false;
         }
 
-        var num2 = (stream.Position - position) - HL7Helper.NodeTag1251_BatchChecksum_end.LongLength;
+        var num2 = (stream.Position - position) - Hl7Helper.NodeTag1251_BatchChecksum_end.LongLength;
         if (num2 != bytes.LongLength)
         {
-          var fomsLogPrefix = HL7Helper.FomsLogPrefix;
+          var fomsLogPrefix = Hl7Helper.FomsLogPrefix;
           FomsLogger.WriteError(
-                                LogType.Local, 
-                                string.Format(
-                                              "Под контрольную сумму выделено {0} байт; ожидается {1} байт.", 
-                                              num2, 
-                                              bytes.LongLength), 
+                                LogType.Local,
+                                string.Format("Под контрольную сумму выделено {0} байт; ожидается {1} байт.", num2, bytes.LongLength),
                                 fomsLogPrefix);
           return false;
         }
@@ -633,11 +631,11 @@ namespace rt.srz.business.configuration.algorithms.serialization
     internal static string DoScanApplicationName(Stream stream)
     {
       return DoScanTaggedText(
-                              stream, 
-                              HL7Helper.NodeTag1251_ApplicationName_begin, 
-                              HL7Helper.NodeTag1251_ApplicationName_end, 
-                              HL7Helper.NodeTag1251_HD_begin, 
-                              HL7Helper.NodeTag1251_HD_end);
+                              stream,
+                              Hl7Helper.NodeTag1251_ApplicationName_begin,
+                              Hl7Helper.NodeTag1251_ApplicationName_end,
+                              Hl7Helper.NodeTag1251_HD_begin,
+                              Hl7Helper.NodeTag1251_HD_end);
     }
 
     /// <summary>
@@ -652,9 +650,9 @@ namespace rt.srz.business.configuration.algorithms.serialization
     internal static string DoScanIdentifier(Stream stream)
     {
       return DoScanTaggedText(
-                              stream, 
-                              HL7Helper.NodeTag1251_BatchIdentifier_begin, 
-                              HL7Helper.NodeTag1251_BatchIdentifier_end);
+                              stream,
+                              Hl7Helper.NodeTag1251_BatchIdentifier_begin,
+                              Hl7Helper.NodeTag1251_BatchIdentifier_end);
     }
 
     /// <summary>
@@ -669,11 +667,11 @@ namespace rt.srz.business.configuration.algorithms.serialization
     internal static string DoScanOrganizationName(Stream stream)
     {
       return DoScanTaggedText(
-                              stream, 
-                              HL7Helper.NodeTag1251_OrganizationName_begin, 
-                              HL7Helper.NodeTag1251_OrganizationName_end, 
-                              HL7Helper.NodeTag1251_HD_begin, 
-                              HL7Helper.NodeTag1251_HD_end);
+                              stream,
+                              Hl7Helper.NodeTag1251_OrganizationName_begin,
+                              Hl7Helper.NodeTag1251_OrganizationName_end,
+                              Hl7Helper.NodeTag1251_HD_begin,
+                              Hl7Helper.NodeTag1251_HD_end);
     }
 
     /// <summary>
@@ -695,9 +693,9 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The <see cref="bool"/>.
     /// </returns>
     private static bool DoLocateSequence(
-      Stream stream, 
-      byte[] sequence, 
-      HashAlgorithm hashCalculator, 
+      Stream stream,
+      byte[] sequence,
+      HashAlgorithm hashCalculator,
       StringBuilder textStorage)
     {
       if (stream == null)
@@ -818,12 +816,12 @@ namespace rt.srz.business.configuration.algorithms.serialization
     private static string DoScanHash(Stream stream)
     {
       if (((stream != null) && stream.CanRead)
-          && DoLocateSequence(stream, HL7Helper.NodeTag1251_BatchHeader_end, null, null))
+          && DoLocateSequence(stream, Hl7Helper.NodeTag1251_BatchHeader_end, null, null))
       {
         HashAlgorithm algorithm = new Crc32();
         var hashCalculator = algorithm;
-        if (DoLocateSequence(stream, HL7Helper.NodeTag1251_BatchTrailer_begin, hashCalculator, null)
-            && DoLocateSequence(stream, HL7Helper.NodeTag1251_BatchChecksum_begin, null, null))
+        if (DoLocateSequence(stream, Hl7Helper.NodeTag1251_BatchTrailer_begin, hashCalculator, null)
+            && DoLocateSequence(stream, Hl7Helper.NodeTag1251_BatchChecksum_begin, null, null))
         {
           return ConversionHelper.BytesToHexString(algorithm.Hash);
         }
@@ -876,10 +874,10 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The <see cref="string"/>.
     /// </returns>
     private static string DoScanTaggedText(
-      Stream stream, 
-      byte[] beginTag, 
-      byte[] endTag, 
-      byte[] beginSubTag, 
+      Stream stream,
+      byte[] beginTag,
+      byte[] endTag,
+      byte[] beginSubTag,
       byte[] endSubTag)
     {
       if ((((stream != null) && stream.CanRead) && DoLocateSequence(stream, beginTag, null, null))

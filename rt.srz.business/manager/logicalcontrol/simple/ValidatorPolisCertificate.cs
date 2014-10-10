@@ -16,7 +16,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
-  using rt.srz.model.logicalcontrol.exceptions.step6;
+  using rt.srz.model.logicalcontrol.exceptions.step6.issue;
   using rt.srz.model.Properties;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;

@@ -24,7 +24,7 @@ namespace rt.srz.business.server
   using StructureMap;
 
   /// <summary>
-  /// The export smo form pool job.
+  ///   The export smo form pool job.
   /// </summary>
   public class ExportSmoFormPoolJob : JobBase
   {
@@ -95,7 +95,7 @@ namespace rt.srz.business.server
         }
 
         // Строим очередь выгрузки OpList
-        var opBatchList =
+        var operBatchList =
           session.QueryOver<Batch>()
                  .Where(
                         x =>
@@ -109,7 +109,7 @@ namespace rt.srz.business.server
 
         lock (ExportSmoPool.LockObject)
         {
-          foreach (var batch in opBatchList)
+          foreach (var batch in operBatchList)
           {
             ExportSmoPool.Instance.Queue.Enqueue(new ExportSmoJobInfo { BatchId = batch.Id });
           }

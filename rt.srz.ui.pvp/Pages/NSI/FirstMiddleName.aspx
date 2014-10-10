@@ -32,7 +32,7 @@
     </div>
     <div class="admValueControl">
       <div class="admControlPadding">
-        <asp:DropDownList ID="cbType" runat="server" Width="100%" DataTextField="Name" DataValueField="Id" CssClass="dropDowns"></asp:DropDownList>
+        <asp:DropDownList ID="cbType" runat="server" Width="100%" DataTextField="Name" DataValueField="id" CssClass="dropDowns"></asp:DropDownList>
       </div>
     </div>
     <div class="errorMessage">
@@ -50,7 +50,7 @@
     </div>
     <div class="admValueControl">
       <div class="admControlPadding">
-        <asp:DropDownList ID="cbGender" runat="server" Width="100%" DataTextField="Name" DataValueField="Id" CssClass="dropDowns"></asp:DropDownList>
+        <asp:DropDownList ID="cbGender" runat="server" Width="100%" DataTextField="Name" DataValueField="id" CssClass="dropDowns"></asp:DropDownList>
       </div>
     </div>
     <div class="errorMessage">

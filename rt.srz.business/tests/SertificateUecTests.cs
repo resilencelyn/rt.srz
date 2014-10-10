@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.srz.business.manager;
-using rt.srz.model.srz;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SertificateUecTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The sertificate uec tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.tests
 {
-    public partial class SertificateUecTests
-    {
-	}
+  /// <summary>
+  ///   The sertificate uec tests.
+  /// </summary>
+  public partial class SertificateUecTests
+  {
+  }
 }

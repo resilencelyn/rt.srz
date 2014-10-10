@@ -17,7 +17,7 @@ namespace rt.srz.services.Uir
   using rt.core.services.wcf;
 
   /// <summary>
-  /// The uir gate.
+  ///   The uir gate.
   /// </summary>
   [NHibernateWcfContext]
   [ErrorHandlingBehavior]

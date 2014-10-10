@@ -14,7 +14,7 @@ namespace rt.srz.services.Uir
   using rt.srz.model.interfaces.service.uir;
 
   /// <summary>
-  /// The uir gate internal.
+  ///   The uir gate internal.
   /// </summary>
   public class UirGateInternal : InterceptedBase, IUirService
   {
@@ -23,7 +23,7 @@ namespace rt.srz.services.Uir
     /// <summary>
     ///   The service.
     /// </summary>
-    private readonly IUirService Service = new UirService();
+    protected readonly IUirService Service = new UirService();
 
     #endregion
 

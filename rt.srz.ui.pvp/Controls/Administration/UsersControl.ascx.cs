@@ -134,9 +134,9 @@ namespace rt.srz.ui.pvp.Controls.Administration
         var currentUser = securityService.GetCurrentUser();
 
         // администратор смо не может назначать пункт выдачи для администратора территорального фонда
-        if (!securityService.IsUserHasAdminPermissions(currentUser) && !securityService.IsUserAdminTF(currentUser.Id))
+        if (!securityService.IsUserHasAdminPermissions(currentUser) && !securityService.IsUserAdminTfoms(currentUser.Id))
         {
-          allowAssignPdp = !securityService.IsUserAdminTF(Guid.Parse(lstUsers.SelectedItem.Value));
+          allowAssignPdp = !securityService.IsUserAdminTfoms(Guid.Parse(lstUsers.SelectedItem.Value));
         }
 
         menu1.FindItem("Delete").Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu];

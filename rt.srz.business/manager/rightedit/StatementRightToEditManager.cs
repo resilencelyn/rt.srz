@@ -30,7 +30,7 @@ namespace rt.srz.business.manager.rightedit
     /// <summary>
     ///   The statement right to edits.
     /// </summary>
-    private readonly IStatementRightToEdit[] StatementRightToEdits;
+    protected readonly IStatementRightToEdit[] StatementRightToEdits;
 
     #endregion
 

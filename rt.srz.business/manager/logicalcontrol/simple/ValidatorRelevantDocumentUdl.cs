@@ -27,8 +27,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ValidatorRelevantDocumentUdl"/> class. 
-    /// Initializes a new instance of the <see cref="ValidatorCitizenship"/> class.
+    /// Initializes a new instance of the <see cref="ValidatorRelevantDocumentUdl"/> class.
+    ///   Initializes a new instance of the <see cref="ValidatorCitizenship"/> class.
     /// </summary>
     /// <param name="sessionFactory">
     /// The session factory.

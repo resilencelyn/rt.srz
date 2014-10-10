@@ -69,14 +69,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultEmptyPhotoException">
-    /// </exception>
-    /// <exception cref="FaultPhotoFormatException">
-    /// </exception>
-    /// <exception cref="FaultEmptySignatureException">
-    /// </exception>
-    /// <exception cref="FaultSignatureFormatException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       // проверяем только для уэк и электронного полиса

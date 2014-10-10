@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations.resolve
+namespace rt.srz.model.Hl7.enumerations.resolve
 {
   #region references
 

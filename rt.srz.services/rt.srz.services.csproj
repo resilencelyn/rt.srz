@@ -19,6 +19,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <RestorePackages>true</RestorePackages>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -156,9 +157,9 @@
       <Name>rt.srz.business</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.hl7.csproj">
       <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
-      <Name>rt.srz.model.HL7</Name>
+      <Name>rt.srz.model.hl7</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
@@ -184,6 +185,7 @@
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.targets" />
   <ProjectExtensions />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

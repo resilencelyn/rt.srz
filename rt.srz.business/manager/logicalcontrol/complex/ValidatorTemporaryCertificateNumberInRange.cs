@@ -65,8 +65,6 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultTemporaryCertificateNumberInRangeException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       if (statement.PointDistributionPolicy == null || statement.PointDistributionPolicy.Parent == null)

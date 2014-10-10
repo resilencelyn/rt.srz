@@ -219,11 +219,11 @@ namespace rt.srz.barcode.parser
     /// <returns>
     /// Если упешно преобразование вернет true иначе else 
     /// </returns>
-    /// <remarks>
+    
     /// Порядок хранения символов такой : первые 3 байта = хранят первые 4 символа и т.д.
     ///   Причем для получения кода символа необходимо взять соответствующие 6 бит, и
     ///   обратить их порядок.
-    /// </remarks>
+    
     private bool TryGetStringFromUncompressedCodes(byte[] source, out string dest)
     {
       var uncompressedCodes = UncompressCodes(source);

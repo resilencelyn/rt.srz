@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.requests
+namespace rt.srz.model.Hl7.person.requests
 {
   #region references
 
@@ -20,7 +20,7 @@ namespace rt.srz.model.HL7.person.requests
   ///   The qb p_ z p 9.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "QBP_ZP9", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "QBP_ZP9", Namespace = "urn:Hl7-org:v2xml")]
   public class QBP_ZP9 : BaseMessageTemplate
   {
     #region Fields

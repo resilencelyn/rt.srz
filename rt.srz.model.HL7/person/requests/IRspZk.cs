@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.requests
+namespace rt.srz.model.Hl7.person.requests
 {
   #region references
 

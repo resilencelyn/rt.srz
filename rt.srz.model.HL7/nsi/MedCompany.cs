@@ -7,15 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.nsi
+namespace rt.srz.model.Hl7.nsi
 {
   using System;
   using System.Collections.Generic;
   using System.Xml.Schema;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.nsi.Mo;
-  using rt.srz.model.HL7.nsi.target;
+  using rt.srz.model.Hl7.nsi.Mo;
+  using rt.srz.model.Hl7.nsi.target;
 
   /// <summary>
   ///   The packet med company.

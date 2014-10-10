@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.card.za3
+namespace rt.srz.model.Hl7.card.za3
 {
   #region references
 
@@ -15,8 +15,8 @@ namespace rt.srz.model.HL7.card.za3
   using System.Collections.Generic;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.card.target;
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.card.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 
@@ -24,7 +24,7 @@ namespace rt.srz.model.HL7.card.za3
   ///   ZPI_ZA3
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ZPI_ZA3", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ZPI_ZA3", Namespace = "urn:Hl7-org:v2xml")]
   public class ZpiZA3
   {
     #region Public Properties

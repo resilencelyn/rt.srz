@@ -30,6 +30,7 @@ namespace rt.srz.business.manager
     /// Данные для ненайденных снилс в процессе импорта ps
     /// </summary>
     /// <param name="batchId">
+    /// The batch Id.
     /// </param>
     /// <returns>
     /// список снилсов

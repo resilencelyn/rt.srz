@@ -33,7 +33,7 @@ namespace rt.srz.model.interfaces.service.uir
     public DateTime BirthDate { get; set; }
 
     /// <summary>
-    /// Gets or sets the birth place.
+    ///   Gets or sets the birth place.
     /// </summary>
     [XmlElement("BirthPlace", typeof(string), Order = 1)]
     public string BirthPlace { get; set; }

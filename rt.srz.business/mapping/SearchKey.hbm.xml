@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.SearchKey, rt.srz.model" table="[dbo].[SearchKey]" lazy="true">
-		<id name="Id" column="[RowId]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="KeyValue" column="[KeyValue]"  length="2147483647"/>
-		<many-to-one name="DocumentUdlType" column="[DocumentUdlTypeId]" class="Concept"  />
-		<many-to-one name="InsuredPerson" column="[InsuredPersonId]" class="InsuredPerson"  />
-		<many-to-one name="QueryResponse" column="[QueryResponseId]" class="QueryResponse"  />
-		<many-to-one name="KeyType" column="[KeyTypeId]" class="SearchKeyType"  />
-		<many-to-one name="Statement" column="[StatementId]" class="Statement"  />
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.SearchKey, rt.srz.model" table="[dbo].[SearchKey]" lazy="true">
+    <id name="Id" column="[RowId]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="KeyValue" column="[KeyValue]" length="2147483647" />
+    <many-to-one name="DocumentUdlType" column="[DocumentUdlTypeId]" class="Concept" />
+    <many-to-one name="InsuredPerson" column="[InsuredPersonId]" class="InsuredPerson" />
+    <many-to-one name="QueryResponse" column="[QueryResponseId]" class="QueryResponse" />
+    <many-to-one name="KeyType" column="[KeyTypeId]" class="SearchKeyType" />
+    <many-to-one name="Statement" column="[StatementId]" class="Statement" />
+  </class>
+</hibernate-mapping>

@@ -9,7 +9,6 @@
 
 namespace rt.srz.business.manager
 {
-  using System;
   using System.Linq;
 
   using NHibernate;
@@ -19,7 +18,7 @@ namespace rt.srz.business.manager
   using StructureMap;
 
   /// <summary>
-  /// The document num separator.
+  ///   The document num separator.
   /// </summary>
   public class DocumentNumSeparator
   {

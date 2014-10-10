@@ -16,7 +16,7 @@ namespace rt.srz.business.exchange.export.pfr
 
   using rt.core.business.server.exchange.export;
   using rt.srz.business.configuration.algorithms.serialization;
-  using rt.srz.model.HL7.pfr;
+  using rt.srz.model.Hl7.pfr;
 
   #endregion
 
@@ -78,7 +78,7 @@ namespace rt.srz.business.exchange.export.pfr
     }
 
     /// <summary>
-    /// The begin batch.
+    ///   The begin batch.
     /// </summary>
     public override void BeginBatch()
     {
@@ -101,7 +101,7 @@ namespace rt.srz.business.exchange.export.pfr
     }
 
     /// <summary>
-    /// The build zglv.
+    ///   The build zglv.
     /// </summary>
     private void BuildZglv()
     {

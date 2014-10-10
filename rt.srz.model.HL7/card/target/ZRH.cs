@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.card.target
+namespace rt.srz.model.Hl7.card.target
 {
   #region references
 
   using System;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 

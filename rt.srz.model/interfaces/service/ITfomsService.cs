@@ -26,21 +26,13 @@ namespace rt.srz.model.interfaces.service
   [ServiceContract]
   public interface ITfomsService
   {
-    /// <summary>
-    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    [OperationContract]
-    void SaveCheckSetting(string className);
-
-
     #region Public Methods and Operators
 
     /// <summary>
-    /// Аннулирование дубликата
+    /// The annulate twin.
     /// </summary>
     /// <param name="twinId">
+    /// The twin id.
     /// </param>
     [OperationContract]
     void AnnulateTwin(Guid twinId);
@@ -49,6 +41,7 @@ namespace rt.srz.model.interfaces.service
     /// Удаляет ключ поиска
     /// </summary>
     /// <param name="keyTypeId">
+    /// The key Type id.
     /// </param>
     [OperationContract]
     void DeleteSearchKeyType(Guid keyTypeId);
@@ -57,6 +50,7 @@ namespace rt.srz.model.interfaces.service
     /// Удаляет все дубликаты которые были рассчитаны только по этому ключу
     /// </summary>
     /// <param name="keyId">
+    /// The key id.
     /// </param>
     [OperationContract]
     void DeleteTwinsCalculatedOnlyByGivenKey(Guid keyId);
@@ -66,51 +60,48 @@ namespace rt.srz.model.interfaces.service
     ///   отправителя либо получателя
     /// </summary>
     /// <param name="senderId">
-    /// The sender Id.
+    /// The sender id.
     /// </param>
     /// <param name="receiverId">
-    /// The receiver Id.
+    /// The receiver id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="List{Period}"/>.
     /// </returns>
     [OperationContract]
-    IList<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId);
+    List<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId);
 
     /// <summary>
-    /// Возвращает все глобальные УЭК сертификаты
+    ///   Возвращает все глобальные УЭК сертификаты
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="List{SertificateUec}" />.
     /// </returns>
     [OperationContract]
-    IList<SertificateUec> GetGlobalSertificates();
+    List<SertificateUec> GetGlobalSertificates();
 
     /// <summary>
-    /// Возвращает все батчи относящиеся к пфр
+    ///   Возвращает все батчи относящиеся к пфр
     /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
+    /// <returns> The <see cref="List{Batch}" /> . </returns>
     [OperationContract]
-    IList<Batch> GetPfrBatchesByUser();
+    List<Batch> GetPfrBatchesByUser();
 
     /// <summary>
-    /// ВОзвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
+    ///   Возвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
     /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
+    /// <returns> The <see cref="List{Period}" /> . </returns>
     [OperationContract]
-    IList<Period> GetPfrPeriods();
+    List<Period> GetPfrPeriods();
 
     /// <summary>
     /// Возвращает информацию по статистике пфр
     /// </summary>
     /// <param name="batchId">
+    /// The batch id.
     /// </param>
     /// <returns>
-    /// The <see cref="PfrStatisticInfo"/>.
+    /// The <see cref="PfrStatisticInfo"/> .
     /// </returns>
     [OperationContract]
     PfrStatisticInfo GetPfrStatisticInfoByBatch(Guid batchId);
@@ -119,9 +110,10 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает информацию по статистике пфр
     /// </summary>
     /// <param name="periodId">
+    /// The period id.
     /// </param>
     /// <returns>
-    /// The <see cref="PfrStatisticInfo"/>.
+    /// The <see cref="PfrStatisticInfo"/> .
     /// </returns>
     [OperationContract]
     PfrStatisticInfo GetPfrStatisticInfoByPeriod(Guid periodId);
@@ -130,57 +122,49 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает описатель ключа поиска
     /// </summary>
     /// <param name="keyTypeId">
+    /// The key Type id.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchKeyType"/>.
+    /// The <see cref="SearchKeyType"/> .
     /// </returns>
     [OperationContract]
     SearchKeyType GetSearchKeyType(Guid keyTypeId);
 
     /// <summary>
-    /// Возвращает описатели всех ключей поиска для указанного ТФОМС
+    ///   Возвращает описатели всех ключей поиска для указанного ТФОМС
     /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
+    /// <returns> The <see cref="List{SearchKeyType}" /> . </returns>
     [OperationContract]
-    IList<SearchKeyType> GetSearchKeyTypesByTFoms();
+    List<SearchKeyType> GetSearchKeyTypesByTFoms();
 
     /// <summary>
     /// Получает дубликат
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <returns>
-    /// The <see cref="Twin"/>.
+    /// The <see cref="Twin"/> .
     /// </returns>
     [OperationContract]
     Twin GetTwin(Guid id);
 
     /// <summary>
-    /// Получает все дубликаты
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    [OperationContract]
-    IList<Twin> GetTwins();
-
-    /// <summary>
     /// Дубликаты по критерию для разбивки постранично
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/>.
+    /// The <see cref="SearchResult{Twin}"/> .
     /// </returns>
-    [OperationContract(Name = "GetTwinsBy")]
+    [OperationContract]
     SearchResult<Twin> GetTwins(SearchTwinCriteria criteria);
 
     /// <summary>
     ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
     /// </summary>
-    /// <returns> The <see cref="IList{User}" /> . </returns>
+    /// <returns> The <see cref="List{User}" /> . </returns>
     [OperationContract]
     IList<User> GetUsersByCurrent();
 
@@ -188,10 +172,13 @@ namespace rt.srz.model.interfaces.service
     /// Объединяет дубликаты
     /// </summary>
     /// <param name="twinId">
+    /// The twin id.
     /// </param>
     /// <param name="mainInsuredPersonId">
+    /// The main Insured Person id.
     /// </param>
     /// <param name="secondInsuredPersonId">
+    /// The second Insured Person id.
     /// </param>
     [OperationContract]
     void JoinTwins(Guid twinId, Guid mainInsuredPersonId, Guid secondInsuredPersonId);
@@ -200,25 +187,46 @@ namespace rt.srz.model.interfaces.service
     /// Помечает батч как не выгруженный
     /// </summary>
     /// <param name="batchId">
+    /// The batch id.
     /// </param>
     [OperationContract]
     void MarkBatchAsUnexported(Guid batchId);
 
     /// <summary>
-    /// Помечает дубликат как удаленный
+    /// Удаляет настройку из базы которую надо стало проверять
     /// </summary>
-    /// <param name="Id">
+    /// <param name="className">
+    /// The class Name.
     /// </param>
     [OperationContract]
-    void RemoveTwin(Guid Id);
+    void RemoveSetting(string className);
+
+    /// <summary>
+    /// Помечает дубликат как удаленный
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    [OperationContract]
+    void RemoveTwin(Guid id);
+
+    /// <summary>
+    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
+    /// </summary>
+    /// <param name="className">
+    /// The class Name.
+    /// </param>
+    [OperationContract]
+    void SaveCheckSetting(string className);
 
     /// <summary>
     /// Сохраняет ключ поиска
     /// </summary>
     /// <param name="keyType">
+    /// The key Type.
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/>.
+    /// The <see cref="Guid"/> .
     /// </returns>
     [OperationContract]
     Guid SaveSearchKeyType(SearchKeyType keyType);
@@ -227,9 +235,10 @@ namespace rt.srz.model.interfaces.service
     /// Осуществляет поиск пакетных операций экспорта заявлений для СМО
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/>.
+    /// The <see cref="SearchResult{SearchBatchResult}"/>.
     /// </returns>
     [OperationContract]
     SearchResult<SearchBatchResult> SearchExportSmoBatches(SearchExportSmoBatchCriteria criteria);
@@ -252,7 +261,7 @@ namespace rt.srz.model.interfaces.service
     [OperationContract]
     void Separate(
       Guid personId, 
-      IList<Statement> statementsToSeparate, 
+      List<Statement> statementsToSeparate, 
       bool copyDeadInfo = true, 
       int status = StatusPerson.Active);
 

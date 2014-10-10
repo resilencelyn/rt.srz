@@ -29,7 +29,7 @@ namespace rt.srz.services
     /// <summary>
     ///   The c_ admin code.
     /// </summary>
-    public const int C_AdminCode = 1;
+    public const int CAdminCode = 1;
 
     #endregion
 

@@ -58,18 +58,18 @@ namespace rt.srz.business.manager
     byte[] ConvertToGrayScale(byte[] image);
 
     /// <summary>
-    /// Генерация пустого фото
+    ///   Генерация пустого фото
     /// </summary>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    ///   The <see cref="byte[]" />.
     /// </returns>
     byte[] CreateEmptyPhoto();
 
     /// <summary>
-    /// Генерация пустой подписи
+    ///   Генерация пустой подписи
     /// </summary>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    ///   The <see cref="byte[]" />.
     /// </returns>
     byte[] CreateEmptySign();
 

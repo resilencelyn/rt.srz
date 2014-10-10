@@ -118,9 +118,9 @@
       <Project>{8632aea6-8a98-4d6f-aab5-1112a1e72309}</Project>
       <Name>rt.srz.database.migration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.hl7.csproj">
       <Project>{b91bb517-e433-4091-9c96-3386ca975c5a}</Project>
-      <Name>rt.srz.model.HL7</Name>
+      <Name>rt.srz.model.hl7</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
       <Project>{f247928d-ea65-4d69-bd03-b1e506b09986}</Project>

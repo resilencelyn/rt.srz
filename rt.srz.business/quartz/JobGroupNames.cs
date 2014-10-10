@@ -10,7 +10,7 @@
 namespace rt.srz.business.quartz
 {
   /// <summary>
-  /// The job group names.
+  ///   The job group names.
   /// </summary>
   public class JobGroupNames
   {

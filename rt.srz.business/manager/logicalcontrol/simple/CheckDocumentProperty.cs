@@ -20,9 +20,9 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step2;
-  using rt.srz.model.regex;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
+  using rt.srz.model.srz.regex;
 
   #endregion
 
@@ -34,7 +34,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The deleg.
+    ///   The deleg.
     /// </summary>
     private readonly Func<Statement, object> deleg;
 

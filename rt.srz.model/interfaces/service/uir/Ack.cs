@@ -27,43 +27,31 @@ namespace rt.srz.model.interfaces.service.uir
     /// <summary>
     ///   The aa.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     AA, 
 
     /// <summary>
     ///   The ae.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     AE, 
 
     /// <summary>
     ///   The ar.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     AR, 
 
     /// <summary>
     ///   The ce.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     CE, 
 
     /// <summary>
     ///   The cr.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     CR, 
 
     /// <summary>
     ///   The ca.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     CA, 
   }
 }

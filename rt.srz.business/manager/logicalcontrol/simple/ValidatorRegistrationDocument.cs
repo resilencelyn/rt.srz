@@ -10,8 +10,8 @@
 namespace rt.srz.business.manager.logicalcontrol.simple
 {
   // <summary>
-  ///   The validator registration document.
-  /// </summary>
+  // The validator registration document.
+  // </summary>
   // public class ValidatorRegistrationDocument : CheckDocumentProperty
   // {
   // #region Constructors and Destructors

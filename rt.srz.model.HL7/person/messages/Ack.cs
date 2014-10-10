@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.messages
+namespace rt.srz.model.Hl7.person.messages
 {
   #region references
 
@@ -20,7 +20,7 @@ namespace rt.srz.model.HL7.person.messages
   ///   The ack.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ACK", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ACK", Namespace = "urn:Hl7-org:v2xml")]
   public class Ack : BaseAnswerMessageTemplate
   {
   }

@@ -31,7 +31,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The deleg.
+    ///   The deleg.
     /// </summary>
     private readonly Func<Statement, object> deleg;
 
@@ -76,10 +76,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="ArgumentNullException">
-    /// </exception>
-    /// <exception cref="FaultPostcodeException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       if (statement == null)

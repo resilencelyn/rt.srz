@@ -12,7 +12,7 @@ namespace rt.srz.business.server
   using System;
 
   /// <summary>
-  /// The export smo job info.
+  ///   The export smo job info.
   /// </summary>
   [Serializable]
   public class ExportSmoJobInfo

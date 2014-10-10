@@ -383,7 +383,7 @@
               </asp:TemplateField>
               <asp:TemplateField>
                 <ItemTemplate>
-                  <asp:HyperLink runat="server" Text="Просмотреть" NavigateUrl='<%# string.Format("~/HttpHandlers/GetFileHandler.ashx?fileId={0}",  Eval("Value"))%>' />
+                  <asp:HyperLink runat="server" Text="Просмотреть" NavigateUrl='<%# string.Format("~/HttpHandlers/GetFileHandler.ashx?fileid={0}",  Eval("Value"))%>' />
                 </ItemTemplate>
               </asp:TemplateField>
             </Columns>

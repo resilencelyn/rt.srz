@@ -15,91 +15,91 @@ namespace rt.srz.ui.pvp.Pages {
         /// <summary>
         /// ScriptManager control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
         
         /// <summary>
         /// Label9 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// gridTop control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.Twins.SeparateGridControl gridTop;
         
         /// <summary>
         /// movePanel control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.UpdatePanel movePanel;
         
         /// <summary>
         /// btnToBottom control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Button btnToBottom;
         
         /// <summary>
         /// btnToTop control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Button btnToTop;
         
         /// <summary>
         /// gridBottom control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.Twins.SeparateGridControl gridBottom;
         
         /// <summary>
         /// GridUpdateProgress control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.UpdateProgress GridUpdateProgress;
         
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// btnSeparate control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Button btnSeparate;
     }
 }

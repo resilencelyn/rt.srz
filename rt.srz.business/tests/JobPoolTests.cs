@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.srz.business.manager;
-using rt.srz.model.srz;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JobPoolTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The job pool tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.tests
 {
-    public partial class JobPoolTests
-    {
-	}
+  /// <summary>
+  ///   The job pool tests.
+  /// </summary>
+  public partial class JobPoolTests
+  {
+  }
 }

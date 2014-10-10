@@ -11,7 +11,7 @@ namespace rt.srz.model.algorithms
 {
   using System;
 
-  using rt.srz.model.HL7.dotNetX;
+  using rt.srz.model.Hl7.dotNetX;
 
   /// <summary>
   ///   The snils.

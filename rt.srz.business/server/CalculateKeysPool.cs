@@ -90,7 +90,7 @@ namespace rt.srz.business.server
     public static object LockObject { get; private set; }
 
     /// <summary>
-    ///   Gets or sets the executing list.
+    ///   Gets the executing list.
     /// </summary>
     public List<CalculateKeysJobInfo> ExecutingList { get; private set; }
 
@@ -115,6 +115,7 @@ namespace rt.srz.business.server
     /// Добавляет в очередь расчет пользователького ключа
     /// </summary>
     /// <param name="keyType">
+    /// The key Type.
     /// </param>
     public void AddJobForUserKey(SearchKeyType keyType)
     {
@@ -159,16 +160,15 @@ namespace rt.srz.business.server
 
           // останавливаем все работы, выполняемые для указанного ключа
           var executingJobs = scheduler.GetCurrentlyExecutingJobs();
-          foreach (
-            var executionContext in
-              executingJobs.Where(
-                                  x =>
-                                  x.JobDetail.JobDataMap.Contains(
-                                                                  new KeyValuePair<string, object>(
-                                                                    "Имя ключа", 
-                                                                    keyType.Code))))
+          foreach (var executionContext in
+            executingJobs.Where(
+                                x =>
+                                x.JobDetail.JobDataMap.Contains(
+                                                                new KeyValuePair<string, object>(
+                                                                  "Имя ключа", 
+                                                                  keyType.Code))))
           {
-            var res = scheduler.Interrupt(executionContext.FireInstanceId);
+            scheduler.Interrupt(executionContext.FireInstanceId);
           }
 
           for (var i = 0; i < countJob; i++)
@@ -192,7 +192,7 @@ namespace rt.srz.business.server
     }
 
     /// <summary>
-    /// The add jobs for all keys.
+    ///   The add jobs for all keys.
     /// </summary>
     public void AddJobsForAllKeys()
     {

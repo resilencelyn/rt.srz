@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.logicalcontrol.exceptions.step6
+namespace rt.srz.model.logicalcontrol.exceptions.step6.issue
 {
   using System;
   using System.Runtime.Serialization;

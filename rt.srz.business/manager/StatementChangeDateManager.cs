@@ -16,6 +16,7 @@ namespace rt.srz.business.manager
 
   using rt.srz.business.manager.cache;
   using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
@@ -27,7 +28,7 @@ namespace rt.srz.business.manager
     #region Fields
 
     /// <summary>
-    /// The increment version.
+    ///   The increment Version.
     /// </summary>
     private bool incrementVersion;
 
@@ -59,6 +60,7 @@ namespace rt.srz.business.manager
     /// Сохраняет историю изменения приватных данных и данных документа
     /// </summary>
     /// <param name="newStatement">
+    /// The new Statement.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
@@ -178,10 +180,13 @@ namespace rt.srz.business.manager
     /// Создает и сохраняем запись об истории изменения приватных данных
     /// </summary>
     /// <param name="newStatement">
+    /// The new Statement.
     /// </param>
     /// <param name="typeField">
+    /// The type Field.
     /// </param>
     /// <param name="oldData">
+    /// The old Data.
     /// </param>
     private void SaveHistoryRecord(Statement newStatement, int typeField, string oldData)
     {

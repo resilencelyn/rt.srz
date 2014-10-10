@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.business.exchange.import.smo
+namespace rt.srz.business.exchange.import.nsi
 {
   using System;
   using System.Collections.Concurrent;
@@ -22,7 +22,7 @@ namespace rt.srz.business.exchange.import.smo
 
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.business.manager;
-  using rt.srz.model.HL7.nsi;
+  using rt.srz.model.Hl7.nsi;
   using rt.srz.model.srz;
 
   using StructureMap;
@@ -152,6 +152,7 @@ namespace rt.srz.business.exchange.import.smo
     /// The cqtasks.
     /// </param>
     /// <param name="oid">
+    /// The oid.
     /// </param>
     protected abstract void PrepairList(Packet packet, ConcurrentQueue<Organisation> cqtasks, Oid oid);
 

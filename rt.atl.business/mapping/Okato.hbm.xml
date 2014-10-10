@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
-	<class name="rt.atl.model.atl.Okato, rt.atl.model" table="[dbo].[OKATO]" lazy="true">
-		<id name="Id" column="[ID]">
-		 	<generator class="native" />
-		</id>
-		<property name="Dedit" column="[DEDIT]" />
-		<property name="Caption" column="[CAPTION]" />
-		<property name="Code" column="[CODE]" />
-		<property name="Parentid" column="[PARENTID]" />
-		<property name="Centrum" column="[CENTRUM]" />
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+  <class name="rt.atl.model.atl.Okato, rt.atl.model" table="[dbo].[OKATO]" lazy="true">
+    <id name="Id" column="[ID]">
+      <generator class="native" />
+    </id>
+    <property name="Dedit" column="[DEDIT]" />
+    <property name="Caption" column="[CAPTION]" />
+    <property name="Code" column="[CODE]" />
+    <property name="Parentid" column="[PARENTID]" />
+    <property name="Centrum" column="[CENTRUM]" />
+  </class>
+</hibernate-mapping>

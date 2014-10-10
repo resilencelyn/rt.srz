@@ -38,6 +38,7 @@ namespace rt.srz.business.manager
     /// The isrefugee.
     /// </param>
     /// <param name="age">
+    /// The age.
     /// </param>
     /// <returns>
     /// The
@@ -55,35 +56,23 @@ namespace rt.srz.business.manager
     /// The category id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     IList<Concept> GetDocumentResidencyTypeByCategory(int categoryId);
 
     /// <summary>
     ///   The get document type for registration document
     /// </summary>
-    /// <param name="categoryId">
-    ///   The category id.
-    /// </param>
-    /// <param name="age">
-    ///   The age.
-    /// </param>
     /// <returns>
-    ///   The <see cref="IList" />.
+    ///   The <see cref="IList{Concept}" />.
     /// </returns>
     IList<Concept> GetDocumentTypeForRegistrationDocument();
 
     /// <summary>
     ///   The get document type for representative
     /// </summary>
-    /// <param name="categoryId">
-    ///   The category id.
-    /// </param>
-    /// <param name="age">
-    ///   The age.
-    /// </param>
     /// <returns>
-    ///   The <see cref="IList" />.
+    ///   The <see cref="IList{Concept}" />.
     /// </returns>
     IList<Concept> GetDocumentTypeForRepresentative();
 
@@ -97,7 +86,7 @@ namespace rt.srz.business.manager
     /// The age.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     IList<Concept> GetDocumentUdlTypeByCategory(int categoryId, TimeSpan age);
 
@@ -108,7 +97,7 @@ namespace rt.srz.business.manager
     /// The cause Filling.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Concept}"/>.
     /// </returns>
     IList<Concept> GetFormManufacturingByCauseFilling(int causeFilling);
 

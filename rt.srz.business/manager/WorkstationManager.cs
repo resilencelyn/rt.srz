@@ -15,7 +15,6 @@ namespace rt.srz.business.manager
   using NHibernate;
 
   using rt.core.business.security.interfaces;
-  using rt.core.model.interfaces;
   using rt.srz.model.srz;
   using rt.uec.model.dto;
   using rt.uec.model.enumerations;

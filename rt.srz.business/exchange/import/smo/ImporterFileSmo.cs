@@ -18,8 +18,8 @@ namespace rt.srz.business.exchange.import.smo
   using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
   using rt.srz.model.enumerations;
-  using rt.srz.model.HL7.enumerations;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.enumerations;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz;
 
   using StructureMap;
@@ -28,8 +28,10 @@ namespace rt.srz.business.exchange.import.smo
   /// The importer file smo.
   /// </summary>
   /// <typeparam name="TSerializeObject">
+  /// Тип пакета
   /// </typeparam>
   /// <typeparam name="TNode">
+  /// Тип ноды
   /// </typeparam>
   public abstract class ImporterFileSmo<TSerializeObject, TNode> : ImporterFile
   {
@@ -68,6 +70,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Создание батча
     /// </summary>
     /// <param name="serObject">
+    /// The ser Object.
     /// </param>
     /// <returns>
     /// The <see cref="Batch"/>.
@@ -109,7 +112,7 @@ namespace rt.srz.business.exchange.import.smo
       addr.Street = address.UL;
       addr.House = address.DOM;
       addr.Housing = address.KORP;
-      short room = 0;
+      short room;
       if (!string.IsNullOrEmpty(address.KV) && short.TryParse(address.KV, out room))
       {
         addr.Room = room;
@@ -158,7 +161,7 @@ namespace rt.srz.business.exchange.import.smo
       addr.Street = address.UL;
       addr.House = address.DOM;
       addr.Housing = address.KORP;
-      short room = 0;
+      short room;
       if (!string.IsNullOrEmpty(address.KV) && short.TryParse(address.KV, out room))
       {
         addr.Room = room;
@@ -203,6 +206,7 @@ namespace rt.srz.business.exchange.import.smo
     /// The person.
     /// </param>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     protected virtual void FillDeadInfo(PersonType person, Statement statement)
     {
@@ -224,6 +228,7 @@ namespace rt.srz.business.exchange.import.smo
     /// The doc List.
     /// </param>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     protected virtual void FillDocuments(List<DocType> docList, Statement statement)
     {
@@ -252,12 +257,15 @@ namespace rt.srz.business.exchange.import.smo
           }
         }
 
-        document.DocumentType = tempDocument.DocumentType;
-        document.Series = tempDocument.Series;
-        document.Number = tempDocument.Number;
-        document.IssuingAuthority = tempDocument.IssuingAuthority;
-        document.DateIssue = tempDocument.DateIssue;
-        document.DateExp = tempDocument.DateExp;
+        if (document != null)
+        {
+          document.DocumentType = tempDocument.DocumentType;
+          document.Series = tempDocument.Series;
+          document.Number = tempDocument.Number;
+          document.IssuingAuthority = tempDocument.IssuingAuthority;
+          document.DateIssue = tempDocument.DateIssue;
+          document.DateExp = tempDocument.DateExp;
+        }
       }
 
       if (statement.DocumentRegistration == null)
@@ -277,7 +285,7 @@ namespace rt.srz.business.exchange.import.smo
     /// </param>
     protected virtual void FillDost(PersonType person, Statement statement)
     {
-      if (person == null && person.DOST == null)
+      if (person != null && person.DOST == null)
       {
         statement.InsuredPersonData.BirthdayType = (int)BirthdayType.Full;
         statement.InsuredPersonData.IsIncorrectDate = false;
@@ -285,17 +293,17 @@ namespace rt.srz.business.exchange.import.smo
       }
 
       statement.InsuredPersonData.BirthdayType = (int)BirthdayType.Full;
-      if (person.DOST.Contains("4"))
+      if (person != null && person.DOST.Contains("4"))
       {
         statement.InsuredPersonData.BirthdayType = (int)BirthdayType.MonthAndYear;
       }
 
-      if (person.DOST.Contains("5"))
+      if (person != null && person.DOST.Contains("5"))
       {
         statement.InsuredPersonData.BirthdayType = (int)BirthdayType.Year;
       }
 
-      statement.InsuredPersonData.IsIncorrectDate = person.DOST.Contains("6");
+      statement.InsuredPersonData.IsIncorrectDate = person != null && person.DOST.Contains("6");
     }
 
     /// <summary>
@@ -305,6 +313,7 @@ namespace rt.srz.business.exchange.import.smo
     /// The insurance.
     /// </param>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     protected virtual void FillInsurance(InsuranceType insurance, Statement statement)
     {
@@ -397,7 +406,7 @@ namespace rt.srz.business.exchange.import.smo
       insuredPersonData.Gender = conceptManager.GetBy(x => x.Code == person.W && x.Oid.Id == Oid.Пол).FirstOrDefault();
 
       // ДР
-      var birthday = new DateTime();
+      DateTime birthday;
       if (DateTime.TryParse(person.DR, out birthday))
       {
         insuredPersonData.Birthday = birthday;
@@ -551,23 +560,11 @@ namespace rt.srz.business.exchange.import.smo
                                                                       x =>
                                                                       new StatementChangeDate
                                                                       {
-                                                                        Statement = statement, 
+                                                                        Statement = statement,
                                                                         Field =
-                                                                          conceptManager.GetBy(
-                                                                                               y
-                                                                                               =>
-                                                                                               y
-                                                                                                 .Code
-                                                                                               == x
-                                                                                                    .FIELD
-                                                                                               && y
-                                                                                                    .Oid
-                                                                                                    .Id
-                                                                                               == Oid
-                                                                                                    .TypeFields)
-                                                                                        .FirstOrDefault
-                                                                          (), 
-                                                                        Datum = x.DATA, 
+                                                                          conceptManager.GetBy(y => y.Code == x.FIELD && y.Oid.Id == Oid.TypeFields)
+                                                                                        .FirstOrDefault(),
+                                                                        Datum = x.DATA,
                                                                         Version =
                                                                           int.Parse(x.VERSION)
                                                                       })
@@ -582,6 +579,7 @@ namespace rt.srz.business.exchange.import.smo
     /// The vizit.
     /// </param>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     protected virtual void FillVizit(VizitType vizit, Statement statement)
     {
@@ -593,7 +591,7 @@ namespace rt.srz.business.exchange.import.smo
         statement.DateFiling = dateFilling;
       }
 
-      statement.HasPetition = vizit.PETITION > 0 ? true : false;
+      statement.HasPetition = vizit.PETITION > 0;
 
       // Способ подачи
       if (!string.IsNullOrEmpty(vizit.METHOD))
@@ -631,6 +629,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Возвращает документ
     /// </summary>
     /// <param name="doc">
+    /// The doc.
     /// </param>
     /// <param name="category">
     /// The category.
@@ -662,7 +661,7 @@ namespace rt.srz.business.exchange.import.smo
 
       if (!string.IsNullOrEmpty(doc.DOCCAT))
       {
-        var cat = 0;
+        int cat;
         if (int.TryParse(doc.DOCCAT, out cat))
         {
           category = (DocumentCategory)cat;
@@ -676,6 +675,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Маппинг записи из загруженного файла в заявление
     /// </summary>
     /// <param name="rec">
+    /// The rec.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/>.
@@ -686,6 +686,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Отмена загрузки пакета
     /// </summary>
     /// <param name="batch">
+    /// The batch.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.

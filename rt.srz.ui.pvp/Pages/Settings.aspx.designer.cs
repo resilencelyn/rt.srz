@@ -15,28 +15,28 @@ namespace rt.srz.ui.pvp.Pages {
         /// <summary>
         /// ScriptManager control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
         
         /// <summary>
         /// Label9 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// gvSettings control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.GridView gvSettings;
     }
 }

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons
+namespace rt.srz.model.Hl7.commons
 {
   #region references
 
@@ -15,8 +15,8 @@ namespace rt.srz.model.HL7.commons
   using System.Collections.Generic;
   using System.Threading;
 
-  using rt.srz.model.HL7.commons.Delegates;
-  using rt.srz.model.HL7.commons.Enumerations;
+  using rt.srz.model.Hl7.commons.Delegates;
+  using rt.srz.model.Hl7.commons.Enumerations;
 
   #endregion
 

@@ -67,8 +67,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultTemporaryCertificateDateIssueException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       // если не требуется выдача полиса, то поля не проверяем

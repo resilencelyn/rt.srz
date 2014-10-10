@@ -23,14 +23,14 @@ namespace rt.srz.business.exchange.export.smo
   using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
   using rt.srz.model.enumerations;
-  using rt.srz.model.HL7.enumerations;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.enumerations;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
-  using PolisType = rt.srz.model.HL7.smo.PolisType;
+  using PolisType = rt.srz.model.Hl7.smo.PolisType;
 
   #endregion
 
@@ -38,8 +38,10 @@ namespace rt.srz.business.exchange.export.smo
   /// The export batch smo.
   /// </summary>
   /// <typeparam name="TSerializeObject">
+  /// Тип пакета
   /// </typeparam>
   /// <typeparam name="TNode">
+  /// тип ноды
   /// </typeparam>
   public abstract class ExportBatchSmo<TSerializeObject, TNode> : ExportBatchSrz<TSerializeObject, TNode>
   {
@@ -172,7 +174,7 @@ namespace rt.srz.business.exchange.export.smo
       }
 
       doc.DOCEXP = document.DateExp.HasValue ? document.DateExp.Value.ToShortDateString() : null;
-      doc.DOCCAT = ((int)category).ToString();
+      doc.DOCCAT = ((int)category).ToString(CultureInfo.InvariantCulture);
 
       return doc;
     }
@@ -184,7 +186,11 @@ namespace rt.srz.business.exchange.export.smo
     /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="List"/> .
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     protected virtual List<string> GetDost(Statement statement)
     {
@@ -353,12 +359,15 @@ namespace rt.srz.business.exchange.export.smo
     /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="List"/>.
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     protected virtual List<PersonBType> GetPersonBList(Statement statement)
     {
       var contentManager = ObjectFactory.GetInstance<IContentManager>();
-      var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       var contents = contentManager.GetBy(x => x.InsuredPersonData.Id == statement.InsuredPersonData.Id);
       var personBList = new List<PersonBType>();
@@ -425,7 +434,11 @@ namespace rt.srz.business.exchange.export.smo
     /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The
+    ///   <see>
+    ///     <cref>IList</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     protected IList<StatementChangeDate> LoadOldStatementData(StatementBatch statement)
     {
@@ -457,7 +470,7 @@ namespace rt.srz.business.exchange.export.smo
             statement.InsuredPersonData.MiddleName = oldData.Datum;
             break;
           case TypeFields.Birthday:
-            var birthday = DateTime.Now;
+            DateTime birthday;
             if (DateTime.TryParse(oldData.Datum, out birthday))
             {
               statement.InsuredPersonData.Birthday = birthday;
@@ -468,7 +481,7 @@ namespace rt.srz.business.exchange.export.smo
             statement.InsuredPersonData.Birthplace = oldData.Datum;
             break;
           case TypeFields.GenderId:
-            var genderId = -1;
+            int genderId;
             int.TryParse(oldData.Datum, out genderId);
             statement.InsuredPersonData.Gender = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(genderId);
             break;
@@ -476,7 +489,7 @@ namespace rt.srz.business.exchange.export.smo
             statement.InsuredPersonData.Snils = oldData.Datum;
             break;
           case TypeFields.DocumentTypeId:
-            var docTypeId = -1;
+            int docTypeId;
             int.TryParse(oldData.Datum, out docTypeId);
             statement.DocumentUdl.DocumentType = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(docTypeId);
             break;
@@ -509,50 +522,50 @@ namespace rt.srz.business.exchange.export.smo
       // Загрузка старых данных если требуется
       var statementChangeDates = LoadOldStatementData(statement);
 
-      var opType = new OPType();
+      var optype = new OPType();
 
-      opType.N_REC = recordNumber.ToString();
-      opType.ID = statement.Id;
-      opType.ISACTIVE = (statement.Version == statement.VersionExport && statement.IsActive) ? "1" : "0";
-      opType.VERSION = statement.VersionExport.ToString(CultureInfo.InvariantCulture);
-      opType.NEED_NEW_POLICY = statement.AbsentPrevPolicy.HasValue ? statement.AbsentPrevPolicy.Value : false;
+      optype.N_REC = recordNumber.ToString(CultureInfo.InvariantCulture);
+      optype.ID = statement.Id;
+      optype.ISACTIVE = (statement.Version == statement.VersionExport && statement.IsActive) ? "1" : "0";
+      optype.VERSION = statement.VersionExport.ToString(CultureInfo.InvariantCulture);
+      optype.NEED_NEW_POLICY = statement.AbsentPrevPolicy.HasValue ? statement.AbsentPrevPolicy.Value : false;
 
       // Данные об обращении в СМО
-      opType.VIZIT = GetVizit(statement);
+      optype.VIZIT = GetVizit(statement);
 
       // Данные о застрахованном лице
-      opType.PERSON = GetPerson(statement);
+      optype.PERSON = GetPerson(statement);
 
       // Документы
-      opType.DOC_LIST = new List<DocType>();
-      opType.DOC_LIST.Add(GetDocument(statement.DocumentUdl, DocumentCategory.Udl));
+      optype.DOC_LIST = new List<DocType>();
+      optype.DOC_LIST.Add(GetDocument(statement.DocumentUdl, DocumentCategory.Udl));
       if (statement.DocumentRegistration != null && statement.DocumentUdl.Id != statement.DocumentRegistration.Id)
       {
-        opType.DOC_LIST.Add(GetDocument(statement.DocumentRegistration, DocumentCategory.Registration));
+        optype.DOC_LIST.Add(GetDocument(statement.DocumentRegistration, DocumentCategory.Registration));
       }
 
       if (statement.ResidencyDocument != null)
       {
-        opType.DOC_LIST.Add(GetDocument(statement.ResidencyDocument, DocumentCategory.Residency));
+        optype.DOC_LIST.Add(GetDocument(statement.ResidencyDocument, DocumentCategory.Residency));
       }
 
       // Адрес регистрации
-      opType.ADDRES_G = GetAddress(statement.Address, statement.Kladr);
+      optype.ADDRES_G = GetAddress(statement.Address, statement.Kladr);
 
       // Адрес проживания
       if (statement.Address2 != null && statement.Address.Id != statement.Address2.Id)
       {
-        opType.ADDRES_P = GetAddress(statement.Address2, statement.Kladr2);
+        optype.ADDRES_P = GetAddress(statement.Address2, statement.Kladr2);
       }
 
       // Событие страхования
-      opType.INSURANCE = GetInsurance(statement);
+      optype.INSURANCE = GetInsurance(statement);
 
       // Медиа
-      opType.PERSONB = GetPersonBList(statement);
+      optype.PERSONB = GetPersonBList(statement);
 
       // Изменения по версиям
-      opType.STATEMENT_CHANGE = statementChangeDates != null && statementChangeDates.Count > 0
+      optype.STATEMENT_CHANGE = statementChangeDates != null && statementChangeDates.Count > 0
                                   ? statementChangeDates.Select(
                                                                 x =>
                                                                 new StatementChange
@@ -566,7 +579,7 @@ namespace rt.srz.business.exchange.export.smo
                                                                 }).ToList()
                                   : null;
 
-      return opType;
+      return optype;
     }
 
     /// <summary>

@@ -46,6 +46,7 @@ namespace rt.srz.business.manager
     /// Удаление organisation (set пометка IsActive=false)
     /// </summary>
     /// <param name="organisationId">
+    /// The organisation Id.
     /// </param>
     public void DeleteOrganisation(Guid organisationId)
     {
@@ -79,16 +80,6 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    ///   Возвращает список всех зарегестрированных ТФОМС
-    /// </summary>
-    /// <returns> The <see cref="IList{T}" /> . </returns>
-    public IList<Organisation> GetTfoms()
-    {
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      return session.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Tfoms).List();
-    }
-
-    /// <summary>
     /// The get childres.
     /// </summary>
     /// <param name="parentId">
@@ -106,7 +97,7 @@ namespace rt.srz.business.manager
       {
         return GetBy(x => x.Parent.Id == parentId && x.IsActive).OrderBy(d => d.ShortName).ToList();
       }
-      
+
       return GetBy(x => x.Parent.Id == parentId && x.IsActive && x.Oid.Id == oid).OrderBy(d => d.ShortName).ToList();
     }
 
@@ -183,8 +174,11 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Получает список всех организаций
     /// </summary>
+    /// <param name="criteria">
+    /// The criteria.
+    /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Organisation}"/> .
     /// </returns>
     public SearchResult<Organisation> GetSmosByCriteria(SearchSmoCriteria criteria)
     {
@@ -244,7 +238,7 @@ namespace rt.srz.business.manager
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    ///   The workstation Name.
+    /// The workstation Name.
     /// </param>
     /// <returns>
     /// The <see cref="List{MO}"/> .
@@ -286,16 +280,26 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
+    ///   Возвращает список всех зарегестрированных ТФОМС
+    /// </summary>
+    /// <returns> The <see cref="IList{T}" /> . </returns>
+    public IList<Organisation> GetTfoms()
+    {
+      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      return session.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Tfoms).List();
+    }
+
+    /// <summary>
     /// Получает список всех организаций для мипа
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Organisation}"/> .
     /// </returns>
     public SearchResult<Organisation> GetTfoms(SearchSmoCriteria criteria)
     {
-      var secService = ObjectFactory.GetInstance<ISecurityProvider>();
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       Organisation smo = null;
       var query = session.QueryOver(() => smo).Where(s => s.IsActive).And(x => x.Oid.Id == Oid.Tfoms);
@@ -340,7 +344,7 @@ namespace rt.srz.business.manager
     /// <summary>
     ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="IList{User}" /> . </returns>
     public IList<User> GetUsersByCurrent()
     {
       var sec = ObjectFactory.GetInstance<ISecurityProvider>();
@@ -426,8 +430,10 @@ namespace rt.srz.business.manager
     ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
+    /// The smo Id.
     /// </param>
     /// <param name="pdps">
+    /// The pdps.
     /// </param>
     public void SavePdps(Guid smoId, List<Organisation> pdps)
     {
@@ -439,8 +445,10 @@ namespace rt.srz.business.manager
     ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
+    /// The smo Id.
     /// </param>
     /// <param name="pdps">
+    /// The pdps.
     /// </param>
     /// <param name="useMoOidForPdp">
     /// The use Mo Oid For Pdp.
@@ -454,15 +462,10 @@ namespace rt.srz.business.manager
       try
       {
         // Удаляем ПВП, которых нет в списке
-        IList<Organisation> pointDistributionPolicies = null;
-        if (useMoOidForPdp)
-        {
-          pointDistributionPolicies = GetBy(x => x.Oid.Id == Oid.Mo && x.Parent.Id == smoId && x.IsActive);
-        }
-        else
-        {
-          pointDistributionPolicies = GetBy(x => x.Oid.Id == Oid.Pvp && x.Parent.Id == smoId && x.IsActive);
-        }
+        IList<Organisation> pointDistributionPolicies;
+        pointDistributionPolicies = useMoOidForPdp
+                                      ? GetBy(x => x.Oid.Id == Oid.Mo && x.Parent.Id == smoId && x.IsActive)
+                                      : GetBy(x => x.Oid.Id == Oid.Pvp && x.Parent.Id == smoId && x.IsActive);
 
         var pvpToDelete = pointDistributionPolicies.Where(x => pdps.All(y => y.Id != x.Id));
         foreach (var p in pvpToDelete)
@@ -551,6 +554,9 @@ namespace rt.srz.business.manager
     /// <summary>
     /// Сохранение смо
     /// </summary>
+    /// <param name="smo">
+    /// The smo.
+    /// </param>
     /// <returns>
     /// The <see cref="Guid"/>.
     /// </returns>
@@ -562,7 +568,8 @@ namespace rt.srz.business.manager
         foreach (var sert in smo.SertificateUecs)
         {
           sert.Smo = smo;
-          ObjectFactory.GetInstance<ISertificateUecManager>().SaveSmoSertificateKey(smo.Id, sert.Version, sert.Type.Id, sert.Key);
+          ObjectFactory.GetInstance<ISertificateUecManager>()
+                       .SaveSmoSertificateKey(smo.Id, sert.Version, sert.Type.Id, sert.Key);
         }
       }
 
@@ -573,8 +580,10 @@ namespace rt.srz.business.manager
     /// Устанавливает признак IsOnline
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <param name="isOnline">
+    /// The is Online.
     /// </param>
     public void SetTfomIsOnline(Guid id, bool isOnline)
     {
@@ -630,9 +639,9 @@ namespace rt.srz.business.manager
     /// The <see cref="IQueryOver"/> .
     /// </returns>
     private IQueryOver<Organisation, Organisation> AddOrder(
-      SearchSmoCriteria criteria,
-      Organisation smo,
-      Organisation tfom,
+      SearchSmoCriteria criteria, 
+      Organisation smo, 
+      Organisation tfom, 
       IQueryOver<Organisation, Organisation> query)
     {
       // Сортировка
@@ -679,9 +688,9 @@ namespace rt.srz.business.manager
     /// The <see cref="IQueryOver"/> .
     /// </returns>
     private IQueryOver<Organisation, Organisation> AddOrder(
-      SearchPdpCriteria criteria,
-      Organisation pdp,
-      Organisation smo,
+      SearchPdpCriteria criteria, 
+      Organisation pdp, 
+      Organisation smo, 
       IQueryOver<Organisation, Organisation> query)
     {
       // Сортировка

@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.services.client.test
+namespace rt.srz.integration.test
 {
   using System;
   using System.Linq;

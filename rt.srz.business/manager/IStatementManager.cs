@@ -38,6 +38,7 @@ namespace rt.srz.business.manager
     /// Редактирование заявления
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     void CanceledStatement(Guid statementId);
 
@@ -67,11 +68,13 @@ namespace rt.srz.business.manager
     /// Получает ошибки существующие в заявлениях за указанный период
     /// </summary>
     /// <param name="startDate">
+    /// The start Date.
     /// </param>
     /// <param name="endDate">
+    /// The end Date.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{String}"/>.
     /// </returns>
     IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
 
@@ -115,6 +118,7 @@ namespace rt.srz.business.manager
     /// Трим полей заявления
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     void TrimStatementData(Statement statement);
 

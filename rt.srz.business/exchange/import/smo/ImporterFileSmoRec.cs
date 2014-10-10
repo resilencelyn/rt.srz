@@ -22,7 +22,7 @@ namespace rt.srz.business.exchange.import.smo
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -30,14 +30,14 @@ namespace rt.srz.business.exchange.import.smo
   using StructureMap;
 
   /// <summary>
-  /// The importer file smo rec.
+  ///   The importer file smo rec.
   /// </summary>
   public class ImporterFileSmoRec : ImporterFileSmo<RECListType, RECType>
   {
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ImporterFileSmoRec"/> class.
+    ///   Initializes a new instance of the <see cref="ImporterFileSmoRec" /> class.
     /// </summary>
     public ImporterFileSmoRec()
       : base(TypeSubject.Smo)
@@ -52,6 +52,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Применим ли импортер для данного типа сообщений?
     /// </summary>
     /// <param name="file">
+    /// The file.
     /// </param>
     /// <returns>
     /// true, если применим, иначе false
@@ -68,6 +69,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
+    /// The context.
     /// </param>
     /// <returns>
     /// был ли обработан пакет
@@ -96,48 +98,51 @@ namespace rt.srz.business.exchange.import.smo
       }
 
       // Проход по записям, маппинг и сохранение заявления
-      foreach (var rec in recList.REC)
+      if (recList != null)
       {
-        Statement statement = null;
-        try
+        foreach (var rec in recList.REC)
         {
-          // Маппинг
-          statement = MapStatement(rec);
+          Statement statement = null;
+          try
+          {
+            // Маппинг
+            statement = MapStatement(rec);
 
-          // Сохраняем заявление
-          // ObjectFactory.GetInstance<IStatementManager>().ReplicateStatement(statement, GetPdpCodeFromFileName(batch.FileName));
+            // Сохраняем заявление
+            // ObjectFactory.GetInstance<IStatementManager>().ReplicateStatement(statement, GetPdpCodeFromFileName(batch.FileName));
 
-          // Создаем Message
-          var message = new Message();
-          message.Batch = batch;
-          message.IsCommit = true;
-          message.IsError = false;
-          message.Type = conceptManager.GetById(MessageType.K);
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(message);
+            // Создаем Message
+            var message = new Message();
+            message.Batch = batch;
+            message.IsCommit = true;
+            message.IsError = false;
+            message.Type = conceptManager.GetById(MessageType.K);
+            ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(message);
 
-          // Создаем MessageStatement
-          var messageStat = new MessageStatement();
-          messageStat.Statement = statement;
-          messageStat.Message = message;
-          messageStat.Version = statement.Version;
-          messageStat.Type = conceptManager.GetById(MessageStatementType.MainStatement);
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(messageStat);
+            // Создаем MessageStatement
+            var messageStat = new MessageStatement();
+            messageStat.Statement = statement;
+            messageStat.Message = message;
+            messageStat.Version = statement.Version;
+            messageStat.Type = conceptManager.GetById(MessageStatementType.MainStatement);
+            ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(messageStat);
 
-          // Сбрасываем изменения в БД
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-        }
-        catch (LogicalControlException ex)
-        {
-          // ошибка ФЛК
-          logger.Info(ex.Message, ex);
-          logger.Info(rec);
-          logger.Info(statement);
-        }
-        catch (Exception ex)
-        {
-          logger.Error(ex.Message, ex);
-          logger.Error(rec);
-          logger.Error(statement);
+            // Сбрасываем изменения в БД
+            ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+          }
+          catch (LogicalControlException ex)
+          {
+            // ошибка ФЛК
+            logger.Info(ex.Message, ex);
+            logger.Info(rec);
+            logger.Info(statement);
+          }
+          catch (Exception ex)
+          {
+            logger.Error(ex.Message, ex);
+            logger.Error(rec);
+            logger.Error(statement);
+          }
         }
       }
 
@@ -173,7 +178,7 @@ namespace rt.srz.business.exchange.import.smo
       var splittedFileName = recList.Filename.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
       {
-        var month = -1;
+        int month;
         var strMonth = splittedFileName[2].Substring(0, 2);
         int.TryParse(strMonth, out month);
 
@@ -230,13 +235,13 @@ namespace rt.srz.business.exchange.import.smo
     /// Маппинг записи из загруженного файла в заявление
     /// </summary>
     /// <param name="rec">
+    /// The rec.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/>.
     /// </returns>
     protected override Statement MapStatement(RECType rec)
     {
-      var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
       var statementManager = ObjectFactory.GetInstance<IStatementManager>();
 
       // Получаем Statement

@@ -16,8 +16,8 @@ using System.Runtime.InteropServices;
 
 #endregion
 
-[assembly: AssemblyTitle("foms.HL7")]
-[assembly: AssemblyDescription("Компоненты ИС ЕРП ФОМС для работы с HL7")]
+[assembly: AssemblyTitle("foms.Hl7")]
+[assembly: AssemblyDescription("Компоненты ИС ЕРП ФОМС для работы с Hl7")]
 [assembly: AssemblyConfiguration("")]
 [assembly: Guid("C5FF19F9-3D9C-44A1-8504-3722763B1266")]
 [assembly: ComVisible(false)]

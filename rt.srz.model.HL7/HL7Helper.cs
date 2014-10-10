@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HL7Helper.cs" company="РусБИТех">
+// <copyright file="Hl7Helper.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7
+namespace rt.srz.model.Hl7
 {
   #region references
 
@@ -19,27 +19,27 @@ namespace rt.srz.model.HL7
   using System.Xml.Linq;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.commons;
-  using rt.srz.model.HL7.commons.Enumerations;
-  using rt.srz.model.HL7.enumerations;
-  using rt.srz.model.HL7.person;
-  using rt.srz.model.HL7.person.messages;
-  using rt.srz.model.HL7.person.requests;
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.commons;
+  using rt.srz.model.Hl7.commons.Enumerations;
+  using rt.srz.model.Hl7.enumerations;
+  using rt.srz.model.Hl7.person;
+  using rt.srz.model.Hl7.person.messages;
+  using rt.srz.model.Hl7.person.requests;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 
   /// <summary>
   ///   The h l 7 helper.
   /// </summary>
-  public static class HL7Helper
+  public static class Hl7Helper
   {
     #region Constants
 
     /// <summary>
     ///   The h l 7 namespace.
     /// </summary>
-    public const string HL7Namespace = "urn:hl7-org:v2xml";
+    public const string Hl7Namespace = "urn:Hl7-org:v2xml";
 
     /// <summary>
     ///   The iso.
@@ -173,7 +173,7 @@ namespace rt.srz.model.HL7
     /// <summary>
     ///   The foms log prefix.
     /// </summary>
-    public static readonly string FomsLogPrefix = "HL7: ";
+    public static readonly string FomsLogPrefix = "Hl7: ";
 
     /// <summary>
     ///   The identifiers case insesitive.
@@ -324,9 +324,9 @@ namespace rt.srz.model.HL7
       {
         if (dateFormat == null)
         {
-          lock (typeof(HL7Helper))
+          lock (typeof(Hl7Helper))
           {
-            dateFormat = ConfigHelper.ReadConfigValue("HL7_DateFormat", "yyyy-MM-dd");
+            dateFormat = ConfigHelper.ReadConfigValue("Hl7_DateFormat", "yyyy-MM-dd");
           }
         }
 
@@ -343,9 +343,9 @@ namespace rt.srz.model.HL7
       {
         if (dateTimeFormat == null)
         {
-          lock (typeof(HL7Helper))
+          lock (typeof(Hl7Helper))
           {
-            dateTimeFormat = ConfigHelper.ReadConfigValue("HL7_DateTimeFormat", "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'zzz");
+            dateTimeFormat = ConfigHelper.ReadConfigValue("Hl7_DateTimeFormat", "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'zzz");
           }
         }
 

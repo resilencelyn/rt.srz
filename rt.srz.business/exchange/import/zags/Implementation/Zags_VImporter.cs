@@ -9,17 +9,17 @@
 
 namespace rt.srz.business.exchange.import.zags.Implementation
 {
-  using rt.srz.model.HL7.zags;
+  using rt.srz.model.Hl7.zags;
 
   /// <summary>
-  /// The zags_ v importer.
+  ///   The zags_ v importer.
   /// </summary>
   public class Zags_VImporter : ZagsImporter<Zags_VNov>
   {
     #region Properties
 
     /// <summary>
-    /// Gets the xsd resource name.
+    ///   Gets the xsd resource name.
     /// </summary>
     protected override string XsdResourceName
     {

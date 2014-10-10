@@ -43,10 +43,10 @@
   </row>
   <row>
     <Id>1.1.1.15</Id>
-    <FullName>Ти события HL7</FullName>
-    <ShortName>Тип события HL7</ShortName>
+    <FullName>Ти события Hl7</FullName>
+    <ShortName>Тип события Hl7</ShortName>
     <DefaultId></DefaultId>
-    <LatinName>HL7EventType</LatinName>
+    <LatinName>Hl7EventType</LatinName>
   </row>
   <row>
     <Id>1.1.1.2</Id>

@@ -22,7 +22,7 @@ namespace rt.srz.business.manager.rightedit
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="StatementNotEdit"/> class.
+    ///   Initializes a new instance of the <see cref="StatementNotEdit" /> class.
     /// </summary>
     public StatementNotEdit()
       : base(-10)

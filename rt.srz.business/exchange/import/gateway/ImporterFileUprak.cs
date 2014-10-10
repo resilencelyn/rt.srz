@@ -23,21 +23,21 @@ namespace rt.srz.business.exchange.import.gateway
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
-  using rt.srz.model.HL7.person;
+  using rt.srz.model.Hl7.person;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
   /// <summary>
-  /// The importer file uprak.
+  ///   The importer file uprak.
   /// </summary>
   public class ImporterFileUprak : ImporterFile
   {
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ImporterFileUprak"/> class.
+    ///   Initializes a new instance of the <see cref="ImporterFileUprak" /> class.
     /// </summary>
     public ImporterFileUprak()
       : base(TypeSubject.Erz)
@@ -52,6 +52,7 @@ namespace rt.srz.business.exchange.import.gateway
     /// Применим ли импортер для данного типа сообщений?
     /// </summary>
     /// <param name="file">
+    /// The file.
     /// </param>
     /// <returns>
     /// true, если применим, иначе false
@@ -68,6 +69,7 @@ namespace rt.srz.business.exchange.import.gateway
     /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
+    /// The context.
     /// </param>
     /// <returns>
     /// был ли обработан пакет
@@ -142,7 +144,7 @@ namespace rt.srz.business.exchange.import.gateway
         session.Flush();
 
         // Пишем ошибки в Errors
-        var bWasError = false;
+        var wasError = false;
         foreach (var uprErr in personErp.AckList.FirstOrDefault().ErrList)
         {
           // Пропускаем предупреждения
@@ -161,10 +163,10 @@ namespace rt.srz.business.exchange.import.gateway
           session.Save(error);
 
           // Взводим флаг ошибки
-          bWasError = true;
+          wasError = true;
         }
 
-        if (bWasError)
+        if (wasError)
         {
           // Меняем статус заявления на отклонено
           statement.Status = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(StatusStatement.Cancelled);
@@ -204,6 +206,7 @@ namespace rt.srz.business.exchange.import.gateway
     /// Отмена загрузки пакета
     /// </summary>
     /// <param name="batch">
+    /// The batch.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.

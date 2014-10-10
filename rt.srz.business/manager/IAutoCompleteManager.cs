@@ -42,9 +42,10 @@ namespace rt.srz.business.manager
     /// Получает результат по критерию для имён и отчеств
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{AutoComplete}"/> .
     /// </returns>
     SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria);
 
@@ -52,9 +53,10 @@ namespace rt.srz.business.manager
     /// Возвращает список варианатов для имени
     /// </summary>
     /// <param name="prefix">
+    /// The prefix.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{AutoComplete}"/>.
     /// </returns>
     IList<AutoComplete> GetFirstNameAutoComplete(string prefix);
 
@@ -62,11 +64,13 @@ namespace rt.srz.business.manager
     /// Возвращает список вариантов для отчества
     /// </summary>
     /// <param name="prefix">
+    /// The prefix.
     /// </param>
     /// <param name="nameId">
+    /// The name Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{AutoComplete}"/>.
     /// </returns>
     IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId);
 

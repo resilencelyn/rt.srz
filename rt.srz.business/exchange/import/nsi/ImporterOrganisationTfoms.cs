@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.business.exchange.import.smo
+namespace rt.srz.business.exchange.import.nsi
 {
   using System;
   using System.Collections.Concurrent;
   using System.IO;
 
-  using rt.srz.model.HL7.nsi;
+  using rt.srz.model.Hl7.nsi;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 

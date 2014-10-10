@@ -25,12 +25,27 @@ namespace rt.srz.business.server
   /// </summary>
   public class TwinsJob : JobBase
   {
-    #region Static Fields
+    #region Fields
 
     /// <summary>
     ///   The lock object.
     /// </summary>
-    private static string LockObject = "lock";
+    private string lockObject = "lock";
+
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    ///   Gets the lock object.
+    /// </summary>
+    protected string LockObject
+    {
+      get
+      {
+        return lockObject;
+      }
+    }
 
     #endregion
 

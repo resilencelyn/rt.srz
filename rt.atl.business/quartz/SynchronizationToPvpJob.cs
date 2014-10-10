@@ -12,6 +12,7 @@ namespace rt.atl.business.quartz
   #region
 
   using System;
+  using System.Globalization;
   using System.Linq;
   using System.Threading;
 
@@ -20,7 +21,7 @@ namespace rt.atl.business.quartz
   using Quartz;
 
   using rt.atl.model.configuration;
-  using rt.atl.model.interfaces.service;
+  using rt.atl.model.interfaces.Service;
   using rt.core.business.quartz;
   using rt.core.model;
   using rt.srz.business.manager;
@@ -40,8 +41,19 @@ namespace rt.atl.business.quartz
     /// <summary>
     ///   The lock object.
     /// </summary>
-    public static string LockObject = "lock";
+    private static string lockObject = "lock";
 
+    /// <summary>
+    /// Gets the lock object.
+    /// </summary>
+    public static string LockObject 
+    {
+      get
+      {
+        return lockObject;
+      }
+    }
+    
     #endregion
 
     #region Methods
@@ -105,10 +117,10 @@ namespace rt.atl.business.quartz
     }
 
     /// <summary>
-    /// The calculate online date time.
+    ///   The calculate online date time.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     private string CalculateOnlineDateTime()
     {
@@ -154,7 +166,7 @@ namespace rt.atl.business.quartz
         syncTime2Srz.Name = "ExporterToSrz" + postfix;
       }
 
-      syncTime2Srz.ValueString = syncTime.ToString();
+      syncTime2Srz.ValueString = syncTime.ToString(CultureInfo.InvariantCulture);
       settingManager.SaveOrUpdate(syncTime2Srz);
 
       // Пишем информацию о времени завершения синхронизации из СРЗ в ПВП
@@ -165,7 +177,7 @@ namespace rt.atl.business.quartz
         syncTime2Pvp.Name = "ExporterToPvp" + postfix;
       }
 
-      syncTime2Pvp.ValueString = syncTime.ToString();
+      syncTime2Pvp.ValueString = syncTime.ToString(CultureInfo.InvariantCulture);
       settingManager.SaveOrUpdate(syncTime2Pvp);
 
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();

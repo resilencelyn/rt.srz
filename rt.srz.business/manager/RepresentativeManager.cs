@@ -30,8 +30,10 @@ namespace rt.srz.business.manager
     /// ѕолучает данные по номеру и серии документа
     /// </summary>
     /// <param name="number">
+    /// The number.
     /// </param>
     /// <param name="series">
+    /// The series.
     /// </param>
     /// <returns>
     /// The <see cref="Representative"/>.

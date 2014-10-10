@@ -41,11 +41,13 @@ namespace rt.srz.business.manager
     /// Возвращает список адресных объектов для указанного уровня
     /// </summary>
     /// <param name="parentId">
+    /// The parent Id.
     /// </param>
     /// <param name="prefix">
     /// The prefix.
     /// </param>
     /// <param name="level">
+    /// The level.
     /// </param>
     /// <returns>
     /// The <see cref="IList{T}"/>.

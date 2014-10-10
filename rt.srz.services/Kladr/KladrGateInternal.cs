@@ -31,7 +31,7 @@ namespace rt.srz.services.Kladr
     /// <summary>
     ///   The service.
     /// </summary>
-    private readonly IKladrService Service = new KladrService();
+    public readonly IKladrService Service = new KladrService();
 
     #endregion
 

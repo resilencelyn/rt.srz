@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.messages
+namespace rt.srz.model.Hl7.person.messages
 {
   #region references
 
@@ -15,7 +15,7 @@ namespace rt.srz.model.HL7.person.messages
   using System.Collections.Generic;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 
@@ -23,7 +23,7 @@ namespace rt.srz.model.HL7.person.messages
   ///   Работающие ЗЛ по данным ОПФР
   /// </summary>
   [Serializable]
-  [XmlRoot("ZPI_ZWI", Namespace = "urn:hl7-org:v2xml", IsNullable = false)]
+  [XmlRoot("ZPI_ZWI", Namespace = "urn:Hl7-org:v2xml", IsNullable = false)]
   public class ZpiZwi : BaseMessageTemplate
   {
     #region Public Properties

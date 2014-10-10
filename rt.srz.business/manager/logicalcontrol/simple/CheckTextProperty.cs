@@ -27,6 +27,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   /// The check text property.
   /// </summary>
   /// <typeparam name="TException">
+  /// Тип ошибки
   /// </typeparam>
   public abstract class CheckTextProperty<TException> : Check
     where TException : LogicalControlException, new()
@@ -34,7 +35,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The deleg.
+    ///   The deleg.
     /// </summary>
     private readonly Func<Statement, object> deleg;
 
@@ -84,7 +85,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Properties
 
     /// <summary>
-    /// Gets the regex.
+    ///   Gets the regex.
     /// </summary>
     protected Regex Regex
     {

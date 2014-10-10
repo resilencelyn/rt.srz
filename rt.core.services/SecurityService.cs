@@ -546,7 +546,7 @@ namespace rt.core.services
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    public bool IsUserAdminTF(Guid userId)
+    public bool IsUserAdminTfoms(Guid userId)
     {
       return ObjectFactory.GetInstance<IUserManager>().IsUserAdminTf(userId);
     }

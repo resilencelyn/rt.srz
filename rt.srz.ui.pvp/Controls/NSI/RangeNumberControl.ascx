@@ -81,7 +81,7 @@
     </div>
     <div class="admValueControl">
       <div class="admControlPadding">
-        <asp:DropDownList ID="dlSmo" runat="server" DataTextField="ShortName" DataValueField="Id" CssClass="dropDowns" />
+        <asp:DropDownList ID="dlSmo" runat="server" DataTextField="ShortName" DataValueField="id" CssClass="dropDowns" />
       </div>
     </div>
     <div class="errorMessage">
@@ -178,7 +178,7 @@
           </asp:TemplateField>
           <asp:TemplateField HeaderText="Наименоваие шаблона печати">
             <ItemTemplate>
-              <asp:DropDownList ID="ddlTemplate" runat="server" DataValueField="Id" DataTextField="Name" Width="100%" CssClass="dropDowns"></asp:DropDownList>
+              <asp:DropDownList ID="ddlTemplate" runat="server" DataValueField="id" DataTextField="Name" Width="100%" CssClass="dropDowns"></asp:DropDownList>
             </ItemTemplate>
           </asp:TemplateField>
         </Columns>

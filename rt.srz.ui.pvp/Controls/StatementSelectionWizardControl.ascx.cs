@@ -47,7 +47,7 @@ namespace rt.srz.ui.pvp.Controls
     /// <summary>
     ///   The _statement service.
     /// </summary>
-    private IStatementService _statementService;
+    private IStatementService statementService;
 
     private IRegulatoryService regulatoryService;
 
@@ -144,7 +144,7 @@ namespace rt.srz.ui.pvp.Controls
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _statementService = ObjectFactory.GetInstance<IStatementService>();
+      statementService = ObjectFactory.GetInstance<IStatementService>();
       regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
@@ -229,7 +229,7 @@ namespace rt.srz.ui.pvp.Controls
                 st = ExampleStatement;
 
 
-                st.Status = _statementService.GetConcept(StatusStatement.New);
+                st.Status = regulatoryService.GetConcept(StatusStatement.New);
                 st.AbsentPrevPolicy = false;
               }
 
@@ -407,7 +407,7 @@ namespace rt.srz.ui.pvp.Controls
         searchCriteria.SearchResult.Rows.Remove(item);
       }
 
-      searchCriteria.SearchResult.Rows.Insert(0, _statementService.GetSearchStatementResult(CurrentStatement.Id));
+      searchCriteria.SearchResult.Rows.Insert(0, statementService.GetSearchStatementResult(CurrentStatement.Id));
 
       //CurrentStatement хранится в сессии поэтому здесь отдельно до очистки сессии
       string redirectLink = "~/Pages/Main.aspx";
@@ -715,7 +715,7 @@ namespace rt.srz.ui.pvp.Controls
         if (!ValidateSteps())
         {
           var draftStatement = MakeStatement();
-          CurrentStatement = _statementService.SaveStatement(draftStatement);
+          CurrentStatement = statementService.SaveStatement(draftStatement);
           return true;
         }
       }
@@ -754,7 +754,7 @@ namespace rt.srz.ui.pvp.Controls
       }
 
       // todo строка закоменчена т.к. при наличии ошибок до заполнения statement не дойдём - MakeStatement()
-      ////_statementService.UnBindStatement(statement);
+      ////statementService.UnBindStatement(statement);
 
       return false;
     }
@@ -990,7 +990,7 @@ namespace rt.srz.ui.pvp.Controls
     {
 
       // Загрузка заявления из базы
-      var currentStatement = _statementService.GetStatement(CurrentStatement.Id);
+      var currentStatement = statementService.GetStatement(CurrentStatement.Id);
 
       // Получение данных из элементов GUI
       var result = currentStatement ?? new Statement();
@@ -1004,7 +1004,7 @@ namespace rt.srz.ui.pvp.Controls
       if (PreviosStatementId.HasValue && PreviosStatementId.Value != Guid.Empty)
       {
         // Загрузка заявления из базы
-        result.PreviousStatement = _statementService.GetStatement(PreviosStatementId.Value);
+        result.PreviousStatement = statementService.GetStatement(PreviosStatementId.Value);
       }
 
       return result;

@@ -37,12 +37,12 @@ namespace rt.srz.model.interfaces.service.uir
     /// <summary>
     /// Initializes a new instance of the <see cref="Response"/> class.
     /// </summary>
-    /// <param name="UIRResponse">
+    /// <param name="uirResponse">
     /// The uir response.
     /// </param>
-    public Response(UIRResponse UIRResponse)
+    public Response(UIRResponse uirResponse)
     {
-      this.UIRResponse = UIRResponse;
+      this.UIRResponse = uirResponse;
     }
 
     #endregion

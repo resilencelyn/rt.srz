@@ -226,7 +226,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
           }
           else
           {
-            if (currentUser.PointDistributionPolicy() != null && securityService.IsUserAdminTF(currentUser.Id))
+            if (currentUser.PointDistributionPolicy() != null && securityService.IsUserAdminTfoms(currentUser.Id))
             {
               AssignDataSourcesForOwnRegion(currentUser);
             }
@@ -253,9 +253,9 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
           // администратор смо не может назначать пункт выдачи для администратора территорального фонда
           if (!securityService.IsUserHasAdminPermissions(currentUser)
-              && !securityService.IsUserAdminTF(currentUser.Id))
+              && !securityService.IsUserAdminTfoms(currentUser.Id))
           {
-            allowAssignPdp = !securityService.IsUserAdminTF(userId);
+            allowAssignPdp = !securityService.IsUserAdminTfoms(userId);
           }
 
           dlTFoms.Enabled = (bool)Session[SessionConsts.CDisplayAdminMenu] && allowAssignPdp;
@@ -339,7 +339,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// Получает список плюс пустой элемент для удобства выбора и сброса значения в выпадающем списке
     /// </summary>
     /// <param name="smoId">
-    /// The smo Id.
+    /// The smo id.
     /// </param>
     /// <returns>
     /// The <see cref="IList"/>.

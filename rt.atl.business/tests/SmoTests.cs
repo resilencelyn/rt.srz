@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.atl.business.manager;
-using rt.atl.model.atl;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SmoTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The smo tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.business.tests
 {
-    public partial class SmoTests
-    {
-	}
+  /// <summary>
+  /// The smo tests.
+  /// </summary>
+  public partial class SmoTests
+  {
+  }
 }

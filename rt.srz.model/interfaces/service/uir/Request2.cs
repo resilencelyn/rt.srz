@@ -13,6 +13,7 @@ namespace rt.srz.model.interfaces.service.uir
 
   using System.CodeDom.Compiler;
   using System.Diagnostics;
+  using System.Diagnostics.CodeAnalysis;
   using System.ServiceModel;
 
   #endregion
@@ -37,12 +38,12 @@ namespace rt.srz.model.interfaces.service.uir
     /// <summary>
     /// Initializes a new instance of the <see cref="Request2"/> class.
     /// </summary>
-    /// <param name="UIRRequest2">
+    /// <param name="uirRequest2">
     /// The uir request 2.
     /// </param>
-    public Request2(UIRRequest2 UIRRequest2)
+    public Request2(UIRRequest2 uirRequest2)
     {
-      this.UIRRequest2 = UIRRequest2;
+      UIRRequest2 = uirRequest2;
     }
 
     #endregion

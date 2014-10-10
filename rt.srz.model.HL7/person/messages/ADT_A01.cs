@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.messages
+namespace rt.srz.model.Hl7.person.messages
 {
   #region references
 
@@ -15,7 +15,7 @@ namespace rt.srz.model.HL7.person.messages
   using System.Collections.Generic;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 
@@ -23,7 +23,7 @@ namespace rt.srz.model.HL7.person.messages
   ///   The ad t_ a 01.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ADT_A01", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ADT_A01", Namespace = "urn:Hl7-org:v2xml")]
   public class ADT_A01 : BaseMessageTemplate
   {
     #region Fields

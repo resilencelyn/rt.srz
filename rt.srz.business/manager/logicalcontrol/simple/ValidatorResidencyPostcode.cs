@@ -31,7 +31,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The deleg.
+    ///   The deleg.
     /// </summary>
     private readonly Func<Statement, object> deleg;
 

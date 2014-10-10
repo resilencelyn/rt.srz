@@ -29,6 +29,7 @@ namespace rt.srz.services.Statement
     /// The on error.
     /// </summary>
     /// <typeparam name="T">
+    /// Тип 
     /// </typeparam>
     /// <param name="target">
     /// The target.

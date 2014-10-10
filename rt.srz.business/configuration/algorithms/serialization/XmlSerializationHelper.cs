@@ -18,11 +18,11 @@ namespace rt.srz.business.configuration.algorithms.serialization
   using System.Xml;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.commons;
-  using rt.srz.model.HL7.person;
-  using rt.srz.model.HL7.person.messages;
-  using rt.srz.model.HL7.person.requests;
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.commons;
+  using rt.srz.model.Hl7.person;
+  using rt.srz.model.Hl7.person.messages;
+  using rt.srz.model.Hl7.person.requests;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 

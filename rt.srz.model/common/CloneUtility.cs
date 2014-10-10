@@ -22,11 +22,12 @@ namespace rt.srz.model.common
     /// <summary>
     /// The deep clone.
     /// </summary>
+    /// <typeparam name="T">
+    /// Тип
+    /// </typeparam>
     /// <param name="obj">
     /// The obj.
     /// </param>
-    /// <typeparam name="T">
-    /// </typeparam>
     /// <returns>
     /// The <see cref="T"/>.
     /// </returns>

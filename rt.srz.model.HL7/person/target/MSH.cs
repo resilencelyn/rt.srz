@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.target
+namespace rt.srz.model.Hl7.person.target
 {
   #region references
 
@@ -52,7 +52,7 @@ namespace rt.srz.model.HL7.person.target
     ///   The field divider.
     /// </summary>
     [XmlElement(ElementName = "MSH.1", Order = 1)]
-    public string FieldDivider = HL7Helper.BHS_Delimiter;
+    public string FieldDivider = Hl7Helper.BHS_Delimiter;
 
     /// <summary>
     ///   The identificator.
@@ -88,7 +88,7 @@ namespace rt.srz.model.HL7.person.target
     ///   The special symbol.
     /// </summary>
     [XmlElement(ElementName = "MSH.2", Order = 2)]
-    public string SpecialSymbol = HL7Helper.BHS_CodeSymbols;
+    public string SpecialSymbol = Hl7Helper.BHS_CodeSymbols;
 
     /// <summary>
     ///   The type work.

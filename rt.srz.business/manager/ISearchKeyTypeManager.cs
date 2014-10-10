@@ -30,10 +30,10 @@ namespace rt.srz.business.manager
     void DeleteSearchKeyType(Guid keyTypeId);
 
     /// <summary>
-    /// Возвращает описатели всех ключей поиска для указанного ТФОМС
+    ///   Возвращает описатели всех ключей поиска для указанного ТФОМС
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="IList{SearchKeyType}" />.
     /// </returns>
     IList<SearchKeyType> GetSearchKeyTypesByTFoms();
 
@@ -41,6 +41,7 @@ namespace rt.srz.business.manager
     /// Сохраняет ключ поиска в БД
     /// </summary>
     /// <param name="keyType">
+    /// The key Type.
     /// </param>
     /// <returns>
     /// The <see cref="Guid"/>.

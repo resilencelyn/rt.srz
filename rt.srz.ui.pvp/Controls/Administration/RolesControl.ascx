@@ -29,7 +29,7 @@
 <asp:UpdatePanel ID="contentUpdatePanel" runat="server" UpdateMode="Conditional">
   <ContentTemplate>
     <div class="partHeight">
-      <asp:ListBox ID="lstRoles" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="Id" Width="100%" Height="100%" CssClass="listbox" OnSelectedIndexChanged="LstRolesSelectedIndexChanged"></asp:ListBox>
+      <asp:ListBox ID="lstRoles" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="id" Width="100%" Height="100%" CssClass="listbox" OnSelectedIndexChanged="LstRolesSelectedIndexChanged"></asp:ListBox>
     </div>
   </ContentTemplate>
 </asp:UpdatePanel>

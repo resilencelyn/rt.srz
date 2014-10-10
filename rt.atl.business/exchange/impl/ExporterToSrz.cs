@@ -190,21 +190,20 @@ namespace rt.atl.business.exchange.impl
       var errorStringList = !string.IsNullOrEmpty(przBuff.Sflk)
                               ? przBuff.Sflk.Split(',').Select(x => x.PadLeft(3, '0'))
                               : new[] { "Not" };
-      foreach (
-        var error in
-          errors.Where(x => errorStringList.Any(y => y == x.Code))
-                .Select(
-                        procedure =>
-                        new Error
-                        {
-                          Code = procedure.Code,
-                          Message1 =
-                            RecodingErros.Recoding(
-                                                   int.Parse(procedure.Code),
-                                                   procedure.Caption.ToLower().ToUpperFirstChar()),
-                          Statement = st,
-                          Repl = przBuff.Repl
-                        }))
+      foreach (var error in
+        errors.Where(x => errorStringList.Any(y => y == x.Code))
+              .Select(
+                      procedure =>
+                      new Error
+                      {
+                        Code = procedure.Code,
+                        Message1 =
+                          RecodingErros.Recoding(
+                                                 int.Parse(procedure.Code),
+                                                 procedure.Caption.ToLower().ToUpperFirstChar()),
+                        Statement = st,
+                        Repl = przBuff.Repl
+                      }))
       {
         if (flag)
         {
@@ -247,6 +246,7 @@ namespace rt.atl.business.exchange.impl
     /// The query.
     /// </param>
     /// <param name="context">
+    /// The context.
     /// </param>
     private void ExportByList(
       ISession session,
@@ -375,7 +375,7 @@ namespace rt.atl.business.exchange.impl
     {
       var session = sessionFactoryPvp.GetCurrentSession();
       var count = query.RowCount();
-      var step = count / 5000 + 1;
+      var step = (count / 5000) + 1;
 
       for (var i = 0; i < step; i++)
       {
@@ -740,7 +740,6 @@ namespace rt.atl.business.exchange.impl
 
                       // Документ регистрации 
 
-
                       // Контактная информация
                       Email = contactInfo.Email,
                       Phone = contactInfo.HomePhone,
@@ -868,10 +867,15 @@ namespace rt.atl.business.exchange.impl
       przBuff.Num = "-1";
 
       // Помечаем адреса структурированный/не структурированный
-      przBuff.Zaddr = string.Format(
-                                    "{0}{1}",
-                                    address.IsNotStructureAddress.HasValue ? Convert.ToInt16(address.IsNotStructureAddress.Value).ToString(CultureInfo.InvariantCulture) : "0",
-                                    address2.IsNotStructureAddress.HasValue ? Convert.ToInt16(address2.IsNotStructureAddress.Value).ToString(CultureInfo.InvariantCulture) : "0");
+      var args = address.IsNotStructureAddress.HasValue
+                   ? Convert.ToInt16(address.IsNotStructureAddress.Value)
+                            .ToString(CultureInfo.InvariantCulture)
+                   : "0";
+      var s = address2.IsNotStructureAddress.HasValue
+                ? Convert.ToInt16(address2.IsNotStructureAddress.Value)
+                         .ToString(CultureInfo.InvariantCulture)
+                : "0";
+      przBuff.Zaddr = string.Format("{0}{1}", args, s);
 
       sessionAtl.Save(przBuff);
 

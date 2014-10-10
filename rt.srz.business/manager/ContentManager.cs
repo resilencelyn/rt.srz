@@ -40,7 +40,11 @@ namespace rt.srz.business.manager
     /// The str.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    /// The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public byte[] Base64ToByte(string str)
     {
@@ -75,9 +79,14 @@ namespace rt.srz.business.manager
     /// Конвертация в тона серого
     /// </summary>
     /// <param name="image">
+    /// The image.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    /// The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public byte[] ConvertToGrayScale(byte[] image)
     {
@@ -125,10 +134,14 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// Генерация пустого фото
+    ///   Генерация пустого фото
     /// </summary>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    ///   The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public byte[] CreateEmptyPhoto()
     {
@@ -136,10 +149,14 @@ namespace rt.srz.business.manager
     }
 
     /// <summary>
-    /// Генерация пустой подписи
+    ///   Генерация пустой подписи
     /// </summary>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    ///   The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public byte[] CreateEmptySign()
     {
@@ -270,7 +287,11 @@ namespace rt.srz.business.manager
     /// The height.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/>.
+    /// The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     private byte[] InternalCreateImage(int width, int height)
     {

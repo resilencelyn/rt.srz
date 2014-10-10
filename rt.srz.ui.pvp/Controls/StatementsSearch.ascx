@@ -269,7 +269,7 @@
   $(document).ready(function () {
     SetDesignerSettingsDatesAndErrors();
     limitKeyPressForLFM();
-    window.barcodeReader.Start('<%= StatementService.GetCurrentSetting("COMPort") != null ? StatementService.GetCurrentSetting("COMPort").ValueString : string.Empty %>');
+    window.barcodeReader.Start('<%= StatementService.GetSettingCurrentUser("COMPort") != null ? StatementService.GetSettingCurrentUser("COMPort").ValueString : string.Empty %>');
   });
 
   //Закрытия окна для ввода пина по ESC
@@ -1044,7 +1044,7 @@
                     <asp:Label ID="Label12" runat="server" Text='<%# ((SearchStatementResult)Container.DataItem).DocumentType ?? "&nbsp" %>'></asp:Label>
                   </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Серия и № документа" SortExpression="DocumentId">
+                <asp:TemplateField HeaderText="Серия и № документа" SortExpression="Documentid">
                   <ItemTemplate>
                     <asp:Label ID="Label13" runat="server" Text='<%# ((SearchStatementResult)Container.DataItem).DocumentSeria == null ? ((SearchStatementResult)Container.DataItem).DocumentNumber :
                                         ((SearchStatementResult)Container.DataItem).DocumentSeria + " № " +((SearchStatementResult)Container.DataItem).DocumentNumber %>'></asp:Label>

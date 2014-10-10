@@ -12,7 +12,6 @@ namespace rt.srz.services.Uec
   #region
 
   using System;
-  using System.Collections.Generic;
 
   using rt.core.services.aspects;
   using rt.uec.model.dto;
@@ -30,7 +29,7 @@ namespace rt.srz.services.Uec
     /// <summary>
     ///   The service.
     /// </summary>
-    private readonly IUecService Service = new UecService();
+    protected readonly IUecService Service = new UecService();
 
     #endregion
 
@@ -213,7 +212,10 @@ namespace rt.srz.services.Uec
     /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> .
+    /// The <see>
+    ///     <cref>MO[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public MO[] GetMO(string tfomsCode, string workstationName)
     {
@@ -238,10 +240,13 @@ namespace rt.srz.services.Uec
     /// Возвращает все ТФОМС
     /// </summary>
     /// <param name="workstationName">
-    ///   The workstation Name.
+    /// The workstation Name.
     /// </param>
     /// <returns>
-    /// The <see cref="MO[]"/> .
+    /// The <see>
+    ///     <cref>MO[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     public MO[] GetTFoms(string workstationName)
     {

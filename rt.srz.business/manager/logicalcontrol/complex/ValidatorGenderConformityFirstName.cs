@@ -79,10 +79,6 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultGenderException">
-    /// </exception>
-    /// <exception cref="FaultGenderConformityFirstNameException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       if (statement.InsuredPersonData.Gender == null)

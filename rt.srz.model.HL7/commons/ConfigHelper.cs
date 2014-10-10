@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons
+namespace rt.srz.model.Hl7.commons
 {
   #region references
 
@@ -18,7 +18,7 @@ namespace rt.srz.model.HL7.commons
   using System.Text;
   using System.Text.RegularExpressions;
 
-  using rt.srz.model.HL7.dotNetX;
+  using rt.srz.model.Hl7.dotNetX;
 
   #endregion
 

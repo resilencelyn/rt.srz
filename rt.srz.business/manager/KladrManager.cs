@@ -16,7 +16,6 @@ namespace rt.srz.business.manager
   using System.Linq;
 
   using NHibernate;
-  using NHibernate.Linq;
 
   using rt.srz.model.enumerations;
   using rt.srz.model.srz;

@@ -33,6 +33,7 @@ namespace rt.srz.business.manager
     /// The statement.
     /// </param>
     /// <param name="keys">
+    /// The keys.
     /// </param>
     /// <returns>
     /// The <see cref="InsuredPerson"/>.
@@ -40,11 +41,13 @@ namespace rt.srz.business.manager
     InsuredPerson GetInsuredPersonByStatement(Statement statement, IEnumerable<SearchKey> keys);
 
     /// <summary>
+    /// The get insured persons by keys.
     /// </summary>
     /// <param name="keys">
+    /// The keys.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{InsuredPerson}"/>.
     /// </returns>
     IList<InsuredPerson> GetInsuredPersonsByKeys(IEnumerable<SearchKey> keys);
 

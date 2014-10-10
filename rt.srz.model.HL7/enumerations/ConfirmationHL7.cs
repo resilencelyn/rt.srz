@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfirmationHL7.cs" company="РусБИТех">
+// <copyright file="ConfirmationHl7.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations
+namespace rt.srz.model.Hl7.enumerations
 {
   /// <summary>
   ///   The confirmation h l 7.
   /// </summary>
-  public enum ConfirmationHL7
+  public enum ConfirmationHl7
   {
     /// <summary>
     ///   The none.

@@ -11,19 +11,19 @@ namespace rt.srz.business.exchange.import.zags
 {
   using System;
 
-  using rt.srz.model.HL7.zags;
+  using rt.srz.model.Hl7.zags;
 
   /// <summary>
-  /// The zags import factory.
+  ///   The zags import factory.
   /// </summary>
   public class ZagsImportFactory : IZagsImportFactory
   {
     #region Fields
 
     /// <summary>
-    /// The _importer zags.
+    ///   The _importer zags.
     /// </summary>
-    private readonly IZagsImporter[] _importerZags;
+    private readonly IZagsImporter[] importerZags;
 
     #endregion
 
@@ -37,7 +37,7 @@ namespace rt.srz.business.exchange.import.zags
     /// </param>
     public ZagsImportFactory(IZagsImporter[] importerZags)
     {
-      _importerZags = importerZags;
+      this.importerZags = importerZags;
     }
 
     #endregion
@@ -53,12 +53,10 @@ namespace rt.srz.business.exchange.import.zags
     /// <returns>
     /// The <see cref="Zags_VNov"/>.
     /// </returns>
-    /// <exception cref="ApplicationException">
-    /// </exception>
     public Zags_VNov GetImportData(string xmlFilePath)
     {
       Zags_VNov result = null;
-      foreach (var importer in _importerZags)
+      foreach (var importer in importerZags)
       {
         try
         {

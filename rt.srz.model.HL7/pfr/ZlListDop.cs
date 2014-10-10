@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.pfr
+namespace rt.srz.model.Hl7.pfr
 {
   using System;
   using System.Collections.Generic;

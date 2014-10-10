@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Web;
-using System.Web.UI.WebControls;
-
-namespace rt.srz.ui.pvp
+﻿namespace rt.srz.ui.pvp.GridViewHelper
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Drawing;
+  using System.Linq;
+  using System.Linq.Expressions;
+  using System.Reflection;
+  using System.Web.UI.WebControls;
+
   public class GridGroupHelper<DataItemType>
   {
     private readonly Expression<Func<DataItemType, string>> _columnToGroup;

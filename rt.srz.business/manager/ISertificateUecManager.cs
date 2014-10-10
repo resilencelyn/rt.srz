@@ -42,7 +42,7 @@ namespace rt.srz.business.manager
     /// The smo id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -59,7 +59,7 @@ namespace rt.srz.business.manager
     /// The smo id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -73,9 +73,10 @@ namespace rt.srz.business.manager
     /// The save sertificate key.
     /// </summary>
     /// <param name="workstationId">
+    /// The workstation Id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -92,7 +93,7 @@ namespace rt.srz.business.manager
     /// The workstation id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.

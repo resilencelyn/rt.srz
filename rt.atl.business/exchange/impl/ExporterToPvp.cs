@@ -29,7 +29,7 @@ namespace rt.atl.business.exchange.impl
   using rt.core.model.configuration;
   using rt.srz.business.manager;
   using rt.srz.business.server;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
@@ -54,7 +54,7 @@ namespace rt.atl.business.exchange.impl
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ExporterToPvp"/> class.
+    ///   Initializes a new instance of the <see cref="ExporterToPvp" /> class.
     /// </summary>
     public ExporterToPvp()
       : base(ExchangeTypeEnum.ExportToPvp)
@@ -80,11 +80,8 @@ namespace rt.atl.business.exchange.impl
       try
       {
         var filePath = Path.Combine(
-                                    ConfigManager.ExchangeSettings.BackupOutputFolder, 
-                                    string.Format(
-                                                  "{0}.{1}.bak", 
-                                                  session.Connection.Database, 
-                                                  DateTime.UtcNow.ToString("yyyy.MM.dd HH.mm")));
+                                    ConfigManager.ExchangeSettings.BackupOutputFolder,
+                                    string.Format("{0}.{1}.bak", session.Connection.Database, DateTime.UtcNow.ToString("yyyy.MM.dd HH.mm")));
         var sql = @"BACKUP DATABASE {0}
                     TO DISK = '{1}'
                     WITH FORMAT,
@@ -159,7 +156,7 @@ namespace rt.atl.business.exchange.impl
 
         session.CreateSQLQuery(
                                string.Format(
-                                             "ALTER DATABASE [{0}] SET RECOVERY SIMPLE WITH NO_WAIT", 
+                                             "ALTER DATABASE [{0}] SET RECOVERY SIMPLE WITH NO_WAIT",
                                              session.Connection.Database)).UniqueResult();
 
         // Открываем транзакцию
@@ -200,7 +197,7 @@ namespace rt.atl.business.exchange.impl
             {
               // Отключаем индексы
               var scriptIndexOff = string.Format(
-                                                 "ALTER DATABASE [{0}] SET ARITHABORT OFF", 
+                                                 "ALTER DATABASE [{0}] SET ARITHABORT OFF",
                                                  sessionAtl.Connection.Database);
               sessionAtl.CreateSQLQuery(scriptIndexOff).UniqueResult();
               scriptIndexOff = string.Format("DROP INDEX [PK_PRZBUFT] ON [dbo].[PRZBUFT] WITH ( ONLINE = OFF )");

@@ -13,7 +13,7 @@ namespace rt.srz.services.client.services
 
   using Quartz;
 
-  using rt.atl.model.interfaces.service;
+  using rt.atl.model.interfaces.Service;
   using rt.core.services.registry;
 
   #endregion

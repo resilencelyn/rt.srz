@@ -12,7 +12,7 @@ namespace rt.srz.services.client.registry
 {
   #region references
 
-  using rt.atl.model.interfaces.service;
+  using rt.atl.model.interfaces.Service;
   using rt.core.model.interfaces;
   using rt.core.model.security;
   using rt.srz.model.interfaces.service;

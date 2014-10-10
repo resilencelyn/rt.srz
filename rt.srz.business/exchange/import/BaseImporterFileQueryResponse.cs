@@ -418,7 +418,7 @@ namespace rt.srz.business.exchange.import
     }
 
     /// <summary>
-    /// The get file version.
+    /// The get file Version.
     /// </summary>
     /// <param name="fileName">
     /// The file name.

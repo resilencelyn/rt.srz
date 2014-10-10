@@ -80,9 +80,18 @@ namespace rt.srz.ui.pvp.Pages
       }
     }
 
-    protected void Separate_Click(object sender, EventArgs e)
+    /// <summary>
+    /// The separate click.
+    /// </summary>
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void SeparateClick(object sender, EventArgs e)
     {
-      _service.Separate(InsuredPersonId, SeparateItems);
+      _service.Separate(InsuredPersonId, SeparateItems.ToList());
       RedirectUtils.RedirectToMain(Response);
     }
 

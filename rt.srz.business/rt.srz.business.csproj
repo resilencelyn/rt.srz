@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -95,7 +96,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="configuration\algorithms\serialization\HL7Writer.cs" />
+    <Compile Include="configuration\algorithms\serialization\Hl7Writer.cs" />
     <Compile Include="configuration\algorithms\serialization\XmlSerializationHelper.cs" />
     <Compile Include="configuration\algorithms\serialization\XmlStreamer.cs" />
     <Compile Include="configuration\ConfigManager.cs" />
@@ -152,7 +153,6 @@
     </Compile>
     <Compile Include="manager\IQueryResponseManager.cs" />
     <Compile Include="manager\IStatementChangeDateManager.cs" />
-    <Compile Include="manager\IStatementADT_A01Manager.cs" />
     <Compile Include="manager\ITemplateManager.cs" />
     <Compile Include="manager\IUirManager.cs" />
     <Compile Include="manager\IUserActionManager.cs" />
@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="manager\logicalcontrol\complex\ValidatorGenderConformityMiddleName.cs" />
     <Compile Include="manager\logicalcontrol\complex\ValidatorReinsuranceRules.cs" />
+    <Compile Include="manager\logicalcontrol\simple\Age.cs" />
     <Compile Include="manager\logicalcontrol\simple\CheckDateFutureProperty.cs" />
     <Compile Include="manager\logicalcontrol\simple\ValidatorBirthdateFuture.cs" />
     <Compile Include="manager\logicalcontrol\simple\ValidatorDocumentResidency.cs" />
@@ -196,7 +197,6 @@
     <Compile Include="manager\StatementChangeDateManager.Generated.cs">
       <DependentUpon>StatementChangeDateManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="manager\StatementADT_A01Manager.cs" />
     <Compile Include="manager\TemplateManager.cs" />
     <Compile Include="manager\TemplateManager.Generated.cs">
       <DependentUpon>TemplateManager.cs</DependentUpon>
@@ -650,9 +650,9 @@
       <Name>rt.srz.database.business</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.hl7.csproj">
       <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
-      <Name>rt.srz.model.HL7</Name>
+      <Name>rt.srz.model.hl7</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
@@ -786,6 +786,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,29 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-	<class name="rt.srz.model.srz.Kladr, rt.srz.model" table="[dbo].[KLADR]" lazy="true">
-		<id name="Id" column="[ID]">
-		 	<generator class="guid.comb" />
-		</id>
-		<property name="Version" column="[VERSION]" />
-		<property name="Name" column="[NAME]" />
-		<property name="Socr" column="[SOCR]" />
-		<property name="Code" column="[CODE]" />
-		<property name="Index" column="[INDEX]" />
-		<property name="Gninmb" column="[GNINMB]" />
-		<property name="Uno" column="[UNO]" />
-		<property name="Ocatd" column="[OCATD]" />
-		<property name="Status" column="[STATUS]" />
-		<property name="FullAddress" column="[FULL_ADDRESS]" />
-		<property name="Level" column="[LEVEL]" />
-		<many-to-one name="KLADRPARENT" column="[KLADR_PARENT_ID]" class="Kladr"  />
-		<bag name="AddressMember" lazy="true" inverse="true" >
-			<key column="[KladrId]"></key>
-			<one-to-many class="address"></one-to-many>
-		</bag>
-		<bag name="Kladrs" lazy="true" inverse="true" >
-			<key column="[KLADR_PARENT_ID]"></key>
-			<one-to-many class="Kladr"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <class name="rt.srz.model.srz.Kladr, rt.srz.model" table="[dbo].[KLADR]" lazy="true">
+    <id name="Id" column="[ID]">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Version" column="[VERSION]" />
+    <property name="Name" column="[NAME]" />
+    <property name="Socr" column="[SOCR]" />
+    <property name="Code" column="[CODE]" />
+    <property name="Index" column="[INDEX]" />
+    <property name="Gninmb" column="[GNINMB]" />
+    <property name="Uno" column="[UNO]" />
+    <property name="Ocatd" column="[OCATD]" />
+    <property name="Status" column="[STATUS]" />
+    <property name="FullAddress" column="[FULL_ADDRESS]" />
+    <property name="Level" column="[LEVEL]" />
+    <many-to-one name="KLADRPARENT" column="[KLADR_PARENT_ID]" class="Kladr" />
+    <bag name="AddressMember" lazy="true" inverse="true">
+      <key column="[KladrId]"></key>
+      <one-to-many class="address"></one-to-many>
+    </bag>
+    <bag name="Kladrs" lazy="true" inverse="true">
+      <key column="[KLADR_PARENT_ID]"></key>
+      <one-to-many class="Kladr"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

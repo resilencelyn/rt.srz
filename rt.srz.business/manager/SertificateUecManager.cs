@@ -15,7 +15,6 @@ namespace rt.srz.business.manager
   using NHibernate;
 
   using rt.core.business.security.interfaces;
-  using rt.core.model.interfaces;
   using rt.srz.business.manager.cache;
   using rt.srz.model.srz;
 
@@ -98,7 +97,7 @@ namespace rt.srz.business.manager
     /// The smo id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -123,7 +122,7 @@ namespace rt.srz.business.manager
     /// The smo id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -150,7 +149,7 @@ namespace rt.srz.business.manager
     /// The workstation Id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -176,7 +175,7 @@ namespace rt.srz.business.manager
     /// The workstation Id.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.
@@ -205,7 +204,7 @@ namespace rt.srz.business.manager
     /// The sert.
     /// </param>
     /// <param name="version">
-    /// The version.
+    /// The Version.
     /// </param>
     /// <param name="type">
     /// The type.

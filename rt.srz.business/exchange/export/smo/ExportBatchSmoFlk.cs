@@ -20,14 +20,14 @@ namespace rt.srz.business.exchange.export.smo
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
   /// <summary>
-  /// The export batch smo flk.
+  ///   The export batch smo flk.
   /// </summary>
   public class ExportBatchSmoFlk : ExportBatchSmo<PFLKType, PRType>
   {

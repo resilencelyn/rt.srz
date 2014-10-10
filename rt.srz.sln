@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{EA1F177D-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rt.srz.barcode", "rt.srz.barcode\rt.srz.barcode.csproj", "{158E22FC-9AB4-4FB6-8A1A-AD8DE18BC222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rt.srz.model.HL7", "rt.srz.model.HL7\rt.srz.model.HL7.csproj", "{B91BB517-E433-4091-9C96-3386CA975C5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rt.srz.model.hl7", "rt.srz.model.HL7\rt.srz.model.hl7.csproj", "{B91BB517-E433-4091-9C96-3386CA975C5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rt.uec.service", "rt.uec.service\rt.uec.service.csproj", "{1218F5C5-1D95-456E-B819-7ABDA961C866}"
 EndProject

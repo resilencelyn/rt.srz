@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.requests
+namespace rt.srz.model.Hl7.person.requests
 {
   #region references
 
@@ -15,7 +15,7 @@ namespace rt.srz.model.HL7.person.requests
   using System.Collections.Generic;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 
@@ -23,7 +23,7 @@ namespace rt.srz.model.HL7.person.requests
   ///   The rs p_ z k 6.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "RSP_ZK6", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "RSP_ZK6", Namespace = "urn:Hl7-org:v2xml")]
   public class RSP_ZK6 : BaseAnswerMessageTemplate
   {
     #region Fields

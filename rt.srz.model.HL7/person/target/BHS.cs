@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.target
+namespace rt.srz.model.Hl7.person.target
 {
   #region references
 
@@ -21,7 +21,7 @@ namespace rt.srz.model.HL7.person.target
   ///   The bhs.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "BHS", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "BHS", Namespace = "urn:Hl7-org:v2xml")]
   public class BHS
   {
     #region Fields
@@ -36,13 +36,13 @@ namespace rt.srz.model.HL7.person.target
     ///   The date time now.
     /// </summary>
     [XmlElement(ElementName = "BHS.7", Order = 7)]
-    public string DateTimeNow = HL7Helper.FormatCurrentDateTime();
+    public string DateTimeNow = Hl7Helper.FormatCurrentDateTime();
 
     /// <summary>
     ///   The field separator.
     /// </summary>
     [XmlElement(ElementName = "BHS.1", Order = 1)]
-    public string FieldSeparator = HL7Helper.BHS_Delimiter;
+    public string FieldSeparator = Hl7Helper.BHS_Delimiter;
 
     /// <summary>
     ///   The identificator.
@@ -78,7 +78,7 @@ namespace rt.srz.model.HL7.person.target
     ///   The special symbol.
     /// </summary>
     [XmlElement(ElementName = "BHS.2", Order = 2)]
-    public string SpecialSymbol = HL7Helper.BHS_CodeSymbols;
+    public string SpecialSymbol = Hl7Helper.BHS_CodeSymbols;
 
     /// <summary>
     ///   The type work.

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons
+namespace rt.srz.model.Hl7.commons
 {
   #region references
 
@@ -22,8 +22,8 @@ namespace rt.srz.model.HL7.commons
   using System.Xml.Serialization;
   using System.Xml.XPath;
 
-  using rt.srz.model.HL7.commons.Enumerations;
-  using rt.srz.model.HL7.dotNetX;
+  using rt.srz.model.Hl7.commons.Enumerations;
+  using rt.srz.model.Hl7.dotNetX;
 
   #endregion
 

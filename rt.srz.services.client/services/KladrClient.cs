@@ -32,6 +32,7 @@ namespace rt.srz.services.client.services
     /// Возвращает адресный объект
     /// </summary>
     /// <param name="objectId">
+    /// The object Id.
     /// </param>
     /// <returns>
     /// The <see cref="Kladr"/> .
@@ -54,7 +55,7 @@ namespace rt.srz.services.client.services
     /// The level.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Kladr}"/>.
     /// </returns>
     public List<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level)
     {

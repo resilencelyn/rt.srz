@@ -69,6 +69,8 @@ namespace rt.srz.ui.pvp.Controls
     /// </summary>
     protected IAuthService AuthService;
 
+    protected IRegulatoryService RegulatoryService;
+
     #endregion
 
     #region Properties
@@ -287,6 +289,8 @@ namespace rt.srz.ui.pvp.Controls
       StatementService = ObjectFactory.GetInstance<IStatementService>();
       SecurityService = ObjectFactory.GetInstance<ISecurityService>();
       AuthService = ObjectFactory.GetInstance<IAuthService>();
+      RegulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
+
       if (!IsPostBack)
       {
         FillStatusStatement();
@@ -642,7 +646,7 @@ namespace rt.srz.ui.pvp.Controls
                      {
                        new MedicalInsurance
                        {
-                         PolisType = StatementService.GetConcept(PolisType.В), 
+                         PolisType = RegulatoryService.GetConcept(PolisType.В), 
                          PolisNumber = tbTemporaryCertificateNumber.Text
                        }
                      }
@@ -863,7 +867,7 @@ namespace rt.srz.ui.pvp.Controls
       var documentList = new List<ListItem>();
       documentList.Insert(0, new ListItem("Выберите вид документа", "-1"));
       documentList.AddRange(
-                            StatementService.GetNsiRecords(Oid.ДокументУдл)
+                            RegulatoryService.GetNsiRecords(Oid.ДокументУдл)
                                             .Select(
                                                     x =>
                                                     new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
@@ -890,10 +894,10 @@ namespace rt.srz.ui.pvp.Controls
       else
       {
         example = new Statement();
-        example.Status = StatementService.GetConcept(StatusStatement.New);
+        example.Status = RegulatoryService.GetConcept(StatusStatement.New);
         example.AbsentPrevPolicy = false;
         example.DocumentUdl = new Document();
-        example.DocumentUdl.DocumentType = StatementService.GetConcept(documentUDL.DocumentType);
+        example.DocumentUdl.DocumentType = RegulatoryService.GetConcept(documentUDL.DocumentType);
         example.DocumentUdl.Series = documentUDL.DocumentSeries;
         example.DocumentUdl.Number = documentUDL.DocumentNumber;
         example.DocumentUdl.IssuingAuthority = documentUDL.DocumentIssuingAuthority;
@@ -914,7 +918,7 @@ namespace rt.srz.ui.pvp.Controls
         example.InsuredPersonData.Snils = SnilsChecker.SsToShort(tbSnils.Text.Replace("_", string.Empty));
         example.InsuredPersonData.Birthplace = tbBirthPlace.Text;
         example.NumberPolicy = tbPolicyNumber.Text;
-        example.InsuredPersonData.Gender = StatementService.GetConcept(int.Parse(ddlGender.SelectedValue));
+        example.InsuredPersonData.Gender = RegulatoryService.GetConcept(int.Parse(ddlGender.SelectedValue));
       }
 
       Session[SessionConsts.CExampleStatement] = example;
@@ -926,7 +930,7 @@ namespace rt.srz.ui.pvp.Controls
     private void FillGender()
     {
       ddlGender.Items.AddRange(
-                               StatementService.GetNsiRecords(Oid.Пол)
+                               RegulatoryService.GetNsiRecords(Oid.Пол)
                                                .Select(
                                                        x =>
                                                        new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
@@ -939,7 +943,7 @@ namespace rt.srz.ui.pvp.Controls
     private void FillStatusStatement()
     {
       ddlCertificateStatus.Items.AddRange(
-                                          StatementService.GetNsiRecords(Oid.СтатусызаявлениянавыдачуполисаОмс)
+                                          RegulatoryService.GetNsiRecords(Oid.СтатусызаявлениянавыдачуполисаОмс)
                                                           .Select(
                                                                   x =>
                                                                   new ListItem(
@@ -957,7 +961,7 @@ namespace rt.srz.ui.pvp.Controls
     private void FillTypeStatement()
     {
       ddlCertificateType.Items.AddRange(
-                                        StatementService.GetNsiRecords(Oid.Кодтипазаявления)
+                                        RegulatoryService.GetNsiRecords(Oid.Кодтипазаявления)
                                                         .Select(
                                                                 x =>
                                                                 new ListItem(

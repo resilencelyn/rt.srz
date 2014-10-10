@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.regex
+namespace rt.srz.model.srz.regex
 {
   using System.Text.RegularExpressions;
 

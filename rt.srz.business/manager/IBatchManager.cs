@@ -27,9 +27,10 @@ namespace rt.srz.business.manager
     /// Получает список пфр батчей по периоду
     /// </summary>
     /// <param name="periodId">
+    /// The period Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{Batch}"/>.
     /// </returns>
     IList<Batch> GetPfrBatchesByPeriod(Guid periodId);
 
@@ -37,15 +38,15 @@ namespace rt.srz.business.manager
     ///   The get pfr batches by user.
     /// </summary>
     /// <returns>
-    ///   The <see cref="IList{T}" />.
+    ///   The <see cref="IList{Batch}" />.
     /// </returns>
     IList<Batch> GetPfrBatchesByUser();
 
     /// <summary>
-    /// Возвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
+    ///   Возвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="IList{Batch}" />.
     /// </returns>
     IList<Period> GetPfrPeriods();
 
@@ -53,6 +54,7 @@ namespace rt.srz.business.manager
     /// Возвращает информацию по статистике пфр
     /// </summary>
     /// <param name="batchId">
+    /// The batch Id.
     /// </param>
     /// <returns>
     /// The <see cref="PfrStatisticInfo"/> .
@@ -63,6 +65,7 @@ namespace rt.srz.business.manager
     /// Возвращает информацию по статистике пфр
     /// </summary>
     /// <param name="periodId">
+    /// The period Id.
     /// </param>
     /// <returns>
     /// The <see cref="PfrStatisticInfo"/> .
@@ -73,6 +76,7 @@ namespace rt.srz.business.manager
     /// Помечает батч как не выгруженный
     /// </summary>
     /// <param name="batchId">
+    /// The batch Id.
     /// </param>
     void MarkBatchAsUnexported(Guid batchId);
 
@@ -80,9 +84,10 @@ namespace rt.srz.business.manager
     /// Осуществляет поиск пакетных операций экспорта заявлений для СМО
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/>.
+    /// The <see cref="SearchResult{SearchBatchResult}"/>.
     /// </returns>
     SearchResult<SearchBatchResult> SearchExportSmoBatches(SearchExportSmoBatchCriteria criteria);
 

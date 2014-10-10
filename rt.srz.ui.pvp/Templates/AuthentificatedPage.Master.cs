@@ -75,7 +75,7 @@ namespace rt.srz.ui.pvp.Templates
         Session[SessionConsts.CDisplayAdminMenu] = currentUser.IsAdmin ||
         _securityService.IsUserHasAdminPermissions(currentUser) ||
         _securityService.IsUserAdminSmo(currentUser.Id) ||
-        _securityService.IsUserAdminTF(currentUser.Id);
+        _securityService.IsUserAdminTfoms(currentUser.Id);
       }
 
       //перенесено в метод который вызывается только для формы с заявлением

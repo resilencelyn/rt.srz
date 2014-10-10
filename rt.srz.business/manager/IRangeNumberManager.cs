@@ -24,14 +24,15 @@ namespace rt.srz.business.manager
     /// ƒобавление или обновление записи
     /// </summary>
     /// <param name="range">
+    /// The range.
     /// </param>
     void AddOrUpdateRangeNumber(RangeNumber range);
 
     /// <summary>
-    /// «ачитывает все записи
+    ///   «ачитывает все записи
     /// </summary>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="IList" />.
     /// </returns>
     IList<RangeNumber> GetRangeNumbers();
 
@@ -39,6 +40,7 @@ namespace rt.srz.business.manager
     /// ѕолучает шаблон дл€ печати вс по по номеру временного свидетельства за€влени€
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <returns>
     /// The <see cref="Template"/>.
@@ -50,6 +52,7 @@ namespace rt.srz.business.manager
     ///   т.е. это проверка пересечений главных диапазонов из шапки страницы
     /// </summary>
     /// <param name="range">
+    /// The range.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.

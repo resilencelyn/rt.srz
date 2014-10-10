@@ -40,9 +40,10 @@ namespace rt.srz.business.manager.cache
     /// Получает список concepts по оид
     /// </summary>
     /// <param name="oidId">
+    /// The oid Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="IList{Concept}"/> .
     /// </returns>
     IList<Concept> GetConceptsByOid(string oidId);
 

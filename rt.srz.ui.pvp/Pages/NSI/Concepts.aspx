@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="Concepts.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Concepts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="Concepts.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.NSI.Concepts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -48,7 +48,7 @@
                     <HeaderStyle CssClass="HideButton" />
                     <ItemStyle CssClass="HideButton" />
                   </asp:CommandField>
-                  <asp:BoundField DataField="Id" HeaderText="Идентификатор" />
+                  <asp:BoundField DataField="id" HeaderText="Идентификатор" />
                   <asp:BoundField DataField="ShortName" HeaderText="Краткое название" />
                   <asp:BoundField DataField="FullName" HeaderText="Полное название" />
                   <asp:BoundField DataField="LatinName" HeaderText="Латинское название" />

@@ -15,7 +15,7 @@ namespace rt.srz.services.Atlantiko
 
   using rt.atl.business.exchange;
   using rt.atl.business.exchange.interfaces;
-  using rt.atl.model.interfaces.service;
+  using rt.atl.model.interfaces.Service;
 
   using StructureMap;
 

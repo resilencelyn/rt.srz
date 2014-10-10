@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.srz.business.manager;
-using rt.srz.model.srz;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="addressTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The address tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.tests
 {
-    public partial class addressTests
-    {
-	}
+  /// <summary>
+  ///   The address tests.
+  /// </summary>
+  public partial class addressTests
+  {
+  }
 }

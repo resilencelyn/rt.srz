@@ -17,7 +17,6 @@ namespace rt.srz.business.manager
   using NHibernate;
 
   using rt.core.business.security.interfaces;
-  using rt.core.model.interfaces;
   using rt.srz.business.manager.cache;
   using rt.srz.model.srz;
 
@@ -46,37 +45,6 @@ namespace rt.srz.business.manager
       SaveOrUpdate(setting);
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
       ObjectFactory.GetInstance<ICheckCacheManager>().UpdateAllowChangeCacheRecord(setting);
-    }
-
-    /// <summary>
-    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом организации
-    /// </summary>
-    /// <param name="className">
-    /// The class Name.
-    /// </param>
-    public void SaveCheckSetting(string className)
-    {
-      var setting = new Setting { Name = className, ValueString = "0" };
-      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      setting.Organisation = user.GetTf();
-      SaveOrUpdate(setting);
-      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-      ObjectFactory.GetInstance<ICheckCacheManager>().UpdateCacheRecord(setting);
-    }
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/> .
-    /// </returns>
-    public Setting GetCurrentSetting(string name)
-    {
-      var curUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      return GetBy(x => x.UserId == curUser.Id && x.Name == name).FirstOrDefault();
     }
 
     /// <summary>
@@ -140,6 +108,22 @@ namespace rt.srz.business.manager
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
       ObjectFactory.GetInstance<ICheckCacheManager>()
                    .UpdateCacheRecord(new Setting { Name = className, UserId = currentUser.Id });
+    }
+
+    /// <summary>
+    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом организации
+    /// </summary>
+    /// <param name="className">
+    /// The class Name.
+    /// </param>
+    public void SaveCheckSetting(string className)
+    {
+      var setting = new Setting { Name = className, ValueString = "0" };
+      var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
+      setting.Organisation = user.GetTf();
+      SaveOrUpdate(setting);
+      ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+      ObjectFactory.GetInstance<ICheckCacheManager>().UpdateCacheRecord(setting);
     }
 
     /// <summary>

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.messages
+namespace rt.srz.model.Hl7.person.messages
 {
   #region references
 

@@ -13,9 +13,9 @@ namespace rt.srz.ui.pvp.Pages.Administrations
 
   using rt.core.model;
   using rt.core.model.interfaces;
-  using rt.srz.model.enumerations;
   using rt.srz.model.interfaces;
   using rt.srz.model.interfaces.service;
+  using rt.srz.ui.pvp.GridViewHelper;
 
   using StructureMap;
 
@@ -44,12 +44,12 @@ namespace rt.srz.ui.pvp.Pages.Administrations
     /// <summary>
     /// The _sec.
     /// </summary>
-    private ISecurityService sec;
+    private ISecurityService securityService;
 
     /// <summary>
     /// The _service.
     /// </summary>
-    private IStatementService service;
+    private ITfomsService tfomsService;
 
     #endregion
 
@@ -124,8 +124,8 @@ namespace rt.srz.ui.pvp.Pages.Administrations
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      service = ObjectFactory.GetInstance<IStatementService>();
-      sec = ObjectFactory.GetInstance<ISecurityService>();
+      tfomsService = ObjectFactory.GetInstance<ITfomsService>();
+      securityService = ObjectFactory.GetInstance<ISecurityService>();
     }
 
     /// <summary>
@@ -142,10 +142,10 @@ namespace rt.srz.ui.pvp.Pages.Administrations
       var helper = new GridGroupHelperSimpleSpan<ICheckStatement>(grid, x => x.LevelDescription);
       if (!IsPostBack)
       {
-        var currentUser = sec.GetCurrentUser();
-        isAdminTf = sec.IsUserAdminTF(currentUser.Id);
+        var currentUser = securityService.GetCurrentUser();
+        isAdminTf = securityService.IsUserAdminTfoms(currentUser.Id);
         isAdmin = currentUser.IsAdmin;
-        allowInstall = sec.GetIsCurrentUserAllowPermission(PermissionCode.Installation);
+        allowInstall = securityService.GetIsCurrentUserAllowPermission(PermissionCode.Installation);
         ViewState["isAdmin"] = isAdmin;
         ViewState["isAdminTf"] = isAdminTf;
         ViewState["allowInstall"] = allowInstall;
@@ -237,12 +237,12 @@ namespace rt.srz.ui.pvp.Pages.Administrations
       if (!cbox.Checked)
       {
         // add to settings data row
-        service.SaveCheckSetting(className.Value);
+        tfomsService.SaveCheckSetting(className.Value);
       }
       else
       {
         // remove data row
-        service.RemoveSetting(className.Value);
+        tfomsService.RemoveSetting(className.Value);
       }
     }
 

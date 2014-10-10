@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.card.boxes
+namespace rt.srz.model.Hl7.card.boxes
 {
   #region references
 

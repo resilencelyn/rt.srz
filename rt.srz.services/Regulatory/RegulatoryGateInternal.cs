@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.services.Nsi
+namespace rt.srz.services.Regulatory
 {
   #region
 
@@ -39,42 +39,10 @@ namespace rt.srz.services.Nsi
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавляет или обновляет запись в базе
-    /// </summary>
-    /// <param name="autoComplete">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    public Guid SaveAutoComplete(AutoComplete autoComplete)
-    {
-      return InvokeInterceptors(() => Service.SaveAutoComplete(autoComplete));
-    }
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="range">
-    /// </param>
-    public void SaveRangeNumber(RangeNumber range)
-    {
-      InvokeInterceptors(() => Service.SaveRangeNumber(range));
-    }
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="template">
-    /// </param>
-    public void SaveTemplate(Template template)
-    {
-      InvokeInterceptors(() => Service.SaveTemplate(template));
-    }
-
-    /// <summary>
     /// Создание копии шаблона печати
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <returns>
     /// The <see cref="Template"/>.
@@ -88,6 +56,7 @@ namespace rt.srz.services.Nsi
     /// Удаление имени или отчества
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     public void DeleteAutoComplete(Guid id)
     {
@@ -95,9 +64,21 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Удаление pdp (set пометка IsActive=false)
+    /// </summary>
+    /// <param name="pdpId">
+    /// The pdp Id.
+    /// </param>
+    public void DeleteOrganisation(Guid pdpId)
+    {
+      InvokeInterceptors(() => Service.DeleteOrganisation(pdpId));
+    }
+
+    /// <summary>
     /// Удаление диапозона
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     public void DeleteRangeNumber(Guid id)
     {
@@ -108,6 +89,7 @@ namespace rt.srz.services.Nsi
     /// Удаление шаблона печати вс
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     public void DeleteTemplateVs(Guid id)
     {
@@ -129,6 +111,51 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Получает запись по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="AutoComplete"/> .
+    /// </returns>
+    public AutoComplete GetAutoComplete(Guid id)
+    {
+      return InvokeInterceptors(() => Service.GetAutoComplete(id));
+    }
+
+    /// <summary>
+    /// Получает результат по критерию для имён и отчеств
+    /// </summary>
+    /// <param name="criteria">
+    /// The criteria.
+    /// </param>
+    /// <returns>
+    /// The <see cref="SearchResult{AutoComplete}"/> .
+    /// </returns>
+    public SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria)
+    {
+      return InvokeInterceptors(() => Service.GetAutoCompleteByCriteria(criteria));
+    }
+
+    /// <summary>
+    /// The get childres.
+    /// </summary>
+    /// <param name="parentId">
+    /// The parent id.
+    /// </param>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Organisation}"/> .
+    /// </returns>
+    public IList<Organisation> GetChildres(Guid parentId, string oid = "")
+    {
+      return InvokeInterceptors(() => Service.GetChildres(parentId, oid));
+    }
+
+    /// <summary>
     /// The get concept.
     /// </summary>
     /// <param name="id">
@@ -146,122 +173,14 @@ namespace rt.srz.services.Nsi
     /// Получает список concepts по оид
     /// </summary>
     /// <param name="oidId">
+    /// The oid Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Concept}"/> .
     /// </returns>
     public List<Concept> GetConceptsByOid(string oidId)
     {
       return InvokeInterceptors(() => Service.GetConceptsByOid(oidId));
-    }
-
-    /// <summary>
-    /// Получает запись по ид
-    /// </summary>
-    /// <param name="id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="AutoComplete"/> .
-    /// </returns>
-    public AutoComplete GetAutoComplete(Guid id)
-    {
-      return InvokeInterceptors(() => Service.GetAutoComplete(id));
-    }
-
-    /// <summary>
-    /// Получает результат по критерию для имён и отчеств
-    /// </summary>
-    /// <param name="criteria">
-    /// </param>
-    /// <returns>
-    /// The <see cref="SearchResult"/> .
-    /// </returns>
-    public SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria)
-    {
-      return InvokeInterceptors(() => Service.GetAutoCompleteByCriteria(criteria));
-    }
-
-    /// <summary>
-    ///   Зачитывает все записи
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public List<Oid> GetOids()
-    {
-      return InvokeInterceptors(() => Service.GetOids());
-    }
-
-    /// <summary>
-    /// Возвращет объект по ид
-    /// </summary>
-    /// <param name="id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="RangeNumber"/>.
-    /// </returns>
-    public RangeNumber GetRangeNumber(Guid id)
-    {
-      return InvokeInterceptors(() => Service.GetRangeNumber(id));
-    }
-
-    /// <summary>
-    /// Зачитывает все записи
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    public List<RangeNumber> GetRangeNumbers()
-    {
-      return InvokeInterceptors(() => Service.GetRangeNumbers());
-    }
-
-    /// <summary>
-    /// Шаблон по ид
-    /// </summary>
-    /// <param name="id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Template"/>.
-    /// </returns>
-    public Template GetTemplate(Guid id)
-    {
-      return InvokeInterceptors(() => Service.GetTemplate(id));
-    }
-
-    /// <summary>
-    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
-    /// </summary>
-    /// <param name="statement">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Template"/>.
-    /// </returns>
-    public Template GetTemplateByStatement(Statement statement)
-    {
-      return InvokeInterceptors(() => Service.GetTemplateByStatement(statement));
-    }
-
-    /// <summary>
-    /// Все шаблоны печати вс
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    public List<Template> GetTemplates()
-    {
-      return InvokeInterceptors(() => Service.GetTemplates());
-    }
-
-    /// <summary>
-    /// Пересекается ли указанная запись с другими по диапозону
-    /// </summary>
-    /// <param name="range">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    public bool IntersectWithOther(RangeNumber range)
-    {
-      return InvokeInterceptors(() => Service.IntersectWithOther(range));
     }
 
     /// <summary>
@@ -279,36 +198,71 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
-    /// Удаление pdp (set пометка IsActive=false)
+    /// Возвращает список варианатов для имени
     /// </summary>
-    /// <param name="pdpId">
-    /// </param>
-    public void DeleteOrganisation(Guid pdpId)
-    {
-      InvokeInterceptors(() => Service.DeleteOrganisation(pdpId));
-    }
-
-    /// <summary>
-    ///   Возвращает список всех зарегестрированных ТФОМС
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public List<Organisation> GetTfoms()
-    {
-      return InvokeInterceptors(() => Service.GetTfoms());
-    }
-
-    /// <summary>
-    /// The get childres.
-    /// </summary>
-    /// <param name="parentId">
-    /// The parent id.
+    /// <param name="prefix">
+    /// The prefix.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{AutoComplete}"/> .
     /// </returns>
-    public IList<Organisation> GetChildres(Guid parentId, string oid = "")
+    public List<AutoComplete> GetFirstNameAutoComplete(string prefix)
     {
-      return InvokeInterceptors(() => Service.GetChildres(parentId, oid));
+      return InvokeInterceptors(() => Service.GetFirstNameAutoComplete(prefix));
+    }
+
+    /// <summary>
+    /// Возвращает список вариантов для отчества
+    /// </summary>
+    /// <param name="prefix">
+    /// The prefix.
+    /// </param>
+    /// <param name="nameId">
+    /// The name Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{AutoComplete}"/> .
+    /// </returns>
+    public List<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId)
+    {
+      return InvokeInterceptors(() => Service.GetMiddleNameAutoComplete(prefix, nameId));
+    }
+
+    /// <summary>
+    /// Возвращает список нормативно справочных данных
+    /// </summary>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    public List<Concept> GetNsiRecords(string oid)
+    {
+      return InvokeInterceptors(() => Service.GetNsiRecords(oid));
+    }
+
+    /// <summary>
+    /// Возвращает список нормативно справочных данных
+    /// </summary>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    public List<Concept> GetNsiRecords(IEnumerable<string> oid)
+    {
+      return InvokeInterceptors(() => Service.GetNsiRecords(oid));
+    }
+
+    /// <summary>
+    ///   Зачитывает все записи
+    /// </summary>
+    /// <returns> The <see cref="List{Oid}" /> . </returns>
+    public List<Oid> GetOids()
+    {
+      return InvokeInterceptors(() => Service.GetOids());
     }
 
     /// <summary>
@@ -318,7 +272,7 @@ namespace rt.srz.services.Nsi
     /// The pdp Id.
     /// </param>
     /// <returns>
-    /// The <see cref="PointDistributionPolicy"/> .
+    /// The <see cref="Organisation"/> .
     /// </returns>
     public Organisation GetOrganisation(Guid pdpId)
     {
@@ -326,7 +280,32 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
-    /// Возвращает СМО
+    /// Возвращет объект по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="RangeNumber"/>.
+    /// </returns>
+    public RangeNumber GetRangeNumber(Guid id)
+    {
+      return InvokeInterceptors(() => Service.GetRangeNumber(id));
+    }
+
+    /// <summary>
+    ///   Зачитывает все записи
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="List{RangeNumber}" />.
+    /// </returns>
+    public List<RangeNumber> GetRangeNumbers()
+    {
+      return InvokeInterceptors(() => Service.GetRangeNumbers());
+    }
+
+    /// <summary>
+    /// The get smo by okato and ogrn.
     /// </summary>
     /// <param name="okato">
     /// The okato.
@@ -335,7 +314,7 @@ namespace rt.srz.services.Nsi
     /// The ogrn.
     /// </param>
     /// <returns>
-    /// The <see cref="Smo"/> .
+    /// The <see cref="Organisation"/> .
     /// </returns>
     public Organisation GetSmoByOkatoAndOgrn(string okato, string ogrn)
     {
@@ -346,13 +325,62 @@ namespace rt.srz.services.Nsi
     /// Получает список всех организаций
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Organisation}"/> .
     /// </returns>
     public SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria)
     {
       return InvokeInterceptors(() => Service.GetSmos(criteria));
+    }
+
+    /// <summary>
+    /// Шаблон по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template GetTemplate(Guid id)
+    {
+      return InvokeInterceptors(() => Service.GetTemplate(id));
+    }
+
+    /// <summary>
+    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template GetTemplateByStatement(Statement statement)
+    {
+      return InvokeInterceptors(() => Service.GetTemplateByStatement(statement));
+    }
+
+    /// <summary>
+    ///   Все шаблоны печати вс
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="List{Template}" />.
+    /// </returns>
+    public List<Template> GetTemplates()
+    {
+      return InvokeInterceptors(() => Service.GetTemplates());
+    }
+
+    /// <summary>
+    ///   Возвращает список всех зарегестрированных ТФОМС
+    /// </summary>
+    /// <returns> The <see cref="List{Organisation}" /> . </returns>
+    public List<Organisation> GetTfoms()
+    {
+      return InvokeInterceptors(() => Service.GetTfoms());
     }
 
     /// <summary>
@@ -373,6 +401,7 @@ namespace rt.srz.services.Nsi
     /// Получает рабочее место по ид
     /// </summary>
     /// <param name="workstationId">
+    /// The workstation Id.
     /// </param>
     /// <returns>
     /// The <see cref="Workstation"/> .
@@ -386,9 +415,10 @@ namespace rt.srz.services.Nsi
     /// Получает список всех рабочих станций для пункта выдачи
     /// </summary>
     /// <param name="pvpId">
+    /// The pvp Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Workstation}"/> .
     /// </returns>
     public List<Workstation> GetWorkstationsByPvp(Guid pvpId)
     {
@@ -396,12 +426,43 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Пересекается ли указанная запись с другими по диапозону. Только для диапазонов с парент ид = null,
+    ///   т.е. это проверка пересечений главных диапазонов из шапки страницы
+    /// </summary>
+    /// <param name="range">
+    /// The range.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IntersectWithOther(RangeNumber range)
+    {
+      return InvokeInterceptors(() => Service.IntersectWithOther(range));
+    }
+
+    /// <summary>
+    /// Добавляет или обновляет запись в базе
+    /// </summary>
+    /// <param name="autoComplete">
+    /// The AutoComplete.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Guid"/> .
+    /// </returns>
+    public Guid SaveAutoComplete(AutoComplete autoComplete)
+    {
+      return InvokeInterceptors(() => Service.SaveAutoComplete(autoComplete));
+    }
+
+    /// <summary>
     /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
     ///   списке, будут удалены
     /// </summary>
     /// <param name="smoId">
+    /// The smo Id.
     /// </param>
     /// <param name="pvpList">
+    /// The pvp List.
     /// </param>
     public void SavePdps(Guid smoId, List<Organisation> pvpList)
     {
@@ -409,12 +470,24 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="range">
+    /// The range.
+    /// </param>
+    public void SaveRangeNumber(RangeNumber range)
+    {
+      InvokeInterceptors(() => Service.SaveRangeNumber(range));
+    }
+
+    /// <summary>
     /// Сохраняет изменения
     /// </summary>
     /// <param name="smo">
+    /// The smo.
     /// </param>
     /// <returns>
-    /// The <see cref="Guid"/> .
+    /// The <see cref="int"/> .
     /// </returns>
     public Guid SaveSmo(Organisation smo)
     {
@@ -422,11 +495,24 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="template">
+    /// The template.
+    /// </param>
+    public void SaveTemplate(Template template)
+    {
+      InvokeInterceptors(() => Service.SaveTemplate(template));
+    }
+
+    /// <summary>
     /// Устанавливает признак IsOnline
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <param name="isonline">
+    /// The is Online.
     /// </param>
     public void SetTfomIsOnline(Guid id, bool isonline)
     {
@@ -437,8 +523,10 @@ namespace rt.srz.services.Nsi
     /// Существует ли смо с указанным кодом отличная от указанной
     /// </summary>
     /// <param name="smoId">
+    /// The smo Id.
     /// </param>
     /// <param name="code">
+    /// The code.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .

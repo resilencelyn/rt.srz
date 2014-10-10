@@ -78,6 +78,7 @@ namespace rt.srz.business.manager
     /// Удаление инфы о смерти
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     public void DeleteDeathInfo(Guid statementId)
     {

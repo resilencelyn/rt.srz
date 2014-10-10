@@ -69,13 +69,13 @@ namespace rt.srz.ui.pvp
       }
 
       // Получаем время окончания последней синхронизации
-      var syncTimeSrz2Pvp = ObjectFactory.GetInstance<IStatementService>().GetCurrentSetting("ExporterToPvp_Finish");
+      var syncTimeSrz2Pvp = ObjectFactory.GetInstance<IStatementService>().GetSettingCurrentUser("ExporterToPvp_Finish");
 
       DateTime? syncTime = null;
       if (syncTimeSrz2Pvp != null)
       {
         DateTime temp;
-        if (DateTime.TryParse(syncTimeSrz2Pvp.ValueString, out temp))
+        if (DateTime.TryParse(syncTimeSrz2Pvp, out temp))
         {
           syncTime = temp;
         }

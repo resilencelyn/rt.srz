@@ -31,6 +31,7 @@ namespace rt.srz.business.manager
     /// ƒобавление или обновление записи
     /// </summary>
     /// <param name="range">
+    /// The range.
     /// </param>
     public void AddOrUpdateRangeNumber(RangeNumber range)
     {
@@ -68,7 +69,7 @@ namespace rt.srz.business.manager
     ///   «ачитывает все записи
     /// </summary>
     /// <returns>
-    ///   The <see cref="IList" />.
+    ///   The <see cref="IList{RangeNumber}" />.
     /// </returns>
     public IList<RangeNumber> GetRangeNumbers()
     {
@@ -98,8 +99,7 @@ namespace rt.srz.business.manager
       var mainRange =
         GetBy(
               x =>
-              x.Smo == statement.PointDistributionPolicy.Parent 
-              && x.RangelFrom <= num && num <= x.RangelTo
+              x.Smo == statement.PointDistributionPolicy.Parent && x.RangelFrom <= num && num <= x.RangelTo
               && x.Parent == null).FirstOrDefault();
       if (mainRange != null)
       {
@@ -123,6 +123,7 @@ namespace rt.srz.business.manager
     ///   т.е. это проверка пересечений главных диапазонов из шапки страницы
     /// </summary>
     /// <param name="range">
+    /// The range.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.

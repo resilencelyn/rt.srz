@@ -30,36 +30,10 @@ namespace rt.srz.model.interfaces.service
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавляет или обновляет запись в базе
-    /// </summary>
-    /// <param name="autoComplete">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    [OperationContract]
-    Guid SaveAutoComplete(AutoComplete autoComplete);
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="range">
-    /// </param>
-    [OperationContract]
-    void SaveRangeNumber(RangeNumber range);
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="template">
-    /// </param>
-    [OperationContract]
-    void SaveTemplate(Template template);
-
-    /// <summary>
     /// Создание копии шаблона печати
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <returns>
     /// The <see cref="Template"/>.
@@ -71,14 +45,25 @@ namespace rt.srz.model.interfaces.service
     /// Удаление имени или отчества
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     [OperationContract]
     void DeleteAutoComplete(Guid id);
 
     /// <summary>
+    /// Удаление pdp (set пометка IsActive=false)
+    /// </summary>
+    /// <param name="pdpId">
+    /// The pdp Id.
+    /// </param>
+    [OperationContract]
+    void DeleteOrganisation(Guid pdpId);
+
+    /// <summary>
     /// Удаление диапозона
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     [OperationContract]
     void DeleteRangeNumber(Guid id);
@@ -87,6 +72,7 @@ namespace rt.srz.model.interfaces.service
     /// Удаление шаблона печати вс
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     [OperationContract]
     void DeleteTemplateVs(Guid id);
@@ -107,28 +93,7 @@ namespace rt.srz.model.interfaces.service
     /// Получает запись по ид
     /// </summary>
     /// <param name="id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Concept"/> .
-    /// </returns>
-    [OperationContract]
-    Concept GetConcept(int id);
-
-    /// <summary>
-    /// Получает список concepts по оид
-    /// </summary>
-    /// <param name="oidId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    [OperationContract]
-    List<Concept> GetConceptsByOid(string oidId);
-
-    /// <summary>
-    /// Получает запись по ид
-    /// </summary>
-    /// <param name="id">
+    /// The id.
     /// </param>
     /// <returns>
     /// The <see cref="AutoComplete"/> .
@@ -140,90 +105,13 @@ namespace rt.srz.model.interfaces.service
     /// Получает результат по критерию для имён и отчеств
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{AutoComplete}"/> .
     /// </returns>
     [OperationContract]
     SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria);
-
-    /// <summary>
-    ///   Зачитывает все записи
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    [OperationContract]
-    List<Oid> GetOids();
-
-    /// <summary>
-    /// Возвращет объект по ид
-    /// </summary>
-    /// <param name="id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="RangeNumber"/>.
-    /// </returns>
-    [OperationContract]
-    RangeNumber GetRangeNumber(Guid id);
-
-    /// <summary>
-    /// Зачитывает все записи
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    [OperationContract]
-    List<RangeNumber> GetRangeNumbers();
-
-    /// <summary>
-    /// Шаблон по ид
-    /// </summary>
-    /// <param name="id">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Template"/>.
-    /// </returns>
-    [OperationContract]
-    Template GetTemplate(Guid id);
-
-    /// <summary>
-    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
-    /// </summary>
-    /// <param name="statement">
-    /// </param>
-    /// <returns>
-    /// The <see cref="Template"/>.
-    /// </returns>
-    [OperationContract]
-    Template GetTemplateByStatement(Statement statement);
-
-    /// <summary>
-    /// Все шаблоны печати вс
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    [OperationContract]
-    List<Template> GetTemplates();
-
-    /// <summary>
-    /// Пересекается ли указанная запись с другими по диапозону
-    /// </summary>
-    /// <param name="range">
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    [OperationContract]
-    bool IntersectWithOther(RangeNumber range);
-
-    /// <summary>
-    /// Удаление pdp (set пометка IsActive=false)
-    /// </summary>
-    /// <param name="pdpId">
-    /// The pdp Id.
-    /// </param>
-    [OperationContract]
-    void DeleteOrganisation(Guid pdpId);
 
     /// <summary>
     /// The get childres.
@@ -241,6 +129,30 @@ namespace rt.srz.model.interfaces.service
     IList<Organisation> GetChildres(Guid parentId, string oid = "");
 
     /// <summary>
+    /// The get concept.
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Concept"/> .
+    /// </returns>
+    [OperationContract]
+    Concept GetConcept(int id);
+
+    /// <summary>
+    /// Получает список concepts по оид
+    /// </summary>
+    /// <param name="oidId">
+    /// The oid Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    [OperationContract]
+    List<Concept> GetConceptsByOid(string oidId);
+
+    /// <summary>
     /// The get first level by tfoms.
     /// </summary>
     /// <param name="tfoms">
@@ -253,6 +165,64 @@ namespace rt.srz.model.interfaces.service
     Kladr GetFirstLevelByTfoms(Organisation tfoms);
 
     /// <summary>
+    /// Возвращает список варианатов для имени
+    /// </summary>
+    /// <param name="prefix">
+    /// The prefix.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{AutoComplete}"/> .
+    /// </returns>
+    [OperationContract]
+    List<AutoComplete> GetFirstNameAutoComplete(string prefix);
+
+    /// <summary>
+    /// Возвращает список вариантов для отчества
+    /// </summary>
+    /// <param name="prefix">
+    /// The prefix.
+    /// </param>
+    /// <param name="nameId">
+    /// The name Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{AutoComplete}"/> .
+    /// </returns>
+    [OperationContract]
+    List<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId);
+
+    /// <summary>
+    /// Возвращает список нормативно справочных данных
+    /// </summary>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    [OperationContract]
+    List<Concept> GetNsiRecords(string oid);
+
+    /// <summary>
+    /// Возвращает список нормативно справочных данных
+    /// </summary>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    [OperationContract]
+    List<Concept> GetNsiRecords(IEnumerable<string> oid);
+
+    /// <summary>
+    ///   Зачитывает все записи
+    /// </summary>
+    /// <returns> The <see cref="List{Oid}" /> . </returns>
+    [OperationContract]
+    List<Oid> GetOids();
+
+    /// <summary>
     /// Возвращает пункт выдачи полисов
     /// </summary>
     /// <param name="pdpId">
@@ -263,6 +233,27 @@ namespace rt.srz.model.interfaces.service
     /// </returns>
     [OperationContract]
     Organisation GetOrganisation(Guid pdpId);
+
+    /// <summary>
+    /// Возвращет объект по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="RangeNumber"/>.
+    /// </returns>
+    [OperationContract]
+    RangeNumber GetRangeNumber(Guid id);
+
+    /// <summary>
+    ///   Зачитывает все записи
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="List{RangeNumber}" />.
+    /// </returns>
+    [OperationContract]
+    List<RangeNumber> GetRangeNumbers();
 
     /// <summary>
     /// The get smo by okato and ogrn.
@@ -290,6 +281,39 @@ namespace rt.srz.model.interfaces.service
     /// </returns>
     [OperationContract]
     SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria);
+
+    /// <summary>
+    /// Шаблон по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    [OperationContract]
+    Template GetTemplate(Guid id);
+
+    /// <summary>
+    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    [OperationContract]
+    Template GetTemplateByStatement(Statement statement);
+
+    /// <summary>
+    ///   Все шаблоны печати вс
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="List{Template}" />.
+    /// </returns>
+    [OperationContract]
+    List<Template> GetTemplates();
 
     /// <summary>
     ///   Возвращает список всех зарегестрированных ТФОМС
@@ -335,6 +359,31 @@ namespace rt.srz.model.interfaces.service
     List<Workstation> GetWorkstationsByPvp(Guid pvpId);
 
     /// <summary>
+    /// Пересекается ли указанная запись с другими по диапозону. Только для диапазонов с парент ид = null,
+    ///   т.е. это проверка пересечений главных диапазонов из шапки страницы
+    /// </summary>
+    /// <param name="range">
+    /// The range.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    [OperationContract]
+    bool IntersectWithOther(RangeNumber range);
+
+    /// <summary>
+    /// Добавляет или обновляет запись в базе
+    /// </summary>
+    /// <param name="autoComplete">
+    /// The AutoComplete.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Guid"/> .
+    /// </returns>
+    [OperationContract]
+    Guid SaveAutoComplete(AutoComplete autoComplete);
+
+    /// <summary>
     /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
     ///   списке, будут удалены
     /// </summary>
@@ -348,6 +397,15 @@ namespace rt.srz.model.interfaces.service
     void SavePdps(Guid smoId, List<Organisation> pvpList);
 
     /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="range">
+    /// The range.
+    /// </param>
+    [OperationContract]
+    void SaveRangeNumber(RangeNumber range);
+
+    /// <summary>
     /// Сохраняет изменения
     /// </summary>
     /// <param name="smo">
@@ -358,6 +416,15 @@ namespace rt.srz.model.interfaces.service
     /// </returns>
     [OperationContract]
     Guid SaveSmo(Organisation smo);
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="template">
+    /// The template.
+    /// </param>
+    [OperationContract]
+    void SaveTemplate(Template template);
 
     /// <summary>
     /// Устанавливает признак IsOnline

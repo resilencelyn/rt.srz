@@ -15,7 +15,6 @@ namespace rt.srz.business.manager
   using NHibernate;
 
   using rt.core.business.security.interfaces;
-  using rt.core.model.interfaces;
   using rt.srz.model.srz;
 
   using StructureMap;
@@ -33,10 +32,10 @@ namespace rt.srz.business.manager
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <param name="Event">
+    /// <param name="event">
     /// The event.
     /// </param>
-    public void LogAccessToPersonalData(Statement statement, string Event)
+    public void LogAccessToPersonalData(Statement statement, string @event)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var user = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
@@ -49,7 +48,7 @@ namespace rt.srz.business.manager
                            Statement = statement, 
                            Event =
                              session.QueryOver<Concept>()
-                                    .Where(f => f.Name == Event || f.ShortName == Event)
+                                    .Where(f => f.Name == @event || f.ShortName == @event)
                                     .List()
                                     .Single()
                          };
@@ -57,7 +56,7 @@ namespace rt.srz.business.manager
         session.Flush();
         session.Clear();
       }
-      catch (Exception)
+      catch
       {
       }
     }

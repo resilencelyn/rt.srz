@@ -15,316 +15,316 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps {
         /// <summary>
         /// hfKLADRControlType control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.HiddenField hfKLADRControlType;
         
         /// <summary>
         /// Label10 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
         /// Label16 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
         /// chBIsHomeless control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         public global::System.Web.UI.WebControls.CheckBox chBIsHomeless;
         
         /// <summary>
         /// isFreeMainAddressDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl isFreeMainAddressDiv;
         
         /// <summary>
         /// chbIsFreeMainAddress control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbIsFreeMainAddress;
         
         /// <summary>
         /// mainAddressKladrIntellisenseDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainAddressKladrIntellisenseDiv;
         
         /// <summary>
         /// mainAddressKladrIntellisense control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.KladrIntellisenseUserControl mainAddressKladrIntellisense;
         
         /// <summary>
         /// mainAddressKladrDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainAddressKladrDiv;
         
         /// <summary>
         /// mainAddressKladr control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.KladrUserControl mainAddressKladr;
         
         /// <summary>
         /// dateRegistrationDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateRegistrationDiv;
         
         /// <summary>
         /// lbDateRegistration control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label lbDateRegistration;
         
         /// <summary>
         /// tbDateRegistration control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.DateBox tbDateRegistration;
         
         /// <summary>
         /// Label8 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
         /// rbYesResAddress control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         public global::System.Web.UI.WebControls.RadioButton rbYesResAddress;
         
         /// <summary>
         /// rbNoResAddress control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.RadioButton rbNoResAddress;
         
         /// <summary>
         /// residencyAddressLabelDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl residencyAddressLabelDiv;
         
         /// <summary>
         /// Label9 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// isFreeResidencyAdressDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl isFreeResidencyAdressDiv;
         
         /// <summary>
         /// chbIsFreeResidencyAddress control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CheckBox chbIsFreeResidencyAddress;
         
         /// <summary>
         /// residencyAddressKladrIntellisenseDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl residencyAddressKladrIntellisenseDiv;
         
         /// <summary>
         /// residencyAddressKladrIntellisense control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.KladrIntellisenseUserControl residencyAddressKladrIntellisense;
         
         /// <summary>
         /// residencyAddressKladrDiv control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl residencyAddressKladrDiv;
         
         /// <summary>
         /// residencyAddressKladr control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.KladrUserControl residencyAddressKladr;
         
         /// <summary>
         /// Labe10 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Labe10;
         
         /// <summary>
         /// Label11 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
         /// tbHomePhone control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         public global::System.Web.UI.WebControls.TextBox tbHomePhone;
         
         /// <summary>
         /// Label13 control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
         /// tbEmail control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         public global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
         /// cvEmail control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvEmail;
         
         /// <summary>
         /// cvRegistrationSubject control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvRegistrationSubject;
         
         /// <summary>
         /// cvRegistrationPostcode control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvRegistrationPostcode;
         
         /// <summary>
         /// cvDocument control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvDocument;
         
         /// <summary>
         /// cvResidencySubject control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvResidencySubject;
         
         /// <summary>
         /// cvResidencyPostcode control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::System.Web.UI.WebControls.CustomValidator cvResidencyPostcode;
     }
 }

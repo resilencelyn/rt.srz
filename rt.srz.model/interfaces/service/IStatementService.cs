@@ -31,10 +31,8 @@ namespace rt.srz.model.interfaces.service
   {
     #region Public Methods and Operators
 
-
-
     /// <summary>
-    /// The calculate en period working day.
+    /// Вычисляет дату окончания 30 рабочих дней
     /// </summary>
     /// <param name="dateFrom">
     /// The date from.
@@ -45,28 +43,35 @@ namespace rt.srz.model.interfaces.service
     /// <returns>
     /// The <see cref="DateTime"/>.
     /// </returns>
+    [OperationContract]
     DateTime CalculateEndPeriodWorkingDay(DateTime dateFrom, int count);
 
     /// <summary>
     /// The remove statement.
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     [OperationContract]
     void CanceledStatement(Guid statementId);
 
     /// <summary>
+    /// Проверка конкретного свойства заявления
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <param name="expression">
+    /// The expression.
     /// </param>
     [OperationContract]
     void CheckPropertyStatement(Statement statement, ExpressionNode expression);
 
     /// <summary>
+    /// Проверка заявления, используя
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     [OperationContract]
     void CheckStatementSimple(Statement statement);
@@ -87,7 +92,11 @@ namespace rt.srz.model.interfaces.service
     /// The image.
     /// </param>
     /// <returns>
-    /// The <see cref="byte[]"/> .
+    /// The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [OperationContract]
     byte[] ConvertToGrayScale(byte[] image);
@@ -95,14 +104,26 @@ namespace rt.srz.model.interfaces.service
     /// <summary>
     ///   Генерация пустого фото
     /// </summary>
-    /// <returns> The <see cref="byte[]" /> . </returns>
+    /// <returns>
+    ///   The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
     [OperationContract]
     byte[] CreateEmptyPhoto();
 
     /// <summary>
     ///   Генерация пустой подписи
     /// </summary>
-    /// <returns> The <see cref="byte[]" /> . </returns>
+    /// <returns>
+    ///   The
+    ///   <see>
+    ///     <cref>byte[]</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
     [OperationContract]
     byte[] CreateEmptySign();
 
@@ -122,6 +143,7 @@ namespace rt.srz.model.interfaces.service
     /// Удаление инфы о смерти
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     [OperationContract]
     void DeleteDeathInfo(Guid statementId);
@@ -130,9 +152,10 @@ namespace rt.srz.model.interfaces.service
     /// Получает все заявления для указанной персоны
     /// </summary>
     /// <param name="insuredId">
+    /// The insured Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Statement}"/> .
     /// </returns>
     [OperationContract]
     List<Statement> GetAllByInsuredId(Guid insuredId);
@@ -141,37 +164,22 @@ namespace rt.srz.model.interfaces.service
     /// The get category by citizenship.
     /// </summary>
     /// <param name="citizenshipId">
-    ///   The citizenship id.
+    /// The citizenship id.
     /// </param>
     /// <param name="isnotCitizenship">
-    ///   The isnot citizenship.
+    /// The isnot citizenship.
     /// </param>
     /// <param name="isrefugee">
-    ///   The isrefugee.
+    /// The isrefugee.
     /// </param>
     /// <param name="age">
+    /// The age.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
     [OperationContract]
     List<Concept> GetCategoryByCitizenship(int citizenshipId, bool isnotCitizenship, bool isrefugee, TimeSpan age);
-
-    /// <summary>
-    /// The get concept.
-    /// </summary>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Concept"/> .
-    /// </returns>
-    [OperationContract]
-    Concept GetConcept(int id);
 
     /// <summary>
     /// The get content record.
@@ -186,18 +194,20 @@ namespace rt.srz.model.interfaces.service
     Content GetContentRecord(Guid id);
 
     /// <summary>
-    /// The get document residency type by category.
+    /// Ворзвращает типы документов разрешающих проживание в РФ предназначениые для заполнения в зависимости от категории
+    ///   гражданина
     /// </summary>
     /// <param name="categoryId">
     /// The category id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/> .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
-    IList<Concept> GetDocumentResidencyTypeByCategory(int categoryId);
+    [OperationContract]
+    List<Concept> GetDocumentResidencyTypeByCategory(int categoryId);
 
     /// <summary>
-    /// The get document type by category.
+    /// Ворзвращает типы документов УДЛ предназначениые для заполнения в зависимости от категории гражданина и пола
     /// </summary>
     /// <param name="categoryId">
     /// The category id.
@@ -206,52 +216,41 @@ namespace rt.srz.model.interfaces.service
     /// The age.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
     [OperationContract]
-    IList<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age);
+    List<Concept> GetDocumentTypeByCategory(int categoryId, TimeSpan age);
 
     /// <summary>
-    ///   The get document type for registration document
+    ///   Ворзвращает типы документов регистрации предназначениые для заполнения в зависимости от категории гражданина и пола
     /// </summary>
-    /// <param name="categoryId"> The category id. </param>
-    /// <param name="age"> The age. </param>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns>
+    ///   The <see cref="List{Concept}" />.
+    /// </returns>
     [OperationContract]
-    IList<Concept> GetDocumentTypeForRegistrationDocument();
+    List<Concept> GetDocumentTypeForRegistrationDocument();
 
     /// <summary>
     ///   The get document type for representative
     /// </summary>
-    /// <param name="categoryId"> The category id. </param>
-    /// <param name="age"> The age. </param>
-    /// <returns> The <see cref="IList" /> . </returns>
+    /// <returns> The <see cref="List{Concept}" /> . </returns>
     [OperationContract]
-    IList<Concept> GetDocumentTypeForRepresentative();
+    List<Concept> GetDocumentTypeForRepresentative();
 
     /// <summary>
     /// Получает ошибки существующие в заявлениях за указанный период
     /// </summary>
     /// <param name="startDate">
+    /// The start Date.
     /// </param>
     /// <param name="endDate">
+    /// The end Date.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="List{String}"/>.
     /// </returns>
     [OperationContract]
-    IList<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
-
-    /// <summary>
-    /// Возвращает список вариантов для имени
-    /// </summary>
-    /// <param name="prefix">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    [OperationContract]
-    IList<AutoComplete> GetFirstNameAutoComplete(string prefix);
+    List<string> GetErrorsByPeriod(DateTime startDate, DateTime endDate);
 
     /// <summary>
     /// Возвращает список типов полиса в зависимости от причины обращения
@@ -260,53 +259,19 @@ namespace rt.srz.model.interfaces.service
     /// The cause Filling.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    IList<Concept> GetFormManufacturingByCauseFilling(int causeFilling);
-
-    /// <summary>
-    /// Возвращает список вариантов для отчества
-    /// </summary>
-    /// <param name="prefix">
-    /// </param>
-    /// <param name="nameId">
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
+    /// The <see cref="List{Concept}"/> .
     /// </returns>
     [OperationContract]
-    IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId);
-
-    /// <summary>
-    /// Возвращает список нормативно справочных данных
-    /// </summary>
-    /// <param name="oid">
-    /// The oid.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    [OperationContract(Name = "GetNsiRecordsByoid")]
-    IList<Concept> GetNsiRecords(string oid);
-
-    /// <summary>
-    /// Возвращает список нормативно справочных данных
-    /// </summary>
-    /// <param name="oid">
-    /// The oid.
-    /// </param>
-    /// <returns>
-    /// The <see cref="IList"/> .
-    /// </returns>
-    [OperationContract(Name = "GetNsiRecords")]
-    IList<Concept> GetNsiRecords(IEnumerable<string> oid);
+    List<Concept> GetFormManufacturingByCauseFilling(int causeFilling);
 
     /// <summary>
     /// Получает данные по номеру и серии документа
     /// </summary>
     /// <param name="number">
+    /// The number.
     /// </param>
     /// <param name="series">
+    /// The series.
     /// </param>
     /// <returns>
     /// The <see cref="Representative"/> .
@@ -325,18 +290,6 @@ namespace rt.srz.model.interfaces.service
     /// </returns>
     [OperationContract]
     SearchStatementResult GetSearchStatementResult(Guid id);
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/> .
-    /// </returns>
-    [OperationContract]
-    Setting GetCurrentSetting(string name);
 
     /// <summary>
     /// The get setting.
@@ -366,6 +319,7 @@ namespace rt.srz.model.interfaces.service
     /// Возвращает ранее сохраненное завяление
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -377,6 +331,7 @@ namespace rt.srz.model.interfaces.service
     /// Получает заявление по InsuredPersonId с IsActive = 1
     /// </summary>
     /// <param name="insuredPersonId">
+    /// The insured Person Id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -391,15 +346,16 @@ namespace rt.srz.model.interfaces.service
     /// The form manufacturing.
     /// </param>
     /// <returns>
-    /// The <see cref="IList{T}"/>.
+    /// The <see cref="List{Concept}"/>.
     /// </returns>
     [OperationContract]
-    IList<Concept> GetTypePolisByFormManufacturing(int formManufacturing);
+    List<Concept> GetTypePolisByFormManufacturing(int formManufacturing);
 
     /// <summary>
     /// Входит ли указанная персона в объединение как главное или как второе лицо
     /// </summary>
     /// <param name="personId">
+    /// The person Id.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -423,23 +379,6 @@ namespace rt.srz.model.interfaces.service
     bool IsRightToEdit(IEnumerable<Concept> propertys, ExpressionNode expression);
 
     /// <summary>
-    /// Удаляет из базы настройку о том что можно включать отключать проверку данного валидатора
-    /// </summary>
-    /// <param name="className">
-    /// тип валидатора
-    /// </param>
-    [OperationContract]
-    void RemoveAllowChangeSetting(string className);
-
-    /// <summary>
-    /// Удаляет настройку из базы которую надо стало проверять
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    [OperationContract]
-    void RemoveSetting(string className);
-
-    /// <summary>
     /// The save content record.
     /// </summary>
     /// <param name="typeContent">
@@ -461,6 +400,7 @@ namespace rt.srz.model.interfaces.service
     /// Сохраняет заявление
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/> .
@@ -475,11 +415,7 @@ namespace rt.srz.model.interfaces.service
     /// The criteria.
     /// </param>
     /// <returns>
-    /// The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
+    /// The <see cref="SearchResult{SearchStatementResult}"/>.
     /// </returns>
     [OperationContract]
     SearchResult<SearchStatementResult> Search(SearchStatementCriteria criteria);
@@ -500,15 +436,19 @@ namespace rt.srz.model.interfaces.service
     /// Трим полей заявления
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     [OperationContract]
     void TrimStatementData(Statement statement);
 
     /// <summary>
+    /// The try check property.
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <param name="expression">
+    /// The expression.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/> .
@@ -517,26 +457,19 @@ namespace rt.srz.model.interfaces.service
     bool TryCheckProperty(Statement statement, ExpressionNode expression);
 
     /// <summary>
-    /// Проверяет проверку и получает информацию об ошибке (текст ошибки из исключения)
+    /// Проверяет проверку и возвращает информацию об ошибке (текст ошибки из исключения)
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <param name="expression">
+    /// The expression.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
     [OperationContract]
     string TryCheckProperty1(Statement statement, ExpressionNode expression);
-
-    /// <summary>
-    /// The un bind statement.
-    /// </summary>
-    /// <param name="statement">
-    /// The statement.
-    /// </param>
-    [OperationContract]
-    void UnBindStatement(Statement statement);
 
     #endregion
   }

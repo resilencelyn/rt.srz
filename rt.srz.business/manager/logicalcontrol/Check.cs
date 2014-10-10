@@ -44,7 +44,6 @@ namespace rt.srz.business.manager.logicalcontrol
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Check"/> class.
-    ///   Initializes a new instance of the <see cref="CheckObject{T}"/> class.
     /// </summary>
     /// <param name="level">
     /// The level.

@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.algorithms
+namespace rt.srz.model.Hl7.algorithms
 {
   #region references
 
   using System;
 
-  using rt.srz.model.HL7.dotNetX;
+  using rt.srz.model.Hl7.dotNetX;
 
   #endregion
 

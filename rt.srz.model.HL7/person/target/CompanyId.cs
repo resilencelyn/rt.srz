@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.target
+namespace rt.srz.model.Hl7.person.target
 {
   #region references
 

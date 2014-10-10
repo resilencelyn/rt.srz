@@ -32,9 +32,10 @@ namespace rt.atl.business.exchange
     /// <summary>
     ///   The first loading to pvp
     /// </summary>
-    FirstLoadingToPvp = 4, 
+    FirstLoadingToPvp = 4,
 
     /// <summary>
+    /// The export to pvp uec.
     /// </summary>
     ExportToPvpUec = 5
   }

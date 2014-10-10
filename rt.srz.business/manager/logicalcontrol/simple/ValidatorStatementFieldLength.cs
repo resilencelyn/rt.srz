@@ -17,7 +17,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   using rt.srz.model.srz;
 
   /// <summary>
-  /// The validator statement field length.
+  ///   The validator statement field length.
   /// </summary>
   public class ValidatorStatementFieldLength : Check
   {
@@ -177,8 +177,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="displayFieldName">
     /// The display field name.
     /// </param>
-    /// <exception cref="FieldLengthException">
-    /// </exception>
     private void Validate(string fieldValue, int fieldLengthInDatabase, string displayFieldName)
     {
       if (string.IsNullOrEmpty(fieldValue))

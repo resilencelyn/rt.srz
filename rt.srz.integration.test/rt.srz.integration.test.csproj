@@ -139,9 +139,9 @@
       <Project>{9c095cf4-79d1-4b22-b793-ea85ce6ce595}</Project>
       <Name>rt.srz.model.barcode</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.hl7.csproj">
       <Project>{b91bb517-e433-4091-9c96-3386ca975c5a}</Project>
-      <Name>rt.srz.model.HL7</Name>
+      <Name>rt.srz.model.hl7</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
       <Project>{f247928d-ea65-4d69-bd03-b1e506b09986}</Project>

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.zags
+namespace rt.srz.model.Hl7.zags
 {
   using System;
   using System.Xml.Serialization;

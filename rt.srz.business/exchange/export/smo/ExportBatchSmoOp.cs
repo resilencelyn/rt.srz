@@ -23,14 +23,14 @@ namespace rt.srz.business.exchange.export.smo
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
   /// <summary>
-  /// The export batch smo op.
+  ///   The export batch smo op.
   /// </summary>
   public class ExportBatchSmoOp : ExportBatchSmo<OPListType, OPType>
   {
@@ -101,6 +101,7 @@ namespace rt.srz.business.exchange.export.smo
     /// The context.
     /// </param>
     /// <param name="batchId">
+    /// The batch Id.
     /// </param>
     public override void BulkCreateAndExport(IJobExecutionContext context, Guid batchId)
     {
@@ -221,12 +222,12 @@ namespace rt.srz.business.exchange.export.smo
       var recordCounter = 1;
       foreach (var statement in statementList)
       {
-        OPType opType = null;
+        OPType optype = null;
         var mappingWasSuccessful = true;
         try
         {
           // Маппинг 
-          opType = MapOpListType(statement, recordCounter++);
+          optype = MapOpListType(statement, recordCounter++);
         }
         catch (Exception ex)
         {
@@ -248,7 +249,7 @@ namespace rt.srz.business.exchange.export.smo
         }
 
         // Добавляем в батч
-        AddNode(opType);
+        AddNode(optype);
 
         // Расчет прогресса
         if (context != null)

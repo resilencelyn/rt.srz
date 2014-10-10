@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.requests
+namespace rt.srz.model.Hl7.person.requests
 {
   #region references
 
@@ -21,7 +21,7 @@ namespace rt.srz.model.HL7.person.requests
   ///   The rs p_ z k 2.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "RSP_ZK2", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "RSP_ZK2", Namespace = "urn:Hl7-org:v2xml")]
   public class RSP_ZK2 : BaseAnswerMessageTemplate, IRspZk
   {
     #region Public Properties

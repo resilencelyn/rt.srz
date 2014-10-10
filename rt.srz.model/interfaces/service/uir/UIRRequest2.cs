@@ -72,15 +72,6 @@ namespace rt.srz.model.interfaces.service.uir
 
     #region Public Methods and Operators
 
-    /// <summary>
-    ///   Create a clone of this UIRRequest2 object
-    /// </summary>
-    /// <returns> The <see cref="UIRRequest2" /> . </returns>
-    public virtual UIRRequest2 Clone()
-    {
-      return (UIRRequest2)MemberwiseClone();
-    }
-
     #endregion
   }
 }

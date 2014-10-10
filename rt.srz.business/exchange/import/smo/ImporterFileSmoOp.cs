@@ -24,7 +24,7 @@ namespace rt.srz.business.exchange.import.smo
   using rt.srz.business.configuration.algorithms.serialization;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.logicalcontrol;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
@@ -32,14 +32,14 @@ namespace rt.srz.business.exchange.import.smo
   using StructureMap;
 
   /// <summary>
-  /// The importer file smo op.
+  ///   The importer file smo op.
   /// </summary>
   public class ImporterFileSmoOp : ImporterFileSmo<OPListType, OPType>
   {
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ImporterFileSmoOp"/> class.
+    ///   Initializes a new instance of the <see cref="ImporterFileSmoOp" /> class.
     /// </summary>
     public ImporterFileSmoOp()
       : base(TypeSubject.Tfoms)
@@ -54,6 +54,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Применим ли импортер для данного типа сообщений?
     /// </summary>
     /// <param name="file">
+    /// The file.
     /// </param>
     /// <returns>
     /// true, если применим, иначе false
@@ -70,6 +71,7 @@ namespace rt.srz.business.exchange.import.smo
     /// Путь к файлу загрузки
     /// </param>
     /// <param name="context">
+    /// The context.
     /// </param>
     /// <returns>
     /// был ли обработан пакет
@@ -80,15 +82,15 @@ namespace rt.srz.business.exchange.import.smo
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       // Попытка десериализации файла и создание батча
-      var opList = new OPListType();
-      Batch batch = null;
+      var operList = new OPListType();
+      Batch batch;
       try
       {
         // Десериализация
-        opList = XmlSerializationHelper.Deserialize(file.FullName, opList) as OPListType;
+        operList = XmlSerializationHelper.Deserialize(file.FullName, operList) as OPListType;
 
         // Создание батча
-        batch = CreateBatch(opList);
+        batch = CreateBatch(operList);
       }
       catch (Exception ex)
       {
@@ -98,11 +100,9 @@ namespace rt.srz.business.exchange.import.smo
       }
 
       // Вычисляем код ПВП
-      var pdpCode = string.Empty;
       var splittedFileName = batch.FileName.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
       {
-        pdpCode = splittedFileName[1];
       }
 
       // Создаем экспортер для файлов ответа и стартуем батч
@@ -126,71 +126,74 @@ namespace rt.srz.business.exchange.import.smo
       flkRepExp.BeginBatch();
 
       // Проход по записям, маппинг и сохранение заявления
-      var goodAnswer = true;
-      foreach (var op in opList.OP)
+      bool goodAnswer;
+      if (operList != null)
       {
-        Statement statement = null;
-        try
+        foreach (var op in operList.OP)
         {
-          // Маппинг
-          statement = MapStatement(op);
-
-          // Сохраняем заявление
-
-          // Создаем Message
-          var message = new Message();
-          message.Batch = batch;
-          message.IsCommit = true;
-          message.IsError = false;
-          message.Type = conceptManager.GetById(MessageType.K);
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(message);
-
-          // Создаем MessageStatement
-          var messageStat = new MessageStatement();
-          messageStat.Statement = statement;
-          messageStat.Message = message;
-          messageStat.Version = statement.Version;
-          messageStat.Type = conceptManager.GetById(MessageStatementType.MainStatement);
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(messageStat);
-
-          // Сбрасываем изменения в БД
-          ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
-
-          goodAnswer = true;
-        }
-        catch (LogicalControlException ex)
-        {
-          // ошибка ФЛК
-          logger.Info(ex.Message, ex);
-          logger.Info(op);
-          logger.Info(statement);
-          goodAnswer = false;
-
-          // Пишем ошибки ФЛК в ответ
-          foreach (var err in ex.LogicalControlExceptions)
+          Statement statement = null;
+          try
           {
-            // Пишем ошибки ФЛК в ответ
-            var flkAnswer = new PRType();
-            flkAnswer.N_REC = op.N_REC;
-            flkAnswer.OSHIB = err.Info.Code;
-            flkAnswer.COMMENT = err.Message;
-            flkRepExp.AddNode(flkAnswer);
-          }
-        }
-        catch (Exception ex)
-        {
-          logger.Error(ex.Message, ex);
-          logger.Error(op);
-          logger.Error(statement);
-          goodAnswer = false;
-        }
+            // Маппинг
+            statement = MapStatement(op);
 
-        // Пишем ответ
-        var answer = new REPType();
-        answer.N_REC = op.N_REC;
-        answer.ID = op.ID;
-        answer.CODE_ERP = goodAnswer ? CodeConfirm.AA : CodeConfirm.CA;
-        repExp.AddNode(answer);
+            // Сохраняем заявление
+
+            // Создаем Message
+            var message = new Message();
+            message.Batch = batch;
+            message.IsCommit = true;
+            message.IsError = false;
+            message.Type = conceptManager.GetById(MessageType.K);
+            ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(message);
+
+            // Создаем MessageStatement
+            var messageStat = new MessageStatement();
+            messageStat.Statement = statement;
+            messageStat.Message = message;
+            messageStat.Version = statement.Version;
+            messageStat.Type = conceptManager.GetById(MessageStatementType.MainStatement);
+            ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(messageStat);
+
+            // Сбрасываем изменения в БД
+            ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+
+            goodAnswer = true;
+          }
+          catch (LogicalControlException ex)
+          {
+            // ошибка ФЛК
+            logger.Info(ex.Message, ex);
+            logger.Info(op);
+            logger.Info(statement);
+            goodAnswer = false;
+
+            // Пишем ошибки ФЛК в ответ
+            foreach (var err in ex.LogicalControlExceptions)
+            {
+              // Пишем ошибки ФЛК в ответ
+              var flkAnswer = new PRType();
+              flkAnswer.N_REC = op.N_REC;
+              flkAnswer.OSHIB = err.Info.Code;
+              flkAnswer.COMMENT = err.Message;
+              flkRepExp.AddNode(flkAnswer);
+            }
+          }
+          catch (Exception ex)
+          {
+            logger.Error(ex.Message, ex);
+            logger.Error(op);
+            logger.Error(statement);
+            goodAnswer = false;
+          }
+
+          // Пишем ответ
+          var answer = new REPType();
+          answer.N_REC = op.N_REC;
+          answer.ID = op.ID;
+          answer.CODE_ERP = goodAnswer ? CodeConfirm.AA : CodeConfirm.CA;
+          repExp.AddNode(answer);
+        }
       }
 
       // Коммитим батч ответа
@@ -209,13 +212,13 @@ namespace rt.srz.business.exchange.import.smo
     /// <summary>
     /// Создание батча
     /// </summary>
-    /// <param name="opList">
+    /// <param name="operList">
     /// The op List.
     /// </param>
     /// <returns>
     /// The <see cref="Batch"/>.
     /// </returns>
-    protected override Batch CreateBatch(OPListType opList)
+    protected override Batch CreateBatch(OPListType operList)
     {
       var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
@@ -223,19 +226,19 @@ namespace rt.srz.business.exchange.import.smo
       var batch = new Batch();
       batch.Subject = conceptManager.GetById(TypeSubject.Tfoms);
       batch.Type = conceptManager.GetById(TypeFile.Op);
-      batch.FileName = opList.FILENAME;
+      batch.FileName = operList.FILENAME;
 
       // Парсим имя файла для получения периода и номера
       DateTime? period = null;
       short number = -1;
-      var splittedFileName = opList.FILENAME.Split(new[] { '_' });
+      var splittedFileName = operList.FILENAME.Split(new[] { '_' });
       if (splittedFileName.Length == 3)
       {
-        var month = -1;
+        int month;
         var strMonth = splittedFileName[2].Substring(0, 2);
         int.TryParse(strMonth, out month);
 
-        var year = -1;
+        int year;
         var strYear = splittedFileName[2].Substring(2, 2);
         int.TryParse(strYear, out year);
         year += 2000;
@@ -267,7 +270,7 @@ namespace rt.srz.business.exchange.import.smo
       // Получаем СМО
       var smo =
         ObjectFactory.GetInstance<IOrganisationCacheManager>()
-                     .GetBy(x => x.Code == opList.SMOCOD && x.Oid.Id == Oid.Smo)
+                     .GetBy(x => x.Code == operList.SMOCOD && x.Oid.Id == Oid.Smo)
                      .FirstOrDefault();
 
       if (smo != null)
@@ -294,7 +297,6 @@ namespace rt.srz.business.exchange.import.smo
     /// </returns>
     protected override Statement MapStatement(OPType op)
     {
-      var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
       var statementManager = ObjectFactory.GetInstance<IStatementManager>();
 
       // Получаем Statement
@@ -304,7 +306,7 @@ namespace rt.srz.business.exchange.import.smo
       statement.Id = op.ID;
 
       // Версия
-      var version = -1;
+      int version;
       if (!string.IsNullOrEmpty(op.VERSION) && int.TryParse(op.VERSION, out version))
       {
         statement.Version = version;

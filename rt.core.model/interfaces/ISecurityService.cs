@@ -468,7 +468,7 @@ namespace rt.core.model.interfaces
     /// The <see cref="bool"/>.
     /// </returns>
     [OperationContract]
-    bool IsUserAdminTF(Guid userId);
+    bool IsUserAdminTfoms(Guid userId);
 
     /// <summary>
     /// Имеет ли пользователь роль администратора или входит в группы любая из которых имеет роль администратора

@@ -95,49 +95,6 @@ where RowId in (
     }
 
     /// <summary>
-    ///   ѕолучает все дубликаты
-    /// </summary>
-    /// <returns>
-    ///   The
-    ///   <see>
-    ///     <cref>IList</cref>
-    ///   </see>
-    ///   .
-    /// </returns>
-    public IList<Twin> GetTwins()
-    {
-      // зачитываем все дубликаты со статусом -  андидат в дубликаты
-      var session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-      var currentUser = ObjectFactory.GetInstance<ISecurityProvider>().GetCurrentUser();
-      Concept t = null;
-      InsuredPerson insuredPerson1 = null;
-      MedicalInsurance medicalInsurance1 = null;
-      Organisation smo1 = null;
-
-      InsuredPerson insuredPerson2 = null;
-      MedicalInsurance medicalInsurance2 = null;
-      Organisation smo2 = null;
-
-      var query = session.QueryOver<Twin>().JoinAlias(x => x.TwinType, () => t).Where(x => t.Id == TypeTwin.TypeTwin2);
-
-      if (currentUser.HasTf())
-      {
-        query.JoinAlias(x => x.FirstInsuredPerson, () => insuredPerson1)
-             .JoinAlias(() => insuredPerson1.MedicalInsurances, () => medicalInsurance1)
-             .JoinAlias(() => medicalInsurance1.Smo, () => smo1)
-             .And(() => medicalInsurance1.IsActive)
-             .And(() => smo1.Parent.Id == currentUser.GetTf().Id)
-             .JoinAlias(x => x.SecondInsuredPerson, () => insuredPerson2)
-             .JoinAlias(() => insuredPerson2.MedicalInsurances, () => medicalInsurance2)
-             .JoinAlias(() => medicalInsurance2.Smo, () => smo2)
-             .And(() => medicalInsurance2.IsActive)
-             .And(() => smo2.Parent.Id == currentUser.GetTf().Id);
-      }
-
-      return query.List();
-    }
-
-    /// <summary>
     /// ƒубликаты по критерию дл€ разбивки постранично
     /// </summary>
     /// <param name="criteria">

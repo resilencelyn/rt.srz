@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons.Enumerations.Resolve
+namespace rt.srz.model.Hl7.commons.Enumerations.Resolve
 {
   /// <summary>
   ///   The fatal error types.

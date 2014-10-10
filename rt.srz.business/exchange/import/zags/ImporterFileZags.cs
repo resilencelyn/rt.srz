@@ -20,34 +20,25 @@ namespace rt.srz.business.exchange.import.zags
   using Quartz;
 
   using rt.srz.business.manager;
-  using rt.srz.model.HL7.zags;
+  using rt.srz.model.Hl7.zags;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
   /// <summary>
-  /// The importer file zags.
+  ///   The importer file zags.
   /// </summary>
   public class ImporterFileZags : BaseImporterFileQueryResponse<Zags_VNov, DeathInfo>
   {
-    #region Fields
-
-    /// <summary>
-    /// The _organization manager.
-    /// </summary>
-    private readonly IOrganisationManager _organizationManager;
-
-    #endregion
-
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ImporterFileZags"/> class.
+    ///   Initializes a new instance of the <see cref="ImporterFileZags" /> class.
     /// </summary>
     public ImporterFileZags()
     {
-      _organizationManager = ObjectFactory.GetInstance<IOrganisationManager>();
+      ObjectFactory.GetInstance<IOrganisationManager>();
     }
 
     #endregion
@@ -55,7 +46,7 @@ namespace rt.srz.business.exchange.import.zags
     #region Properties
 
     /// <summary>
-    /// Gets a value indicating whether save batch before loading xml.
+    ///   Gets a value indicating whether save batch before loading xml.
     /// </summary>
     protected override bool SaveBatchBeforeLoadingXml
     {
@@ -66,7 +57,7 @@ namespace rt.srz.business.exchange.import.zags
     }
 
     /// <summary>
-    /// Gets the type batch.
+    ///   Gets the type batch.
     /// </summary>
     protected override Concept TypeBatch
     {
@@ -185,7 +176,7 @@ namespace rt.srz.business.exchange.import.zags
     /// The obj.
     /// </param>
     /// <returns>
-    /// The <see cref="IEnumerable"/> .
+    /// The <see cref="IEnumerable{DeathInfo}"/> .
     /// </returns>
     protected override IEnumerable<DeathInfo> GetEnumerable(Zags_VNov obj)
     {
@@ -260,7 +251,7 @@ namespace rt.srz.business.exchange.import.zags
                      Message = batch.Messages.First()
                    };
 
-      ////var foundOrg = _organizationManager.GetBy(z => z.FullName == item.OrgZags.Name_Org).FirstOrDefault();
+      ////var foundOrg = organizationManager.GetBy(z => z.FullName == item.OrgZags.Name_Org).FirstOrDefault();
       ////if (foundOrg != null)
       ////{
       ////  result.Organisation =  new Organisation();

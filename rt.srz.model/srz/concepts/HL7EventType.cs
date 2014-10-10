@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HL7EventType.cs" company="РусБИТех">
+// <copyright file="Hl7EventType.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -12,7 +12,7 @@ namespace rt.srz.model.srz.concepts
   /// <summary>
   /// The h l 7 event type.
   /// </summary>
-  public class HL7EventType : Concept
+  public class Hl7EventType : Concept
   {
     #region Constants
 

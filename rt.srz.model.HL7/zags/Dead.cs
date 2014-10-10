@@ -7,9 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.zags
+namespace rt.srz.model.Hl7.zags
 {
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
   /// <summary>
   ///   Умерший

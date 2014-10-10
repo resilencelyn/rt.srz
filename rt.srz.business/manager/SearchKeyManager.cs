@@ -40,7 +40,7 @@ namespace rt.srz.business.manager
     /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{SearchKey}"/>.
     /// </returns>
     public IList<SearchKey> CalculateStandardKeys(Statement statement)
     {
@@ -51,12 +51,12 @@ namespace rt.srz.business.manager
       var documents = new List<database.business.standard.Document>();
       var fio = new FIO
                 {
-                  familyName = new FieldVariation { fieldType = FieldTypes.FamilyName, value = data.LastName, }, 
-                  firstName = new FieldVariation { fieldType = FieldTypes.FirstName, value = data.FirstName, }, 
+                  familyName = new FieldVariation { fieldType = FieldTypes.FamilyName, value = data.LastName, },
+                  firstName = new FieldVariation { fieldType = FieldTypes.FirstName, value = data.FirstName, },
                   middleName =
                     new FieldVariation
                     {
-                      fieldType = FieldTypes.MiddleName, 
+                      fieldType = FieldTypes.MiddleName,
                       value = !string.IsNullOrEmpty(data.MiddleName) ? data.MiddleName : null
                     }
                 };
@@ -68,7 +68,7 @@ namespace rt.srz.business.manager
         variations.Add(
                        new FieldVariation
                        {
-                         fieldType = FieldTypes.BirthDate, 
+                         fieldType = FieldTypes.BirthDate,
                          value = data.Birthday.Value.ToString("yyyyMMdd")
                        });
       }
@@ -82,7 +82,7 @@ namespace rt.srz.business.manager
         variations.Add(
                        new FieldVariation
                        {
-                         value = statement.PointDistributionPolicy.Parent.Parent.Okato, 
+                         value = statement.PointDistributionPolicy.Parent.Parent.Okato,
                          fieldType = FieldTypes.InsuranceTerritory
                        });
 
@@ -124,16 +124,16 @@ namespace rt.srz.business.manager
                               documentManager
                               .GetSerNumDocument(
                                                  statement
-                                                   .DocumentUdl), 
+                                                   .DocumentUdl),
                             fieldType =
                               FieldTypes.IdCardNumber
-                          }, 
+                          },
                         idCardType =
                           new FieldVariation
                           {
                             value =
                               statement.DocumentUdl
-                                       .DocumentType.Code, 
+                                       .DocumentType.Code,
                             fieldType = FieldTypes.IdCardType
                           }
                       });
@@ -149,24 +149,19 @@ namespace rt.srz.business.manager
 
       // Объединяем два набора ключей
       newKeys.AddRange(oldKeys.Select(x => new HashDataNew { key = x.key, hash = x.hash }));
+      var searchKeyTypeCacheManager = ObjectFactory.GetInstance<ISearchKeyTypeCacheManager>();
 
+      var defaultDocumentType = statement.DocumentUdl != null ? statement.DocumentUdl.DocumentType : new Concept { Id = 0 };
       return
         newKeys.Where(x => x.hash != null)
                .Select(
                        x =>
                        new SearchKey
-                       {
-                         KeyValue = x.hash, 
-                         KeyType =
-                           ObjectFactory.GetInstance<ISearchKeyTypeCacheManager>()
-                                        .Single(y => y.Code == GetKeyCodeByFullKeyCode(x.key)), 
-                         DocumentUdlType =
-                           GetDocumentType(
-                                           x.key, 
-                                           statement.DocumentUdl != null
-                                             ? statement.DocumentUdl.DocumentType
-                                             : new Concept { Id = 0 })
-                       })
+                                     {
+                                       KeyValue = x.hash,
+                                       KeyType = searchKeyTypeCacheManager.Single(y => y.Code == GetKeyCodeByFullKeyCode(x.key)),
+                                       DocumentUdlType = GetDocumentType(x.key, defaultDocumentType)
+                                     })
                .ToList();
     }
 
@@ -195,15 +190,15 @@ namespace rt.srz.business.manager
     /// The okato.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{SearchKey}"/>.
     /// </returns>
     public IList<SearchKey> CalculateUserKeys(
-      IList<SearchKeyType> keyTypeList, 
-      InsuredPersonDatum pd, 
-      Document doc, 
-      address addr1, 
-      address addr2, 
-      IList<MedicalInsurance> medicalInsurances, 
+      IList<SearchKeyType> keyTypeList,
+      InsuredPersonDatum pd,
+      Document doc,
+      address addr1,
+      address addr2,
+      IList<MedicalInsurance> medicalInsurances,
       string okato)
     {
       var result = new List<SearchKey>();
@@ -212,45 +207,45 @@ namespace rt.srz.business.manager
         // Перекодирование типа ключа
         var keyType = new database.business.model.SearchKeyType
                       {
-                        RowId = kt.Id, 
-                        FirstName = kt.FirstName, 
-                        LastName = kt.LastName, 
-                        MiddleName = kt.MiddleName, 
-                        Birthday = kt.Birthday, 
-                        Birthplace = kt.Birthplace, 
-                        Snils = kt.Snils, 
-                        DocumentType = kt.DocumentType, 
-                        DocumentSeries = kt.DocumentSeries, 
-                        DocumentNumber = kt.DocumentNumber, 
-                        Okato = kt.Okato, 
-                        PolisType = kt.PolisType, 
-                        PolisSeria = kt.PolisSeria, 
-                        PolisNumber = kt.PolisNumber, 
-                        FirstNameLength = kt.FirstNameLength, 
-                        LastNameLength = kt.LastNameLength, 
-                        MiddleNameLength = kt.MiddleNameLength, 
-                        BirthdayLength = kt.BirthdayLength, 
-                        AddressStreet = kt.AddressStreet, 
-                        AddressStreetLength = kt.AddressStreetLength, 
-                        AddressHouse = kt.AddressHouse, 
-                        AddressRoom = kt.AddressRoom, 
-                        AddressStreet2 = kt.AddressStreet2, 
-                        AddressStreetLength2 = kt.AddressStreetLength2, 
-                        AddressHouse2 = kt.AddressHouse2, 
-                        AddressRoom2 = kt.AddressRoom2, 
+                        RowId = kt.Id,
+                        FirstName = kt.FirstName,
+                        LastName = kt.LastName,
+                        MiddleName = kt.MiddleName,
+                        Birthday = kt.Birthday,
+                        Birthplace = kt.Birthplace,
+                        Snils = kt.Snils,
+                        DocumentType = kt.DocumentType,
+                        DocumentSeries = kt.DocumentSeries,
+                        DocumentNumber = kt.DocumentNumber,
+                        Okato = kt.Okato,
+                        PolisType = kt.PolisType,
+                        PolisSeria = kt.PolisSeria,
+                        PolisNumber = kt.PolisNumber,
+                        FirstNameLength = kt.FirstNameLength,
+                        LastNameLength = kt.LastNameLength,
+                        MiddleNameLength = kt.MiddleNameLength,
+                        BirthdayLength = kt.BirthdayLength,
+                        AddressStreet = kt.AddressStreet,
+                        AddressStreetLength = kt.AddressStreetLength,
+                        AddressHouse = kt.AddressHouse,
+                        AddressRoom = kt.AddressRoom,
+                        AddressStreet2 = kt.AddressStreet2,
+                        AddressStreetLength2 = kt.AddressStreetLength2,
+                        AddressHouse2 = kt.AddressHouse2,
+                        AddressRoom2 = kt.AddressRoom2,
                         IdenticalLetters = kt.IdenticalLetters
                       };
 
         // Перекодировка персональных данных
         var personData = new database.business.model.InsuredPersonDatum
                          {
-                           RowId = pd.Id, 
-                           LastName = pd.LastName, 
-                           FirstName = pd.FirstName, 
-                           MiddleName = pd.MiddleName, 
-                           Birthday = pd.Birthday, 
-                           Birthplace = pd.Birthplace, 
-                           Snils = pd.Snils, 
+                           RowId = pd.Id,
+                           LastName = pd.LastName,
+                           FirstName = pd.FirstName,
+                           MiddleName = pd.MiddleName,
+                           Birthday = pd.Birthday,
+                           Birthplace = pd.Birthplace,
+                           Snils = pd.Snils,
                          };
 
         // Перекодировка документа
@@ -259,21 +254,21 @@ namespace rt.srz.business.manager
         {
           document = new database.business.model.Document
                      {
-                       RowId = doc.Id, 
-                       DocumentTypeId = doc.DocumentType.Id, 
-                       Series = doc.Series, 
-                       Number = doc.Number, 
+                       RowId = doc.Id,
+                       DocumentTypeId = doc.DocumentType.Id,
+                       Series = doc.Series,
+                       Number = doc.Number,
                      };
         }
 
         // Перекодировка адреса регистрации
         var address1 = new database.business.model.address
                        {
-                         RowId = addr1.Id, 
-                         Street = addr1.Street, 
-                         House = addr1.House, 
-                         Room = addr1.Room, 
-                         Okato = addr1.Okato, 
+                         RowId = addr1.Id,
+                         Street = addr1.Street,
+                         House = addr1.House,
+                         Room = addr1.Room,
+                         Okato = addr1.Okato,
                        };
 
         // Перекодировка адреса проживания
@@ -282,41 +277,41 @@ namespace rt.srz.business.manager
         {
           address2 = new database.business.model.address
                      {
-                       RowId = addr2.Id, 
-                       Street = addr2.Street, 
-                       House = addr2.House, 
-                       Room = addr2.Room, 
-                       Okato = addr2.Okato, 
+                       RowId = addr2.Id,
+                       Street = addr2.Street,
+                       House = addr2.House,
+                       Room = addr2.Room,
+                       Okato = addr2.Okato,
                      };
         }
 
         // Перекодировка страховок
-        foreach (var stInsurance in medicalInsurances)
+        foreach (var medicalInsurance in medicalInsurances)
         {
           var insurance = new database.business.model.MedicalInsurance
                           {
-                            RowId = stInsurance.Id, 
-                            PolisTypeId = stInsurance.PolisType.Id, 
-                            PolisSeria = stInsurance.PolisSeria, 
-                            PolisNumber = stInsurance.PolisNumber, 
+                            RowId = medicalInsurance.Id,
+                            PolisTypeId = medicalInsurance.PolisType.Id,
+                            PolisSeria = medicalInsurance.PolisSeria,
+                            PolisNumber = medicalInsurance.PolisNumber,
                           };
 
           // Расчет ключа
           var keyValue = database.business.ObjectFactory.GetPseudonymizationManager()
                                  .CalculateUserSearchKey(
-                                                         keyType, 
-                                                         personData, 
-                                                         document, 
-                                                         address1, 
-                                                         address2, 
-                                                         insurance, 
+                                                         keyType,
+                                                         personData,
+                                                         document,
+                                                         address1,
+                                                         address2,
+                                                         insurance,
                                                          okato);
 
           var conceptCacheManager = ObjectFactory.GetInstance<IConceptCacheManager>();
           var searchKey = new SearchKey
                           {
-                            KeyValue = keyValue, 
-                            KeyType = kt, 
+                            KeyValue = keyValue,
+                            KeyType = kt,
                             DocumentUdlType =
                               doc != null && doc.DocumentType != null
                                 ? conceptCacheManager.GetById(doc.DocumentType.Id)
@@ -363,6 +358,7 @@ namespace rt.srz.business.manager
     /// Возвращает тип документа по строчке, возвращаемой алгоритмом расчета новых ключей
     /// </summary>
     /// <param name="fullKeyCode">
+    /// The full Key Code.
     /// </param>
     /// <param name="defaultDocumentType">
     /// The default Document Type.
@@ -410,6 +406,7 @@ namespace rt.srz.business.manager
     /// Возвращает код типа ключа по строчке, возвращаемой алгоритмом расчета новых ключей
     /// </summary>
     /// <param name="fullKeyCode">
+    /// The full Key Code.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.

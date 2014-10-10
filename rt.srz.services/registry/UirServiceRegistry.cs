@@ -14,7 +14,7 @@ namespace rt.srz.services.registry
   using rt.srz.services.Uir;
 
   /// <summary>
-  /// The uir service registry.
+  ///   The uir service registry.
   /// </summary>
   public class UirServiceRegistry : ServiceRegistryBase<IUirService, UirService, UirGate>
   {

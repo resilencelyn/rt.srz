@@ -7,26 +7,28 @@
 // É altamente desejável que essa mensagem não seja removida.
 //------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// Summary description for GridViewSummaryList
-/// </summary>
-public class GridViewSummaryList : List<GridViewSummary>
+namespace rt.srz.ui.pvp.GridViewHelper
 {
+  /// <summary>
+  /// Summary description for GridViewSummaryList
+  /// </summary>
+  public class GridViewSummaryList : List<GridViewSummary>
+  {
     public GridViewSummary this[string name]
     {
-        get { return this.FindSummaryByColumn(name); }
+      get { return this.FindSummaryByColumn(name); }
     }
 
     public GridViewSummary FindSummaryByColumn(string columnName)
     {
-        foreach (GridViewSummary s in this)
-        {
-            if (s.Column.ToLower() == columnName.ToLower()) return s;
-        }
+      foreach (GridViewSummary s in this)
+      {
+        if (s.Column.ToLower() == columnName.ToLower()) return s;
+      }
 
-        return null;
+      return null;
     }
+  }
 }

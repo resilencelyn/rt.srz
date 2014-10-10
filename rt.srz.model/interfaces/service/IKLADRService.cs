@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IKladrService.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="IKLADRService.cs" company="ÐóñÁÈÒåõ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ErrorsHL7.cs" company="РусБИТех">
+// <copyright file="ErrorsHl7.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations.resolve
+namespace rt.srz.model.Hl7.enumerations.resolve
 {
   /// <summary>
   ///   The errors h l 7.
   /// </summary>
-  public static class ErrorsHL7
+  public static class ErrorsHl7
   {
     #region Public Methods and Operators
 
@@ -25,28 +25,28 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    public static string GetApplicationError(ErrorHL7 error)
+    public static string GetApplicationError(ErrorHl7 error)
     {
       switch (error)
       {
-        case ErrorHL7.FileXmlFailed:
+        case ErrorHl7.FileXmlFailed:
           return "40";
 
-        case ErrorHL7.FileXsdFailed:
+        case ErrorHl7.FileXsdFailed:
           return "41";
 
-        case ErrorHL7.FileHashFailed:
+        case ErrorHl7.FileHashFailed:
           return "44";
 
-        case ErrorHL7.BatchIdentifierFailed:
+        case ErrorHl7.BatchIdentifierFailed:
           return "42";
 
-        case ErrorHL7.BatchMessagesMissing:
-        case ErrorHL7.BatchMessagesOverload:
+        case ErrorHl7.BatchMessagesMissing:
+        case ErrorHl7.BatchMessagesOverload:
           return "43";
       }
 
-      return HL7Helper.UnspecifiedErrorAPP;
+      return Hl7Helper.UnspecifiedErrorAPP;
     }
 
     /// <summary>
@@ -58,49 +58,49 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    public static string GetErrorCode(ErrorHL7 error)
+    public static string GetErrorCode(ErrorHl7 error)
     {
       switch (error)
       {
-        case ErrorHL7.FileXmlFailed:
-        case ErrorHL7.FileXsdFailed:
-        case ErrorHL7.FileHashFailed:
-        case ErrorHL7.BatchIdentifierFailed:
-        case ErrorHL7.BatchMessagesMissing:
-        case ErrorHL7.BatchMessagesOverload:
+        case ErrorHl7.FileXmlFailed:
+        case ErrorHl7.FileXsdFailed:
+        case ErrorHl7.FileHashFailed:
+        case ErrorHl7.BatchIdentifierFailed:
+        case ErrorHl7.BatchMessagesMissing:
+        case ErrorHl7.BatchMessagesOverload:
           return "207";
 
-        case ErrorHL7.BatchException:
-        case ErrorHL7.MessageException:
+        case ErrorHl7.BatchException:
+        case ErrorHl7.MessageException:
           return "207";
 
-        case ErrorHL7.BatchConversionFailed:
-        case ErrorHL7.BatchDataFailed:
-        case ErrorHL7.MessageConversionFailed:
-        case ErrorHL7.MessageDataFailed:
-        case ErrorHL7.MessageIdentifierFailed:
+        case ErrorHl7.BatchConversionFailed:
+        case ErrorHl7.BatchDataFailed:
+        case ErrorHl7.MessageConversionFailed:
+        case ErrorHl7.MessageDataFailed:
+        case ErrorHl7.MessageIdentifierFailed:
           return "102";
 
-        case ErrorHL7.BatchMessagesRejected:
+        case ErrorHl7.BatchMessagesRejected:
           return "202";
 
-        case ErrorHL7.MessageCommandUnknown:
+        case ErrorHl7.MessageCommandUnknown:
           return "200";
 
-        case ErrorHL7.TableDataFailed:
+        case ErrorHl7.TableDataFailed:
           return "103";
 
-        case ErrorHL7.KeyNotFound:
+        case ErrorHl7.KeyNotFound:
           return "204";
 
-        case ErrorHL7.KeyExistsAlready:
+        case ErrorHl7.KeyExistsAlready:
           return "205";
 
-        case ErrorHL7.FlagUnauthorized:
+        case ErrorHl7.FlagUnauthorized:
           return "206";
       }
 
-      return HL7Helper.UnspecifiedErrorISO;
+      return Hl7Helper.UnspecifiedErrorISO;
     }
 
     /// <summary>
@@ -112,19 +112,19 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    public static string GetErrorSeverityLevel(ErrorHL7 error)
+    public static string GetErrorSeverityLevel(ErrorHl7 error)
     {
-      if (error == ErrorHL7.None)
+      if (error == ErrorHl7.None)
       {
         return string.Empty;
       }
 
-      if (error == ErrorHL7.BatchMessagesRejected)
+      if (error == ErrorHl7.BatchMessagesRejected)
       {
         return "W";
       }
 
-      return HL7Helper.FatalSeverityLevel;
+      return Hl7Helper.FatalSeverityLevel;
     }
 
     /// <summary>
@@ -136,18 +136,18 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    public static bool IsBatchProcessible(ErrorHL7 error)
+    public static bool IsBatchProcessible(ErrorHl7 error)
     {
       switch (error)
       {
-        case ErrorHL7.BatchMessagesRejected:
-        case ErrorHL7.MessageException:
-        case ErrorHL7.MessageConversionFailed:
-        case ErrorHL7.MessageDataFailed:
-        case ErrorHL7.MessageCommandUnknown:
-        case ErrorHL7.MessageIdentifierFailed:
-        case ErrorHL7.TableDataFailed:
-        case ErrorHL7.None:
+        case ErrorHl7.BatchMessagesRejected:
+        case ErrorHl7.MessageException:
+        case ErrorHl7.MessageConversionFailed:
+        case ErrorHl7.MessageDataFailed:
+        case ErrorHl7.MessageCommandUnknown:
+        case ErrorHl7.MessageIdentifierFailed:
+        case ErrorHl7.TableDataFailed:
+        case ErrorHl7.None:
           return false;
       }
 
@@ -163,9 +163,9 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    public static bool IsErrorFatal(ErrorHL7 error)
+    public static bool IsErrorFatal(ErrorHl7 error)
     {
-      return HL7Helper.IsSeverityFatal(GetErrorSeverityLevel(error));
+      return Hl7Helper.IsSeverityFatal(GetErrorSeverityLevel(error));
     }
 
     /// <summary>
@@ -177,12 +177,12 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    public static bool IsWorkflowEffector(ErrorHL7 error)
+    public static bool IsWorkflowEffector(ErrorHl7 error)
     {
       switch (error)
       {
-        case ErrorHL7.BatchMessagesMissing:
-        case ErrorHL7.BatchMessagesOverload:
+        case ErrorHl7.BatchMessagesMissing:
+        case ErrorHl7.BatchMessagesOverload:
           return true;
       }
 

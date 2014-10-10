@@ -63,8 +63,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultDocumentDateExpEmptyException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       base.CheckObject(statement);

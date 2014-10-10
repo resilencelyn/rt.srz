@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RequestSegmentHL7.cs" company="РусБИТех">
+// <copyright file="RequestSegmentHl7.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations
+namespace rt.srz.model.Hl7.enumerations
 {
   /// <summary>
   ///   The request segment h l 7.
   /// </summary>
-  public enum RequestSegmentHL7
+  public enum RequestSegmentHl7
   {
     /// <summary>
     ///   The a 01.

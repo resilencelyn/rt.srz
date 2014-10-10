@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons
+namespace rt.srz.model.Hl7.commons
 {
   #region references
 

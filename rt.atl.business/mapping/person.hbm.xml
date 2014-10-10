@@ -1,155 +1,155 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
-	<class name="rt.atl.model.atl.person, rt.atl.model" table="[dbo].[PEOPLE]" lazy="true">
-		<id name="Id" column="[ID]">
-		 	<generator class="native" />
-		</id>
-		<property name="Fam" column="[FAM]" />
-		<property name="Im" column="[IM]" />
-		<property name="Ot" column="[OT]" />
-		<property name="W" column="[W]" />
-		<property name="Dr" column="[DR]" />
-		<property name="Dra" column="[DRA]" />
-		<property name="Mr" column="[MR]" />
-		<property name="Ds" column="[DS]" />
-		<property name="Ss" column="[SS]" />
-		<property name="Doctp" column="[DOCTP]" />
-		<property name="Docs" column="[DOCS]" />
-		<property name="Docn" column="[DOCN]" />
-		<property name="Docdt" column="[DOCDT]" />
-		<property name="Docorg" column="[DOCORG]" />
-		<property name="Cn" column="[CN]" />
-		<property name="Subj" column="[SUBJ]" />
-		<property name="Rn" column="[RN]" />
-		<property name="Indx" column="[INDX]" />
-		<property name="Rnname" column="[RNNAME]" />
-		<property name="City" column="[CITY]" />
-		<property name="Np" column="[NP]" />
-		<property name="Ul" column="[UL]" />
-		<property name="Dom" column="[DOM]" />
-		<property name="Kor" column="[KOR]" />
-		<property name="Kv" column="[KV]" />
-		<property name="Dmj" column="[DMJ]" />
-		<property name="Bomj" column="[BOMJ]" />
-		<property name="Psubj" column="[PSUBJ]" />
-		<property name="Prn" column="[PRN]" />
-		<property name="Pindx" column="[PINDX]" />
-		<property name="Prnname" column="[PRNNAME]" />
-		<property name="Pcity" column="[PCITY]" />
-		<property name="Pnp" column="[PNP]" />
-		<property name="Pul" column="[PUL]" />
-		<property name="Pdom" column="[PDOM]" />
-		<property name="Pkor" column="[PKOR]" />
-		<property name="Pkv" column="[PKV]" />
-		<property name="Pdmj" column="[PDMJ]" />
-		<property name="Rdoctp" column="[RDOCTP]" />
-		<property name="Rdocs" column="[RDOCS]" />
-		<property name="Rdocn" column="[RDOCN]" />
-		<property name="Rdocdt" column="[RDOCDT]" />
-		<property name="Rdocorg" column="[RDOCORG]" />
-		<property name="Rdocend" column="[RDOCEND]" />
-		<property name="Email" column="[EMAIL]" />
-		<property name="Q" column="[Q]" />
-		<property name="Prz" column="[PRZ]" />
-		<property name="Enp" column="[ENP]" />
-		<property name="Opdoc" column="[OPDOC]" />
-		<property name="Okato" column="[OKATO]" />
-		<property name="Dhpol" column="[DHPOL]" />
-		<property name="Dbeg" column="[DBEG]" />
-		<property name="Dend" column="[DEND]" />
-		<property name="Petition" column="[PETITION]" />
-		<property name="Lpu" column="[LPU]" />
-		<property name="Lpuwk" column="[LPUWK]" />
-		<property name="Lpust" column="[LPUST]" />
-		<property name="Lpuuch" column="[LPUUCH]" />
-		<property name="Sp" column="[SP]" />
-		<property name="Kt" column="[KT]" />
-		<property name="Okved" column="[OKVED]" />
-		<property name="Kladrs" column="[KLADRS]" />
-		<property name="Zfam" column="[ZFAM]" />
-		<property name="Zim" column="[ZIM]" />
-		<property name="Zot" column="[ZOT]" />
-		<property name="Zt" column="[ZT]" />
-		<property name="Zdr" column="[ZDR]" />
-		<property name="Zmr" column="[ZMR]" />
-		<property name="Zdoctp" column="[ZDOCTP]" />
-		<property name="Zdocs" column="[ZDOCS]" />
-		<property name="Zdocn" column="[ZDOCN]" />
-		<property name="Zdocdt" column="[ZDOCDT]" />
-		<property name="Zdocorg" column="[ZDOCORG]" />
-		<property name="Zaddr" column="[ZADDR]" />
-		<property name="Pid" column="[PID]" />
-		<property name="Dedit" column="[DEDIT]" />
-		<property name="Derp" column="[DERP]" />
-		<property name="Unemp" column="[UNEMP]" />
-		<property name="Extid" column="[EXTID]" />
-		<property name="Phone" column="[PHONE]" />
-		<property name="Zphone" column="[ZPHONE]" />
-		<property name="Spol" column="[SPOL]" />
-		<property name="Npol" column="[NPOL]" />
-		<property name="Qogrn" column="[QOGRN]" />
-		<property name="Dstop" column="[DSTOP]" />
-		<property name="Dviz" column="[DVIZ]" />
-		<property name="Meth" column="[METH]" />
-		<property name="Zenp" column="[ZENP]" />
-		<property name="Denp" column="[DENP]" />
-		<property name="Erp" column="[ERP]" />
-		<property name="Zerr" column="[ZERR]" />
-		<property name="Opsmo" column="[OPSMO]" />
-		<property name="Oppol" column="[OPPOL]" />
-		<property name="Polpr" column="[POLPR]" />
-		<property name="Polvid" column="[POLVID]" />
-		<property name="Polisid" column="[POLISID]" />
-		<property name="Pfrss" column="[PFRSS]" />
-		<property name="Rstop" column="[RSTOP]" />
-		<property name="Dakt" column="[DAKT]" />
-		<property name="Nakt" column="[NAKT]" />
-		<property name="Takt" column="[TAKT]" />
-		<property name="Dzp1" column="[DZP1]" />
-		<property name="Zp1repl" column="[ZP1REPL]" />
-		<property name="Del" column="[DEL]" />
-		<property name="Oldenp" column="[OLDENP]" />
-		<property name="Tenp" column="[TENP]" />
-		<property name="Senp" column="[SENP]" />
-		<property name="Photo" column="[PHOTO]" />
-		<property name="Ptype" column="[PTYPE]" />
-		<property name="Drt" column="[DRT]" />
-		<property name="Fiopr" column="[FIOPR]" />
-		<property name="Contact" column="[CONTACT]" />
-		<property name="Nord" column="[NORD]" />
-		<property name="Dord" column="[DORD]" />
-		<property name="Signat" column="[SIGNAT]" />
-		<property name="Dz" column="[DZ]" />
-		<property name="Lpuauto" column="[LPUAUTO]" />
-		<property name="Lpudt" column="[LPUDT]" />
-		<property name="Lpudx" column="[LPUDX]" />
-		<property name="Kladrg" column="[KLADRG]" />
-		<property name="Kladrp" column="[KLADRP]" />
-		<property name="Bid" column="[BID]" />
-		<property name="Mid" column="[MID]" />
-		<property name="Other" column="[OTHER]" />
-		<property name="Fame" column="[FAME]" />
-		<property name="Ime" column="[IME]" />
-		<property name="Ote" column="[OTE]" />
-		<property name="Ssold" column="[SSOLD]" />
-		<property name="Force" column="[FORCE]" />
-		<property name="PzScan" column="[PZ_SCAN]" />
-		<property name="Dost" column="[DOST]" />
-		<property name="Docend" column="[DOCEND]" />
-		<property name="BirthOksm" column="[BIRTH_OKSM]" />
-		<property name="Kateg" column="[KATEG]" />
-		<property name="DstopCs" column="[DSTOP_CS]" />
-		<property name="IsExported" column="[IsExported]" />
-		<property name="ExportError" column="[ExportError]" />
-		<property name="Zid" column="[ZID]" />
-		<bag name="Polis" lazy="true" inverse="true" >
-			<key column="[PID]"></key>
-			<one-to-many class="Poli"></one-to-many>
-		</bag>
-		<bag name="Uecs" lazy="true" inverse="true" >
-			<key column="[PID]"></key>
-			<one-to-many class="Uec"></one-to-many>
-		</bag>
-	</class>
-</hibernate-mapping>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.atl.model.atl" assembly="rt.atl.model">
+  <class name="rt.atl.model.atl.person, rt.atl.model" table="[dbo].[PEOPLE]" lazy="true">
+    <id name="Id" column="[ID]">
+      <generator class="native" />
+    </id>
+    <property name="Fam" column="[FAM]" />
+    <property name="Im" column="[IM]" />
+    <property name="Ot" column="[OT]" />
+    <property name="W" column="[W]" />
+    <property name="Dr" column="[DR]" />
+    <property name="Dra" column="[DRA]" />
+    <property name="Mr" column="[MR]" />
+    <property name="Ds" column="[DS]" />
+    <property name="Ss" column="[SS]" />
+    <property name="Doctp" column="[DOCTP]" />
+    <property name="Docs" column="[DOCS]" />
+    <property name="Docn" column="[DOCN]" />
+    <property name="Docdt" column="[DOCDT]" />
+    <property name="Docorg" column="[DOCORG]" />
+    <property name="Cn" column="[CN]" />
+    <property name="Subj" column="[SUBJ]" />
+    <property name="Rn" column="[RN]" />
+    <property name="Indx" column="[INDX]" />
+    <property name="Rnname" column="[RNNAME]" />
+    <property name="City" column="[CITY]" />
+    <property name="Np" column="[NP]" />
+    <property name="Ul" column="[UL]" />
+    <property name="Dom" column="[DOM]" />
+    <property name="Kor" column="[KOR]" />
+    <property name="Kv" column="[KV]" />
+    <property name="Dmj" column="[DMJ]" />
+    <property name="Bomj" column="[BOMJ]" />
+    <property name="Psubj" column="[PSUBJ]" />
+    <property name="Prn" column="[PRN]" />
+    <property name="Pindx" column="[PINDX]" />
+    <property name="Prnname" column="[PRNNAME]" />
+    <property name="Pcity" column="[PCITY]" />
+    <property name="Pnp" column="[PNP]" />
+    <property name="Pul" column="[PUL]" />
+    <property name="Pdom" column="[PDOM]" />
+    <property name="Pkor" column="[PKOR]" />
+    <property name="Pkv" column="[PKV]" />
+    <property name="Pdmj" column="[PDMJ]" />
+    <property name="Rdoctp" column="[RDOCTP]" />
+    <property name="Rdocs" column="[RDOCS]" />
+    <property name="Rdocn" column="[RDOCN]" />
+    <property name="Rdocdt" column="[RDOCDT]" />
+    <property name="Rdocorg" column="[RDOCORG]" />
+    <property name="Rdocend" column="[RDOCEND]" />
+    <property name="Email" column="[EMAIL]" />
+    <property name="Q" column="[Q]" />
+    <property name="Prz" column="[PRZ]" />
+    <property name="Enp" column="[ENP]" />
+    <property name="Opdoc" column="[OPDOC]" />
+    <property name="Okato" column="[OKATO]" />
+    <property name="Dhpol" column="[DHPOL]" />
+    <property name="Dbeg" column="[DBEG]" />
+    <property name="Dend" column="[DEND]" />
+    <property name="Petition" column="[PETITION]" />
+    <property name="Lpu" column="[LPU]" />
+    <property name="Lpuwk" column="[LPUWK]" />
+    <property name="Lpust" column="[LPUST]" />
+    <property name="Lpuuch" column="[LPUUCH]" />
+    <property name="Sp" column="[SP]" />
+    <property name="Kt" column="[KT]" />
+    <property name="Okved" column="[OKVED]" />
+    <property name="Kladrs" column="[KLADRS]" />
+    <property name="Zfam" column="[ZFAM]" />
+    <property name="Zim" column="[ZIM]" />
+    <property name="Zot" column="[ZOT]" />
+    <property name="Zt" column="[ZT]" />
+    <property name="Zdr" column="[ZDR]" />
+    <property name="Zmr" column="[ZMR]" />
+    <property name="Zdoctp" column="[ZDOCTP]" />
+    <property name="Zdocs" column="[ZDOCS]" />
+    <property name="Zdocn" column="[ZDOCN]" />
+    <property name="Zdocdt" column="[ZDOCDT]" />
+    <property name="Zdocorg" column="[ZDOCORG]" />
+    <property name="Zaddr" column="[ZADDR]" />
+    <property name="Pid" column="[PID]" />
+    <property name="Dedit" column="[DEDIT]" />
+    <property name="Derp" column="[DERP]" />
+    <property name="Unemp" column="[UNEMP]" />
+    <property name="Extid" column="[EXTID]" />
+    <property name="Phone" column="[PHONE]" />
+    <property name="Zphone" column="[ZPHONE]" />
+    <property name="Spol" column="[SPOL]" />
+    <property name="Npol" column="[NPOL]" />
+    <property name="Qogrn" column="[QOGRN]" />
+    <property name="Dstop" column="[DSTOP]" />
+    <property name="Dviz" column="[DVIZ]" />
+    <property name="Meth" column="[METH]" />
+    <property name="Zenp" column="[ZENP]" />
+    <property name="Denp" column="[DENP]" />
+    <property name="Erp" column="[ERP]" />
+    <property name="Zerr" column="[ZERR]" />
+    <property name="Opsmo" column="[OPSMO]" />
+    <property name="Oppol" column="[OPPOL]" />
+    <property name="Polpr" column="[POLPR]" />
+    <property name="Polvid" column="[POLVID]" />
+    <property name="Polisid" column="[POLISID]" />
+    <property name="Pfrss" column="[PFRSS]" />
+    <property name="Rstop" column="[RSTOP]" />
+    <property name="Dakt" column="[DAKT]" />
+    <property name="Nakt" column="[NAKT]" />
+    <property name="Takt" column="[TAKT]" />
+    <property name="Dzp1" column="[DZP1]" />
+    <property name="Zp1repl" column="[ZP1REPL]" />
+    <property name="Del" column="[DEL]" />
+    <property name="Oldenp" column="[OLDENP]" />
+    <property name="Tenp" column="[TENP]" />
+    <property name="Senp" column="[SENP]" />
+    <property name="Photo" column="[PHOTO]" />
+    <property name="Ptype" column="[PTYPE]" />
+    <property name="Drt" column="[DRT]" />
+    <property name="Fiopr" column="[FIOPR]" />
+    <property name="Contact" column="[CONTACT]" />
+    <property name="Nord" column="[NORD]" />
+    <property name="Dord" column="[DORD]" />
+    <property name="Signat" column="[SIGNAT]" />
+    <property name="Dz" column="[DZ]" />
+    <property name="Lpuauto" column="[LPUAUTO]" />
+    <property name="Lpudt" column="[LPUDT]" />
+    <property name="Lpudx" column="[LPUDX]" />
+    <property name="Kladrg" column="[KLADRG]" />
+    <property name="Kladrp" column="[KLADRP]" />
+    <property name="Bid" column="[BID]" />
+    <property name="Mid" column="[MID]" />
+    <property name="Other" column="[OTHER]" />
+    <property name="Fame" column="[FAME]" />
+    <property name="Ime" column="[IME]" />
+    <property name="Ote" column="[OTE]" />
+    <property name="Ssold" column="[SSOLD]" />
+    <property name="Force" column="[FORCE]" />
+    <property name="PzScan" column="[PZ_SCAN]" />
+    <property name="Dost" column="[DOST]" />
+    <property name="Docend" column="[DOCEND]" />
+    <property name="BirthOksm" column="[BIRTH_OKSM]" />
+    <property name="Kateg" column="[KATEG]" />
+    <property name="DstopCs" column="[DSTOP_CS]" />
+    <property name="IsExported" column="[IsExported]" />
+    <property name="ExportError" column="[ExportError]" />
+    <property name="Zid" column="[ZID]" />
+    <bag name="Polis" lazy="true" inverse="true">
+      <key column="[PID]"></key>
+      <one-to-many class="Poli"></one-to-many>
+    </bag>
+    <bag name="Uecs" lazy="true" inverse="true">
+      <key column="[PID]"></key>
+      <one-to-many class="Uec"></one-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

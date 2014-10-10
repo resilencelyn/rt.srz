@@ -65,8 +65,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultFiException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       try

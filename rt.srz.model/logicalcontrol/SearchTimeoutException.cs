@@ -24,8 +24,10 @@ namespace rt.srz.model.logicalcontrol
     /// Конструктор
     /// </summary>
     /// <param name="message">
+    /// The message.
     /// </param>
     /// <param name="e">
+    /// The e.
     /// </param>
     public SearchTimeoutException(string message, Exception e)
       : base(message)

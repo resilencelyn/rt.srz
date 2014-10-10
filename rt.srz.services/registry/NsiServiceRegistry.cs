@@ -13,7 +13,7 @@ namespace rt.srz.services.registry
 
   using rt.core.services.registry;
   using rt.srz.model.interfaces.service;
-  using rt.srz.services.Nsi;
+  using rt.srz.services.Regulatory;
 
   #endregion
 

@@ -30,6 +30,7 @@ namespace rt.srz.business.manager
     /// Сохраняет историю изменения приватных данных и данных документа
     /// </summary>
     /// <param name="newStatement">
+    /// The new Statement.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.

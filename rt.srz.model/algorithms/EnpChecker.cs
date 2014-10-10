@@ -13,7 +13,7 @@ namespace rt.srz.model.algorithms
   using System.Globalization;
   using System.Text;
 
-  using rt.srz.model.HL7.dotNetX;
+  using rt.srz.model.Hl7.dotNetX;
 
   /// <summary>
   ///   The enp.
@@ -34,32 +34,32 @@ namespace rt.srz.model.algorithms
     /// <summary>
     /// The append check sum.
     /// </summary>
-    /// <param name="pro_id">
+    /// <param name="proId">
     /// The pro_id.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    public static string AppendCheckSum(string pro_id)
+    public static string AppendCheckSum(string proId)
     {
-      return pro_id + CalculateCheckSumAsString(pro_id, false);
+      return proId + CalculateCheckSumAsString(proId);
     }
 
     /// <summary>
     /// The append check sum.
     /// </summary>
-    /// <param name="pro_id">
+    /// <param name="proId">
     /// The pro_id.
     /// </param>
-    public static void AppendCheckSum(StringBuilder pro_id)
+    public static void AppendCheckSum(StringBuilder proId)
     {
-      pro_id.Append(CalculateCheckSumAsString(pro_id, false));
+      proId.Append(CalculateCheckSumAsString(proId));
     }
 
     /// <summary>
     /// The calculate check sum.
     /// </summary>
-    /// <param name="pro_id">
+    /// <param name="proId">
     /// The pro_id.
     /// </param>
     /// <param name="hasCheckPosition">
@@ -68,11 +68,9 @@ namespace rt.srz.model.algorithms
     /// <returns>
     /// The <see cref="byte"/>.
     /// </returns>
-    /// <exception cref="ArgumentException">
-    /// </exception>
-    public static byte CalculateCheckSum(TStringHelper.ReadonlyString pro_id, bool hasCheckPosition = false)
+    public static byte CalculateCheckSum(TStringHelper.ReadonlyString proId, bool hasCheckPosition = false)
     {
-      var length = pro_id.Length;
+      var length = proId.Length;
       if (hasCheckPosition)
       {
         length--;
@@ -87,7 +85,7 @@ namespace rt.srz.model.algorithms
       var s = new StringBuilder();
       for (var flag = true; length > 0; flag = !flag)
       {
-        var ch = pro_id[--length];
+        var ch = proId[--length];
         if (flag)
         {
           builder.Append(ch);
@@ -98,7 +96,7 @@ namespace rt.srz.model.algorithms
         }
       }
 
-      s.Append((Convert.ToUInt64(builder.ToString()) * 2L).ToString());
+      s.Append((Convert.ToUInt64(builder.ToString()) * 2L).ToString(CultureInfo.InvariantCulture));
       ulong num2 = 0L;
       length = s.Length;
       while (length > 0)
@@ -118,7 +116,7 @@ namespace rt.srz.model.algorithms
     /// <summary>
     /// The calculate check sum as string.
     /// </summary>
-    /// <param name="pro_id">
+    /// <param name="proId">
     /// The pro_id.
     /// </param>
     /// <param name="hasCheckPosition">
@@ -127,19 +125,22 @@ namespace rt.srz.model.algorithms
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    public static string CalculateCheckSumAsString(TStringHelper.ReadonlyString pro_id, bool hasCheckPosition = false)
+    public static string CalculateCheckSumAsString(TStringHelper.ReadonlyString proId, bool hasCheckPosition = false)
     {
-      return CalculateCheckSum(pro_id, hasCheckPosition).ToString();
+      return CalculateCheckSum(proId, hasCheckPosition).ToString(CultureInfo.InvariantCulture);
     }
 
     /// <summary>
     /// Check birthday and gender by ENP
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <param name="birthday">
+    /// The birthday.
     /// </param>
     /// <param name="isMan">
+    /// The is Man.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.
@@ -173,8 +174,7 @@ namespace rt.srz.model.algorithms
       }
 
       var decimalDigitValue = NumbersHelper.GetDecimalDigitValue(id, length - 1);
-      var hasCheckPosition = true;
-      return CalculateCheckSum(id, hasCheckPosition) == decimalDigitValue;
+      return CalculateCheckSum(id, true) == decimalDigitValue;
     }
 
     /// <summary>
@@ -196,8 +196,10 @@ namespace rt.srz.model.algorithms
     /// Возвращает фасету
     /// </summary>
     /// <param name="birthday">
+    /// The birthday.
     /// </param>
     /// <param name="isMan">
+    /// The is Man.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -269,8 +271,6 @@ namespace rt.srz.model.algorithms
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    /// <exception cref="ArgumentException">
-    /// </exception>
     public static string ResetCheckSum(string id)
     {
       var length = id.Length;
@@ -279,8 +279,7 @@ namespace rt.srz.model.algorithms
         throw new ArgumentException("некорректный идентификатор");
       }
 
-      var hasCheckPosition = true;
-      var str = CalculateCheckSumAsString(id, hasCheckPosition);
+      var str = CalculateCheckSumAsString(id, true);
       if (id[--length] == str[0])
       {
         return id;
@@ -297,8 +296,6 @@ namespace rt.srz.model.algorithms
     /// <param name="id">
     /// The id.
     /// </param>
-    /// <exception cref="ArgumentException">
-    /// </exception>
     public static void ResetCheckSum(StringBuilder id)
     {
       var length = id.Length;
@@ -307,8 +304,7 @@ namespace rt.srz.model.algorithms
         throw new ArgumentException("некорректный идентификатор");
       }
 
-      var hasCheckPosition = true;
-      var str = CalculateCheckSumAsString(id, hasCheckPosition);
+      var str = CalculateCheckSumAsString(id, true);
       id[length - 1] = str[0];
     }
 

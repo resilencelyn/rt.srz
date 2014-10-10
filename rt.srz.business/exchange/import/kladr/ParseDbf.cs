@@ -12,9 +12,8 @@ namespace rt.srz.business.exchange.import.kladr
   using System;
   using System.Collections;
   using System.Collections.Concurrent;
-  using System.Collections.Generic;
-  using System.Data;
   using System.IO;
+  using System.Linq;
   using System.Runtime.InteropServices;
   using System.Text;
   using System.Xml;
@@ -31,7 +30,6 @@ namespace rt.srz.business.exchange.import.kladr
     /// <summary>
     /// Simple function to test is a string can be parsed. There may be a better way, but this works
     ///   If you port this to .NET 2.0, use the new TryParse methods instead of this
-    ///   *Thanks to wu.qingman on code project for fixing a bug in this for me
     /// </summary>
     /// <param name="numberString">
     /// The number String.
@@ -42,23 +40,21 @@ namespace rt.srz.business.exchange.import.kladr
     public static bool IsNumber(string numberString)
     {
       var numbers = numberString.ToCharArray();
-      var number_count = 0;
-      var point_count = 0;
-      var space_count = 0;
+      var numberCount = 0;
+      var pointCount = 0;
 
       foreach (var number in numbers)
       {
         if (number >= 48 && number <= 57)
         {
-          number_count += 1;
+          numberCount += 1;
         }
         else if (number == 46)
         {
-          point_count += 1;
+          pointCount += 1;
         }
         else if (number == 32)
         {
-          space_count += 1;
         }
         else
         {
@@ -66,7 +62,7 @@ namespace rt.srz.business.exchange.import.kladr
         }
       }
 
-      return number_count > 0 && point_count < 2;
+      return numberCount > 0 && pointCount < 2;
     }
 
     /// <summary>
@@ -83,12 +79,6 @@ namespace rt.srz.business.exchange.import.kladr
     /// </returns>
     public static int ReadDbf(string dbfFile, ConcurrentQueue<Kladr> kladrCq)
     {
-      string year;
-      string month;
-      string day;
-      long lTime;
-      int fieldIndex;
-
       // If there isn't even a file, just return an empty DataTable
       if (false == File.Exists(dbfFile))
       {
@@ -96,15 +86,16 @@ namespace rt.srz.business.exchange.import.kladr
       }
 
       BinaryReader br = null;
+      var fieldIndex = 0;
       try
       {
         // Read the header into a buffer
         br = new BinaryReader(File.OpenRead(dbfFile));
-        var buffer = br.ReadBytes(Marshal.SizeOf(typeof(DBFHeader)));
+        var buffer = br.ReadBytes(Marshal.SizeOf(typeof(DbfHeader)));
 
-        // Marshall the header into a DBFHeader structure
+        // Marshall the header into a DbfHeader structure
         var handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-        var header = (DBFHeader)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(DBFHeader));
+        var header = (DbfHeader)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(DbfHeader));
         handle.Free();
 
         // Read in all the field descriptors. Per the spec, 13 (0D) marks the end of the field descriptors
@@ -117,83 +108,35 @@ namespace rt.srz.business.exchange.import.kladr
           handle.Free();
         }
 
-        var fieldsNames = new Dictionary<string, string>();
-        foreach (FieldDescriptor field in fields)
-        {
-          fieldsNames.Add(
-                          field.fieldName, 
-                          field.fieldName.Substring(0, 1).ToUpper() + field.fieldName.Substring(1).ToLower());
-        }
+        var fieldsNames = fields.Cast<FieldDescriptor>()
+                                .ToDictionary(
+                                              field => field.FieldName, 
+                                              field =>
+                                              field.FieldName.Substring(0, 1).ToUpper()
+                                              + field.FieldName.Substring(1).ToLower());
 
         // Read in the first row of records, we need this to help determine column types below
-        br.BaseStream.Seek(header.headerLen + 1, SeekOrigin.Begin);
-        buffer = br.ReadBytes(header.recordLen);
-        var recReader = new BinaryReader(new MemoryStream(buffer));
-
-        // Create the columns in our new DataTable
-
-        
-        DataColumn col = null;
-        string number;
-        foreach (FieldDescriptor field in fields)
-        {
-          number = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(field.fieldLen));
-          switch (field.fieldType)
-          {
-            case 'N':
-              if (number.IndexOf(".") > -1)
-              {
-                col = new DataColumn(field.fieldName, typeof(decimal));
-              }
-              else
-              {
-                col = new DataColumn(field.fieldName, typeof(int));
-              }
-
-              break;
-            case 'C':
-              col = new DataColumn(field.fieldName, typeof(string));
-              break;
-            case 'T':
-
-              // You can uncomment this to see the time component in the grid
-              // col = new DataColumn(field.fieldName, typeof(string));
-              col = new DataColumn(field.fieldName, typeof(DateTime));
-              break;
-            case 'D':
-              col = new DataColumn(field.fieldName, typeof(DateTime));
-              break;
-            case 'L':
-              col = new DataColumn(field.fieldName, typeof(bool));
-              break;
-            case 'F':
-              col = new DataColumn(field.fieldName, typeof(Double));
-              break;
-          }
-        }
-
-        
+        br.BaseStream.Seek(header.HeaderLen + 1, SeekOrigin.Begin);
+        br.ReadBytes(header.RecordLen);
 
         // Skip past the end of the header. 
-        br.BaseStream.Seek(header.headerLen, SeekOrigin.Begin);
+        br.BaseStream.Seek(header.HeaderLen, SeekOrigin.Begin);
 
         // Read in all the records
-        for (var counter = 0; counter <= header.numRecords - 1; counter++)
+        for (var counter = 0; counter <= header.NumRecords - 1; counter++)
         {
           // First we'll read the entire record into a buffer and then read each field from the buffer
           // This helps account for any extra space at the end of each record and probably performs better
-          buffer = br.ReadBytes(header.recordLen);
-          recReader = new BinaryReader(new MemoryStream(buffer));
+          buffer = br.ReadBytes(header.RecordLen);
+          var recReader = new BinaryReader(new MemoryStream(buffer));
 
-          // All dbf field records begin with a deleted flag field. Deleted - 0x2A (asterisk) else 0x20 (space)
+          // All dbf field records begin with a deleted Flag field. Deleted - 0x2A (asterisk) else 0x20 (space)
           if (recReader.ReadChar() == '*')
           {
             continue;
           }
 
           // Loop through each field in a record
-          fieldIndex = 0;
-
           // New XML
           var document = new XmlDocument();
           var element = document.CreateElement("Kladr"); // Path.GetFileNameWithoutExtension(dbfFile).ToUpper());
@@ -202,19 +145,18 @@ namespace rt.srz.business.exchange.import.kladr
           foreach (FieldDescriptor field in fields)
           {
             string s;
-            fieldsNames.TryGetValue(field.fieldName, out s);
+            fieldsNames.TryGetValue(field.FieldName, out s);
             var element2 = document.CreateElement(s);
             element.AppendChild(element2);
             XmlText text;
 
-            #region switch field type
-
-            switch (field.fieldType)
+            string number;
+            switch (field.FieldType)
             {
               case 'N': // Number
 
                 // If you port this to .NET 2.0, use the Decimal.TryParse method
-                number = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(field.fieldLen));
+                number = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(field.FieldLen));
                 text = IsNumber(number) ? document.CreateTextNode(number) : document.CreateTextNode("0");
 
                 break;
@@ -223,7 +165,7 @@ namespace rt.srz.business.exchange.import.kladr
                 text =
                   document.CreateTextNode(
                                           Encoding.GetEncoding(866)
-                                                  .GetString(recReader.ReadBytes(field.fieldLen))
+                                                  .GetString(recReader.ReadBytes(field.FieldLen))
                                                   .TrimEnd(' '));
                 element2.AppendChild(text);
                 if (text.Length < 3)
@@ -236,9 +178,9 @@ namespace rt.srz.business.exchange.import.kladr
                 break;
 
               case 'D': // Date (YYYYMMDD)
-                year = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(4));
-                month = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(2));
-                day = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(2));
+                var year = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(4));
+                var month = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(2));
+                var day = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(2));
                 try
                 {
                   if (IsNumber(year) && IsNumber(month) && IsNumber(day) && int.Parse(year) > 1900)
@@ -257,9 +199,9 @@ namespace rt.srz.business.exchange.import.kladr
 
                 // Date is the number of days since 01/01/4713 BC (Julian Days)
                 // Time is hours * 3600000L + minutes * 60000L + Seconds * 1000L (Milliseconds since midnight)
-                long lDate = recReader.ReadInt32();
-                lTime = recReader.ReadInt32() * 10000L;
-                text = document.CreateTextNode(JulianToDateTime(lDate).AddTicks(lTime).ToString());
+                var date = recReader.ReadInt32();
+                var time = recReader.ReadInt32() * 10000L;
+                text = document.CreateTextNode(JulianToDateTime(date).AddTicks(time).ToString());
                 break;
 
               case 'L': // Boolean (Y/N)
@@ -268,13 +210,11 @@ namespace rt.srz.business.exchange.import.kladr
                 break;
 
               case 'F':
-                number = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(field.fieldLen));
+                number = Encoding.GetEncoding(866).GetString(recReader.ReadBytes(field.FieldLen));
                 text = IsNumber(number) ? document.CreateTextNode(number) : document.CreateTextNode("0.0F");
 
                 break;
             }
-
-            #endregion
 
             fieldIndex++;
           }
@@ -286,7 +226,7 @@ namespace rt.srz.business.exchange.import.kladr
           recReader.Close();
         }
 
-        return header.numRecords;
+        return header.NumRecords;
       }
       finally
       {
@@ -305,25 +245,25 @@ namespace rt.srz.business.exchange.import.kladr
     /// Convert a Julian Date to a .NET DateTime structure
     ///   Implemented from pseudo code at http://en.wikipedia.org/wiki/Julian_day
     /// </summary>
-    /// <param name="lJDN">
+    /// <param name="ljdn">
     /// Julian Date to convert (days since 01/01/4713 BC)
     /// </param>
     /// <returns>
     /// DateTime
     /// </returns>
-    private static DateTime JulianToDateTime(long lJDN)
+    private static DateTime JulianToDateTime(long ljdn)
     {
-      var p = Convert.ToDouble(lJDN);
+      var p = Convert.ToDouble(ljdn);
       var s1 = p + 68569;
       var n = Math.Floor(4 * s1 / 146097);
-      var s2 = s1 - Math.Floor((146097 * n + 3) / 4);
+      var s2 = s1 - Math.Floor(((146097 * n) + 3) / 4);
       var i = Math.Floor(4000 * (s2 + 1) / 1461001);
       var s3 = s2 - Math.Floor(1461 * i / 4) + 31;
       var q = Math.Floor(80 * s3 / 2447);
       var d = s3 - Math.Floor(2447 * q / 80);
       var s4 = Math.Floor(q / 11);
-      var m = q + 2 - 12 * s4;
-      var j = 100 * (n - 49) + i + s4;
+      var m = q + 2 - (12 * s4);
+      var j = (100 * (n - 49)) + i + s4;
       return new DateTime(Convert.ToInt32(j), Convert.ToInt32(m), Convert.ToInt32(d));
     }
 
@@ -334,82 +274,82 @@ namespace rt.srz.business.exchange.import.kladr
     ///   packed so we can read straight from disk into the structure to populate it
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    private struct DBFHeader
+    internal struct DbfHeader
     {
       /// <summary>
-      ///   The version.
+      ///   The Version.
       /// </summary>
-      public readonly byte version;
+      internal readonly byte Version;
 
       /// <summary>
       ///   The update year.
       /// </summary>
-      public readonly byte updateYear;
+      internal readonly byte UpdateYear;
 
       /// <summary>
       ///   The update month.
       /// </summary>
-      public readonly byte updateMonth;
+      internal readonly byte UpdateMonth;
 
       /// <summary>
       ///   The update day.
       /// </summary>
-      public readonly byte updateDay;
+      internal readonly byte UpdateDay;
 
       /// <summary>
       ///   The num records.
       /// </summary>
-      public readonly int numRecords;
+      internal readonly int NumRecords;
 
       /// <summary>
       ///   The header len.
       /// </summary>
-      public readonly short headerLen;
+      internal readonly short HeaderLen;
 
       /// <summary>
       ///   The record len.
       /// </summary>
-      public readonly short recordLen;
+      internal readonly short RecordLen;
 
       /// <summary>
       ///   The reserved 1.
       /// </summary>
-      public readonly short reserved1;
+      internal readonly short Reserved1;
 
       /// <summary>
       ///   The incomplete trans.
       /// </summary>
-      public readonly byte incompleteTrans;
+      internal readonly byte IncompleteTrans;
 
       /// <summary>
-      ///   The encryption flag.
+      ///   The encryption Flag.
       /// </summary>
-      public readonly byte encryptionFlag;
+      internal readonly byte EncryptionFlag;
 
       /// <summary>
       ///   The reserved 2.
       /// </summary>
-      public readonly int reserved2;
+      internal readonly int Reserved2;
 
       /// <summary>
       ///   The reserved 3.
       /// </summary>
-      public readonly long reserved3;
+      internal readonly long Reserved3;
 
       /// <summary>
       ///   The mdx.
       /// </summary>
-      public readonly byte MDX;
+      internal readonly byte Mdx;
 
       /// <summary>
-      ///   The language.
+      ///   The Language.
       /// </summary>
-      public readonly byte language;
+      internal readonly byte Language;
 
       /// <summary>
       ///   The reserved 4.
       /// </summary>
-      public readonly short reserved4;
+      internal readonly short Reserved4;
     }
 
     /// <summary>
@@ -422,58 +362,58 @@ namespace rt.srz.business.exchange.import.kladr
       ///   The field name.
       /// </summary>
       [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
-      public readonly string fieldName;
+      public readonly string FieldName;
 
       /// <summary>
       ///   The field type.
       /// </summary>
-      public readonly char fieldType;
+      public readonly char FieldType;
 
       /// <summary>
-      ///   The address.
+      ///   The Address.
       /// </summary>
-      public readonly int address;
+      public readonly int Address;
 
       /// <summary>
       ///   The field len.
       /// </summary>
-      public readonly byte fieldLen;
+      public readonly byte FieldLen;
 
       /// <summary>
-      ///   The count.
+      ///   The Count.
       /// </summary>
-      public readonly byte count;
+      public readonly byte Count;
 
       /// <summary>
       ///   The reserved 1.
       /// </summary>
-      public readonly short reserved1;
+      public readonly short Reserved1;
 
       /// <summary>
       ///   The work area.
       /// </summary>
-      public readonly byte workArea;
+      public readonly byte WorkArea;
 
       /// <summary>
       ///   The reserved 2.
       /// </summary>
-      public readonly short reserved2;
+      public readonly short Reserved2;
 
       /// <summary>
-      ///   The flag.
+      ///   The Flag.
       /// </summary>
-      public readonly byte flag;
+      public readonly byte Flag;
 
       /// <summary>
       ///   The reserved 3.
       /// </summary>
       [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
-      public readonly byte[] reserved3;
+      public readonly byte[] Reserved3;
 
       /// <summary>
-      ///   The index flag.
+      ///   The index Flag.
       /// </summary>
-      public readonly byte indexFlag;
+      public readonly byte IndexFlag;
     }
   }
 }

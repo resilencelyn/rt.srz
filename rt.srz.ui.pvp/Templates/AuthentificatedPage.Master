@@ -53,7 +53,7 @@
         window.setTimeout("DisplaySessionTimeout()", 1000);
       }
       else {
-        //comfirm - это BehaviorId модального аяксного попапа контрола со всплывающим окошком о том что время сессии истекло
+        //comfirm - это Behaviorid модального аяксного попапа контрола со всплывающим окошком о том что время сессии истекло
         $find("confirm").show();
       }
     }

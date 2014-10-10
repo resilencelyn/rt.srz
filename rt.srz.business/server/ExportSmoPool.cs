@@ -12,7 +12,7 @@ namespace rt.srz.business.server
   using System.Collections.Generic;
 
   /// <summary>
-  /// The export smo pool.
+  ///   The export smo pool.
   /// </summary>
   public class ExportSmoPool
   {
@@ -74,7 +74,7 @@ namespace rt.srz.business.server
     public static object LockObject { get; private set; }
 
     /// <summary>
-    ///   Gets or sets the executing list.
+    ///   Gets the executing list.
     /// </summary>
     public List<ExportSmoJobInfo> ExecutingList { get; private set; }
 

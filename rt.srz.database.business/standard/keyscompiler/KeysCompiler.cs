@@ -24,8 +24,6 @@ namespace rt.srz.database.business.standard.keyscompiler
   using rt.srz.database.business.standard.keyscompiler.Fields;
   using rt.srz.database.business.standard.keyscompiler.Rules;
 
-  using Assumptions = rt.srz.database.business.standard.Assumptions;
-
   // получение поля по его имени
   /// <summary>
   /// The search field name resolver.
@@ -87,11 +85,6 @@ namespace rt.srz.database.business.standard.keyscompiler
     #endregion
 
     #region Fields
-
-    /// <summary>
-    /// The assumptions.
-    /// </summary>
-    private Assumptions assumptions;
 
     // Dictionary<string, int> policyTypes;
 

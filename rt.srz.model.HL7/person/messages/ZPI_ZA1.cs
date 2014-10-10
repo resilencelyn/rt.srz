@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.messages
+namespace rt.srz.model.Hl7.person.messages
 {
   #region references
 
   using System;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
   #endregion
 
@@ -22,7 +22,7 @@ namespace rt.srz.model.HL7.person.messages
   ///   The zp i_ z a 1.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ZPI_ZA1", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ZPI_ZA1", Namespace = "urn:Hl7-org:v2xml")]
   public class ZPI_ZA1 : BaseMessageTemplate
   {
     #region Fields

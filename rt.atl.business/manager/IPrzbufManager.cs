@@ -14,8 +14,5 @@ namespace rt.atl.business.manager
   /// </summary>
   public partial interface IPrzbufManager
   {
-    #region Public Methods and Operators
-
-    #endregion
   }
 }

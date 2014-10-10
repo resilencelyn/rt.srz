@@ -26,6 +26,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
   /// The check concept property.
   /// </summary>
   /// <typeparam name="TException">
+  /// Тип ошибки
   /// </typeparam>
   public abstract class CheckConceptProperty<TException> : Check
     where TException : LogicalControlException, new()
@@ -33,7 +34,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The deleg.
+    ///   The deleg.
     /// </summary>
     private readonly Func<Statement, object> deleg;
 
@@ -66,10 +67,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="ArgumentNullException">
-    /// </exception>
-    /// <exception cref="TException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       if (statement == null)

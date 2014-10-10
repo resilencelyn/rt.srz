@@ -53,7 +53,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      regulatoryService = ObjectFactory.GetInstance<IStatementService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
     }
 
     /// <summary>

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.algorithms
+namespace rt.srz.model.Hl7.algorithms
 {
   /// <summary>
   ///   The region coding.

@@ -31,7 +31,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The delegate field.
+    ///   The delegate field.
     /// </summary>
     private readonly Func<Statement, object> delegateField;
 
@@ -64,10 +64,6 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="ArgumentNullException">
-    /// </exception>
-    /// <exception cref="FaultAddressSubjectEmptyException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       if (statement == null)

@@ -17,13 +17,13 @@ namespace rt.srz.business.server
   using rt.core.business.quartz;
   using rt.core.business.server.exchange.export;
   using rt.srz.business.manager;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz.concepts;
 
   using StructureMap;
 
   /// <summary>
-  /// The export smo job.
+  ///   The export smo job.
   /// </summary>
   public class ExportSmoJob : JobBase
   {

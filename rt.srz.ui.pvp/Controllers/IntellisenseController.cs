@@ -74,8 +74,8 @@ namespace rt.srz.ui.pvp.Controllers
     /// <returns></returns>
     public static List<string> GetFirstNameAutoComplete(string prefixText, int count)
     {
-      IStatementService statementService = ObjectFactory.GetInstance<IStatementService>();
-      IList<AutoComplete> firstNameList = statementService.GetFirstNameAutoComplete(prefixText);
+      var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
+      IList<AutoComplete> firstNameList = regulatoryService.GetFirstNameAutoComplete(prefixText);
 
       List<string> completeList = new List<string>();
       foreach (AutoComplete complete in firstNameList)
@@ -93,7 +93,7 @@ namespace rt.srz.ui.pvp.Controllers
     /// <returns></returns>
     public static List<string> GetMiddleNameAutoComplete(string prefixText, int count, string contextKey)
     {
-      IStatementService statementService = ObjectFactory.GetInstance<IStatementService>();
+      var statementService = ObjectFactory.GetInstance<IRegulatoryService>();
 
       //Фильтрация отчества в зависимости от имени
       Guid nameId;

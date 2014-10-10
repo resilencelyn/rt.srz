@@ -30,7 +30,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Fields
 
     /// <summary>
-    /// The deleg.
+    ///   The deleg.
     /// </summary>
     private readonly Func<Statement, object> deleg;
 
@@ -39,8 +39,8 @@ namespace rt.srz.business.manager.logicalcontrol.simple
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CheckDateFutureProperty"/> class. 
-    /// Initializes a new instance of the <see cref="CheckDateFutureProperty{TException}"/> class.
+    /// Initializes a new instance of the <see cref="CheckDateFutureProperty"/> class.
+    ///   Initializes a new instance of the <see cref="CheckDateFutureProperty{TException}"/> class.
     /// </summary>
     /// <param name="sessionFactory">
     /// The session factory.

@@ -117,7 +117,7 @@ namespace rt.srz.business.manager
     /// Редактирование заявления
     /// </summary>
     /// <param name="statementId">
-    /// The statement Id.
+    /// The statement id.
     /// </param>
     public void CanceledStatement(Guid statementId)
     {
@@ -227,7 +227,7 @@ namespace rt.srz.business.manager
     /// Удаление инфы о смерти
     /// </summary>
     /// <param name="statementId">
-    /// The statement Id.
+    /// The statement id.
     /// </param>
     public void DeleteDeathInfo(Guid statementId)
     {
@@ -244,7 +244,7 @@ namespace rt.srz.business.manager
     /// Получает заявление по InsuredPersonId с IsActive = 1
     /// </summary>
     /// <param name="insuredPersonId">
-    /// The insured Person Id.
+    /// The insured Person id.
     /// </param>
     /// <returns>
     /// The <see cref="Statement"/>.
@@ -264,7 +264,8 @@ namespace rt.srz.business.manager
     /// The end Date.
     /// </param>
     /// <returns>
-    /// The <see>
+    /// The
+    ///   <see>
     ///     <cref>IList</cref>
     ///   </see>
     ///   .
@@ -506,9 +507,9 @@ namespace rt.srz.business.manager
 
           // Создаем батч 
           ////var a01manager = ObjectFactory.GetInstance<IStatementADT_A01Manager>();
-          ////var batch = a01manager.CreateBatchForExportADT_A01(statement);
+          ////var batch = a01manager.CreateBatchForExportAdtA01(statement);
           //// Выгружаем ADT_A01 для выполнения ФЛК с помощью шлюза РС
-          ////a01manager.Export_ADT_A01_ForFLK(batch, statement);
+          ////a01manager.ExportAdtA01ForFLK(batch, statement);
           ////session.Flush();
 
           // Коммитим изменения в базу
@@ -552,22 +553,22 @@ namespace rt.srz.business.manager
         if (statement.InsuredPersonData.FirstName != null)
         {
           statement.InsuredPersonData.FirstName = TrimInside(statement.InsuredPersonData.FirstName);
-            
-            ////.ToUpperFirstLowerOther();
+
+          ////.ToUpperFirstLowerOther();
         }
 
         if (statement.InsuredPersonData.LastName != null)
         {
           statement.InsuredPersonData.LastName = TrimInside(statement.InsuredPersonData.LastName);
-            
-            ////.ToUpperFirstLowerOther();
+
+          ////.ToUpperFirstLowerOther();
         }
 
         if (statement.InsuredPersonData.MiddleName != null)
         {
           statement.InsuredPersonData.MiddleName = TrimInside(statement.InsuredPersonData.MiddleName);
-            
-            ////.ToUpperFirstLowerOther();
+
+          ////.ToUpperFirstLowerOther();
         }
 
         if (statement.InsuredPersonData.Birthplace != null)
@@ -645,6 +646,7 @@ namespace rt.srz.business.manager
     /// Расчитывает стандартные и пользовательские ключи
     /// </summary>
     /// <param name="statement">
+    /// The statement.
     /// </param>
     /// <returns>
     /// The <see cref="IEnumerable{SearchKey}"/>.
@@ -1040,6 +1042,7 @@ namespace rt.srz.business.manager
     /// Удаляет все пробелы по краям и оставляет внутри только один пробел вместо нескольких если они есть
     /// </summary>
     /// <param name="value">
+    /// The value.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
@@ -1062,6 +1065,7 @@ namespace rt.srz.business.manager
     ///   кем выдан
     /// </summary>
     /// <param name="document">
+    /// The document.
     /// </param>
     private void TrimInsideDocument(Document document)
     {

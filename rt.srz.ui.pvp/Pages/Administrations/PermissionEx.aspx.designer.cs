@@ -15,19 +15,19 @@ namespace rt.srz.ui.pvp.Pages.Administrations {
         /// <summary>
         /// addPermissionControl control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.Administration.AddPermissionControl addPermissionControl;
         
         /// <summary>
         /// assignRolesToPermissionControl control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.Administration.AssignRolesToPermissionControl assignRolesToPermissionControl;
     }
 }

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons.Delegates
+namespace rt.srz.model.Hl7.commons.Delegates
 {
   /// <summary>
   /// The reset handler.

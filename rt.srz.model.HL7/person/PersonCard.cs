@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person
+namespace rt.srz.model.Hl7.person
 {
   #region references
 
@@ -20,7 +20,7 @@ namespace rt.srz.model.HL7.person
   ///   The person card.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ZPIMessageBatch", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ZPIMessageBatch", Namespace = "urn:Hl7-org:v2xml")]
   public class PersonCard : BasePersonTemplate
   {
   }

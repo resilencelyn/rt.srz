@@ -27,22 +27,15 @@ namespace rt.srz.business.manager
     void AddAllowChangeSetting(string className);
 
     /// <summary>
-    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
-    /// </summary>
-    /// <param name="className">
-    /// </param>
-    void SaveCheckSetting(string className);
-
-    /// <summary>
     /// The get setting.
     /// </summary>
     /// <param name="name">
     /// The name.
     /// </param>
     /// <returns>
-    /// The <see cref="Setting"/> .
+    /// The <see cref="Setting"/>.
     /// </returns>
-    Setting GetCurrentSetting(string name);
+    Setting GetSetting(string name);
 
     /// <summary>
     /// The get setting current user.
@@ -67,8 +60,17 @@ namespace rt.srz.business.manager
     /// Удаляет настройку из базы которую надо стало проверять
     /// </summary>
     /// <param name="className">
+    /// The class Name.
     /// </param>
     void RemoveSetting(string className);
+
+    /// <summary>
+    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
+    /// </summary>
+    /// <param name="className">
+    /// The class Name.
+    /// </param>
+    void SaveCheckSetting(string className);
 
     /// <summary>
     /// The set setting current user.
@@ -82,16 +84,5 @@ namespace rt.srz.business.manager
     void SetSettingCurrentUser(string nameSetting, string value);
 
     #endregion
-
-    /// <summary>
-    /// The get setting.
-    /// </summary>
-    /// <param name="name">
-    /// The name.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Setting"/>.
-    /// </returns>
-    Setting GetSetting(string name);
   }
 }

@@ -19,6 +19,7 @@ namespace rt.srz.services.Tfoms
   using rt.srz.model.dto;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
+  using rt.srz.model.srz.concepts;
 
   using User = rt.core.model.core.User;
 
@@ -34,7 +35,7 @@ namespace rt.srz.services.Tfoms
     /// <summary>
     ///   The service.
     /// </summary>
-    private readonly ITfomsService Service = new TfomsService();
+    protected readonly ITfomsService Service = new TfomsService();
 
     #endregion
 
@@ -55,6 +56,7 @@ namespace rt.srz.services.Tfoms
     /// Удаляет ключ поиска
     /// </summary>
     /// <param name="keyTypeId">
+    /// The key Type id.
     /// </param>
     public void DeleteSearchKeyType(Guid keyTypeId)
     {
@@ -65,6 +67,7 @@ namespace rt.srz.services.Tfoms
     /// Удаляет все дубликаты которые были рассчитаны только по этому ключу
     /// </summary>
     /// <param name="keyId">
+    /// The key id.
     /// </param>
     public void DeleteTwinsCalculatedOnlyByGivenKey(Guid keyId)
     {
@@ -76,28 +79,26 @@ namespace rt.srz.services.Tfoms
     ///   отправителя либо получателя
     /// </summary>
     /// <param name="senderId">
-    /// The sender Id.
+    /// The sender id.
     /// </param>
     /// <param name="receiverId">
-    /// The receiver Id.
+    /// The receiver id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="List{Period}"/>.
     /// </returns>
-    public IList<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId)
+    public List<Period> GetExportSmoBatchPeriodList(Guid senderId, Guid receiverId)
     {
       return InvokeInterceptors(() => Service.GetExportSmoBatchPeriodList(senderId, receiverId));
     }
 
     /// <summary>
-    /// Возвращает все глобальные УЭК сертификаты
+    ///   Возвращает все глобальные УЭК сертификаты
     /// </summary>
-    /// <param name="batchId">
-    /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    ///   The <see cref="List{SertificateUec}" />.
     /// </returns>
-    public IList<SertificateUec> GetGlobalSertificates()
+    public List<SertificateUec> GetGlobalSertificates()
     {
       return InvokeInterceptors(() => Service.GetGlobalSertificates());
     }
@@ -105,17 +106,17 @@ namespace rt.srz.services.Tfoms
     /// <summary>
     ///   Возвращает все батчи относящиеся к пфр
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Batch> GetPfrBatchesByUser()
+    /// <returns> The <see cref="List{Batch}" /> . </returns>
+    public List<Batch> GetPfrBatchesByUser()
     {
       return InvokeInterceptors(() => Service.GetPfrBatchesByUser());
     }
 
     /// <summary>
-    ///   ВОзвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
+    ///   Возвращает все периоды на которые есть ссылки из батчей с типом субъекта пфр
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Period> GetPfrPeriods()
+    /// <returns> The <see cref="List{Period}" /> . </returns>
+    public List<Period> GetPfrPeriods()
     {
       return InvokeInterceptors(() => Service.GetPfrPeriods());
     }
@@ -124,6 +125,7 @@ namespace rt.srz.services.Tfoms
     /// Возвращает информацию по статистике пфр
     /// </summary>
     /// <param name="batchId">
+    /// The batch id.
     /// </param>
     /// <returns>
     /// The <see cref="PfrStatisticInfo"/> .
@@ -137,6 +139,7 @@ namespace rt.srz.services.Tfoms
     /// Возвращает информацию по статистике пфр
     /// </summary>
     /// <param name="periodId">
+    /// The period id.
     /// </param>
     /// <returns>
     /// The <see cref="PfrStatisticInfo"/> .
@@ -150,6 +153,7 @@ namespace rt.srz.services.Tfoms
     /// Возвращает описатель ключа поиска
     /// </summary>
     /// <param name="keyTypeId">
+    /// The key Type id.
     /// </param>
     /// <returns>
     /// The <see cref="SearchKeyType"/> .
@@ -162,8 +166,8 @@ namespace rt.srz.services.Tfoms
     /// <summary>
     ///   Возвращает описатели всех ключей поиска для указанного ТФОМС
     /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<SearchKeyType> GetSearchKeyTypesByTFoms()
+    /// <returns> The <see cref="List{SearchKeyType}" /> . </returns>
+    public List<SearchKeyType> GetSearchKeyTypesByTFoms()
     {
       return InvokeInterceptors(() => Service.GetSearchKeyTypesByTFoms());
     }
@@ -172,6 +176,7 @@ namespace rt.srz.services.Tfoms
     /// Получает дубликат
     /// </summary>
     /// <param name="id">
+    /// The id.
     /// </param>
     /// <returns>
     /// The <see cref="Twin"/> .
@@ -182,21 +187,13 @@ namespace rt.srz.services.Tfoms
     }
 
     /// <summary>
-    ///   Получает все дубликаты
-    /// </summary>
-    /// <returns> The <see cref="IList" /> . </returns>
-    public IList<Twin> GetTwins()
-    {
-      return InvokeInterceptors(() => Service.GetTwins());
-    }
-
-    /// <summary>
     /// Дубликаты по критерию для разбивки постранично
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Twin}"/> .
     /// </returns>
     public SearchResult<Twin> GetTwins(SearchTwinCriteria criteria)
     {
@@ -206,9 +203,7 @@ namespace rt.srz.services.Tfoms
     /// <summary>
     ///   Список пользователей принадлежащих данному фонду или смо (в зависимости от разрешений текущего пользователя)
     /// </summary>
-    /// <returns>
-    ///   The <see cref="IList" />.
-    /// </returns>
+    /// <returns> The <see cref="List{User}" /> . </returns>
     public IList<User> GetUsersByCurrent()
     {
       return InvokeInterceptors(() => Service.GetUsersByCurrent());
@@ -218,10 +213,13 @@ namespace rt.srz.services.Tfoms
     /// Объединяет дубликаты
     /// </summary>
     /// <param name="twinId">
+    /// The twin id.
     /// </param>
     /// <param name="mainInsuredPersonId">
+    /// The main Insured Person id.
     /// </param>
     /// <param name="secondInsuredPersonId">
+    /// The second Insured Person id.
     /// </param>
     public void JoinTwins(Guid twinId, Guid mainInsuredPersonId, Guid secondInsuredPersonId)
     {
@@ -232,6 +230,7 @@ namespace rt.srz.services.Tfoms
     /// Помечает батч как не выгруженный
     /// </summary>
     /// <param name="batchId">
+    /// The batch id.
     /// </param>
     public void MarkBatchAsUnexported(Guid batchId)
     {
@@ -239,19 +238,43 @@ namespace rt.srz.services.Tfoms
     }
 
     /// <summary>
+    /// Удаляет настройку из базы которую надо стало проверять
+    /// </summary>
+    /// <param name="className">
+    /// The class Name.
+    /// </param>
+    public void RemoveSetting(string className)
+    {
+      InvokeInterceptors(() => Service.RemoveSetting(className));
+    }
+
+    /// <summary>
     /// Помечает дубликат как удаленный
     /// </summary>
-    /// <param name="Id">
+    /// <param name="id">
+    /// The id.
     /// </param>
-    public void RemoveTwin(Guid Id)
+    public void RemoveTwin(Guid id)
     {
-      InvokeInterceptors(() => Service.RemoveTwin(Id));
+      InvokeInterceptors(() => Service.RemoveTwin(id));
+    }
+
+    /// <summary>
+    /// Добавляет в базу настройку проверки о том что её не надо проверять с учётом территориального фонда
+    /// </summary>
+    /// <param name="className">
+    /// The class Name.
+    /// </param>
+    public void SaveCheckSetting(string className)
+    {
+      InvokeInterceptors(() => Service.SaveCheckSetting(className));
     }
 
     /// <summary>
     /// Сохраняет ключ поиска
     /// </summary>
     /// <param name="keyType">
+    /// The key Type.
     /// </param>
     /// <returns>
     /// The <see cref="Guid"/> .
@@ -265,9 +288,10 @@ namespace rt.srz.services.Tfoms
     /// Осуществляет поиск пакетных операций экспорта заявлений для СМО
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/>.
+    /// The <see cref="SearchResult{SearchBatchResult}"/>.
     /// </returns>
     public SearchResult<SearchBatchResult> SearchExportSmoBatches(SearchExportSmoBatchCriteria criteria)
     {
@@ -278,8 +302,10 @@ namespace rt.srz.services.Tfoms
     /// Разделение
     /// </summary>
     /// <param name="personId">
+    /// The person Id.
     /// </param>
     /// <param name="statementsToSeparate">
+    /// The statements To Separate.
     /// </param>
     /// <param name="copyDeadInfo">
     /// The copy Dead Info.
@@ -287,7 +313,11 @@ namespace rt.srz.services.Tfoms
     /// <param name="status">
     /// The status.
     /// </param>
-    public void Separate(Guid personId, IList<Statement> statementsToSeparate, bool copyDeadInfo, int status)
+    public void Separate(
+      Guid personId, 
+      List<Statement> statementsToSeparate, 
+      bool copyDeadInfo = true, 
+      int status = StatusPerson.Active)
     {
       InvokeInterceptors(() => Service.Separate(personId, statementsToSeparate, copyDeadInfo, status));
     }

@@ -12,7 +12,7 @@ namespace rt.srz.model.algorithms
   using System;
   using System.Security.Cryptography;
 
-  using rt.srz.model.HL7.algorithms.DamienG;
+  using rt.srz.model.Hl7.algorithms.DamienG;
 
   /// <summary>
   ///   The hash helper.

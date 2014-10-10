@@ -64,8 +64,6 @@ namespace rt.srz.business.manager.logicalcontrol.complex
     /// <param name="statement">
     /// The statement.
     /// </param>
-    /// <exception cref="FaultDeathException">
-    /// </exception>
     public override void CheckObject(Statement statement)
     {
       if (statement.InsuredPerson != null && statement.InsuredPerson.Status != null

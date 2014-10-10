@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RequestSegmentsHL7.cs" company="РусБИТех">
+// <copyright file="RequestSegmentsHl7.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.enumerations.resolve
+namespace rt.srz.model.Hl7.enumerations.resolve
 {
   /// <summary>
   ///   The request segments h l 7.
   /// </summary>
-  public static class RequestSegmentsHL7
+  public static class RequestSegmentsHl7
   {
     #region Public Methods and Operators
 
@@ -20,11 +20,11 @@ namespace rt.srz.model.HL7.enumerations.resolve
     ///   The first segment.
     /// </summary>
     /// <returns>
-    ///   The <see cref="RequestSegmentHL7" />.
+    ///   The <see cref="RequestSegmentHl7" />.
     /// </returns>
-    public static RequestSegmentHL7 FirstSegment()
+    public static RequestSegmentHl7 FirstSegment()
     {
-      return RequestSegmentHL7.ZP1;
+      return RequestSegmentHl7.ZP1;
     }
 
     /// <summary>
@@ -34,52 +34,52 @@ namespace rt.srz.model.HL7.enumerations.resolve
     /// The current segment.
     /// </param>
     /// <returns>
-    /// The <see cref="RequestSegmentHL7"/>.
+    /// The <see cref="RequestSegmentHl7"/>.
     /// </returns>
-    public static RequestSegmentHL7 NextSegment(RequestSegmentHL7 currentSegment)
+    public static RequestSegmentHl7 NextSegment(RequestSegmentHl7 currentSegment)
     {
       var thl = currentSegment;
-      if (thl <= RequestSegmentHL7.A03)
+      if (thl <= RequestSegmentHl7.A03)
       {
         switch (thl)
         {
-          case RequestSegmentHL7.ZP1:
-            return RequestSegmentHL7.ZP2;
+          case RequestSegmentHl7.ZP1:
+            return RequestSegmentHl7.ZP2;
 
-          case RequestSegmentHL7.ZP2:
-            return RequestSegmentHL7.ZP4;
+          case RequestSegmentHl7.ZP2:
+            return RequestSegmentHl7.ZP4;
 
-          case (RequestSegmentHL7)0x67:
-          case (RequestSegmentHL7)0xca:
+          case (RequestSegmentHl7)0x67:
+          case (RequestSegmentHl7)0xca:
             goto Label_0081;
 
-          case RequestSegmentHL7.ZP4:
-            return RequestSegmentHL7.A01;
+          case RequestSegmentHl7.ZP4:
+            return RequestSegmentHl7.A01;
 
-          case RequestSegmentHL7.A01:
-            return RequestSegmentHL7.A03;
+          case RequestSegmentHl7.A01:
+            return RequestSegmentHl7.A03;
 
-          case RequestSegmentHL7.A03:
-            return RequestSegmentHL7.A24;
+          case RequestSegmentHl7.A03:
+            return RequestSegmentHl7.A24;
         }
       }
       else
       {
         switch (thl)
         {
-          case RequestSegmentHL7.A24:
-            return RequestSegmentHL7.A37;
+          case RequestSegmentHl7.A24:
+            return RequestSegmentHl7.A37;
 
-          case RequestSegmentHL7.A37:
-            return RequestSegmentHL7.ZA1;
+          case RequestSegmentHl7.A37:
+            return RequestSegmentHl7.ZA1;
 
-          case RequestSegmentHL7.ZA1:
-            return RequestSegmentHL7.ZA7;
+          case RequestSegmentHl7.ZA1:
+            return RequestSegmentHl7.ZA7;
         }
       }
 
       Label_0081:
-      return RequestSegmentHL7.Undefined;
+      return RequestSegmentHl7.Undefined;
     }
 
     #endregion
@@ -113,7 +113,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
     ///// </returns>
     // public static bool TryResolveSegment(
     // BasePersonTemplate person, 
-    // RequestSegmentHL7 segment, 
+    // RequestSegmentHl7 segment, 
     // int segmentIndex, 
     // out ZPI_ZA7 za7, 
     // out ZPI_ZA1 za1, 
@@ -125,9 +125,9 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // msh = null;
     // evn = null;
     // var thl = segment;
-    // if (thl != RequestSegmentHL7.ZA1)
+    // if (thl != RequestSegmentHl7.ZA1)
     // {
-    // if ((thl == RequestSegmentHL7.ZA7) && ((person.Zpi_za7 != null) && (segmentIndex < person.Zpi_za7.Count)))
+    // if ((thl == RequestSegmentHl7.ZA7) && ((person.Zpi_za7 != null) && (segmentIndex < person.Zpi_za7.Count)))
     // {
     // msh = person.Zpi_za7[segmentIndex].Msh;
     // za7 = person.Zpi_za7[segmentIndex];
@@ -183,7 +183,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
     ///// </returns>
     // public static bool TryResolveSegment(
     // BasePersonTemplate person, 
-    // RequestSegmentHL7 segment, 
+    // RequestSegmentHl7 segment, 
     // int segmentIndex, 
     // out MSH msh, 
     // out Evn evn, 
@@ -201,11 +201,11 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // qpd = null;
     // qpdZp1 = null;
     // var thl = segment;
-    // if (thl <= RequestSegmentHL7.A03)
+    // if (thl <= RequestSegmentHl7.A03)
     // {
     // switch (thl)
     // {
-    // case RequestSegmentHL7.ZP1:
+    // case RequestSegmentHl7.ZP1:
     // if ((person.Qbp_Zp1 == null) || (segmentIndex >= person.Qbp_Zp1.Count))
     // {
     // goto Label_02B7;
@@ -215,7 +215,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // qpdZp1 = person.Qbp_Zp1[segmentIndex].Qpd;
     // return true;
 
-    // case RequestSegmentHL7.ZP2:
+    // case RequestSegmentHl7.ZP2:
     // if ((person.Qbp_Zp2 == null) || (segmentIndex >= person.Qbp_Zp2.Count))
     // {
     // goto Label_02B7;
@@ -225,11 +225,11 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // qpd = person.Qbp_Zp2[segmentIndex].Qpd;
     // return true;
 
-    // case (RequestSegmentHL7)0x67:
-    // case (RequestSegmentHL7)0xca:
+    // case (RequestSegmentHl7)0x67:
+    // case (RequestSegmentHl7)0xca:
     // goto Label_02B7;
 
-    // case RequestSegmentHL7.ZP4:
+    // case RequestSegmentHl7.ZP4:
     // if ((person.Qbp_Zp4 == null) || (segmentIndex >= person.Qbp_Zp4.Count))
     // {
     // goto Label_02B7;
@@ -239,7 +239,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // qpd = person.Qbp_Zp4[segmentIndex].Qpd;
     // return true;
 
-    // case RequestSegmentHL7.A01:
+    // case RequestSegmentHl7.A01:
     // if ((person.Adt_A01 == null) || (segmentIndex >= person.Adt_A01.Count))
     // {
     // goto Label_02B7;
@@ -251,7 +251,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // insuranceList = person.Adt_A01[segmentIndex].InsuranceList;
     // return true;
 
-    // case RequestSegmentHL7.A03:
+    // case RequestSegmentHl7.A03:
     // if ((person.Adt_A03 == null) || (segmentIndex >= person.Adt_A03.Count))
     // {
     // goto Label_02B7;
@@ -267,7 +267,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
     // {
     // switch (thl)
     // {
-    // case RequestSegmentHL7.A24:
+    // case RequestSegmentHl7.A24:
     // if ((person.Adt_A24 != null) && (segmentIndex < person.Adt_A24.Count))
     // {
     // msh = person.Adt_A24[segmentIndex].Msh;
@@ -278,7 +278,7 @@ namespace rt.srz.model.HL7.enumerations.resolve
 
     // break;
 
-    // case RequestSegmentHL7.A37:
+    // case RequestSegmentHl7.A37:
     // if ((person.Adt_A37 != null) && (segmentIndex < person.Adt_A37.Count))
     // {
     // msh = person.Adt_A37[segmentIndex].Msh;

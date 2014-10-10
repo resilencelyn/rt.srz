@@ -7,19 +7,20 @@
 // É altamente desejável que essa mensagem não seja removida.
 //------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-
-public delegate void GroupEvent(string groupName, object[] values, GridViewRow row);
-
-/// <summary>
-/// A class that represents a group consisting of a set of columns
-/// </summary>
-public class GridViewGroup
+namespace rt.srz.ui.pvp.GridViewHelper
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Web.UI;
+  using System.Web.UI.WebControls;
+
+  public delegate void GroupEvent(string groupName, object[] values, GridViewRow row);
+
+  /// <summary>
+  /// A class that represents a group consisting of a set of columns
+  /// </summary>
+  public class GridViewGroup
+  {
     #region Fields
 
     private string[] _columns;
@@ -37,50 +38,50 @@ public class GridViewGroup
 
     public string[] Columns
     {
-        get { return _columns; }
+      get { return _columns; }
     }
 
     public object[] ActualValues
     {
-        get { return _actualValues; }
+      get { return _actualValues; }
     }
 
     public int Quantity
     {
-        get { return _quantity; }
+      get { return _quantity; }
     }
 
     public bool Automatic
     {
-        get { return _automatic; }
-        set { _automatic = value; }
+      get { return _automatic; }
+      set { _automatic = value; }
     }
 
     public bool HideGroupColumns
     {
-        get { return _hideGroupColumns; }
-        set { _hideGroupColumns = value; }
+      get { return _hideGroupColumns; }
+      set { _hideGroupColumns = value; }
     }
 
     public bool IsSuppressGroup
     {
-        get { return _isSuppressGroup; }
+      get { return _isSuppressGroup; }
     }
 
     public bool GenerateAllCellsOnSummaryRow
     {
-        get { return _generateAllCellsOnSummaryRow; }
-        set { _generateAllCellsOnSummaryRow = value; }
+      get { return _generateAllCellsOnSummaryRow; }
+      set { _generateAllCellsOnSummaryRow = value; }
     }
 
     public string Name
     {
-        get { return String.Join("+", this._columns); }
+      get { return String.Join("+", this._columns); }
     }
 
     public GridViewSummaryList Summaries
     {
-        get { return mSummaries; }
+      get { return mSummaries; }
     }
 
     #endregion
@@ -89,14 +90,14 @@ public class GridViewGroup
 
     public GridViewGroup(string[] cols, bool isSuppressGroup, bool auto, bool hideGroupColumns, bool generateAllCellsOnSummaryRow)
     {
-        this.mSummaries = new GridViewSummaryList();
-        this._actualValues = null;
-        this._quantity = 0;
-        this._columns = cols;
-        this._isSuppressGroup = isSuppressGroup;
-        this._automatic = auto;
-        this._hideGroupColumns = hideGroupColumns;
-        this._generateAllCellsOnSummaryRow = generateAllCellsOnSummaryRow;
+      this.mSummaries = new GridViewSummaryList();
+      this._actualValues = null;
+      this._quantity = 0;
+      this._columns = cols;
+      this._isSuppressGroup = isSuppressGroup;
+      this._automatic = auto;
+      this._hideGroupColumns = hideGroupColumns;
+      this._generateAllCellsOnSummaryRow = generateAllCellsOnSummaryRow;
     }
 
     public GridViewGroup(string[] cols, bool auto, bool hideGroupColumns, bool generateAllCellsOnSummaryRow) : this( cols, false, auto, hideGroupColumns, generateAllCellsOnSummaryRow)
@@ -111,56 +112,57 @@ public class GridViewGroup
 
     internal void SetActualValues( object[] values )
     {
-        this._actualValues = values;
+      this._actualValues = values;
     }
 
     public bool ContainsSummary(GridViewSummary s)
     {
-        return mSummaries.Contains(s);
+      return mSummaries.Contains(s);
     }
 
     public void AddSummary( GridViewSummary s)
     {
-        if (this.ContainsSummary(s))
-        {
-            throw new Exception("Summary already exists in this group.");
-        }
+      if (this.ContainsSummary(s))
+      {
+        throw new Exception("Summary already exists in this group.");
+      }
 
-        if (!s.Validate())
-        {
-            throw new Exception("Invalid summary.");
-        }
+      if (!s.Validate())
+      {
+        throw new Exception("Invalid summary.");
+      }
 
-        ///s._group = this;
-        s.SetGroup(this);
-        this.mSummaries.Add(s);
+      ///s._group = this;
+      s.SetGroup(this);
+      this.mSummaries.Add(s);
     }
 
     public void Reset()
     {
-        this._quantity = 0;
+      this._quantity = 0;
 
-        foreach (GridViewSummary s in mSummaries)
-        {
-            s.Reset();
-        }
+      foreach (GridViewSummary s in mSummaries)
+      {
+        s.Reset();
+      }
     }
 
     public void AddValueToSummaries(object dataitem)
     {
-        this._quantity++;
+      this._quantity++;
 
-        foreach (GridViewSummary s in mSummaries)
-        {
-            s.AddValue(DataBinder.Eval(dataitem, s.Column));
-        }
+      foreach (GridViewSummary s in mSummaries)
+      {
+        s.AddValue(DataBinder.Eval(dataitem, s.Column));
+      }
     }
 
     public void CalculateSummaries()
     {
-        foreach (GridViewSummary s in mSummaries)
-        {
-            s.Calculate();
-        }
+      foreach (GridViewSummary s in mSummaries)
+      {
+        s.Calculate();
+      }
     }
+  }
 }

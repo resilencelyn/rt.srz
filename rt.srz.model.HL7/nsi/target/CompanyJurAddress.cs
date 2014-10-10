@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.nsi.target
+namespace rt.srz.model.Hl7.nsi.target
 {
   using System;
   using System.Xml.Schema;

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.services.Nsi
+namespace rt.srz.services.Regulatory
 {
   #region
 
@@ -36,43 +36,6 @@ namespace rt.srz.services.Nsi
     #region Public Methods and Operators
 
     /// <summary>
-    /// Добавляет или обновляет запись в базе
-    /// </summary>
-    /// <param name="autoComplete">
-    /// The AutoComplete.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Guid"/> .
-    /// </returns>
-    public Guid SaveAutoComplete(AutoComplete autoComplete)
-    {
-      ObjectFactory.GetInstance<IAutoCompleteManager>().SaveOrUpdate(autoComplete);
-      return autoComplete.Id;
-    }
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="range">
-    /// The range.
-    /// </param>
-    public void SaveRangeNumber(RangeNumber range)
-    {
-      ObjectFactory.GetInstance<IRangeNumberManager>().AddOrUpdateRangeNumber(range);
-    }
-
-    /// <summary>
-    /// Добавление или обновление записи
-    /// </summary>
-    /// <param name="template">
-    /// The template.
-    /// </param>
-    public void SaveTemplate(Template template)
-    {
-      ObjectFactory.GetInstance<ITemplateManager>().AddOrUpdateTemplate(template);
-    }
-
-    /// <summary>
     /// Создание копии шаблона печати
     /// </summary>
     /// <param name="id">
@@ -96,6 +59,17 @@ namespace rt.srz.services.Nsi
     {
       ObjectFactory.GetInstance<IAutoCompleteManager>().Delete(x => x.Id == id);
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();
+    }
+
+    /// <summary>
+    /// Удаление pdp (set пометка IsActive=false)
+    /// </summary>
+    /// <param name="pdpId">
+    /// The pdp Id.
+    /// </param>
+    public void DeleteOrganisation(Guid pdpId)
+    {
+      ObjectFactory.GetInstance<IOrganisationManager>().DeleteOrganisation(pdpId);
     }
 
     /// <summary>
@@ -139,34 +113,6 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
-    /// The get concept.
-    /// </summary>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Concept"/> .
-    /// </returns>
-    public Concept GetConcept(int id)
-    {
-      return ObjectFactory.GetInstance<IConceptCacheManager>().GetById(id);
-    }
-
-    /// <summary>
-    /// Получает список concepts по оид
-    /// </summary>
-    /// <param name="oidId">
-    /// The oid Id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="List{Concept}"/> .
-    /// </returns>
-    public List<Concept> GetConceptsByOid(string oidId)
-    {
-      return ObjectFactory.GetInstance<IConceptCacheManager>().GetConceptsByOid(oidId).ToList();
-    }
-
-    /// <summary>
     /// Получает запись по ид
     /// </summary>
     /// <param name="id">
@@ -195,105 +141,6 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
-    ///   Зачитывает все записи
-    /// </summary>
-    /// <returns> The <see cref="List{Oid}" /> . </returns>
-    public List<Oid> GetOids()
-    {
-      return ObjectFactory.GetInstance<IOidManager>().GetAll(int.MaxValue).ToList();
-    }
-
-    /// <summary>
-    /// Возвращет объект по ид
-    /// </summary>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="RangeNumber"/>.
-    /// </returns>
-    public RangeNumber GetRangeNumber(Guid id)
-    {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().GetById(id);
-    }
-
-    /// <summary>
-    /// Зачитывает все записи
-    /// </summary>
-    /// <returns>
-    /// The <see cref="List{RangeNumber}"/>.
-    /// </returns>
-    public List<RangeNumber> GetRangeNumbers()
-    {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().GetRangeNumbers().ToList();
-    }
-
-    /// <summary>
-    /// Шаблон по ид
-    /// </summary>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Template"/>.
-    /// </returns>
-    public Template GetTemplate(Guid id)
-    {
-      return ObjectFactory.GetInstance<ITemplateManager>().GetById(id);
-    }
-
-    /// <summary>
-    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
-    /// </summary>
-    /// <param name="statement">
-    /// The statement.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Template"/>.
-    /// </returns>
-    public Template GetTemplateByStatement(Statement statement)
-    {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().GetTemplateByStatement(statement);
-    }
-
-    /// <summary>
-    /// Все шаблоны печати вс
-    /// </summary>
-    /// <returns>
-    /// The <see cref="List{Template}"/>.
-    /// </returns>
-    public List<Template> GetTemplates()
-    {
-      return ObjectFactory.GetInstance<ITemplateManager>().GetAll(int.MaxValue).ToList();
-    }
-
-    /// <summary>
-    /// Пересекается ли указанная запись с другими по диапозону. Только для диапазонов с парент ид = null,
-    /// т.е. это проверка пересечений главных диапазонов из шапки страницы
-    /// </summary>
-    /// <param name="range">
-    /// The range.
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    public bool IntersectWithOther(RangeNumber range)
-    {
-      return ObjectFactory.GetInstance<IRangeNumberManager>().IntersectWithOther(range);
-    }
-
-    /// <summary>
-    /// Удаление pdp (set пометка IsActive=false)
-    /// </summary>
-    /// <param name="pdpId">
-    /// The pdp Id.
-    /// </param>
-    public void DeleteOrganisation(Guid pdpId)
-    {
-      ObjectFactory.GetInstance<IOrganisationManager>().DeleteOrganisation(pdpId);
-    }
-
-    /// <summary>
     /// The get childres.
     /// </summary>
     /// <param name="parentId">
@@ -311,6 +158,34 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// The get concept.
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Concept"/> .
+    /// </returns>
+    public Concept GetConcept(int id)
+    {
+      return ObjectFactory.GetInstance<IConceptCacheManager>().GetById(id);
+    }
+
+    /// <summary>
+    /// Получает список concepts по оид
+    /// </summary>
+    /// <param name="oidId">
+    /// The oid Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    public List<Concept> GetConceptsByOid(string oidId)
+    {
+      return ObjectFactory.GetInstance<IConceptCacheManager>().GetConceptsByOid(oidId).ToList();
+    }
+
+    /// <summary>
     /// The get first level by tfoms.
     /// </summary>
     /// <param name="tfoms">
@@ -325,6 +200,74 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Возвращает список варианатов для имени
+    /// </summary>
+    /// <param name="prefix">
+    /// The prefix.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{AutoComplete}"/> .
+    /// </returns>
+    public List<AutoComplete> GetFirstNameAutoComplete(string prefix)
+    {
+      return ObjectFactory.GetInstance<IAutoCompleteManager>().GetFirstNameAutoComplete(prefix).ToList();
+    }
+
+    /// <summary>
+    /// Возвращает список вариантов для отчества
+    /// </summary>
+    /// <param name="prefix">
+    /// The prefix.
+    /// </param>
+    /// <param name="nameId">
+    /// The name Id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{AutoComplete}"/> .
+    /// </returns>
+    public List<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId)
+    {
+      return ObjectFactory.GetInstance<IAutoCompleteManager>().GetMiddleNameAutoComplete(prefix, nameId).ToList();
+    }
+
+    /// <summary>
+    /// Возвращает список нормативно справочных данных
+    /// </summary>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    public List<Concept> GetNsiRecords(string oid)
+    {
+      return ObjectFactory.GetInstance<IOidManager>().GetNsiRecords(oid).ToList();
+    }
+
+    /// <summary>
+    /// Возвращает список нормативно справочных данных
+    /// </summary>
+    /// <param name="oid">
+    /// The oid.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List{Concept}"/> .
+    /// </returns>
+    public List<Concept> GetNsiRecords(IEnumerable<string> oid)
+    {
+      return ObjectFactory.GetInstance<IOidManager>().GetNsiRecords(oid).ToList();
+    }
+
+    /// <summary>
+    ///   Зачитывает все записи
+    /// </summary>
+    /// <returns> The <see cref="List{Oid}" /> . </returns>
+    public List<Oid> GetOids()
+    {
+      return ObjectFactory.GetInstance<IOidManager>().GetAll(int.MaxValue).ToList();
+    }
+
+    /// <summary>
     /// Возвращает пункт выдачи полисов
     /// </summary>
     /// <param name="pdpId">
@@ -336,6 +279,31 @@ namespace rt.srz.services.Nsi
     public Organisation GetOrganisation(Guid pdpId)
     {
       return ObjectFactory.GetInstance<IOrganisationManager>().GetById(pdpId);
+    }
+
+    /// <summary>
+    /// Возвращет объект по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="RangeNumber"/>.
+    /// </returns>
+    public RangeNumber GetRangeNumber(Guid id)
+    {
+      return ObjectFactory.GetInstance<IRangeNumberManager>().GetById(id);
+    }
+
+    /// <summary>
+    ///   Зачитывает все записи
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="List{RangeNumber}" />.
+    /// </returns>
+    public List<RangeNumber> GetRangeNumbers()
+    {
+      return ObjectFactory.GetInstance<IRangeNumberManager>().GetRangeNumbers().ToList();
     }
 
     /// <summary>
@@ -367,6 +335,45 @@ namespace rt.srz.services.Nsi
     public SearchResult<Organisation> GetSmos(SearchSmoCriteria criteria)
     {
       return ObjectFactory.GetInstance<IOrganisationManager>().GetSmosByCriteria(criteria);
+    }
+
+    /// <summary>
+    /// Шаблон по ид
+    /// </summary>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template GetTemplate(Guid id)
+    {
+      return ObjectFactory.GetInstance<ITemplateManager>().GetById(id);
+    }
+
+    /// <summary>
+    /// Получает шаблон для печати вс по по номеру временного свидетельства заявления
+    /// </summary>
+    /// <param name="statement">
+    /// The statement.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Template"/>.
+    /// </returns>
+    public Template GetTemplateByStatement(Statement statement)
+    {
+      return ObjectFactory.GetInstance<IRangeNumberManager>().GetTemplateByStatement(statement);
+    }
+
+    /// <summary>
+    ///   Все шаблоны печати вс
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="List{Template}" />.
+    /// </returns>
+    public List<Template> GetTemplates()
+    {
+      return ObjectFactory.GetInstance<ITemplateManager>().GetAll(int.MaxValue).ToList();
     }
 
     /// <summary>
@@ -421,6 +428,36 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Пересекается ли указанная запись с другими по диапозону. Только для диапазонов с парент ид = null,
+    ///   т.е. это проверка пересечений главных диапазонов из шапки страницы
+    /// </summary>
+    /// <param name="range">
+    /// The range.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
+    public bool IntersectWithOther(RangeNumber range)
+    {
+      return ObjectFactory.GetInstance<IRangeNumberManager>().IntersectWithOther(range);
+    }
+
+    /// <summary>
+    /// Добавляет или обновляет запись в базе
+    /// </summary>
+    /// <param name="autoComplete">
+    /// The AutoComplete.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Guid"/> .
+    /// </returns>
+    public Guid SaveAutoComplete(AutoComplete autoComplete)
+    {
+      ObjectFactory.GetInstance<IAutoCompleteManager>().SaveOrUpdate(autoComplete);
+      return autoComplete.Id;
+    }
+
+    /// <summary>
     /// Сохраняет указанный список пдп в базу. Все элементы которые присутствуют в базе для данной смо но отсутсвуют в
     ///   списке, будут удалены
     /// </summary>
@@ -436,6 +473,17 @@ namespace rt.srz.services.Nsi
     }
 
     /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="range">
+    /// The range.
+    /// </param>
+    public void SaveRangeNumber(RangeNumber range)
+    {
+      ObjectFactory.GetInstance<IRangeNumberManager>().AddOrUpdateRangeNumber(range);
+    }
+
+    /// <summary>
     /// Сохраняет изменения
     /// </summary>
     /// <param name="smo">
@@ -447,6 +495,17 @@ namespace rt.srz.services.Nsi
     public Guid SaveSmo(Organisation smo)
     {
       return ObjectFactory.GetInstance<IOrganisationManager>().SaveSmo(smo);
+    }
+
+    /// <summary>
+    /// Добавление или обновление записи
+    /// </summary>
+    /// <param name="template">
+    /// The template.
+    /// </param>
+    public void SaveTemplate(Template template)
+    {
+      ObjectFactory.GetInstance<ITemplateManager>().AddOrUpdateTemplate(template);
     }
 
     /// <summary>

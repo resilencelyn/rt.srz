@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HL7Writer.cs" company="РусБИТех">
+// <copyright file="Hl7Writer.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -19,20 +19,20 @@ namespace rt.srz.business.configuration.algorithms.serialization
   using System.Xml.Linq;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7;
-  using rt.srz.model.HL7.algorithms.DamienG;
-  using rt.srz.model.HL7.commons;
-  using rt.srz.model.HL7.commons.Enumerations;
-  using rt.srz.model.HL7.commons.Interfaces;
-  using rt.srz.model.HL7.enumerations;
-  using rt.srz.model.HL7.person;
+  using rt.srz.model.Hl7;
+  using rt.srz.model.Hl7.algorithms.DamienG;
+  using rt.srz.model.Hl7.commons;
+  using rt.srz.model.Hl7.commons.Enumerations;
+  using rt.srz.model.Hl7.commons.Interfaces;
+  using rt.srz.model.Hl7.enumerations;
+  using rt.srz.model.Hl7.person;
 
   #endregion
 
   /// <summary>
   ///   The h l 7 writer.
   /// </summary>
-  public sealed class HL7Writer : IDisposable
+  public sealed class Hl7Writer : IDisposable
   {
     #region Fields
 
@@ -91,24 +91,24 @@ namespace rt.srz.business.configuration.algorithms.serialization
     #region Constructors and Destructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="HL7Writer"/> class.
+    /// Initializes a new instance of the <see cref="Hl7Writer"/> class.
     /// </summary>
-    /// <param name="TargetFilePath">
+    /// <param name="targetFilePath">
     /// The target file path.
     /// </param>
     /// <param name="personObject">
     /// The person object.
     /// </param>
-    public HL7Writer(string TargetFilePath, XElement personObject)
-      : this(TargetFilePath)
+    public Hl7Writer(string targetFilePath, XElement personObject)
+      : this(targetFilePath)
     {
       reader = personObject.CreateReader();
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="HL7Writer"/> class.
+    /// Initializes a new instance of the <see cref="Hl7Writer"/> class.
     /// </summary>
-    /// <param name="TargetFilePath">
+    /// <param name="targetFilePath">
     /// The target file path.
     /// </param>
     /// <param name="personObject">
@@ -117,8 +117,8 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <param name="resolver">
     /// The resolver.
     /// </param>
-    public HL7Writer(string TargetFilePath, BasePersonTemplate personObject, IXmlNamespaceResolver resolver)
-      : this(TargetFilePath)
+    public Hl7Writer(string targetFilePath, BasePersonTemplate personObject, IXmlNamespaceResolver resolver)
+      : this(targetFilePath)
     {
       inputStream = new MemoryStream();
 
@@ -129,14 +129,14 @@ namespace rt.srz.business.configuration.algorithms.serialization
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="HL7Writer"/> class.
+    /// Initializes a new instance of the <see cref="Hl7Writer"/> class.
     /// </summary>
-    /// <param name="TargerFilePath">
+    /// <param name="targerFilePath">
     /// The targer file path.
     /// </param>
-    private HL7Writer(string TargerFilePath)
+    private Hl7Writer(string targerFilePath)
     {
-      TargetFilePath = TargerFilePath;
+      TargetFilePath = targerFilePath;
     }
 
     #endregion
@@ -150,21 +150,21 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The node.
     /// </param>
     /// <returns>
-    /// The <see cref="HL7Node"/>.
+    /// The <see cref="Hl7Node"/>.
     /// </returns>
-    public static HL7Node HL7NodeFromString(string node)
+    public static Hl7Node Hl7NodeFromString(string node)
     {
       if (string.Compare(node, "BHS", StringComparison.Ordinal) == 0)
       {
-        return HL7Node.Header;
+        return Hl7Node.Header;
       }
 
       if (string.Compare(node, "BTS", StringComparison.Ordinal) == 0)
       {
-        return HL7Node.Trailer;
+        return Hl7Node.Trailer;
       }
 
-      return HL7Node.Message;
+      return Hl7Node.Message;
     }
 
     /// <summary>
@@ -179,7 +179,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <returns>
     /// The <see cref="bool"/>.
     /// </returns>
-    public static bool WriteHL7(XmlWriter writer, object segment)
+    public static bool WriteHl7(XmlWriter writer, object segment)
     {
       if ((writer == null) || (segment == null))
       {
@@ -393,14 +393,14 @@ namespace rt.srz.business.configuration.algorithms.serialization
     {
       try
       {
-        if (WriteHL7(writer, message))
+        if (WriteHl7(writer, message))
         {
           messagesWritten += 1L;
         }
       }
       catch (Exception exception)
       {
-        var fomsLogPrefix = HL7Helper.FomsLogPrefix;
+        var fomsLogPrefix = Hl7Helper.FomsLogPrefix;
         FomsLogger.WriteError(LogType.Local, exception, fomsLogPrefix);
         throw;
       }
@@ -409,8 +409,6 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// <summary>
     ///   The ensure write.
     /// </summary>
-    /// <exception cref="InvalidOperationException">
-    /// </exception>
     private void EnsureWrite()
     {
       if (writer == null)
@@ -448,27 +446,27 @@ namespace rt.srz.business.configuration.algorithms.serialization
           while (reader.MoveToNextAttribute());
         }
 
-        if (LookNearNode() != HL7Node.Header)
+        if (LookNearNode() != Hl7Node.Header)
         {
           DoClose();
-          throw new InvalidOperationException("Ошибка чтения корневого узла HL7");
+          throw new InvalidOperationException("Ошибка чтения корневого узла Hl7");
         }
 
         var defattr = false;
         writer.WriteNode(reader, defattr);
         writer.Flush();
         outputStream.ResetHashWriteCalculator(new Crc32());
-        while (LookNearNode() == HL7Node.Message)
+        while (LookNearNode() == Hl7Node.Message)
         {
           var flag2 = false;
           writer.WriteNode(reader, flag2);
           messagesWritten += 1L;
         }
 
-        if ((LookNearNode() != HL7Node.Trailer) || !LoadBatchTrailer())
+        if ((LookNearNode() != Hl7Node.Trailer) || !LoadBatchTrailer())
         {
           DoClose();
-          throw new InvalidOperationException("Ошибка чтения завершающего узла HL7");
+          throw new InvalidOperationException("Ошибка чтения завершающего узла Hl7");
         }
 
         DoCloseInput();
@@ -518,9 +516,9 @@ namespace rt.srz.business.configuration.algorithms.serialization
     ///   The look near node.
     /// </summary>
     /// <returns>
-    ///   The <see cref="HL7Node" />.
+    ///   The <see cref="Hl7Node" />.
     /// </returns>
-    private HL7Node LookNearNode()
+    private Hl7Node LookNearNode()
     {
       if (reader != null)
       {
@@ -528,14 +526,14 @@ namespace rt.srz.business.configuration.algorithms.serialization
         {
           if (reader.NodeType == XmlNodeType.Element)
           {
-            return HL7NodeFromString(reader.LocalName);
+            return Hl7NodeFromString(reader.LocalName);
           }
         }
         while (reader.Read());
         DoClose();
       }
 
-      return HL7Node.Root;
+      return Hl7Node.Root;
     }
 
     #endregion

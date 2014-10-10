@@ -4,6 +4,6 @@
   <asp:Label ID="lbTitle" runat="server" Text="Добавление в группы"></asp:Label>
 </div>
 <div class="partPadding">
-  <asp:CheckBoxList ID="cblGroups" runat="server" DataTextField="Name" DataValueField="Id"></asp:CheckBoxList>
+  <asp:CheckBoxList ID="cblGroups" runat="server" DataTextField="Name" DataValueField="id"></asp:CheckBoxList>
 </div>
 

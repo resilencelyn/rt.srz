@@ -7,19 +7,19 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.zags
+namespace rt.srz.model.Hl7.zags
 {
   using System;
   using System.Collections.Generic;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person;
+  using rt.srz.model.Hl7.person;
 
   /// <summary>
   ///   Данные ЗАГС по умершим
   /// </summary>
   [Serializable]
-  [XmlRoot("ZAGS", Namespace = "urn:hl7-org:v2xml", IsNullable = false)]
+  [XmlRoot("ZAGS", Namespace = "urn:Hl7-org:v2xml", IsNullable = false)]
   public class Zags : BaseMessageTemplate
   {
     #region Public Properties

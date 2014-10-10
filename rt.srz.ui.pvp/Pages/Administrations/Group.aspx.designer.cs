@@ -15,10 +15,10 @@ namespace rt.srz.ui.pvp.Pages.Administrations {
         /// <summary>
         /// addGroupControl control.
         /// </summary>
-        /// <remarks>
+        
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+        
         protected global::rt.srz.ui.pvp.Controls.Administration.AddGroupControl addGroupControl;
     }
 }

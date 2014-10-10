@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -92,7 +93,7 @@
     <Compile Include="dto\SearchTwinCriteria.cs" />
     <Compile Include="enumerations\BirthDayType.cs" />
     <Compile Include="enumerations\CheckLevelEnum.cs" />
-    <Compile Include="enumerations\KLADRObjectLevel.cs" />
+    <Compile Include="enumerations\KladrLevel.cs" />
     <Compile Include="enumerations\TwinKeyType.cs" />
     <Compile Include="interfaces\ICheckStatement.cs" />
     <Compile Include="interfaces\service\uir\Ack.cs" />
@@ -417,9 +418,9 @@
       <Name>rt.core.model</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.HL7.csproj">
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.hl7.csproj">
       <Project>{B91BB517-E433-4091-9C96-3386CA975C5A}</Project>
-      <Name>rt.srz.model.HL7</Name>
+      <Name>rt.srz.model.hl7</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
@@ -430,11 +431,10 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="interfaces\client\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -36,7 +36,12 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <summary>
     ///   The _statement service.
     /// </summary>
-    private IStatementService _statementService;
+    private IStatementService statementService;
+
+    /// <summary>
+    ///   The _statement service.
+    /// </summary>
+    private IRegulatoryService regulatoryService;
 
     #endregion
 
@@ -114,75 +119,75 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var propertyList = GetPropertyListForCheckIsRightToEdit();
 
       // ФИО
-      if (!_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.LastName)))
+      if (!statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.LastName)))
       {
         tbLastName.Enabled = chbIsLastNameAbsent.Enabled = false;
       }
 
-      if (!_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.FirstName)))
+      if (!statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.FirstName)))
       {
         tbFirstName.Enabled = chbIsFirstNameAbsent.Enabled = false;
       }
 
-      if (!_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.MiddleName)))
+      if (!statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.MiddleName)))
       {
         tbMiddleName.Enabled = chbIsMiddleNameAbsent.Enabled = false;
       }
 
       // Пол
-      ddlGender.Enabled = _statementService.IsRightToEdit(
+      ddlGender.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Gender));
 
       // Дата рождения
-      chBIsIncorrectDate.Enabled = _statementService.IsRightToEdit(
+      chBIsIncorrectDate.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.IsIncorrectDate));
-      if (!_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.BirthdayType)))
+      if (!statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.BirthdayType)))
       {
         rbBirthDate.Enabled = rbBirthMonth.Enabled = rbBirthYear.Enabled = false;
       }
 
-      if (!_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthday)))
+      if (!statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthday)))
       {
         tbBirthDate.Enabled = tbBirthMonth.Enabled = tbBirthYear.Enabled = false;
       }
 
       // Место рождения
-      ddlBirthPlace.Enabled = _statementService.IsRightToEdit(
+      ddlBirthPlace.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.OldCountry));
-      tbBirthPlace.Enabled = _statementService.IsRightToEdit(
+      tbBirthPlace.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthplace));
 
       // Категория
-      ddlCategory.Enabled = _statementService.IsRightToEdit(
+      ddlCategory.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Category));
-      chBIsNotGuru.Enabled = _statementService.IsRightToEdit(
+      chBIsNotGuru.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.IsNotGuru));
 
       // СНИЛС
-      tbSnils.Enabled = _statementService.IsRightToEdit(
+      tbSnils.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
 
       // Гражданство
-      ddlCitizenship.Enabled = _statementService.IsRightToEdit(
+      ddlCitizenship.Enabled = statementService.IsRightToEdit(
         propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.Citizenship));
       if (
-        !_statementService.IsRightToEdit(
+        !statementService.IsRightToEdit(
           propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.IsNotCitizenship)))
       {
         chbWithoutCitizenship.Enabled = false;
       }
 
-      if (!_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.IsRefugee)))
+      if (!statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.InsuredPersonData.IsRefugee)))
       {
         chbIsRefugee.Enabled = false;
       }
 
       // Документ УДЛ
-      documentUDL.Enable(_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.DocumentUdl)));
+      documentUDL.Enable(statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.DocumentUdl)));
 
       // Документ подтвержающий право проживания
       documentResidency.Enable(
-        _statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.DocumentRegistration)));
+        statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.DocumentRegistration)));
     }
 
     /// <summary>
@@ -212,7 +217,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var gender = int.Parse(ddlGender.SelectedValue);
       if (gender >= 0)
       {
-        insuredPersonData.Gender = _statementService.GetConcept(gender);
+        insuredPersonData.Gender = regulatoryService.GetConcept(gender);
       }
 
       // Несуществующая дата рождения в документе УДЛ
@@ -231,7 +236,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var birthPlaceCountry = int.Parse(ddlBirthPlace.SelectedValue);
       if (birthPlaceCountry >= 0)
       {
-        insuredPersonData.OldCountry = _statementService.GetConcept(birthPlaceCountry);
+        insuredPersonData.OldCountry = regulatoryService.GetConcept(birthPlaceCountry);
       }
 
       insuredPersonData.Birthplace = tbBirthPlace.Text;
@@ -240,7 +245,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var category = int.Parse(ddlCategory.SelectedValue);
       if (category >= 0)
       {
-        insuredPersonData.Category = _statementService.GetConcept(category);
+        insuredPersonData.Category = regulatoryService.GetConcept(category);
       }
 
       // Не специалист...
@@ -256,7 +261,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var citizenship = int.Parse(ddlCitizenship.SelectedValue);
       if (citizenship >= 0)
       {
-        insuredPersonData.Citizenship = _statementService.GetConcept(citizenship);
+        insuredPersonData.Citizenship = regulatoryService.GetConcept(citizenship);
       }
       else
       {
@@ -276,7 +281,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       // Вид документа УДЛ
       if (documentUDL.DocumentType >= 0)
       {
-        document.DocumentType = _statementService.GetConcept(documentUDL.DocumentType);
+        document.DocumentType = regulatoryService.GetConcept(documentUDL.DocumentType);
       }
 
       // Серия
@@ -302,7 +307,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       {
         var residencyDocument = statement.ResidencyDocument ?? new Document();
 
-        residencyDocument.DocumentType = _statementService.GetConcept(documentResidency.DocumentTypeInHf);
+        residencyDocument.DocumentType = regulatoryService.GetConcept(documentResidency.DocumentTypeInHf);
 
 
         // Серия
@@ -328,9 +333,9 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         statement.ResidencyDocument = null;
       }
 
-      _statementService.TrimStatementData(statement);
+      statementService.TrimStatementData(statement);
 
-      //сохранение изменений в сессию
+      // сохранение изменений в сессию
       if (setCurrentStatement)
       {
         CurrentStatement = statement;
@@ -638,7 +643,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _statementService = ObjectFactory.GetInstance<IStatementService>();
+      statementService = ObjectFactory.GetInstance<IStatementService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       if (!IsPostBack)
       {
         FillGender();
@@ -743,7 +749,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateBirthAndIssueDate(object source, ServerValidateEventArgs args)
     {
-      var errorsText = _statementService.TryCheckProperty1(CurrentStatement, Utils.GetExpressionNode(x => x.DocumentUdl.DateIssue));
+      var errorsText = statementService.TryCheckProperty1(CurrentStatement, Utils.GetExpressionNode(x => x.DocumentUdl.DateIssue));
       cvBirthAndIssueDate.Text = errorsText;
       args.IsValid = string.IsNullOrEmpty(errorsText);
     }
@@ -759,7 +765,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateBirthDate(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthday));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthday));
     }
 
     /// <summary>
@@ -775,7 +781,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthplace));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Birthplace));
       }
       catch (LogicalControlException e)
       {
@@ -795,7 +801,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateCategory(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Category.Id));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Category.Id));
     }
 
     /// <summary>
@@ -809,7 +815,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateCitizenship(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Citizenship.Id));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Citizenship.Id));
     }
 
     /// <summary>
@@ -825,7 +831,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.DocumentUdl));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.DocumentUdl));
       }
       catch (LogicalControlException exception)
       {
@@ -847,7 +853,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.ResidencyDocument));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.ResidencyDocument));
       }
       catch (LogicalControlException exception)
       {
@@ -869,7 +875,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.FirstName));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.FirstName));
       }
       catch (LogicalControlException e)
       {
@@ -889,7 +895,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateGender(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Gender.Id));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Gender.Id));
     }
 
     /// <summary>
@@ -905,7 +911,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Gender.Id));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Gender.Id));
         args.IsValid = true;
       }
       catch (LogicalControlException ex)
@@ -928,7 +934,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.LastName));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.LastName));
       }
       catch (LogicalControlException e)
       {
@@ -950,7 +956,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.MiddleName));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.MiddleName));
       }
       catch (LogicalControlException e)
       {
@@ -970,7 +976,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateSnils(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.InsuredPersonData.Snils));
       chbNotCheckDigitsSnils.Visible = !args.IsValid;
     }
 
@@ -1130,7 +1136,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private void FillCategory()
     {
       ddlCategory.Items.AddRange(
-        _statementService.GetNsiRecords(Oid.Категориязастрахованноголица).Select(
+        regulatoryService.GetNsiRecords(Oid.Категориязастрахованноголица).Select(
           x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
     }
 
@@ -1140,13 +1146,13 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private void FillCitizenshipAndBirthPlace()
     {
       ddlCitizenship.Items
-        .AddRange(_statementService
+        .AddRange(regulatoryService
           .GetNsiRecords(Oid.Страна)
           .Select(x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
           .ToArray());
 
       ddlBirthPlace.Items
-        .AddRange(_statementService
+        .AddRange(regulatoryService
         .GetNsiRecords(new[] { Oid.Страна, Oid.Странадляместарождения })
         .OrderBy(x => x.Relevance).ThenBy(x => x.Name)
         .Select(x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
@@ -1163,7 +1169,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private void FillDocType()
     {
       documentUDL.FillDocumentTypeDdl(
-        _statementService.GetNsiRecords(Oid.ДокументУдл).Select(
+        regulatoryService.GetNsiRecords(Oid.ДокументУдл).Select(
           x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray(),
         DocumentType.PassportRf.ToString(CultureInfo.InvariantCulture));
     }
@@ -1174,7 +1180,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private void FillGender()
     {
       ddlGender.Items.AddRange(
-        _statementService.GetNsiRecords(Oid.Пол).Select(
+        regulatoryService.GetNsiRecords(Oid.Пол).Select(
           x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
     }
 
@@ -1203,7 +1209,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         citizenshipId = int.Parse(ddlCitizenship.SelectedValue);
       }
 
-      var itemList = _statementService
+      var itemList = statementService
         .GetCategoryByCitizenship(citizenshipId, chbWithoutCitizenship.Checked, chbIsRefugee.Checked, Age)
         .Select(x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture)))
         .ToArray();
@@ -1225,7 +1231,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       {
         var categoryId = int.Parse(ddlCategory.SelectedValue);
         documentList.AddRange(
-          _statementService.GetDocumentResidencyTypeByCategory(categoryId).Select(
+          statementService.GetDocumentResidencyTypeByCategory(categoryId).Select(
             x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
       }
 
@@ -1253,7 +1259,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         var categoryId = int.Parse(ddlCategory.SelectedValue);
 
         documentList.AddRange(
-          _statementService.GetDocumentTypeByCategory(categoryId, Age).Select(
+          statementService.GetDocumentTypeByCategory(categoryId, Age).Select(
             x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray());
       }
 

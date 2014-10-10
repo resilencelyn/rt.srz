@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.algorithms.DamienG
+namespace rt.srz.model.Hl7.algorithms.DamienG
 {
   #region references
 

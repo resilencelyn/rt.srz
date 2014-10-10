@@ -14,10 +14,11 @@ namespace rt.srz.business.manager
   using System;
   using System.Collections.Generic;
   using System.Linq;
-  using System.Xml.Linq;
 
   using NHibernate;
   using NHibernate.Criterion;
+
+  using NLog;
 
   using rt.srz.business.manager.cache;
   using rt.srz.model.interfaces.service.uir;
@@ -52,27 +53,23 @@ namespace rt.srz.business.manager
 
       try
       {
+        var specFormat = DocumentNumSeparator.SeparateSpecFormat(rq.Document.DocIdent);
         var statement = new Statement
                         {
                           InsuredPersonData =
                             new InsuredPersonDatum
                             {
-                              FirstName = rq.FullName.FirstName, 
-                              LastName = rq.FullName.FamilyName, 
-                              MiddleName = rq.FullName.MiddleName, 
-                              Birthday = rq.Birth.BirthDate, 
+                              FirstName = rq.FullName.FirstName,
+                              LastName = rq.FullName.FamilyName,
+                              MiddleName = rq.FullName.MiddleName,
+                              Birthday = rq.Birth.BirthDate,
                               Birthplace = rq.Birth.BirthPlace
-                            }, 
-                          DocumentUdl =
-                            new Document
-                            {
-                              Series =
-                                DocumentNumSeparator.SeparateSpecFormat(rq.Document.DocIdent)
-                                [0], 
-                              Number =
-                                DocumentNumSeparator.SeparateSpecFormat(rq.Document.DocIdent)
-                                [1]
-                            }
+                            },
+                          DocumentUdl = new Document
+                                        {
+                                          Series = specFormat[0],
+                                          Number = specFormat[1]
+                                        }
                         };
         if (rq.InsDate != null)
         {
@@ -84,7 +81,7 @@ namespace rt.srz.business.manager
                  UIRResponse =
                    new UIRResponse
                    {
-                     UIRQueryResponse = ResponseMaping(statement), 
+                     UIRQueryResponse = ResponseMaping(statement),
                      Ack = Ack.AA.ToString()
                    }
                };
@@ -96,8 +93,8 @@ namespace rt.srz.business.manager
                  UIRResponse =
                    new UIRResponse
                    {
-                     UIRQueryResponse = null, 
-                     Ack = Ack.AE.ToString(), 
+                     UIRQueryResponse = null,
+                     Ack = Ack.AE.ToString(),
                      Err = new[] { new Err { ErrText = ex.Message } }
                    }
                };
@@ -134,12 +131,12 @@ namespace rt.srz.business.manager
                           InsuredPersonData =
                             new InsuredPersonDatum
                             {
-                              FirstName = rq.FullName.FirstName, 
-                              LastName = rq.FullName.FamilyName, 
-                              MiddleName = rq.FullName.MiddleName, 
-                              Birthday = rq.Birth.BirthDate, 
+                              FirstName = rq.FullName.FirstName,
+                              LastName = rq.FullName.FamilyName,
+                              MiddleName = rq.FullName.MiddleName,
+                              Birthday = rq.Birth.BirthDate,
                               Birthplace = rq.Birth.BirthPlace
-                            }, 
+                            },
                           MedicalInsurances =
                             session.QueryOver<Organisation>()
                                    .Inner.JoinQueryOver(j => j.Parent)
@@ -149,9 +146,9 @@ namespace rt.srz.business.manager
                                            m =>
                                            new MedicalInsurance
                                            {
-                                             PolisType = polisType, 
-                                             PolisSeria = polisSeria, 
-                                             PolisNumber = polisNumber, 
+                                             PolisType = polisType,
+                                             PolisSeria = polisSeria,
+                                             PolisNumber = polisNumber,
                                              Smo = m
                                            })
                                    .ToList()
@@ -166,7 +163,7 @@ namespace rt.srz.business.manager
                  UIRResponse =
                    new UIRResponse
                    {
-                     UIRQueryResponse = ResponseMaping(statement), 
+                     UIRQueryResponse = ResponseMaping(statement),
                      Ack = Ack.AA.ToString()
                    }
                };
@@ -178,8 +175,8 @@ namespace rt.srz.business.manager
                  UIRResponse =
                    new UIRResponse
                    {
-                     UIRQueryResponse = null, 
-                     Ack = Ack.AE.ToString(), 
+                     UIRQueryResponse = null,
+                     Ack = Ack.AE.ToString(),
                      Err = new[] { new Err { ErrText = ex.Message } }
                    }
                };
@@ -191,69 +188,13 @@ namespace rt.srz.business.manager
     #region Methods
 
     /// <summary>
-    /// The get insurance type.
-    /// </summary>
-    /// <param name="ins">
-    /// The ins.
-    /// </param>
-    /// <returns>
-    /// The <see cref="string"/>.
-    /// </returns>
-    private string GetInsuranceType(MedicalInsurance ins)
-    {
-      // Создание вложенными конструкторами.
-      var doc =
-        new XDocument(
-          new XElement(
-            "NsiMoPacket", 
-            new XElement(
-              "zglv", 
-              new XElement("type", string.Empty), 
-              // TipOMS [10] char
-              new XElement("version", string.Empty), 
-              // Версия структуры файла [3] char
-              new XElement("date", DateTime.Now.Date)), 
-            // Дата создания файла date
-            new XElement(
-              "zap", 
-              // Код типа документа, подтвер-ждающего факт страхования по ОМС num
-              new XElement("IDDOC", int.Parse(ins.Statement.DocumentUdl.DocumentType.Code)), 
-              // Наименование документа, под-тверждающего факт страхования по ОМС char
-              new XElement("DOCNAME", 0), 
-              // Дата начала действия записи date
-              new XElement("DATEBEG", DateTime.Now.Date), 
-              new XElement("DATEEND", DateTime.Now.Date)))); // Дата окончания действия записи date
-
-      return doc.ToString();
-    }
-
-    /// <summary>
-    /// The get insured person by statement.
-    /// </summary>
-    /// <param name="statement">
-    /// The statement.
-    /// </param>
-    /// <param name="keys">
-    /// The keys.
-    /// </param>
-    /// <returns>
-    /// The <see cref="InsuredPerson"/>.
-    /// </returns>
-    private InsuredPerson GetInsuredPersonByStatement(Statement statement, IEnumerable<SearchKey> keys)
-    {
-      var insuredPersons = GetInsuredPersonsByKeys(keys);
-
-      return insuredPersons.Count > 0 ? insuredPersons.First() : null;
-    }
-
-    /// <summary>
     /// The get insured persons by keys.
     /// </summary>
     /// <param name="keys">
     /// The keys.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{InsuredPerson}"/>.
     /// </returns>
     private IList<InsuredPerson> GetInsuredPersonsByKeys(IEnumerable<SearchKey> keys)
     {
@@ -280,11 +221,9 @@ namespace rt.srz.business.manager
     /// The statement.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IEnumerable{InsuredPerson}"/>.
     /// </returns>
-    /// <exception cref="StandardSearchKeyCalculationException">
-    /// </exception>
-    private IList<InsuredPerson> InsuredPersonsByKeis(Statement statement)
+    private IEnumerable<InsuredPerson> InsuredPersonsByKeis(Statement statement)
     {
       // Считаем ключи поиска
       // Расчет стандартных ключей
@@ -295,7 +234,7 @@ namespace rt.srz.business.manager
       }
       catch (Exception ex)
       {
-        NLog.LogManager.GetCurrentClassLogger().Error(ex);
+        LogManager.GetCurrentClassLogger().Error(ex);
         throw new StandardSearchKeyCalculationException();
       }
 
@@ -373,26 +312,22 @@ namespace rt.srz.business.manager
                            {
                              InsType =
                                conceptManager.GetById(ins.PolisType.Id)
-                                             .Code, 
+                                             .Code,
                              InsRegion =
                                organisationManager.GetById(ins.Smo.Id)
-                                                  .Parent.Code, 
+                                                  .Parent.Code,
                              MedInsCompanyId =
                                organisationManager.GetById(ins.Smo.Id)
-                                                  .Code, 
-                             StartDate = ins.DateFrom, 
-                             EndDate = ins.DateTo, 
+                                                  .Code,
+                             StartDate = ins.DateFrom,
+                             EndDate = ins.DateTo,
                              InsId =
-                               DocumentNumSeparator.SpecFormat(
-                                                               ins
-                                                                 .PolisSeria, 
-                                                               ins
-                                                                 .PolisNumber)
-                           }, 
+                               DocumentNumSeparator.SpecFormat(ins.PolisSeria, ins.PolisNumber)
+                           },
                          Person =
                            new Person
                            {
-                             MainENP = ins.InsuredPerson.MainPolisNumber, 
+                             MainENP = ins.InsuredPerson.MainPolisNumber,
                              RegionalENP = ins.Statement.NumberPolicy
                            }
                        })

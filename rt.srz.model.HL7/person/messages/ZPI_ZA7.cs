@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.messages
+namespace rt.srz.model.Hl7.person.messages
 {
   #region references
 
@@ -15,9 +15,9 @@ namespace rt.srz.model.HL7.person.messages
   using System.Collections.Generic;
   using System.Xml.Serialization;
 
-  using rt.srz.model.HL7.person.target;
+  using rt.srz.model.Hl7.person.target;
 
-  // TODO Namespace = "urn:hl7-org:v2xml"
+  // TODO Namespace = "urn:Hl7-org:v2xml"
   #endregion
 
   /// <summary>

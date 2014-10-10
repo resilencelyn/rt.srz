@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.pfr
+namespace rt.srz.model.Hl7.pfr
 {
   using System;
   using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace rt.srz.model.HL7.pfr
   ///   Список СНИЛС от ОПФР
   /// </summary>
   [Serializable]
-  [XmlRoot("snils_zl_list", Namespace = "urn:hl7-org:v2xml")]
+  [XmlRoot("snils_zl_list", Namespace = "urn:Hl7-org:v2xml")]
   public class SnilsZlList
   {
     #region Public Properties

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.commons.Interfaces
+namespace rt.srz.model.Hl7.commons.Interfaces
 {
   /// <summary>
   /// The SelfWriter interface.

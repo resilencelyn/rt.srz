@@ -4,5 +4,5 @@
   <asp:Label ID="lbTitle" runat="server" Text="Назначение ролей" ></asp:Label>
 </div>
 <div class="partPadding">
-  <asp:CheckBoxList ID="cblRoles" runat="server" DataTextField="Name" DataValueField="Id"></asp:CheckBoxList>
+  <asp:CheckBoxList ID="cblRoles" runat="server" DataTextField="Name" DataValueField="id"></asp:CheckBoxList>
 </div>

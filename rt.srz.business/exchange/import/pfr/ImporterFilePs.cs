@@ -24,7 +24,7 @@ namespace rt.srz.business.exchange.import.pfr
   using rt.core.business.server.exchange.export;
   using rt.srz.business.manager;
   using rt.srz.model.algorithms;
-  using rt.srz.model.HL7.pfr;
+  using rt.srz.model.Hl7.pfr;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
 

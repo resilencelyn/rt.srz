@@ -14,7 +14,9 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 {
   public partial class Step4 : WizardStep
   {
-    private IStatementService _statementService;
+    private IStatementService statementService;
+
+    private IRegulatoryService regulatoryService;
 
     #region IWizardStep implementation
 
@@ -82,13 +84,13 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         //Отношение к застрахованному лицу
         int relationType = Int32.Parse(ddlRelationType.SelectedValue);
         if (relationType >= 0)
-          representative.RelationType = _statementService.GetConcept(relationType);
+          representative.RelationType = regulatoryService.GetConcept(relationType);
 
         //Документ УДЛ
         Document document = representative.Document ?? new Document();
         //Вид документа УДЛ
         if (documentUDL.DocumentType >= 0)
-          document.DocumentType = _statementService.GetConcept(documentUDL.DocumentType);
+          document.DocumentType = regulatoryService.GetConcept(documentUDL.DocumentType);
         //Серия
         document.Series = documentUDL.DocumentSeries;
         //Номер
@@ -115,7 +117,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         statement.Representative = null;
       }
 
-      _statementService.TrimStatementData(statement);
+      statementService.TrimStatementData(statement);
 
       //сохранение изменений в сессию
       if (setCurrentStatement)
@@ -133,10 +135,10 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
       //ФИО, тип представителя, Телефон домашний, Телефон рабочий
       tbLastName.Enabled = tbFirstName.Enabled = tbMiddleName.Enabled = ddlRelationType.Enabled = tbHomePhone.Enabled = tbWorkPhone.Enabled =
-        _statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Representative));
+        statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Representative));
 
       //Документ УДЛ
-      documentUDL.Enable(_statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Representative.Document)));
+      documentUDL.Enable(statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Representative.Document)));
     }
 
     #endregion
@@ -145,7 +147,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
     protected void Page_Init(object sender, EventArgs e)
     {
-      _statementService = ObjectFactory.GetInstance<IStatementService>();
+      statementService = ObjectFactory.GetInstance<IStatementService>();
+      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
 
       if (!IsPostBack)
       {
@@ -181,13 +184,13 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
 
     private void FillInsuredRelation()
     {
-      foreach (var c in _statementService.GetNsiRecords(Oid.Отношениекзастрахованномулицу))
+      foreach (var c in regulatoryService.GetNsiRecords(Oid.Отношениекзастрахованномулицу))
         ddlRelationType.Items.Add(new ListItem(c.Name, c.Id.ToString()));
     }
 
     private void FillDocTypeUDL()
     {
-      documentUDL.FillDocumentTypeDdl(_statementService.GetDocumentTypeForRepresentative().
+      documentUDL.FillDocumentTypeDdl(statementService.GetDocumentTypeForRepresentative().
         Select(x => new ListItem(x.Name, x.Id.ToString(CultureInfo.InvariantCulture))).ToArray(), null);
     }
 
@@ -208,7 +211,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.LastName));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.LastName));
       }
       catch (LogicalControlException e)
       {
@@ -230,7 +233,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.FirstName));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.FirstName));
       }
       catch (LogicalControlException e)
       {
@@ -252,7 +255,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.MiddleName));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.MiddleName));
       }
       catch (LogicalControlException e)
       {
@@ -272,7 +275,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateRelationType(Object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.RelationType.Id));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.RelationType.Id));
     }
 
     /// <summary>
@@ -288,7 +291,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     {
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.Document));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Representative.Document));
       }
       catch (LogicalControlException exception)
       {

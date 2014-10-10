@@ -46,16 +46,21 @@ namespace rt.srz.business.manager
     /// </returns>
     public bool AutoCompleteExists(AutoComplete autoComplete)
     {
-      return GetBy(x => x.Id != autoComplete.Id && x.Name == autoComplete.Name && x.Gender == autoComplete.Gender && x.Type == autoComplete.Type).Any();
+      return
+        GetBy(
+              x =>
+              x.Id != autoComplete.Id && x.Name == autoComplete.Name && x.Gender == autoComplete.Gender
+              && x.Type == autoComplete.Type).Any();
     }
 
     /// <summary>
     /// Получает результат по критерию для имён и отчеств
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{AutoComplete}"/> .
     /// </returns>
     public SearchResult<AutoComplete> GetAutoCompleteByCriteria(SearchAutoCompleteCriteria criteria)
     {
@@ -83,9 +88,10 @@ namespace rt.srz.business.manager
     /// Возвращает список вариантов для имени
     /// </summary>
     /// <param name="prefix">
+    /// The prefix.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{AutoComplete}"/>.
     /// </returns>
     public IList<AutoComplete> GetFirstNameAutoComplete(string prefix)
     {
@@ -104,11 +110,13 @@ namespace rt.srz.business.manager
     /// Возвращает список вариантов для отчества
     /// </summary>
     /// <param name="prefix">
+    /// The prefix.
     /// </param>
     /// <param name="nameId">
+    /// The name Id.
     /// </param>
     /// <returns>
-    /// The <see cref="IList"/>.
+    /// The <see cref="IList{AutoComplete}"/>.
     /// </returns>
     public IList<AutoComplete> GetMiddleNameAutoComplete(string prefix, Guid nameId)
     {
@@ -155,10 +163,10 @@ namespace rt.srz.business.manager
     /// The <see cref="IQueryOver"/> .
     /// </returns>
     private IQueryOver<AutoComplete, AutoComplete> AddOrder(
-      SearchAutoCompleteCriteria criteria,
-      AutoComplete ac,
-      Concept gender,
-      Concept type,
+      SearchAutoCompleteCriteria criteria, 
+      AutoComplete ac, 
+      Concept gender, 
+      Concept type, 
       IQueryOver<AutoComplete, AutoComplete> query)
     {
       // Сортировка

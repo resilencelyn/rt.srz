@@ -21,8 +21,8 @@ namespace rt.srz.business.registry
   using rt.srz.business.interfaces.logicalcontrol;
   using rt.srz.business.manager.logicalcontrol;
   using rt.srz.business.manager.rightedit;
-  using rt.srz.model.HL7.pfr;
-  using rt.srz.model.HL7.smo;
+  using rt.srz.model.Hl7.pfr;
+  using rt.srz.model.Hl7.smo;
   using rt.srz.model.interfaces;
 
   using StructureMap.Configuration.DSL;

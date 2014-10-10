@@ -63,8 +63,6 @@ namespace rt.srz.business.manager.logicalcontrol
     /// <param name="expression">
     /// The expression.
     /// </param>
-    /// <exception cref="LogicalControlException">
-    /// </exception>
     public void CheckProperty(Statement statement, Expression<Func<Statement, object>> expression)
     {
       LogicalControlException ex = null;
@@ -104,6 +102,7 @@ namespace rt.srz.business.manager.logicalcontrol
     /// The statement.
     /// </param>
     /// <param name="level">
+    /// The level.
     /// </param>
     public void CheckStatement(Statement statement, CheckLevelEnum level)
     {

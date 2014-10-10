@@ -33,6 +33,7 @@ namespace rt.srz.business.manager
     /// Удаление инфы о смерти
     /// </summary>
     /// <param name="statementId">
+    /// The statement Id.
     /// </param>
     void DeleteDeathInfo(Guid statementId);
 
@@ -40,6 +41,7 @@ namespace rt.srz.business.manager
     /// Входит ли указанная персона в объединение как главное или как второе лицо
     /// </summary>
     /// <param name="personId">
+    /// The person Id.
     /// </param>
     /// <returns>
     /// The <see cref="bool"/>.

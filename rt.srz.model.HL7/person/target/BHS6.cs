@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.target
+namespace rt.srz.model.Hl7.person.target
 {
   #region references
 
@@ -40,7 +40,7 @@ namespace rt.srz.model.HL7.person.target
     ///   The table code.
     /// </summary>
     [XmlElement(ElementName = "HD.2", Order = 2)]
-    public string TableCode = HL7Helper.TypeCode_Region2Code;
+    public string TableCode = Hl7Helper.TypeCode_Region2Code;
 
     #endregion
   }

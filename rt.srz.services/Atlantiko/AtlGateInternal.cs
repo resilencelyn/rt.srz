@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AtlGate.cs" company="РусБИТех">
+// <copyright file="AtlGateInternal.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -11,7 +11,7 @@ namespace rt.srz.services.Atlantiko
 {
   using Quartz;
 
-  using rt.atl.model.interfaces.service;
+  using rt.atl.model.interfaces.Service;
   using rt.core.services.aspects;
 
   /// <summary>

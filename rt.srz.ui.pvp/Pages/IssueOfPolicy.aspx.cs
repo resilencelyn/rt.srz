@@ -59,6 +59,7 @@ namespace rt.srz.ui.pvp.Pages
     private Statement MoveDataFromGui2Object(Statement statement)
     {
       var statementService = ObjectFactory.GetInstance<IStatementService>();
+      var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       var user = ObjectFactory.GetInstance<ISecurityService>().GetCurrentUser();
 
       // Выдан полис
@@ -88,7 +89,7 @@ namespace rt.srz.ui.pvp.Pages
       var policyType = int.Parse(ctrlIssueOfPolicy.PolicyTypeId);
       if (policyType >= 0)
       {
-        insurance.PolisType = statementService.GetConcept(policyType);
+        insurance.PolisType = regulatoryService.GetConcept(policyType);
       }
 
       // Номер ЕНПk

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.dotNetX
+namespace rt.srz.model.Hl7.dotNetX
 {
   #region references
 

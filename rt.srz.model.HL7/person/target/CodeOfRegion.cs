@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.model.HL7.person.target
+namespace rt.srz.model.Hl7.person.target
 {
   #region references
 
@@ -51,7 +51,7 @@ namespace rt.srz.model.HL7.person.target
     /// </summary>
     public CodeOfRegion()
     {
-      TableCode = HL7Helper.TypeCode_Region5Code;
+      TableCode = Hl7Helper.TypeCode_Region5Code;
       Iso = "ISO";
     }
 
@@ -63,7 +63,7 @@ namespace rt.srz.model.HL7.person.target
     /// </param>
     public CodeOfRegion(string Code)
     {
-      TableCode = HL7Helper.TypeCode_Region5Code;
+      TableCode = Hl7Helper.TypeCode_Region5Code;
       Iso = "ISO";
       this.Code = Code;
     }

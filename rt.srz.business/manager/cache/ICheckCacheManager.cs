@@ -15,7 +15,7 @@ namespace rt.srz.business.manager.cache
   using rt.srz.model.srz;
 
   /// <summary>
-  /// The CheckCacheManager interface.
+  ///   The CheckCacheManager interface.
   /// </summary>
   public interface ICheckCacheManager : IManagerCacheBaseT<Setting, Guid>
   {
@@ -25,6 +25,7 @@ namespace rt.srz.business.manager.cache
     /// Возвращает настройку по имени класса (ValidatorName = тип валидатора), которая записывается в поле name.
     /// </summary>
     /// <param name="className">
+    /// The class Name.
     /// </param>
     /// <returns>
     /// The <see cref="Setting"/>.
@@ -37,6 +38,7 @@ namespace rt.srz.business.manager.cache
     ///   базе
     /// </summary>
     /// <param name="className">
+    /// The class Name.
     /// </param>
     /// <returns>
     /// The <see cref="Setting"/>.
@@ -47,6 +49,7 @@ namespace rt.srz.business.manager.cache
     /// Обновляет объект в кеше зачитав его из базы без учёта организации
     /// </summary>
     /// <param name="setting">
+    /// The setting.
     /// </param>
     void UpdateAllowChangeCacheRecord(Setting setting);
 
@@ -54,6 +57,7 @@ namespace rt.srz.business.manager.cache
     /// Обновляет объект в кеше зачитав его из базы данных
     /// </summary>
     /// <param name="setting">
+    /// The setting.
     /// </param>
     void UpdateCacheRecord(Setting setting);
 

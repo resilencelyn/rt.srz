@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace rt.srz.services.Nsi
+namespace rt.srz.services.Regulatory
 {
   #region
 

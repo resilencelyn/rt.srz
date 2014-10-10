@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using rt.atl.business.manager;
-using rt.atl.model.atl;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TestprocTests.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary>
+//   The testproc tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.atl.business.tests
 {
-    public partial class TestprocTests
-    {
-	}
+  /// <summary>
+  /// The testproc tests.
+  /// </summary>
+  public partial class TestprocTests
+  {
+  }
 }

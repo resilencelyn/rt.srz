@@ -27,6 +27,7 @@ namespace rt.srz.business.manager
     /// Аннулирование дубликата
     /// </summary>
     /// <param name="twinId">
+    /// The twin id.
     /// </param>
     void AnnulateTwin(Guid twinId);
 
@@ -34,24 +35,18 @@ namespace rt.srz.business.manager
     /// Удаляет все дубликаты которые были рассчитаны только по этому ключу
     /// </summary>
     /// <param name="keyId">
+    /// The key id.
     /// </param>
     void DeleteTwinsCalculatedOnlyByGivenKey(Guid keyId);
-
-    /// <summary>
-    /// Получает все дубликаты
-    /// </summary>
-    /// <returns>
-    /// The <see cref="IList"/>.
-    /// </returns>
-    IList<Twin> GetTwins();
 
     /// <summary>
     /// Дубликаты по критерию для разбивки постранично
     /// </summary>
     /// <param name="criteria">
+    /// The criteria.
     /// </param>
     /// <returns>
-    /// The <see cref="SearchResult"/> .
+    /// The <see cref="SearchResult{Twin}"/> .
     /// </returns>
     SearchResult<Twin> GetTwins(SearchTwinCriteria criteria);
 
@@ -59,25 +54,29 @@ namespace rt.srz.business.manager
     /// Объединяет дубликаты
     /// </summary>
     /// <param name="twinId">
+    /// The twin id.
     /// </param>
     /// <param name="mainInsuredPersonId">
+    /// The main Insured Person id.
     /// </param>
     /// <param name="secondInsuredPersonId">
+    /// The second Insured Person id.
     /// </param>
     void JoinTwins(Guid twinId, Guid mainInsuredPersonId, Guid secondInsuredPersonId);
 
     /// <summary>
     /// Помечает дубликат как удаленный
     /// </summary>
-    /// <param name="Id">
+    /// <param name="id">
+    /// The id.
     /// </param>
-    void RemoveTwin(Guid Id);
+    void RemoveTwin(Guid id);
 
     /// <summary>
     /// Разделение
     /// </summary>
     /// <param name="personId">
-    /// The person Id.
+    /// The person id.
     /// </param>
     /// <param name="statementsToSeparate">
     /// The statements To Separate.
