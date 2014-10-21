@@ -313,10 +313,12 @@ namespace rt.srz.ui.pvp.Controls
     /// </param>
     protected void Page_Load(object sender, EventArgs e)
     {
+      confirmDelete.Hide();
+      confirmDeath.Hide();
+
       if (!IsPostBack)
       {
-        ViewState["OpenNotOwnSmo"] = SecurityService.GetIsCurrentUserAllowPermission(
-                                                                                     PermissionCode.Search_OpenNotOwnSmo);
+        ViewState["OpenNotOwnSmo"] = SecurityService.GetIsCurrentUserAllowPermission(PermissionCode.Search_OpenNotOwnSmo);
 
         var currentUser = SecurityService.GetCurrentUser();
         Menu.FindItem(SessionConsts.CDelete).NavigateUrl = confirmDelete.ViewConfirmScript;
@@ -412,7 +414,7 @@ namespace rt.srz.ui.pvp.Controls
 
       // обновляем инфу в уголке по краткому содержанию фильтра
       UpdateBriefFilterInfoInCorner();
-    }
+      }
 
     /// <summary>
     /// The search result grid view_ row command.

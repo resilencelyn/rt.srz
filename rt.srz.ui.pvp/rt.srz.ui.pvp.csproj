@@ -303,16 +303,15 @@
     <Content Include="Configuration\SynchronizationSettings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Browsers\ie.browser">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Browsers\firefox.browser" />
     <Content Include="HttpHandlers\GetFileHandler.ashx" />
     <Content Include="Configuration\MigrationConfiguration.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configuration\NLog.config" />
     <Content Include="Configuration\StructureMap.config" />
+    <Content Include="App_Browsers\ie.browser" />
+    <Content Include="App_Browsers\firefox.browser" />
+    <Content Include="App_Browsers\Telerik_IE11_fix.browser" />
     <None Include="Properties\PublishProfiles\demo.pubxml" />
     <Content Include="Pages\IssueOfPolicy.aspx" />
     <Content Include="Pages\NSI\TemplatesVs.aspx" />
