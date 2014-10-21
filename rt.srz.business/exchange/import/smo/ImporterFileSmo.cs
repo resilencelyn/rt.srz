@@ -100,11 +100,11 @@ namespace rt.srz.business.exchange.import.smo
         addr.IsHomeless = true;
       }
 
-      var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
-      var subj = !string.IsNullOrEmpty(address.SUBJ)
-                   ? kladrManager.GetBy(x => x.Okato == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
-                   : null;
-      addr.Subject = subj != null ? string.Format("{0} {1}", subj.Name, subj.Socr) : string.Empty;
+      ////var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
+      ////var subj = !string.IsNullOrEmpty(address.SUBJ)
+      ////             ? kladrManager.GetBy(x => x.Okato == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
+      ////             : null;
+      ////addr.Subject = subj != null ? string.Format("{0} {1}", subj.Name, subj.Socr) : string.Empty;
       addr.Postcode = address.INDX;
       addr.Okato = address.OKATO;
       addr.Area = address.RNNAME;
@@ -126,11 +126,11 @@ namespace rt.srz.business.exchange.import.smo
 
       if (!string.IsNullOrEmpty(address.CODEKLADR))
       {
-        var kladr = ObjectFactory.GetInstance<IKladrManager>().GetByCODE(address.CODEKLADR).FirstOrDefault();
-        if (kladr != null)
-        {
-          addr.RegulatoryId = kladr.Id;
-        }
+        ////var kladr = ObjectFactory.GetInstance<IKladrManager>().GetByCODE(address.CODEKLADR).FirstOrDefault();
+        ////if (kladr != null)
+        ////{
+        ////  addr.RegulatoryId = kladr.Id;
+        ////}
       }
 
       statement.Address = addr;
@@ -154,10 +154,10 @@ namespace rt.srz.business.exchange.import.smo
       }
 
       var addr = statement.Address2 ?? new address();
-      var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
-      var subj = !string.IsNullOrEmpty(address.SUBJ)
-                   ? kladrManager.GetBy(x => x.Okato == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
-                   : null;
+      ////var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
+      ////var subj = !string.IsNullOrEmpty(address.SUBJ)
+      ////             ? kladrManager.GetBy(x => x.Okato == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
+      ////             : null;
       addr.Postcode = address.INDX;
       addr.Okato = address.OKATO;
       addr.Area = address.RNNAME;
@@ -173,11 +173,11 @@ namespace rt.srz.business.exchange.import.smo
 
       if (!string.IsNullOrEmpty(address.CODEKLADR))
       {
-        var kladr = ObjectFactory.GetInstance<IKladrManager>().GetByCODE(address.CODEKLADR).FirstOrDefault();
-        if (kladr != null)
-        {
-          addr.RegulatoryId = kladr.Id;
-        }
+        ////var kladr = ObjectFactory.GetInstance<IKladrManager>().GetByCODE(address.CODEKLADR).FirstOrDefault();
+        ////if (kladr != null)
+        ////{
+        ////  addr.RegulatoryId = kladr.Id;
+        ////}
       }
 
       statement.Address2 = addr;

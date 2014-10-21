@@ -59,8 +59,8 @@
     <PreBuildEvent />
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(ProjectDir)rt.srz.setup.uec.service.inf $(SolutionDir)rt.srz.ui.pvp\activex
-call $(SolutionDir)ThirdParty\CabArc\CabArc.exe N $(SolutionDir)rt.srz.ui.pvp\activex\rt.srz.setup.uec.service.cab  $(SolutionDir)rt.srz.ui.pvp\activex\rt.srz.setup.uec.service.msi $(SolutionDir)rt.srz.ui.pvp\activex\rt.srz.setup.uec.service.inf</PostBuildEvent>
+    <PostBuildEvent>copy /Y $(ProjectDir)rt.srz.setup.uec.service.inf $(SolutionDir)Binaries\activex
+call $(SolutionDir)ThirdParty\CabArc\CabArc.exe N $(SolutionDir)Binaries\activex\rt.srz.setup.uec.service.cab  $(SolutionDir)Binaries\activex\rt.srz.setup.uec.service.msi $(SolutionDir)Binaries\activex\rt.srz.setup.uec.service.inf</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

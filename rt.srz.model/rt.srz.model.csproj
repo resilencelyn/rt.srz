@@ -218,14 +218,6 @@
     <Compile Include="srz\In1.generated.cs">
       <DependentUpon>In1.cs</DependentUpon>
     </Compile>
-    <Compile Include="srz\JobLockObject.cs" />
-    <Compile Include="srz\JobLockObject.generated.cs">
-      <DependentUpon>JobLockObject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="srz\JobPool.cs" />
-    <Compile Include="srz\JobPool.generated.cs">
-      <DependentUpon>JobPool.cs</DependentUpon>
-    </Compile>
     <Compile Include="srz\MessageStatement.cs" />
     <Compile Include="srz\MessageStatement.generated.cs">
       <DependentUpon>MessageStatement.cs</DependentUpon>
@@ -316,10 +308,6 @@
     <Compile Include="srz\InsuredPersonDatum.cs" />
     <Compile Include="srz\InsuredPersonDatum.generated.cs">
       <DependentUpon>InsuredPersonDatum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="srz\Kladr.cs" />
-    <Compile Include="srz\Kladr.generated.cs">
-      <DependentUpon>Kladr.cs</DependentUpon>
     </Compile>
     <Compile Include="srz\MedicalInsurance.cs" />
     <Compile Include="srz\MedicalInsurance.generated.cs">

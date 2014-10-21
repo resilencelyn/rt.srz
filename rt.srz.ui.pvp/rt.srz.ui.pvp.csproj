@@ -1235,6 +1235,10 @@
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
       <Name>rt.core.services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\rt.fias.business\rt.fias.business.csproj">
+      <Project>{ff1daf6d-06ab-4ba6-9b62-e09c0818b092}</Project>
+      <Name>rt.fias.business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\rt.fias.model\rt.fias.model.csproj">
       <Project>{62f05a43-1fbb-4b36-91b5-853ed97a4161}</Project>
       <Name>rt.fias.model</Name>

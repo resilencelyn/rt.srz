@@ -110,8 +110,6 @@
     <Compile Include="exchange\import\BaseImporterFileQueryResponse.cs" />
     <Compile Include="exchange\import\BaseImportFabric.cs" />
     <Compile Include="exchange\import\gateway\ImporterFileUprak.cs" />
-    <Compile Include="exchange\import\kladr\KladrImportFabric.cs" />
-    <Compile Include="exchange\import\kladr\ParseDbf.cs" />
     <Compile Include="exchange\import\pfr\ImporterFilePs.cs" />
     <Compile Include="exchange\import\pfr\ImporterFileRs.cs" />
     <Compile Include="exchange\import\nsi\ImporterFileOrganisationBase.cs" />
@@ -146,8 +144,6 @@
     <Compile Include="manager\IContentManager.cs" />
     <Compile Include="manager\ICounterManager.cs" />
     <Compile Include="manager\IExecuteStoredManager.cs" />
-    <Compile Include="manager\IJobLockObjectManager.cs" />
-    <Compile Include="manager\IJobPoolManager.cs" />
     <Compile Include="manager\IMessageManager.cs" />
     <Compile Include="manager\In1Manager.cs" />
     <Compile Include="manager\In1Manager.Generated.cs">
@@ -158,17 +154,6 @@
     <Compile Include="manager\ITemplateManager.cs" />
     <Compile Include="manager\IUirManager.cs" />
     <Compile Include="manager\IUserActionManager.cs" />
-    <Compile Include="manager\JobLockObjectManager.cs" />
-    <Compile Include="manager\JobLockObjectManager.Generated.cs">
-      <DependentUpon>JobLockObjectManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\JobPoolManager.cs" />
-    <Compile Include="manager\JobPoolManager.Generated.cs">
-      <DependentUpon>JobPoolManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="manager\JobPullManager.Generated.cs">
-      <DependentUpon>JobPoolManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="manager\logicalcontrol\complex\ValidatorGenderConformityMiddleName.cs" />
     <Compile Include="manager\logicalcontrol\complex\ValidatorReinsuranceRules.cs" />
     <Compile Include="manager\logicalcontrol\simple\Age.cs" />
@@ -330,7 +315,6 @@
     <Compile Include="manager\IErrorManager.cs" />
     <Compile Include="manager\IInsuredPersonDatumManager.cs" />
     <Compile Include="manager\IInsuredPersonManager.cs" />
-    <Compile Include="manager\IKladrManager.cs" />
     <Compile Include="manager\IMedicalInsuranceManager.cs" />
     <Compile Include="manager\InsuredPersonDatumManager.cs" />
     <Compile Include="manager\InsuredPersonDatumManager.Generated.cs">
@@ -346,10 +330,6 @@
     <Compile Include="manager\IStatementHl7Manager.cs" />
     <Compile Include="manager\IStatementManager.cs" />
     <Compile Include="manager\IStatementSearchManager.cs" />
-    <Compile Include="manager\KladrManager.cs" />
-    <Compile Include="manager\KladrManager.Generated.cs">
-      <DependentUpon>KladrManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="manager\MedicalInsuranceManager.cs" />
     <Compile Include="manager\MedicalInsuranceManager.Generated.cs">
       <DependentUpon>MedicalInsuranceManager.cs</DependentUpon>
@@ -500,18 +480,6 @@
     <Compile Include="tests\InsuredPersonTests.cs" />
     <Compile Include="tests\InsuredPersonTests.generated.cs">
       <DependentUpon>InsuredPersonTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\JobLockObjectTests.cs" />
-    <Compile Include="tests\JobLockObjectTests.generated.cs">
-      <DependentUpon>JobLockObjectTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\JobPoolTests.cs" />
-    <Compile Include="tests\JobPoolTests.generated.cs">
-      <DependentUpon>JobPoolTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\KladrTests.cs" />
-    <Compile Include="tests\KladrTests.generated.cs">
-      <DependentUpon>KladrTests.cs</DependentUpon>
     </Compile>
     <Compile Include="tests\MedicalInsuranceTests.cs" />
     <Compile Include="tests\MedicalInsuranceTests.generated.cs">
@@ -710,15 +678,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\InsuredPersonDatum.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\JobLockObject.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\JobPool.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mapping\Kladr.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapping\MedicalInsurance.hbm.xml" />

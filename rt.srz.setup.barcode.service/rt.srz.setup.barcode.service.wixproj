@@ -54,8 +54,8 @@
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(ProjectDir)rt.srz.setup.barcode.service.inf $(SolutionDir)rt.srz.ui.pvp\activex
-call $(SolutionDir)ThirdParty\CabArc\CabArc.exe N $(SolutionDir)rt.srz.ui.pvp\activex\rt.srz.setup.barcode.service.cab  $(SolutionDir)rt.srz.ui.pvp\activex\rt.srz.setup.barcode.service.msi $(SolutionDir)rt.srz.ui.pvp\activex\rt.srz.setup.barcode.service.inf</PostBuildEvent>
+    <PostBuildEvent>copy /Y $(ProjectDir)rt.srz.setup.barcode.service.inf $(SolutionDir)Binaries\activex\
+call $(SolutionDir)ThirdParty\CabArc\CabArc.exe N $(SolutionDir)Binaries\activex\rt.srz.setup.barcode.service.cab  $(SolutionDir)Binaries\activex\rt.srz.setup.barcode.service.msi $(SolutionDir)Binaries\activex\rt.srz.setup.barcode.service.inf</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
