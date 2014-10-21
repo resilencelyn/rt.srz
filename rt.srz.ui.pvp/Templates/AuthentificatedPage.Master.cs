@@ -17,6 +17,7 @@ namespace rt.srz.ui.pvp.Templates
   using rt.core.model;
   using rt.core.model.core;
   using rt.core.model.interfaces;
+  using rt.srz.business.extensions;
 
   using User = rt.core.model.core.User;
 

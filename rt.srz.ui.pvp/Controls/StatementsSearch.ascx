@@ -269,7 +269,7 @@
   $(document).ready(function () {
     SetDesignerSettingsDatesAndErrors();
     limitKeyPressForLFM();
-    window.barcodeReader.Start('<%= StatementService.GetSettingCurrentUser("COMPort") != null ? StatementService.GetSettingCurrentUser("COMPort").ValueString : string.Empty %>');
+    window.barcodeReader.Start('<%= StatementService.GetSettingCurrentUser("COMPort") != null ? StatementService.GetSettingCurrentUser("COMPort") : string.Empty %>');
   });
 
   //Закрытия окна для ввода пина по ESC

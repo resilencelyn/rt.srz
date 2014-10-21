@@ -12,6 +12,10 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
   using System.Globalization;
   using System.Linq;
   using System.Web.UI.WebControls;
+
+  using rt.core.model.interfaces;
+  using rt.srz.business.configuration;
+  using rt.srz.business.extensions;
   using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.logicalcontrol;
@@ -33,12 +37,12 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// <summary>
     ///   The _kladr service.
     /// </summary>
-    private IKladrService kladrService;
+    private IAddressService addressService;
 
     /// <summary>
     ///   The _statement service.
     /// </summary>
-    private IStatementService _statementService;
+    private IStatementService statementService;
 
     #endregion
 
@@ -52,18 +56,18 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var propertyList = GetPropertyListForCheckIsRightToEdit();
 
       // Без определенного места жительства, Ввод в свободной форме, адрес региcтрации
-      var enable = _statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Address));
+      var enable = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Address));
       chBIsHomeless.Enabled = chbIsFreeMainAddress.Enabled = tbDateRegistration.Enabled = enable;
       mainAddressKladr.Enable(enable);
       mainAddressKladrIntellisense.Enable(enable);
 
       // Документ подтверждающий регистрацию
-      //var isRightToEdit = _statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.DocumentRegistration));
+      //var isRightToEdit = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.DocumentRegistration));
       //documentRegistration.Enable(!chBCopyFromUDL.Checked && isRightToEdit);
       //chBCopyFromUDL.Enabled = isRightToEdit;
 
       // Адрес проживания
-      enable = _statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Address2));
+      enable = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.Address2));
       rbYesResAddress.Enabled = rbNoResAddress.Enabled = chbIsFreeResidencyAddress.Enabled = enable;
       residencyAddressKladr.Enable(enable);
       residencyAddressKladrIntellisense.Enable(enable);
@@ -71,7 +75,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       // Контактная информация
       tbHomePhone.Enabled =
         //tbWorkPhone.Enabled =
-        tbEmail.Enabled = _statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.ContactInfo));
+        tbEmail.Enabled = statementService.IsRightToEdit(propertyList, Utils.GetExpressionNode(x => x.ContactInfo));
     }
 
     /// <summary>
@@ -143,7 +147,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       //  // Вид документа
       //  if (documentRegistration.DocumentType >= 0)
       //  {
-      //    document.DocumentType = _statementService.GetConcept(documentRegistration.DocumentType);
+      //    document.DocumentType = statementService.GetConcept(documentRegistration.DocumentType);
       //  }
 
       //  // Серия
@@ -198,7 +202,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         statement.Address2 = resAddress;
       }
 
-      _statementService.TrimStatementData(statement);
+      statementService.TrimStatementData(statement);
 
       //сохранение изменений в сессию
       if (setCurrentStatement)
@@ -416,8 +420,8 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      _statementService = ObjectFactory.GetInstance<IStatementService>();
-      kladrService = ObjectFactory.GetInstance<IKladrService>();
+      statementService = ObjectFactory.GetInstance<IStatementService>();
+      addressService = ObjectFactory.GetInstance<IAddressService>();
 
       if (!IsPostBack)
       {
@@ -448,7 +452,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         }
 
         //documentRegistration.FillDocumentTypeDdl(
-        //  _statementService.GetDocumentTypeForRegistrationDocument().Select(
+        //  statementService.GetDocumentTypeForRegistrationDocument().Select(
         //    x => new ListItem(x.Name, x.id.ToString(CultureInfo.InvariantCulture))).ToArray(),
         //  null);
 
@@ -502,7 +506,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       //// Валидация
       //try
       //{
-      //  _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.DocumentRegistration));
+      //  statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.DocumentRegistration));
       //}
       //catch (LogicalControlException exception)
       //{
@@ -522,7 +526,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateEmail(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.ContactInfo.Email));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.ContactInfo.Email));
     }
 
     /// <summary>
@@ -536,7 +540,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     /// </param>
     protected void ValidateRegistrationPostcode(object source, ServerValidateEventArgs args)
     {
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.Address.Postcode));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.Address.Postcode));
 
       switch (GetKLADRControlType())
       {
@@ -581,7 +585,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var messages = string.Empty;
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Address));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Address));
       }
       catch (LogicalControlException exception)
       {
@@ -635,7 +639,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
         return;
       }
 
-      args.IsValid = _statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.Address2.Postcode));
+      args.IsValid = statementService.TryCheckProperty(CurrentStatement, Utils.GetExpressionNode(x => x.Address2.Postcode));
 
       switch (GetKLADRControlType())
       {
@@ -680,7 +684,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var messages = string.Empty;
       try
       {
-        _statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Address2));
+        statementService.CheckPropertyStatement(CurrentStatement, Utils.GetExpressionNode(x => x.Address2));
       }
       catch (LogicalControlException exception)
       {
@@ -728,7 +732,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     protected void CopyFromUdlCheckedChanged(object sender, EventArgs e)
     {
       //documentRegistration.FillDocumentTypeDdl(
-      //    _statementService.GetNsiRecords(Oid.ДокументУдл).Select(
+      //    statementService.GetNsiRecords(Oid.ДокументУдл).Select(
       //      x => new ListItem(x.Name, x.id.ToString(CultureInfo.InvariantCulture))).ToArray(), null);
 
       //if (chBCopyFromUDL.Checked)
@@ -761,7 +765,7 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private KLADRControlType GetKLADRControlType()
     {
       // Получение типа адресного компонента
-      var configValue = _statementService.GetSettingCurrentUser("KLADRControlType");
+      var configValue = statementService.GetSettingCurrentUser("KLADRControlType");
       var value = (KLADRControlType)Enum.Parse(typeof(KLADRControlType), configValue);
       return value;
     }
@@ -780,13 +784,13 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var selectedKladrid = control.SelectedKLADRId;
       if (selectedKladrid != Guid.Empty)
       {
-        var kladr = kladrService.GetKladr(selectedKladrid);
+        var kladr = addressService.GetAddress(selectedKladrid);
 
         // ОКАТО выбранного уровня
-        address.Okato = kladr.Ocatd;
+        address.Okato = kladr.Okato;
 
         // Ссылка на КЛАДР
-        address.Kladr = kladr;
+        address.SetRegulatory(kladr);
       }
 
       // Индекс
@@ -841,56 +845,23 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
       var selectedKladrid = control.SelectedKLADRId;
       if (selectedKladrid != Guid.Empty)
       {
-        var kladr = kladrService.GetKladr(selectedKladrid);
+        var kladr = addressService.GetAddress(selectedKladrid);
 
         // ОКАТО выбранного уровня
-        address.Okato = kladr.Ocatd;
+        address.Okato = kladr.Okato;
+        address.Code = kladr.Code;
 
         // Ссылка на КЛАДР
-        address.Kladr = kladr;
+        address.SetRegulatory(kladr);
 
-        do
-        {
-          selectedKladrid = kladr.KLADRPARENT != null ? kladr.KLADRPARENT.Id : Guid.Empty;
+        var structureAddress = addressService.GetStructureAddress(selectedKladrid);
 
-          var strTemp = kladr.Name + " " + kladr.Socr;
-          switch (kladr.Level)
-          {
-            case (int)KladrLevel.Subject:
-              {
-                address.Subject = strTemp;
-              }
-
-              break;
-            case (int)KladrLevel.Area:
-              {
-                address.Area = strTemp;
-              }
-
-              break;
-            case (int)KladrLevel.City:
-              {
-                address.City = strTemp;
-              }
-
-              break;
-            case (int)KladrLevel.Town:
-              {
-                address.Town = strTemp;
-              }
-
-              break;
-            case (int)KladrLevel.Street:
-              {
-                address.Street = strTemp;
-              }
-
-              break;
-          }
-
-          kladr = kladrService.GetKladr(selectedKladrid);
-        }
-        while (selectedKladrid != Guid.Empty);
+        address.Subject = structureAddress.Subject;
+        address.Area = structureAddress.Area;
+        address.City = structureAddress.City;
+        address.Town = structureAddress.Town;
+        address.Street = structureAddress.Street;
+        address.OkatoRn = structureAddress.OkatoRn;
       }
 
       // Номер дома
@@ -958,9 +929,9 @@ namespace rt.srz.ui.pvp.Controls.StatementSelectionWizardSteps
     private void MoveDataFromObject2GUI(address address, KladrIntellisenseUserControl control)
     {
       // Адрес
-      if (address.Kladr != null && address.Kladr.Id != Guid.Empty)
+      if (address.Regulatory() != null && address.RegulatoryId != null && address.RegulatoryId != Guid.Empty)
       {
-        control.SelectedKLADRId = address.Kladr.Id;
+        control.SelectedKLADRId = address.RegulatoryId.Value;
       }
 
       // Индекс

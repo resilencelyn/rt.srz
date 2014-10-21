@@ -93,7 +93,6 @@
     <Compile Include="dto\SearchTwinCriteria.cs" />
     <Compile Include="enumerations\BirthDayType.cs" />
     <Compile Include="enumerations\CheckLevelEnum.cs" />
-    <Compile Include="enumerations\KladrLevel.cs" />
     <Compile Include="enumerations\TwinKeyType.cs" />
     <Compile Include="interfaces\ICheckStatement.cs" />
     <Compile Include="interfaces\service\uir\Ack.cs" />
@@ -110,7 +109,6 @@
     <Compile Include="interfaces\service\uir\UIRRequest2.cs" />
     <Compile Include="interfaces\service\uir\UIRResponse.cs" />
     <Compile Include="interfaces\service\uir\UIRResponseUIRQueryResponse.cs" />
-    <Compile Include="interfaces\service\IKladrService.cs" />
     <Compile Include="interfaces\service\IRegulatoryService.cs" />
     <Compile Include="interfaces\service\IStatementService.cs" />
     <Compile Include="interfaces\service\ITfomsService.cs" />
@@ -393,7 +391,6 @@
     <Compile Include="srz\TwinsKey.generated.cs">
       <DependentUpon>TwinsKey.cs</DependentUpon>
     </Compile>
-    <Compile Include="srz\User.cs" />
     <Compile Include="srz\UserAction.cs" />
     <Compile Include="srz\UserAction.generated.cs">
       <DependentUpon>UserAction.cs</DependentUpon>

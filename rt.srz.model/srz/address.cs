@@ -11,6 +11,8 @@ namespace rt.srz.model.srz
 {
   using System.Text;
 
+  using rt.core.model.interfaces;
+
   /// <summary>
   ///   The address.
   /// </summary>

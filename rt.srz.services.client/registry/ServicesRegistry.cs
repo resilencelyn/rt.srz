@@ -41,7 +41,7 @@ namespace rt.srz.services.client.registry
 
       ForSingletonOf<IAtlService>().Use<AtlClient>();
 
-      ForSingletonOf<IKladrService>().Use<KladrClient>();
+      ForSingletonOf<IAddressService>().Use<AddressClient>();
       ForSingletonOf<IRegulatoryService>().Use<RegulatoryClient>();
       ForSingletonOf<IStatementService>().Use<StatementClient>();
       ForSingletonOf<ITfomsService>().Use<TfomsClient>();

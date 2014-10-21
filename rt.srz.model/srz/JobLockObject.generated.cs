@@ -2,9 +2,6 @@
 // <copyright file="JobLockObject.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The addressManager.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;

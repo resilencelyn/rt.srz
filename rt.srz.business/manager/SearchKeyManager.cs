@@ -153,12 +153,12 @@ namespace rt.srz.business.manager
 
       var defaultDocumentType = statement.DocumentUdl != null ? statement.DocumentUdl.DocumentType : new Concept { Id = 0 };
       return
-        newKeys.Where(x => x.hash != null)
+        newKeys.Where(x => x.Hash != null)
                .Select(
                        x =>
                        new SearchKey
                                      {
-                                       KeyValue = x.hash,
+                                       KeyValue = x.Hash,
                                        KeyType = searchKeyTypeCacheManager.Single(y => y.Code == GetKeyCodeByFullKeyCode(x.key)),
                                        DocumentUdlType = GetDocumentType(x.key, defaultDocumentType)
                                      })

@@ -2,23 +2,41 @@
 // <copyright file="Kladr.cs" company="ÐóñÁÈÒåõ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The Kladr.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.model.srz
 {
+  using System;
   using System.IO;
+  using System.Runtime.Serialization;
   using System.Text;
   using System.Xml;
   using System.Xml.Serialization;
 
+  using rt.core.model.interfaces;
+
   /// <summary>
   ///   The Kladr.
   /// </summary>
-  public partial class Kladr
+  public partial class Kladr : IAddress
   {
+    #region Public Properties
+
+    /// <summary>
+    ///   Gets the parent.
+    /// </summary>
+    [XmlIgnore]
+    [IgnoreDataMember]
+    public virtual Guid? ParentId
+    {
+      get
+      {
+        return KLADRPARENT.Id;
+      }
+    }
+
+    #endregion
+
     #region Public Methods and Operators
 
     /// <summary>
@@ -55,6 +73,27 @@ namespace rt.srz.model.srz
       var reader = new XmlSerializer(typeof(Kladr));
       var file = new StreamReader(stream);
       return (Kladr)reader.Deserialize(file);
+    }
+
+    /// <summary>
+    ///   The get address.
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="Address" />.
+    /// </returns>
+    public virtual Address GetAddress()
+    {
+      return new Address
+             {
+               Id = Id, 
+               Code = Code, 
+               Index = Index, 
+               Level = Level, 
+               Name = Name, 
+               Okato = Okato, 
+               Socr = Socr, 
+               ParentId = ParentId
+             };
     }
 
     #endregion

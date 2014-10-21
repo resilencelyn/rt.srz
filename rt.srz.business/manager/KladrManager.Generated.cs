@@ -18,10 +18,11 @@ namespace rt.srz.business.manager
 		// Get Methods
 		IList<Kladr> GetByKLADR_PARENT_ID(System.Guid kladrMember);
 		IList<Kladr> GetByFULL_ADDRESS(System.String fullAddress);
+		Kladr GetByIDTypeAddress(System.Guid id, System.Int16 typeAddress);
 		Kladr GetByNAMEID(System.String name, System.Guid id);
 		IList<Kladr> GetByCODE(System.String code);
 		IList<Kladr> GetByNAME(System.String name);
-		IList<Kladr> GetByOCATD(System.String ocatd);
+		IList<Kladr> GetByOKATO(System.String okato);
 		IList<Kladr> GetBySTATUS(System.Int32 status);
     
     }
@@ -50,6 +51,19 @@ namespace rt.srz.business.manager
 			criteria.Add(NHibernate.Criterion.Expression.Eq("FullAddress", fullAddress));
 			
 			return criteria.List<Kladr>();
+        }
+		
+		public Kladr GetByIDTypeAddress(System.Guid id, System.Int16 typeAddress)
+        {
+            ICriteria criteria = Session.GetISession().CreateCriteria(typeof(Kladr));
+			
+			
+			criteria.Add(NHibernate.Criterion.Expression.Eq("Id", id));
+			
+			criteria.Add(NHibernate.Criterion.Expression.Eq("TypeAddress", typeAddress));
+			
+			IList<Kladr> result = criteria.List<Kladr>();
+			return (result.Count > 0) ? result[0] : null;
         }
 		
 		public Kladr GetByNAMEID(System.String name, System.Guid id)
@@ -85,12 +99,12 @@ namespace rt.srz.business.manager
 			return criteria.List<Kladr>();
         }
 		
-		public IList<Kladr> GetByOCATD(System.String ocatd)
+		public IList<Kladr> GetByOKATO(System.String okato)
         {
             ICriteria criteria = Session.GetISession().CreateCriteria(typeof(Kladr));
 			
 			
-			criteria.Add(NHibernate.Criterion.Expression.Eq("Ocatd", ocatd));
+			criteria.Add(NHibernate.Criterion.Expression.Eq("Okato", okato));
 			
 			return criteria.List<Kladr>();
         }

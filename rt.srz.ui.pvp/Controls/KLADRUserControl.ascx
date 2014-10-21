@@ -22,44 +22,44 @@
         
         postbackElem = args.get_postBackElement();
         if (postbackElem == ddlSubject) {
-            focusElementid_<%=UniqueKey %> = 1;
+            focusElementId_<%=UniqueKey %> = 1;
         }
         else
         if (postbackElem == ddlArea) {
-            focusElementid_<%=UniqueKey %> = 2;
+            focusElementId_<%=UniqueKey %> = 2;
         }
         else
         if (postbackElem == ddlCity) {
-            focusElementid_<%=UniqueKey %> = 3;
+            focusElementId_<%=UniqueKey %> = 3;
         }
         else
         if (postbackElem == ddlTown) {
-            focusElementid_<%=UniqueKey %> = 4;
+            focusElementId_<%=UniqueKey %> = 4;
         }
         else
         if (postbackElem == ddlStreet) {
-            focusElementid_<%=UniqueKey %> = 5;
+            focusElementId_<%=UniqueKey %> = 5;
         }
     }
 
     function PageRequestManager_endRequest_<%=UniqueKey %>(sender, args) {
-        if (focusElementid_<%=UniqueKey %> == 1 && $get('<%= ddlSubject.ClientID %>') != null) {
+        if (focusElementId_<%=UniqueKey %> == 1 && $get('<%= ddlSubject.ClientID %>') != null) {
             $get('<%= ddlSubject.ClientID %>').focus();
         }
         else
-        if (focusElementid_<%=UniqueKey %> == 2 && $get('<%= ddlArea.ClientID %>') != null) {
+        if (focusElementId_<%=UniqueKey %> == 2 && $get('<%= ddlArea.ClientID %>') != null) {
             $get('<%= ddlArea.ClientID %>').focus();
         }
         else
-        if (focusElementid_<%=UniqueKey %> == 3 && $get('<%= ddlCity.ClientID %>') != null) {
+        if (focusElementId_<%=UniqueKey %> == 3 && $get('<%= ddlCity.ClientID %>') != null) {
             $get('<%= ddlCity.ClientID %>').focus();
         }
         else
-        if (focusElementid_<%=UniqueKey %> == 4 && $get('<%= ddlTown.ClientID %>') != null) {
+        if (focusElementId_<%=UniqueKey %> == 4 && $get('<%= ddlTown.ClientID %>') != null) {
             $get('<%= ddlTown.ClientID %>').focus();
         }
         else
-        if (focusElementid_<%=UniqueKey %> == 5 && $get('<%= ddlStreet.ClientID %>') != null) {
+        if (focusElementId_<%=UniqueKey %> == 5 && $get('<%= ddlStreet.ClientID %>') != null) {
             $get('<%= ddlStreet.ClientID %>').focus();
         }
     }

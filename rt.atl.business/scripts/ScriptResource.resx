@@ -249,14 +249,16 @@ INSERT INTO [dbo].[Address] with (tablockx)
            ,[DateRegistration]
            ,[IsNotStructureAddress]
            ,[Okato]
-           ,[KladrId]  
-           ,[Unstructured])
+           ,[RegulatoryId]            
+           ,[Unstructured]
+           ,Code
+           ,OkatoRn)
 ( 
    select  
            cast(cast(p.id  as varbinary(36)) as uniqueidentifier)
          , p.BOMJ
          , isnull (p.INDX, '000000')
-         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.SUBJ + '000000' = OCATD), '')
+         , isnull((select top 1 OFFNAME + ' ' + Shortname from rt_fias.dbo.AObject where AOLEVEL = 1 and p.SUBJ + '000000' = OKATO), '')
          , p.RNNAME
          , p.CITY
          , p.NP
@@ -267,9 +269,11 @@ INSERT INTO [dbo].[Address] with (tablockx)
          , p.DMJ
          , case when p.KLADRG is null then 1 else 0 end
          , p.RN
-         , isnull((select top 1 ID from KLADR where CODE = p.KLADRG),
-                  (select top 1 ID from KLADR k where OCATD = p.RN))  
+         , isnull((select top 1 AOID from rt_fias.dbo.AObject where CODE = p.KLADRG and ACTSTATUS = 1),
+                  (select top 1 AOID from rt_fias.dbo.AObject where OKATO = p.RN and ACTSTATUS = 1))  
          , null
+         , p.KLADRG
+         , p.RN
    from atl_srz_empty.dbo.people p
     left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
     left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
@@ -296,13 +300,15 @@ INSERT INTO [dbo].[Address] with (tablockx)
            ,[DateRegistration]
            ,[IsNotStructureAddress]
            ,[Okato]
-           ,[KladrId] 
-           ,[Unstructured])
+           ,[RegulatoryId]
+           ,[Unstructured]
+           ,Code
+           ,OkatoRn)
 ( 
    select  cast(cast(p.id as varbinary(36)) as uniqueidentifier)
          , p.BOMJ
          , isnull (p.INDX, '000000')
-         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.SUBJ + '000000' = OCATD), '')
+         , isnull((select top 1 OFFNAME + ' ' + Shortname from rt_fias.dbo.AObject where AOLEVEL = 1 and p.SUBJ + '000000' = OKATO), '')
          , p.RNNAME
          , p.CITY
          , p.NP
@@ -313,9 +319,11 @@ INSERT INTO [dbo].[Address] with (tablockx)
          , p.DMJ
          , case when SUBSTRING(p.ZADDR, 1, 1)='1' then 1 else 0 end as IsNotStructureAddress
          , p.RN
-         , isnull((select top 1 ID from KLADR where CODE = p.KLADRG),
-                  (select top 1 ID from KLADR k where OCATD = p.RN))  
+         , isnull((select top 1 AOID from rt_fias.dbo.AObject where CODE = p.KLADRG and ACTSTATUS = 1),
+                  (select top 1 AOID from rt_fias.dbo.AObject where OKATO = p.RN and ACTSTATUS = 1))           
          , null
+         , p.KLADRG
+         , p.RN
    from atl_srz_empty.dbo.PEOPLE_T p
     left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
    where st.RowId is null 
@@ -340,8 +348,10 @@ INSERT INTO [dbo].[Address] with (tablockx)
            ,[DateRegistration]
            ,[IsNotStructureAddress]
            ,[Okato]
-           ,[KladrId]
-           ,[Unstructured])
+           ,[RegulatoryId]
+           ,[Unstructured]
+           ,Code
+           ,OkatoRn)
 (  
    select   t.[RowId]
            ,t.[IsHomeless]
@@ -359,11 +369,13 @@ INSERT INTO [dbo].[Address] with (tablockx)
            ,t.[Okato]
            ,t.[KladrId]
            ,t.[Unstructured]
+           ,t.Code
+           ,t.OkatoRn
    from (
    select cast(cast(p.id  + 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
          , p.BOMJ as [IsHomeless]
          , isnull (p.PINDX, '000000') as [Postcode]
-         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.PSUBJ + '000000' = OCATD), '') as [Subject]
+         , isnull((select top 1 OFFNAME + ' ' + Shortname from rt_fias.dbo.AObject where AOLEVEL = 1 and p.PSUBJ + '000000' = OKATO), '') as [Subject]
          , p.PRNNAME as [Area]
          , p.PCITY as [City]
          , p.PNP as [Town]
@@ -374,9 +386,11 @@ INSERT INTO [dbo].[Address] with (tablockx)
          , p.PDMJ as DateRegistration
          , case when p.KLADRP is null then 1 else 0 end as IsNotStructureAddress
          , p.PRN as [Okato]
-         , isnull((select top 1 ID from KLADR where CODE = p.KLADRP),
-                  (select top 1 ID from KLADR k where OCATD = p.RN)) as KladrId
+         , isnull((select top 1 AOID from rt_fias.dbo.AObject where CODE = p.KLADRP and ACTSTATUS = 1),
+                  (select top 1 AOID from rt_fias.dbo.AObject where OKATO = p.PRN and ACTSTATUS = 1)) as KladrId
          , null as Unstructured
+         , p.KLADRP as Code
+         , p.RN as OkatoRn
    from atl_srz_empty.dbo.people p
     left join atl_srz_empty.dbo.PEOPLE_T przbuf on p.ID = przbuf.PID
     left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
@@ -402,8 +416,10 @@ INSERT INTO [dbo].[Address] with (tablockx)
            ,[DateRegistration]
            ,[IsNotStructureAddress]
            ,[Okato]
-           ,[KladrId]
-           ,[Unstructured])
+           ,[RegulatoryId]
+           ,[Unstructured]
+           ,Code
+           ,OkatoRn)
 ( select   t.[RowId]
            ,t.[IsHomeless]
            ,t.[Postcode]
@@ -420,11 +436,13 @@ INSERT INTO [dbo].[Address] with (tablockx)
            ,t.[Okato]
            ,t.[KladrId]
            ,t.[Unstructured]
+           ,t.Code
+           ,t.OkatoRn
    from (
    select cast(cast(p.id  - 10000000000000 as varbinary(36)) as uniqueidentifier) as RowId
          , p.BOMJ as [IsHomeless]
          , isnull (p.PINDX, '000000') as [Postcode]
-         , isnull((select top 1 NAME + ' ' + SOCR from KLADR where LEVEL = 1 and p.PSUBJ + '000000' = OCATD), '') as [Subject]
+         , isnull((select top 1 OFFNAME + ' ' + Shortname from rt_fias.dbo.AObject where AOLEVEL = 1 and p.PSUBJ + '000000' = OKATO), '') as [Subject]
          , p.PRNNAME as [Area]
          , p.PCITY as [City]
          , p.PNP as [Town]
@@ -435,9 +453,11 @@ INSERT INTO [dbo].[Address] with (tablockx)
          , p.PDMJ as DateRegistration
          , case when SUBSTRING(p.ZADDR, 2, 1)='1' then 1 else 0 end as IsNotStructureAddress
          , p.PRN as [Okato]
-         , isnull((select top 1 ID from KLADR where CODE = p.KLADRP),
-                  (select top 1 ID from KLADR k where OCATD = p.RN)) as KladrId
+         , isnull((select top 1 AOID from rt_fias.dbo.AObject where CODE = p.KLADRP and ACTSTATUS = 1),
+                  (select top 1 AOID from rt_fias.dbo.AObject where OKATO = p.PRN and ACTSTATUS = 1)) as KladrId
          , null as Unstructured
+         , p.KLADRP as Code
+         , p.RN as OkatoRn
    from atl_srz_empty.dbo.PEOPLE_T p
     left join Statement st on st.RowId = cast(cast(p.id as varbinary(36)) as uniqueidentifier)
    where st.RowId is null  ) t

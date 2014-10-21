@@ -10,6 +10,7 @@ using rt.srz.model.srz.concepts;
 namespace rt.srz.integration.test
 {
   using rt.core.model.core;
+  using rt.srz.business.extensions;
 
   /// <summary>
   /// The good statement.

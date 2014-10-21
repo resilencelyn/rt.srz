@@ -133,6 +133,8 @@
     <Compile Include="exchange\import\zags\ZagsImporter.cs" />
     <Compile Include="exchange\import\zags\ZagsImportFactory.cs" />
     <Compile Include="exchange\interfaces\import\IListenerFolder.cs" />
+    <Compile Include="extensions\AddressExtension.cs" />
+    <Compile Include="extensions\UserExtension.cs" />
     <Compile Include="manager\cache\CheckCacheManager.cs" />
     <Compile Include="manager\cache\ICheckCacheManager.cs" />
     <Compile Include="manager\ContentManager.cs" />
@@ -645,6 +647,10 @@
       <Name>rt.core.model</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\rt.fias.model\rt.fias.model.csproj">
+      <Project>{62F05A43-1FBB-4B36-91B5-853ED97A4161}</Project>
+      <Name>rt.fias.model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\rt.srz.database.business\rt.srz.database.business.csproj">
       <Project>{eb35411e-647a-4ee1-be16-10b7a9f1631c}</Project>
       <Name>rt.srz.database.business</Name>
@@ -783,6 +789,19 @@
   <ItemGroup>
     <EmbeddedResource Include="mapping\StatementBatch.hbm.xml" />
     <EmbeddedResource Include="mapping\StatementMaximum.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateKladrLevelAndParrentId.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateStandardSearchKeys.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateStandardSearchKeysExchange.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeyForStatement.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeys.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CalculateUserSearchKeysExchange.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\CreateExportSmoBatches.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\FindTwins.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\ProcessPfr.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\ProcessSnilsPfr.hbm.xml" />
+    <EmbeddedResource Include="mapping\storedprocedures\ProcessZags.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

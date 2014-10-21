@@ -17,17 +17,18 @@ Description: Generates Editable Unit Tests for NHibernate.
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="NHibernateHelper" %>
 <%@ Map Name="SystemCSharp" Src="System-CSharpAlias" %>
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using rt.core.business.nhibernate;
-using <%= ManagerNamespace %>;
-using <%= BusinessNamespace %>;
+//-------------------------------------------------------------------------------------
+// <copyright file="<%= GetClassName(SourceTable) %>Tests.cs" company="РусБИТех">
+//     Copyright (c) <%= DateTime.Today.Year.ToString() %>. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------
 
 namespace <%= UnitTestNamespace %>
 {
-    public partial class <%= GetClassName(SourceTable) %>Tests
-    {
+  /// <summary>
+  /// The tests.
+  /// </summary>
+  public partial class <%= GetClassName(SourceTable) %>Tests
+  {
 	}
 }

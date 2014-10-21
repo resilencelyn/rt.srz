@@ -17,10 +17,10 @@ namespace rt.srz.database.registry
     #region Public Methods and Operators
 
     /// <summary>
-    /// The calculate enp numbers.
+    ///   The calculate enp numbers.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalculateEnpNumbers()
     {
@@ -53,10 +53,10 @@ END";
     }
 
     /// <summary>
-    /// The calculate kladr level and parrent id.
+    ///   The calculate kladr level and parrent id.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalculateKladrLevelAndParrentId()
     {
@@ -141,17 +141,17 @@ FROM [KLADR] AS k INNER JOIN
 
 -- проставляем код ОКАТО
 update KLADR
-set OCATD = (select OCATD from KLADR k where KLADR.KLADR_PARENT_ID = k.ID )
-where OCATD is null 
-  or OCATD = ''
+set OKATO = (select OKATO from KLADR k where KLADR.KLADR_PARENT_ID = k.ID )
+where OKATO is null 
+  or OKATO = ''
 end";
     }
 
     /// <summary>
-    /// The calculate standard search keys.
+    ///   The calculate standard search keys.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalculateStandardSearchKeys()
     {
@@ -212,10 +212,10 @@ END";
     }
 
     /// <summary>
-    /// The calculate standard search keys exchange.
+    ///   The calculate standard search keys exchange.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalculateStandardSearchKeysExchange()
     {
@@ -267,10 +267,10 @@ END";
     }
 
     /// <summary>
-    /// The calculate user search keys.
+    ///   The calculate user search keys.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalculateUserSearchKeys()
     {
@@ -344,10 +344,10 @@ END";
     }
 
     /// <summary>
-    /// The calculate user search keys exchange.
+    ///   The calculate user search keys exchange.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalculateUserSearchKeysExchange()
     {
@@ -406,10 +406,10 @@ END
     }
 
     /// <summary>
-    /// The create export smo batches.
+    ///   The create export smo batches.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CreateExportSmoBatches()
     {
@@ -512,10 +512,10 @@ END
     }
 
     /// <summary>
-    /// The create export smo batches for pdp.
+    ///   The create export smo batches for pdp.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CreateExportSmoBatchesForPdp()
     {
@@ -665,10 +665,10 @@ END
     }
 
     /// <summary>
-    /// The create statement with version.
+    ///   The create statement with version.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CreateStatementWithVersion()
     {
@@ -682,10 +682,10 @@ END
     }
 
     /// <summary>
-    /// The find twins.
+    ///   The find twins.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string FindTwins()
     {
@@ -752,10 +752,10 @@ END";
     }
 
     /// <summary>
-    /// The process pfr.
+    ///   The process pfr.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string ProcessPfr()
     {
@@ -844,10 +844,10 @@ END
     }
 
     /// <summary>
-    /// The process snils pfr.
+    ///   The process snils pfr.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string ProcessSnilsPfr()
     {
@@ -873,10 +873,10 @@ END";
     }
 
     /// <summary>
-    /// The process zags.
+    ///   The process zags.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string ProcessZags()
     {

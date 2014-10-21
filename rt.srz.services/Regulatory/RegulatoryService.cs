@@ -18,6 +18,7 @@ namespace rt.srz.services.Regulatory
   using NHibernate;
 
   using rt.core.model.dto;
+  using rt.core.model.interfaces;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
   using rt.srz.model.dto;
@@ -183,20 +184,6 @@ namespace rt.srz.services.Regulatory
     public List<Concept> GetConceptsByOid(string oidId)
     {
       return ObjectFactory.GetInstance<IConceptCacheManager>().GetConceptsByOid(oidId).ToList();
-    }
-
-    /// <summary>
-    /// The get first level by tfoms.
-    /// </summary>
-    /// <param name="tfoms">
-    /// The tfoms.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/> .
-    /// </returns>
-    public Kladr GetFirstLevelByTfoms(Organisation tfoms)
-    {
-      return ObjectFactory.GetInstance<IKladrManager>().GetFirstLevelByTfoms(tfoms);
     }
 
     /// <summary>

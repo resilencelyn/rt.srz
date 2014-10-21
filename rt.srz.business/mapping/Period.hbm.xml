@@ -1,19 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-  <class name="rt.srz.model.srz.Period, rt.srz.model" table="[dbo].[Period]" lazy="true">
-    <id name="Id" column="[RowId]">
-      <generator class="guid.comb" />
-    </id>
-    <property name="Year" column="[Year]" />
-    <many-to-one name="Code" column="[CodeId]" class="Concept" />
-    <bag name="Batches" lazy="true" inverse="true">
-      <key column="[PeriodId]"></key>
-      <one-to-many class="Batch"></one-to-many>
-    </bag>
-    <bag name="EmploymentHistories" lazy="true" inverse="true">
-      <key column="[PeriodId]"></key>
-      <one-to-many class="EmploymentHistory"></one-to-many>
-    </bag>
-  </class>
+	<class name="rt.srz.model.srz.Period, rt.srz.model" table="[dbo].[Period]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Year" column="[Year]" />
+		<many-to-one name="Code" column="[CodeId]" class="Concept"  />
+		<bag name="Batches" lazy="true" inverse="true" >
+			<key column="[PeriodId]"></key>
+			<one-to-many class="Batch"></one-to-many>
+		</bag>
+		<bag name="EmploymentHistories" lazy="true" inverse="true" >
+			<key column="[PeriodId]"></key>
+			<one-to-many class="EmploymentHistory"></one-to-many>
+		</bag>
+	</class>
 </hibernate-mapping>
+

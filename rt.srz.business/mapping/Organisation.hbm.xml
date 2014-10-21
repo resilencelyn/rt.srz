@@ -1,92 +1,92 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
-  <class name="rt.srz.model.srz.Organisation, rt.srz.model" table="[dbo].[Organisation]" lazy="true">
-    <id name="Id" column="[RowId]">
-      <generator class="guid.comb" />
-    </id>
-    <property name="IsActive" column="[IsActive]" />
-    <property name="IsOnLine" column="[IsOnLine]" />
-    <property name="Code" column="[Code]" />
-    <property name="FullName" column="[FullName]" />
-    <property name="ShortName" column="[ShortName]" />
-    <property name="Inn" column="[Inn]" />
-    <property name="Ogrn" column="[Ogrn]" />
-    <property name="Postcode" column="[Postcode]" />
-    <property name="LastName" column="[LastName]" />
-    <property name="FirstName" column="[FirstName]" />
-    <property name="MiddleName" column="[MiddleName]" />
-    <property name="Phone" column="[Phone]" />
-    <property name="Fax" column="[Fax]" />
-    <property name="EMail" column="[EMail]" />
-    <property name="Website" column="[Website]" />
-    <property name="LicenseData" column="[LicenseData]" />
-    <property name="LicenseNumber" column="[LicenseNumber]" />
-    <property name="DateLicensing" column="[DateLicensing]" />
-    <property name="DateExpiryLicense" column="[DateExpiryLicense]" />
-    <property name="IsSubordination" column="[IsSubordination]" />
-    <property name="DateIncludeRegister" column="[DateIncludeRegister]" />
-    <property name="DateExcludeRegister" column="[DateExcludeRegister]" />
-    <property name="HasActivePolicy" column="[HasActivePolicy]" />
-    <property name="DateNotification" column="[DateNotification]" />
-    <property name="CountInsured" column="[CountInsured]" />
-    <property name="DateLastEdit" column="[DateLastEdit]" />
-    <property name="Okato" column="[Okato]" />
-    <property name="TimeRunFrom" column="[TimeRunFrom]" />
-    <property name="TimeRunTo" column="[TimeRunTo]" />
-    <property name="Address" column="[Address]" />
-    <many-to-one name="Oid" column="[Oid]" class="Oid" />
-    <many-to-one name="Parent" column="[ParentId]" class="Organisation" />
-    <many-to-one name="ChangedRow" column="[ChangedRowId]" class="Organisation" />
-    <many-to-one name="CauseRegistration" column="[CauseRegistrationId]" class="Concept" />
-    <many-to-one name="CauseExclusion" column="[CauseExclusionId]" class="Concept" />
-    <bag name="Batches1" lazy="true" inverse="true">
-      <key column="[ReceiverId]"></key>
-      <one-to-many class="Batch"></one-to-many>
-    </bag>
-    <bag name="Batches2" lazy="true" inverse="true">
-      <key column="[SenderId]"></key>
-      <one-to-many class="Batch"></one-to-many>
-    </bag>
-    <bag name="MedicalInsurances" lazy="true" inverse="true">
-      <key column="[SmoId]"></key>
-      <one-to-many class="MedicalInsurance"></one-to-many>
-    </bag>
-    <bag name="In1s" lazy="true" inverse="true">
-      <key column="[SmoId]"></key>
-      <one-to-many class="In1"></one-to-many>
-    </bag>
-    <bag name="Organisations1" lazy="true" inverse="true">
-      <key column="[ParentId]"></key>
-      <one-to-many class="Organisation"></one-to-many>
-    </bag>
-    <bag name="RangeNumbers" lazy="true" inverse="true">
-      <key column="[SmoId]"></key>
-      <one-to-many class="RangeNumber"></one-to-many>
-    </bag>
-    <bag name="SearchKeyTypes" lazy="true" inverse="true">
-      <key column="[TfomsId]"></key>
-      <one-to-many class="SearchKeyType"></one-to-many>
-    </bag>
-    <bag name="SertificateUecs" lazy="true" inverse="true">
-      <key column="[SmoId]"></key>
-      <one-to-many class="SertificateUec"></one-to-many>
-    </bag>
-    <bag name="Settings" lazy="true" inverse="true">
-      <key column="[OrganisationId]"></key>
-      <one-to-many class="Setting"></one-to-many>
-    </bag>
-    <bag name="Statements" lazy="true" inverse="true">
-      <key column="[PointDistributionPolicyId]"></key>
-      <one-to-many class="Statement"></one-to-many>
-    </bag>
-    <bag name="Workstations" lazy="true" inverse="true">
-      <key column="[PointDistributionPolicyId]"></key>
-      <one-to-many class="Workstation"></one-to-many>
-    </bag>
-    <bag name="Organisations2" lazy="true" inverse="true">
-      <key column="[ChangedRowId]"></key>
-      <one-to-many class="Organisation"></one-to-many>
-    </bag>
-  </class>
+	<class name="rt.srz.model.srz.Organisation, rt.srz.model" table="[dbo].[Organisation]" lazy="true">
+		<id name="Id" column="[RowId]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="IsActive" column="[IsActive]" />
+		<property name="IsOnLine" column="[IsOnLine]" />
+		<property name="Code" column="[Code]" />
+		<property name="FullName" column="[FullName]" />
+		<property name="ShortName" column="[ShortName]" />
+		<property name="Inn" column="[Inn]" />
+		<property name="Ogrn" column="[Ogrn]" />
+		<property name="Postcode" column="[Postcode]" />
+		<property name="LastName" column="[LastName]" />
+		<property name="FirstName" column="[FirstName]" />
+		<property name="MiddleName" column="[MiddleName]" />
+		<property name="Phone" column="[Phone]" />
+		<property name="Fax" column="[Fax]" />
+		<property name="EMail" column="[EMail]" />
+		<property name="Website" column="[Website]" />
+		<property name="LicenseData" column="[LicenseData]" />
+		<property name="LicenseNumber" column="[LicenseNumber]" />
+		<property name="DateLicensing" column="[DateLicensing]" />
+		<property name="DateExpiryLicense" column="[DateExpiryLicense]" />
+		<property name="IsSubordination" column="[IsSubordination]" />
+		<property name="DateIncludeRegister" column="[DateIncludeRegister]" />
+		<property name="DateExcludeRegister" column="[DateExcludeRegister]" />
+		<property name="HasActivePolicy" column="[HasActivePolicy]" />
+		<property name="DateNotification" column="[DateNotification]" />
+		<property name="CountInsured" column="[CountInsured]" />
+		<property name="DateLastEdit" column="[DateLastEdit]" />
+		<property name="Okato" column="[Okato]" />
+		<property name="TimeRunFrom" column="[TimeRunFrom]" />
+		<property name="TimeRunTo" column="[TimeRunTo]" />
+		<property name="Address" column="[Address]" />
+		<many-to-one name="Oid" column="[Oid]" class="Oid"  />
+		<many-to-one name="Parent" column="[ParentId]" class="Organisation"  />
+		<many-to-one name="ChangedRow" column="[ChangedRowId]" class="Organisation"  />
+		<many-to-one name="CauseRegistration" column="[CauseRegistrationId]" class="Concept"  />
+		<many-to-one name="CauseExclusion" column="[CauseExclusionId]" class="Concept"  />
+		<bag name="Batches1" lazy="true" inverse="true" >
+			<key column="[ReceiverId]"></key>
+			<one-to-many class="Batch"></one-to-many>
+		</bag>
+		<bag name="Batches2" lazy="true" inverse="true" >
+			<key column="[SenderId]"></key>
+			<one-to-many class="Batch"></one-to-many>
+		</bag>
+		<bag name="MedicalInsurances" lazy="true" inverse="true" >
+			<key column="[SmoId]"></key>
+			<one-to-many class="MedicalInsurance"></one-to-many>
+		</bag>
+		<bag name="In1s" lazy="true" inverse="true" >
+			<key column="[SmoId]"></key>
+			<one-to-many class="In1"></one-to-many>
+		</bag>
+		<bag name="Organisations1" lazy="true" inverse="true" >
+			<key column="[ParentId]"></key>
+			<one-to-many class="Organisation"></one-to-many>
+		</bag>
+		<bag name="RangeNumbers" lazy="true" inverse="true" >
+			<key column="[SmoId]"></key>
+			<one-to-many class="RangeNumber"></one-to-many>
+		</bag>
+		<bag name="SearchKeyTypes" lazy="true" inverse="true" >
+			<key column="[TfomsId]"></key>
+			<one-to-many class="SearchKeyType"></one-to-many>
+		</bag>
+		<bag name="SertificateUecs" lazy="true" inverse="true" >
+			<key column="[SmoId]"></key>
+			<one-to-many class="SertificateUec"></one-to-many>
+		</bag>
+		<bag name="Settings" lazy="true" inverse="true" >
+			<key column="[OrganisationId]"></key>
+			<one-to-many class="Setting"></one-to-many>
+		</bag>
+		<bag name="Statements" lazy="true" inverse="true" >
+			<key column="[PointDistributionPolicyId]"></key>
+			<one-to-many class="Statement"></one-to-many>
+		</bag>
+		<bag name="Workstations" lazy="true" inverse="true" >
+			<key column="[PointDistributionPolicyId]"></key>
+			<one-to-many class="Workstation"></one-to-many>
+		</bag>
+		<bag name="Organisations2" lazy="true" inverse="true" >
+			<key column="[ChangedRowId]"></key>
+			<one-to-many class="Organisation"></one-to-many>
+		</bag>
+	</class>
 </hibernate-mapping>
+

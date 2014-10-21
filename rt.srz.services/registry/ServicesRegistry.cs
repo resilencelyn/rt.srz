@@ -16,7 +16,6 @@ namespace rt.srz.services.registry
   using rt.core.services;
   using rt.srz.model.interfaces.service;
   using rt.srz.services.Atlantiko;
-  using rt.srz.services.Kladr;
   using rt.srz.services.Regulatory;
   using rt.srz.services.Statement;
   using rt.srz.services.Tfoms;
@@ -40,7 +39,6 @@ namespace rt.srz.services.registry
     /// </summary>
     public ServicesRegistry()
     {
-      ForSingletonOf<IKladrService>().Use<KladrGateInternal>();
       ForSingletonOf<IStatementService>().Use<StatementGateInternal>();
       ForSingletonOf<IRegulatoryService>().Use<RegulatoryGateInternal>();
       ForSingletonOf<ISecurityService>().Use<SecurityGateInternal>();

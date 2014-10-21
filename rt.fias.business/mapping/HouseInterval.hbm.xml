@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.HouseInterval, rt.fias.model" table="[dbo].[HouseInterval]" lazy="true">
+		<id name="Id" column="[HOUSEINTID]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Postalcode" column="[POSTALCODE]" />
+		<property name="Ifnsfl" column="[IFNSFL]" />
+		<property name="Terrifnsfl" column="[TERRIFNSFL]" />
+		<property name="Ifnsul" column="[IFNSUL]" />
+		<property name="Terrifnsul" column="[TERRIFNSUL]" />
+		<property name="Okato" column="[OKATO]" />
+		<property name="Oktmo" column="[OKTMO]" />
+		<property name="Updatedate" column="[UPDATEDATE]" />
+		<property name="Intstart" column="[INTSTART]" />
+		<property name="Intend" column="[INTEND]" />
+		<property name="Intguid" column="[INTGUID]" />
+		<property name="Aoguid" column="[AOGUID]" />
+		<property name="Startdate" column="[STARTDATE]" />
+		<property name="Enddate" column="[ENDDATE]" />
+		<property name="Normdoc" column="[NORMDOC]" />
+		<property name="Counter" column="[COUNTER]" />
+		<many-to-one name="INTSTATUS" column="[INTSTATUS]" class="IntervalStatus"  />
+	</class>
+</hibernate-mapping>
+

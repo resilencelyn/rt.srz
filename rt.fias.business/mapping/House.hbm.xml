@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.House, rt.fias.model" table="[dbo].[House]" lazy="true">
+		<id name="Id" column="[HOUSEID]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Postalcode" column="[POSTALCODE]" />
+		<property name="Ifnsfl" column="[IFNSFL]" />
+		<property name="Terrifnsfl" column="[TERRIFNSFL]" />
+		<property name="Ifnsul" column="[IFNSUL]" />
+		<property name="Terrifnsul" column="[TERRIFNSUL]" />
+		<property name="Okato" column="[OKATO]" />
+		<property name="Oktmo" column="[OKTMO]" />
+		<property name="Updatedate" column="[UPDATEDATE]" />
+		<property name="Housenum" column="[HOUSENUM]" />
+		<property name="Buildnum" column="[BUILDNUM]" />
+		<property name="Strucnum" column="[STRUCNUM]" />
+		<property name="Houseguid" column="[HOUSEGUID]" />
+		<property name="Aoguid" column="[AOGUID]" />
+		<property name="Startdate" column="[STARTDATE]" />
+		<property name="Enddate" column="[ENDDATE]" />
+		<property name="Normdoc" column="[NORMDOC]" />
+		<property name="Counter" column="[COUNTER]" />
+		<many-to-one name="ESTSTATUS" column="[ESTSTATUS]" class="EstateStatus"  />
+		<many-to-one name="STATSTATUS" column="[STATSTATUS]" class="HouseStateStatus"  />
+		<many-to-one name="STRSTATUS" column="[STRSTATUS]" class="StructureStatus"  />
+	</class>
+</hibernate-mapping>
+

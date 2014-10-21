@@ -127,7 +127,7 @@ namespace rt.core.business.nhibernate
         return ReflectiveHttpContext.HttpContextCurrentItems[SessionFactoryMapKey] as IDictionary;
       }
 
-      if (ServiceSecurityContext.Current != null)
+      if (ServiceSecurityContext.Current != null || OperationContext.Current != null)
       {
         return WcfOperationState.Map;
       }
@@ -149,7 +149,7 @@ namespace rt.core.business.nhibernate
         return;
       }
 
-      if (ServiceSecurityContext.Current != null)
+      if (ServiceSecurityContext.Current != null || OperationContext.Current != null)
       {
         WcfOperationState.Map = value;
       }

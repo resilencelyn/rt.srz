@@ -167,8 +167,10 @@ namespace rt.srz.database.registry
     /// Удаляет CLR сборку из БД
     /// </summary>
     /// <param name="command">
+    /// The command.
     /// </param>
     /// <param name="name">
+    /// The name.
     /// </param>
     private void DeleteAssembly(SqlCommand command, string name)
     {
@@ -183,8 +185,10 @@ namespace rt.srz.database.registry
     /// Удаляем функцию из БД
     /// </summary>
     /// <param name="command">
+    /// The command.
     /// </param>
     /// <param name="name">
+    /// The name.
     /// </param>
     private void DeleteFunction(SqlCommand command, string name)
     {
@@ -199,8 +203,10 @@ namespace rt.srz.database.registry
     /// Удаляет хранимку из БД
     /// </summary>
     /// <param name="command">
+    /// The command.
     /// </param>
     /// <param name="name">
+    /// The name.
     /// </param>
     private void DeleteStoredProcedure(SqlCommand command, string name)
     {

@@ -24,6 +24,8 @@ namespace rt.atl.business.exchange.impl
 
   using rt.atl.model.atl;
   using rt.core.business.nhibernate;
+  using rt.core.model.interfaces;
+  using rt.srz.business.extensions;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
   using rt.srz.model.algorithms;
@@ -478,15 +480,22 @@ namespace rt.atl.business.exchange.impl
     /// </returns>
     private string GetOkatoRn(address address, ISession sessionAtl)
     {
-      var kl = address.Kladr;
+      var kl = address.Regulatory();
       while (kl != null)
       {
-        if (sessionAtl.QueryOver<Okato>().Where(x => x.Code == kl.Ocatd).RowCount() > 0)
+        if (sessionAtl.QueryOver<Okato>().Where(x => x.Code == kl.Okato).RowCount() > 0)
         {
-          return kl.Ocatd;
+          return kl.Okato;
         }
 
-        kl = kl.KLADRPARENT;
+        if (kl.ParentId != null)
+        {
+          kl = ObjectFactory.GetInstance<IAddressService>().GetAddress(kl.ParentId.Value);
+        }
+        else
+        {
+          kl = null;
+        }
       }
 
       return address.Okato;
@@ -666,6 +675,8 @@ namespace rt.atl.business.exchange.impl
       var signature = contentManager.GetSignature(st.InsuredPersonData.Id);
       var okatoRn = GetOkatoRn(address, sessionAtl) ?? string.Empty;
       var okatoPrn = GetOkatoRn(address2, sessionAtl) ?? string.Empty;
+      var regulatoryAddress = address.Regulatory();
+      var regulatoryAddress2 = address2.Regulatory();
       var przBuff = new Przbuf
                     {
                       Fam = personData.LastName,
@@ -713,7 +724,7 @@ namespace rt.atl.business.exchange.impl
                           ? address.Room.Value.ToString(CultureInfo.InvariantCulture)
                           : string.Empty,
                       Dmj = address.DateRegistration,
-                      Kladrg = address.Kladr != null ? address.Kladr.Code : null,
+                      Kladrg = regulatoryAddress != null ? regulatoryAddress.Code : null,
 
                       // Адрес проживания
                       Psubj =
@@ -736,7 +747,7 @@ namespace rt.atl.business.exchange.impl
                           ? address2.Room.Value.ToString(CultureInfo.InvariantCulture)
                           : string.Empty,
                       Pdmj = address2.DateRegistration,
-                      Kladrp = address2.Kladr != null ? address2.Kladr.Code : null,
+                      Kladrp = regulatoryAddress2 != null ? regulatoryAddress2.Code : null,
 
                       // Документ регистрации 
 

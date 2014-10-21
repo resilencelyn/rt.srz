@@ -155,8 +155,8 @@ namespace rt.core.business.security.repository
       var array = Encoding.GetEncoding(1251).GetBytes(token);
       response.AuthToken = new Token
                            {
-                             Id = Guid.NewGuid(), 
-                             Signature = Convert.ToBase64String(alg.Encrypt(array, false)), 
+                             Id = Guid.NewGuid(),
+                             Signature = Convert.ToBase64String(alg.Encrypt(array, false)),
                              ExpTime = new DateTime(2200, 1, 1)
                            };
 
@@ -252,9 +252,10 @@ namespace rt.core.business.security.repository
     /// </returns>
     public User GetUserByName(string name)
     {
-      return (from user in ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Query<User>()
-              where user.Login == name && user.IsApproved
-              select user).FirstOrDefault();
+      using (var session = ObjectFactory.GetInstance<ISessionFactory>().OpenSession())
+      {
+        return session.QueryOver<User>().Where(x => x.Login == name && x.IsApproved).List().FirstOrDefault();
+      }
     }
 
     /// <summary>

@@ -16,7 +16,7 @@ namespace rt.srz.business.manager
     public partial interface IaddressManager : IManagerBase<rt.srz.model.srz.address, System.Guid>
     {
 		// Get Methods
-		IList<address> GetByKladrId(System.Guid kladr);
+		IList<address> GetByRegulatoryId(System.Guid regulatoryId);
     
     }
 
@@ -25,13 +25,12 @@ namespace rt.srz.business.manager
         #region Get Methods
 
 		
-		public IList<address> GetByKladrId(System.Guid kladr)
+		public IList<address> GetByRegulatoryId(System.Guid regulatoryId)
         {
             ICriteria criteria = Session.GetISession().CreateCriteria(typeof(address));
 			
 			
-			ICriteria kladrCriteria = criteria.CreateCriteria("Kladr");
-            kladrCriteria.Add(NHibernate.Criterion.Expression.Eq("Id", kladr));
+			criteria.Add(NHibernate.Criterion.Expression.Eq("RegulatoryId", regulatoryId));
 			
 			return criteria.List<address>();
         }

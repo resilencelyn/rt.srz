@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.AObject, rt.fias.model" table="[dbo].[AObject]" lazy="true">
+		<id name="Id" column="[AOID]">
+		 	<generator class="guid.comb" />
+		</id>
+		<property name="Aoguid" column="[AOGUID]" />
+		<property name="Formalname" column="[FORMALNAME]" />
+		<property name="Regioncode" column="[REGIONCODE]" />
+		<property name="Autocode" column="[AUTOCODE]" />
+		<property name="Areacode" column="[AREACODE]" />
+		<property name="Citycode" column="[CITYCODE]" />
+		<property name="Ctarcode" column="[CTARCODE]" />
+		<property name="Placecode" column="[PLACECODE]" />
+		<property name="Streetcode" column="[STREETCODE]" />
+		<property name="Extrcode" column="[EXTRCODE]" />
+		<property name="Sextcode" column="[SEXTCODE]" />
+		<property name="Offname" column="[OFFNAME]" />
+		<property name="Postalcode" column="[POSTALCODE]" />
+		<property name="Ifnsfl" column="[IFNSFL]" />
+		<property name="Terrifnsfl" column="[TERRIFNSFL]" />
+		<property name="Ifnsul" column="[IFNSUL]" />
+		<property name="Terrifnsul" column="[TERRIFNSUL]" />
+		<property name="Okato" column="[OKATO]" />
+		<property name="Oktmo" column="[OKTMO]" />
+		<property name="Updatedate" column="[UPDATEDATE]" />
+		<property name="Shortname" column="[SHORTNAME]" />
+		<property name="Aolevel" column="[AOLEVEL]" />
+		<property name="Parentguid" column="[PARENTGUID]" />
+		<property name="Code" column="[CODE]" />
+		<property name="Plaincode" column="[PLAINCODE]" />
+		<property name="Startdate" column="[STARTDATE]" />
+		<property name="Enddate" column="[ENDDATE]" />
+		<property name="Normdoc" column="[NORMDOC]" />
+		<property name="Livestatus" column="[LIVESTATUS]" />
+		<many-to-one name="ACTSTATUS" column="[ACTSTATUS]" class="ActualStatus"  />
+		<many-to-one name="CENTSTATUS" column="[CENTSTATUS]" class="CenterStatus"  />
+		<many-to-one name="CURRSTATUS" column="[CURRSTATUS]" class="CurrentStatus"  />
+		<many-to-one name="NEXT" column="[NEXTID]" class="AObject"  />
+		<many-to-one name="PREV" column="[PREVID]" class="AObject"  />
+		<many-to-one name="OPERSTATUS" column="[OPERSTATUS]" class="OperationStatus"  />
+		<bag name="AObjects1" lazy="true" inverse="true" >
+			<key column="[NEXTID]"></key>
+			<one-to-many class="AObject"></one-to-many>
+		</bag>
+		<bag name="AObjects2" lazy="true" inverse="true" >
+			<key column="[PREVID]"></key>
+			<one-to-many class="AObject"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

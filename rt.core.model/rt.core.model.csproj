@@ -125,10 +125,16 @@
     <Compile Include="dto\BaseSearchCriteria.cs" />
     <Compile Include="dto\SearchResult.cs" />
     <Compile Include="dto\enumerations\SortDirection.cs" />
+    <Compile Include="interfaces\Address.cs" />
+    <Compile Include="interfaces\FiasLevel.cs" />
+    <Compile Include="interfaces\IAddress.cs" />
+    <Compile Include="interfaces\IAddressService.cs" />
     <Compile Include="interfaces\IManagerCacheBase.cs" />
     <Compile Include="interfaces\IBatch.cs" />
     <Compile Include="interfaces\ISecurityService.cs" />
     <Compile Include="interfaces\IServiceRegistry.cs" />
+    <Compile Include="interfaces\KladrLevel.cs" />
+    <Compile Include="interfaces\StructureAddress.cs" />
     <Compile Include="PermissionCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="security\AuthResponse.cs" />

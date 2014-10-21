@@ -16,6 +16,7 @@ namespace rt.srz.business.manager.cache
 
   using rt.core.business.nhibernate;
   using rt.core.business.security.interfaces;
+  using rt.srz.business.extensions;
   using rt.srz.model.srz;
 
   using StructureMap;

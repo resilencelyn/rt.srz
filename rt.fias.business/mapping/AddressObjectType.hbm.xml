@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.AddressObjectType, rt.fias.model" table="[dbo].[AddressObjectType]" lazy="true">
+		<id name="Id" column="[KOD_T_ST]">
+		 	<generator class="assigned" />
+		</id>
+		<property name="Level" column="[LEVEL]" />
+		<property name="Scname" column="[SCNAME]" />
+		<property name="Socrname" column="[SOCRNAME]" />
+	</class>
+</hibernate-mapping>
+

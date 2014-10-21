@@ -10,17 +10,17 @@
 namespace rt.srz.database.registry
 {
   /// <summary>
-  /// The function.
+  ///   The function.
   /// </summary>
   internal static class Function
   {
     #region Public Methods and Operators
 
     /// <summary>
-    /// The calc standard search keys.
+    ///   The calc standard search keys.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalcStandardSearchKeys()
     {
@@ -37,10 +37,10 @@ namespace rt.srz.database.registry
     }
 
     /// <summary>
-    /// The calc standard search keys exchange.
+    ///   The calc standard search keys exchange.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalcStandardSearchKeysExchange()
     {
@@ -57,10 +57,10 @@ namespace rt.srz.database.registry
     }
 
     /// <summary>
-    /// The calc user search key.
+    ///   The calc user search key.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalcUserSearchKey()
     {
@@ -74,10 +74,10 @@ namespace rt.srz.database.registry
     }
 
     /// <summary>
-    /// The calc user search key exchange.
+    ///   The calc user search key exchange.
     /// </summary>
     /// <returns>
-    /// The <see cref="string"/>.
+    ///   The <see cref="string" />.
     /// </returns>
     public static string CalcUserSearchKeyExchange()
     {

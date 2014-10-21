@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.CenterStatus, rt.fias.model" table="[dbo].[CenterStatus]" lazy="true">
+		<id name="Id" column="[CENTERSTID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Name" column="[NAME]" />
+		<bag name="AObjects" lazy="true" inverse="true" >
+			<key column="[CENTSTATUS]"></key>
+			<one-to-many class="AObject"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

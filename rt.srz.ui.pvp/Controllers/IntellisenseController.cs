@@ -1,24 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using StructureMap;
-using rt.srz.model.srz;
-using rt.srz.model.enumerations;
-using rt.srz.model.interfaces.service;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IntellisenseController.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.ui.pvp.Controllers
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Globalization;
+  using System.Linq;
+
+  using AjaxControlToolkit;
+
+  using rt.core.model.interfaces;
+  using rt.srz.model.interfaces.service;
+  using rt.srz.model.srz;
+
+  using StructureMap;
+
+  /// <summary>
+  ///   The intellisense controller.
+  /// </summary>
   public static class IntellisenseController
   {
+    #region Public Methods and Operators
+
+    /// <summary>
+    /// Обслуживает Intellisense для ввода имени
+    /// </summary>
+    /// <param name="prefixText">
+    /// The prefix Text.
+    /// </param>
+    /// <param name="count">
+    /// The count.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List"/>.
+    /// </returns>
+    public static List<string> GetFirstNameAutoComplete(string prefixText, int count)
+    {
+      var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
+      IList<AutoComplete> firstNameList = regulatoryService.GetFirstNameAutoComplete(prefixText);
+
+      var completeList = new List<string>();
+      foreach (var complete in firstNameList)
+      {
+        completeList.Add(AutoCompleteExtender.CreateAutoCompleteItem(complete.Name, complete.Id.ToString()));
+      }
+
+      return completeList;
+    }
+
     /// <summary>
     /// Обслуживает Intellisense КЛАДР
     /// </summary>
-    /// <param name="prefixText"></param>
-    /// <param name="count"></param>
-    /// <param name="contextKey"></param>
-    /// <returns></returns>
+    /// <param name="prefixText">
+    /// The prefix Text.
+    /// </param>
+    /// <param name="count">
+    /// The count.
+    /// </param>
+    /// <param name="contextKey">
+    /// The context Key.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List"/>.
+    /// </returns>
     public static List<string> GetKladrList(string prefixText, int count, string contextKey)
     {
       // Убираем пробелы
@@ -34,29 +82,37 @@ namespace rt.srz.ui.pvp.Controllers
           pr = prefixText.Skip(1).Aggregate(pr, (akk, x) => string.Format("{0}{1}%", akk, x));
         }
 
-        var _kladrService = ObjectFactory.GetInstance<IKladrService>();
+        var kladrService = ObjectFactory.GetInstance<IAddressService>();
 
-        if (string.IsNullOrEmpty(contextKey)) //Регионы
+        if (string.IsNullOrEmpty(contextKey))
         {
-          var completeList = _kladrService.GetKladrs(null, pr, KladrLevel.Subject)
-                                          .Select(
-                                            x =>
-                                            AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(
-                                              x.Name + " " + x.Socr + ".", x.Id.ToString()))
-                                          .ToList();
+          // Регионы
+          var completeList =
+            kladrService.GetAddressList(null, pr, KladrLevel.Subject)
+                        .Select(
+                                x =>
+                                AutoCompleteExtender.CreateAutoCompleteItem(
+                                                                            string.Format("{0} {1}.", x.Name, x.Socr), 
+                                                                            x.Id.ToString()))
+                        .ToList();
 
           return completeList;
         }
 
-        var parentKladrID = new Guid(contextKey);
-        if (parentKladrID != Guid.Empty)
+        var parentKladrId = new Guid(contextKey);
+        if (parentKladrId != Guid.Empty)
         {
-          var completeList = _kladrService.GetKladrs(parentKladrID, pr, null)
-                                          .Select(
-                                            x =>
-                                            AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(
-                                              x.Name + " " + x.Socr + ".", x.Id.ToString()))
-                                          .ToList();
+          var completeList =
+            kladrService.GetAddressList(parentKladrId, pr, null)
+                        .Select(
+                                x =>
+                                AutoCompleteExtender.CreateAutoCompleteItem(
+                                                                            x.Name
+                                                                            + (!string.IsNullOrEmpty(x.Socr)
+                                                                                 ? string.Format(" {0}.", x.Socr)
+                                                                                 : string.Empty), 
+                                                                            x.Id.ToString()))
+                        .ToList();
 
           return completeList;
         }
@@ -66,58 +122,60 @@ namespace rt.srz.ui.pvp.Controllers
     }
 
     /// <summary>
-    /// Обслуживает Intellisense для ввода имени
+    /// Обслуживает Intellisense для ввода отчества
     /// </summary>
-    /// <param name="prefixText"></param>
-    /// <param name="count"></param>
-    /// <param name="contextKey"></param>
-    /// <returns></returns>
-    public static List<string> GetFirstNameAutoComplete(string prefixText, int count)
+    /// <param name="prefixText">
+    /// The prefix Text.
+    /// </param>
+    /// <param name="count">
+    /// The count.
+    /// </param>
+    /// <param name="contextKey">
+    /// The context Key.
+    /// </param>
+    /// <returns>
+    /// The <see cref="List"/>.
+    /// </returns>
+    public static List<string> GetMiddleNameAutoComplete(string prefixText, int count, string contextKey)
     {
-      var regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
-      IList<AutoComplete> firstNameList = regulatoryService.GetFirstNameAutoComplete(prefixText);
+      var statementService = ObjectFactory.GetInstance<IRegulatoryService>();
 
-      List<string> completeList = new List<string>();
-      foreach (AutoComplete complete in firstNameList)
-        completeList.Add(AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(complete.Name, complete.Id.ToString()));
+      // Фильтрация отчества в зависимости от имени
+      Guid nameId;
+      if (!Guid.TryParse(contextKey, out nameId))
+      {
+        nameId = Guid.Empty;
+      }
+
+      IList<AutoComplete> middleNameList = statementService.GetMiddleNameAutoComplete(prefixText, nameId);
+
+      var completeList = new List<string>();
+      foreach (var complete in middleNameList)
+      {
+        completeList.Add(AutoCompleteExtender.CreateAutoCompleteItem(complete.Name, complete.Id.ToString()));
+      }
 
       return completeList;
     }
 
     /// <summary>
-    /// Обслуживает Intellisense для ввода отчества
+    /// Врзвращает контактную информацию по документу удл, найденному по номеру и серии
     /// </summary>
-    /// <param name="prefixText"></param>
-    /// <param name="count"></param>
-    /// <param name="contextKey"></param>
-    /// <returns></returns>
-    public static List<string> GetMiddleNameAutoComplete(string prefixText, int count, string contextKey)
+    /// <param name="number">
+    /// The number.
+    /// </param>
+    /// <param name="series">
+    /// The series.
+    /// </param>
+    /// <returns>
+    /// The <see cref="Representative"/>.
+    /// </returns>
+    public static Representative GetRepresentativeContactInfoByUdl(string number, string series)
     {
-      var statementService = ObjectFactory.GetInstance<IRegulatoryService>();
-
-      //Фильтрация отчества в зависимости от имени
-      Guid nameId;
-      if (!Guid.TryParse(contextKey, out nameId))
-        nameId = Guid.Empty;
-      IList<AutoComplete> middleNameList = statementService.GetMiddleNameAutoComplete(prefixText, nameId);
-
-      List<string> completeList = new List<string>();
-      foreach (AutoComplete complete in middleNameList)
-        completeList.Add(AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(complete.Name, complete.Id.ToString()));
-
-      return completeList;
+      var statementService = ObjectFactory.GetInstance<IStatementService>();
+      return statementService.GetRepresentativeContactInfoByUdl(number, series);
     }
 
-		/// <summary>
-		/// Врзвращает контактную информацию по документу удл, найденному по номеру и серии
-		/// </summary>
-		/// <param name="number"></param>
-		/// <param name="series"></param>
-		/// <returns></returns>
-		public static Representative GetRepresentativeContactInfoByUdl(string number, string series)
-		{
-			IStatementService statementService = ObjectFactory.GetInstance<IStatementService>();
-			return statementService.GetRepresentativeContactInfoByUdl(number, series);
-		}
+    #endregion
   }
 }

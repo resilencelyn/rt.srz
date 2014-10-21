@@ -16,6 +16,7 @@ namespace rt.srz.model.interfaces.service
   using System.ServiceModel;
 
   using rt.core.model.dto;
+  using rt.core.model.interfaces;
   using rt.srz.model.dto;
   using rt.srz.model.srz;
 
@@ -151,18 +152,6 @@ namespace rt.srz.model.interfaces.service
     /// </returns>
     [OperationContract]
     List<Concept> GetConceptsByOid(string oidId);
-
-    /// <summary>
-    /// The get first level by tfoms.
-    /// </summary>
-    /// <param name="tfoms">
-    /// The tfoms.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/> .
-    /// </returns>
-    [OperationContract]
-    Kladr GetFirstLevelByTfoms(Organisation tfoms);
 
     /// <summary>
     /// Возвращает список варианатов для имени

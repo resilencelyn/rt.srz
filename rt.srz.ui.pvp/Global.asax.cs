@@ -107,15 +107,12 @@ namespace rt.srz.ui.pvp
     /// </param>
     private void Application_BeginRequest(object sender, EventArgs e)
     {
-      // Проверяем, не находится ли сайт на обслуживании
-      if (ProcessOffline())
-      {
-        return;
-      }
-
       // Открываем сессию к базе
       var session = ObjectFactory.GetInstance<ISessionFactory>().OpenSession();
       CurrentSessionContext.Bind(session);
+
+      // Проверяем, не находится ли сайт на обслуживании
+      ProcessOffline();
     }
 
     /// <summary>

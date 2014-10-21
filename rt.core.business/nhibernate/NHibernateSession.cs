@@ -213,14 +213,23 @@ namespace rt.core.business.nhibernate
     public ISession GetISession()
     {
       var sessionFactory = ObjectFactory.GetInstance<ISessionFactory>();
-      iSession = sessionFactory.GetCurrentSession();
-      if (iSession.IsOpen)
+      try
       {
+        iSession = sessionFactory.GetCurrentSession();
+        if (iSession.IsOpen)
+        {
+          return iSession;
+        }
+
+        ReopenSession();
         return iSession;
       }
+      catch (Exception ex)
+      {
+        NLog.LogManager.GetCurrentClassLogger().Error(ex);
+      }
 
-      ReopenSession();
-      return iSession;
+      return null;
     }
 
     /// <summary>

@@ -192,7 +192,6 @@ namespace rt.atl.business.exchange.impl
         var przs = sessionSrz.QueryOver<Prz>().List();
         var sessionPvp = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
         var pointDistributionPolicies = sessionPvp.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Pvp).List();
-        var securityService = ObjectFactory.GetInstance<ISecurityService>();
         var list = pointDistributionPolicies;
         var przToPvpList = przs.Where(x => !list.Any(y => y.Code == x.Code && y.Parent.Code == x.SMO.Code)).ToList();
         var oid = ObjectFactory.GetInstance<IOidManager>().GetById(Oid.Pvp);
@@ -280,7 +279,6 @@ namespace rt.atl.business.exchange.impl
           ObjectFactory.GetInstance<IManagerSessionFactorys>().GetFactoryByName("NHibernateCfgAtl.xml").OpenSession())
       {
         var sessionPvp = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
-        var securityService = ObjectFactory.GetInstance<ISecurityService>();
         var smoSrzList = sessionSrz.QueryOver<Smo>().List();
         var smoPvpList = sessionPvp.QueryOver<Organisation>().Where(x => x.Oid.Id == Oid.Smo).List();
         var list = smoPvpList;

@@ -16,8 +16,8 @@ Description: Generates an editable Manager Object for NHibernate.
 <%@ Import Namespace="NHibernateHelper" %>
 <%@ Map Name="SystemCSharp" Src="System-CSharpAlias" %>
 //-------------------------------------------------------------------------------------
-// <copyright file="I<%= GetClassName(SourceTable) %>Manager.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// <copyright file="I<%= GetClassName(SourceTable) %>Manager.cs" company="РусБИТех">
+//     Copyright (c) <%= DateTime.Today.Year.ToString() %>. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------
 

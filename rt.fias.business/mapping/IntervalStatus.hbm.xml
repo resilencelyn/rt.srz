@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.IntervalStatus, rt.fias.model" table="[dbo].[IntervalStatus]" lazy="true">
+		<id name="Id" column="[INTVSTATID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Name" column="[NAME]" />
+		<bag name="HouseIntervals" lazy="true" inverse="true" >
+			<key column="[INTSTATUS]"></key>
+			<one-to-many class="HouseInterval"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

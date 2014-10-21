@@ -20,6 +20,7 @@ namespace rt.srz.business.manager
 
   using rt.core.business.security.interfaces;
   using rt.core.model.dto;
+  using rt.srz.business.extensions;
   using rt.srz.business.manager.cache;
   using rt.srz.model.dto;
   using rt.srz.model.enumerations;

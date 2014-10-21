@@ -2,9 +2,6 @@
 // <copyright file="Kladr.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The addressManager.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
@@ -66,7 +63,7 @@ namespace rt.srz.model.srz
         
       [XmlElement(Order =  9)]
       [DataMember(Order =  9)]
-      public virtual string Ocatd { get; set;}
+      public virtual string Okato { get; set;}
         
       [XmlElement(Order =  10)]
       [DataMember(Order =  10)]
@@ -80,15 +77,15 @@ namespace rt.srz.model.srz
       [DataMember(Order =  12)]
       public virtual int? Level { get; set;}
         
-        
-		  [XmlElement(Order =  13)]
+      [XmlElement(Order =  13)]
       [DataMember(Order =  13)]
+      public virtual short TypeAddress { get; set;}
+        
+        
+		  [XmlElement(Order =  14)]
+      [DataMember(Order =  14)]
 		  public virtual Kladr KLADRPARENT { get; set;}
 			
-      [XmlIgnore]
-      [IgnoreDataMember]
-      public virtual IList<address> AddressMember { get; set;}
-      
       [XmlIgnore]
       [IgnoreDataMember]
       public virtual IList<Kladr> Kladrs { get; set;}

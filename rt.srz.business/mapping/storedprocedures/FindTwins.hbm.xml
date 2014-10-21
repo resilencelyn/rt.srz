@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.srz.model.srz" assembly="rt.srz.model">
+  <sql-query name="FindTwins" >
+    exec srz_FindTwins
+  </sql-query>
+</hibernate-mapping>

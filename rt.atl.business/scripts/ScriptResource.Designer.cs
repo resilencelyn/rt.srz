@@ -111,11 +111,10 @@ namespace rt.atl.business.scripts {
         ///           ,[DateRegistration]
         ///           ,[IsNotStructureAddress]
         ///           ,[Okato]
-        ///           ,[KladrId]  
-        ///           ,[Unstructured])
-        ///( 
-        ///   select  
-        ///           cast(ca [rest of string was truncated]&quot;;.
+        ///           ,[RegulatoryId]            
+        ///           ,[Unstructured]
+        ///           ,Code
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Initialization {
             get {

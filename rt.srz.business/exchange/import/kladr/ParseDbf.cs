@@ -222,7 +222,9 @@ namespace rt.srz.business.exchange.import.kladr
           var stream = new MemoryStream();
           document.Save(stream);
           stream.Position = 0;
-          kladrCq.Enqueue(Kladr.Deserializating(document));
+          var kladr = Kladr.Deserializating(document);
+          
+          kladrCq.Enqueue(kladr);
           recReader.Close();
         }
 

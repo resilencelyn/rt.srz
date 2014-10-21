@@ -93,7 +93,8 @@ namespace rt.core.business.nhibernate
     /// </returns>
     public ISessionFactory GetFactoryByName(string name)
     {
-      return dictionary[name];
+      ISessionFactory factory;
+      return dictionary.TryGetValue(name, out factory) ? factory : null;
     }
 
     /// <summary>

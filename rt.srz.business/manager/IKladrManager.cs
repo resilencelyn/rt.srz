@@ -14,6 +14,7 @@ namespace rt.srz.business.manager
   using System;
   using System.Collections.Generic;
 
+  using rt.core.model.interfaces;
   using rt.srz.model.enumerations;
   using rt.srz.model.srz;
 
@@ -29,13 +30,13 @@ namespace rt.srz.business.manager
     /// <summary>
     /// The get first level by tfoms.
     /// </summary>
-    /// <param name="tfom">
-    /// The tfom.
+    /// <param name="okato">
+    /// The okato.
     /// </param>
     /// <returns>
     /// The <see cref="Kladr"/>.
     /// </returns>
-    Kladr GetFirstLevelByTfoms(Organisation tfom);
+    IAddress GetFirstLevelByTfoms(string okato);
 
     /// <summary>
     /// Возвращает список адресных объектов для указанного уровня
@@ -55,5 +56,38 @@ namespace rt.srz.business.manager
     IList<Kladr> GetKladrs(Guid? parentId, string prefix, KladrLevel? level);
 
     #endregion
+
+    /// <summary>
+    /// The get structure address.
+    /// </summary>
+    /// <param name="objectId">
+    /// The object id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="StructureAddress"/>.
+    /// </returns>
+    StructureAddress GetStructureAddress(Guid objectId);
+
+    /// <summary>
+    /// The get unstructure address.
+    /// </summary>
+    /// <param name="objectId">
+    /// The object id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    string GetUnstructureAddress(Guid objectId);
+
+    /// <summary>
+    /// The hierarchy build.
+    /// </summary>
+    /// <param name="objectId">
+    /// The object id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    string HierarchyBuild(Guid objectId);
   }
 }

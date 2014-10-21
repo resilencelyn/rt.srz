@@ -17,7 +17,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-	<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -70,6 +70,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
@@ -79,7 +80,7 @@
     <Compile Include="services\AuthClient.cs" />
     <Compile Include="registry\ServicesRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="services\KladrClient.cs" />
+    <Compile Include="services\AddressClient.cs" />
     <Compile Include="services\RegulatoryClient.cs" />
     <Compile Include="services\SecurityClient.cs" />
     <Compile Include="services\StatementClient.cs" />
@@ -113,6 +114,10 @@
       <Project>{F806BF30-72B9-41EE-8A62-93100A9D30BB}</Project>
       <Name>rt.core.services</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.fias.model\rt.fias.model.csproj">
+      <Project>{62f05a43-1fbb-4b36-91b5-853ed97a4161}</Project>
+      <Name>rt.fias.model</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
       <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>

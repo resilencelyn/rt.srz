@@ -251,10 +251,13 @@
     <Content Include="Controls\StatementSelectionWizardSteps\Step2.ascx" />
     <Content Include="Controls\Twins\SeparateGridControl.ascx" />
     <Content Include="Controls\Twins\TwinPersonControl.ascx" />
+    <Content Include="NHibernateCfgFias.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="RegulatoryGate.svc" />
     <Content Include="HttpHandlers\GetPhotoHandler.ashx" />
     <Content Include="HttpHandlers\UploadPhotoHandler.ashx" />
-    <Content Include="KladrGate.svc" />
+    <Content Include="AddressGate.svc" />
     <Content Include="NHibernateCfgAtl.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1231,6 +1234,14 @@
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
       <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.fias.model\rt.fias.model.csproj">
+      <Project>{62f05a43-1fbb-4b36-91b5-853ed97a4161}</Project>
+      <Name>rt.fias.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.fias.services\rt.fias.services.csproj">
+      <Project>{edba4836-be2f-4564-add3-6e46bffd0208}</Project>
+      <Name>rt.fias.services</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
       <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NewStatementSelection.aspx.cs" company="Rintech">
-//   Copyright (c) 2013. All rights reserved.
+// <copyright file="NewStatementSelection.aspx.cs" company="РусБИТех">
+//   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,16 +15,16 @@ namespace rt.srz.ui.pvp.Pages
   using System.Web;
   using System.Web.Services;
   using System.Web.UI;
-  using NHibernate;
 
+  using rt.core.model.interfaces;
   using rt.srz.model.dto;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
   using rt.srz.model.srz.concepts;
   using rt.srz.ui.pvp.Controllers;
-  using StructureMap;
   using rt.srz.ui.pvp.Templates;
-  using ProtoBuf;
+
+  using StructureMap;
 
   #endregion
 
@@ -34,14 +34,6 @@ namespace rt.srz.ui.pvp.Pages
   public partial class NewStatementSelection : Page
   {
     #region Public Methods and Operators
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-      if (Page.Master is AuthentificatedPage)
-      {
-        ((AuthentificatedPage)Page.Master).SetMenuAvailability();
-      }
-    }
 
     /// <summary>
     /// The get category.
@@ -55,20 +47,82 @@ namespace rt.srz.ui.pvp.Pages
     /// <param name="isRefugee">
     /// The is refugee.
     /// </param>
+    /// <param name="strBirthDate">
+    /// The str Birth Date.
+    /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>List</cref>
-    ///     </see> .
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [WebMethod]
-    public static List<ConceptDto> GetCategory(int citizenshipId, bool withoutCitizenship, bool isRefugee, string strBirthDate)
+    public static List<ConceptDto> GetCategory(
+      int citizenshipId, 
+      bool withoutCitizenship, 
+      bool isRefugee, 
+      string strBirthDate)
     {
       var age = GetAge(strBirthDate);
 
       return
         ObjectFactory.GetInstance<IStatementService>()
-        .GetCategoryByCitizenship(citizenshipId, withoutCitizenship, isRefugee, age)
-        .Select(x => new ConceptDto { Id = x.Id, Name = x.Name }).ToList();
+                     .GetCategoryByCitizenship(citizenshipId, withoutCitizenship, isRefugee, age)
+                     .Select(x => new ConceptDto { Id = x.Id, Name = x.Name })
+                     .ToList();
+    }
+
+    /// <summary>
+    /// Возвращает текущий документ УДЛ, хранящийся в сессии
+    /// </summary>
+    /// <returns>
+    /// The <see cref="DocumentUdl"/>.
+    /// </returns>
+    [WebMethod(EnableSession = true)]
+    public static DocumentUdl GetCurrentDocumentUdl()
+    {
+      var session = HttpContext.Current.Session;
+      var statement = session[SessionConsts.CCurrentStatement] != null
+                        ? (Statement)session[SessionConsts.CCurrentStatement]
+                        : null;
+      var document = new DocumentUdl();
+      if (statement != null)
+      {
+        document.DocumentType = statement.DocumentUdl.DocumentType != null
+                                  ? statement.DocumentUdl.DocumentType.ToString()
+                                  : "-1";
+        document.DocumentSeries = statement.DocumentUdl.Series;
+        document.DocumentNumber = statement.DocumentUdl.Number;
+        document.DocumentIssuer = statement.DocumentUdl.IssuingAuthority;
+        document.DocumentIssueDate = statement.DocumentUdl.DateIssue.HasValue
+                                       ? statement.DocumentUdl.DateIssue.Value.ToShortDateString()
+                                       : null;
+      }
+      return document;
+    }
+
+    /// <summary>
+    /// The get document types residency.
+    /// </summary>
+    /// <param name="categoryId">
+    /// The category id.
+    /// </param>
+    /// <returns>
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
+    /// </returns>
+    [WebMethod]
+    public static List<ConceptDto> GetDocumentResidencyTypes(int categoryId)
+    {
+      return
+        ObjectFactory.GetInstance<IStatementService>()
+                     .GetDocumentResidencyTypeByCategory(categoryId)
+                     .Select(x => new ConceptDto { Id = x.Id, Name = x.Name })
+                     .ToList();
     }
 
     /// <summary>
@@ -81,9 +135,11 @@ namespace rt.srz.ui.pvp.Pages
     /// The str birth date.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>List</cref>
-    ///     </see> .
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [WebMethod]
     public static List<ConceptDto> GetDocumentTypes(int categoryId, string strBirthDate)
@@ -91,56 +147,10 @@ namespace rt.srz.ui.pvp.Pages
       var age = GetAge(strBirthDate);
 
       return
-        ObjectFactory.GetInstance<IStatementService>().GetDocumentTypeByCategory(categoryId, age).Select(
-          x => new ConceptDto { Id = x.Id, Name = x.Name }).ToList();
-    }
-
-    private static TimeSpan GetAge(string strBirthDate)
-    {
-      DateTime? birthDate = null;
-      if (!string.IsNullOrEmpty(strBirthDate))
-      {
-        DateTime tempDate;
-        if (DateTime.TryParse(strBirthDate, out tempDate))
-        {
-          birthDate = tempDate;
-        }
-
-        if (birthDate == null)
-        {
-          if (DateTime.TryParse("01.01." + strBirthDate, out tempDate))
-          {
-            birthDate = tempDate;
-          }
-        }
-      }
-
-      // 1 год = 365.242199 суток * 15 лет = 5113,390786 суток
-      var age = new TimeSpan(5114, 0, 0, 0);
-      if (birthDate.HasValue)
-      {
-        age = DateTime.Now - birthDate.Value;
-      }
-      return age;
-    }
-
-    /// <summary>
-    /// The get document types residency.
-    /// </summary>
-    /// <param name="categoryId">
-    /// The category id.
-    /// </param>
-    /// <returns>
-    /// The <see>
-    ///       <cref>List</cref>
-    ///     </see> .
-    /// </returns>
-    [WebMethod]
-    public static List<ConceptDto> GetDocumentResidencyTypes(int categoryId)
-    {
-      return
-        ObjectFactory.GetInstance<IStatementService>().GetDocumentResidencyTypeByCategory(categoryId).Select(
-          x => new ConceptDto { Id = x.Id, Name = x.Name }).ToList();
+        ObjectFactory.GetInstance<IStatementService>()
+                     .GetDocumentTypeByCategory(categoryId, age)
+                     .Select(x => new ConceptDto { Id = x.Id, Name = x.Name })
+                     .ToList();
     }
 
     /// <summary>
@@ -153,9 +163,11 @@ namespace rt.srz.ui.pvp.Pages
     /// The count.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>List</cref>
-    ///     </see> .
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [WebMethod]
     public static List<string> GetFirstNameAutoComplete(string prefixText, int count)
@@ -198,12 +210,14 @@ namespace rt.srz.ui.pvp.Pages
     /// The context Key.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>List</cref>
-    ///     </see> .
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [WebMethod]
-    public static List<string> GetKLADRList(string prefixText, int count, string contextKey)
+    public static List<string> GetKladrList(string prefixText, int count, string contextKey)
     {
       return IntellisenseController.GetKladrList(prefixText, count, contextKey);
     }
@@ -221,9 +235,11 @@ namespace rt.srz.ui.pvp.Pages
     /// The context Key.
     /// </param>
     /// <returns>
-    /// The <see>
-    ///       <cref>List</cref>
-    ///     </see> .
+    /// The
+    ///   <see>
+    ///     <cref>List</cref>
+    ///   </see>
+    ///   .
     /// </returns>
     [WebMethod]
     public static List<string> GetMiddleNameAutoComplete(string prefixText, int count, string contextKey)
@@ -241,10 +257,10 @@ namespace rt.srz.ui.pvp.Pages
     /// The <see cref="string"/>.
     /// </returns>
     [WebMethod]
-    public static string GetPostcodeByKLADRId(Guid kladrId)
+    public static string GetPostcodeByKladrId(Guid kladrId)
     {
-      var kladrService = ObjectFactory.GetInstance<IKladrService>();
-      var kladr = kladrService.GetKladr(kladrId);
+      var kladrService = ObjectFactory.GetInstance<IAddressService>();
+      var kladr = kladrService.GetAddress(kladrId);
       if (kladr != null && kladr.Index != null)
       {
         return kladr.Index.ToString();
@@ -305,22 +321,65 @@ namespace rt.srz.ui.pvp.Pages
 
       return string.Empty;
     }
-    
+
+    #endregion
+
+    #region Methods
+
     /// <summary>
-    /// Возвращает текущий документ УДЛ, хранящийся в сессии
+    /// The page_ load.
     /// </summary>
-    [WebMethod(EnableSession=true)]
-    public static DocumentUdl GetCurrentDocumentUdl()
-    { 
-      var session = HttpContext.Current.Session;
-      Statement statement = session[SessionConsts.CCurrentStatement] != null ? (Statement)session[SessionConsts.CCurrentStatement] : null;
-      var document = new DocumentUdl();
-      document.DocumentType =  statement.DocumentUdl.DocumentType != null ? statement.DocumentUdl.DocumentType.ToString() : "-1";
-      document.DocumentSeries = statement.DocumentUdl.Series;
-      document.DocumentNumber = statement.DocumentUdl.Number;
-      document.DocumentIssuer = statement.DocumentUdl.IssuingAuthority;
-      document.DocumentIssueDate = statement.DocumentUdl.DateIssue.HasValue ? statement.DocumentUdl.DateIssue .Value.ToShortDateString() : null;
-      return document;
+    /// <param name="sender">
+    /// The sender.
+    /// </param>
+    /// <param name="e">
+    /// The e.
+    /// </param>
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      if (Page.Master is AuthentificatedPage)
+      {
+        ((AuthentificatedPage)Page.Master).SetMenuAvailability();
+      }
+    }
+
+    /// <summary>
+    /// The get age.
+    /// </summary>
+    /// <param name="strBirthDate">
+    /// The str birth date.
+    /// </param>
+    /// <returns>
+    /// The <see cref="TimeSpan"/>.
+    /// </returns>
+    private static TimeSpan GetAge(string strBirthDate)
+    {
+      DateTime? birthDate = null;
+      if (!string.IsNullOrEmpty(strBirthDate))
+      {
+        DateTime tempDate;
+        if (DateTime.TryParse(strBirthDate, out tempDate))
+        {
+          birthDate = tempDate;
+        }
+
+        if (birthDate == null)
+        {
+          if (DateTime.TryParse("01.01." + strBirthDate, out tempDate))
+          {
+            birthDate = tempDate;
+          }
+        }
+      }
+
+      // 1 год = 365.242199 суток * 15 лет = 5113,390786 суток
+      var age = new TimeSpan(5114, 0, 0, 0);
+      if (birthDate.HasValue)
+      {
+        age = DateTime.Now - birthDate.Value;
+      }
+
+      return age;
     }
 
     #endregion

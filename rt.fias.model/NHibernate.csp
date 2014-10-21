@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
+  <variables>
+    <add key="ConnectionString1" value="Data Source=developer-09;Initial Catalog=rt_fias;Integrated security=true" />
+  </variables>
+  <propertySets>
+    <propertySet name="NHibernateMaster" template="..\generator\codegen.model\NHibernateMaster.cst">
+      <property name="VersionColumn">^Versions$</property>
+      <property name="NHibernateVersion">v2_1</property>
+      <property name="VsVersion">VS_2008</property>
+      <property name="AssemblyName">rt.srz.business</property>
+      <property name="ManagerNamespace">rt.fias.business.manager</property>
+      <property name="BusinessNamespace">rt.fias.model.fias</property>
+      <property name="BaseNamespace">rt.fias.business.core</property>
+      <property name="UnitTestNamespace">rt.fias.business.tests</property>
+      <property name="SourceDatabase">
+        <connectionString>$(ConnectionString1)</connectionString>
+        <providerType>SchemaExplorer.SqlSchemaProvider,SchemaExplorer.SqlSchemaProvider</providerType>
+      </property>
+      <property name="ExcludedTables" />
+    </propertySet>
+  </propertySets>
+</codeSmith>

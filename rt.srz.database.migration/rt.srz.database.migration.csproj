@@ -98,7 +98,13 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="mssql\SynchronizeConcept10.cs" />
+    <Compile Include="mssql\Version16.cs" />
+    <Compile Include="mssql\Version15.cs" />
+    <Compile Include="mssql\Version14.cs" />
+    <Compile Include="mssql\Version13.cs" />
+    <Compile Include="mssql\Version10.cs" />
+    <Compile Include="mssql\Version11.cs" />
+    <Compile Include="mssql\Version12.cs" />
     <Compile Include="mssql\Version8.cs" />
     <Compile Include="mssql\Version7.cs" />
     <Compile Include="mssql\Version6.cs" />

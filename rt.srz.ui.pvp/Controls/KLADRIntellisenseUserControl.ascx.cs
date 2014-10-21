@@ -8,12 +8,12 @@ namespace rt.srz.ui.pvp.Controls
 {
   using System;
   using System.Configuration;
-  using System.Text;
+  using System.Globalization;
   using System.Web.UI;
 
   using rt.core.model.interfaces;
-  using rt.srz.model.interfaces.service;
-  using rt.srz.model.srz;
+  using rt.srz.business.configuration;
+  using rt.srz.business.extensions;
 
   using StructureMap;
 
@@ -27,12 +27,7 @@ namespace rt.srz.ui.pvp.Controls
     /// <summary>
     ///   The kladr service.
     /// </summary>
-    private IKladrService kladrService;
-
-    /// <summary>
-    /// The organisation service.
-    /// </summary>
-    private IRegulatoryService regulatoryService;
+    private IAddressService addressService;
 
     /// <summary>
     ///   The _security service.
@@ -50,9 +45,9 @@ namespace rt.srz.ui.pvp.Controls
     {
       get
       {
-        if (!string.IsNullOrEmpty(hfKLADRHierarchy.Value))
+        if (!string.IsNullOrEmpty(hfKladrHierarchy.Value))
         {
-          var hierarchy = hfKLADRHierarchy.Value.Split(new[] { ';' });
+          var hierarchy = hfKladrHierarchy.Value.Split(new[] { ';' });
           if (hierarchy.Length > 0)
           {
             return new Guid(hierarchy[hierarchy.Length - 1]);
@@ -67,33 +62,8 @@ namespace rt.srz.ui.pvp.Controls
         if (value != Guid.Empty)
         {
           // Восстановление иерархии
-          var service = ObjectFactory.GetInstance<IKladrService>();
-
-          var valueBuilder = new StringBuilder();
-          var hierarchyBuilder = new StringBuilder();
-          var kladr = service.GetKladr(value);
-          do
-          {
-            valueBuilder.Insert(0, string.Format("," + kladr.Name + " " + kladr.Socr + "."));
-            hierarchyBuilder.Insert(0, string.Format(";" + kladr.Id));
-            kladr = kladr.KLADRPARENT;
-          }
-          while (kladr != null);
-
-          if (valueBuilder.Length > 0)
-          {
-            valueBuilder.Remove(0, 1);
-          }
-
-          valueBuilder.Append(",");
-
-          if (hierarchyBuilder.Length > 0)
-          {
-            hierarchyBuilder.Remove(0, 1);
-          }
-
-          tbKLADRIntellisense.Text = valueBuilder.ToString();
-          hfKLADRHierarchy.Value = hierarchyBuilder.ToString();
+          tbKLADRIntellisense.Text = addressService.GetUnstructureAddress(value);
+          hfKladrHierarchy.Value = addressService.HierarchyBuild(value);
         }
       }
     }
@@ -136,7 +106,8 @@ namespace rt.srz.ui.pvp.Controls
       if (currentUser.HasTf())
       {
         var tfom = currentUser.GetTf();
-        var kladr = regulatoryService.GetFirstLevelByTfoms(tfom);
+        var okato = string.Format("{0}000000", tfom.Okato.Trim());
+        var kladr = addressService.GetFirstLevelByTfoms(okato);
         if (kladr != null)
         {
           // Установка региона по умолчанию
@@ -174,9 +145,8 @@ namespace rt.srz.ui.pvp.Controls
     /// </param>
     protected void Page_Init(object sender, EventArgs e)
     {
-      kladrService = ObjectFactory.GetInstance<IKladrService>();
+      addressService = ObjectFactory.GetInstance<IAddressService>();
       securityService = ObjectFactory.GetInstance<ISecurityService>();
-      regulatoryService = ObjectFactory.GetInstance<IRegulatoryService>();
       if (!IsPostBack)
       {
         SetDefaultSubject();
@@ -217,7 +187,7 @@ namespace rt.srz.ui.pvp.Controls
     private void SetPostcode()
     {
       tbPostcode.Text = string.Empty;
-      var kladr = kladrService.GetKladr(SelectedKLADRId);
+      var kladr = addressService.GetAddress(SelectedKLADRId);
       if (kladr != null && kladr.Index != null)
       {
         tbPostcode.Text = kladr.Index.ToString();

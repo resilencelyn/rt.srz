@@ -15,7 +15,7 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -45,6 +45,14 @@
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SQLXMLBULKLOADLib">
+      <HintPath>..\ThirdParty\dts\Interop.SQLXMLBULKLOADLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Data.SqlXml, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\dts\Microsoft.Data.SqlXml.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
@@ -101,6 +109,10 @@
     <ProjectReference Include="..\rt.core.services\rt.core.services.csproj">
       <Project>{f806bf30-72b9-41ee-8a62-93100a9d30bb}</Project>
       <Name>rt.core.services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.fias.model\rt.fias.model.csproj">
+      <Project>{62f05a43-1fbb-4b36-91b5-853ed97a4161}</Project>
+      <Name>rt.fias.model</Name>
     </ProjectReference>
     <ProjectReference Include="..\rt.srz.business\rt.srz.business.csproj">
       <Project>{49d3899b-fd42-42fd-9734-bae4c911f7f5}</Project>

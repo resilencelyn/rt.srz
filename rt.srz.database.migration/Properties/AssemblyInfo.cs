@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-
-
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -26,4 +24,3 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("45205746-b5ab-4fe7-9b5f-bb0607940a4e")]
-

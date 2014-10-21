@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.StructureStatus, rt.fias.model" table="[dbo].[StructureStatus]" lazy="true">
+		<id name="Id" column="[STRSTATID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Name" column="[NAME]" />
+		<property name="Shortname" column="[SHORTNAME]" />
+		<bag name="Houses" lazy="true" inverse="true" >
+			<key column="[STRSTATUS]"></key>
+			<one-to-many class="House"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

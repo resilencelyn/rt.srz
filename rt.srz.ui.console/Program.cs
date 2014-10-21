@@ -16,9 +16,11 @@ namespace rt.srz.ui.console
   using NLog;
 
   using rt.core.model;
+  using rt.core.model.interfaces;
   using rt.core.services.client;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
+  using rt.srz.services.client.services;
 
   using StructureMap;
 
@@ -44,25 +46,47 @@ namespace rt.srz.ui.console
     {
       try
       {
-        Bootstrapper.Bootstrap();
-        var session = ObjectFactory.GetInstance<ISessionFactory>().OpenSession();
-        CurrentSessionContext.Bind(session);
+        ////Bootstrapper.Bootstrap();
+        ////var session = ObjectFactory.GetInstance<ISessionFactory>().OpenSession();
+        ////CurrentSessionContext.Bind(session);
 
-        Logger.Info("Loggined to services...");
+        ////Logger.Info("Loggined to services...");
 
-        if (!ConnectToServices.Connect("admin", "123456"))
-        {
-          Logger.Fatal("Login or password failed!");
-          return;
-        }
+        ////if (!ConnectToServices.Connect("admin", "123456"))
+        ////{
+        ////  Logger.Fatal("Login or password failed!");
+        ////  return;
+        ////}
 
-        var statementService = ObjectFactory.GetInstance<IStatementService>();
+       //// var statementService = new AddressClient();
 
-        var statement = session.QueryOver<Statement>().Take(1).List().SingleOrDefault();
+       //// var k = statementService.GetFirstLevelByTfoms("45000000000");
 
-        statementService.SaveStatement(statement);
+       ////Logger.Info("Run task...");
 
-        Logger.Info("Run task...");
+        var objBL = new SQLXMLBULKLOADLib.SQLXMLBulkLoad4Class();
+        objBL.ConnectionString = "provider=SQLOLEDB.1; Data Source=DEVELOPER-09; Initial Catalog=rt_fias;User ID=pvp;Password=elianora";
+        objBL.BulkLoad = true;
+        objBL.KeepIdentity = false;
+        objBL.SchemaGen = true;            //создать пустую таблицу в БД
+        objBL.SGDropTables = false;         //если таблица существует, удалить её и создать заново
+
+        ////objBL.Execute("D:\\xsd\\AS_ESTSTAT.xsd", "D:\\xsd\\AS_ESTSTAT.XML");
+        ////objBL.Execute("D:\\xsd\\AS_ACTSTAT.xsd", "D:\\xsd\\AS_ACTSTAT.XML");
+        objBL.Execute("D:\\xsd\\AS_ADDROBJ.xsd", "D:\\xsd\\AS_ADDROBJ.XML");
+        ////objBL.Execute("D:\\xsd\\AS_CENTERST.xsd", "D:\\xsd\\AS_CENTERST.XML");
+        ////objBL.Execute("D:\\xsd\\AS_CURENTST.xsd", "D:\\xsd\\AS_CURENTST.XML");
+        objBL.Execute("D:\\xsd\\AS_HOUSE.xsd", "D:\\xsd\\AS_HOUSE.XML");
+
+        objBL.Execute("D:\\xsd\\AS_HOUSEINT.xsd", "D:\\xsd\\AS_HOUSEINT.XML");
+        ////objBL.Execute("D:\\xsd\\AS_HSTSTAT.xsd", "D:\\xsd\\AS_HSTSTAT.XML");
+        ////objBL.Execute("D:\\xsd\\AS_INTVSTAT.xsd", "D:\\xsd\\AS_INTVSTAT.XML");
+        ////objBL.Execute("D:\\xsd\\AS_LANDMARK.xsd", "D:\\xsd\\AS_LANDMARK.XML");
+        ////objBL.Execute("D:\\xsd\\AS_NDOCTYPE.xsd", "D:\\xsd\\AS_NDOCTYPE.XML");
+        ////objBL.Execute("D:\\xsd\\AS_NORMDOC.xsd", "D:\\xsd\\AS_NORMDOC.XML");
+        ////objBL.Execute("D:\\xsd\\AS_OPERSTAT.xsd", "D:\\xsd\\AS_OPERSTAT.XML");
+        ////objBL.Execute("D:\\xsd\\AS_SOCRBASE.xsd", "D:\\xsd\\AS_SOCRBASE.XML");
+        ////objBL.Execute("D:\\xsd\\AS_STRSTAT.xsd", "D:\\xsd\\AS_STRSTAT.XML");
       }
       catch (Exception ex)
       {
@@ -70,7 +94,7 @@ namespace rt.srz.ui.console
       }
 
       Logger.Info("End press any key...");
-      Console.ReadLine();
+      Console.Read();
     }
 
     #endregion

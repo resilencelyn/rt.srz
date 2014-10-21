@@ -11,6 +11,7 @@ namespace rt.srz.ui.pvp.Pages.Twins
   using System.Web.UI.WebControls;
 
   using rt.core.model.interfaces;
+  using rt.srz.business.extensions;
   using rt.srz.model.dto;
   using rt.srz.model.enumerations;
   using rt.srz.model.interfaces.service;

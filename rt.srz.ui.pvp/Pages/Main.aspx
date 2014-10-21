@@ -1,5 +1,4 @@
-﻿<%@ Page Title="ПВП" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Main"
-  EnableEventValidation="false"%>
+﻿<%@ Page Title="ПВП" Language="C#" MasterPageFile="~/Templates/AuthentificatedPage.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="rt.srz.ui.pvp.Pages.Main" EnableEventValidation="false"%>
 
 <%@ Register Src="~/Controls/StatementsSearch.ascx" TagName="StatementsSearch" TagPrefix="uc" %>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">

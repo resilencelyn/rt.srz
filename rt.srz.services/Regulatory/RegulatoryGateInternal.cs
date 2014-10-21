@@ -15,6 +15,7 @@ namespace rt.srz.services.Regulatory
   using System.Collections.Generic;
 
   using rt.core.model.dto;
+  using rt.core.model.interfaces;
   using rt.core.services.aspects;
   using rt.srz.model.dto;
   using rt.srz.model.interfaces.service;
@@ -30,7 +31,7 @@ namespace rt.srz.services.Regulatory
     #region Fields
 
     /// <summary>
-    ///   The Service.
+    ///   The FiasService.
     /// </summary>
     protected readonly IRegulatoryService Service = new RegulatoryService();
 
@@ -181,20 +182,6 @@ namespace rt.srz.services.Regulatory
     public List<Concept> GetConceptsByOid(string oidId)
     {
       return InvokeInterceptors(() => Service.GetConceptsByOid(oidId));
-    }
-
-    /// <summary>
-    /// The get first level by tfoms.
-    /// </summary>
-    /// <param name="tfoms">
-    /// The tfoms.
-    /// </param>
-    /// <returns>
-    /// The <see cref="Kladr"/> .
-    /// </returns>
-    public Kladr GetFirstLevelByTfoms(Organisation tfoms)
-    {
-      return InvokeInterceptors(() => Service.GetFirstLevelByTfoms(tfoms));
     }
 
     /// <summary>

@@ -199,12 +199,12 @@ namespace rt.srz.business.manager
 
       if (statement.Address != null)
       {
-        result.Address.Kladr = statement.Address.Kladr;
+        result.Address.RegulatoryId = statement.Address.RegulatoryId;
       }
 
       if (statement.Address2 != null)
       {
-        result.Address2.Kladr = statement.Address2.Kladr;
+        result.Address2.RegulatoryId = statement.Address2.RegulatoryId;
       }
 
       if (statement.DocumentRegistration != null)
@@ -525,7 +525,7 @@ namespace rt.srz.business.manager
         session.Clear();
         throw;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
         // Закрываем и удаляем старую сессию
         CurrentSessionContext.Unbind(sessionFactory);
@@ -654,7 +654,7 @@ namespace rt.srz.business.manager
     private IEnumerable<SearchKey> CalculateSearchKeys(Statement statement)
     {
       // Расчет стандартных ключей
-      IList<SearchKey> standardKeys = null;
+      IList<SearchKey> standardKeys;
       try
       {
         standardKeys = ObjectFactory.GetInstance<ISearchKeyManager>().CalculateStandardKeys(statement);

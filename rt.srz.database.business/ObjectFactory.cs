@@ -23,12 +23,12 @@ namespace rt.srz.database.business
     /// <summary>
     ///   Менеджер псевдонимизации
     /// </summary>
-    private static readonly IPseudonymizationManager pseudonymizationManager;
+    private static readonly IPseudonymizationManager PseudonymizationManager;
 
     /// <summary>
     ///   Менеждер стандартной псеводоминимизации
     /// </summary>
-    private static readonly StandardPseudonymizationManager standardPseudonymizationManager;
+    private static readonly StandardPseudonymizationManager StandardPseudonymizationManager;
 
     #endregion
 
@@ -39,9 +39,9 @@ namespace rt.srz.database.business
     /// </summary>
     static ObjectFactory()
     {
-      pseudonymizationManager = new PseudonymizationManager(GetWriteFields());
-      standardPseudonymizationManager = new StandardPseudonymizationManager();
-      standardPseudonymizationManager.Initialize();
+      PseudonymizationManager = new PseudonymizationManager(GetWriteFields());
+      StandardPseudonymizationManager = new StandardPseudonymizationManager();
+      StandardPseudonymizationManager.Initialize();
     }
 
     #endregion
@@ -58,7 +58,7 @@ namespace rt.srz.database.business
     /// </returns>
     public static IPseudonymizationManager GetPseudonymizationManager()
     {
-      return pseudonymizationManager;
+      return PseudonymizationManager;
     }
 
     /// <summary>
@@ -67,11 +67,11 @@ namespace rt.srz.database.business
     /// <typeparam name="T">
     /// </typeparam>
     /// <returns>
-    /// The <see cref="StandardPseudonymizationManager"/>.
+    /// The <see cref="standard.StandardPseudonymizationManager"/>.
     /// </returns>
     public static StandardPseudonymizationManager GetStandardPseudonymizationManager()
     {
-      return standardPseudonymizationManager;
+      return StandardPseudonymizationManager;
     }
 
     #endregion

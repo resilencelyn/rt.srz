@@ -166,7 +166,7 @@ namespace rt.atl.business.quartz
         syncTime2Srz.Name = "ExporterToSrz" + postfix;
       }
 
-      syncTime2Srz.ValueString = syncTime.ToString(CultureInfo.InvariantCulture);
+      syncTime2Srz.ValueString = syncTime.ToString();
       settingManager.SaveOrUpdate(syncTime2Srz);
 
       // Пишем информацию о времени завершения синхронизации из СРЗ в ПВП
@@ -177,7 +177,7 @@ namespace rt.atl.business.quartz
         syncTime2Pvp.Name = "ExporterToPvp" + postfix;
       }
 
-      syncTime2Pvp.ValueString = syncTime.ToString(CultureInfo.InvariantCulture);
+      syncTime2Pvp.ValueString = syncTime.ToString();
       settingManager.SaveOrUpdate(syncTime2Pvp);
 
       ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Flush();

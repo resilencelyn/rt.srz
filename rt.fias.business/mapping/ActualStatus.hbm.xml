@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="rt.fias.model.fias" assembly="rt.fias.model">
+	<class name="rt.fias.model.fias.ActualStatus, rt.fias.model" table="[dbo].[ActualStatus]" lazy="true">
+		<id name="Id" column="[ACTSTATID]">
+		 	<generator class="native" />
+		</id>
+		<property name="Name" column="[NAME]" />
+		<bag name="AObjects" lazy="true" inverse="true" >
+			<key column="[ACTSTATUS]"></key>
+			<one-to-many class="AObject"></one-to-many>
+		</bag>
+	</class>
+</hibernate-mapping>
+

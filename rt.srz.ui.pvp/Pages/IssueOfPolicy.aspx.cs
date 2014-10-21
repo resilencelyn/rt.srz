@@ -17,6 +17,7 @@ using StructureMap;
 namespace rt.srz.ui.pvp.Pages
 {
   using rt.core.model.interfaces;
+  using rt.srz.business.extensions;
   using rt.srz.model.logicalcontrol.exceptions.step6;
   using rt.srz.ui.pvp.Controls;
 

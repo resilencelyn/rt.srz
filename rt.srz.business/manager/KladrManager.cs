@@ -14,10 +14,11 @@ namespace rt.srz.business.manager
   using System;
   using System.Collections.Generic;
   using System.Linq;
+  using System.Text;
 
   using NHibernate;
 
-  using rt.srz.model.enumerations;
+  using rt.core.model.interfaces;
   using rt.srz.model.srz;
 
   using StructureMap;
@@ -34,16 +35,15 @@ namespace rt.srz.business.manager
     /// <summary>
     /// The get first level by tfoms.
     /// </summary>
-    /// <param name="tfom">
-    /// The tfom.
+    /// <param name="okato">
+    /// The okato.
     /// </param>
     /// <returns>
-    /// The <see cref="Kladr"/>.
+    /// The <see cref="IAddress"/>.
     /// </returns>
-    public Kladr GetFirstLevelByTfoms(Organisation tfom)
+    public IAddress GetFirstLevelByTfoms(string okato)
     {
-      var okato = string.Format("{0}000000", tfom.Okato.Trim());
-      return GetBy(x => x.Ocatd == okato && x.Level == 1).FirstOrDefault();
+      return GetBy(x => x.Okato == okato && x.Level == 1).FirstOrDefault();
     }
 
     /// <summary>
@@ -81,6 +81,121 @@ namespace rt.srz.business.manager
       }
 
       return query.OrderBy(x => x.Name).Asc.List();
+    }
+
+    /// <summary>
+    /// The get structure address.
+    /// </summary>
+    /// <param name="objectId">
+    /// The object id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="StructureAddress"/>.
+    /// </returns>
+    public StructureAddress GetStructureAddress(Guid objectId)
+    {
+      var structureAddress = new StructureAddress();
+      var kladr = GetById(objectId);
+      do
+      {
+        var strTemp = kladr.Name + " " + kladr.Socr;
+        switch (kladr.Level)
+        {
+          case (int)KladrLevel.Subject:
+            {
+              structureAddress.Subject = strTemp;
+            }
+
+            break;
+          case (int)KladrLevel.Area:
+            {
+              structureAddress.Area = strTemp;
+            }
+
+            break;
+          case (int)KladrLevel.City:
+            {
+              structureAddress.City = strTemp;
+            }
+
+            break;
+          case (int)KladrLevel.Town:
+            {
+              structureAddress.Town = strTemp;
+            }
+
+            break;
+          case (int)KladrLevel.Street:
+            {
+              structureAddress.Street = strTemp;
+            }
+
+            break;
+        }
+
+        kladr = kladr.ParentId.HasValue ? GetById(kladr.ParentId.Value) : null;
+      }
+      while (kladr != null);
+
+      return structureAddress;
+    }
+
+    /// <summary>
+    /// The get unstructure address.
+    /// </summary>
+    /// <param name="objectId">
+    /// The object id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public string GetUnstructureAddress(Guid objectId)
+    {
+      var valueBuilder = new StringBuilder();
+      var kladr = GetById(objectId);
+      do
+      {
+        valueBuilder.Insert(0, string.Format("," + kladr.Name + " " + kladr.Socr + "."));
+        kladr = kladr.KLADRPARENT;
+      }
+      while (kladr != null);
+
+      if (valueBuilder.Length > 0)
+      {
+        valueBuilder.Remove(0, 1);
+      }
+
+      valueBuilder.Append(",");
+
+      return valueBuilder.ToString();
+    }
+
+    /// <summary>
+    /// The hierarchy build.
+    /// </summary>
+    /// <param name="objectId">
+    /// The object id.
+    /// </param>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public string HierarchyBuild(Guid objectId)
+    {
+      var hierarchyBuilder = new StringBuilder();
+      var kladr = GetById(objectId);
+      do
+      {
+        hierarchyBuilder.Insert(0, string.Format(";" + kladr.Id));
+        kladr = kladr.KLADRPARENT;
+      }
+      while (kladr != null);
+
+      if (hierarchyBuilder.Length > 0)
+      {
+        hierarchyBuilder.Remove(0, 1);
+      }
+
+      return hierarchyBuilder.ToString();
     }
 
     #endregion

@@ -15,8 +15,8 @@ Description: Generates an editable Business Object for NHibernate.
 <%@ Import Namespace="NHibernateHelper" %>
 <%@ Map Name="SystemCSharp" Src="System-CSharpAlias" %>
 //-------------------------------------------------------------------------------------
-// <copyright file="<%= GetClassName(SourceTable) %>.cs" company="Rintech">
-//     Copyright (c) 2013. All rights reserved.
+// <copyright file="<%= GetClassName(SourceTable) %>.cs" company="РусБИТех">
+//     Copyright (c) <%= DateTime.Today.Year.ToString() %>. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------
 

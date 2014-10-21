@@ -21,11 +21,8 @@ Description: Generates a Business Object for NHibernate.
 <% EntityManager entityManager = new EntityManager(SourceTable, ExcludedTables); %>
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="<%= GetClassName(SourceTable) %>.cs" company="РусБИТех">
-//   Copyright (c) 2014. All rights reserved.
+//   Copyright (c) <%= DateTime.Today.Year.ToString() %>. All rights reserved.
 // </copyright>
-// <summary>
-//   The addressManager.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;

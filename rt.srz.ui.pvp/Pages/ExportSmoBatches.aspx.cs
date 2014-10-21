@@ -13,6 +13,7 @@ namespace rt.srz.ui.pvp.Pages
   using System.Web.UI.WebControls;
 
   using rt.core.model.interfaces;
+  using rt.srz.business.extensions;
   using rt.srz.model.dto;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;

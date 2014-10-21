@@ -16,6 +16,7 @@ namespace rt.srz.business.manager.logicalcontrol.simple
 
   using NHibernate;
 
+  using rt.srz.business.extensions;
   using rt.srz.model.enumerations;
   using rt.srz.model.logicalcontrol.exceptions.step3;
   using rt.srz.model.srz;
@@ -86,9 +87,10 @@ namespace rt.srz.business.manager.logicalcontrol.simple
         }
 
         // если адрес заполнен по кладру то если Level 1 или 2 значит ввод адреса не завершён, ругаемся
-        if (address.Kladr != null && !(address.IsNotStructureAddress.HasValue && address.IsNotStructureAddress.Value))
+        var regulatoryAddress = address.Regulatory();
+        if (regulatoryAddress != null && !(address.IsNotStructureAddress.HasValue && address.IsNotStructureAddress.Value))
         {
-          if (!address.Kladr.Level.HasValue || address.Kladr.Level.Value <= 2)
+          if (!regulatoryAddress.Level.HasValue || regulatoryAddress.Level.Value <= 2)
           {
             throw new FaultAddressNotComplete();
           }

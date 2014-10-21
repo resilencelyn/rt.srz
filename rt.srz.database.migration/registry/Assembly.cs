@@ -15,7 +15,7 @@ namespace rt.srz.database.registry
   using System.Web.Hosting;
 
   /// <summary>
-  /// The assembly.
+  ///   The assembly.
   /// </summary>
   internal static class Assembly
   {
@@ -26,14 +26,14 @@ namespace rt.srz.database.registry
     /// Скрипт настройки БД для загрузки CLR сборок
     /// </summary>
     /// <param name="databaseName">
+    /// The database Name.
     /// </param>
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
     public static string AdjustDatabase(string databaseName)
     {
-      return string.Format(@"EXEC sp_changedbowner 'sa'
-                           ALTER DATABASE [{0}] SET TRUSTWORTHY ON", databaseName);
+      return string.Format(@"EXEC sp_changedbowner 'sa' ALTER DATABASE [{0}] SET TRUSTWORTHY ON", databaseName);
     }
 
     /// <summary>
@@ -48,9 +48,10 @@ namespace rt.srz.database.registry
     public static string DeployDatabaseAssembly(string assemblyName)
     {
       var assemblyPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "bin", assemblyName + ".dll");
-      return string.Format(@"CREATE ASSEMBLY [{0}]
+      const string Sql = @"CREATE ASSEMBLY [{0}]
                            FROM {1} 
-                           WITH PERMISSION_SET = UNSAFE", assemblyName, GetAssemblyHEXString(assemblyPath));
+                           WITH PERMISSION_SET = UNSAFE";
+      return string.Format(Sql, assemblyName, GetAssemblyHexString(assemblyPath));
     }
 
     #endregion
@@ -66,7 +67,7 @@ namespace rt.srz.database.registry
     /// <returns>
     /// The <see cref="string"/>.
     /// </returns>
-    private static string GetAssemblyHEXString(string assemblyPath)
+    private static string GetAssemblyHexString(string assemblyPath)
     {
       var builder = new StringBuilder();
       builder.Append("0x");

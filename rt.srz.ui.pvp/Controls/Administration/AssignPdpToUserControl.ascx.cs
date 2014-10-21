@@ -14,6 +14,7 @@ namespace rt.srz.ui.pvp.Controls.Administration
 
   using rt.core.model.core;
   using rt.core.model.interfaces;
+  using rt.srz.business.extensions;
   using rt.srz.model.interfaces.service;
   using rt.srz.model.srz;
 

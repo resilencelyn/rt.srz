@@ -21,6 +21,7 @@ namespace rt.srz.ui.pvp.Controls
   using rt.core.model.dto;
   using rt.core.model.interfaces;
   using rt.core.model.security;
+  using rt.srz.business.extensions;
   using rt.srz.model.algorithms;
   using rt.srz.model.dto;
   using rt.srz.model.enumerations;

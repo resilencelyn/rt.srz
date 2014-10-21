@@ -2,9 +2,6 @@
 // <copyright file="address.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   The addressManager.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
@@ -90,13 +87,20 @@ namespace rt.srz.model.srz
         
       [XmlElement(Order =  15)]
       [DataMember(Order =  15)]
+      public virtual System.Guid? RegulatoryId { get; set;}
+        
+      [XmlElement(Order =  16)]
+      [DataMember(Order =  16)]
       public virtual string Unstructured { get; set;}
         
+      [XmlElement(Order =  17)]
+      [DataMember(Order =  17)]
+      public virtual string OkatoRn { get; set;}
         
-		  [XmlElement(Order =  16)]
-      [DataMember(Order =  16)]
-		  public virtual Kladr Kladr { get; set;}
-			
+      [XmlElement(Order =  18)]
+      [DataMember(Order =  18)]
+      public virtual string Code { get; set;}
+        
       [XmlIgnore]
       [IgnoreDataMember]
       public virtual IList<QueryResponse> QueryResponses { get; set;}
