@@ -2,10 +2,10 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Fragment>
 		<UI>
-			<Dialog Id="SettingsDialog" Width="370" Height="384" Title="!(loc.CustomizeDlg_Title)" NoMinimize="yes">
+			<Dialog Id="SettingsDialog" Width="370" Height="433" Title="!(loc.CustomizeDlg_Title)" NoMinimize="yes">
 				<Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
 				<Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
-				<Control Id="BottomLine" Type="Line" X="0" Y="320" Width="370" Height="0" />
+				<Control Id="BottomLine" Type="Line" X="0" Y="384" Width="370" Height="0" />
 				<Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Конфигурирование" />
 
 				<Control Id="RtSrzGroupBox" Type="GroupBox" X="8" Y="49" Width="356" Height="50" Text="[RTSRZ_TTITLE]"/>
@@ -23,15 +23,20 @@
 				<Control Id="AtlanticConnection" Type="Edit" X="15" Y="203" Width="282" Height="17" Property="ATLANTIC_CONNECTION_STRING" TabSkip="no" />
 				<Control Id="AtlanticBrowse" Type="PushButton" X="300" Y="202" Width="56" Height="17" Text="Выбрать"/>
 
-        <Control Id="BindingGroupBox" Type="GroupBox" X="8" Y="241" Width="356" Height="35" Text="[SITE_BINDING_TTITLE]"/>
-        <Control Id="SiteBinding" Type="Edit" X="15" Y="255" Width="282" Height="17" Property="SITE_BINDING" TabSkip="no" />
+        <Control Id="FiasGroupBox" Type="GroupBox" X="8" Y="240" Width="356" Height="50" Text="[FIAS_TTITLE]"/>
+        <Control Id="FiasLabel" Type="Text" X="15" Y="254" Width="146" Height="14" Text="&amp;Строка подключения к базе данных:" TabSkip="no" />
+        <Control Id="FiasConnection" Type="Edit" X="15" Y="267" Width="282" Height="17" Property="FIAS_CONNECTION_STRING" TabSkip="no" />
+        <Control Id="FiasBrowse" Type="PushButton" X="300" Y="266" Width="56" Height="17" Text="Выбрать"/>
 
-        <Control Id="ExchangeFolderGroupBox" Type="GroupBox" X="8" Y="280" Width="356" Height="35" Text="[EXCHANGE_FOLDER_TTITLE]"/>
-        <Control Id="ExchangeFolder" Type="Edit" X="15" Y="294" Width="282" Height="17" Property="EXCHANGE_FOLDER" TabSkip="no" />
+        <Control Id="BindingGroupBox" Type="GroupBox" X="8" Y="305" Width="356" Height="35" Text="[SITE_BINDING_TTITLE]"/>
+        <Control Id="SiteBinding" Type="Edit" X="15" Y="319" Width="282" Height="17" Property="SITE_BINDING" TabSkip="no" />
 
-				<Control Id="Back" Type="PushButton" X="180" Y="325" Width="56" Height="17" Text="!(loc.WixUIBack)" TabSkip="no" />
-				<Control Id="Next" Type="PushButton" X="236" Y="325" Width="56" Height="17" Default="no" Text="!(loc.WixUINext)" TabSkip="no" />
-				<Control Id="Cancel" Type="PushButton" X="304" Y="325" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)" TabSkip="no" />
+        <Control Id="ExchangeFolderGroupBox" Type="GroupBox" X="8" Y="344" Width="356" Height="35" Text="[EXCHANGE_FOLDER_TTITLE]"/>
+        <Control Id="ExchangeFolder" Type="Edit" X="15" Y="358" Width="282" Height="17" Property="EXCHANGE_FOLDER" TabSkip="no" />
+
+				<Control Id="Back" Type="PushButton" X="180" Y="389" Width="56" Height="17" Text="!(loc.WixUIBack)" TabSkip="no" />
+				<Control Id="Next" Type="PushButton" X="236" Y="389" Width="56" Height="17" Default="no" Text="!(loc.WixUINext)" TabSkip="no" />
+				<Control Id="Cancel" Type="PushButton" X="304" Y="389" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)" TabSkip="no" />
 			</Dialog>
 		</UI>
 	</Fragment>

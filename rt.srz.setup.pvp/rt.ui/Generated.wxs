@@ -3,6 +3,7 @@
     <Fragment>
         <DirectoryRef Id="rt.ui">
             <Directory Id="dir5F3411A1DB7C4531EDCAB0D982E8C4A7" Name="Account" />
+            <Directory Id="dir22779466E77FA461A3269C73C374F0DB" Name="activex" />
             <Directory Id="dirA78CA2D5EF9B1904B99550D789039523" Name="App_Browsers" />
             <Directory Id="dir92172183C89B7B2F0F61DDB5FA6C3E8D" Name="bin" />
             <Directory Id="dir66FF808EA2CCD776BC225F431114CD08" Name="Configuration" />
@@ -64,6 +65,33 @@
             </Component>
             <Component Id="cmp280B5421B8A0F514DBC1EF7E818C7993" Directory="dir5F3411A1DB7C4531EDCAB0D982E8C4A7" Guid="*">
                 <File Id="fil3637F34398F200CB421FABE107F93C80" KeyPath="yes" Source="$(var.UIPath)\Account\OpenAuthProviders.ascx" />
+            </Component>
+            <Component Id="cmp4D87FA1A95BF2ABE08207565BC1397E2" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="filD0301F26BFB7E582CA85A5A945110273" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.barcode.service.cab" />
+            </Component>
+            <Component Id="cmp403E4B248D9EEF32F05C024C6085160C" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="filEC5489458C1C2168A0431623445A919C" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.barcode.service.inf" />
+            </Component>
+            <Component Id="cmp3E83F42310541F75591B0C4BFA1FAF33" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="fil546BAC3277C9A3133A678429AEC5A242" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.barcode.service.msi" />
+            </Component>
+            <Component Id="cmp85214B8CBC12626BF3C07A1D7D038B49" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="fil1F3C49FF540C494CE1F3EE80CFAE96ED" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.smc.service.cab" />
+            </Component>
+            <Component Id="cmp3BB58F2C4AA5A25DB5F760B7880C59D5" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="fil3B4A41002EBCC60CDC73ECD2372FD590" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.smc.service.inf" />
+            </Component>
+            <Component Id="cmpB3DF37C9CE0E4DA4090BFAA066CE22C6" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="filBA724404A3BE6B7A9C731EEAB826B12D" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.smc.service.msi" />
+            </Component>
+            <Component Id="cmpC2AD93D0AB2EF74DD4BE657914977111" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="filE981024C5BCDA80D13FBFEB29731C232" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.uec.service.cab" />
+            </Component>
+            <Component Id="cmp8CC49F752A68F14A2D4974C070C7AA21" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="fil88853D912F624B3CE30BCC2B65AD17A8" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.uec.service.inf" />
+            </Component>
+            <Component Id="cmpE6C769FF09CDDDAC5448E23EA0FE2E3F" Directory="dir22779466E77FA461A3269C73C374F0DB" Guid="*">
+                <File Id="fil64F15AC2445490D40FEEF85778FC2F5E" KeyPath="yes" Source="$(var.UIPath)\activex\rt.srz.setup.uec.service.msi" />
             </Component>
             <Component Id="cmp510CBC7F567709ADFB3C401D7F3AD4F5" Directory="dirA78CA2D5EF9B1904B99550D789039523" Guid="*">
                 <File Id="filA87EB294B0184B00FAA547CB2C4677E5" KeyPath="yes" Source="$(var.UIPath)\App_Browsers\firefox.browser" />

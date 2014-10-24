@@ -10,8 +10,9 @@
 
 	<SetProperty Id="COMPUTERUSER" Value="[%USERDOMAIN]\[%COMPUTERNAME]$" Before="AppSearch"/>
 	
-	<Property Id="RTSRZ_TTITLE" Value="БД РТ СРЗ"/>
-	<Property Id="RTQUARTZ_TTITLE" Value="БД РТ КВАРЦ"/>
+	<Property Id="RTSRZ_TTITLE" Value="БД ОНЛАЙН СРЗ"/>
+	<Property Id="RTQUARTZ_TTITLE" Value="БД КВАРЦ"/>
+  <Property Id="RTFIAS_TTITLE" Value="БД ФИАС"/>
 	<Property Id="ATLANTIC_TTITLE" Value="БД СРЗ Атлантики"/>
   <Property Id="SITE_BINDING_TTITLE" Value="Привязка сайта"/>
   <Property Id="EXCHANGE_FOLDER_TTITLE" Value="Папка для обмена с внешними системами"/>

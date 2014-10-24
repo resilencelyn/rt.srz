@@ -59,7 +59,7 @@ namespace rt.fias.business.exchange
       var session = GetSession();
 
        session.CreateSQLQuery(@"
-        delete from dbo.AObject")
+        truncate table dbo.AObject")
                                 .SetTimeout(int.MaxValue)
                                 .ExecuteUpdate();
 

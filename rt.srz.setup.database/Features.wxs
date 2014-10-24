@@ -5,6 +5,7 @@
 		<Feature Id="ApplicationFeature" Title="$(var.ProductName)" Level="1" ConfigurableDirectory="INSTALLLOCATION" Display="expand" AllowAdvertise="no" Absent="disallow">
 			<FeatureRef Id="rt.srz"/>
 			<FeatureRef Id="rt.quartz"/>
+      <FeatureRef Id="rt.fias"/>
 		</Feature>
 	</Fragment>
 </Wix>

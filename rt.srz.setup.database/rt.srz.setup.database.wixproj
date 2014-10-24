@@ -30,17 +30,19 @@
     <SuppressPdbOutput>True</SuppressPdbOutput>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="UI\SettingsDialog.wxs" />
     <None Include="Binaries.wxs" />
     <Compile Include="CustomActions.wxs" />
     <Compile Include="Directories.wxs" />
     <Compile Include="Features.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="rt.fias\Features.wxs" />
+    <Compile Include="rt.fias\Files.wxs" />
     <Compile Include="rt.quartz\Features.wxs" />
     <Compile Include="rt.quartz\Files.wxs" />
-    <Compile Include="rt.srz\Files.wxs" />
     <Compile Include="rt.srz\Features.wxs" />
+    <Compile Include="rt.srz\Files.wxs" />
     <Compile Include="UI\CustomWixUI_Wizard.wxs" />
-    <Compile Include="UI\SettingsDialog.wxs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\rt.srz.setup.CA\rt.srz.setup.CA.csproj">
@@ -61,6 +63,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="rt.fias" />
     <Folder Include="rt.quartz\" />
     <Folder Include="rt.srz\" />
     <Folder Include="UI\" />

@@ -20,9 +20,12 @@
 			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Property="CURRENT_CONNECTION" Value="2" Order="1">1</Publish>
 			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
 			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Property="RTQUARTZ_CONNECTION_STRING" Value="[RTQUARTZ_CONNECTION_STRING]" Order="3">1</Publish>
-			<Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Property="CURRENT_CONNECTION" Value="3" Order="1">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Property="CURRENT_CONNECTION" Value="3" Order="1">1</Publish>
 			<Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
 			<Publish Dialog="SettingsDialog" Control="AtlanticBrowse" Property="ATLANTIC_CONNECTION_STRING" Value="[ATLANTIC_CONNECTION_STRING]" Order="3">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="FiasBrowse" Property="CURRENT_CONNECTION" Value="3" Order="1">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="FiasBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="FiasBrowse" Property="RTFIAS_CONNECTION_STRING" Value="[RTFIAS_CONNECTION_STRING]" Order="3">1</Publish>
 		</UI>
 
 		<UIRef Id="WixUI_Common" />

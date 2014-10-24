@@ -14,7 +14,12 @@
     <CustomAction Id="SetRestoreDatabaseQuartz" Return="check" Property="RestoreDatabaseQuartz" Value="[RTQUARTZ_CONNECTION_STRING]*[INSTALLLOCATION]rt_srz_quartz.bak" />
     <CustomAction Id="RestoreDatabaseQuartz" Return="check" Execute="deferred" BinaryKey="CA" DllEntry="RestoreDatabase" Impersonate="no" />
 
-		<InstallExecuteSequence>
+    <!--Действия для базы Fias-->
+    <CustomAction Id="SetRestoreDatabaseFias" Return="check" Property="RestoreDatabaseFias" Value="[RTFIAS_CONNECTION_STRING]*[INSTALLLOCATION]rt_fias.bak" />
+    <CustomAction Id="RestoreDatabaseFias" Return="check" Execute="deferred" BinaryKey="CA" DllEntry="RestoreDatabase" Impersonate="no" />
+
+
+    <InstallExecuteSequence>
 			<!--Ставим базу СРЗ-->
       <Custom Action="SetRestoreDatabaseSrz" After="CostFinalize">RTSRZ_DEPLOY AND (NOT REMOVE)</Custom>
 			<Custom Action="RestoreDatabaseSrz" Before="InstallFinalize">RTSRZ_DEPLOY AND (NOT REMOVE)</Custom>
@@ -22,6 +27,10 @@
       <!--Ставим бвзу Quartz-->
       <Custom Action="SetRestoreDatabaseQuartz" After="CostFinalize">RTQUARTZ_DEPLOY AND (NOT REMOVE)</Custom>
       <Custom Action="RestoreDatabaseQuartz" Before="InstallFinalize">RTQUARTZ_DEPLOY AND (NOT REMOVE)</Custom>
+
+      <!--Ставим бвзу Fias-->
+      <Custom Action="SetRestoreDatabaseFias" After="CostFinalize">RTFIAS_DEPLOY AND (NOT REMOVE)</Custom>
+      <Custom Action="RestoreDatabaseFias" Before="InstallFinalize">RTFIAS_DEPLOY AND (NOT REMOVE)</Custom>
 		</InstallExecuteSequence>
 	</Fragment>
 </Wix>

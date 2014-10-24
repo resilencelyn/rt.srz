@@ -20,8 +20,11 @@
 			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Property="CURRENT_CONNECTION" Value="2" Order="1">1</Publish>
 			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
 			<Publish Dialog="SettingsDialog" Control="RtQuartzBrowse" Property="RTQUARTZ_CONNECTION_STRING" Value="[RTQUARTZ_CONNECTION_STRING]" Order="3">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="RtFiasBrowse" Property="CURRENT_CONNECTION" Value="3" Order="1">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="RtFiasBrowse" Event="DoAction" Value="BrowseSqlConnection" Order="2">1</Publish>
+      <Publish Dialog="SettingsDialog" Control="RtFiasBrowse" Property="RTFIAS_CONNECTION_STRING" Value="[RTFIAS_CONNECTION_STRING]" Order="3">1</Publish>
 
-			<ProgressText Action="RestoreDatabaseSrz">Развертывание бэкапа базы данных...</ProgressText>
+      <ProgressText Action="RestoreDatabaseSrz">Развертывание бэкапа базы данных...</ProgressText>
 		</UI>
 
 		<UIRef Id="WixUI_Common" />
