@@ -9,14 +9,21 @@ namespace rt.fias.business.exchange
   using System;
   using System.IO;
 
+  using NHibernate;
+
   using Quartz;
 
+  using rt.core.business.nhibernate;
   using rt.core.business.server.exchange.import;
+
+  using SQLXMLBULKLOADLib;
+
+  using StructureMap;
 
   /// <summary>
   ///   The importer fias.
   /// </summary>
-  public class ImporterFias : ImporterFile
+  public abstract class ImporterFias : ImporterFile
   {
     #region Constructors and Destructors
 
@@ -33,21 +40,6 @@ namespace rt.fias.business.exchange
     #region Public Methods and Operators
 
     /// <summary>
-    /// The applies to.
-    /// </summary>
-    /// <param name="file">
-    /// The file.
-    /// </param>
-    /// <returns>
-    /// The <see cref="bool"/>.
-    /// </returns>
-    public override bool AppliesTo(FileInfo file)
-    {
-      ////if (file.Name.Contains())
-      return false;
-    }
-
-    /// <summary>
     /// The processing.
     /// </summary>
     /// <param name="file">
@@ -61,7 +53,17 @@ namespace rt.fias.business.exchange
     /// </returns>
     public override bool Processing(FileInfo file, IJobExecutionContext context)
     {
-      return false;
+      var objBl = new SQLXMLBulkLoad4Class();
+      objBl.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NHibernateCfgFias.xml"].ConnectionString;
+      objBl.BulkLoad = true;
+      objBl.KeepIdentity = false;
+      objBl.SchemaGen = true; // создать пустую таблицу в БД
+      objBl.SGDropTables = false; // если таблица существует, удалить её и создать заново
+
+      DeleteData();
+      Execute(objBl, file.FullName);
+
+      return true;
     }
 
     /// <summary>
@@ -77,6 +79,63 @@ namespace rt.fias.business.exchange
     #endregion
 
     #region Methods
+
+    /// <summary>
+    /// The close s ession.
+    /// </summary>
+    /// <param name="session">
+    /// The session.
+    /// </param>
+    protected void CloseSession(ISession session)
+    {
+      var sessionFactory = ObjectFactory.GetInstance<IManagerSessionFactorys>()
+                                        .GetFactoryByName("NHibernateCfgFias.xml");
+      if (sessionFactory != null)
+      {
+        session.Close();
+        session.Dispose();
+      }
+    }
+
+    /// <summary>
+    /// The delete data.
+    /// </summary>
+    protected abstract void DeleteData();
+
+    /// <summary>
+    /// The execute.
+    /// </summary>
+    /// <param name="objBl">
+    /// The obj bl.
+    /// </param>
+    /// <param name="fileName">
+    /// The file Name.
+    /// </param>
+    protected abstract void Execute(SQLXMLBulkLoad4Class objBl, string fileName);
+
+    /// <summary>
+    ///   The get session.
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="ISession" />.
+    /// </returns>
+    protected ISession GetSession()
+    {
+      var sessionFactory = ObjectFactory.GetInstance<IManagerSessionFactorys>()
+                                        .GetFactoryByName("NHibernateCfgFias.xml");
+      ISession session = null;
+      if (sessionFactory != null)
+      {
+        session = sessionFactory.OpenSession();
+      }
+
+      if (session == null)
+      {
+        session = ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession();
+      }
+
+      return session;
+    }
 
     /// <summary>
     /// The undo batch.

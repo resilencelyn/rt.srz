@@ -38,7 +38,7 @@ namespace rt.core.business.server.directorywatcher.processing
     /// <summary>
     /// The max proc.
     /// </summary>
-    private int MaxProc = 20;
+    private const int MaxProc = 20;
 
     #endregion
 

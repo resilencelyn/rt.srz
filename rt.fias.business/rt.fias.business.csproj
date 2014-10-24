@@ -53,6 +53,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Data.SqlXml, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\dts\Microsoft.Data.SqlXml.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -65,10 +69,15 @@
     <Reference Include="Quartz">
       <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
     </Reference>
+    <Reference Include="SQLXMLBULKLOADLib">
+      <HintPath>..\ThirdParty\dts\SQLXMLBULKLOADLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -80,7 +89,10 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="exchange\ImporterAObject.cs" />
     <Compile Include="exchange\ImporterFias.cs" />
+    <Compile Include="exchange\ImporterHouse.cs" />
+    <Compile Include="exchange\ImporterHouseInterval.cs" />
     <Compile Include="manager\ActualStatusManager.cs" />
     <Compile Include="manager\ActualStatusManager.Generated.cs">
       <DependentUpon>ActualStatusManager.cs</DependentUpon>
@@ -196,6 +208,18 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="exchange\xsd\AS_ADDROBJ.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="exchange\xsd\AS_HOUSE.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="exchange\xsd\AS_HOUSEINT.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -253,7 +277,6 @@
   <ItemGroup>
     <EmbeddedResource Include="mapping\StructureStatus.hbm.xml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\StyleCop.targets" />

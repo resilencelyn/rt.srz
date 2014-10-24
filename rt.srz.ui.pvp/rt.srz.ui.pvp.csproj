@@ -312,6 +312,18 @@
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\firefox.browser" />
     <Content Include="App_Browsers\Telerik_IE11_fix.browser" />
+    <None Include="..\rt.fias.business\exchange\xsd\AS_ADDROBJ.xsd">
+      <Link>Exchange\xsd\AS_ADDROBJ.xsd</Link>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\rt.fias.business\exchange\xsd\AS_HOUSE.xsd">
+      <Link>Exchange\xsd\AS_HOUSE.xsd</Link>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\rt.fias.business\exchange\xsd\AS_HOUSEINT.xsd">
+      <Link>Exchange\xsd\AS_HOUSEINT.xsd</Link>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\demo.pubxml" />
     <Content Include="Pages\IssueOfPolicy.aspx" />
     <Content Include="Pages\NSI\TemplatesVs.aspx" />
@@ -1346,8 +1358,7 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy /Y $(ProjectDir)..\rt.fias.business\exchange\xsd\* $(TargetDir)..\exchange\xsd\</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

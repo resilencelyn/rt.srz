@@ -12,6 +12,8 @@ namespace rt.fias.business.registry
 {
   #region references
 
+  using rt.core.business.interfaces.directorywatcher;
+
   using StructureMap.Configuration.DSL;
 
   #endregion
@@ -40,6 +42,13 @@ namespace rt.fias.business.registry
              s.IncludeNamespace("rt.fias.business.manager");
              s.WithDefaultConventions().OnAddedPluginTypes(t => t.Singleton());
            });
+
+      Scan(
+          s =>
+          {
+            s.TheCallingAssembly();
+            s.AddAllTypesOf<IImporterFile>();
+          });
     }
 
     #endregion

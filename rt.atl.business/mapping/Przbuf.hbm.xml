@@ -120,7 +120,7 @@
     <property name="Zp1id" column="[ZP1ID]" />
     <property name="A08id" column="[A08ID]" />
     <property name="Vpdid" column="[VPDID]" />
-    <property name="Photo" column="[PHOTO]" />
+    <property name="Photo" column="[PHOTO]" length ="2147483647"/>
     <property name="Ptype" column="[PTYPE]" />
     <property name="Oldenp" column="[OLDENP]" />
     <property name="Drt" column="[DRT]" />
@@ -131,7 +131,7 @@
     <property name="Erp" column="[ERP]" />
     <property name="Dedit" column="[DEDIT]" />
     <property name="Lock" column="[LOCK]" />
-    <property name="Signat" column="[SIGNAT]" />
+    <property name="Signat" column="[SIGNAT]" length ="2147483647" />
     <property name="Force" column="[FORCE]" />
     <property name="Olddocorg" column="[OLDDOCORG]" />
     <property name="Dz" column="[DZ]" />
