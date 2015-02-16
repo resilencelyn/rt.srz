@@ -154,6 +154,7 @@ namespace rt.srz.business.exchange.import.smo
       }
 
       var addr = statement.Address2 ?? new address();
+
       ////var kladrManager = ObjectFactory.GetInstance<IKladrManager>();
       ////var subj = !string.IsNullOrEmpty(address.SUBJ)
       ////             ? kladrManager.GetBy(x => x.Okato == (address.SUBJ + "000000") && x.Level == 1).FirstOrDefault()
@@ -564,19 +565,18 @@ namespace rt.srz.business.exchange.import.smo
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       statement.StatementChangeDates = statementChangeList != null && statementChangeList.Count > 0
-                                         ? statementChangeList.Select(
-                                                                      x =>
-                                                                      new StatementChangeDate
-                                                                      {
-                                                                        Statement = statement,
-                                                                        Field =
-                                                                          conceptManager.GetBy(y => y.Code == x.FIELD && y.Oid.Id == Oid.TypeFields)
-                                                                                        .FirstOrDefault(),
-                                                                        Datum = x.DATA,
-                                                                        Version =
-                                                                          int.Parse(x.VERSION)
-                                                                      })
-                                                              .ToList()
+                                         ? statementChangeList
+                                         .Select(
+                                            x => new StatementChangeDate
+                                              {
+                                                Statement = statement,
+                                                Field =
+                                                  conceptManager.GetBy(y => y.Code == x.FIELD && y.Oid.Id == Oid.TypeFields)
+                                                                .FirstOrDefault(),
+                                                Datum = x.DATA,
+                                                Version = int.Parse(x.VERSION)
+                                              })
+                                         .ToList()
                                          : null;
     }
 

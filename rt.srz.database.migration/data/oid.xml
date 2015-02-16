@@ -49,6 +49,13 @@
     <LatinName>Hl7EventType</LatinName>
   </row>
   <row>
+    <Id>1.1.1.16</Id>
+    <FullName>Организации федерального значения</FullName>
+    <ShortName>Организации федерального значения</ShortName>
+    <DefaultId></DefaultId>
+    <LatinName>RF</LatinName>
+  </row>
+  <row>
     <Id>1.1.1.2</Id>
     <FullName>Тип автозаполнения</FullName>
     <ShortName>Тип автозаполнения</ShortName>
@@ -271,12 +278,5 @@
     <ShortName>Классификатор причин внесения изменений в РС ЕРЗ</ShortName>
     <DefaultId></DefaultId>
     <LatinName>TypeOperation</LatinName>
-  </row>
-  <row>
-    <Id>ghadfhagfd</Id>
-    <FullName>FullName TEst</FullName>
-    <ShortName>Short name test</ShortName>
-    <DefaultId></DefaultId>
-    <LatinName>latin test</LatinName>
   </row>
 </XML>

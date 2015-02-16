@@ -24,7 +24,7 @@ namespace rt.srz.model.Hl7.card.za3
   ///   ZPI_ZA3
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ZPI_ZA3", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ZPI_ZA3", Namespace = "urn:hl7-org:v2xml")]
   public class ZpiZA3
   {
     #region Public Properties

@@ -78,7 +78,7 @@ namespace rt.srz.business.server
           session.QueryOver<Batch>()
                  .Where(
                         x =>
-                        x.Subject.Id == TypeSubject.Smo && x.Type.Id == TypeFile.Rec
+                        x.Subject.Id == ExchangeSubjectType.Smo && x.Type.Id == ExchangeFileType.Rec
                         && x.CodeConfirm.Id == CodeConfirm.CA)
                  .OrderBy(x => x.Sender)
                  .Asc.ThenBy(x => x.Receiver)
@@ -99,7 +99,7 @@ namespace rt.srz.business.server
           session.QueryOver<Batch>()
                  .Where(
                         x =>
-                        x.Subject.Id == TypeSubject.Tfoms && x.Type.Id == TypeFile.Op
+                        x.Subject.Id == ExchangeSubjectType.Tfoms && x.Type.Id == ExchangeFileType.Op
                         && x.CodeConfirm.Id == CodeConfirm.CA)
                  .OrderBy(x => x.Sender)
                  .Asc.ThenBy(x => x.Receiver)

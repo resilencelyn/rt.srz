@@ -22,7 +22,7 @@ namespace rt.srz.model.Hl7.person.requests
   ///   The qb p_ z p 4.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "QBP_ZP4", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "QBP_ZP4", Namespace = "urn:hl7-org:v2xml")]
   public class QBP_ZP4 : BaseMessageTemplate
   {
     #region Fields

@@ -21,7 +21,7 @@ namespace rt.srz.model.Hl7.person.target
   ///   The bhs.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "BHS", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "BHS", Namespace = "urn:hl7-org:v2xml")]
   public class BHS
   {
     #region Fields

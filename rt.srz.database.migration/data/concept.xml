@@ -6,11 +6,7 @@
     <Name>Паспорт гражданина СССР</Name>
     <Description>DocSer="R-ББ" DocNum="999999"</Description>
     <ShortName>ПАСПОРТ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -20,11 +16,7 @@
     <Name>Загранпаспорт гражданина СССР</Name>
     <Description>DocSer="SSSSSSSS" DocNum="00000009"</Description>
     <ShortName>ЗГПАСПОРТ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -34,11 +26,7 @@
     <Name>Свидетельство о рождении Российский Федерации</Name>
     <Description>DocSer="R-ББ" DocNum="999999"</Description>
     <ShortName>СВИД О РОЖД</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>1</Relevance>
   </row>
   <row>
@@ -48,11 +36,7 @@
     <Name>Удостоверение личности офицера</Name>
     <Description>DocSer="ББ" DocNum="9999999"</Description>
     <ShortName>УДОСТ ОФИЦЕРА</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -62,11 +46,7 @@
     <Name>Справка об освобождении из места лишения свободы</Name>
     <Description>DocSer="SSSSSSSS" DocNum="00000009"</Description>
     <ShortName>СПРАВКА ОБ ОСВ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -76,11 +56,7 @@
     <Name>Паспорт Минморфлота</Name>
     <Description>DocSer="ББ" DocNum="999999"</Description>
     <ShortName>ПАСПОРТ МОРФЛТ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -90,11 +66,7 @@
     <Name>Военный билет</Name>
     <Description>DocSer="ББ" DocNum="9999990"</Description>
     <ShortName>ВОЕННЫЙ БИЛЕТ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -104,11 +76,7 @@
     <Name>Дипломатический паспорт гражданина Российской Федерации</Name>
     <Description>DocSer="99" DocNum="9999999"</Description>
     <ShortName>ДИППАСПОРТ РФ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -118,11 +86,7 @@
     <Name>Иностранный паспорт</Name>
     <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
     <ShortName>ИНПАСПОРТ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -132,11 +96,7 @@
     <Name>Свидетельство о регистрации ходатайства о признании иммигранта беженцем</Name>
     <Description>DocSer="SSSSSSSS" DocNum="00000009"</Description>
     <ShortName>СВИД БЕЖЕНЦА</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -146,11 +106,7 @@
     <Name>Вид на жительство</Name>
     <Description>DocSer="SSSSSSSS" DocNum="00000009"</Description>
     <ShortName>ВИД НА ЖИТЕЛЬ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -160,11 +116,7 @@
     <Name>Удостоверение беженца в Российской Федерации</Name>
     <Description>DocSer="SSSSSSSS" DocNum="00000009"</Description>
     <ShortName>УДОСТ БЕЖЕНЦА</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -174,11 +126,7 @@
     <Name>Временное удостоверение личности гражданина Российской Федерации</Name>
     <Description>DocSer="SSSSSSSS" DocNum="00000009"</Description>
     <ShortName>ВРЕМ УДОСТ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -188,11 +136,7 @@
     <Name>Паспорт гражданина Российской Федерации</Name>
     <Description>DocSer="99 99" DocNum="999999"</Description>
     <ShortName>ПАСПОРТ РОССИИ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>0</Relevance>
   </row>
   <row>
@@ -202,11 +146,7 @@
     <Name>Заграничный паспорт гражданина Российской Федерации</Name>
     <Description>DocSer="99" DocNum="9999999"</Description>
     <ShortName>ЗГПАСПОРТ РФ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -216,11 +156,7 @@
     <Name>Паспорт моряка</Name>
     <Description>DocSer="ББ" DocNum="9999990"</Description>
     <ShortName>ПАСПОРТ МОРЯКА</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -230,11 +166,7 @@
     <Name>Военный билет офицера запаса</Name>
     <Description>DocSer="DocSer="ББ" DocNum="999999"</Description>
     <ShortName>ВОЕН БИЛЕТ ОЗ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -244,11 +176,7 @@
     <Name>Иные документы</Name>
     <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
     <ShortName>ПРОЧЕЕ</ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
     <DateFrom>1996-07-01</DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -258,11 +186,6 @@
     <Name>АБХАЗИЯ</Name>
     <Description>Республика Абхазия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>2</Relevance>
   </row>
   <row>
@@ -270,13 +193,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>AUS</Code>
     <Name>АВСТРАЛИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -286,11 +203,6 @@
     <Name>АВСТРИЯ</Name>
     <Description>Австрийская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -300,11 +212,6 @@
     <Name>АЗЕРБАЙДЖАН</Name>
     <Description>Республика Азербайджан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>2</Relevance>
   </row>
   <row>
@@ -314,11 +221,6 @@
     <Name>АЛБАНИЯ</Name>
     <Description>Республика Албания</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -328,11 +230,6 @@
     <Name>АЛЖИР</Name>
     <Description>Алжирская Народная Демократическая Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -340,13 +237,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ASM</Code>
     <Name>АМЕРИКАНСКОЕ САМОА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -354,13 +245,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>AIA</Code>
     <Name>АНГИЛЬЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -370,11 +255,6 @@
     <Name>АНГОЛА</Name>
     <Description>Республика Ангола</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -384,11 +264,6 @@
     <Name>АНДОРРА</Name>
     <Description>Княжество Андорра</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -396,13 +271,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ATA</Code>
     <Name>АНТАРКТИДА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -410,13 +279,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ATG</Code>
     <Name>АНТИГУА И БАРБУДА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -426,11 +289,6 @@
     <Name>АРГЕНТИНА</Name>
     <Description>Аргентинская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -440,11 +298,6 @@
     <Name>АРМЕНИЯ</Name>
     <Description>Республика Армения</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -452,13 +305,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ABW</Code>
     <Name>АРУБА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -468,11 +315,6 @@
     <Name>АФГАНИСТАН</Name>
     <Description>Переходное Исламское Государство Афганистан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -482,11 +324,6 @@
     <Name>БАГАМЫ</Name>
     <Description>Содружество Багамы</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -496,11 +333,6 @@
     <Name>БАНГЛАДЕШ</Name>
     <Description>Народная Республика Бангладеш</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -508,13 +340,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BRB</Code>
     <Name>БАРБАДОС</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -524,11 +350,6 @@
     <Name>БАХРЕЙН</Name>
     <Description>Королевство Бахрейн</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -538,11 +359,6 @@
     <Name>БЕЛАРУСЬ</Name>
     <Description>Республика Беларусь</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>1</Relevance>
   </row>
   <row>
@@ -550,13 +366,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BLZ</Code>
     <Name>БЕЛИЗ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -566,11 +376,6 @@
     <Name>БЕЛЬГИЯ</Name>
     <Description>Королевство Бельгии</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -580,11 +385,6 @@
     <Name>БЕНИН</Name>
     <Description>Республика Бенин</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -592,13 +392,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BMU</Code>
     <Name>БЕРМУДЫ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -608,11 +402,6 @@
     <Name>БОЛГАРИЯ</Name>
     <Description>Республика Болгария</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -622,11 +411,6 @@
     <Name>БОЛИВИЯ, МНОГОНАЦИОНАЛЬНОЕ ГОСУДАРСТВО</Name>
     <Description>Многонациональное Государство Боливия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -634,13 +418,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BES</Code>
     <Name>БОНЭЙР, СИНТ-ЭСТАТИУС И САБА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -648,13 +426,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BIH</Code>
     <Name>БОСНИЯ И ГЕРЦЕГОВИНА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -664,11 +436,6 @@
     <Name>БОТСВАНА</Name>
     <Description>Республика Ботсвана</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -678,11 +445,6 @@
     <Name>БРАЗИЛИЯ</Name>
     <Description>Федеративная Республика Бразилия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -690,13 +452,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>IOT</Code>
     <Name>БРИТАНСКАЯ ТЕРРИТОРИЯ В ИНДИЙСКОМ ОКЕАНЕ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -704,13 +460,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BRN</Code>
     <Name>БРУНЕЙ-ДАРУССАЛАМ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -718,13 +468,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BFA</Code>
     <Name>БУРКИНА-ФАСО</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -734,11 +478,6 @@
     <Name>БУРУНДИ</Name>
     <Description>Республика Бурунди</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -748,11 +487,6 @@
     <Name>БУТАН</Name>
     <Description>Королевство Бутан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -762,11 +496,6 @@
     <Name>ВАНУАТУ</Name>
     <Description>Республика Вануату</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -776,11 +505,6 @@
     <Name>ВЕНГРИЯ</Name>
     <Description>Венгерская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -790,11 +514,6 @@
     <Name>ВЕНЕСУЭЛА БОЛИВАРИАНСКАЯ РЕСПУБЛИКА</Name>
     <Description>Боливарианская Республика Венесуэла</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -804,11 +523,6 @@
     <Name>ВИРГИНСКИЕ ОСТРОВА, БРИТАНСКИЕ</Name>
     <Description>Британские Виргинские острова</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -818,11 +532,6 @@
     <Name>ВИРГИНСКИЕ ОСТРОВА, США</Name>
     <Description>Виргинские острова Соединенных Штатов</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -832,11 +541,6 @@
     <Name>ТИМОР-ЛЕСТЕ</Name>
     <Description>Демократическая Республика Тимор-Лесте</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -846,11 +550,6 @@
     <Name>ВЬЕТНАМ</Name>
     <Description>Социалистическая Республика Вьетнам</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -860,11 +559,6 @@
     <Name>ГАБОН</Name>
     <Description>Габонская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -874,11 +568,6 @@
     <Name>ГАИТИ</Name>
     <Description>Республика Гаити</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -888,11 +577,6 @@
     <Name>ГАЙАНА</Name>
     <Description>Республика Гайана</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -902,11 +586,6 @@
     <Name>ГАМБИЯ</Name>
     <Description>Республика Гамбия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -916,11 +595,6 @@
     <Name>ГАНА</Name>
     <Description>Республика Гана</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -928,13 +602,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GLP</Code>
     <Name>ГВАДЕЛУПА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -944,11 +612,6 @@
     <Name>ГВАТЕМАЛА</Name>
     <Description>Республика Гватемала</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -958,11 +621,6 @@
     <Name>ГВИНЕЯ</Name>
     <Description>Гвинейская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -972,11 +630,6 @@
     <Name>ГВИНЕЯ-БИСАУ</Name>
     <Description>Республика Гвинея-Бисау</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -986,11 +639,6 @@
     <Name>ГЕРМАНИЯ</Name>
     <Description>Федеративная Республика Германия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -998,13 +646,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GGY</Code>
     <Name>ГЕРНСИ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1012,13 +654,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GIB</Code>
     <Name>ГИБРАЛТАР</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1028,11 +664,6 @@
     <Name>ГОНДУРАС</Name>
     <Description>Республика Гондурас</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1042,11 +673,6 @@
     <Name>ГОНКОНГ</Name>
     <Description>Специальный административный регион Китая Гонконг</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1054,13 +680,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GRD</Code>
     <Name>ГРЕНАДА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1068,13 +688,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GRL</Code>
     <Name>ГРЕНЛАНДИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1084,11 +698,6 @@
     <Name>ГРЕЦИЯ</Name>
     <Description>Греческая Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1096,13 +705,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GEO</Code>
     <Name>ГРУЗИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>2</Relevance>
   </row>
   <row>
@@ -1110,13 +713,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GUM</Code>
     <Name>ГУАМ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1126,11 +723,6 @@
     <Name>ДАНИЯ</Name>
     <Description>Королевство Дания</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1138,13 +730,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>JEY</Code>
     <Name>ДЖЕРСИ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1154,11 +740,6 @@
     <Name>ДЖИБУТИ</Name>
     <Description>Республика Джибути</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1168,11 +749,6 @@
     <Name>ДОМИНИКА</Name>
     <Description>Содружество Доминики</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1180,13 +756,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>DOM</Code>
     <Name>ДОМИНИКАНСКАЯ РЕСПУБЛИКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1196,11 +766,6 @@
     <Name>ЕГИПЕТ</Name>
     <Description>Арабская Республика Египет</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1210,11 +775,6 @@
     <Name>ЗАМБИЯ</Name>
     <Description>Республика Замбия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1222,13 +782,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ESH</Code>
     <Name>ЗАПАДНАЯ САХАРА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1238,11 +792,6 @@
     <Name>ЗИМБАБВЕ</Name>
     <Description>Республика Зимбабве</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1252,11 +801,6 @@
     <Name>ИЗРАИЛЬ</Name>
     <Description>Государство Израиль</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1266,11 +810,6 @@
     <Name>ИНДИЯ</Name>
     <Description>Республика Индия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1280,11 +819,6 @@
     <Name>ИНДОНЕЗИЯ</Name>
     <Description>Республика Индонезия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1294,11 +828,6 @@
     <Name>ИОРДАНИЯ</Name>
     <Description>Иорданское Хашимитское Королевство</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1308,11 +837,6 @@
     <Name>ИРАК</Name>
     <Description>Республика Ирак</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1322,11 +846,6 @@
     <Name>ИРАН, ИСЛАМСКАЯ РЕСПУБЛИКА</Name>
     <Description>Исламская Республика Иран</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1334,13 +853,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>IRL</Code>
     <Name>ИРЛАНДИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1350,11 +863,6 @@
     <Name>ИСЛАНДИЯ</Name>
     <Description>Республика Исландия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1364,11 +872,6 @@
     <Name>ИСПАНИЯ</Name>
     <Description>Королевство Испания</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1378,11 +881,6 @@
     <Name>ИТАЛИЯ</Name>
     <Description>Итальянская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1392,11 +890,6 @@
     <Name>ЙЕМЕН</Name>
     <Description>Йеменская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1406,11 +899,6 @@
     <Name>КАБО-ВЕРДЕ</Name>
     <Description>Республика Кабо-Верде</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1420,11 +908,6 @@
     <Name>КАЗАХСТАН</Name>
     <Description>Республика Казахстан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>1</Relevance>
   </row>
   <row>
@@ -1434,11 +917,6 @@
     <Name>КАМБОДЖА</Name>
     <Description>Королевство Камбоджа</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1448,11 +926,6 @@
     <Name>КАМЕРУН</Name>
     <Description>Республика Камерун</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1460,13 +933,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>CAN</Code>
     <Name>КАНАДА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1476,11 +943,6 @@
     <Name>КАТАР</Name>
     <Description>Государство Катар</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1490,11 +952,6 @@
     <Name>КЕНИЯ</Name>
     <Description>Республика Кения</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1504,11 +961,6 @@
     <Name>КИПР</Name>
     <Description>Республика Кипр</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1518,11 +970,6 @@
     <Name>КИРГИЗИЯ</Name>
     <Description>Киргизская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>2</Relevance>
   </row>
   <row>
@@ -1532,11 +979,6 @@
     <Name>КИРИБАТИ</Name>
     <Description>Республика Кирибати</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1546,11 +988,6 @@
     <Name>КИТАЙ</Name>
     <Description>Китайская Народная Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1558,13 +995,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>CCK</Code>
     <Name>КОКОСОВЫЕ (КИЛИНГ) ОСТРОВА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1574,11 +1005,6 @@
     <Name>КОЛУМБИЯ</Name>
     <Description>Республика Колумбия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1588,11 +1014,6 @@
     <Name>КОМОРЫ</Name>
     <Description>Союз Коморы</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1602,11 +1023,6 @@
     <Name>КОНГО</Name>
     <Description>Республика Конго</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1614,13 +1030,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>COD</Code>
     <Name>КОНГО, ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1630,11 +1040,6 @@
     <Name>КОРЕЯ, НАРОДНО-ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА</Name>
     <Description>Корейская Народно-Демократическая Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1644,11 +1049,6 @@
     <Name>КОРЕЯ, РЕСПУБЛИКА</Name>
     <Description>Республика Корея</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1658,11 +1058,6 @@
     <Name>КОСТА-РИКА</Name>
     <Description>Республика Коста-Рика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1672,11 +1067,6 @@
     <Name>КОТ Д’ИВУАР</Name>
     <Description>Республика Кот д’Ивуар</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1686,11 +1076,6 @@
     <Name>КУБА</Name>
     <Description>Республика Куба</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1700,11 +1085,6 @@
     <Name>КУВЕЙТ</Name>
     <Description>Государство Кувейт</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1712,13 +1092,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>CUW</Code>
     <Name>КЮРАСАО</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1726,13 +1100,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>LAO</Code>
     <Name>ЛАОССКАЯ НАРОДНО-ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1742,11 +1110,6 @@
     <Name>ЛАТВИЯ</Name>
     <Description>Латвийская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1756,11 +1119,6 @@
     <Name>ЛЕСОТО</Name>
     <Description>Королевство Лесото</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1770,11 +1128,6 @@
     <Name>ЛИБЕРИЯ</Name>
     <Description>Республика Либерия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1784,11 +1137,6 @@
     <Name>ЛИВАН</Name>
     <Description>Ливанская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1798,11 +1146,6 @@
     <Name>ЛИВИЯ</Name>
     <Description>Ливия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1812,11 +1155,6 @@
     <Name>ЛИТВА</Name>
     <Description>Литовская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1826,11 +1164,6 @@
     <Name>ЛИХТЕНШТЕЙН</Name>
     <Description>Княжество Лихтенштейн</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1840,11 +1173,6 @@
     <Name>ЛЮКСЕМБУРГ</Name>
     <Description>Великое Герцогство Люксембург</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1854,11 +1182,6 @@
     <Name>МАВРИКИЙ</Name>
     <Description>Республика Маврикий</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1868,11 +1191,6 @@
     <Name>МАВРИТАНИЯ</Name>
     <Description>Исламская Республика Мавритания</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1882,11 +1200,6 @@
     <Name>МАДАГАСКАР</Name>
     <Description>Республика Мадагаскар</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1894,13 +1207,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MYT</Code>
     <Name>МАЙОТТА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1910,11 +1217,6 @@
     <Name>МАКАО</Name>
     <Description>Специальный административный регион Китая Макао</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1922,13 +1224,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MKD</Code>
     <Name>РЕСПУБЛИКА МАКЕДОНИЯ[3]</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1938,11 +1234,6 @@
     <Name>МАЛАВИ</Name>
     <Description>Республика Малави</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1950,13 +1241,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MYS</Code>
     <Name>МАЛАЙЗИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1966,11 +1251,6 @@
     <Name>МАЛИ</Name>
     <Description>Республика Мали</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1978,13 +1258,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>UMI</Code>
     <Name>МАЛЫЕ ТИХООКЕАНСКИЕ ОТДАЛЕННЫЕ ОСТРОВА СОЕДИНЕННЫХ ШТАТОВ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -1994,11 +1268,6 @@
     <Name>МАЛЬДИВЫ</Name>
     <Description>Мальдивская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2008,11 +1277,6 @@
     <Name>МАЛЬТА</Name>
     <Description>Республика Мальта</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2022,11 +1286,6 @@
     <Name>МАРОККО</Name>
     <Description>Королевство Марокко</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2034,13 +1293,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MTQ</Code>
     <Name>МАРТИНИКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2050,11 +1303,6 @@
     <Name>МАРШАЛЛОВЫ ОСТРОВА</Name>
     <Description>Республика Маршалловы Острова</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2064,11 +1312,6 @@
     <Name>МЕКСИКА</Name>
     <Description>Мексиканские Соединенные Штаты</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2078,11 +1321,6 @@
     <Name>МИКРОНЕЗИЯ, ФЕДЕРАТИВНЫЕ ШТАТЫ</Name>
     <Description>Федеративные Штаты Микронезии</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2092,11 +1330,6 @@
     <Name>МОЗАМБИК</Name>
     <Description>Республика Мозамбик</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2106,11 +1339,6 @@
     <Name>МОЛДОВА, РЕСПУБЛИКА</Name>
     <Description>Республика Молдова</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2120,11 +1348,6 @@
     <Name>МОНАКО</Name>
     <Description>Княжество Монако</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2132,13 +1355,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MNG</Code>
     <Name>МОНГОЛИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2146,13 +1363,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MSR</Code>
     <Name>МОНТСЕРРАТ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2162,11 +1373,6 @@
     <Name>МЬЯНМА</Name>
     <Description>Республика Союза Мьянма</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2176,11 +1382,6 @@
     <Name>НАМИБИЯ</Name>
     <Description>Республика Намибия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2190,11 +1391,6 @@
     <Name>НАУРУ</Name>
     <Description>Республика Науру</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2204,11 +1400,6 @@
     <Name>НЕПАЛ</Name>
     <Description>Федеративная Демократическая Республика Непал</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2218,11 +1409,6 @@
     <Name>НИГЕР</Name>
     <Description>Республика Нигер</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2232,11 +1418,6 @@
     <Name>НИГЕРИЯ</Name>
     <Description>Федеративная Республика Нигерия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2246,11 +1427,6 @@
     <Name>НИДЕРЛАНДЫ</Name>
     <Description>Королевство Нидерландов</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2260,11 +1436,6 @@
     <Name>НИКАРАГУА</Name>
     <Description>Республика Никарагуа</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2274,11 +1445,6 @@
     <Name>НИУЭ</Name>
     <Description>Ниуэ</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2286,13 +1452,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>NZL</Code>
     <Name>НОВАЯ ЗЕЛАНДИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2300,13 +1460,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>NCL</Code>
     <Name>НОВАЯ КАЛЕДОНИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2316,11 +1470,6 @@
     <Name>НОРВЕГИЯ</Name>
     <Description>Королевство Норвегия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2328,13 +1477,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ARE</Code>
     <Name>ОБЪЕДИНЕННЫЕ АРАБСКИЕ ЭМИРАТЫ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2344,11 +1487,6 @@
     <Name>ОМАН</Name>
     <Description>Султанат Оман</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2356,13 +1494,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>CYM</Code>
     <Name>ОСТРОВА КАЙМАН</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2370,13 +1502,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>COK</Code>
     <Name>ОСТРОВА КУКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2384,13 +1510,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>TCA</Code>
     <Name>ОСТРОВА ТЕРКС И КАЙКОС</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2398,13 +1518,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BVT</Code>
     <Name>ОСТРОВ БУВЕ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2412,13 +1526,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>IMN</Code>
     <Name>ОСТРОВ МЭН</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2426,13 +1534,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>NFK</Code>
     <Name>ОСТРОВ НОРФОЛК</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2440,13 +1542,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>CXR</Code>
     <Name>ОСТРОВ РОЖДЕСТВА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2454,13 +1550,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>HMD</Code>
     <Name>ОСТРОВ ХЕРД И ОСТРОВА МАКДОНАЛЬД</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2470,11 +1560,6 @@
     <Name>ПАКИСТАН</Name>
     <Description>Исламская Республика Пакистан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2484,11 +1569,6 @@
     <Name>ПАЛАУ</Name>
     <Description>Республика Палау</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2498,11 +1578,6 @@
     <Name>ПАЛЕСТИНСКАЯ ТЕРРИТОРИЯ, ОККУПИРОВАННАЯ</Name>
     <Description>Оккупированная Палестинская территория</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2512,11 +1587,6 @@
     <Name>ПАНАМА</Name>
     <Description>Республика Панама</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2524,13 +1594,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>VAT</Code>
     <Name>ПАПСКИЙ ПРЕСТОЛ (ГОСУДАРСТВО — ГОРОД ВАТИКАН)</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2538,13 +1602,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>PNG</Code>
     <Name>ПАПУА-НОВАЯ ГВИНЕЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2554,11 +1612,6 @@
     <Name>ПАРАГВАЙ</Name>
     <Description>Республика Парагвай</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2568,11 +1621,6 @@
     <Name>ПЕРУ</Name>
     <Description>Республика Перу</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2580,13 +1628,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>PCN</Code>
     <Name>ПИТКЕРН</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2596,11 +1638,6 @@
     <Name>ПОЛЬША</Name>
     <Description>Республика Польша</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2610,11 +1647,6 @@
     <Name>ПОРТУГАЛИЯ</Name>
     <Description>Португальская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2622,13 +1654,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>PRI</Code>
     <Name>ПУЭРТО-РИКО</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2636,13 +1662,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>REU</Code>
     <Name>РЕЮНЬОН</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2652,11 +1672,6 @@
     <Name>РОССИЯ</Name>
     <Description>Российская Федерация</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>0</Relevance>
   </row>
   <row>
@@ -2666,11 +1681,6 @@
     <Name>РУАНДА</Name>
     <Description>Руандийская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2678,13 +1688,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ROU</Code>
     <Name>РУМЫНИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2694,11 +1698,6 @@
     <Name>САМОА</Name>
     <Description>Независимое Государство Самоа</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2708,11 +1707,6 @@
     <Name>САН-МАРИНО</Name>
     <Description>Республика Сан-Марино</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2722,11 +1716,6 @@
     <Name>САН-ТОМЕ И ПРИНСИПИ</Name>
     <Description>Демократическая Республика Сан-Томе и Принсипи</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2736,11 +1725,6 @@
     <Name>САУДОВСКАЯ АРАВИЯ</Name>
     <Description>Королевство Саудовская Аравия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2750,11 +1734,6 @@
     <Name>СВАЗИЛЕНД</Name>
     <Description>Королевство Свазиленд</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2762,13 +1741,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>SHN</Code>
     <Name>СВЯТАЯ ЕЛЕНА, ОСТРОВ ВОЗНЕСЕНИЯ, ТРИСТАН-ДА-КУНЬЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2778,11 +1751,6 @@
     <Name>СЕВЕРНЫЕ МАРИАНСКИЕ ОСТРОВА</Name>
     <Description>Содружество Северных Марианских островов</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2792,11 +1760,6 @@
     <Name>СЕЙШЕЛЫ</Name>
     <Description>Республика Сейшелы</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2804,13 +1767,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>BLM</Code>
     <Name>СЕН-БАРТЕЛЕМИ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2818,13 +1775,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>MAF</Code>
     <Name>СЕН-МАРТЕН</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2832,13 +1783,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>SXM</Code>
     <Name>СЕН-МАРТЕН (нидерландская часть)</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2848,11 +1793,6 @@
     <Name>СЕНЕГАЛ</Name>
     <Description>Республика Сенегал</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2860,13 +1800,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>VCT</Code>
     <Name>СЕНТ-ВИНСЕНТ И ГРЕНАДИНЫ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2874,13 +1808,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>KNA</Code>
     <Name>СЕНТ-КИТС И НЕВИС</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2888,13 +1816,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>LCA</Code>
     <Name>СЕНТ-ЛЮСИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2902,13 +1824,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>SPM</Code>
     <Name>СЕН-ПЬЕР И МИКЕЛОН</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2918,11 +1834,6 @@
     <Name>СЕРБИЯ</Name>
     <Description>Республика Сербия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2932,11 +1843,6 @@
     <Name>СИНГАПУР</Name>
     <Description>Республика Сингапур</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2944,13 +1850,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>SYR</Code>
     <Name>СИРИЙСКАЯ АРАБСКАЯ РЕСПУБЛИКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2960,11 +1860,6 @@
     <Name>СЛОВАКИЯ</Name>
     <Description>Словацкая Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2974,11 +1869,6 @@
     <Name>СЛОВЕНИЯ</Name>
     <Description>Республика Словения</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -2988,11 +1878,6 @@
     <Name>СОЕДИНЕННОЕ КОРОЛЕВСТВО</Name>
     <Description>Соединенное Королевство Великобритании и Северной Ирландии</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3002,11 +1887,6 @@
     <Name>СОЕДИНЕННЫЕ ШТАТЫ</Name>
     <Description>Соединенные Штаты Америки</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3014,13 +1894,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>SLB</Code>
     <Name>СОЛОМОНОВЫ ОСТРОВА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3030,11 +1904,6 @@
     <Name>СОМАЛИ</Name>
     <Description>Сомалийская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3044,11 +1913,6 @@
     <Name>СУДАН</Name>
     <Description>Республика Судан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3058,11 +1922,6 @@
     <Name>СУРИНАМ</Name>
     <Description>Республика Суринам</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3072,11 +1931,6 @@
     <Name>СЬЕРРА-ЛЕОНЕ</Name>
     <Description>Республика Сьерра-Леоне</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3086,11 +1940,6 @@
     <Name>ТАДЖИКИСТАН</Name>
     <Description>Республика Таджикистан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3100,11 +1949,6 @@
     <Name>ТАИЛАНД</Name>
     <Description>Королевство Таиланд</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3112,13 +1956,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>TWN</Code>
     <Name>ТАЙВАНЬ (КИТАЙ)</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3128,11 +1966,6 @@
     <Name>ТАНЗАНИЯ, ОБЪЕДИНЕННАЯ РЕСПУБЛИКА</Name>
     <Description>Объединенная Республика Танзания</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3142,11 +1975,6 @@
     <Name>ТОГО</Name>
     <Description>Тоголезская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3154,13 +1982,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>TKL</Code>
     <Name>ТОКЕЛАУ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3170,11 +1992,6 @@
     <Name>ТОНГА</Name>
     <Description>Королевство Тонга</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3184,11 +2001,6 @@
     <Name>ТРИНИДАД И ТОБАГО</Name>
     <Description>Республика Тринидад и Тобаго</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3196,13 +2008,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>TUV</Code>
     <Name>ТУВАЛУ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3212,11 +2018,6 @@
     <Name>ТУНИС</Name>
     <Description>Тунисская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3226,11 +2027,6 @@
     <Name>ТУРКМЕНИЯ</Name>
     <Description>Туркменистан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3240,11 +2036,6 @@
     <Name>ТУРЦИЯ</Name>
     <Description>Турецкая Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3254,11 +2045,6 @@
     <Name>УГАНДА</Name>
     <Description>Республика Уганда</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3268,11 +2054,6 @@
     <Name>УЗБЕКИСТАН</Name>
     <Description>Республика Узбекистан</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>2</Relevance>
   </row>
   <row>
@@ -3280,13 +2061,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>UKR</Code>
     <Name>УКРАИНА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>1</Relevance>
   </row>
   <row>
@@ -3294,13 +2069,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>WLF</Code>
     <Name>УОЛЛИС И ФУТУНА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3310,11 +2079,6 @@
     <Name>УРУГВАЙ</Name>
     <Description>Восточная Республика Уругвай</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3322,13 +2086,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>FRO</Code>
     <Name>ФАРЕРСКИЕ ОСТРОВА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3338,11 +2096,6 @@
     <Name>ФИДЖИ</Name>
     <Description>Республика Фиджи</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3352,11 +2105,6 @@
     <Name>ФИЛИППИНЫ</Name>
     <Description>Республика Филиппины</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3366,11 +2114,6 @@
     <Name>ФИНЛЯНДИЯ</Name>
     <Description>Финляндская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3378,13 +2121,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>FLK</Code>
     <Name>ФОЛКЛЕНДСКИЕ ОСТРОВА (МАЛЬВИНСКИЕ)</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3394,11 +2131,6 @@
     <Name>ФРАНЦИЯ</Name>
     <Description>Французская Республика</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3406,13 +2138,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>GUF</Code>
     <Name>ФРАНЦУЗСКАЯ ГВИАНА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3420,13 +2146,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>PYF</Code>
     <Name>ФРАНЦУЗСКАЯ ПОЛИНЕЗИЯ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3434,13 +2154,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>ATF</Code>
     <Name>ФРАНЦУЗСКИЕ ЮЖНЫЕ ТЕРРИТОРИИ</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3450,11 +2164,6 @@
     <Name>ХОРВАТИЯ</Name>
     <Description>Республика Хорватия</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3462,13 +2171,7 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>CAF</Code>
     <Name>ЦЕНТРАЛЬНО-АФРИКАНСКАЯ РЕСПУБЛИКА</Name>
-    <Description></Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
     <Relevance>99999</Relevance>
   </row>
   <row>
@@ -3476,27 +2179,1886 @@
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
     <Code>TCD</Code>
     <Name>ЧАД</Name>
-    <Description>Республика Чад|</Description>
+    <Description>Республика Чад</Description>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
-    <Relevance></Relevance>
+    <Relevance>99999</Relevance>
   </row>
   <row>
-    <Id>700</Id>
+    <Id>250</Id>
     <Oid>1.2.643.2.40.5.0.25.3</Oid>
-    <Code>TCD</Code>
-    <Name>dddd</Name>
-    <Description>ddddd</Description>
+    <Code>MNE</Code>
+    <Name>ЧЕРНОГОРИЯ</Name>
     <ShortName></ShortName>
-    <RelatedCode></RelatedCode>
-    <RelatedOid></RelatedOid>
-    <RelatedType></RelatedType>
-    <DateFrom></DateFrom>
-    <DateTo></DateTo>
-    <Relevance></Relevance>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>251</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>CZE</Code>
+    <Name>ЧЕШСКАЯ РЕСПУБЛИКА</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>252</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>CHL</Code>
+    <Name>ЧИЛИ</Name>
+    <Description>Республика Чили</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>253</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>CHE</Code>
+    <Name>ШВЕЙЦАРИЯ</Name>
+    <Description>Швейцарская Конфедерация</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>254</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>SWE</Code>
+    <Name>ШВЕЦИЯ</Name>
+    <Description>Королевство Швеция</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>255</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>SJM</Code>
+    <Name>ШПИЦБЕРГЕН И ЯН МАЙЕН</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>256</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>LKA</Code>
+    <Name>ШРИ-ЛАНКА</Name>
+    <Description>Демократическая Социалистическая Республика Шри-Ланка</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>257</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>ECU</Code>
+    <Name>ЭКВАДОР</Name>
+    <Description>Республика Эквадор</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>258</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>GNQ</Code>
+    <Name>ЭКВАТОРИАЛЬНАЯ ГВИНЕЯ</Name>
+    <Description>Республика Экваториальная Гвинея</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>259</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>ALA</Code>
+    <Name>ЭЛАНДСКИЕ ОСТРОВА</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>260</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>SLV</Code>
+    <Name>ЭЛЬ-САЛЬВАДОР</Name>
+    <Description>Республика Эль-Сальвадор</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>261</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>ERI</Code>
+    <Name>ЭРИТРЕЯ</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>262</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>EST</Code>
+    <Name>ЭСТОНИЯ</Name>
+    <Description>Эстонская Республика</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>263</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>ETH</Code>
+    <Name>ЭФИОПИЯ</Name>
+    <Description>Федеративная Демократическая Республика Эфиопия</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>264</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>ZAF</Code>
+    <Name>ЮЖНАЯ АФРИКА</Name>
+    <Description>Южно-Африканская Республика</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>265</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>SGS</Code>
+    <Name>ЮЖНАЯ ДЖОРДЖИЯ И ЮЖНЫЕ САНДВИЧЕВЫ ОСТРОВА</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>266</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>OST</Code>
+    <Name>ЮЖНАЯ ОСЕТИЯ</Name>
+    <Description>Республика Южная Осетия</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>267</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>SSD</Code>
+    <Name>ЮЖНЫЙ СУДАН</Name>
+    <Description>Республика Южный Судан</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>268</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>JAM</Code>
+    <Name>ЯМАЙКА</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>269</Id>
+    <Oid>1.2.643.2.40.5.0.25.3</Oid>
+    <Code>JPN</Code>
+    <Name>ЯПОНИЯ</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>270</Id>
+    <Oid>1.1.1.1</Oid>
+    <Code>1</Code>
+    <Name>Создание записи</Name>
+    <Description>Создание записи</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>271</Id>
+    <Oid>1.1.1.1</Oid>
+    <Code>2</Code>
+    <Name>Изменение записи</Name>
+    <Description>Изменение записи</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>272</Id>
+    <Oid>1.1.1.1</Oid>
+    <Code>3</Code>
+    <Name>Удаление записи</Name>
+    <Description>Удаления записи</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>273</Id>
+    <Oid>1.2.643.2.40.5.0.18.1</Oid>
+    <Code>1</Code>
+    <Name>Мужской</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>274</Id>
+    <Oid>1.2.643.2.40.5.0.18.1</Oid>
+    <Code>2</Code>
+    <Name>Женский</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>275</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>1</Code>
+    <Name>Работающий гражданин Российской Федерации</Name>
+    <ShortName></ShortName>
+    <Relevance>0</Relevance>
+  </row>
+  <row>
+    <Id>276</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>2</Code>
+    <Name>Работающий постоянно проживающий в Российской Федерации иностранный гражданин</Name>
+    <ShortName></ShortName>
+    <Relevance>2</Relevance>
+  </row>
+  <row>
+    <Id>277</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>3</Code>
+    <Name>Работающий временно проживающий в Российской Федерации иностранный гражданин</Name>
+    <ShortName></ShortName>
+    <Relevance>4</Relevance>
+  </row>
+  <row>
+    <Id>278</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>4</Code>
+    <Name>Работающее постоянно проживающее в Российской Федерации лицо без гражданства</Name>
+    <ShortName></ShortName>
+    <Relevance>6</Relevance>
+  </row>
+  <row>
+    <Id>279</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>5</Code>
+    <Name>Работающее лицо, имеющее право на медицинскую помощь в соответствии с Федеральным законом "О беженцах"</Name>
+    <ShortName></ShortName>
+    <Relevance>8</Relevance>
+  </row>
+  <row>
+    <Id>280</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>6</Code>
+    <Name>Неработающий гражданин Российской Федерации</Name>
+    <ShortName></ShortName>
+    <Relevance>1</Relevance>
+  </row>
+  <row>
+    <Id>281</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>7</Code>
+    <Name>Неработающий постоянно проживающий в Российской Федерации иностранный гражданин</Name>
+    <ShortName></ShortName>
+    <Relevance>3</Relevance>
+  </row>
+  <row>
+    <Id>282</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>8</Code>
+    <Name>Неработающий временно проживающий в Российской Федерации иностранный гражданин</Name>
+    <ShortName></ShortName>
+    <Relevance>5</Relevance>
+  </row>
+  <row>
+    <Id>283</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>9</Code>
+    <Name>Неработающее постоянно проживающее в Российской Федерации лицо без гражданства</Name>
+    <ShortName></ShortName>
+    <Relevance>7</Relevance>
+  </row>
+  <row>
+    <Id>284</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>10</Code>
+    <Name>Неработающее лицо, имеющее право на медицинскую помощь в соответствии с Федеральным законом "О беженцах"</Name>
+    <ShortName></ShortName>
+    <Relevance>9</Relevance>
+  </row>
+  <row>
+    <Id>285</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>1</Code>
+    <Name>Новое</Name>
+    <Description>Заявление получено ТФОМС из СМО</Description>
+    <ShortName></ShortName>
+    <Relevance>1</Relevance>
+  </row>
+  <row>
+    <Id>286</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>2</Code>
+    <Name>Проверка правомерности</Name>
+    <Description>Начата проверка правомерности выдачи полиса ОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>2</Relevance>
+  </row>
+  <row>
+    <Id>287</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>3</Code>
+    <Name>Подлежит исполнению</Name>
+    <Description>Выдача полиса признана правомерной. Должна быть создана заявка на выпуск полисов</Description>
+    <ShortName></ShortName>
+    <Relevance>3</Relevance>
+  </row>
+  <row>
+    <Id>288</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>4</Code>
+    <Name>Отменено</Name>
+    <Description>Заявление отменено до окончания проверки правомерности</Description>
+    <ShortName></ShortName>
+    <Relevance>4</Relevance>
+  </row>
+  <row>
+    <Id>289</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>5</Code>
+    <Name>Отклонено</Name>
+    <Description>Выдача полиса признана неправомерной. Заявление отклонено</Description>
+    <ShortName></ShortName>
+    <Relevance>5</Relevance>
+  </row>
+  <row>
+    <Id>290</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>6</Code>
+    <Name>Исполняется</Name>
+    <Description>Выдача полиса признана правомерной и создана заявка на выпуск полисов</Description>
+    <ShortName></ShortName>
+    <Relevance>6</Relevance>
+  </row>
+  <row>
+    <Id>291</Id>
+    <Oid>1.2.643.2.40.3.3.0.1.4.2</Oid>
+    <Code>7</Code>
+    <Name>Исполнено</Name>
+    <Description>Полис выпущен и выдан гражданину</Description>
+    <ShortName></ShortName>
+    <Relevance>7</Relevance>
+  </row>
+  <row>
+    <Id>292</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.8</Oid>
+    <Code>1</Code>
+    <Name>Выбор (замена) СМО</Name>
+    <Description>Выбор (замена) СМО</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>293</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.8</Oid>
+    <Code>2</Code>
+    <Name>Переоформление полиса ОМС</Name>
+    <Description>Переоформление полиса ОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>294</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.8</Oid>
+    <Code>3</Code>
+    <Name>Выдача дубликата</Name>
+    <Description>Выдача дубликата</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>302</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.7</Oid>
+    <Code>0</Code>
+    <Name>Заявление на выбор или замену СМО не подавалось</Name>
+    <Description>Замена полиса ОМС, не связанная с выбором или заменой СМО.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>303</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.7</Oid>
+    <Code>1</Code>
+    <Name>Выбор СМО</Name>
+    <Description>Выбор СМО впервые.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>304</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.7</Oid>
+    <Code>2</Code>
+    <Name>Замена СМО по желанию</Name>
+    <Description>Замена СМО в соответствии с правом замены один раз в течение календарного года.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>305</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.7</Oid>
+    <Code>3</Code>
+    <Name>Замена СМО в связи с переездом</Name>
+    <Description>Заменой СМО в связи со сменой места жительства при отсутствии СМО, в которой застрахованное лицо состоит на учёте.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>306</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.7</Oid>
+    <Code>4</Code>
+    <Name>Замена СМО в связи с прекращением финансирования</Name>
+    <Description>Замена СМО в связи с прекращением действия договора о финансовом обеспечении обязательного медицинского страхования.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>307</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>0</Code>
+    <Name>Получение впервые</Name>
+    <Description>Получение полиса ОМС единого образца в связи с первичным выбором СМО, либо взамен имеющегося на руках полиса ОМС старого образца.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>308</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>1</Code>
+    <Name>Изменение анкетных данных</Name>
+    <Description>Переоформление полиса ОМС в связи с изменением фамилии, имени, отчества, пола, даты или места рождения.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>309</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>2</Code>
+    <Name>Неточность данных</Name>
+    <Description>Переоформление полиса ОМС в связи с установлением неточности или ошибочности сведений, содержащихся в полисе.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>310</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>3</Code>
+    <Name>Непригодность к использованию</Name>
+    <Description>Переоформление полиса ОМС в связи с ветхостью или непригодностью полиса.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>311</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>4</Code>
+    <Name>Утрата</Name>
+    <Description>Выдача дубликата полиса ОМС в связи с утратой ранее выданного полиса.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>312</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>5</Code>
+    <Name>Окончание срока действия</Name>
+    <Description>Переоформление полиса ОМС в связи с окончанием срока действия полиса.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>313</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.11</Oid>
+    <Code>1</Code>
+    <Name>Лично</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>314</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.11</Oid>
+    <Code>2</Code>
+    <Name>Через представителя</Name>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>318</Id>
+    <Oid>1.2.643.2.40.5.0.18.11</Oid>
+    <Code>1</Code>
+    <Name>Мать</Name>
+    <ShortName></ShortName>
+    <Relevance>0</Relevance>
+  </row>
+  <row>
+    <Id>319</Id>
+    <Oid>1.2.643.2.40.5.0.18.11</Oid>
+    <Code>2</Code>
+    <Name>Отец</Name>
+    <ShortName></ShortName>
+    <Relevance>1</Relevance>
+  </row>
+  <row>
+    <Id>320</Id>
+    <Oid>1.2.643.2.40.5.0.18.11</Oid>
+    <Code>3</Code>
+    <Name>Иное</Name>
+    <ShortName></ShortName>
+    <Relevance>3</Relevance>
+  </row>
+  <row>
+    <Id>321</Id>
+    <Oid>1.2.643.2.40.5.100.86</Oid>
+    <Code>П</Code>
+    <Name>Бумажный полис ОМС единого образца</Name>
+    <Description>Полис ОМС единого образца, выданный в соответствии с требованиями Закона об ОМС на бумажном бланке</Description>
+    <ShortName></ShortName>
+    <Relevance>1</Relevance>
+  </row>
+  <row>
+    <Id>322</Id>
+    <Oid>1.2.643.2.40.5.100.86</Oid>
+    <Code>К</Code>
+    <Name>Полис ОМС в составе универсальной электронной карты</Name>
+    <Description>Полис ОМС, обеспеченный в соответствии с требованиями Закона об ОМС федеральным электронным приложением, содержащимся в универсальной электронной карте</Description>
+    <ShortName></ShortName>
+    <Relevance>3</Relevance>
+  </row>
+  <row>
+    <Id>381</Id>
+    <Oid>1.2.643.2.40.3.3.0.7.2</Oid>
+    <Code>1</Code>
+    <Name>Заявление</Name>
+    <Description>Заявление застрахованного лица в электронной фор-ме о выборе или замене СМО, о выдаче или замене полиса ОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>382</Id>
+    <Oid>1.2.643.2.40.3.3.0.7.2</Oid>
+    <Code>2</Code>
+    <Name>Фотография</Name>
+    <Description>Цифровая фотография застрахованного лица</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>383</Id>
+    <Oid>1.2.643.2.40.3.3.0.7.2</Oid>
+    <Code>3</Code>
+    <Name>Собственноручная подпись</Name>
+    <Description>Цифровое изображение собственноручной подписи застрахованного лица</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>388</Id>
+    <Oid>1.2.643.2.40.3.3.0.7.2</Oid>
+    <Code>20</Code>
+    <Name>Иное</Name>
+    <Description>Иное</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>391</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>20</Code>
+    <Name>Копия жалобы на решение о лишении статуса беженца в Федеральную миграционную службу с отметкой о её приёме к рассмотрению</Name>
+    <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>392</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>21</Code>
+    <Name>Документ иностранного гражданина</Name>
+    <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>393</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>22</Code>
+    <Name>Документ лица без гражданства</Name>
+    <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>394</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>23</Code>
+    <Name>Разрешение на временное проживание </Name>
+    <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>406</Id>
+    <Oid>R001</Oid>
+    <Code>П010</Code>
+    <Name>Первичный выбор СМО (выдача временного свидетельства)</Name>
+    <Description>Первичный выбор СМО (выдача временного свидетельства)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>407</Id>
+    <Oid>R001</Oid>
+    <Code>П021</Code>
+    <Name>Снятие ЗЛ с учёта в связи с постановкой на учет в другой СМО</Name>
+    <Description>Снятие ЗЛ с учёта в связи с постановкой на учет в другой СМО</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>408</Id>
+    <Oid>R001</Oid>
+    <Code>П022</Code>
+    <Name>Снятие ЗЛ с учёта в связи со смертью</Name>
+    <Description>Снятие ЗЛ с учёта в связи со смертью</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>409</Id>
+    <Oid>R001</Oid>
+    <Code>П023</Code>
+    <Name>Снятие ЗЛ с учёта при разрешении дублирующихся записей</Name>
+    <Description>Снятие ЗЛ с учёта при разрешении дублирующихся записей</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>410</Id>
+    <Oid>R001</Oid>
+    <Code>П024</Code>
+    <Name>Снятие с учёта записи о ЗЛ при исправлении ошибок в ЕНП</Name>
+    <Description>Снятие с учёта записи о ЗЛ при исправлении ошибок в ЕНП</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>411</Id>
+    <Oid>R001</Oid>
+    <Code>П025</Code>
+    <Name>Снятие с учёта записи о ЗЛ в связи с приостановлением действия полиса (для категорий граждан, не подлежащих ОМС)</Name>
+    <Description>Снятие с учёта записи о ЗЛ в связи с приостановлением действия полиса (для категорий граждан, не подлежащих ОМС)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>412</Id>
+    <Oid>R001</Oid>
+    <Code>П031</Code>
+    <Name>Замена СМО по желанию один раз в год (без замены полиса)</Name>
+    <Description>Замена СМО по желанию один раз в год (без замены полиса)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>413</Id>
+    <Oid>R001</Oid>
+    <Code>П032</Code>
+    <Name>Замена СМО при смене места жительства (без замены полиса)</Name>
+    <Description>Замена СМО при смене места жительства (без замены полиса)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>414</Id>
+    <Oid>R001</Oid>
+    <Code>П033</Code>
+    <Name>Замена СМО в связи с расторжением договора со СМО (без замены полиса)</Name>
+    <Description>Замена СМО в связи с расторжением договора со СМО (без замены полиса)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>415</Id>
+    <Oid>R001</Oid>
+    <Code>П034</Code>
+    <Name>Замена СМО по желанию один раз в год (с заменой полиса)</Name>
+    <Description>Замена СМО по желанию один раз в год (с заменой полиса)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>416</Id>
+    <Oid>R001</Oid>
+    <Code>П035</Code>
+    <Name>Замена СМО при смене места жительства (с заменой полиса)</Name>
+    <Description>Замена СМО при смене места жительства (с заменой полиса)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>417</Id>
+    <Oid>R001</Oid>
+    <Code>П036</Code>
+    <Name>Замена СМО в связи с расторжением договора со СМО (с заменой полиса)</Name>
+    <Description>Замена СМО в связи с расторжением договора со СМО (с заменой полиса)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>418</Id>
+    <Oid>R001</Oid>
+    <Code>П040</Code>
+    <Name>Изменение данных о ЗЛ, не требующих выдачи нового полиса ОМС (тип или серия и номер документа, удостоверяющего личность, СНИЛС, адрес без смены СМО)</Name>
+    <Description>Изменение данных о ЗЛ, не требующих выдачи нового полиса ОМС (тип или серия и номер документа, удостоверяющего личность, СНИЛС, адрес без смены СМО)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>419</Id>
+    <Oid>R001</Oid>
+    <Code>П060</Code>
+    <Name>Выдача на руки полиса единого образца после временного свидетельства</Name>
+    <Description>Выдача на руки полиса единого образца после временного свидетельства</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>420</Id>
+    <Oid>R001</Oid>
+    <Code>П061</Code>
+    <Name>Изменение сведений о ЗЛ, требующих замены полиса ОМС (изменение или исправление ФИО или даты рождения/пола) (без смены СМО)</Name>
+    <Description>Изменение сведений о ЗЛ, требующих замены полиса ОМС (изменение или исправление ФИО или даты рождения/пола) (без смены СМО)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>421</Id>
+    <Oid>R001</Oid>
+    <Code>П062</Code>
+    <Name>Выдача дубликата полиса</Name>
+    <Description>Выдача дубликата полиса</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>422</Id>
+    <Oid>R001</Oid>
+    <Code>П063</Code>
+    <Name>Выдача полиса по причине окончания действия ранее выданного полиса (предоставление документов, продляющих срок действия права на ОМС для иностранных граждан)</Name>
+    <Description>Выдача полиса по причине окончания действия ранее выданного полиса (предоставление документов, продляющих срок действия права на ОМС для иностранных граждан)</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>429</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>30</Code>
+    <Name>Свидетельство о регистрации по месту жительства</Name>
+    <Description>DocSer="" DocNum="000000000009"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>430</Id>
+    <Oid>1.1.1.2</Oid>
+    <Code>1</Code>
+    <Name>Имя</Name>
+    <Description>FirstName</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>431</Id>
+    <Oid>1.1.1.2</Oid>
+    <Code>2</Code>
+    <Name>Отчетво</Name>
+    <Description>MiddleName</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>438</Id>
+    <Oid>1.2.643.2.40.5.100.86</Oid>
+    <Code>С</Code>
+    <Name>Полис ОМС старого образ-ца</Name>
+    <Description>Полис ОМС, выданный до вступления в силу Закона об ОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>439</Id>
+    <Oid>1.2.643.2.40.5.100.86</Oid>
+    <Code>В</Code>
+    <Name>Временное свидетельство</Name>
+    <Description>Временное свидетельство, подтверждающее оформление полиса обязательного медицинского страхования.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>440</Id>
+    <Oid>1.2.643.2.40.5.100.86</Oid>
+    <Code>Э</Code>
+    <Name>Электронный полис ОМС единого образца</Name>
+    <Description>Полис ОМС единого образца, выданный в соответствии с требованиями Закона об ОМС на пластиковой карте с электронным носителем.</Description>
+    <ShortName></ShortName>
+    <Relevance>2</Relevance>
+  </row>
+  <row>
+    <Id>441</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>H01</Code>
+    <Name>H01</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {место рождения}, {код типа документа, удостоверяющего личность}, {номер или серия и номер документа, удостоверяющего личность}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>442</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>H02</Code>
+    <Name>H02</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {дата рождения}, {код типа документа, удостоверяющего личность}, {номер или серия и номер документа, удостоверяющего личность}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>443</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>H03</Code>
+    <Name>H03</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {дата рождения}, {СНИЛС}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>444</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>H04</Code>
+    <Name>H04</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {дата рождения}, {код территории, выдавшей документ, подтверждающий факт страхования по ОМС }, {код типа документа, подтверждающего факт страхования по ОМС }, {серия и номер документа, подтверждающего факт страхования по ОМС }</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>445</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>H05</Code>
+    <Name>H05</Name>
+    <Description>{имя}, {отчество}, {дата рождения}, {место рождения}, {СНИЛС}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>446</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>P01</Code>
+    <Name>P01</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {место рождения}, {код типа документа, удостоверяющего личность}, {номер или серия и номер документа, удостоверяющего личность}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>447</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>P02</Code>
+    <Name>P02</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {дата рождения}, {код типа документа, удостоверяющего личность}, {номер или серия и номер документа, удостоверяющего личность}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>448</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>P03</Code>
+    <Name>P03</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {дата рождения}, {СНИЛС}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>449</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>P04</Code>
+    <Name>P04</Name>
+    <Description>{фамилия}, {имя}, {отчество}, {дата рождения}, {код территории, выдавшей документ, подтверждающий факт страхования по ОМС }, {код типа документа, подтверждающего факт страхования по ОМС }, {серия и номер документа, подтверждающего факт страхования по ОМС }</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>450</Id>
+    <Oid>1.2.643.2.40.1.14</Oid>
+    <Code>P05</Code>
+    <Name>P05</Name>
+    <Description>{имя}, {отчество}, {дата рождения}, {место рождения}, {СНИЛС}</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>456</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.9</Oid>
+    <Code>6</Code>
+    <Name>Изменение данных о ЗЛ, не требующих выдачи нового полиса ОМС</Name>
+    <Description>Изменение данных о ЗЛ, не требующих выдачи нового полиса ОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>465</Id>
+    <Oid>1.1.1.3</Oid>
+    <Code>1</Code>
+    <Name>Застрахован</Name>
+    <Description>Застрахован</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>466</Id>
+    <Oid>1.1.1.3</Oid>
+    <Code>2</Code>
+    <Name>Аннулирован</Name>
+    <Description>Застрахован</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>467</Id>
+    <Oid>1.1.1.3</Oid>
+    <Code>3</Code>
+    <Name>Умерший</Name>
+    <Description>Застрахован</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>473</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.8</Oid>
+    <Code>4</Code>
+    <Name>Изменение данных о ЗЛ, не требующих выдачи нового полиса ОМС</Name>
+    <Description>Изменение данных о ЗЛ, не требующих выдачи нового полиса ОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>484</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>1</Code>
+    <Name>Сертификат УЦ№1 RSA</Name>
+    <Description>Сертификат открытого ключа УЦ№1 RSA</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>485</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>2</Code>
+    <Name>Сертификат ОКО1 RSA</Name>
+    <Description>Сертификат открытого ключа ОКО1 RSA</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>486</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>3</Code>
+    <Name>Сертификат терминала RSA</Name>
+    <Description>Сертификат открытого ключа терминала RSA</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>489</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>4</Code>
+    <Name>Сертификат УЦ№1 ГОСТ</Name>
+    <Description>Сертификат открытого ключа УЦ№1 ГОСТ</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>490</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>5</Code>
+    <Name>Сертификат ОКО№1 ГОСТ</Name>
+    <Description>Сертификат открытого ключа ОКО№1 ГОСТ</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>491</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>6</Code>
+    <Name>Сертификат терминала ГОСТ</Name>
+    <Description>Сертификат открытого ключа терминала ГОСТ</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>528</Id>
+    <Oid>1.1.1.4</Oid>
+    <Code>7</Code>
+    <Name>Сертификат терминала ГОСТ</Name>
+    <Description>Сертификат закрытого ключа терминала ГОСТ</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>537</Id>
+    <Oid>1.1.1.5</Oid>
+    <Code>1</Code>
+    <Name>Дубликат не подтвержден</Name>
+    <Description>Дубликат не подтвержден</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>538</Id>
+    <Oid>1.1.1.5</Oid>
+    <Code>2</Code>
+    <Name>Кандидат в дубликаты</Name>
+    <Description>Кандидат в дубликаты</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>539</Id>
+    <Oid>1.1.1.5</Oid>
+    <Code>3</Code>
+    <Name>Дубликат отработан</Name>
+    <Description>Дубликат отработан</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>540</Id>
+    <Oid>1.1.1.6</Oid>
+    <Code>1</Code>
+    <Name>Ключ центрального сегмента</Name>
+    <Description>Ключ центрального сегмента</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>541</Id>
+    <Oid>1.1.1.6</Oid>
+    <Code>2</Code>
+    <Name>Ключ для поиска дубликата при полном сканировании и сохранении</Name>
+    <Description>Ключ для поиска дубликата при полном сканировании и сохранении</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>542</Id>
+    <Oid>1.1.1.6</Oid>
+    <Code>3</Code>
+    <Name>Ключ для поиска дубликата при полном сканировании</Name>
+    <Description>Ключ для поиска дубликата при полном сканировании</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>548</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>PfrSnils</Code>
+    <Name>Файл ПФР с СНИЛС</Name>
+    <Description>Файл, подготовленный ОПФР в соответствии с пунктом 3.2.2 Соглашения</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>549</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>PfrData</Code>
+    <Name>Файл ПФР с расширенными данными</Name>
+    <Description>Файл, подготовленный ОПФР в соответствии с пунктом 3.3.1 Соглашения.</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>550</Id>
+    <Oid>1.1.1.8</Oid>
+    <Code>1</Code>
+    <Name>Центральный сегмент ЕРЗ</Name>
+    <Description>Центральный сегмент ЕРЗ</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>551</Id>
+    <Oid>1.1.1.8</Oid>
+    <Code>2</Code>
+    <Name>ОПФР</Name>
+    <Description>ОПФР</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>555</Id>
+    <Oid>1.1.1.9</Oid>
+    <Code>1</Code>
+    <Name>СНИЛС   в   ОПФР найден,   данные   по застрахованному  лицу соответствуют</Name>
+    <Description>СНИЛС   в   ОПФР найден,   данные   по застрахованному  лицу соответствуют</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>556</Id>
+    <Oid>1.1.1.9</Oid>
+    <Code>2</Code>
+    <Name>СНИЛС   в   ОПФР найден, но данные  по застрахованному  лицу не соответствуют</Name>
+    <Description>СНИЛС   в   ОПФР найден, но данные  по застрахованному  лицу не соответствуют</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>557</Id>
+    <Oid>1.1.1.9</Oid>
+    <Code>3</Code>
+    <Name>Дополнительные сведения  по застрахованным лицам, не включенным в  файл ТФОМС</Name>
+    <Description>Дополнительные сведения  по застрахованным лицам, не включенным в  файл ТФОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>574</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>1</Code>
+    <Name>январь</Name>
+    <Description>январь</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>575</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>2</Code>
+    <Name>февраль</Name>
+    <Description>февраль</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>576</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>3</Code>
+    <Name>март</Name>
+    <Description>март</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>577</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>4</Code>
+    <Name>апрель</Name>
+    <Description>апрель</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>578</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>5</Code>
+    <Name>май</Name>
+    <Description>май</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>579</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>6</Code>
+    <Name>июнь</Name>
+    <Description>июнь</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>580</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>7</Code>
+    <Name>июль</Name>
+    <Description>июль</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>581</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>8</Code>
+    <Name>август</Name>
+    <Description>август</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>582</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>9</Code>
+    <Name>сентябрь</Name>
+    <Description>сентябрь</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>583</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>10</Code>
+    <Name>октябрь</Name>
+    <Description>октябрь</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>584</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>11</Code>
+    <Name>ноябрь</Name>
+    <Description>ноябрь</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>585</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>12</Code>
+    <Name>декабрь</Name>
+    <Description>декабрь</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>586</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>21</Code>
+    <Name>1-й квартал</Name>
+    <Description>1-й квартал</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>587</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>22</Code>
+    <Name>2-й квартал</Name>
+    <Description>2-й квартал</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>588</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>23</Code>
+    <Name>3-й квартал</Name>
+    <Description>3-й квартал</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>589</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>24</Code>
+    <Name>4-й квартал</Name>
+    <Description>4-й квартал</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>590</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>25</Code>
+    <Name>1-е полугодие</Name>
+    <Description>1-е полугодие</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>591</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>26</Code>
+    <Name>2-е полугодие</Name>
+    <Description>2-е полугодие</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>592</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>27</Code>
+    <Name>год в целом</Name>
+    <Description>год в целом</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>593</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.14</Oid>
+    <Code>29</Code>
+    <Name>9 месяцев</Name>
+    <Description>9 месяцев</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>594</Id>
+    <Oid>1.1.1.10</Oid>
+    <Code>1</Code>
+    <Name>ОПФР</Name>
+    <Description>ОПФР</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>595</Id>
+    <Oid>1.1.1.10</Oid>
+    <Code>2</Code>
+    <Name>Завяление застрахованного лица</Name>
+    <Description>Завяление застрахованного лица</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>596</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>CA</Code>
+    <Name>Подтверждение при-ёма: принято</Name>
+    <Description>Сообщение принято и передано на прикладную обра-ботку.</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>597</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>CE</Code>
+    <Name>Подтверждение при-ёма: ошибка</Name>
+    <Description>Сообщение не принято из-за ошибок приёма-передачи, либо невозможности правильно интерпретировать со-общение (ошибки ФЛК).</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>598</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>CR</Code>
+    <Name>Подтверждение при-ёма: отвергнуто</Name>
+    <Description>Сообщение не принято из-за ошибок в сообщении (несоответствие xml-схеме, неверная контрольная сумма пакета, отсутствие идентификатора пакета или сообщения).</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>599</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>AA</Code>
+    <Name>Прикладное под-тверждение: прием-лемо</Name>
+    <Description>Сообщение не содержит ошибок форматно-логического контроля и не противоречит информации, уже имеющейся в ЕРП.</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>600</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>AE</Code>
+    <Name>Прикладное подтверждение: ошибка</Name>
+    <Description>При обработке сообщения обнаружены ошибки, которые не являются препятствием для продолжения обработки. </Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>601</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>AR</Code>
+    <Name>Прикладное подтверждение: отвергнуто</Name>
+    <Description>При обработке сообщения обнаружены ошибки, являющиеся препятствием для продолжения обработки. </Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>602</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>Zags</Code>
+    <Name>Загс</Name>
+    <Description>Загс</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>603</Id>
+    <Oid>1.1.1.8</Oid>
+    <Code>3</Code>
+    <Name>ЗАГС</Name>
+    <Description>ЗАГС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>604</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>0</Code>
+    <Name>Категория не известна</Name>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>606</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>1</Code>
+    <Name>ЕНП</Name>
+    <Description>ЕНП</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>607</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>2</Code>
+    <Name>FirstName</Name>
+    <Description>Имя</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>608</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>3</Code>
+    <Name>LastName</Name>
+    <Description>Фамилия</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>609</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>4</Code>
+    <Name>MiddleName</Name>
+    <Description>Отчество</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>610</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>5</Code>
+    <Name>Birthday</Name>
+    <Description>Дата рождения</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>611</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>6</Code>
+    <Name>Birthplace</Name>
+    <Description>Место рождения</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>612</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>7</Code>
+    <Name>Snils</Name>
+    <Description>СНИЛС</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>613</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>8</Code>
+    <Name>GenderId</Name>
+    <Description>Пол</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>614</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>9</Code>
+    <Name>DocumentTypeId</Name>
+    <Description>Тип документа</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>615</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>10</Code>
+    <Name>DocumentSeries</Name>
+    <Description>Серия документа</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>616</Id>
+    <Oid>1.1.1.11</Oid>
+    <Code>11</Code>
+    <Name>DocumentNumber</Name>
+    <Description>Номер документа</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>620</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>I</Code>
+    <Name>Файлы с изменениями от СМО</Name>
+    <Description>Файлы с изменениями от СМО</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>621</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>P</Code>
+    <Name>Протокол обработки файла с изменениями</Name>
+    <Description>Протокол обработки файла с изменениями</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>622</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>S</Code>
+    <Name>Файлы от ТФОМС с извещениями СМО о прекращении страхования</Name>
+    <Description>Файлы от ТФОМС с извещениями СМО о прекращении страхования</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>623</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>K</Code>
+    <Name>Файлы корректировки данных от ТФОМС по отдельным записям или группам записей</Name>
+    <Description>Файлы корректировки данных от ТФОМС по отдельным записям или группам записей</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>624</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>F</Code>
+    <Name>Протокол форматно-логического контроля</Name>
+    <Description>Протокол форматно-логического контроля</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>625</Id>
+    <Oid>1.1.1.8</Oid>
+    <Code>4</Code>
+    <Name>КЛАДР</Name>
+    <Description>КЛАДР</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>626</Id>
+    <Oid>1.1.1.8</Oid>
+    <Code>5</Code>
+    <Name>СМО</Name>
+    <Description>СМО</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>628</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>Rec</Code>
+    <Name>Файл корректировки данных от ТФОМС в СМО</Name>
+    <Description>Файл корректировки данных от ТФОМС в СМО</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>629</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>24</Code>
+    <Name>Свидетельство о рождении, выданное не в Российской Федерации</Name>
+    <Description>DocSer="SSSSSSSS" DocNum="0000000009"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>630</Id>
+    <Oid>1.2.643.2.40.5.100.203.1</Oid>
+    <Code>25</Code>
+    <Name>Свидетельство о предоставлении временного убежища на территории Российской Федерации</Name>
+    <Description>DocSer="ББ" DocNum="9999999"</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>631</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>11</Code>
+    <Name>Работающее временно проживающее в Российской Федерации лицо без гражданства</Name>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>632</Id>
+    <Oid>1.2.643.2.40.3.3.0.6.6</Oid>
+    <Code>12</Code>
+    <Name>Неработающее временно проживающее в Российской Федерации лицо без гражданства</Name>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>633</Id>
+    <Oid>1.2.643.2.40.1.11</Oid>
+    <Code>Д</Code>
+    <Name>Результату можно доверять</Name>
+    <Description>Ответ получен в результате точного совпадения данных.</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>634</Id>
+    <Oid>1.2.643.2.40.1.11</Oid>
+    <Code>В</Code>
+    <Name>Степень доверия высокая.</Name>
+    <Description>Ответ получен в результате неточного совпадения данных.</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>635</Id>
+    <Oid>1.1.1.14</Oid>
+    <Code>1</Code>
+    <Name>Основное заявление</Name>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>636</Id>
+    <Oid>1.1.1.14</Oid>
+    <Code>2</Code>
+    <Name>Предыдущее заявление</Name>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>637</Id>
+    <Oid>1.1.1.14</Oid>
+    <Code>3</Code>
+    <Name>Вторичное заявление</Name>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>638</Id>
+    <Oid>1.2.643.2.40.5.100.8</Oid>
+    <Code>00</Code>
+    <Name>Не выгруженное сообщение</Name>
+    <Description>Не выгруженное сообщение</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>639</Id>
+    <Oid>1.2.643.2.40.5.100.203</Oid>
+    <Code>PEN</Code>
+    <Name>СНИЛС</Name>
+    <Description>Страховой номер индивидуального лицевого счёта в системе обязательного пенсионного страхования РФ – Pension Number в ISO 27931</Description>
+    <ShortName>СНИЛС</ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>640</Id>
+    <Oid>1.2.643.2.40.5.100.203</Oid>
+    <Code>NI</Code>
+    <Name>ЕНП</Name>
+    <Description>Единый номер полиса ОМС – National Identifier в ISO 27931</Description>
+    <ShortName>ЕНП</ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>641</Id>
+    <Oid>1.2.643.2.40.5.100.203</Oid>
+    <Code>CZ</Code>
+    <Name>УЭК</Name>
+    <Description>Номер универсальной электронной карты гражданина Российской Федерации – Citizenship Card в ISO 27931</Description>
+    <ShortName>УЭК</ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>643</Id>
+    <Oid>1.1.1.1</Oid>
+    <Code>4</Code>
+    <Name>Просмотр заявления </Name>
+    <Description>Просмотр заявления </Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>644</Id>
+    <Oid>1.1.1.1</Oid>
+    <Code>5</Code>
+    <Name>Отмена заявления</Name>
+    <Description>Отмена заявления</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>645</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>Op</Code>
+    <Name>Файл с изменениями от СМО в ТФОМС</Name>
+    <Description>Файл с изменениями от СМО в ТФОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>646</Id>
+    <Oid>1.1.1.8</Oid>
+    <Code>6</Code>
+    <Name>ТФОМС</Name>
+    <Description>ТФОМС</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>647</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>Rep</Code>
+    <Name>Файл подтверждения/отклонения изменений</Name>
+    <Description>Файл подтверждения/отклонения изменений</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>648</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>Flk</Code>
+    <Name>Файл протокола форматно-логического контроля</Name>
+    <Description>Файл протокола форматно-логического контроля</Description>
+    <ShortName></ShortName>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>649</Id>
+    <Oid>1.1.1.7</Oid>
+    <Code>PersonErp</Code>
+    <Name>Файл с измененями в ЦС</Name>
+    <Description>Файл с измененями в ЦС</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>650</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>A03</Code>
+    <Name>A03</Name>
+    <Description>A03</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>651</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>A08</Code>
+    <Name>A08</Name>
+    <Description>A08</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>652</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>A13</Code>
+    <Name>A13</Name>
+    <Description>A13</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>653</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>A24</Code>
+    <Name>A24</Name>
+    <Description>A24</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>654</Id>
+    <Oid>1.1.1.12</Oid>
+    <Code>ZWI</Code>
+    <Name>ZWI</Name>
+    <Description>ZWI</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>655</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П01</Code>
+    <Name>Выбор СМО</Name>
+    <Description>Выбор СМО</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>656</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П02</Code>
+    <Name>Снятие с учета</Name>
+    <Description>Снятие с учета</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>657</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П03</Code>
+    <Name>Замена СМО</Name>
+    <Description>Замена СМО</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>658</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П04</Code>
+    <Name>Изменение данных без замены полиса ОМС</Name>
+    <Description>Изменение данных без замены полиса ОМС</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>659</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П07</Code>
+    <Name>Регистрация факта смерти лица, состоящего на учёте на другой территории</Name>
+    <Description>Регистрация факта смерти лица, состоящего на учёте на другой территории</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>660</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П08</Code>
+    <Name>Восстановление на учёте</Name>
+    <Description>Восстановление на учёте</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>661</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П09</Code>
+    <Name>Отмена регистрации факта смерти застрахованного лица</Name>
+    <Description>Отмена регистрации факта смерти застрахованного лица</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>662</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П10</Code>
+    <Name>Разрешение дубликатов</Name>
+    <Description>Разрешение дубликатов</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>663</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П11</Code>
+    <Name>Разъединение дубликатов застрахованных лиц</Name>
+    <Description>Разъединение дубликатов застрахованных лиц</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>664</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П13</Code>
+    <Name>Сведения об отсутствующей или удалённой информации о застрахованном лице</Name>
+    <Description>Сведения об отсутствующей или удалённой информации о застрахованном лице</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>665</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П14</Code>
+    <Name>Исправление постановки на учет</Name>
+    <Description>Исправление постановки на учет</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>666</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П15</Code>
+    <Name>Исправление снятия с учёта</Name>
+    <Description>Исправление снятия с учёта</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>667</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П16</Code>
+    <Name>Исправление ошибки, не связанной с изменением состояния на учёте</Name>
+    <Description>Исправление ошибки, не связанной с изменением состояния на учёте</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>668</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П17</Code>
+    <Name>Исправление данных в РС ЕРЗ</Name>
+    <Description>Исправление данных в РС ЕРЗ</Description>
+    <Relevance>99999</Relevance>
+  </row>
+  <row>
+    <Id>669</Id>
+    <Oid>1.2.643.2.40.5.100.62</Oid>
+    <Code>П06</Code>
+    <Name>Замена полиса ОМС</Name>
+    <Description>Замена полиса ОМС</Description>
+    <Relevance>99999</Relevance>
   </row>
 </XML>

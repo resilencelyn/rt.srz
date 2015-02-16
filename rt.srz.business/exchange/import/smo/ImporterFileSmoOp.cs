@@ -19,9 +19,9 @@ namespace rt.srz.business.exchange.import.smo
 
   using Quartz;
 
-  using rt.core.business.interfaces.exchange;
   using rt.core.business.server.exchange.export;
   using rt.srz.business.configuration.algorithms.serialization;
+  using rt.srz.business.exchange.export;
   using rt.srz.business.manager;
   using rt.srz.business.manager.cache;
   using rt.srz.model.Hl7.smo;
@@ -42,7 +42,7 @@ namespace rt.srz.business.exchange.import.smo
     ///   Initializes a new instance of the <see cref="ImporterFileSmoOp" /> class.
     /// </summary>
     public ImporterFileSmoOp()
-      : base(TypeSubject.Tfoms)
+      : base(ExchangeSubjectType.Tfoms)
     {
     }
 
@@ -107,7 +107,7 @@ namespace rt.srz.business.exchange.import.smo
 
       // Создаем экспортер для файлов ответа и стартуем батч
       var repExp =
-        ObjectFactory.GetInstance<IExportBatchFactory<REPListType, REPType>>().GetExporter(ExportBatchType.SmoRep);
+        ObjectFactory.GetInstance<IExporterBatchFactory<REPListType, REPType>>().GetExporter(Exporters.SmoRepExporter);
       repExp.FileName = batch.FileName.Replace("i", "p"); // Меняем префикс в имени файла ответа
       repExp.Number = batch.Number;
       repExp.PeriodId = batch.Period.Id;
@@ -117,7 +117,7 @@ namespace rt.srz.business.exchange.import.smo
 
       // Создаем экспортер для файлов ответа c протоколом ФЛК и стартуем батч
       var flkRepExp =
-        ObjectFactory.GetInstance<IExportBatchFactory<PFLKType, PRType>>().GetExporter(ExportBatchType.SmoFlk);
+        ObjectFactory.GetInstance<IExporterBatchFactory<PFLKType, PRType>>().GetExporter(Exporters.SmoFlkExporter);
       flkRepExp.FileName = batch.FileName.Replace("i", "f"); // Меняем префикс в имени файла ответа
       flkRepExp.Number = batch.Number;
       flkRepExp.PeriodId = batch.Period.Id;
@@ -144,7 +144,7 @@ namespace rt.srz.business.exchange.import.smo
             message.Batch = batch;
             message.IsCommit = true;
             message.IsError = false;
-            message.Type = conceptManager.GetById(MessageType.K);
+            message.Type = conceptManager.GetById(TransactionCode.K);
             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(message);
 
             // Создаем MessageStatement
@@ -224,8 +224,8 @@ namespace rt.srz.business.exchange.import.smo
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       var batch = new Batch();
-      batch.Subject = conceptManager.GetById(TypeSubject.Tfoms);
-      batch.Type = conceptManager.GetById(TypeFile.Op);
+      batch.Subject = conceptManager.GetById(ExchangeSubjectType.Tfoms);
+      batch.Type = conceptManager.GetById(ExchangeFileType.Op);
       batch.FileName = operList.FILENAME;
 
       // Парсим имя файла для получения периода и номера

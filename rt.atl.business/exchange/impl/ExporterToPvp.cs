@@ -23,10 +23,10 @@ namespace rt.atl.business.exchange.impl
 
   using rt.atl.business.exchange.interfaces;
   using rt.atl.business.scripts;
-  using rt.core.business.interfaces.exchange;
   using rt.core.business.nhibernate;
   using rt.core.business.server.exchange.export;
   using rt.core.model.configuration;
+  using rt.srz.business.exchange.export;
   using rt.srz.business.manager;
   using rt.srz.business.server;
   using rt.srz.model.Hl7.smo;
@@ -114,7 +114,7 @@ namespace rt.atl.business.exchange.impl
           session.QueryOver<Batch>()
                  .Where(
                         x =>
-                        x.Subject.Id == TypeSubject.Smo && x.Type.Id == TypeFile.Rec
+                        x.Subject.Id == ExchangeSubjectType.Smo && x.Type.Id == ExchangeFileType.Rec
                         && x.CodeConfirm.Id == CodeConfirm.CA)
                  .OrderBy(x => x.Sender)
                  .Asc.ThenBy(x => x.Receiver)
@@ -130,7 +130,7 @@ namespace rt.atl.business.exchange.impl
 
           // Получаем экспортер
           var eb =
-            ObjectFactory.GetInstance<IExportBatchFactory<RECListType, RECType>>().GetExporter(ExportBatchType.SmoRec);
+            ObjectFactory.GetInstance<IExporterBatchFactory<RECListType, RECType>>().GetExporter(Exporters.SmoRecExporter);
 
           // Запускаем выгрузку (теоретически это длжно работать в паралельном режиме в зависимости от возможностей системы)
           eb.BulkCreateAndExport(context, batch1.Id);

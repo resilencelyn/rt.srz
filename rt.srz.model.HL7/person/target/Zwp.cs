@@ -20,7 +20,7 @@ namespace rt.srz.model.Hl7.person.target
   ///   Отчётный период
   /// </summary>
   [Serializable]
-  [XmlType(TypeName = "ZWP", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlType(TypeName = "ZWP", Namespace = "urn:hl7-org:v2xml")]
   public class Zwp
   {
     #region Public Properties

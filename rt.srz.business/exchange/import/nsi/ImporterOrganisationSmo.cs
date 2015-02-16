@@ -33,7 +33,7 @@ namespace rt.srz.business.exchange.import.nsi
     ///   Initializes a new instance of the <see cref="ImporterOrganisationSmo" /> class.
     /// </summary>
     public ImporterOrganisationSmo()
-      : base(TypeSubject.Smo)
+      : base(ExchangeSubjectType.Smo)
     {
     }
 

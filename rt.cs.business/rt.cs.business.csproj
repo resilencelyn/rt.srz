@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4F267D4-227D-4614-8F62-23233F5310AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rt.cs.business</RootNamespace>
+    <AssemblyName>rt.cs.business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="config\ConfigManager.cs" />
+    <Compile Include="registry\RepositoryRegistry.cs" />
+    <Compile Include="request\IMessageExporter.cs" />
+    <Compile Include="request\IMessageFactory.cs" />
+    <Compile Include="request\MessageFactory.cs" />
+    <Compile Include="request\messages\A03\MessageA03.cs" />
+    <Compile Include="request\messages\A08\MessageP01.cs" />
+    <Compile Include="request\messages\A08\MessageA08Ins2.cs" />
+    <Compile Include="request\messages\A08\MessageA08Base.cs" />
+    <Compile Include="request\MessageBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="request\messages\A08\MessageA08Ins1.cs" />
+    <Compile Include="request\messages\A08\MessageP02.cs" />
+    <Compile Include="request\messages\A08\MessageP03.cs" />
+    <Compile Include="request\messages\A08\MessageP04.cs" />
+    <Compile Include="request\messages\A08\MessageP06.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rt.core.business\rt.core.business.csproj">
+      <Project>{CB9CE33B-78B5-4B97-8B05-5D63320A1E39}</Project>
+      <Name>rt.core.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.core.model\rt.core.model.csproj">
+      <Project>{1B981163-21AC-4F46-8927-CF2641F54FA5}</Project>
+      <Name>rt.core.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model.HL7\rt.srz.model.hl7.csproj">
+      <Project>{b91bb517-e433-4091-9c96-3386ca975c5a}</Project>
+      <Name>rt.srz.model.hl7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rt.srz.model\rt.srz.model.csproj">
+      <Project>{F247928D-EA65-4D69-BD03-B1E506B09986}</Project>
+      <Name>rt.srz.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="factory\" />
+    <Folder Include="interfaces\" />
+    <Folder Include="request\messages\A13\" />
+    <Folder Include="request\messages\A24\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="request\request.cd" />
+    <None Include="rt.srz.key" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

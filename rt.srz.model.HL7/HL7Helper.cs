@@ -39,7 +39,7 @@ namespace rt.srz.model.Hl7
     /// <summary>
     ///   The h l 7 namespace.
     /// </summary>
-    public const string Hl7Namespace = "urn:Hl7-org:v2xml";
+    public const string Hl7Namespace = "urn:hl7-org:v2xml";
 
     /// <summary>
     ///   The iso.

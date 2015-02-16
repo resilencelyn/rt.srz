@@ -19,7 +19,7 @@ namespace rt.srz.model.Hl7.zags
   ///   Данные ЗАГС по умершим
   /// </summary>
   [Serializable]
-  [XmlRoot("ZAGS", Namespace = "urn:Hl7-org:v2xml", IsNullable = false)]
+  [XmlRoot("ZAGS", Namespace = "urn:hl7-org:v2xml", IsNullable = false)]
   public class Zags : BaseMessageTemplate
   {
     #region Public Properties

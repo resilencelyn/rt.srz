@@ -451,36 +451,43 @@ namespace rt.srz.model.Hl7.commons
         return null;
       }
 
-      var namespaces = new XmlSerializerNamespaces();
-      var namespacesInScope = resolver.GetNamespacesInScope(XmlNamespaceScope.All);
-      if (namespacesInScope != null)
+      var container = new XmlSerializerNamespaces();
+
+      // копируем словарь сочетаний
+      var dictionary = resolver.GetNamespacesInScope(XmlNamespaceScope.All);
+      if (dictionary != null)
       {
-        string str;
+        // определяем дефолтовый нэймспейс, если его нужно игнорировать
+        string skipDefaultNamespace;
         if (includeDefaultNamespace)
         {
-          str = null;
+          skipDefaultNamespace = null;
         }
-        else if (!namespacesInScope.TryGetValue(string.Empty, out str))
+        else
         {
-          str = null;
+          if (!dictionary.TryGetValue(string.Empty, out skipDefaultNamespace))
+            skipDefaultNamespace = null;
         }
 
-        foreach (var pair in namespacesInScope)
+        // копируем словарь
+        foreach (var ns in dictionary)
         {
-          var key = pair.Key;
-          if ((string.Compare(key, "xml", StringComparison.Ordinal) != 0)
-              && (string.Compare(key, "xmlns", StringComparison.Ordinal) != 0))
-          {
-            var strB = pair.Value;
-            if ((str == null) || (string.Compare(str, strB) != 0))
-            {
-              namespaces.Add(key, pair.Value);
-            }
-          }
+          // пропускаем стандартные префиксы
+          string prefix = ns.Key;
+          if (string.Compare(prefix, "xml", StringComparison.Ordinal) == 0 || string.Compare(prefix, "xmlns", StringComparison.Ordinal) == 0)
+            continue;
+
+          // пропускаем дефолтовый нэймспейс, если его нужно игнорировать
+          string name = ns.Value;
+          if (skipDefaultNamespace != null && string.Compare(skipDefaultNamespace, name) == 0)
+            continue;
+
+          // добавляем текущее сочетание
+          container.Add(prefix, ns.Value);
         }
       }
 
-      return namespaces;
+      return container;
     }
 
     /// <summary>

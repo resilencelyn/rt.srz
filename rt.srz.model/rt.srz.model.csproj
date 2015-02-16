@@ -212,7 +212,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="srz\concepts\HL7EventType.cs" />
     <Compile Include="srz\concepts\MessageStatementType.cs" />
     <Compile Include="srz\In1.cs" />
     <Compile Include="srz\In1.generated.cs">
@@ -254,7 +253,7 @@
     <Compile Include="srz\concepts\Country.cs" />
     <Compile Include="srz\concepts\DocumentType.cs" />
     <Compile Include="srz\concepts\EmploymentSourceType.cs" />
-    <Compile Include="srz\concepts\MessageType.cs" />
+    <Compile Include="srz\concepts\TransactionCode.cs" />
     <Compile Include="srz\concepts\OperationKey.cs" />
     <Compile Include="srz\concepts\PeriodCode.cs" />
     <Compile Include="srz\concepts\PfrFeature.cs" />
@@ -270,10 +269,10 @@
     <Compile Include="srz\concepts\TypeContent.cs" />
     <Compile Include="srz\concepts\TypeEvent.cs" />
     <Compile Include="srz\concepts\TypeFields.cs" />
-    <Compile Include="srz\concepts\TypeFile.cs" />
+    <Compile Include="srz\concepts\ExchangeFileType.cs" />
     <Compile Include="srz\concepts\TypeOperation.cs" />
     <Compile Include="srz\concepts\TypeStatement.cs" />
-    <Compile Include="srz\concepts\TypeSubject.cs" />
+    <Compile Include="srz\concepts\ExchangeSubjectType.cs" />
     <Compile Include="srz\concepts\TypeTwin.cs" />
     <Compile Include="srz\ContactInfo.cs" />
     <Compile Include="srz\ContactInfo.generated.cs">

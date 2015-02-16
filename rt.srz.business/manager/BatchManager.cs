@@ -59,7 +59,7 @@ namespace rt.srz.business.manager
           ObjectFactory.GetInstance<IBatchManager>()
                        .GetBy(
                               x =>
-                              x.Period.Id == periodId && x.Subject.Id == TypeSubject.Pfr
+                              x.Period.Id == periodId && x.Subject.Id == ExchangeSubjectType.Pfr
                               && x.Receiver.Id == currentUser.GetTf().Id);
       }
 
@@ -83,7 +83,7 @@ namespace rt.srz.business.manager
       {
         return
           ObjectFactory.GetInstance<IBatchManager>()
-                       .GetBy(x => x.Subject.Id == TypeSubject.Pfr && x.Receiver.Id == currentUser.GetTf().Id);
+                       .GetBy(x => x.Subject.Id == ExchangeSubjectType.Pfr && x.Receiver.Id == currentUser.GetTf().Id);
       }
 
       return new List<Batch>();
@@ -108,7 +108,7 @@ namespace rt.srz.business.manager
         var query =
           session.QueryOver<Period>()
                  .JoinQueryOver<Batch>(p => p.Batches)
-                 .Where(b => b.Subject.Id == TypeSubject.Pfr && b.Receiver.Id == currentUser.GetTf().Id);
+                 .Where(b => b.Subject.Id == ExchangeSubjectType.Pfr && b.Receiver.Id == currentUser.GetTf().Id);
         return query.List().Distinct().ToList();
       }
 
@@ -334,10 +334,10 @@ namespace rt.srz.business.manager
 
           switch (batch.Type.Id)
           {
-            case TypeFile.PfrData:
+            case ExchangeFileType.PfrData:
               result.FoundByDataRecordCount += foundRecordCount;
               break;
-            case TypeFile.PfrSnils:
+            case ExchangeFileType.PfrSnils:
               result.FoundBySnilsRecordCount += foundRecordCount;
               break;
           }

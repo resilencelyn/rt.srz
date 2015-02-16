@@ -20,8 +20,8 @@ namespace rt.srz.business.exchange.import.pfr
 
   using Quartz;
 
-  using rt.core.business.interfaces.exchange;
   using rt.core.business.server.exchange.export;
+  using rt.srz.business.exchange.export;
   using rt.srz.business.manager;
   using rt.srz.model.algorithms;
   using rt.srz.model.Hl7.pfr;
@@ -72,7 +72,7 @@ namespace rt.srz.business.exchange.import.pfr
     {
       get
       {
-        return ConceptCacheManager.GetById(TypeFile.PfrSnils);
+        return ConceptCacheManager.GetById(ExchangeFileType.PfrSnils);
       }
     }
 
@@ -171,7 +171,7 @@ namespace rt.srz.business.exchange.import.pfr
           if (snilses.Count > 0)
           {
             var eb =
-              ObjectFactory.GetInstance<IExportBatchFactory<SnilsZlListAtr, string>>().GetExporter(ExportBatchType.Pfr);
+              ObjectFactory.GetInstance<IExporterBatchFactory<SnilsZlListAtr, string>>().GetExporter(Exporters.PfrExporter);
             eb.OutDirectory = Path.Combine("Out", batch.Receiver.Oid.Id, batch.Receiver.Code);
             eb.FileName = GetFileName(batch);
             eb.BeginBatch();

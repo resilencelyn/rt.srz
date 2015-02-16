@@ -24,7 +24,7 @@ namespace rt.srz.model.Hl7.card.za2
   ///   Класс подтвержедение подписи в изготовление полисов
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ZPI_ZA2", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ZPI_ZA2", Namespace = "urn:hl7-org:v2xml")]
   public class ZpiZA2
   {
     #region Public Properties

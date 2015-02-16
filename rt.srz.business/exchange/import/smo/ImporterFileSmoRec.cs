@@ -40,7 +40,7 @@ namespace rt.srz.business.exchange.import.smo
     ///   Initializes a new instance of the <see cref="ImporterFileSmoRec" /> class.
     /// </summary>
     public ImporterFileSmoRec()
-      : base(TypeSubject.Smo)
+      : base(ExchangeSubjectType.Smo)
     {
     }
 
@@ -116,7 +116,7 @@ namespace rt.srz.business.exchange.import.smo
             message.Batch = batch;
             message.IsCommit = true;
             message.IsError = false;
-            message.Type = conceptManager.GetById(MessageType.K);
+            message.Type = conceptManager.GetById(TransactionCode.K);
             ObjectFactory.GetInstance<ISessionFactory>().GetCurrentSession().Save(message);
 
             // Создаем MessageStatement
@@ -168,8 +168,8 @@ namespace rt.srz.business.exchange.import.smo
       var conceptManager = ObjectFactory.GetInstance<IConceptCacheManager>();
 
       var batch = new Batch();
-      batch.Subject = conceptManager.GetById(TypeSubject.Smo);
-      batch.Type = conceptManager.GetById(TypeFile.Rec);
+      batch.Subject = conceptManager.GetById(ExchangeSubjectType.Smo);
+      batch.Type = conceptManager.GetById(ExchangeFileType.Rec);
       batch.FileName = recList.Filename;
 
       // Парсим имя файла для получения периода и номера

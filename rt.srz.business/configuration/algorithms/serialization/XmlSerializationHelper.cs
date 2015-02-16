@@ -2,9 +2,6 @@
 // <copyright file="XmlSerializationHelper.cs" company="РусБИТех">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
-// <summary>
-//   Сериализатор
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace rt.srz.business.configuration.algorithms.serialization
@@ -21,7 +18,6 @@ namespace rt.srz.business.configuration.algorithms.serialization
   using rt.srz.model.Hl7.commons;
   using rt.srz.model.Hl7.person;
   using rt.srz.model.Hl7.person.messages;
-  using rt.srz.model.Hl7.person.requests;
   using rt.srz.model.Hl7.person.target;
 
   #endregion
@@ -150,10 +146,6 @@ namespace rt.srz.business.configuration.algorithms.serialization
 
         GetElementAttributeIn1();
         GetElementAttributeIn1Card();
-        GetElementAttributeRspZk1();
-        GetElementAttributeRspZk2();
-        GetElementAttributeRspZk4();
-        GetElementAttributeRspZk5();
       }
 
       return myOverrides;
@@ -279,20 +271,14 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// </param>
     /// ///
     public static void SerializeToFile(
-      object person, 
-      string fileName, 
-      string tableName, 
+      object person,
+      string fileName,
+      string tableName,
       XmlWriterSettings settings = null)
     {
       var nt = new NameTable();
       nt.Add(tableName);
-      var nameres = new XmlNamespaceManager(nt);
-      nameres.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-      nameres.PushScope();
-      nameres.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
-      nameres.PushScope();
-      nameres.AddNamespace("rtc", "http://www.rintech.ru");
-      nameres.PushScope();
+      var nameres = GetNamespaces(nt);
 
       var directory = new FileInfo(fileName).Directory;
       if (directory != null && !directory.Exists)
@@ -336,19 +322,13 @@ namespace rt.srz.business.configuration.algorithms.serialization
     /// The <see cref="FileStream"/>.
     /// </returns>
     public static MemoryStream SerializeToMemoryStream(
-      object person, 
-      string tableName, 
+      object person,
+      string tableName,
       XmlWriterSettings settings = null)
     {
       var nt = new NameTable();
       nt.Add(tableName);
-      var nameres = new XmlNamespaceManager(nt);
-      nameres.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-      nameres.PushScope();
-      nameres.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
-      nameres.PushScope();
-      nameres.AddNamespace("rtc", "http://www.rintech.ru");
-      nameres.PushScope();
+      var nameres = GetNamespaces(nt);
 
       var stream = new MemoryStream();
       {
@@ -610,47 +590,21 @@ namespace rt.srz.business.configuration.algorithms.serialization
     }
 
     /// <summary>
-    ///   Инициализация переопределенных тегов для класса RspZk1
+    /// The get namespaces.
     /// </summary>
-    private static void GetElementAttributeRspZk1()
+    /// <param name="nt">
+    /// The nt.
+    /// </param>
+    /// <returns>
+    /// The <see cref="XmlNamespaceManager"/>.
+    /// </returns>
+    private static XmlNamespaceManager GetNamespaces(NameTable nt)
     {
-      var myElementAttribute = new XmlElementAttribute("RSP_ZK1.QUERY_RESPONSE");
-      var myAttributes = new XmlAttributes();
-      myAttributes.XmlElements.Add(myElementAttribute);
-      myOverrides.Add(typeof(RSP_ZK1), "QueryResponseList", myAttributes);
-    }
-
-    /// <summary>
-    ///   Инициализация переопределенных тегов для класса RspZk2
-    /// </summary>
-    private static void GetElementAttributeRspZk2()
-    {
-      var myElementAttribute = new XmlElementAttribute("RSP_ZK2.QUERY_RESPONSE");
-      var myAttributes = new XmlAttributes();
-      myAttributes.XmlElements.Add(myElementAttribute);
-      myOverrides.Add(typeof(RSP_ZK2), "QueryResponseList", myAttributes);
-    }
-
-    /// <summary>
-    ///   Инициализация переопределенных тегов для класса RspZk4
-    /// </summary>
-    private static void GetElementAttributeRspZk4()
-    {
-      var myElementAttribute = new XmlElementAttribute("RSP_ZK4.QUERY_RESPONSE");
-      var myAttributes = new XmlAttributes();
-      myAttributes.XmlElements.Add(myElementAttribute);
-      myOverrides.Add(typeof(RSP_ZK4), "QueryResponseList", myAttributes);
-    }
-
-    /// <summary>
-    ///   Инициализация переопределенных тегов для класса RspZk5
-    /// </summary>
-    private static void GetElementAttributeRspZk5()
-    {
-      var myElementAttribute = new XmlElementAttribute("RSP_ZK5.QUERY_RESPONSE");
-      var myAttributes = new XmlAttributes();
-      myAttributes.XmlElements.Add(myElementAttribute);
-      myOverrides.Add(typeof(RSP_ZK5), "QueryResponseList", myAttributes);
+      var ns = new XmlNamespaceManager(new NameTable());
+      ns.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
+      ns.AddNamespace("rtc", "http://www.rintech.ru");
+      ns.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+      return ns;
     }
 
     /// <summary>
@@ -669,13 +623,7 @@ namespace rt.srz.business.configuration.algorithms.serialization
     {
       var nt = new NameTable();
       nt.Add(tableName);
-      var nameres = new XmlNamespaceManager(nt);
-      nameres.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-      nameres.PushScope();
-      nameres.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
-      nameres.PushScope();
-      nameres.AddNamespace("rtc", "http://www.rintech.ru");
-      nameres.PushScope();
+      var nameres = GetNamespaces(nt);
 
       var directoryName = new FileInfo(fileName).DirectoryName;
       if (directoryName != null && !Directory.Exists(directoryName))

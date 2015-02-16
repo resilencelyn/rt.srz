@@ -26,3 +26,7 @@ Binaries/
 Install/
 *.log
 *.dbmdl
+foms.cs/
+foms.srz/
+AUTOLOAD/
+

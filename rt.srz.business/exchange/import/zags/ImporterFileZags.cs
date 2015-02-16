@@ -63,7 +63,7 @@ namespace rt.srz.business.exchange.import.zags
     {
       get
       {
-        return ConceptCacheManager.GetById(TypeFile.Zags);
+        return ConceptCacheManager.GetById(ExchangeFileType.Zags);
       }
     }
 
@@ -166,7 +166,7 @@ namespace rt.srz.business.exchange.import.zags
       session.Save(period);
       batch.Period = period;
 
-      batch.Subject = ConceptCacheManager.GetById(TypeSubject.Zags);
+      batch.Subject = ConceptCacheManager.GetById(ExchangeSubjectType.Zags);
     }
 
     /// <summary>

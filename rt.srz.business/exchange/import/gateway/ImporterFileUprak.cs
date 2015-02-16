@@ -40,7 +40,7 @@ namespace rt.srz.business.exchange.import.gateway
     ///   Initializes a new instance of the <see cref="ImporterFileUprak" /> class.
     /// </summary>
     public ImporterFileUprak()
-      : base(TypeSubject.Erz)
+      : base(ExchangeSubjectType.Erz)
     {
     }
 
@@ -134,7 +134,7 @@ namespace rt.srz.business.exchange.import.gateway
         // Удаляем предыдущие ошибки
         var oldErrors =
           session.QueryOver<Error>()
-                 .Where(x => x.Statement.Id == statement.Id && x.Application.Id == TypeSubject.Erz)
+                 .Where(x => x.Statement.Id == statement.Id && x.Application.Id == ExchangeSubjectType.Erz)
                  .List();
         foreach (var oldError in oldErrors)
         {
@@ -156,7 +156,7 @@ namespace rt.srz.business.exchange.import.gateway
           // Создаем запись в БД
           var error = new Error();
           error.Statement = statement;
-          error.Application = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(TypeSubject.Erz);
+          error.Application = ObjectFactory.GetInstance<IConceptCacheManager>().GetById(ExchangeSubjectType.Erz);
           error.Code = uprErr.ErrorCodeApp.MessageCode;
           error.Message1 = uprErr.ErrorCodeApp.MessageDescription;
           error.Repl = "Ошибки ФЛК шлюза РС";

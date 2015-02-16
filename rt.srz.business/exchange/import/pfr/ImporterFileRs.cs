@@ -42,7 +42,7 @@ namespace rt.srz.business.exchange.import.pfr
     {
       get
       {
-        return ConceptCacheManager.GetById(TypeFile.PfrData);
+        return ConceptCacheManager.GetById(ExchangeFileType.PfrData);
       }
     }
 

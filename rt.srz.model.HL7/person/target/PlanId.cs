@@ -28,13 +28,13 @@ namespace rt.srz.model.Hl7.person.target
     ///   The id.
     /// </summary>
     [XmlElement(ElementName = "CWE.1", Order = 1)]
-    public string Id = string.Empty;
+    public string Id = "ОМС";
 
     /// <summary>
     ///   The oid.
     /// </summary>
     [XmlElement(ElementName = "CWE.3", Order = 3)]
-    public string Oid;
+    public string Oid = "1.2.643.2.40.5.100.72";
 
     #endregion
   }

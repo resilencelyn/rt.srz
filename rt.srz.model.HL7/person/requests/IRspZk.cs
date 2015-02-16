@@ -22,10 +22,10 @@ namespace rt.srz.model.Hl7.person.requests
   {
     #region Public Properties
 
-    /// <summary>
-    ///   Список ответа
-    /// </summary>
-    List<QueryResponse> QueryResponseList { get; set; }
+    /////// <summary>
+    ///////   Список ответа
+    /////// </summary>
+    ////List<QueryResponse> QueryResponseList { get; set; }
 
     #endregion
   }

@@ -23,7 +23,7 @@ namespace rt.srz.model.Hl7.person.messages
   ///   The ad t_ a 01.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ADT_A01", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ADT_A01", Namespace = "urn:hl7-org:v2xml")]
   public class ADT_A01 : BaseMessageTemplate
   {
     #region Fields
@@ -37,25 +37,25 @@ namespace rt.srz.model.Hl7.person.messages
     /// <summary>
     ///   The insurance list.
     /// </summary>
-    [XmlElement(ElementName = "ADT_A01.INSURANCE", Order = 5)]
+    [XmlElement(ElementName = "ADT_A01.INSURANCE", Order = 6)]
     public List<ADT_A01_INSURANCE> InsuranceList = new List<ADT_A01_INSURANCE>();
 
     /// <summary>
     ///   The pid.
     /// </summary>
-    [XmlElement(ElementName = "PID", Order = 3)]
+    [XmlElement(ElementName = "PID", Order = 4)]
     public MessagePid Pid = new MessagePid();
 
     /// <summary>
     ///   The pv 1.
     /// </summary>
-    [XmlElement(ElementName = "PV1", Order = 4)]
+    [XmlElement(ElementName = "PV1", Order = 5)]
     public Pv1 Pv1 = new Pv1();
 
     /// <summary>
     ///   The zvn.
     /// </summary>
-    [XmlElement(ElementName = "ZVN", Order = 6)]
+    [XmlElement(ElementName = "ZVN", Order = 3)]
     public Zvn Zvn;
 
     #endregion

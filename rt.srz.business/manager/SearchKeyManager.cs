@@ -120,11 +120,7 @@ namespace rt.srz.business.manager
                         idCardNumber =
                           new FieldVariation
                           {
-                            value =
-                              documentManager
-                              .GetSerNumDocument(
-                                                 statement
-                                                   .DocumentUdl),
+                            value = statement.DocumentUdl.SeriesNumber,
                             fieldType =
                               FieldTypes.IdCardNumber
                           },

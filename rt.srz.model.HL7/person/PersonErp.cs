@@ -12,6 +12,8 @@ namespace rt.srz.model.Hl7.person
   #region references
 
   using System;
+  using System.Xml;
+  using System.Xml.Schema;
   using System.Xml.Serialization;
 
   #endregion
@@ -20,7 +22,7 @@ namespace rt.srz.model.Hl7.person
   ///   The person erp.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "UPRMessageBatch", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "UPRMessageBatch", Namespace = "urn:hl7-org:v2xml")]
   public class PersonErp : BasePersonTemplate
   {
   }

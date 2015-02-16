@@ -20,7 +20,7 @@ namespace rt.srz.model.Hl7.person.target
   ///   Перечень ЕНП работающих застрахованных лиц, идентифицированных в РС ЕРЗ
   /// </summary>
   [Serializable]
-  [XmlType(TypeName = "ZWL", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlType(TypeName = "ZWL", Namespace = "urn:hl7-org:v2xml")]
   public class Zwl
   {
     #region Public Properties

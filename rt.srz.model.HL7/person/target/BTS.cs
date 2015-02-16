@@ -20,7 +20,7 @@ namespace rt.srz.model.Hl7.person.target
   ///   The bts.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "BTS", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "BTS", Namespace = "urn:hl7-org:v2xml")]
   public class BTS
   {
     #region Fields

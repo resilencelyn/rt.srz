@@ -28,7 +28,7 @@ namespace rt.srz.business.exchange.import.nsi
     ///   Initializes a new instance of the <see cref="ImporterOrganisationTfoms" /> class.
     /// </summary>
     public ImporterOrganisationTfoms()
-      : base(TypeSubject.Tfoms)
+      : base(ExchangeSubjectType.Tfoms)
     {
     }
 

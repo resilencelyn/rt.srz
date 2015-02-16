@@ -100,6 +100,17 @@ namespace rt.srz.model.srz
       return sb.ToString();
     }
 
+    /// <summary>
+    /// The get okato region.
+    /// </summary>
+    /// <returns>
+    /// The <see cref="string"/>.
+    /// </returns>
+    public virtual string GetOkatoRegion()
+    {
+      return Okato != null && Okato.Length > 1 ? string.Format("{0}000", Okato.Substring(0, 2)) : null;
+    }
+
     #endregion
 
     #region Methods

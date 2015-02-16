@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="rt.cs.business.request.messages.A08.MessageA08Base">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAEAAAAAAAEAQgAAAIAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageA08Base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.MessageBase">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\MessageBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageA08Ins2" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageA08Ins2.cs</FileName>
+      <NewMemberFileName>request\messages\A08\MessageA08Ins1.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageA08Ins1" Collapsed="true">
+    <Position X="5.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageA08Ins1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageP01" Collapsed="true">
+    <Position X="3.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageP01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageP02" Collapsed="true">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageP02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageP03" Collapsed="true">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageP03.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageP04" Collapsed="true">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageP04.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="rt.cs.business.request.messages.A08.MessageP06" Collapsed="true">
+    <Position X="12.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>request\messages\A08\MessageP06.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

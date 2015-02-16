@@ -22,7 +22,7 @@ namespace rt.srz.model.Hl7.person.messages
   ///   The zp i_ z a 1.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "ZPI_ZA1", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "ZPI_ZA1", Namespace = "urn:hl7-org:v2xml")]
   public class ZPI_ZA1 : BaseMessageTemplate
   {
     #region Fields

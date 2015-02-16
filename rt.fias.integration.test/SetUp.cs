@@ -63,7 +63,7 @@ namespace rt.fias.integration.test
                     {
                       StartInfo =
                       {
-                        FileName = string.Format("{0}/IIS Express/iisexpress.exe", programFiles), 
+                        FileName = string.Format("{0}/IIS Express/iisexpress.exe", programFiles),
                         Arguments =
                           string.Format("/path:\"{0}\" /port:{1}", applicationPath, 9060)
                       }
@@ -88,13 +88,8 @@ namespace rt.fias.integration.test
     {
       var tmpDirName = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
       var solutionFolder = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(tmpDirName)));
-      if (solutionFolder != null)
-      {
-        var result = Path.Combine(solutionFolder, applicationName);
-        return result;
-      }
-
-      return null;
+      var result = Path.Combine(solutionFolder, applicationName);
+      return result;
     }
 
     #endregion

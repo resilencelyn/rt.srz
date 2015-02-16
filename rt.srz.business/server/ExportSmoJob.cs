@@ -13,9 +13,9 @@ namespace rt.srz.business.server
 
   using Quartz;
 
-  using rt.core.business.interfaces.exchange;
   using rt.core.business.quartz;
   using rt.core.business.server.exchange.export;
+  using rt.srz.business.exchange.export;
   using rt.srz.business.manager;
   using rt.srz.model.Hl7.smo;
   using rt.srz.model.srz.concepts;
@@ -79,12 +79,12 @@ namespace rt.srz.business.server
         var batch = ObjectFactory.GetInstance<IBatchManager>().GetById(jobInfo.BatchId);
         switch (batch.Type.Id)
         {
-          case TypeFile.Rec:
+          case ExchangeFileType.Rec:
           {
             // Выгрузка для СМО(RecList)
             // Получаем экспортер
             var eb =
-              ObjectFactory.GetInstance<IExportBatchFactory<RECListType, RECType>>().GetExporter(ExportBatchType.SmoRec);
+              ObjectFactory.GetInstance<IExporterBatchFactory<RECListType, RECType>>().GetExporter(Exporters.SmoRecExporter);
 
             // Вызываем экспортер
             eb.BulkCreateAndExport(context, jobInfo.BatchId);
@@ -92,10 +92,10 @@ namespace rt.srz.business.server
 
             break;
 
-            // case TypeFile.Op: // Выгрузка для ТФОМС(OpList)
+            // case ExchangeFileType.Op: // Выгрузка для ТФОМС(OpList)
             // {
             // // Получаем экспортер
-            // var eb = ObjectFactory.GetInstance<IExportBatchFactory<OPListType, OPType>>().GetExporter(ExportBatchType.SmoOp);
+            // var eb = ObjectFactory.GetInstance<IExporterBatchFactory<OPListType, OPType>>().GetExporter(ExporterBatchEnum.SmoOpExporter);
 
             // // Вызываем экспортер
             // eb.BulkCreateAndExport(context);

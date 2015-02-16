@@ -47,7 +47,7 @@ namespace rt.core.business.server.exchange.import
     #region Public Methods and Operators
 
     /// <summary>
-    /// Возвращает ExportBatchTyped по указанному типу.
+    /// Возвращает ExporterBatchTyped по указанному типу.
     /// </summary>
     /// <param name="file">
     /// The file.

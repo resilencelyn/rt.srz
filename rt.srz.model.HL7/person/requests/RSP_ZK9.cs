@@ -23,7 +23,7 @@ namespace rt.srz.model.Hl7.person.requests
   ///   The rs p_ z k 9.
   /// </summary>
   [Serializable]
-  [XmlRoot(ElementName = "RSP_ZK9", Namespace = "urn:Hl7-org:v2xml")]
+  [XmlRoot(ElementName = "RSP_ZK9", Namespace = "urn:hl7-org:v2xml")]
   public class RSP_ZK9 : BaseAnswerMessageTemplate
   {
     #region Fields

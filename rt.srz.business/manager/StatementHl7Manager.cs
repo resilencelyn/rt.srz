@@ -13,6 +13,7 @@ namespace rt.srz.business.manager
 
   using System;
   using System.Collections.Generic;
+  using System.Globalization;
   using System.IO;
 
   using NHibernate;
@@ -32,7 +33,6 @@ namespace rt.srz.business.manager
   using StructureMap;
 
   using Document = rt.srz.model.Hl7.person.target.Document;
-  using MessageType = rt.srz.model.Hl7.person.target.MessageType;
 
   #endregion
 
@@ -61,8 +61,8 @@ namespace rt.srz.business.manager
       // Создаем батч для выгрузки файла, для проверки через ФЛК шлюза ЦС ЕРЗ
       var batch = new Batch();
       batch.FileName = string.Empty;
-      batch.Subject = conceptManager.GetById(TypeSubject.Erz);
-      batch.Type = conceptManager.GetById(TypeFile.PersonErp);
+      batch.Subject = conceptManager.GetById(ExchangeSubjectType.Erz);
+      batch.Type = conceptManager.GetById(ExchangeFileType.PersonErp);
       batch.CodeConfirm = conceptManager.GetById(CodeConfirm.CA);
       batch.Sender = statement.PointDistributionPolicy.Parent.Parent;
       batch.Receiver = null;
@@ -111,9 +111,9 @@ namespace rt.srz.business.manager
     /// <returns>
     /// The <see cref="ADT_A01"/>.
     /// </returns>
-    public ADT_A01 GetADT_A01(Statement statement, MedicalInsurance insurance, Message message)
+    public ADT_A01 GetAdtA01(Statement statement, MedicalInsurance insurance, Message message)
     {
-      var adt_01 = new ADT_A01
+      var adt01 = new ADT_A01
                    {
                      Msh = GetMsh(statement, message),
                      Evn = GetEvn(statement),
@@ -124,7 +124,7 @@ namespace rt.srz.business.manager
                      // Zvn = GetZvn(statement)
                    };
 
-      return adt_01;
+      return adt01;
     }
 
     /// <summary>
@@ -155,7 +155,7 @@ namespace rt.srz.business.manager
         // Создаем сообщение
         var message = new Message();
         message.Batch = batch;
-        message.Type = conceptManager.GetById(Hl7EventType.A08);
+        message.Type = conceptManager.GetById(model.srz.concepts.TransactionCode.A08);
         message.Reason = GetReason(statement);
         message.IsCommit = false;
         message.IsError = false;
@@ -169,7 +169,7 @@ namespace rt.srz.business.manager
         messageStatement.Version = statement.Version;
         session.Save(messageStatement);
 
-        personErp.Adt_A01.Add(GetADT_A01(statement, insurance, message));
+        personErp.Adt_A01.Add(GetAdtA01(statement, insurance, message));
       }
 
       return personErp;
@@ -261,7 +261,7 @@ namespace rt.srz.business.manager
     /// </returns>
     private BTS GetBts(int messageCount)
     {
-      return new BTS { CountMessages = messageCount.ToString() };
+      return new BTS { CountMessages = messageCount.ToString(CultureInfo.InvariantCulture) };
     }
 
     /// <summary>
@@ -445,11 +445,7 @@ namespace rt.srz.business.manager
                                {
                                  new IdentificatorsCard
                                  {
-                                   identificator =
-                                     documentManager
-                                     .GetSerNumDocument(
-                                                        statement
-                                                          .DocumentUdl), 
+                                   identificator = statement.DocumentUdl.SeriesNumber,
                                    identificatorType =
                                      statement.DocumentUdl
                                               .DocumentType.Code, 
@@ -487,11 +483,7 @@ namespace rt.srz.business.manager
                                  }, 
                                  new IdentificatorsCard
                                  {
-                                   identificator =
-                                     documentManager
-                                     .GetSerNumDocument(
-                                                        statement
-                                                          .DocumentRegistration), 
+                                   identificator = statement.DocumentRegistration.SeriesNumber,
                                    identificatorType =
                                      statement.DocumentRegistration
                                               .DocumentType.Code, 
@@ -726,7 +718,7 @@ namespace rt.srz.business.manager
       in1.IdentificatorsList.Add(
                                  new Identificators
                                  {
-                                   identificator = documentManager.GetSerNumDocument(documentUdl),
+                                   identificator = documentUdl.SeriesNumber,
                                    identificatorType = documentUdl.DocumentType.Code,
                                    identificatorFrom = Hl7Helper.FormatDate(documentUdl.DateIssue),
                                    identificatorTo =
@@ -899,8 +891,7 @@ namespace rt.srz.business.manager
                     {
                       new IdentificatorsCard
                       {
-                        identificator =
-                          documentManager.GetSerNumDocument(representative.Document.Series, representative.Document.Number), 
+                        identificator = representative.Document.SeriesNumber, 
                         enp = null, 
                         identificatorType =
                           representative.Document
@@ -1008,7 +999,7 @@ namespace rt.srz.business.manager
       pid.IdentificatorsList.Add(
                                  new Identificators
                                  {
-                                   identificator = documentManager.GetSerNumDocument(documentUdl),
+                                   identificator = documentUdl.SeriesNumber,
                                    identificatorType = documentUdl.DocumentType.Code,
                                    identificatorFrom = Hl7Helper.FormatDate(documentUdl.DateIssue),
                                    identificatorTo =

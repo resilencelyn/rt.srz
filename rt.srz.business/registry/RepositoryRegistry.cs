@@ -13,14 +13,15 @@ namespace rt.srz.business.registry
   #region references
 
   using rt.core.business.interfaces.directorywatcher;
-  using rt.core.business.interfaces.exchange;
   using rt.core.business.server.exchange.export;
+  using rt.srz.business.exchange.export.erp;
   using rt.srz.business.exchange.export.pfr;
   using rt.srz.business.exchange.export.smo;
   using rt.srz.business.exchange.import.zags;
   using rt.srz.business.interfaces.logicalcontrol;
   using rt.srz.business.manager.logicalcontrol;
   using rt.srz.business.manager.rightedit;
+  using rt.srz.model.Hl7.person;
   using rt.srz.model.Hl7.pfr;
   using rt.srz.model.Hl7.smo;
   using rt.srz.model.interfaces;
@@ -88,18 +89,20 @@ namespace rt.srz.business.registry
              s.AddAllTypesOf<IZagsImporter>();
            });
 
-      ForSingletonOf<IExportBatchFactory<SnilsZlListAtr, string>>().Use<ExportBatchFactory<SnilsZlListAtr, string>>();
-      ForSingletonOf<IExportBatchFactory<RECListType, RECType>>().Use<ExportBatchFactory<RECListType, RECType>>();
+      ForSingletonOf<IExporterBatchFactory<SnilsZlListAtr, string>>().Use<ExporterBatchFactory<SnilsZlListAtr, string>>();
+      ForSingletonOf<IExporterBatchFactory<RECListType, RECType>>().Use<ExporterBatchFactory<RECListType, RECType>>();
+      ForSingletonOf<IExporterBatchFactory<PersonErp, BaseMessageTemplate>>().Use<ExporterBatchFactory<PersonErp, BaseMessageTemplate>>();
 
-      // ForSingletonOf<IExportBatchFactory<OPListType, OPType>>().Use<ExportBatchFactory<OPListType, OPType>>();
-      // ForSingletonOf<IExportBatchFactory<REPListType, REPType>>().Use<ExportBatchFactory<REPListType, REPType>>();
-      // ForSingletonOf<IExportBatchFactory<PFLKType, PRType>>().Use<ExportBatchFactory<PFLKType, PRType>>();
-      For<IExportBatchTyped<SnilsZlListAtr, string>>().Add<ExportBatchPfr>();
-      For<IExportBatchTyped<RECListType, RECType>>().Add<ExportBatchSmoRec>();
+      // ForSingletonOf<IExporterBatchFactory<OPListType, OPType>>().Use<ExporterBatchFactory<OPListType, OPType>>();
+      // ForSingletonOf<IExporterBatchFactory<REPListType, REPType>>().Use<ExporterBatchFactory<REPListType, REPType>>();
+      // ForSingletonOf<IExporterBatchFactory<PFLKType, PRType>>().Use<ExporterBatchFactory<PFLKType, PRType>>();
+      For<IExporterBatchTyped<SnilsZlListAtr, string>>().Add<ExporterBatchPfr>();
+      For<IExporterBatchTyped<RECListType, RECType>>().Add<ExporterBatchSmoRec>();
+      For<IExporterBatchTyped<PersonErp, BaseMessageTemplate>>().Add<ExporterBatchToErp>();
 
-      // For<IExportBatchTyped<OPListType, OPType>>().Add<ExportBatchSmoOp>();
-      // For<IExportBatchTyped<REPListType, REPType>>().Add<ExportBatchSmoRep>();
-      // For<IExportBatchTyped<PFLKType, PRType>>().Add<ExportBatchSmoFlk>();
+      // For<IExporterBatchTyped<OPListType, OPType>>().Add<ExporterBatchSmoOp>();
+      // For<IExporterBatchTyped<REPListType, REPType>>().Add<ExporterBatchSmoRep>();
+      // For<IExporterBatchTyped<PFLKType, PRType>>().Add<ExporterBatchSmoFlk>();
     }
 
     #endregion

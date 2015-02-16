@@ -47,7 +47,7 @@ namespace rt.srz.business.manager
       // Выбираем батчи
       var subQuery =
         QueryOver.Of<Batch>()
-                 .Where(x => x.Subject.Id == TypeSubject.Smo && x.Type.Id == TypeFile.Rec)
+                 .Where(x => x.Subject.Id == ExchangeSubjectType.Smo && x.Type.Id == ExchangeFileType.Rec)
                  .Select(x => x.Period.Id);
 
       // Выбираем по отправителю

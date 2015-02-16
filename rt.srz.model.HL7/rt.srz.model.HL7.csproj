@@ -290,7 +290,7 @@
     <Compile Include="person\target\MSH.cs" />
     <Compile Include="person\target\TypeWork.cs" />
     <Compile Include="person\target\VersionStandartId.cs" />
-    <Compile Include="person\target\MessageType.cs" />
+    <Compile Include="person\target\TransactionCode.cs" />
     <Compile Include="person\target\MessageName.cs" />
     <Compile Include="person\target\CodeOfRegion.cs" />
     <Compile Include="person\requests\QBP_ZP4.cs" />

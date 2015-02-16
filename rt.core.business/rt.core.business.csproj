@@ -46,6 +46,14 @@
     <AssemblyOriginatorKeyFile>rt.srz.key</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
@@ -80,6 +88,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Data" />
@@ -139,13 +148,13 @@
     <Compile Include="security\repository\SecurityProvider.cs" />
     <Compile Include="server\bak\BackupJob.cs" />
     <Compile Include="server\directorywatcher\processing\target\BatchInfo.cs" />
-    <Compile Include="server\exchange\export\ExportBatch.cs" />
-    <Compile Include="server\exchange\export\ExportBatchFactory.cs" />
-    <Compile Include="server\exchange\export\ExportBatchTyped.cs" />
-    <Compile Include="server\exchange\export\ExportBatchType.cs" />
-    <Compile Include="interfaces\exchange\IExportBatchFactory.cs" />
-    <Compile Include="interfaces\exchange\IExportBatchTyped.cs" />
-    <Compile Include="interfaces\exchange\IExportBatch.cs" />
+    <Compile Include="server\exchange\export\ExporterBatch.cs" />
+    <Compile Include="server\exchange\export\ExporterBatchFactory.cs" />
+    <Compile Include="server\exchange\export\ExporterBatchTyped.cs" />
+    <Compile Include="server\exchange\export\ExporterBatchEnum.cs" />
+    <Compile Include="server\exchange\export\IExporterBatchFactory.cs" />
+    <Compile Include="server\exchange\export\IExporterBatchTyped.cs" />
+    <Compile Include="server\exchange\export\IExporterBatch.cs" />
     <Compile Include="server\exchange\export\StatusExportBatch.cs" />
     <Compile Include="server\directorywatcher\watch\WatchersJob.cs" />
     <Compile Include="interfaces\directorywatcher\IWatcher.cs" />
@@ -198,6 +207,7 @@
     <Compile Include="tests\RoleTests.generated.cs">
       <DependentUpon>RoleTests.cs</DependentUpon>
     </Compile>
+    <Compile Include="tests\UserDto.cs" />
     <Compile Include="tests\UserGroupRoleTests.cs" />
     <Compile Include="tests\UserGroupRoleTests.generated.cs">
       <DependentUpon>UserGroupRoleTests.cs</DependentUpon>
@@ -262,6 +272,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

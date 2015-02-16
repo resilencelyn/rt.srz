@@ -34,7 +34,7 @@ namespace rt.srz.model.srz
     {
       get
       {
-        return string.IsNullOrEmpty(Series) ? Number : string.Format("{0} ¹ {1}", Series, Number);
+        return string.IsNullOrWhiteSpace(Series) ? Number : string.Format("{0} ¹ {1}", Series, Number);
       }
     }
 

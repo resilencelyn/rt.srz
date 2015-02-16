@@ -73,7 +73,7 @@ namespace rt.srz.business.exchange.import
     ///   Initializes a new instance of the <see cref="BaseImporterFileQueryResponse{TXmlObj,TEnumerableItem}" /> class.
     /// </summary>
     protected BaseImporterFileQueryResponse()
-      : base(TypeSubject.Pfr)
+      : base(ExchangeSubjectType.Pfr)
     {
       ConceptCacheManager = ObjectFactory.GetInstance<IConceptCacheManager>();
       FomsManager = ObjectFactory.GetInstance<IOrganisationManager>();
@@ -259,7 +259,7 @@ namespace rt.srz.business.exchange.import
       var batch = new Batch();
       batch.FileName = fileName;
       batch.Number = GetFileVersion(fileName);
-      batch.Subject = ConceptCacheManager.GetById(TypeSubject.Pfr);
+      batch.Subject = ConceptCacheManager.GetById(ExchangeSubjectType.Pfr);
       var opfr = FomsManager.GetTfomByOpfrCode(codeOpfr);
       batch.Sender = opfr;
       batch.Receiver = opfr.Parent;

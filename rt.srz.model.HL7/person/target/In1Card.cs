@@ -178,7 +178,7 @@ namespace rt.srz.model.Hl7.person.target
     /// <summary>
     ///   Дата выдачи временного свидетельства
     /// </summary>
-    [XmlElement(ElementName = "IN1.151", Order = 151)]
+    [XmlElement(ElementName = "IN1.152", Order = 152)]
     public string TemporaryCertificateDateIssue;
 
     #endregion

@@ -34,7 +34,7 @@ namespace rt.srz.model.Hl7.person.target
     /// <summary>
     ///   The date range.
     /// </summary>
-    [XmlElement(ElementName = "QPD.14")]
+    [XmlElement(ElementName = "QPD.14", Order = 14)]
     public DateRange DateRange;
 
     /// <summary>
