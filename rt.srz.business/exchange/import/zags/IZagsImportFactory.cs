@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IZagsImportFactory.cs" company="РусБИТех">
+// <copyright file="IZagsImportFactory.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

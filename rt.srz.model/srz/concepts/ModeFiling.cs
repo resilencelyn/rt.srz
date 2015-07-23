@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ModeFiling.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="ModeFiling.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

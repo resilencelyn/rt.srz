@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PoliManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="PoliManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

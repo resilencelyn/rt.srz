@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultTemporaryCertificateDateIssueBiggerThenNow.cs" company="РусБИТех">
+// <copyright file="FaultTemporaryCertificateDateIssueBiggerThenNow.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

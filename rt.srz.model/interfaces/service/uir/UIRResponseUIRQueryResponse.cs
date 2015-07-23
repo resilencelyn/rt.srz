@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UIRResponseUIRQueryResponse.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="UIRResponseUIRQueryResponse.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

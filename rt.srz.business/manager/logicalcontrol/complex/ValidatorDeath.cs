@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorDeath.cs" company="РусБИТех">
+// <copyright file="ValidatorDeath.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

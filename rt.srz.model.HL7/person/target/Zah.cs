@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Zah.cs" company="РусБИТех">
+// <copyright file="Zah.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

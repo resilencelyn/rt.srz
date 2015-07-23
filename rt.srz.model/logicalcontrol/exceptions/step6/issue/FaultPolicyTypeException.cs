@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPolicyTypeException.cs" company="РусБИТех">
+// <copyright file="FaultPolicyTypeException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

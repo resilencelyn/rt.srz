@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TypeOperation.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="TypeOperation.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

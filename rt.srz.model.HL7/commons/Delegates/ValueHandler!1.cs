@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValueHandler!1.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="ValueHandler!1.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

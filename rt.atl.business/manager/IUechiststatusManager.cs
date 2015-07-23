@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IUechiststatusManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="IUechiststatusManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

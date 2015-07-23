@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultBirthdateLargerDocumentDateIssueException.cs" company="РусБИТех">
+// <copyright file="FaultBirthdateLargerDocumentDateIssueException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

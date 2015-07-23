@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IInsuredPersonManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="IInsuredPersonManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

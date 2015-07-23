@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEmptyPhotoException.cs" company="РусБИТех">
+// <copyright file="FaultEmptyPhotoException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

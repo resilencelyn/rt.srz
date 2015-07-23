@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="urn:hl7-org:v2xml" xmlns:hl7="urn:hl7-org:v2xml" targetNamespace="urn:hl7-org:v2xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="fields.xsd" />
+  <xsd:complexType name="DB1.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="hl7:DB1.1" />
+      <xsd:element minOccurs="0" ref="hl7:DB1.2" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:DB1.3" />
+      <xsd:element minOccurs="0" ref="hl7:DB1.4" />
+      <xsd:element minOccurs="0" ref="hl7:DB1.5" />
+      <xsd:element minOccurs="0" ref="hl7:DB1.6" />
+      <xsd:element minOccurs="0" ref="hl7:DB1.7" />
+      <xsd:element minOccurs="0" ref="hl7:DB1.8" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DB1" type="hl7:DB1.CONTENT" />
+  <xsd:complexType name="ERR.CONTENT">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:ERR.1" />
+      <xsd:element minOccurs="0" ref="hl7:ERR.2" />
+      <xsd:element ref="hl7:ERR.3" />
+      <xsd:element ref="hl7:ERR.4" />
+      <xsd:element minOccurs="0" ref="hl7:ERR.5" />
+      <xsd:element minOccurs="0" maxOccurs="10" ref="hl7:ERR.6" />
+      <xsd:element minOccurs="0" ref="hl7:ERR.7" />
+      <xsd:element minOccurs="0" ref="hl7:ERR.8" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:ERR.9" />
+      <xsd:element minOccurs="0" ref="hl7:ERR.10" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:ERR.11" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:ERR.12" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ERR" type="hl7:ERR.CONTENT" />
+  <xsd:complexType name="IN1.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="hl7:IN1.1" />
+      <xsd:element ref="hl7:IN1.2" />
+      <xsd:element ref="hl7:IN1.3" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.4" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.5" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.6" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.7" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.8" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.9" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.10" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.11" />
+      <xsd:element ref="hl7:IN1.12" />
+      <xsd:element ref="hl7:IN1.13" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.14" />
+      <xsd:element ref="hl7:IN1.15" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:IN1.16" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.17" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.18" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:IN1.19" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.20" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.21" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.22" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.23" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.24" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.25" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.26" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.27" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.28" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.29" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.30" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.31" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.32" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.33" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.34" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.35" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.36" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.37" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.39" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.42" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.43" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.44" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.45" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.46" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.47" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.48" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:IN1.49" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.50" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.51" />
+      <xsd:element minOccurs="0" ref="hl7:IN1.52" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:IN1.53" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IN1" type="hl7:IN1.CONTENT" />
+  <xsd:complexType name="MSA.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="hl7:MSA.1" />
+      <xsd:element ref="hl7:MSA.2" />
+      <xsd:element minOccurs="0" ref="hl7:MSA.3" />
+      <xsd:element minOccurs="0" ref="hl7:MSA.4" />
+      <xsd:element minOccurs="0" ref="hl7:MSA.6" />
+      <xsd:element minOccurs="0" ref="hl7:MSA.7" />
+      <xsd:element minOccurs="0" ref="hl7:MSA.8" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MSA" type="hl7:MSA.CONTENT" />
+  <xsd:complexType name="MSH.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="hl7:MSH.1" />
+      <xsd:element ref="hl7:MSH.2" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.3" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.4" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.5" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.6" />
+      <xsd:element ref="hl7:MSH.7" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.8" />
+      <xsd:element ref="hl7:MSH.9" />
+      <xsd:element ref="hl7:MSH.10" />
+      <xsd:element ref="hl7:MSH.11" />
+      <xsd:element ref="hl7:MSH.12" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.13" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.14" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.15" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.16" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.17" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:MSH.18" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.19" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.20" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:MSH.21" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.22" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.23" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.24" />
+      <xsd:element minOccurs="0" ref="hl7:MSH.25" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MSH" type="hl7:MSH.CONTENT" />
+  <xsd:complexType name="NK1.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="hl7:NK1.1" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.2" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.3" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.4" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.5" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.6" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.7" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.8" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.9" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.10" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.11" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.12" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.13" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.14" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.15" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.16" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.17" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.18" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.19" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.20" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.21" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.22" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.23" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.24" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.25" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.26" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.27" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.28" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.29" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.30" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.31" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.32" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.33" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.34" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:NK1.35" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.36" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.37" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.38" />
+      <xsd:element minOccurs="0" ref="hl7:NK1.39" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="NK1" type="hl7:NK1.CONTENT" />
+  <xsd:complexType name="PID.CONTENT">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.1" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.2" />
+      <xsd:element maxOccurs="unbounded" ref="hl7:PID.3" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.4" />
+      <xsd:element maxOccurs="unbounded" ref="hl7:PID.5" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.6" />
+      <xsd:element ref="hl7:PID.7" />
+      <xsd:element ref="hl7:PID.8" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.9" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.10" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PID.11" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.12" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PID.13" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PID.14" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.15" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.16" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.17" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.18" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.19" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.20" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PID.21" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.22" />
+      <xsd:element minOccurs="0" ref="hl7:PID.23" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.24" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.25" />
+      <xsd:element minOccurs="0" ref="hl7:PID.26" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.27" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.28" />
+      <xsd:element minOccurs="0" ref="hl7:PID.29" />
+      <xsd:element minOccurs="0" ref="hl7:PID.30" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.31" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PID.32" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.33" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.34" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.35" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.36" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.37" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.38" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PID.39" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PID" type="hl7:PID.CONTENT" />
+  <xsd:complexType name="PV1.CONTENT">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.1" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.2" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.3" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.4" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.5" />
+      <xsd:element minOccurs="0" ref="hl7:PV1.6" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.7" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.8" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.9" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.10" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.11" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.12" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.13" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.14" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.15" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.16" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.17" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.18" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.19" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.20" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.21" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.22" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.23" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.24" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.25" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.26" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.27" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.28" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.29" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.30" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.31" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.32" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.33" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.34" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.35" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.36" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.37" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.38" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.39" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.40" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.41" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.42" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.43" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.44" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:PV1.45" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.46" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.47" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.48" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.49" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.50" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.51" />
+      <xsd:element minOccurs="0" maxOccurs="0" ref="hl7:PV1.52" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PV1" type="hl7:PV1.CONTENT" />
+  <xsd:complexType name="QRI.CONTENT">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="hl7:QRI.1" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="hl7:QRI.2" />
+      <xsd:element minOccurs="0" ref="hl7:QRI.3" />
+      <xsd:any minOccurs="0" namespace="##other" processContents="lax" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QRI" type="hl7:QRI.CONTENT" />
+</xsd:schema>

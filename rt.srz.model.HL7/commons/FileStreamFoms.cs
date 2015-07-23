@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileStreamFoms.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="FileStreamFoms.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

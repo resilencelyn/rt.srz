@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseImporterFileQueryResponse.cs" company="РусБИТех">
+// <copyright file="BaseImporterFileQueryResponse.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

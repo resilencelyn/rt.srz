@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssignRolesToUserControl.ascx.cs" company="РусБИТех">
+// <copyright file="AssignRolesToUserControl.ascx.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------

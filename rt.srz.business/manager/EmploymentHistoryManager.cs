@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmploymentHistoryManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="EmploymentHistoryManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

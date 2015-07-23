@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------
-// <copyright file="CenterStatusManager.cs" company="РусБИТех">
+// <copyright file="CenterStatusManager.cs" company="Альянс">
 //     Copyright (c) 2014. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------

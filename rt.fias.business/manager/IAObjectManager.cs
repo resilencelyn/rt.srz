@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------
-// <copyright file="IAObjectManager.cs" company="РусБИТех">
+// <copyright file="IAObjectManager.cs" company="Альянс">
 //     Copyright (c) 2014. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------

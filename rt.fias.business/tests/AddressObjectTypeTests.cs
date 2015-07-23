@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------
-// <copyright file="AddressObjectTypeTests.cs" company="РусБИТех">
+// <copyright file="AddressObjectTypeTests.cs" company="Альянс">
 //     Copyright (c) 2014. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------

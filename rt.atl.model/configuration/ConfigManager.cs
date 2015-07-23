@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigManager.cs" company="РусБИТех">
+// <copyright file="ConfigManager.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Configuration;
+
 namespace rt.atl.model.configuration
 {
-  using System.Configuration;
-
   /// <summary>
   ///   The core config manager.
   /// </summary>
@@ -34,9 +34,7 @@ namespace rt.atl.model.configuration
     {
       get
       {
-        return synchronizationSettings
-               ?? (synchronizationSettings =
-                   (SynchronizationSettings)ConfigurationManager.GetSection("synchronizationSettings"));
+        return synchronizationSettings ?? (synchronizationSettings = (SynchronizationSettings)ConfigurationManager.GetSection("synchronizationSettings"));
       }
     }
 

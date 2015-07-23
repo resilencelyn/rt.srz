@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------
-// <copyright file="EstateStatusTests.cs" company="РусБИТех">
+// <copyright file="EstateStatusTests.cs" company="Альянс">
 //     Copyright (c) 2014. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------

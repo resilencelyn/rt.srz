@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultNotFoundInsuredPerson.cs" company="РусБИТех">
+// <copyright file="FaultNotFoundInsuredPerson.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

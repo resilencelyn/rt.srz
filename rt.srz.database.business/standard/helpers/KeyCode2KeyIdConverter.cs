@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="KeyCode2KeyIdConverter.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="KeyCode2KeyIdConverter.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

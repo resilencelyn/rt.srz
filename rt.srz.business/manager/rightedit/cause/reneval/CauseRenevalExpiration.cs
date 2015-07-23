@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CauseRenevalExpiration.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="CauseRenevalExpiration.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

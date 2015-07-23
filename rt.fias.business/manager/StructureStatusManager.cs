@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------
-// <copyright file="StructureStatusManager.cs" company="РусБИТех">
+// <copyright file="StructureStatusManager.cs" company="Альянс">
 //     Copyright (c) 2014. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------

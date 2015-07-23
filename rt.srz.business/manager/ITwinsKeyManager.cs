@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ITwinsKeyManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="ITwinsKeyManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

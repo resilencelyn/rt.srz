@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GlobalAssemblyInfo.cs" company="РусБИТех">
+// <copyright file="GlobalAssemblyInfo.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
@@ -9,7 +9,7 @@
 
 using System.Reflection;
 
-[assembly: AssemblyCompany("РусБИТех")]
+[assembly: AssemblyCompany("Альянс")]
 [assembly: AssemblyProduct("ОНЛАЙН ПВП")]
 [assembly: AssemblyCopyright("Copyright © ФОМС 2012")]
 [assembly: AssemblyTrademark("СРЗ")]

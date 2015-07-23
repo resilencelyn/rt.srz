@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CauseRenevalLoss.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="CauseRenevalLoss.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TreeCollectMode.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="TreeCollectMode.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

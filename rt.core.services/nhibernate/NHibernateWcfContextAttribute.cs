@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NHibernateWcfContextAttribute.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="NHibernateWcfContextAttribute.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

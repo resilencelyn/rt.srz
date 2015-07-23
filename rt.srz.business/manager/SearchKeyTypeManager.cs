@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SearchKeyTypeManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="SearchKeyTypeManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

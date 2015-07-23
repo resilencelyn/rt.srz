@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultEnpBirthdayAndGenderException.cs" company="РусБИТех">
+// <copyright file="FaultEnpBirthdayAndGenderException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

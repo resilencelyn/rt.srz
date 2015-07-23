@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sch="urn:hl7-org:v2xml" xmlns:tns="urn:hl7-org:v2xml" targetNamespace="urn:hl7-org:v2xml" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="urn:hl7-org:v2xml" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:hl7-org:v2xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:include schemaLocation="QBP_ZPD.xsd" />
+      <xsd:element name="ExecuteRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="tns:QBP_ZPD" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExecuteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="tns:RSP_ZKD" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ExecuteResponse">
+    <wsdl:part name="ExecuteResponse" element="tns:ExecuteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteRequest">
+    <wsdl:part name="ExecuteRequest" element="tns:ExecuteRequest" />
+  </wsdl:message>
+  <wsdl:portType name="IntegrationServiceHl7V26">
+    <wsdl:operation name="Execute">
+      <wsdl:input name="ExecuteRequest" message="tns:ExecuteRequest" />
+      <wsdl:output name="ExecuteResponse" message="tns:ExecuteResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IntegrationServiceHl7V26Soap11" type="tns:IntegrationServiceHl7V26">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Execute">
+      <soap:operation soapAction="" />
+      <wsdl:input name="ExecuteRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ExecuteResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IntegrationServiceHl7V26">
+    <wsdl:port name="IntegrationServiceHl7V26Soap11" binding="tns:IntegrationServiceHl7V26Soap11">
+      <soap:address location="http://172.18.1.43:8080/mis-integration/HL7V26" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

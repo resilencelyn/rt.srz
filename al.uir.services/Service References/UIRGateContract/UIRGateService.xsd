@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://uir.ffoms.ru" elementFormDefault="qualified" targetNamespace="http://uir.ffoms.ru" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="UIRRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="FullName">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="FamilyName" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="FirstName" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Document">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="1" maxOccurs="1" name="DocType" type="xs:int" />
+              <xs:element minOccurs="0" maxOccurs="1" name="DocIdent" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="Birth">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="BirthDate" type="xs:date" />
+              <xs:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="InsDate" nillable="true" type="xs:date" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UIRResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Ack">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="AA" />
+              <xs:enumeration value="AE" />
+              <xs:enumeration value="AR" />
+              <xs:enumeration value="CE" />
+              <xs:enumeration value="CR" />
+              <xs:enumeration value="CA" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Err">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="ErrCode" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="ErrText" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="UIRQueryResponse">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="Person">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="MainENP" type="xs:string" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="RegionalENP" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" maxOccurs="1" name="Insurance">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="MedInsCompanyId" type="xs:string" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="InsRegion" type="xs:string" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="StartDate" type="xs:date" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="EndDate" type="xs:date" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="InsType" type="xs:string" />
+                    <xs:element minOccurs="0" maxOccurs="1" name="InsId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UIRRequest2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="FullName">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="FamilyName" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="FirstName" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="PolicyType" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="InsRegion" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Birth">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="BirthDate" type="xs:date" />
+              <xs:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="1" maxOccurs="1" name="InsDate" nillable="true" type="xs:date" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

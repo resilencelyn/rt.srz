@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPoliceCertificateDateException.cs" company="РусБИТех">
+// <copyright file="FaultPoliceCertificateDateException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPersonAlreadyBelongsToSmoException.cs" company="РусБИТех">
+// <copyright file="FaultPersonAlreadyBelongsToSmoException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

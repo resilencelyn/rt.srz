@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MedCompanyDocLicPic.cs" company="РусБИТех">
+// <copyright file="MedCompanyDocLicPic.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

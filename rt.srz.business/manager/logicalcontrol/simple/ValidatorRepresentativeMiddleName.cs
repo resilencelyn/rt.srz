@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorRepresentativeMiddleName.cs" company="РусБИТех">
+// <copyright file="ValidatorRepresentativeMiddleName.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

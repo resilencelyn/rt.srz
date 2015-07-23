@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CauseReinsuranceWithTheMove.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="CauseReinsuranceWithTheMove.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

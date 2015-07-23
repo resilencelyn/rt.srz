@@ -254,6 +254,7 @@
     <Content Include="NHibernateCfgFias.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pages\Kladr.aspx" />
     <Content Include="RegulatoryGate.svc" />
     <Content Include="HttpHandlers\GetPhotoHandler.ashx" />
     <Content Include="HttpHandlers\UploadPhotoHandler.ashx" />
@@ -307,7 +308,9 @@
     <Content Include="Configuration\MigrationConfiguration.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configuration\NLog.config" />
+    <Content Include="Configuration\NLog.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configuration\StructureMap.config" />
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\firefox.browser" />
@@ -1018,6 +1021,13 @@
     </Compile>
     <Compile Include="Pages\IssueOfPolicy.aspx.designer.cs">
       <DependentUpon>IssueOfPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kladr.aspx.cs">
+      <DependentUpon>Kladr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kladr.aspx.designer.cs">
+      <DependentUpon>Kladr.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\NSI\TemplatesVs.aspx.cs">
       <DependentUpon>TemplatesVs.aspx</DependentUpon>

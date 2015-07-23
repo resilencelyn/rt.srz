@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultPolisCertificateEmptyException.cs" company="РусБИТех">
+// <copyright file="FaultPolisCertificateEmptyException.cs" company="Альянс">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:rtc="http://www.rintech.ru" xmlns:hl7="urn:com.sun:encoder-hl7-1.0" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:hl7-org:v2xml" jaxb:version="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Z-fields.xsd" />
+  <xsd:import schemaLocation="Z-attributes.xsd" namespace="http://www.rintech.ru" />
+  <xsd:annotation>
+    <xsd:appinfo source="urn:com.sun:encoder">
+      <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0" />
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:complexType name="ZSG.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="ZSG.1" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ZSG" type="ZSG.CONTENT">
+    <xsd:annotation>
+      <xsd:documentation>Электронная цифровая подпись</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ZPW.CONTENT">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="ZPW.1" />
+      <xsd:element minOccurs="0" ref="ZPW.2" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ZPW" type="ZPW.CONTENT">
+    <xsd:annotation>
+      <xsd:documentation>Сведения о месте работы пациента</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="QPD.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="QPD.1" />
+      <xsd:element minOccurs="0" ref="QPD.2" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="QPD.5" />
+      <xsd:element minOccurs="0" maxOccurs="1" ref="QPD.6" />
+      <xsd:element minOccurs="0" ref="QPD.7" />
+      <xsd:element minOccurs="0" ref="QPD.8" />
+      <xsd:element minOccurs="0" ref="QPD.9" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="QPD.10" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QPD" type="QPD.CONTENT" />
+</xsd:schema>

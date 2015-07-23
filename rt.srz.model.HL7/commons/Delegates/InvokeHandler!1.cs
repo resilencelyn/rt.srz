@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InvokeHandler!1.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="InvokeHandler!1.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

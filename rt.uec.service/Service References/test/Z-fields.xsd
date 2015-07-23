@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="urn:hl7-org:v2xml" xmlns:rtc="http://www.rintech.ru" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:hl7-org:v2xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="datatypes.xsd" />
+  <xsd:include schemaLocation="Z-datatypes.xsd" />
+  <xsd:include schemaLocation="fields.xsd" />
+  <xsd:import schemaLocation="Z-attributes.xsd" namespace="http://www.rintech.ru" />
+  <xsd:element name="ZSG.1" type="Signature">
+    <xsd:annotation>
+      <xsd:documentation>ЭЦП и сопутствующая информация</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ZPW.1" type="ST">
+    <xsd:annotation>
+      <xsd:documentation>Наименование компании</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ZPW.2" type="ST">
+    <xsd:annotation>
+      <xsd:documentation>Наименование должности</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="QPD.5" type="CX">
+    <xsd:annotation>
+      <xsd:documentation>Список идентификаторов пациента</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="QPD.6" type="XPN">
+    <xsd:annotation>
+      <xsd:documentation>Фамилия, имя, отчество</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="QPD.7" type="DT">
+    <xsd:annotation>
+      <xsd:documentation>Дата рождения</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="QPD.8" type="IS">
+    <xsd:annotation>
+      <xsd:documentation>Пол</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="QPD.9" type="ST">
+    <xsd:annotation>
+      <xsd:documentation>Место рождения</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="QPD.10" type="CX">
+    <xsd:annotation>
+      <xsd:documentation>Список ДПФС пациента</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

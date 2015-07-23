@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FaultDateFutureException.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="FaultDateFutureException.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

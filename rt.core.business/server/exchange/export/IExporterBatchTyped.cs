@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IExporterBatchTyped.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="IExporterBatchTyped.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

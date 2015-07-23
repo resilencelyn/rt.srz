@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PseudonymizationManager.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="PseudonymizationManager.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>

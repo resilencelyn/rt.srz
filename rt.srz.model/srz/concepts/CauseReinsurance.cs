@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CauseReinsurance.cs" company="ÐóñÁÈÒåõ">
+// <copyright file="CauseReinsurance.cs" company="Àëüÿíñ">
 //   Copyright (c) 2014. All rights reserved.
 // </copyright>
 // <summary>
